@@ -1,5 +1,6 @@
 package Menus;
 
+
 public class MenuInicial
 {
     public static void main(String[] args)
@@ -11,12 +12,13 @@ public class MenuInicial
 
         while(continuar)
         {
-            do {
-                System.out.println("========  MENU INICIAL  ========");
-                System.out.println("|     1 - Cadastro             |");
-                System.out.println("|     2 - Login                |");
-                System.out.println("|     3 - Sair                 |");
-                System.out.println("================================");
+            do
+            {
+                System.out.println(" ========  MENU INICIAL  ========");
+                System.out.println("|     1 - Cadastro               |");
+                System.out.println("|     2 - Login                  |");
+                System.out.println("|     3 - Sair                   |");
+                System.out.println(" ================================");
                 System.out.print("|     Escolha: ");
 
                 try
@@ -31,7 +33,8 @@ public class MenuInicial
                     checkopcao = false;
                 }
 
-            } while (!checkopcao);
+            }
+            while (!checkopcao);
 
             switch(opcao)
             {
@@ -39,8 +42,14 @@ public class MenuInicial
                 {
 
                 }
-                case 2 ->
-                case 3 ->
+                case 2:
+                {
+
+                }
+                case 3:
+                {
+
+                }
             }
         }
     }
