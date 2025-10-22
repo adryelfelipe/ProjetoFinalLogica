@@ -1,7 +1,7 @@
 public class NivelAcesso {
 
     // -- Atributos -- //
-    public static int Gerente = 3;
-    public static int Supervisor = 2;
-    public static int Tecnico = 1;
+    public static int GERENTE = 3;
+    public static int SUPERVISOR = 2;
+    public static int TECNICO = 1;
 }

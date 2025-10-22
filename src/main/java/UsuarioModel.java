@@ -17,7 +17,7 @@ public abstract class UsuarioModel {
     }
 
     // -- Construtor sem ID-- //
-    public UsuarioModel(String nome, String cpf, String senha, int nivelAcesso ) {
+    public UsuarioModel(String nome, String cpf, String senha, int nivelAcesso) {
         this(0, nome, cpf, senha, nivelAcesso);
     }
 
@@ -44,7 +44,7 @@ public abstract class UsuarioModel {
     }
 
     public void setIdUsuario(long id) {
-        UsuarioValidator.verificaIntegridadeId(id);
+        UsuarioValidator.verificaIntegridadeIdUsuario(id);
         this.idUsuario = id;
     }
 
@@ -59,11 +59,12 @@ public abstract class UsuarioModel {
     }
 
     public void setNome(String nome) {
-        UsuarioValidator.verificaIntegridadeSenha(nome);
+        UsuarioValidator.verificaIntegridadeNome(nome);
         this.nome = nome;
     }
 
     public void setNivelAcesso(int nivelAcesso) {
+        UsuarioValidator.verificaIntegridadeNivelAcesso(nivelAcesso);
         this.nivelAcesso = nivelAcesso;
     }
 }
