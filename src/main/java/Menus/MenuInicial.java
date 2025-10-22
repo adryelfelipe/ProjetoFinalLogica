@@ -3,7 +3,7 @@ package Menus;
 
 public class MenuInicial
 {
-    public static void main(String[] args)
+    public static void Menu()
     {
         int opcao = 0;
 
@@ -40,15 +40,24 @@ public class MenuInicial
             {
                 case 1:
                 {
+                    Ferramentas.limpaTerminal();
+                    MenuLogin.login();
 
+                    break;
                 }
                 case 2:
                 {
+                    Ferramentas.limpaTerminal();
+                    MenuCadastro.cadastro();
 
+                    break;
                 }
                 case 3:
                 {
+                    Ferramentas.limpaTerminal();
+                    MenuDesligar.desligar();
 
+                    break;
                 }
             }
         }

@@ -5,7 +5,8 @@ package Menus;
 public class MenuLogin
 {
     //private static final UsuarioService usuarioService = new usuarioService();
-    public static void login(){
+    public static void login()
+    {
         boolean continuar = true;
 
         String cpfLogin = "1";
@@ -16,9 +17,9 @@ public class MenuLogin
             System.out.println("|             LOGIN            |");
             System.out.println("================================\n");
 
-            System.out.print("Digite seu CPF: ");
+            System.out.print("|     Digite seu CPF: ");
             cpfLogin = Ferramentas.lString();
-            System.out.print("Digite sua senha: ");
+            System.out.print("|     Digite sua senha: ");
             senhaLogin = Ferramentas.lString();
 
             try
