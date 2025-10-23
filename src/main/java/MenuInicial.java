@@ -38,7 +38,7 @@ public class MenuInicial
                 case 1:
                 {
                     Ferramentas.limpaTerminal();
-                    MenuCadastroGeral.cadastroGeral();
+                    MenuCadastroUsuario.cadastroGeral();
 
                     break;
                 }

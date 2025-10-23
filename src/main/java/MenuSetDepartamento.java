@@ -1,4 +1,4 @@
-public class MenuSetDpmt {
+public class MenuSetDepartamento {
 
     public static void MenuSetDepartamento()
     {

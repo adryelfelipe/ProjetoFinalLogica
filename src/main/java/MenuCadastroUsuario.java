@@ -1,8 +1,11 @@
 import
 
-public class MenuCadastroGeral
+public class MenuCadastroUsuario
 {
-    public static void cadastroGeral()
+    private static final UsuarioService usuarioService = new UsuarioService();
+    private static final UsuarioValidator usuarioValidator = new UsuarioValidator(usuarioService);
+
+    public static void cadastroUsuario()
     {
         boolean continuar = true;
 
@@ -12,11 +15,11 @@ public class MenuCadastroGeral
             System.out.println("|           CADASTRO           |");
             System.out.println("================================\n");
 
-            MenuSetNome.MenuSetNome(new UsuarioValidator());
+            MenuSetNome.MenuSetNome(usuarioValidator);
 
-            MenuSetCpf.MenuSetCpf();
+            MenuSetCpf.MenuSetCpf(usuarioValidator);
 
-            MenuSetSenha.MenuSetSenha();
+            MenuSetSenha.MenuSetSenha(usuarioValidator);
 
             System.out.println("=======   CADASTRO DE:   =======");
             System.out.println("|     1 - Técnico               |");
@@ -25,9 +28,11 @@ public class MenuCadastroGeral
             System.out.println("================================");
             System.out.println("|     Escolha: ");
 
+            int escolhaDeCadastro = 0;
+
             try
             {
-                int escolhaDeCadastro = Ferramentas.lInteiro();
+                escolhaDeCadastro = Ferramentas.lInteiro();
 
             }
             catch (Exception e)
