@@ -19,11 +19,11 @@ public class MenuCadastroUsuario
             System.out.println("|           CADASTRO           |");
             System.out.println("================================\n");
 
-            MenuSetNome.MenuSetNome(usuarioValidator);
+            MenuSetUsuario.MenuSetNome(usuarioValidator);
 
-            MenuSetCpf.MenuSetCpf(usuarioValidator);
+            MenuSetUsuario.MenuSetCpf(usuarioValidator);
 
-            MenuSetSenha.MenuSetSenha(usuarioValidator);
+            MenuSetUsuario.MenuSetSenha(usuarioValidator);
 
             System.out.println("=======   CADASTRO DE:   =======");
             System.out.println("|     1 - Técnico               |");
