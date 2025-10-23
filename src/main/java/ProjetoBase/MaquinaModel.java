@@ -6,11 +6,11 @@ public class MaquinaModel {
     private long idMaquina;
     private String nome;
     private String localizacao;
-    private String status;
+    private int status;
 
 
     // Construtor com ID //
-    public MaquinaModel(long id, String nome, String localizacao, String status) {
+    public MaquinaModel(long id, String nome, String localizacao, int status) {
         setNome(nome);
         setIdMaquina(id);
         setLocalizacao(localizacao);
@@ -39,11 +39,11 @@ public class MaquinaModel {
         this.localizacao = localizacao;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

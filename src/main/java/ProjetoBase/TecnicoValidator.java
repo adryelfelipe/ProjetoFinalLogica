@@ -1,3 +1,5 @@
+package ProjetoBase;
+
 public class TecnicoValidator {
 
     // -- Métodos de Regras de Negócio -- //

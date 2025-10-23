@@ -3,25 +3,25 @@ package ProjetoBase;
 public class GerenteModel extends UsuarioModel{
 
     // -- Atributos -- //
-    private int departamento;
+    private int idDepartamento;
 
     // -- Construtor com ID -- //
-    public GerenteModel(long id, String nome, String cpf, String senha, int departamento) {
+    public GerenteModel(long id, String nome, String cpf, String senha, int idDepartamento) {
         super(id, nome, cpf, senha, NivelAcesso.GERENTE);
-        setDepartamento(departamento);
+        setDepartamento(idDepartamento);
     }
 
     // -- Construtor sem ID -- //
-    public GerenteModel(String nome, String cpf, String senha, int departamento) {
-        this(0, nome, cpf, senha, departamento);
+    public GerenteModel(String nome, String cpf, String senha, int idDepartamento) {
+        this(0, nome, cpf, senha, idDepartamento);
     }
 
     // -- Setters e Getters -- //
     public int getDepartamento() {
-        return departamento;
+        return idDepartamento;
     }
 
     public void setDepartamento(int departamento) {
-        this.departamento = departamento;
+        this.idDepartamento = departamento;
     }
 }
