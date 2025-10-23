@@ -17,7 +17,8 @@ public abstract class UsuarioModel {
     }
 
     // -- Construtor sem ID-- //
-    public UsuarioModel(String nome, String cpf, String senha, int nivelAcesso) {
+    public UsuarioModel(String nome, String cpf, String senha, int nivelAcesso)
+    {
         this(0, nome, cpf, senha, nivelAcesso);
     }
 
