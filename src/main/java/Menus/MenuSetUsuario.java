@@ -1,7 +1,6 @@
 package Menus;
 
 import ProjetoBase.Ferramentas;
-import ProjetoBase.UsuarioService;
 import ProjetoBase.UsuarioValidator;
 
 public class MenuSetUsuario
@@ -10,37 +9,41 @@ public class MenuSetUsuario
     //SET NOME DO USUÁRIO
     public static String MenuSetNome(UsuarioValidator usuarioValidator)
     {
-        while(true)
+        boolean verifica = false;
+
+        while(!verifica)
         {
-            System.out.print("Digite o Nome: ");
+            System.out.println("Digite o novo Nome: ");
             String nome = Ferramentas.lString();
 
             try
             {
                 UsuarioValidator.verificaIntegridadeNome(nome);
                 usuarioValidator.verificaRegrasNome(nome);
-                return nome;
+                verifica = true;
             }
             catch (IllegalArgumentException | IllegalStateException e)
             {
                 Ferramentas.mensagemErro(e.getMessage());
             }
         }
+        return " ";
     }
 
     //SET CPF DO USUÁRIO
-    public static String MenuSetCpf(UsuarioService usuarioService, UsuarioValidator usuarioValidator){
+    public static void MenuSetCpf(UsuarioValidator usuarioValidator){
+        boolean verifica = false;
 
-        while(true){
-            System.out.print("Digite o CPF: ");
-            String cpf = Ferramentas.lString();
+        while(!verifica){
+            System.out.print("Digite seu CPF: ");
+            String CPF = Ferramentas.lString();
 
             try
             {
-                UsuarioValidator.verificaIntegridadeCpf(cpf);
-                usuarioValidator.verificarRegrasCpf(cpf);
-                usuarioService.isCpfCadastradoValidator(cpf);
-                return cpf;
+                UsuarioValidator.verificaIntegridadeCpf(CPF);
+                usuarioValidator.verificarRegrasCpf(CPF);
+
+                verifica = true;
             }
             catch (IllegalArgumentException | IllegalStateException e)
             {
@@ -50,20 +53,22 @@ public class MenuSetUsuario
     }
 
     //SET SENHA DO USUÁRIO
-    public static String MenuSetSenha(UsuarioValidator usuarioValidator){
-        while(true){
-            System.out.print("Digite a senha: ");
+    public static void MenuSetSenha(UsuarioValidator usuarioValidator){
+        boolean verifica = false;
+
+        while(!verifica){
+            System.out.print("Digite sua senha: ");
             String senha = ProjetoBase.Ferramentas.lString();
 
             try
             {
                 UsuarioValidator.verificaIntegridadeSenha(senha);
                 usuarioValidator.verificarRegrasSenha(senha);
-                return senha;
+                verifica = true;
             }
             catch (IllegalArgumentException | IllegalStateException e)
             {
-                Ferramentas.mensagemErro(e.getMessage());
+                ProjetoBase.Ferramentas.mensagemErro(e.getMessage());
             }
         }
     }
