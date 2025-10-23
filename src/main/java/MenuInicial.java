@@ -1,6 +1,3 @@
-package Menus;
-
-
 public class MenuInicial
 {
     public static void Menu()

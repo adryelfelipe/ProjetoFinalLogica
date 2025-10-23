@@ -1,5 +1,3 @@
-package Menus;
-
 import java.util.Scanner;
 
 public class Ferramentas {

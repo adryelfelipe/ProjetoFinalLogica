@@ -1,5 +1,3 @@
-package Menus;
-
 public class MenuCadastro
 {
     public static void cadastro()
@@ -22,8 +20,6 @@ public class MenuCadastro
             String senha = Ferramentas.lString();
             System.out.println("|     Confirme a Senha: ");
             String confirmacaoSenha = Ferramentas.lString();
-
-
         }
     }
 }

@@ -1,5 +1,3 @@
-package Menus;
-
 import java.sql.SQLException;
 
 public class Main

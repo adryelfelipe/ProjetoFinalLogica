@@ -1,5 +1,3 @@
-package Menus;
-
 public class MenuDesligar
 {
     public static void desligar()
