@@ -46,6 +46,13 @@ public class UsuarioValidator {
     }
 
     // -- Métodos de Regras de Negócio -- //
+    public void inserirUsuario(UsuarioModel usuario) {
+        verificarRegrasSenha(usuario.getSenha());
+        verificaRegrasNome(usuario.getNome());
+        verificarRegrasCpf(usuario.getCpf());
+        verificaRegrasNivelAcesso(usuario.getNivelAcesso());
+    }
+
     public void verificaRegrasNome(String nome) {
         if(nome == null) {
             throw new IllegalStateException("ERRO! O NOME NÃO PODE SER NULO");
