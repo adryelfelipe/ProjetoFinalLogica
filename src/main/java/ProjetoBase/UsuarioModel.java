@@ -1,3 +1,5 @@
+package ProjetoBase;
+
 public abstract class UsuarioModel {
 
     // -- Atributos -- //

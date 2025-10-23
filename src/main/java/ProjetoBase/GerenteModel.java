@@ -1,3 +1,5 @@
+package ProjetoBase;
+
 public class GerenteModel extends UsuarioModel{
 
     // -- Atributos -- //
