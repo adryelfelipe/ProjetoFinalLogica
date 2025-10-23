@@ -1,3 +1,8 @@
+package Menus;
+
+import ProjetoBase.Ferramentas;
+import ProjetoBase.UsuarioValidator;
+
 public class MenuSetUsuario {
 
     public static String MenuSetNome(UsuarioValidator usuarioValidator)

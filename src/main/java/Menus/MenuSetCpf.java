@@ -1,3 +1,8 @@
+package Menus;
+
+import ProjetoBase.Ferramentas;
+import ProjetoBase.UsuarioValidator;
+
 public class MenuSetCpf {
 
     public static void MenuSetCpf(UsuarioValidator usuarioValidator){

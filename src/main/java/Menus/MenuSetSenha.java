@@ -1,10 +1,14 @@
+package Menus;
+
+import ProjetoBase.UsuarioValidator;
+
 public class MenuSetSenha {
     public static void MenuSetSenha(UsuarioValidator usuarioValidator){
         boolean verifica = false;
 
         while(!verifica){
             System.out.print("Digite sua senha: ");
-            String senha = Ferramentas.lString();
+            String senha = ProjetoBase.Ferramentas.lString();
 
             try
             {
@@ -14,7 +18,7 @@ public class MenuSetSenha {
             }
             catch (IllegalArgumentException | IllegalStateException e)
             {
-                Ferramentas.mensagemErro(e.getMessage());
+                ProjetoBase.Ferramentas.mensagemErro(e.getMessage());
             }
         }
     }

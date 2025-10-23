@@ -1,3 +1,7 @@
+package Menus;
+
+import ProjetoBase.Ferramentas;
+
 public class MenuInicial
 {
     public static void Menu()
@@ -38,7 +42,7 @@ public class MenuInicial
                 case 1:
                 {
                     Ferramentas.limpaTerminal();
-                    MenuCadastroUsuario.cadastroGeral();
+                    MenuCadastroUsuario.cadastroUsuario();
 
                     break;
                 }

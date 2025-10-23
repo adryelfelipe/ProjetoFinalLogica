@@ -1,3 +1,5 @@
+package ProjetoBase;
+
 import Connections.ConnectionFactory;
 
 import java.sql.Connection;
