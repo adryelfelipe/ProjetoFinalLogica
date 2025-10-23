@@ -1,6 +1,8 @@
+import java.util.ArrayList;
+
 public class MenuCadastro
 {
-    public static void cadastro()
+    public static ArrayList<String> cadastro()
     {
         boolean continuar = true;
 
@@ -20,6 +22,16 @@ public class MenuCadastro
             String senha = Ferramentas.lString();
             System.out.println("|     Confirme a Senha: ");
             String confirmacaoSenha = Ferramentas.lString();
+
+            ArrayList<String> arrayList = new ArrayList<>();
+            arrayList.add(nomeCadastro);
+            arrayList.add(cpfCadastro);
+            arrayList.add(senha);
+
+            System.out.println("Parabéns " + nomeCadastro + ", seu cadastro foi concluido!");
+            return arrayList;
         }
+        ArrayList<String> infoGerais = MenuCadastro.cadastro();
+        return infoGerais;
     }
 }

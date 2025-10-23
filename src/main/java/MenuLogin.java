@@ -1,6 +1,8 @@
+
+
 public class MenuLogin
 {
-    //private static final UsuarioService usuarioService = new usuarioService();
+    //private static final UsuarioService usuarioService = new UsuarioService();
     public static void login()
     {
         boolean continuar = true;
@@ -20,9 +22,9 @@ public class MenuLogin
 
             try
             {
-                //Usuario usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
+                Usuario usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
             }
-            catch (/*SenhaInvalidaException | CpfInvalido*/ Exception e)
+            catch (SenhaInvalidaException | CpfInvalido Exception e)
             {
                 System.out.println("ERRO! SENHA OU CPF INVÁLIDOS");
             }
