@@ -1,24 +1,24 @@
 package ProjetoBase;
 
 public class TecnicoModel extends UsuarioModel{
-    private String especialidade;
+    private int especialidade;
 
     // Construtor com ID //
-    public TecnicoModel(long id, String nome, String cpf, String senha, String especialidade) {
+    public TecnicoModel(long id, String nome, String cpf, String senha, int especialidade) {
         super(id, nome, cpf, senha, NivelAcesso.TECNICO);
         this.especialidade = especialidade;
     }
 
     // Construtor sem ID //
-    public TecnicoModel(String nome, String cpf, String senha, String especialidade) {
+    public TecnicoModel(String nome, String cpf, String senha, int especialidade) {
         this(0, nome, cpf, senha, especialidade);
     }
 
-    public String getEspecialidade() {
+    public int getEspecialidade() {
         return especialidade;
     }
 
-    public void setEspecialidade(String especialidade) {
+    public void setEspecialidade(int especialidade) {
         this.especialidade = especialidade;
     }
 }

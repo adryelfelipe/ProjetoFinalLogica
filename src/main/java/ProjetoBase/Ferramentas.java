@@ -8,10 +8,10 @@ import java.util.Scanner;
 public class Ferramentas {
 
     // Atributos Estáticos
-    private static final List<String> listaMaiusculos = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+    public static final List<String> listaMaiusculos = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
                                                                                        "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"));
 
-    private static final List<String> listaEspeciais = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+    public static final List<String> listaEspeciais = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
                                                                                      "!", "@", "#", "$", "%", "&", "*", "(", ")", "-", "_",
                                                                                      "=", "+", "[", "]", "´", "`", "^", "~", ":", ";", "/",
                                                                                      "?", "|", "{", "}", "<", ">", ",", ".", ":", "'", "\"",
@@ -132,6 +132,16 @@ public class Ferramentas {
         Ferramentas.limpaTerminal();
         System.err.println(mensagem);
         Ferramentas.Delay(1700);
+        Ferramentas.limpaTerminal();
+    }
+
+    // ------- MENU UTILIZADO PARA CASES DEFAULT ------- //
+    public static void menuDefault() {
+        Ferramentas.limpaTerminal();
+        System.err.println("-------------------------\n");
+        System.err.println("Valor digitado incorreto!");
+        System.err.println("-------------------------\n");
+        Ferramentas.Delay(1500);
         Ferramentas.limpaTerminal();
     }
 }
