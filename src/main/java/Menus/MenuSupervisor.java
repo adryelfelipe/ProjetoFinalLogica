@@ -21,8 +21,19 @@ public class MenuSupervisor
                 opcao = Ferramentas.lInteiro();
 
                 switch (opcao){
+                    case 1:
 
+                        break;
+
+                    case 2:
+
+                        break;
+
+                    case 3:
+                        System.out.println("RETORNANDO AO MENU INICIAL! . . .");
+                        return;
                 }
+
             }catch (InputMismatchException e){
                 Ferramentas.menuDefault();
             }
