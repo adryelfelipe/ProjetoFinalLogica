@@ -17,10 +17,10 @@ public class MenuSupervisor
             System.out.println("| 3 - Retornar ao menu inicial");
             System.out.print("| Escolha: ");
 
-            try{
+            try {
                 opcao = Ferramentas.lInteiro();
 
-                switch (opcao){
+                switch (opcao) {
 
                 }
             }catch (InputMismatchException e){
