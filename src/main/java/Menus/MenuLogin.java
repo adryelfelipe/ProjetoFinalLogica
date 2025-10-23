@@ -14,7 +14,7 @@ public class MenuLogin
         String cpfLogin = "1";
         String senhaLogin = "1";
 
-        while(continuar){
+        while(continuar) {
             System.out.println("================================");
             System.out.println("|             LOGIN            |");
             System.out.println("================================\n");
@@ -24,16 +24,13 @@ public class MenuLogin
             System.out.print("|     Digite sua senha: ");
             senhaLogin = Ferramentas.lString();
 
-            try
-            {
+            try {
                 Usuario usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
-            }
-            catch (SenhaInvalidaException | CpfInvalido Exception e)
+            } catch (SenhaInvalidaException | CpfInvalido Exception e)
             {
                 System.out.println("ERRO! SENHA OU CPF INVÁLIDOS");
             }
-
-
         }
+
     }
 }
