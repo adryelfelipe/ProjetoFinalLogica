@@ -1,3 +1,5 @@
+package ProjetoBase;
+
 public class UsuarioService {
 
     // -- Métodos -- //

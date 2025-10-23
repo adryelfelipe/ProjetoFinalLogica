@@ -1,3 +1,5 @@
+package ProjetoBase;
+
 public class SupervisorModel extends UsuarioModel{
 
     // -- Atributos -- /
