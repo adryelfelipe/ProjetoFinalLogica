@@ -48,20 +48,28 @@ public class UsuarioValidator {
         if(nome == null) {
             throw new IllegalStateException("ERRO! O NOME NÃO PODE SER NULO");
         }
+
+        if(nome.length() < 2) {
+            throw new IllegalStateException("ERRO! O NOME DEVE CONTER MAIS DE 1 CARACTER");
+        }
     }
 
     public void verificarRegrasCpf(String cpf) {
         if(cpf == null) {
             throw new IllegalStateException("ERRO! O CPF NÃO PODE SER NULO");
         }
-
-        usuarioService.isCpfCadastradoValidator(cpf);
     }
 
     public void verificarRegrasSenha(String senha) {
         if(senha == null) {
-            throw new IllegalArgumentException("ERRO! A SENHA NÃO PODE SER NULA");
+            throw new IllegalStateException("ERRO! A SENHA NÃO PODE SER NULA");
         }
+
+        if(senha.length() < 6) {
+            throw new IllegalStateException("ERRO! A SENHA DEVE CONTER MAIS DE 5 CARACTERES");
+        }
+
+
     }
 
     public void verificaRegrasNivelAcesso(int idNivelAcesso) {

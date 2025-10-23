@@ -1,3 +1,5 @@
+import
+
 public class MenuCadastroGeral
 {
     public static void cadastroGeral()
@@ -10,7 +12,7 @@ public class MenuCadastroGeral
             System.out.println("|           CADASTRO           |");
             System.out.println("================================\n");
 
-            MenuSetNome.MenuSetNome();
+            MenuSetNome.MenuSetNome(new UsuarioValidator());
 
             MenuSetCpf.MenuSetCpf();
 

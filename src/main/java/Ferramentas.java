@@ -1,9 +1,19 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Ferramentas {
 
     // Atributos Estáticos
+    private static final List<String> listaMaiusculos = new ArrayList<>(Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+                                                                                       "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"));
 
+    private static final List<String> listaEspeciais = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+                                                                                     "!", "@", "#", "$", "%", "&", "*", "(", ")", "-", "_",
+                                                                                     "=", "+", "[", "]", "´", "`", "^", "~", ":", ";", "/",
+                                                                                     "?", "|", "{", "}", "<", ">", ",", ".", ":", "'", "\"",
+                                                                                     "\\", "$", "€", "£", "¥"));
     // Cores padrão
     public static final String RESET = "\u001B[0m";
     public static final String BLACK = "\u001B[30m";
@@ -52,7 +62,7 @@ public class Ferramentas {
 
     private static Scanner ler = new Scanner(System.in);
 
-    // Construtor privado
+    // -- Construtor privado -- //
     private Ferramentas() {
 
     }
@@ -113,5 +123,13 @@ public class Ferramentas {
         for(int i = 0; i < 50; i ++) {
             System.out.println();
         }
+    }
+
+    // ------- RECEBE MENSAGEM DE ERRO E EXIBE ------- //
+    public static void mensagemErro(String mensagem) {
+        Ferramentas.limpaTerminal();
+        System.err.println(mensagem);
+        Ferramentas.Delay(1700);
+        Ferramentas.limpaTerminal();
     }
 }
