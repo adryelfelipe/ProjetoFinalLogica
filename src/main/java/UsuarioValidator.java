@@ -52,6 +52,20 @@ public class UsuarioValidator {
         if(nome.length() < 2) {
             throw new IllegalStateException("ERRO! O NOME DEVE CONTER MAIS DE 1 CARACTER");
         }
+
+        // -- VALIDAÇÃO DE CARACTERES ESPECIAIS -- //
+        boolean verificaEspecial = false;
+
+        for(String caractereEspecial : Ferramentas.listaEspeciais) {
+            if(nome.contains(caractereEspecial)) {
+                verificaEspecial = true;
+                break;
+            }
+        }
+
+        if(verificaEspecial) {
+            throw new IllegalStateException("ERRO! O NOME NÃO PODE CONTER UM CARACTERE ESPECIAL");
+        }
     }
 
     public void verificarRegrasCpf(String cpf) {
@@ -65,11 +79,40 @@ public class UsuarioValidator {
             throw new IllegalStateException("ERRO! A SENHA NÃO PODE SER NULA");
         }
 
+        if(senha.contains(" ")) {
+            throw new IllegalStateException("ERRO! A SENHA NÃO PODE CONTER ESPAÇOS");
+        }
+
         if(senha.length() < 6) {
             throw new IllegalStateException("ERRO! A SENHA DEVE CONTER MAIS DE 5 CARACTERES");
         }
 
 
+        // -- VALIDAÇÃO DE MAIUSCULAS E ESPECIAIS -- //
+        boolean verificaMaiuscula = false;
+        boolean verificaEspecial = false;
+
+        for(String maiuscula : Ferramentas.listaMaiusculos) {
+            if (senha.contains(maiuscula)) {
+                verificaMaiuscula = true;
+                break;
+            }
+        }
+
+        for(String caractereEspecial : Ferramentas.listaEspeciais) {
+            if(senha.contains(caractereEspecial)) {
+                verificaEspecial = true;
+                break;
+            }
+        }
+
+        if(!verificaMaiuscula) {
+            throw new IllegalStateException("ERRO! A SENHA DEVE CONTER UMA LETRA MAIÚSCULA");
+        }
+
+        if(!verificaEspecial) {
+            throw new IllegalStateException("ERRO! A SENHA DEVE CONTER UM CARACTERE ESPECIAL");
+        }
     }
 
     public void verificaRegrasNivelAcesso(int idNivelAcesso) {
