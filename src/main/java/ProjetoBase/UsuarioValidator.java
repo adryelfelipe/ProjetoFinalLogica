@@ -46,25 +46,27 @@ public class UsuarioValidator {
     }
 
     // -- Métodos de Regras de Negócio -- //
-    public void verificaRegrasNome(String nome)
-    {
-        if(nome == null)
-        {
+    public void inserirUsuario(UsuarioModel usuario) {
+        verificarRegrasSenha(usuario.getSenha());
+        verificaRegrasNome(usuario.getNome());
+        verificarRegrasCpf(usuario.getCpf());
+        verificaRegrasNivelAcesso(usuario.getNivelAcesso());
+    }
+
+    public void verificaRegrasNome(String nome) {
+        if(nome == null) {
             throw new IllegalStateException("ERRO! O NOME NÃO PODE SER NULO");
         }
 
-        if(nome.length() < 2)
-        {
+        if(nome.length() < 2) {
             throw new IllegalStateException("ERRO! O NOME DEVE CONTER MAIS DE 1 CARACTER");
         }
 
         // -- VALIDAÇÃO DE CARACTERES ESPECIAIS -- //
         boolean verificaEspecial = false;
 
-        for(String caractereEspecial : Ferramentas.listaEspeciais)
-        {
-            if(nome.contains(caractereEspecial))
-            {
+        for(String caractereEspecial : Ferramentas.listaEspeciais) {
+            if(nome.contains(caractereEspecial)) {
                 verificaEspecial = true;
                 break;
             }
