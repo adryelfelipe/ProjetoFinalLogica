@@ -1,3 +1,5 @@
+package ProjetoBase;
+
 public class TecnicoModel extends UsuarioModel{
     private String especialidade;
 

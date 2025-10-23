@@ -1,3 +1,8 @@
+package Menus;
+
+import ProjetoBase.TecnicoModel;
+import ProjetoBase.UsuarioValidator;
+
 public class MenuCadastroTecnico
 {
     public static void menuCadastroTecnico(UsuarioValidator usuarioValidator) {
@@ -11,6 +16,6 @@ public class MenuCadastroTecnico
 
         TecnicoModel tecnicoModel = new TecnicoModel();
 
-        usuarioService.inserirTecnico(gerente, tecnicoModel)
+        usuarioService.inserirTecnico(gerente, tecnicoModel);
     }
 }
