@@ -14,7 +14,8 @@ public class MenuLogin
         String cpfLogin = "1";
         String senhaLogin = "1";
 
-        while(continuar){
+        while(continuar)
+        {
             System.out.println("================================");
             System.out.println("|             LOGIN            |");
             System.out.println("================================\n");
