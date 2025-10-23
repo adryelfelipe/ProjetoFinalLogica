@@ -27,6 +27,7 @@ public class MenuSetUsuario
                 Ferramentas.mensagemErro(e.getMessage());
             }
         }
+        return " ";
     }
 
     //SET CPF DO USUÁRIO
@@ -41,6 +42,7 @@ public class MenuSetUsuario
             {
                 UsuarioValidator.verificaIntegridadeCpf(CPF);
                 usuarioValidator.verificarRegrasCpf(CPF);
+
                 verifica = true;
             }
             catch (IllegalArgumentException | IllegalStateException e)

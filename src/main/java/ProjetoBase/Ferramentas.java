@@ -134,4 +134,14 @@ public class Ferramentas {
         Ferramentas.Delay(1700);
         Ferramentas.limpaTerminal();
     }
+
+    // ------- MENU UTILIZADO PARA CASES DEFAULT ------- //
+    public static void menuDefault() {
+        Ferramentas.limpaTerminal();
+        System.err.println("-------------------------\n");
+        System.err.println("Valor digitado incorreto!");
+        System.err.println("-------------------------\n");
+        Ferramentas.Delay(1500);
+        Ferramentas.limpaTerminal();
+    }
 }

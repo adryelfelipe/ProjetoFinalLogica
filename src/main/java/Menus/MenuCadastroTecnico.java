@@ -11,11 +11,11 @@ public class MenuCadastroTecnico
         System.out.println("================================\n");
 
         String nome = MenuSetUsuario.MenuSetNome(usuarioValidator);
-        String especialidade = MenuSetFuncionario.MenuSetEspecialidade();
+        //String especialidade = MenuSetFuncionario.MenuSetEspecialidade();
 
 
-        TecnicoModel tecnicoModel = new TecnicoModel();
+        //TecnicoModel tecnicoModel = new TecnicoModel();
 
-        usuarioService.inserirTecnico(gerente, tecnicoModel);
+        //usuarioService.inserirTecnico(gerente, tecnicoModel);
     }
 }
