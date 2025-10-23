@@ -10,6 +10,7 @@ public class UsuarioDAO
     {
         String querySql = "SELECT * FROM Usuario WHERE cpf = ? LIMIT 1";
 
+        // Pega a conexão
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(querySql))
         {
@@ -25,11 +26,10 @@ public class UsuarioDAO
             {
                 return false;
             }
-
         }
         catch (SQLException e)
         {
-            System.err.println("Erro ao verificar CPF: " + e.getMessage());
+            System.err.println("Erro ao verificar CPF: ");
         }
         return false;
     }
@@ -37,8 +37,9 @@ public class UsuarioDAO
     {
         // Comando SQL
         String querySQL = "INSERT INTO Usuario (nome, cpf, senha, nivel_acesso) VALUES (?, ?, ?, ?)";
-        int idGerado = 0; // Armazena o id.
+        int idGerado = -1; // Armazena o id.
 
+        // Pega a conexão
         try(Connection conn = ConnectionFactory.getConnection();
         PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS))
         {
@@ -68,8 +69,9 @@ public class UsuarioDAO
         }
         catch (SQLException e)
         {
-            System.out.println("Erro ao inserir o Usuario");
+            System.err.println("Erro ao inserir o Usuario");
         }
     }
+
 
 }
