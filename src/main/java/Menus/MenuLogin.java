@@ -24,13 +24,14 @@ public class MenuLogin
             System.out.print("|     Digite sua senha: ");
             senhaLogin = Ferramentas.lString();
 
-            try {
+            try{
                 Usuario usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
             } catch (SenhaInvalidaException | CpfInvalido Exception e)
             {
                 System.out.println("ERRO! SENHA OU CPF INVÁLIDOS");
             }
         }
+
 
     }
 }
