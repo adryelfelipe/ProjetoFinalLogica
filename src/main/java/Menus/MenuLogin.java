@@ -1,11 +1,10 @@
 package Menus;
 
 import ProjetoBase.Ferramentas;
-import ProjetoBase.UsuarioModel;
 
 public class MenuLogin
 {
-    private static final ProjetoBase.UsuarioService usuarioService = new ProjetoBase.UsuarioService();
+    //private static final ProjetoBase.UsuarioService usuarioService = new ProjetoBase.UsuarioService();
     public static void login()
     {
         boolean continuar = true;
@@ -13,8 +12,7 @@ public class MenuLogin
         String cpfLogin = "1";
         String senhaLogin = "1";
 
-        while(continuar)
-        {
+        while(continuar) {
             System.out.println("================================");
             System.out.println("|             LOGIN            |");
             System.out.println("================================\n");
@@ -26,13 +24,13 @@ public class MenuLogin
 
             try
             {
-                //Esse método ainda não existe
-                //UsuarioModel usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
-            }
-            catch (IllegalArgumentException e)
+                //Usuario usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
+            } catch (IllegalArgumentException e)
             {
                 System.out.println("ERRO! SENHA OU CPF INVÁLIDOS");
             }
         }
+
+
     }
 }

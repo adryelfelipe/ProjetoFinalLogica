@@ -1,7 +1,9 @@
 package ProjetoBase;
 
 public class Especialidade {
-    public static int Curso_Tecnico = 1;
-    public static int Ingles_Avancado = 2;
-    public static int Experiencia_Fabril = 3;
+    public static int Técnico_eletrotécnica = 1;
+    public static int Eletricista_Fabril = 2;
+    public static int Soldador = 3;
+    public static int eletromecânica = 4;
+    public static int Pintor_Industrial = 5;
 }
