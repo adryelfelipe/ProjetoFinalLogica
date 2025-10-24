@@ -22,6 +22,7 @@ public class GerenteModel extends UsuarioModel{
     }
 
     public void setDepartamento(int departamento) {
+        GerenteValidator.verificaIntegridadeIdDepartamento(departamento);
         this.departamento = departamento;
     }
 }

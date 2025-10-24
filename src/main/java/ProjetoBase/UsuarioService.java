@@ -13,7 +13,7 @@ public class UsuarioService {
     }
 
     public void isIdCadastradorValidator(long id) {
-        if(false) { /// ALTERAR PARA VERIFICAÇÃO DE isIdExistente da DAO
+        if(false) {
             throw new IllegalStateException("ERRO! ID JÁ CADASTRADO");
         }
     }

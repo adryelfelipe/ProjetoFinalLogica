@@ -22,6 +22,7 @@ public class SupervisorModel extends UsuarioModel{
     }
 
     public void setMetaMensal(double metaMensal) {
+        SupervisorValidator.verificaIntegridadeMetaMensal(metaMensal);
         this.metaMensal = metaMensal;
     }
 }

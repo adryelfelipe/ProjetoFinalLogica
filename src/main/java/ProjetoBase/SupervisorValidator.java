@@ -23,7 +23,7 @@ public class SupervisorValidator {
     }
 
     // -- Verificações de Integridade -- //
-    public void verificaIntegridadeMetaMensal(double mentaMensal) {
+    public static void verificaIntegridadeMetaMensal(double mentaMensal) {
         if(mentaMensal < 0) {
             throw new IllegalArgumentException("ERRO! A META MENSAL NÃO PODE SER NEGATIVA");
         }
