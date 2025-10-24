@@ -24,5 +24,4 @@ public class TecnicoDAO
             System.err.println("ERRO AO INSERIR PACIENTE");
         }
     }
-
 }
