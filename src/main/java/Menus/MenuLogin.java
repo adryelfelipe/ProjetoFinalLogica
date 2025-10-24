@@ -24,7 +24,7 @@ public class MenuLogin
 
             try
             {
-                Usuario usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
+                //Usuario usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
             } catch (IllegalArgumentException e)
             {
                 System.out.println("ERRO! SENHA OU CPF INVÁLIDOS");
