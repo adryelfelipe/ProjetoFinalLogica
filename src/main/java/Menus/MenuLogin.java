@@ -2,8 +2,6 @@ package Menus;
 
 import ProjetoBase.Ferramentas;
 
-
-
 public class MenuLogin
 {
     //private static final ProjetoBase.UsuarioService usuarioService = new ProjetoBase.UsuarioService();
@@ -24,9 +22,10 @@ public class MenuLogin
             System.out.print("|     Digite sua senha: ");
             senhaLogin = Ferramentas.lString();
 
-            try{
+            try
+            {
                 Usuario usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
-            } catch (SenhaInvalidaException | CpfInvalido Exception e)
+            } catch (IllegalArgumentException e)
             {
                 System.out.println("ERRO! SENHA OU CPF INVÁLIDOS");
             }
