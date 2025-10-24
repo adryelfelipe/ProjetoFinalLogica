@@ -1,4 +1,6 @@
 package Menus;
 
-public class MenuGerente {
+public class MenuGerente
+{
+
 }

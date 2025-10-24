@@ -16,9 +16,8 @@ public class MenuInicial
             do
             {
                 System.out.println(" ========  MENU INICIAL  =========");
-                System.out.println("|     1 - Cadastro               |");
-                System.out.println("|     2 - Login                  |");
-                System.out.println("|     3 - Sair                   |");
+                System.out.println("|     1 - Login                  |");
+                System.out.println("|     2 - Sair                   |");
                 System.out.println(" ================================");
                 System.out.print("|     Escolha: ");
 
@@ -42,18 +41,11 @@ public class MenuInicial
                 case 1:
                 {
                     Ferramentas.limpaTerminal();
-                    MenuCadastroUsuario.cadastroUsuario();
-
-                    break;
-                }
-                case 2:
-                {
-                    Ferramentas.limpaTerminal();
                     MenuLogin.login();
 
                     break;
                 }
-                case 3:
+                case 2:
                 {
                     Ferramentas.limpaTerminal();
                     MenuDesligar.desligar();
