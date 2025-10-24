@@ -31,12 +31,14 @@ public class MenuSetUsuario
     }
 
     //SET CPF DO USUÁRIO
-    public static void MenuSetCpf(UsuarioValidator usuarioValidator){
+    public static String MenuSetCpf(UsuarioValidator usuarioValidator){
         boolean verifica = false;
+
+        String CPF = "";
 
         while(!verifica){
             System.out.print("Digite seu CPF: ");
-            String CPF = Ferramentas.lString();
+            CPF = Ferramentas.lString();
 
             try
             {
@@ -50,15 +52,18 @@ public class MenuSetUsuario
                 Ferramentas.mensagemErro(e.getMessage());
             }
         }
+        return CPF;
     }
 
     //SET SENHA DO USUÁRIO
-    public static void MenuSetSenha(UsuarioValidator usuarioValidator){
+    public static String MenuSetSenha(UsuarioValidator usuarioValidator){
         boolean verifica = false;
+
+        String senha = " ";
 
         while(!verifica){
             System.out.print("Digite sua senha: ");
-            String senha = ProjetoBase.Ferramentas.lString();
+            senha = ProjetoBase.Ferramentas.lString();
 
             try
             {
@@ -71,5 +76,6 @@ public class MenuSetUsuario
                 ProjetoBase.Ferramentas.mensagemErro(e.getMessage());
             }
         }
+        return senha;
     }
 }

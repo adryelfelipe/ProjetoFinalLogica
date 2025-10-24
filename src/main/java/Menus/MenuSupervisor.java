@@ -6,35 +6,45 @@ import java.util.InputMismatchException;
 
 public class MenuSupervisor
 {
-    public static void menuSupervisor(){
+    public static void menuSupervisor()
+    {
         boolean continuar = true;
         int opcao = 0;
 
 
-        while(!continuar){
+        while(!continuar)
+        {
             System.out.println("| 1 - Criar nova Ordem de Serviço");
             System.out.println("| 2 - Acompanhar status das OS");
             System.out.println("| 3 - Retornar ao menu inicial");
             System.out.print("| Escolha: ");
 
-            try{
+            try
+            {
                 opcao = Ferramentas.lInteiro();
 
-                switch (opcao){
+                switch (opcao)
+                {
                     case 1:
-
+                    {
+                        MenuSupervisorCriarOS.criarOrdemDeServico();
                         break;
-
+                    }
                     case 2:
-
+                    {
+                        MenuSupervisorAcompanharStatus.acompanharStatus();
                         break;
-
+                    }
                     case 3:
+                    {
                         System.out.println("RETORNANDO AO MENU INICIAL! . . .");
-                        return;
+                        MenuInicial.Menu();
+                        break;
+                    }
                 }
-
-            }catch (InputMismatchException e){
+            }
+            catch (InputMismatchException e)
+            {
                 Ferramentas.menuDefault();
             }
         }
