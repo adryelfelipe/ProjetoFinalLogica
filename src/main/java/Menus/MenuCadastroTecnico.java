@@ -1,21 +1,21 @@
 package Menus;
 
-import ProjetoBase.TecnicoModel;
-import ProjetoBase.UsuarioValidator;
+import ProjetoBase.*;
 
 public class MenuCadastroTecnico
 {
-    public static void menuCadastroTecnico(UsuarioValidator usuarioValidator) {
+    public static void menuCadastroTecnico(UsuarioModel usuario, TecnicoService tecnicoService, TecnicoValidator tecnicoValidator, UsuarioValidator usuarioValidator, UsuarioService usuarioService) {
         System.out.println("================================");
         System.out.println("|      CADASTRO  TÉCNICO        |");
         System.out.println("================================\n");
 
         String nome = MenuSetUsuario.MenuSetNome(usuarioValidator);
-        String especialidade = MenuSetFuncionario.MenuSetEspecialidade();
+        String cpf = MenuSetUsuario.MenuSetCpf(usuarioService, usuarioValidator);
+        MenuSetUsuario.MenuSetSenha(usuarioValidator);
+        int especialidade = MenuSetTecnico.MenuSetEspecialidade(tecnicoValidator);
 
 
         TecnicoModel tecnicoModel = new TecnicoModel();
-
-        usuarioService.inserirTecnico(gerente, tecnicoModel);
+        tecnicoService.inserirTecnico(gerente, tecnicoModel);
     }
 }
