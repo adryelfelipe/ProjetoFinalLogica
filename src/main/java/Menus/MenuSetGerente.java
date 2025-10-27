@@ -1,31 +1,37 @@
 package Menus;
 
-import ProjetoBase.Departamento;
 import ProjetoBase.Ferramentas;
 
 import java.util.InputMismatchException;
 
 public class MenuSetGerente {
 
-    public static int menuSetDepartamento() {
+    public static int menuSetDepartamento()
+    {
         int opcao;
 
-        while(true) {
+        while(true)
+        {
             System.out.println("Escolha o Departamento: ");
             System.out.println("1 - ELÉTRICA ");
             System.out.println("2 - MECÂNICA ");
 
-            try {
+            try
+            {
                 opcao = Ferramentas.lInteiro();
-                if(opcao > 2 || opcao < 1) {
+                if(opcao > 2 || opcao < 1)
+                {
                     Ferramentas.menuDefault();
-                } else {
-                    return switch(opcao) {
-                        case 1 -> Departamento.ELETRICA;
-                        default -> Departamento.MECANICA;
+                } else
+                {
+                    return switch(opcao)
+                    {
+                        case 1 -> 1;
+                        default -> 2;
                     };
                 }
-            } catch(InputMismatchException e) {
+            } catch(InputMismatchException e)
+            {
                 Ferramentas.menuDefault();
             }
         }

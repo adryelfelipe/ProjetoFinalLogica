@@ -1,6 +1,5 @@
 package Menus;
 
-import ProjetoBase.Especialidade;
 import ProjetoBase.TecnicoValidator;
 import ProjetoBase.Ferramentas;
 
@@ -29,27 +28,27 @@ public class MenuSetTecnico {
                 {
                     case 1:
                     {
-                        idEspecialidade = Especialidade.Técnico_eletrotécnica;
+                        idEspecialidade = 1;
                         break;
                     }
                     case 2:
                     {
-                        idEspecialidade = Especialidade.Eletricista_Fabril;
+                        idEspecialidade = 2;
                         break;
                     }
                     case 3:
                     {
-                        idEspecialidade = Especialidade.Soldador;
+                        idEspecialidade = 3;
                         break;
                     }
                     case 4:
                     {
-                        idEspecialidade = Especialidade.eletromecânica;
+                        idEspecialidade = 4;
                         break;
                     }
                     case 5:
                     {
-                        idEspecialidade = Especialidade.Pintor_Industrial;
+                        idEspecialidade = 5;
                         break;
                     }
                 }
@@ -58,7 +57,6 @@ public class MenuSetTecnico {
             {
                 System.out.println("");
             }
-            //case5 : idEspecialidde = Especialidade.Pintor_Industrial;
         }
     }
 }

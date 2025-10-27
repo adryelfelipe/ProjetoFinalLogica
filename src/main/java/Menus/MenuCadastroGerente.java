@@ -11,7 +11,7 @@ public class MenuCadastroGerente {
         System.out.println("|       CADASTRO GERENTE       |");
         System.out.println("================================\n");
 
-        System.out.println(); // pula linhas
+        System.out.println();
 
         // ----- Atribuição de caracteríscticas de um Usuário ----- //
         //String nome = MenuSetUsuario.MenuSetNome(usuarioValidator);

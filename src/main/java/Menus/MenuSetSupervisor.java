@@ -14,14 +14,17 @@ public class MenuSetSupervisor {
         while(true) {
             System.out.print("Digite a meta mensal: ");
 
-            try {
+            try
+            {
                 metaMensal = Ferramentas.lDouble();
                 supervisorValidator.verificaIntegridadeMetaMensal(metaMensal);
                 supervisorValidator.verificaRegrasMetaMensal(metaMensal);
                 return metaMensal;
-            } catch(InputMismatchException e) {
+            } catch(InputMismatchException e)
+            {
                 Ferramentas.menuDefault();
-            } catch (IllegalArgumentException | IllegalStateException e) {
+            } catch (IllegalArgumentException | IllegalStateException e)
+            {
                 Ferramentas.mensagemErro(e.getMessage());
             }
         }
