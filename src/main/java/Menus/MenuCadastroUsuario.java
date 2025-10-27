@@ -8,7 +8,7 @@ import ProjetoBase.UsuarioValidator;
 public class MenuCadastroUsuario
 {
     private static final UsuarioService usuarioService = new UsuarioService();
-    private static final UsuarioValidator usuarioValidator = new UsuarioValidator(usuarioService);
+    private static final UsuarioValidator usuarioValidator = new UsuarioValidator();
     private static final TecnicoValidator tecnicoValidator = new TecnicoValidator();
 
     public static void cadastroUsuario()
@@ -41,7 +41,7 @@ public class MenuCadastroUsuario
             case 1:
             {
                 Ferramentas.limpaTerminal();
-                MenuCadastroTecnico.menuCadastroTecnico(usuarioValidator, tecnicoValidator);
+                MenuCadastroTecnico.menuCadastroTecnico();
             }
             case 2:
             {

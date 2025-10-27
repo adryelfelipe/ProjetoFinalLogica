@@ -2,12 +2,9 @@ package ProjetoBase;
 
 public class UsuarioValidator {
 
-    // -- Atributos -- //
-    private final UsuarioService usuarioService;
-
     // -- Construtor -- //
-    public UsuarioValidator(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
+    public UsuarioValidator() {
+
     }
 
     // -- Métodos de Integridade -- //
@@ -51,6 +48,13 @@ public class UsuarioValidator {
         verificaRegrasNome(usuario.getNome());
         verificarRegrasCpf(usuario.getCpf());
         verificaRegrasNivelAcesso(usuario.getNivelAcesso());
+        verificaRegrasObjeto(usuario);
+    }
+
+    public void verificaRegrasObjeto(UsuarioModel usuario) {
+        if(usuario == null) {
+            throw new IllegalStateException("ERRO! O OBJETO NÃO PODE SER NULO");
+        }
     }
 
     public void verificaRegrasNome(String nome) {
@@ -127,6 +131,30 @@ public class UsuarioValidator {
     public void verificaRegrasNivelAcesso(int idNivelAcesso) {
         if(idNivelAcesso > 3) {
             throw new IllegalStateException("ERRO! ID DE NÍVEL DE ACESSO INVÁLIDO");
+        }
+    }
+
+    public void temNivelAcesso4(UsuarioModel usuario) {
+        if (!(usuario.getNivelAcesso() == 4)) {
+            throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
+        }
+    }
+
+    public void temNivelAcesso3(UsuarioModel usuario) {
+        if (!(usuario.getNivelAcesso() == 3)) {
+            throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
+        }
+    }
+
+    public void temNivelAcesso2(UsuarioModel usuario) {
+        if (!(usuario.getNivelAcesso() == 2)) {
+            throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
+        }
+    }
+
+    public void temNivelAcesso1(UsuarioModel usuario) {
+        if (!(usuario.getNivelAcesso() == 1)) {
+            throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
         }
     }
 }

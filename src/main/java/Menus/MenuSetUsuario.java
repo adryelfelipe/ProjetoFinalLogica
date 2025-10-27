@@ -1,13 +1,15 @@
 package Menus;
 
 import ProjetoBase.Ferramentas;
+import ProjetoBase.UsuarioService;
 import ProjetoBase.UsuarioValidator;
 
 public class MenuSetUsuario
 {
+    private static final UsuarioValidator usuarioValidator = new UsuarioValidator();
 
     //SET NOME DO USUÁRIO
-    public static String MenuSetNome(UsuarioValidator usuarioValidator)
+    public static String MenuSetNome()
     {
         boolean verifica = false;
 
@@ -31,7 +33,7 @@ public class MenuSetUsuario
     }
 
     //SET CPF DO USUÁRIO
-    public static String MenuSetCpf(UsuarioValidator usuarioValidator){
+    public static String MenuSetCpf(){
         boolean verifica = false;
 
         String CPF = "";
@@ -56,7 +58,7 @@ public class MenuSetUsuario
     }
 
     //SET SENHA DO USUÁRIO
-    public static String MenuSetSenha(UsuarioValidator usuarioValidator){
+    public static String MenuSetSenha(){
         boolean verifica = false;
 
         String senha = " ";

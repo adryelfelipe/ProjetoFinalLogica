@@ -3,12 +3,7 @@ package ProjetoBase;
 public class SupervisorValidator {
 
     // -- Atributos -- //
-    private final UsuarioValidator usuarioValidator;
-
-    // -- Construtor -- //
-    public SupervisorValidator(UsuarioValidator usuarioValidator) {
-        this.usuarioValidator = usuarioValidator;
-    }
+    private static final UsuarioValidator usuarioValidator = new UsuarioValidator();
 
     // -- Verificações de Regras de Negócio -- //
     public void verificarRegrasInsercaoSupervisor(SupervisorModel supervisor) {

@@ -5,18 +5,21 @@ import ProjetoBase.UsuarioValidator;
 
 public class MenuCadastroTecnico
 {
-    public static void menuCadastroTecnico(UsuarioValidator usuarioValidator, TecnicoValidator tecnicoValidator) {
+    private static final UsuarioValidator usuarioValidator = new UsuarioValidator();
+    private static final TecnicoValidator tecnicoValidator = new TecnicoValidator();
+
+    public static void menuCadastroTecnico() {
         System.out.println("================================");
         System.out.println("|      CADASTRO  TÉCNICO        |");
         System.out.println("================================\n");
 
-        String nomeCadastro = MenuSetUsuario.MenuSetNome(usuarioValidator);
+        String nomeCadastro = MenuSetUsuario.MenuSetNome();
 
-        String cpfCadastro = MenuSetUsuario.MenuSetCpf(usuarioValidator);
+        String cpfCadastro = MenuSetUsuario.MenuSetCpf();
 
-        String senhaCadastro = MenuSetUsuario.MenuSetSenha(usuarioValidator);
+        String senhaCadastro = MenuSetUsuario.MenuSetSenha();
 
-        int especialidade = MenuSetTecnico.MenuSetEspecialidade(tecnicoValidator);
+        int especialidade = MenuSetTecnico.MenuSetEspecialidade();
 
 
         //TecnicoModel tecnicoModel = new TecnicoModel();

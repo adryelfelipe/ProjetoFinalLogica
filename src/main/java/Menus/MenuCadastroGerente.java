@@ -14,9 +14,9 @@ public class MenuCadastroGerente {
         System.out.println();
 
         // ----- Atribuição de caracteríscticas de um Usuário ----- //
-        //String nome = MenuSetUsuario.MenuSetNome(usuarioValidator);
-        //String cpf = MenuSetUsuario.MenuSetCpf(usuarioService, usuarioValidator);
-        //String senha = MenuSetUsuario.MenuSetSenha(usuarioValidator);
+        //String nome = MenuSetUsuario.MenuSetNome();
+        //String cpf = MenuSetUsuario.MenuSetCpf();
+        //String senha = MenuSetUsuario.MenuSetSenha();
 
         // ----- Atribuição de caracteríscticas de um Gerente ----- //
         int idDepartamento = MenuSetGerente.menuSetDepartamento();

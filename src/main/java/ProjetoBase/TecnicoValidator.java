@@ -3,12 +3,7 @@ package ProjetoBase;
 public class TecnicoValidator {
 
     // -- Atributos -- //
-    private final UsuarioValidator usuarioValidator;
-
-    // -- Construtor -- //
-    public TecnicoValidator(UsuarioValidator usuarioValidator) {
-        this.usuarioValidator = usuarioValidator;
-    }
+    private static final UsuarioValidator usuarioValidator = new UsuarioValidator();
 
     // -- Métodos de Regras de Negócio -- //
     public void verificaRegrasInsercaoTecnico(TecnicoModel tecnicoModel) {

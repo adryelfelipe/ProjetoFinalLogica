@@ -5,8 +5,9 @@ import ProjetoBase.SupervisorValidator;
 import java.util.InputMismatchException;
 
 public class MenuSetSupervisor {
+    private static final SupervisorValidator supervisorValidator = new SupervisorValidator();
 
-    public static double MenuSetMetaMensal(SupervisorValidator supervisorValidator){
+    public static double MenuSetMetaMensal(){
         // Garantia de inicialização
         double metaMensal;
 
@@ -17,7 +18,7 @@ public class MenuSetSupervisor {
             try
             {
                 metaMensal = Ferramentas.lDouble();
-                supervisorValidator.verificaIntegridadeMetaMensal(metaMensal);
+                SupervisorValidator.verificaIntegridadeMetaMensal(metaMensal);
                 supervisorValidator.verificaRegrasMetaMensal(metaMensal);
                 return metaMensal;
             } catch(InputMismatchException e)

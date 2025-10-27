@@ -5,7 +5,7 @@ import ProjetoBase.Ferramentas;
 
 public class MenuSetTecnico {
 
-    public static int MenuSetEspecialidade(TecnicoValidator tecnicoValidator)
+    public static int MenuSetEspecialidade()
     {
         int idEspecialidade = 0;
 
