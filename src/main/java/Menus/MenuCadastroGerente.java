@@ -4,7 +4,7 @@ import ProjetoBase.UsuarioService;
 import ProjetoBase.UsuarioValidator;
 
 public class MenuCadastroGerente {
-    public static void menuCadastroGerente(UsuarioService usuarioService, UsuarioValidator usuarioValidator) {
+    public static void menuCadastroGerente() {
 
 
         System.out.println("================================");
