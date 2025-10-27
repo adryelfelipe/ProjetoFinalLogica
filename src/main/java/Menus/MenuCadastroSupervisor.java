@@ -1,25 +1,41 @@
 package Menus;
 
-import ProjetoBase.SupervisorValidator;
-import ProjetoBase.UsuarioService;
-import ProjetoBase.UsuarioValidator;
+import ProjetoBase.*;
 
 public class MenuCadastroSupervisor
 {
-    public static void menuCadastroSupervisor()
+    // -- Atributos -- //
+    private static final SupervisorService supervisorService = new SupervisorService();
+
+    public static void menuCadastroSupervisor(GerenteModel gerente)
     {
         System.out.println("================================");
-        System.out.println("|       CADASTRO GERENTE       |");
+        System.out.println("|      CADASTRO SUPERVISOR     |");
         System.out.println("================================\n");
 
         System.out.println();
 
-        String nomeCadastro = MenuSetUsuario.MenuSetNome();
+        // ----- Atribuição de caracteríscticas de um Usuário ----- //
+        String nome = MenuSetUsuario.MenuSetNome();
+        String cpf = MenuSetUsuario.MenuSetCpf();
+        String senha = MenuSetUsuario.MenuSetSenha();
 
-        String cpfCadastro = MenuSetUsuario.MenuSetCpf();
-
-        String senhaCadastro = MenuSetUsuario.MenuSetSenha();
-
+        // ----- Atribuição de caracteríscticas de um Supervisor ----- //
         double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
+
+        // -- Criação do objeto e inserção no banco de dados -- //
+        Ferramentas.limpaTerminal();
+        System.out.println("PROCESSANDO DADOS...");
+        Ferramentas.Delay(1000);
+        Ferramentas.limpaTerminal();
+
+        try {
+            SupervisorModel supervisor = new SupervisorModel(nome, cpf, senha, metaMensal);
+            supervisorService.inserirSupervisor(gerente, supervisor);
+            System.out.println("SUPERVISOR CADASTRADO COM SUCESSO!");
+            Ferramentas.Delay(800);
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            System.err.println("ERRO AO INSERIR O USUÁRIO");
+        }
     }
 }

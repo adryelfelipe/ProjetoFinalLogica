@@ -1,29 +1,38 @@
 package Menus;
 
-import ProjetoBase.TecnicoValidator;
-import ProjetoBase.UsuarioValidator;
+import ProjetoBase.*;
 
 public class MenuCadastroTecnico
 {
-    private static final UsuarioValidator usuarioValidator = new UsuarioValidator();
-    private static final TecnicoValidator tecnicoValidator = new TecnicoValidator();
+    private static final TecnicoService tecnicoService = new TecnicoService();
 
-    public static void menuCadastroTecnico() {
+    public static void menuCadastroTecnico(GerenteModel gerente) {
         System.out.println("================================");
         System.out.println("|      CADASTRO  TÉCNICO        |");
         System.out.println("================================\n");
 
-        String nomeCadastro = MenuSetUsuario.MenuSetNome();
+        // ----- Atribuição de caracteríscticas de um Usuário ----- //
+        String nome = MenuSetUsuario.MenuSetNome();
+        String cpf = MenuSetUsuario.MenuSetCpf();
+        String senha = MenuSetUsuario.MenuSetSenha();
 
-        String cpfCadastro = MenuSetUsuario.MenuSetCpf();
-
-        String senhaCadastro = MenuSetUsuario.MenuSetSenha();
-
+        // ----- Atribuição de caracteríscticas de um Técnico ----- //
         int especialidade = MenuSetTecnico.MenuSetEspecialidade();
 
 
-        //TecnicoModel tecnicoModel = new TecnicoModel();
+        // -- Criação do objeto e inserção no banco de dados -- //
+        Ferramentas.limpaTerminal();
+        System.out.println("PROCESSANDO DADOS...");
+        Ferramentas.Delay(1000);
+        Ferramentas.limpaTerminal();
 
-        //usuarioService.inserirTecnico(gerente, tecnicoModel);
+        try {
+            TecnicoModel tecnico = new TecnicoModel(nome, cpf, senha, especialidade);
+            tecnicoService.inserirTecnico(gerente, tecnico);
+            System.out.println("TÉCNICO CADASTRADO COM SUCESSO!");
+            Ferramentas.Delay(800);
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            System.err.println("ERRO AO INSERIR O USUÁRIO");
+        }
     }
 }

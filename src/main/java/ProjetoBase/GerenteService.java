@@ -11,7 +11,7 @@ public class GerenteService {
 
 
     public void inserirGerente(UsuarioModel usuarioInseridor, GerenteModel gerenteInserido) {
-        usuarioValidator.temNivelAcesso3(usuarioInseridor);
+        usuarioValidator.temNivelAcesso4(usuarioInseridor);
         gerenteValidator.verificaRegrasInsercaoGerente(gerenteInserido);
         usuarioService.isCpfCadastradoValidator(gerenteInserido.getCpf());
         usuarioDao.inserirUsuario(gerenteInserido);

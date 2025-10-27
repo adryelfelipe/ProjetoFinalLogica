@@ -1,9 +1,6 @@
 package Menus;
 
-import ProjetoBase.Ferramentas;
-import ProjetoBase.TecnicoValidator;
-import ProjetoBase.UsuarioService;
-import ProjetoBase.UsuarioValidator;
+import ProjetoBase.*;
 
 public class MenuCadastroUsuario
 {
@@ -11,7 +8,7 @@ public class MenuCadastroUsuario
     private static final UsuarioValidator usuarioValidator = new UsuarioValidator();
     private static final TecnicoValidator tecnicoValidator = new TecnicoValidator();
 
-    public static void cadastroUsuario()
+    public static void cadastroUsuario(GerenteModel gerente)
     {
         boolean continuar = true;
 
@@ -41,12 +38,12 @@ public class MenuCadastroUsuario
             case 1:
             {
                 Ferramentas.limpaTerminal();
-                MenuCadastroTecnico.menuCadastroTecnico();
+                MenuCadastroTecnico.menuCadastroTecnico(gerente);
             }
             case 2:
             {
                 Ferramentas.limpaTerminal();
-
+                MenuCadastroSupervisor.menuCadastroSupervisor(gerente);
             }
         }
     }
