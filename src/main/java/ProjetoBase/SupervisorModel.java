@@ -7,7 +7,7 @@ public class SupervisorModel extends UsuarioModel{
 
     // Construtor com ID //
     public SupervisorModel( long id, String nome, String cpf, String senha, double metaMensal) {
-        super(id,nome, cpf, senha, NivelAcesso.SUPERVISOR);
+        super(id,nome, cpf, senha, 2);
         setMetaMensal(metaMensal);
     }
 

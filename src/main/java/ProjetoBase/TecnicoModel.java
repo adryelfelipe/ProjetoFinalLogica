@@ -5,7 +5,7 @@ public class TecnicoModel extends UsuarioModel{
 
     // Construtor com ID //
     public TecnicoModel(long id, String nome, String cpf, String senha, int especialidade) {
-        super(id, nome, cpf, senha, NivelAcesso.TECNICO);
+        super(id, nome, cpf, senha, 1);
         setEspecialidade(especialidade);
     }
 
