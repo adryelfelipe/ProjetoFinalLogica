@@ -46,7 +46,7 @@ public class UsuarioValidator {
     }
 
     // -- Métodos de Regras de Negócio -- //
-    public void inserirUsuario(UsuarioModel usuario) {
+    public void verificaRegrasInsercaoUsuario(UsuarioModel usuario) {
         verificarRegrasSenha(usuario.getSenha());
         verificaRegrasNome(usuario.getNome());
         verificarRegrasCpf(usuario.getCpf());

@@ -6,7 +6,7 @@ public class TecnicoModel extends UsuarioModel{
     // Construtor com ID //
     public TecnicoModel(long id, String nome, String cpf, String senha, int especialidade) {
         super(id, nome, cpf, senha, NivelAcesso.TECNICO);
-        this.especialidade = especialidade;
+        setEspecialidade(especialidade);
     }
 
     // Construtor sem ID //
@@ -19,6 +19,7 @@ public class TecnicoModel extends UsuarioModel{
     }
 
     public void setEspecialidade(int especialidade) {
+        TecnicoValidator.verificaIntegridadeEspecialidade(especialidade);
         this.especialidade = especialidade;
     }
 }

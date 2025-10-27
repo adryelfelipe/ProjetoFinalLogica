@@ -73,5 +73,35 @@ public class UsuarioDAO
         }
     }
 
+    public UsuarioModel loginUsuario(String cpf, String senha) {
+
+
+        String querySQL = "SELECT id_usuario, senha FROM Usuario WHERE cpf = ? LIMIT 1";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
+
+            stmt.setString(1, cpf);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                //  Verifica se o CPF foi encontrado
+                if (rs.next()) {
+
+                    if (senha.equals(rs.getString("senha"))) {
+
+                        long idDoUsuarioLogado = rs.getLong("id_usuario");
+
+                        return findById(idDoUsuarioLogado);
+
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao iniciar login: ");
+        }
+
+        return null;
+    }
 
 }

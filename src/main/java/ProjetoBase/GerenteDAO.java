@@ -10,7 +10,7 @@ public class GerenteDAO
 {
     public void inserirGerente(GerenteModel gerente)
     {
-        String querySQL = "INSERTO INTO Gerentes (id_gerente, departamento) VALUES (?, ?)";
+        String querySQL = "INSERT INTO Gerentes (id_gerente, departamento) VALUES (?, ?)";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
