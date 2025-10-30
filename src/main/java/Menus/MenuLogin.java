@@ -24,7 +24,7 @@ public class MenuLogin
             {
                 cpfLogin = Ferramentas.lString();
                 UsuarioValidator.verificaIntegridadeCpf(cpfLogin);
-                //usuarioValidator.verii
+                usuarioValidator.verii
 
                 System.out.print("|     Digite sua senha: ");
                 senhaLogin = Ferramentas.lString();
@@ -37,5 +37,34 @@ public class MenuLogin
             }
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        System.out.print("|     Digite seu CPF: ");
+        try {
+            cpfLogin = Ferramentas.lString();
+
+            System.out.print("|     Digite sua senha: ");
+            senhaLogin = Ferramentas.lString();
+
+            usuarioService.isCpfCadastradoValidator(cpfLogin);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("ERRO! SENHA OU CPF INVÁLIDOS");
+        } catch (IllegalArgumentException e) {
+
+        }
     }
 }

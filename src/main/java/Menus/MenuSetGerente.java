@@ -1,6 +1,7 @@
 package Menus;
 
 import ProjetoBase.Ferramentas;
+import ProjetoBase.GerenteValidator;
 
 import java.util.InputMismatchException;
 
@@ -13,26 +14,24 @@ public class MenuSetGerente {
         while(true)
         {
             System.out.println("Escolha o Departamento: ");
-            System.out.println("1 - ELÉTRICA ");
-            System.out.println("2 - MECÂNICA ");
+            System.out.println("[1] - ELÉTRICA ");
+            System.out.println("[2] - MECÂNICA ");
 
-            try
-            {
+            try {
                 opcao = Ferramentas.lInteiro();
                 if(opcao > 2 || opcao < 1)
                 {
                     Ferramentas.menuDefault();
                 } else
                 {
-                    return switch(opcao)
-                    {
-                        case 1 -> 1;
-                        default -> 2;
-                    };
+                    GerenteValidator.verificaIntegridadeIdDepartamento(opcao);
+                    GerenteValidator.verificaRegrasIdDepartamento(opcao);
+                    return opcao;
                 }
-            } catch(InputMismatchException e)
-            {
+            } catch(InputMismatchException e) {
                 Ferramentas.menuDefault();
+            } catch (IllegalArgumentException | IllegalStateException e) {
+                Ferramentas.mensagemErro(e.getMessage());
             }
         }
     }
