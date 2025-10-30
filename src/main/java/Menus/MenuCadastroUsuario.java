@@ -27,24 +27,25 @@ public class MenuCadastroUsuario
         try
         {
             escolhaDeCadastro = Ferramentas.lInteiro();
+
+            switch(escolhaDeCadastro)
+            {
+                case 1 ->
+                {
+                    Ferramentas.limpaTerminal();
+                    MenuCadastroTecnico.menuCadastroTecnico(gerente);
+                }
+                case 2 ->
+                {
+                    Ferramentas.limpaTerminal();
+                    MenuCadastroSupervisor.menuCadastroSupervisor(gerente);
+                }
+                default -> Ferramentas.menuDefault();
+            }
         }
         catch (Exception e)
         {
-            System.out.println("Erro: " + e.getMessage());
-        }
-
-        switch (escolhaDeCadastro)
-        {
-            case 1:
-            {
-                Ferramentas.limpaTerminal();
-                MenuCadastroTecnico.menuCadastroTecnico(gerente);
-            }
-            case 2:
-            {
-                Ferramentas.limpaTerminal();
-                MenuCadastroSupervisor.menuCadastroSupervisor(gerente);
-            }
+            Ferramentas.menuDefault();
         }
     }
 }

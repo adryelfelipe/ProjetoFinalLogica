@@ -10,7 +10,7 @@ public class MenuGerente
         System.out.println("|=================================|");
         System.out.println("|=========  MENU GERENTE  ========|");
         System.out.println("|=================================|");
-
+        System.out.println("  ");
         System.out.println("|  1 - Cadastro Usuários          |");
         System.out.println("|  2 - Visualizar Relatórios      |");
         System.out.println("|=================================|");
