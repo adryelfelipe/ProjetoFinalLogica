@@ -28,5 +28,45 @@ public class TecnicoDAO
     {
         String querySQL = "DELETE FROM Tecnico WHERE id_tecnico = ?";
 
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQL))
+        {
+            stmt.setLong(1, id);
+
+            int linhasAF = stmt.executeUpdate();
+
+            if(linhasAF > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }catch(SQLException e)
+        {
+            System.err.println("ERRO ao deletar tecnico com o ID: " + id);
+            return false;
+        }
     }
+
+    public void updateEspecialidadeTecnico(long id, int novaEspecialidade)
+    {
+        String querySQl = "UPDATE Tecnico t " +
+                        "INNER JOIN Usuario u ON t.id_tecnico = u.id_usuario" +
+                        "SET especialidade = ?" +
+                        "WHERE id_usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQl))
+        {
+            stmt.setInt(1, novaEspecialidade);
+            stmt.setLong(2, id);
+
+            stmt.executeQuery();
+        } catch (SQLException e) {
+            System.err.println("ERRO ao atualizar especialidade do tecnico");
+        }
+    }
+
 }

@@ -96,7 +96,7 @@ public class UsuarioDAO
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Erro ao iniciar login: ");
+            System.err.println("Erro ao iniciar login ");
         }
 
         return null;
@@ -186,5 +186,61 @@ public class UsuarioDAO
             return false;
         }
     }
+    public void updateNomeUsuario(long id, String novoNome)
+    {
+        String querySQl = "UPDATE Usuario " +
+                        "SET nome = ?" +
+                        "WHERE id_usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQl))
+        {
+            stmt.setString(1, novoNome);
+            stmt.setLong(2, id);
+
+            stmt.executeUpdate();
+        } catch (SQLException e)
+        {
+            System.err.println("ERRO ao atualizar nome do usuário.");
+        }
+    }
+
+    public void updateSenhaUsuario(long id, String senhaNova)
+    {
+        String querySQl = "UPDATE Usuario " +
+                "SET senha = ?" +
+                "WHERE id_usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQl))
+        {
+            stmt.setString(1, senhaNova);
+            stmt.setLong(2, id);
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("ERRO ao atualizar senha do usuário.");
+        }
+    }
+
+    public void updateCpfUsuario(long id, String cpfNovo)
+    {
+        String querySQl = "UPDATE Usuario " +
+                "SET cpf = ?" +
+                "WHERE id_usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQl))
+        {
+            stmt.setString(1, cpfNovo);
+            stmt.setLong(2, id);
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("ERRO ao atualizar cpf do usuário.");
+        }
+    }
+
+
 
 }
