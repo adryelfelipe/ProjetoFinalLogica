@@ -1,7 +1,6 @@
 package Menus;
 
 import ProjetoBase.Ferramentas;
-import ProjetoBase.UsuarioService;
 import ProjetoBase.UsuarioValidator;
 
 public class MenuSetUsuario

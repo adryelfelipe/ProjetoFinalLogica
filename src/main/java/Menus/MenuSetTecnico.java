@@ -41,11 +41,13 @@ public class MenuSetTecnico {
                     case 5 ->{
                         return 5;
                     }
+
+                    default -> Ferramentas.menuDefault();
                 }
             }
             catch(IllegalArgumentException e)
             {
-                System.out.println(" ");
+                Ferramentas.menuDefault();
             }
         }
     }

@@ -2,6 +2,7 @@ package Menus;
 
 import ProjetoBase.Ferramentas;
 import ProjetoBase.UsuarioService;
+import ProjetoBase.UsuarioValidator;
 
 public class MenuLogin
 {
@@ -18,25 +19,52 @@ public class MenuLogin
             System.out.println("|================================|\n");
 
             System.out.print("|     Digite seu CPF: ");
+
             try
             {
                 cpfLogin = Ferramentas.lString();
-                try
-                {
-                    System.out.print("|     Digite sua senha: ");
-                    senhaLogin = Ferramentas.lString();
+                UsuarioValidator.verificaIntegridadeCpf(cpfLogin);
+                usuarioValidator.verii
 
-                    usuarioService.isCpfCadastradoValidator(cpfLogin);
-                } catch (IllegalArgumentException e)
-                {
+                System.out.print("|     Digite sua senha: ");
+                senhaLogin = Ferramentas.lString();
 
-                }
+
+
             }
-            catch (IllegalArgumentException e)
-            {
-                System.out.println("ERRO! SENHA OU CPF INVÁLIDOS");
+            catch (IllegalArgumentException | IllegalStateException e) {
+                Ferramentas.mensagemErro(e.getMessage());
             }
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        System.out.print("|     Digite seu CPF: ");
+        try {
+            cpfLogin = Ferramentas.lString();
+
+            System.out.print("|     Digite sua senha: ");
+            senhaLogin = Ferramentas.lString();
+
+            usuarioService.isCpfCadastradoValidator(cpfLogin);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("ERRO! SENHA OU CPF INVÁLIDOS");
+        } catch (IllegalArgumentException e) {
+
+        }
     }
 }

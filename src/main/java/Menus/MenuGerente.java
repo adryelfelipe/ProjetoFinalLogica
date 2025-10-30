@@ -4,7 +4,9 @@ import ProjetoBase.GerenteModel;
 
 public class MenuGerente
 {
-    public static void menuInicial(GerenteModel gerenteModel) {
+    public static void menuInicial(GerenteModel gerenteModel)
+    {
+
 
     }
 }
