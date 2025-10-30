@@ -10,7 +10,7 @@ public class MaquinaDAO
 {
     public void inserirMaquina(MaquinaModel maquina)
     {
-        String querySQL = "INSERT INTO Maquina (id_maquina, nome, localizacao) VALUES (?, ?, ?)";
+        String querySQL = "INSERT INTO Maquinas (id_maquina, nome, localizacao) VALUES (?, ?, ?)";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
@@ -29,7 +29,7 @@ public class MaquinaDAO
 
     public boolean deletarMaquina(long id)
     {
-        String querySQL = "DELETE FROM Maquina WHERE id_maquina ";
+        String querySQL = "DELETE FROM Maquinas WHERE id_maquina ";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
@@ -56,7 +56,7 @@ public class MaquinaDAO
 
     public void updateNomeMaquina(long id, String novoNome)
     {
-        String querySQL = "UPDATE Maquina" + "SET nome = ?" + "WHERE id_maquina";
+        String querySQL = "UPDATE Maquinas" + "SET nome = ?" + "WHERE id_maquina";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
@@ -74,7 +74,7 @@ public class MaquinaDAO
 
     public void updateLocalizacaoMaquina(long id, String novaLocalizacao)
     {
-        String querySQL = "UPDATE Maquina" + "SET localizacao = ?" + "WHERE id_maquina";
+        String querySQL = "UPDATE Maquinas" + "SET localizacao = ?" + "WHERE id_maquina";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
@@ -92,7 +92,7 @@ public class MaquinaDAO
 
     public void updateStatusMaquina(long id, String novoStatus)
     {
-        String querySQL = "UPDATE Maquina" + "SET id_sm = ?" + "WHERE id_maquina";
+        String querySQL = "UPDATE Maquinas" + "SET id_sm = ?" + "WHERE id_maquina";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
