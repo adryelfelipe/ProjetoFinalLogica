@@ -1,11 +1,11 @@
 package Menus;
 
 import ProjetoBase.Ferramentas;
+import ProjetoBase.UsuarioService;
 
 public class MenuLogin
 {
-    //private static final ProjetoBase.UsuarioService usuarioService = new ProjetoBase.UsuarioService();
-    public static void login()
+    public static void login(UsuarioService usuarioService)
     {
         boolean continuar = true;
 
@@ -13,24 +13,30 @@ public class MenuLogin
         String senhaLogin = "1";
 
         while(continuar) {
-            System.out.println("================================");
+            System.out.println("|================================|");
             System.out.println("|             LOGIN            |");
-            System.out.println("================================\n");
+            System.out.println("|================================|\n");
 
             System.out.print("|     Digite seu CPF: ");
-            cpfLogin = Ferramentas.lString();
-            System.out.print("|     Digite sua senha: ");
-            senhaLogin = Ferramentas.lString();
-
             try
             {
-                //Usuario usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
-            } catch (IllegalArgumentException e)
+                cpfLogin = Ferramentas.lString();
+                try
+                {
+                    System.out.print("|     Digite sua senha: ");
+                    senhaLogin = Ferramentas.lString();
+
+                    usuarioService.isCpfCadastradoValidator(cpfLogin);
+                } catch (IllegalArgumentException e)
+                {
+
+                }
+            }
+            catch (IllegalArgumentException e)
             {
                 System.out.println("ERRO! SENHA OU CPF INVÁLIDOS");
             }
         }
-
 
     }
 }

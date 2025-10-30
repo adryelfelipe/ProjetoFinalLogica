@@ -92,7 +92,7 @@ public class UsuarioDAO
 
                         long idDoUsuarioLogado = rs.getLong("id_usuario");
 
-                        return findById(idDoUsuarioLogado);
+                        return findBy (idDoUsuarioLogado);
 
                     }
                 }
@@ -101,6 +101,10 @@ public class UsuarioDAO
             System.err.println("Erro ao iniciar login: ");
         }
 
+        return null;
+    }
+
+    private UsuarioModel findBy(long idDoUsuarioLogado) {
         return null;
     }
 
