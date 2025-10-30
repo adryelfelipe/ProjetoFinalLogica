@@ -8,73 +8,58 @@ public class MenuSetUsuario
     //SET NOME DO USUÁRIO
     public static String MenuSetNome()
     {
-        boolean verifica = false;
-
-        while(!verifica)
+        while(true)
         {
-            System.out.println("Digite o novo Nome: ");
+            System.out.println("Digite o Nome: ");
             String nome = Ferramentas.lString();
 
-            try
-            {
+            try {
                 UsuarioValidator.verificaIntegridadeNome(nome);
                 UsuarioValidator.verificaRegrasNome(nome);
-                verifica = true;
+                return nome;
             }
-            catch (IllegalArgumentException | IllegalStateException e)
-            {
+            catch (IllegalArgumentException | IllegalStateException e) {
                 Ferramentas.mensagemErro(e.getMessage());
             }
         }
-        return " ";
     }
 
     //SET CPF DO USUÁRIO
     public static String MenuSetCpf(){
-        boolean verifica = false;
+        String CPF;
 
-        String CPF = "";
-
-        while(!verifica){
-            System.out.print("Digite seu CPF: ");
+        while(true){
+            System.out.print("Digite o CPF: ");
             CPF = Ferramentas.lString();
 
-            try
-            {
+            try {
                 UsuarioValidator.verificaIntegridadeCpf(CPF);
                 UsuarioValidator.verificarRegrasCpf(CPF);
-
-                verifica = true;
+                return CPF;
             }
-            catch (IllegalArgumentException | IllegalStateException e)
-            {
+            catch (IllegalArgumentException | IllegalStateException e) {
                 Ferramentas.mensagemErro(e.getMessage());
             }
         }
-        return CPF;
     }
 
     //SET SENHA DO USUÁRIO
     public static String MenuSetSenha(){
-        boolean verifica = false;
+        String senha;
 
-        String senha = " ";
-
-        while(!verifica){
-            System.out.print("Digite sua senha: ");
+        while(true){
+            System.out.print("Digite a senha: ");
             senha = ProjetoBase.Ferramentas.lString();
 
             try
-            {
+           {
                 UsuarioValidator.verificaIntegridadeSenha(senha);
                 UsuarioValidator.verificarRegrasSenha(senha);
-                verifica = true;
+                return senha;
             }
-            catch (IllegalArgumentException | IllegalStateException e)
-            {
+            catch (IllegalArgumentException | IllegalStateException e) {
                 ProjetoBase.Ferramentas.mensagemErro(e.getMessage());
             }
         }
-        return senha;
     }
 }
