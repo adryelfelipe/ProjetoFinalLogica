@@ -7,13 +7,15 @@ public class OrdemDeServicoModel
     private boolean atrasadas;
     private boolean fechadas;
 
+    private long idOrdemDeServico;
     private String descricao;
     private int id_Maquina;
     private int id_Tecnico;
     private double valorDaOrdemDeServico;
 
     //--------------------  CONSTRUTOR  --------------------//
-    public OrdemDeServicoModel(int id_Tecnico, int id_Maquina, boolean emAndamento, boolean atrasadas, boolean fechadas, String descricao, double valorDaOrdemDeServico) {
+    public OrdemDeServicoModel(int idOrdemDeServico, int id_Tecnico, int id_Maquina, boolean emAndamento, boolean atrasadas, boolean fechadas, String descricao, double valorDaOrdemDeServico) {
+        this.idOrdemDeServico = idOrdemDeServico;
         this.id_Tecnico = id_Tecnico;
         this.id_Maquina = id_Maquina;
         this.emAndamento = emAndamento;
@@ -24,6 +26,11 @@ public class OrdemDeServicoModel
     }
 
     //-------------  SETTERS E GETTERS  -------------//
+
+    public long getIdOrdemDeServico() {
+        return idOrdemDeServico;
+    }
+
     public boolean isEmAndamento() {
         return emAndamento;
     }
@@ -50,6 +57,11 @@ public class OrdemDeServicoModel
 
     public double getValorDaOrdemDeServico() {
         return valorDaOrdemDeServico;
+    }
+
+    public void setIdOrdemDeServico(long idOrdemDeServico)
+    {
+        this.idOrdemDeServico = idOrdemDeServico;
     }
 
     public void setEmAndamento(boolean emAndamento) {
