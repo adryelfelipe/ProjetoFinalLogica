@@ -23,52 +23,69 @@ public class OrdemDeServicoModel
 
     //-------------  SETTERS E GETTERS  -------------//
 
-    public long getIdOrdemDeServico() {
+    public long getIdOrdemDeServico()
+    {
         return idOrdemDeServico;
     }
 
-    public int getStatusDaOrdem() {
+    public int getStatusDaOrdem()
+    {
         return statusDaOrdem;
     }
 
-    public String getDescricao() {
+    public String getDescricao()
+    {
         return descricao;
     }
 
-    public int getIdMaquina() {
+    public int getIdMaquina()
+    {
         return id_Maquina;
     }
 
-    public int getIdTecnico() {
+    public int getIdTecnico()
+    {
         return id_Tecnico;
     }
 
-    public double getValorDaOrdemDeServico() {
+    public double getValorDaOrdemDeServico()
+    {
         return valorDaOrdemDeServico;
     }
 
     public void setIdOrdemDeServico(long idOrdemDeServico)
     {
+        OrdemDeServicoValidator.verificaIntegridadeIdOrdem_Servico(idOrdemDeServico);
         this.idOrdemDeServico = idOrdemDeServico;
     }
 
-    public void setStatusDaOrdem(int statusDaOrdem) {
+    public void setStatusDaOrdem(int statusDaOrdem)
+    {
+        OrdemDeServicoValidator.verificaIntegridadeStatus(statusDaOrdem);
         this.statusDaOrdem = statusDaOrdem;
     }
 
-    public void setDescricao(String descricao) {
+    public void setDescricao(String descricao)
+    {
+        OrdemDeServicoValidator.verificaRegrasDescricao(descricao);
         this.descricao = descricao;
     }
 
-    public void setIdMaquina(int idMaquina) {
+    public void setIdMaquina(int idMaquina)
+    {
+        OrdemDeServicoValidator.verificaIntegridadeIdMaquina(idMaquina);
         this.id_Maquina = idMaquina;
     }
 
-    public void setIdTecnico(int idTecnico) {
+    public void setIdTecnico(int idTecnico)
+    {
+        OrdemDeServicoValidator.verificaIntegridadeIdTecnico(idTecnico);
         this.id_Tecnico = idTecnico;
     }
 
-    public void setValorDaOrdemDeServico(double valorDaOrdemDeServico) {
+    public void setValorDaOrdemDeServico(double valorDaOrdemDeServico)
+    {
+        OrdemDeServicoValidator.verificarValorDaOrdemDeServico(valorDaOrdemDeServico);
         this.valorDaOrdemDeServico = valorDaOrdemDeServico;
     }
 }
