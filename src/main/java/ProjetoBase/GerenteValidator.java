@@ -1,15 +1,13 @@
 package ProjetoBase;
 
 public class GerenteValidator {
-    private static final UsuarioValidator usuarioValidator = new UsuarioValidator();
-
     // -- Verifica regras de négoico -- //
-    public void verificaRegrasInsercaoGerente(GerenteModel gerente) {
+    public static void verificaRegrasInsercaoGerente(GerenteModel gerente) {
         verificaRegrasIdDepartamento(gerente.getDepartamento());
-        usuarioValidator.verificaRegrasInsercaoUsuario(gerente);
+        UsuarioValidator.verificaRegrasInsercaoUsuario(gerente);
     }
 
-    public void verificaRegrasIdDepartamento(int idDepartamento) {
+    public static void verificaRegrasIdDepartamento(int idDepartamento) {
         if(idDepartamento > 3) {
             throw new IllegalStateException("ERRO! ID DE DEPARTAMENTO INVÁLIDO");
         }

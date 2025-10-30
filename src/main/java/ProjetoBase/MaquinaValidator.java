@@ -3,7 +3,7 @@ package ProjetoBase;
 public class MaquinaValidator {
 
     // -- Verifica regras de negócio -- //
-    public void verificaRegrasNome(String nome) {
+    public static void verificaRegrasNome(String nome) {
         if (nome == null) {
             throw new IllegalStateException("ERRO! O NOME NÃO PODE SER NULO");
         }
@@ -13,9 +13,9 @@ public class MaquinaValidator {
         }
     }
 
-    public static void verificaRegrasStatus(int idNivelAcesso){
-        if(idNivelAcesso < 0) {
-            throw new IllegalArgumentException("ERRO! O ID_STATUS NÃO PODE SER NULO");
+    public static void verificaRegrasStatus(int idStatus){
+        if(idStatus > 3) {
+            throw new IllegalArgumentException("ERRO! O ID_STATUS NÃO PODE SER MAIOR QUE 3");
         }
     }
 

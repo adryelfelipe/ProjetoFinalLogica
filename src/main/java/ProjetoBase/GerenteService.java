@@ -6,13 +6,11 @@ public class GerenteService {
     private final UsuarioDAO usuarioDao = new UsuarioDAO();
     private final GerenteDAO gerenteDAO = new GerenteDAO();
     private final UsuarioService usuarioService = new UsuarioService();
-    private final UsuarioValidator usuarioValidator = new UsuarioValidator();
-    private final GerenteValidator gerenteValidator = new GerenteValidator();
 
-
+    // -- Métodos -- //
     public void inserirGerente(UsuarioModel usuarioInseridor, GerenteModel gerenteInserido) {
-        usuarioValidator.temNivelAcesso4(usuarioInseridor);
-        gerenteValidator.verificaRegrasInsercaoGerente(gerenteInserido);
+        UsuarioValidator.temNivelAcesso4(usuarioInseridor);
+        GerenteValidator.verificaRegrasInsercaoGerente(gerenteInserido);
         usuarioService.isCpfCadastradoValidator(gerenteInserido.getCpf());
         usuarioDao.inserirUsuario(gerenteInserido);
         gerenteDAO.inserirGerente(gerenteInserido);

@@ -1,11 +1,12 @@
 package Menus;
 
 import ProjetoBase.Ferramentas;
+import ProjetoBase.UsuarioService;
+import ProjetoBase.UsuarioValidator;
 
 public class MenuLogin
 {
-    //private static final ProjetoBase.UsuarioService usuarioService = new ProjetoBase.UsuarioService();
-    public static void login()
+    public static void login(UsuarioService usuarioService)
     {
         boolean continuar = true;
 
@@ -13,24 +14,57 @@ public class MenuLogin
         String senhaLogin = "1";
 
         while(continuar) {
-            System.out.println("================================");
+            System.out.println("|================================|");
             System.out.println("|             LOGIN            |");
-            System.out.println("================================\n");
+            System.out.println("|================================|\n");
 
             System.out.print("|     Digite seu CPF: ");
-            cpfLogin = Ferramentas.lString();
-            System.out.print("|     Digite sua senha: ");
-            senhaLogin = Ferramentas.lString();
 
             try
             {
-                //Usuario usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
-            } catch (IllegalArgumentException e)
-            {
-                System.out.println("ERRO! SENHA OU CPF INVÁLIDOS");
+                cpfLogin = Ferramentas.lString();
+                UsuarioValidator.verificaIntegridadeCpf(cpfLogin);
+                usuarioValidator.verii
+
+                System.out.print("|     Digite sua senha: ");
+                senhaLogin = Ferramentas.lString();
+
+
+
+            }
+            catch (IllegalArgumentException | IllegalStateException e) {
+                Ferramentas.mensagemErro(e.getMessage());
             }
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        System.out.print("|     Digite seu CPF: ");
+        try {
+            cpfLogin = Ferramentas.lString();
+
+            System.out.print("|     Digite sua senha: ");
+            senhaLogin = Ferramentas.lString();
+
+            usuarioService.isCpfCadastradoValidator(cpfLogin);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("ERRO! SENHA OU CPF INVÁLIDOS");
+        } catch (IllegalArgumentException e) {
+
+        }
     }
 }

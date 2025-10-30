@@ -19,7 +19,7 @@ public class MenuSetSupervisor {
             {
                 metaMensal = Ferramentas.lDouble();
                 SupervisorValidator.verificaIntegridadeMetaMensal(metaMensal);
-                supervisorValidator.verificaRegrasMetaMensal(metaMensal);
+                SupervisorValidator.verificaRegrasMetaMensal(metaMensal);
                 return metaMensal;
             } catch(InputMismatchException e)
             {

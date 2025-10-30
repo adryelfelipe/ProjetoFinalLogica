@@ -26,36 +26,28 @@ public class MenuSetTecnico {
 
                 switch (idEspecialidade)
                 {
-                    case 1:
-                    {
-                        idEspecialidade = 1;
-                        break;
+                    case 1 -> {
+                        return 1;
                     }
-                    case 2:
-                    {
-                        idEspecialidade = 2;
-                        break;
+                    case 2 ->{
+                        return 2;
                     }
-                    case 3:
-                    {
-                        idEspecialidade = 3;
-                        break;
+                    case 3 ->{
+                        return 3;
                     }
-                    case 4:
-                    {
-                        idEspecialidade = 4;
-                        break;
+                    case 4 ->{
+                        return 4;
                     }
-                    case 5:
-                    {
-                        idEspecialidade = 5;
-                        break;
+                    case 5 ->{
+                        return 5;
                     }
+
+                    default -> Ferramentas.menuDefault();
                 }
             }
             catch(IllegalArgumentException e)
             {
-                System.out.println("");
+                Ferramentas.menuDefault();
             }
         }
     }
