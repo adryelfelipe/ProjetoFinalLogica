@@ -10,6 +10,6 @@ public class OrdemDeServicoDAO
 {
     public void inserirOrdemDeServico(OrdemDeServicoModel ordemDeServico)
     {
-        String querySQL = "INSERT INTO OrdemServicos"
+        String querySQL = "INSERT INTO OrdemServicos";
     }
 }

@@ -3,11 +3,14 @@ package Menus;
 import ProjetoBase.Ferramentas;
 import ProjetoBase.GerenteModel;
 import ProjetoBase.MaquinaModel;
+import ProjetoBase.MaquinaService;
 
 public class MenuCadastroMaquina {
+    private static final MaquinaService maquinaService = new MaquinaService();
+
     public static void menuCadastroMaquina(GerenteModel gerente) {
         System.out.println("================================");
-        System.out.println("|      CADASTRO  TÉCNICO        |");
+        System.out.println("|      CADASTRO  MÁQUINA       |");
         System.out.println("================================\n");
 
         // ----- Atribuição de caracteríscticas de uma Máquina ----- //
@@ -24,12 +27,12 @@ public class MenuCadastroMaquina {
 
         try {
             MaquinaModel maquina = new MaquinaModel(nome, localizacao, idStatus);
-            maquinaS.inserirTecnico(gerente, tecnico);
-            System.out.println("TÉCNICO CADASTRADO COM SUCESSO!");
+            maquinaService.inserirMaquina(gerente, maquina);
+            System.out.println("MÁQUINA CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);
         } catch (IllegalArgumentException | IllegalStateException e) {
             Ferramentas.mensagemErro(e.getMessage());
         }
     }
 }
-}
+
