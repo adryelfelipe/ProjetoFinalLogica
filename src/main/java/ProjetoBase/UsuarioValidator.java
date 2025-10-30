@@ -43,7 +43,7 @@ public class UsuarioValidator {
     }
 
     // -- Métodos de Regras de Negócio -- //
-    public void verificaRegrasInsercaoUsuario(UsuarioModel usuario) {
+    public static void verificaRegrasInsercaoUsuario(UsuarioModel usuario) {
         verificarRegrasSenha(usuario.getSenha());
         verificaRegrasNome(usuario.getNome());
         verificarRegrasCpf(usuario.getCpf());
@@ -51,13 +51,13 @@ public class UsuarioValidator {
         verificaRegrasObjeto(usuario);
     }
 
-    public void verificaRegrasObjeto(UsuarioModel usuario) {
+    public static void verificaRegrasObjeto(UsuarioModel usuario) {
         if(usuario == null) {
             throw new IllegalStateException("ERRO! O OBJETO NÃO PODE SER NULO");
         }
     }
 
-    public void verificaRegrasNome(String nome) {
+    public static void verificaRegrasNome(String nome) {
         if(nome == null) {
             throw new IllegalStateException("ERRO! O NOME NÃO PODE SER NULO");
         }
@@ -81,13 +81,13 @@ public class UsuarioValidator {
         }
     }
 
-    public void verificarRegrasCpf(String cpf) {
+    public static void verificarRegrasCpf(String cpf) {
         if(cpf == null) {
             throw new IllegalStateException("ERRO! O CPF NÃO PODE SER NULO");
         }
     }
 
-    public void verificarRegrasSenha(String senha) {
+    public static void verificarRegrasSenha(String senha) {
         if(senha == null) {
             throw new IllegalStateException("ERRO! A SENHA NÃO PODE SER NULA");
         }
@@ -128,31 +128,31 @@ public class UsuarioValidator {
         }
     }
 
-    public void verificaRegrasNivelAcesso(int idNivelAcesso) {
+    public static void verificaRegrasNivelAcesso(int idNivelAcesso) {
         if(idNivelAcesso > 3) {
             throw new IllegalStateException("ERRO! ID DE NÍVEL DE ACESSO INVÁLIDO");
         }
     }
 
-    public void temNivelAcesso4(UsuarioModel usuario) {
+    public static void temNivelAcesso4(UsuarioModel usuario) {
         if (!(usuario.getNivelAcesso() == 4)) {
             throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
         }
     }
 
-    public void temNivelAcesso3(UsuarioModel usuario) {
+    public static void temNivelAcesso3(UsuarioModel usuario) {
         if (!(usuario.getNivelAcesso() == 3)) {
             throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
         }
     }
 
-    public void temNivelAcesso2(UsuarioModel usuario) {
+    public static void temNivelAcesso2(UsuarioModel usuario) {
         if (!(usuario.getNivelAcesso() == 2)) {
             throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
         }
     }
 
-    public void temNivelAcesso1(UsuarioModel usuario) {
+    public static void temNivelAcesso1(UsuarioModel usuario) {
         if (!(usuario.getNivelAcesso() == 1)) {
             throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
         }
