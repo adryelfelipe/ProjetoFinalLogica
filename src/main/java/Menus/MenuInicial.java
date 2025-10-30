@@ -10,51 +10,44 @@ public class MenuInicial
     {
         int opcao = 0;
 
-        boolean continuar = true;
-        boolean checkopcao;
+        boolean checkopcao = false;
 
-        while(continuar)
+        do
         {
-            do
+            System.out.println("|=================================|");
+            System.out.println("|========  MENU INICIAL  =========|");
+            System.out.println("|=================================|");
+            System.out.println(" ");
+            System.out.println("|  1 - Login                      |");
+            System.out.println("|  2 - Sair                       |");
+            System.out.println("|=================================|");
+            System.out.print("|  Escolha: ");
+
+            try
             {
-                System.out.println("|========  MENU INICIAL  =========|");
-                System.out.println("|     1 - Login                   |");
-                System.out.println("|     2 - Sair                    |");
-                System.out.println("|=================================|");
-                System.out.print("|     Escolha: ");
+                opcao = Ferramentas.lInteiro();
+                checkopcao = true;
 
-                try
+                switch(opcao)
                 {
-                    opcao = Ferramentas.lInteiro();
-                    checkopcao = true;
-
+                    case 1 ->
+                    {
+                        Ferramentas.limpaTerminal();
+                        MenuLogin.login(usuarioService);
+                    }
+                    case 2 ->
+                    {
+                        Ferramentas.limpaTerminal();
+                        MenuDesligar.desligar();
+                    }
+                    default -> Ferramentas.menuDefault();
                 }
-                catch (Exception e)
-                {
-                    System.out.println("Erro: " + e.getMessage());
-                    checkopcao = false;
-                }
-
             }
-            while (!checkopcao);
-
-            switch(opcao)
+            catch (Exception e)
             {
-                case 1:
-                {
-                    Ferramentas.limpaTerminal();
-                    MenuLogin.login(usuarioService);
-
-                    break;
-                }
-                case 2:
-                {
-                    Ferramentas.limpaTerminal();
-                    MenuDesligar.desligar();
-
-                    break;
-                }
+                Ferramentas.menuDefault();
             }
         }
+        while (!checkopcao);
     }
 }

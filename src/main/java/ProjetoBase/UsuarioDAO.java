@@ -41,7 +41,7 @@ public class UsuarioDAO
 
         // Pega a conexão
         try(Connection conn = ConnectionFactory.getConnection();
-        PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS))
+            PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS))
         {
             //Definindo parametros (PreparedStatement).
             stmt.setString(1, usuario.getNome());
@@ -75,7 +75,6 @@ public class UsuarioDAO
 
     public UsuarioModel loginUsuario(String cpf, String senha) {
 
-
         String querySQL = "SELECT id_usuario, senha FROM Usuario WHERE cpf = ? LIMIT 1";
 
         try (Connection conn = ConnectionFactory.getConnection();
@@ -86,14 +85,13 @@ public class UsuarioDAO
             try (ResultSet rs = stmt.executeQuery()) {
 
                 //  Verifica se o CPF foi encontrado
-                if (rs.next()) {
 
+                if (rs.next()) {
                     if (senha.equals(rs.getString("senha"))) {
 
                         long idDoUsuarioLogado = rs.getLong("id_usuario");
 
-                        return findBy (idDoUsuarioLogado);
-
+                        return findById(idDoUsuarioLogado);
                     }
                 }
             }
@@ -103,9 +101,90 @@ public class UsuarioDAO
 
         return null;
     }
+    public UsuarioModel findById(long idDoUsuarioLogado)
+    {
+        // Consulta MYSQL.
+        String querySQL = "SELECT " +
+                "U.id_usuario, U.nome, U.cpf, U.senha, U.nivel_acesso, " +
+                "G.departamento, " +
+                "S.meta_mensal " +
+                "T.especialidade" +
+                "LEFT JOIN Gerentes G ON U.id_usuario = G.id_gerente " +
+                "LEFT JOIN Supervisor S ON U.id_usuario = S.id_supervisor " +
+                "LEFT JOIN Tecnico T ON U.id_usuario = T.id_tecnico " +
+                "WHERE U.id_usuario = ?";
 
-    private UsuarioModel findBy(long idDoUsuarioLogado) {
-        return null;
+        UsuarioModel usuarioModel = null;
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQL))
+        {
+            stmt.setLong(1, idDoUsuarioLogado);
+
+            try(ResultSet rs = stmt.executeQuery())
+            {
+                if(rs.next())
+                {
+                    // Pega dados comuns...
+                    long id = rs.getLong("id_usuario");
+                    String nome = rs.getString("nome");
+                    String cpf = rs.getString("cpf");
+                    String senha = rs.getString("senha");
+                    int nivelAcesso = rs.getInt("nivel_acesso");
+
+                    switch(nivelAcesso)
+                    {
+                        case 1:
+                            // Criando objeto de acordo com seu nivel_acesso.
+                           int especialidade = rs.getInt("especialidade");
+                           usuarioModel = new TecnicoModel(id, nome, cpf, senha, especialidade);
+                           break;
+
+                        case 2:
+                            double metaMensal = rs.getDouble("meta_mensal");
+                            usuarioModel = new SupervisorModel(id, nome, cpf, senha, metaMensal);
+                            break;
+
+                        case 3:
+                            int departamento = rs.getInt("departamento");
+                            usuarioModel = new GerenteModel(id, nome, cpf, senha, departamento);
+                            break;
+                    }
+                }
+            }
+        } catch (SQLException e)
+        {
+            System.err.println("ERRO ao buscar usuário por ID!");
+        }
+        return usuarioModel;
+    }
+
+    public boolean deletarUsuario(long id)
+    {
+        String querySQL = "DELETE FROM Usuario WHERE id_usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQL))
+        {
+            stmt.setLong(1, id);
+
+            int linhasAF = stmt.executeUpdate();
+
+            // Se conseguir deletar retorna true.
+            if(linhasAF > 0)
+            {
+                return true;
+            }
+            // Senão retorna false.
+            else
+            {
+                return false;
+            }
+        }catch (SQLException e)
+        {
+            System.err.println("ERRO ao deletar usuário com o ID: " + id);
+            return false;
+        }
     }
 
 }

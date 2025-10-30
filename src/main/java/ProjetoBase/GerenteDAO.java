@@ -24,4 +24,33 @@ public class GerenteDAO
             System.err.println("ERRO AO INSERIR GERENTE");
         }
     }
+
+    public boolean deletarGerente(long id)
+    {
+        String querySQL = "DELETE FROM Gerentes WHERE id_gerente = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(querySQL))
+        {
+            stmt.setLong(1, id);
+
+            int linhasAF = stmt.executeUpdate();
+
+            // Se conseguir retorna true.
+            if(linhasAF > 0 )
+            {
+                return true;
+            }
+            // Senão conseguir retorna false.
+            else
+            {
+                return false;
+            }
+        }catch (SQLException e )
+        {
+            System.err.println("ERRO ao deletar gerente com o ID: " + id);
+            return false;
+        }
+    }
 }
+
