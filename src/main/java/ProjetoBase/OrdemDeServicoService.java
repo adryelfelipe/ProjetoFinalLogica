@@ -1,4 +1,6 @@
 package ProjetoBase;
 
-public class OrdemDeServicoService {
+public class OrdemDeServicoService
+{
+
 }
