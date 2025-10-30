@@ -24,4 +24,31 @@ public class SupervisorDAO
             System.err.println("ERRO AO INSERIR SUPERVISOR");
         }
     }
+
+    public boolean deletarSupervisor(long id)
+    {
+        String querySQL = "DELETE FROM Supervisor WHERE id_supervisor = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQL))
+        {
+            stmt.setLong(1, id);
+
+            int linhasAF = stmt.executeUpdate();
+
+            if(linhasAF > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }catch (SQLException e)
+        {
+            System.err.println("ERRO ao deletar supervisor com o ID: " + id);
+            return false;
+        }
+    }
+
 }
