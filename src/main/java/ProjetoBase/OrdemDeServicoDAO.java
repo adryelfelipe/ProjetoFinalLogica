@@ -72,4 +72,94 @@ public class OrdemDeServicoDAO
             System.err.println("ERRO ao atualizar a descrição da ordem de serviços");
         }
     }
+
+    public void updateStatusOrdemDeServicos (long id, int novoStatus)
+    {
+        String querySQL = "UPDATE OrdemServicos" + "SET status_ordem = ?" + "WHERE id_os";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQL))
+        {
+            stmt.setInt(1, novoStatus);
+            stmt.setLong(2, id);
+
+            stmt.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            System.err.println("ERRO ao atualizar o status da ordem de serviços");
+        }
+    }
+
+    public void updateCustoOrdemDeServicos (long id, double novoValor)
+    {
+        String querySQL = "UPDATE OrdemServicos" + "SET custo = ?" + "WHERE id_os";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQL))
+        {
+            stmt.setDouble(1, novoValor);
+            stmt.setLong(2, id);
+
+            stmt.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            System.err.println("ERRO ao atualizar o valor da ordem de serviços");
+        }
+    }
+
+    public void updateIdMaquina (long id, long novoIdMaquina)
+    {
+        String querySQL = "UPDATE OrdemServicos" + "SET id_maquina = ?" + "WHERE id_os";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQL))
+        {
+            stmt.setLong(1, novoIdMaquina);
+            stmt.setLong(2, id);
+
+            stmt.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            System.err.println("ERRO ao atualizar o id da maquina da ordem de serviços");
+        }
+    }
+
+    public void updateIdSupervisor (long id, long novoIdSupervisor)
+    {
+        String querySQL = "UPDATE OrdemServicos" + "SET id_maquina = ?" + "WHERE id_os";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQL))
+        {
+            stmt.setLong(1, novoIdSupervisor);
+            stmt.setLong(2, id);
+
+            stmt.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            System.err.println("ERRO ao atualizar o id do supervisor da ordem de serviços");
+        }
+    }
+
+    public void updateIdTecnico (long id, long novoIdTecnico)
+    {
+        String querySQL = "UPDATE OrdemServicos" + "SET id_maquina = ?" + "WHERE id_os";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQL))
+        {
+            stmt.setLong(1, novoIdTecnico);
+            stmt.setLong(2, id);
+
+            stmt.executeUpdate();
+        }
+        catch(SQLException e)
+        {
+            System.err.println("ERRO ao atualizar o id do tecnico da ordem de serviços");
+        }
+    }
 }
