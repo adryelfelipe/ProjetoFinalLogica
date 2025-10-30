@@ -51,4 +51,24 @@ public class SupervisorDAO
         }
     }
 
+    public void updateMetaMensal(long id, double metaMensal)
+    {
+        String querySQL = "UPDATE FROM Supervisor s " +
+                        "INNER JOIN Usuario u ON s.id_supervisor = u.id_usuario " +
+                        "SET meta_mensal = ?" +
+                        "WHERE id_usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQL))
+        {
+            stmt.setDouble(1, metaMensal);
+            stmt.setLong(2, id);
+
+            stmt.executeQuery();
+        }catch (SQLException e)
+        {
+            System.err.println("ERRO ao atualizar meta mensal do supervisor");
+        }
+    }
+
 }
