@@ -3,9 +3,7 @@ package ProjetoBase;
 public class OrdemDeServicoModel
 {
     //--------------------  ATRIBUTOS  --------------------//
-    private boolean emAndamento;
-    private boolean atrasadas;
-    private boolean fechadas;
+    private int statusDaOrdem;
 
     private long idOrdemDeServico;
     private String descricao;
@@ -14,13 +12,11 @@ public class OrdemDeServicoModel
     private double valorDaOrdemDeServico;
 
     //--------------------  CONSTRUTOR  --------------------//
-    public OrdemDeServicoModel(int idOrdemDeServico, int id_Tecnico, int id_Maquina, boolean emAndamento, boolean atrasadas, boolean fechadas, String descricao, double valorDaOrdemDeServico) {
+    public OrdemDeServicoModel(int idOrdemDeServico, int id_Tecnico, int id_Maquina, int statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
         this.idOrdemDeServico = idOrdemDeServico;
         this.id_Tecnico = id_Tecnico;
         this.id_Maquina = id_Maquina;
-        this.emAndamento = emAndamento;
-        this.atrasadas = atrasadas;
-        this.fechadas = fechadas;
+        this.statusDaOrdem = statusDaOrdem;
         this.descricao = descricao;
         this.valorDaOrdemDeServico = valorDaOrdemDeServico;
     }
@@ -31,16 +27,8 @@ public class OrdemDeServicoModel
         return idOrdemDeServico;
     }
 
-    public boolean isEmAndamento() {
-        return emAndamento;
-    }
-
-    public boolean isAtrasadas() {
-        return atrasadas;
-    }
-
-    public boolean isFechadas() {
-        return fechadas;
+    public int getStatusDaOrdem() {
+        return statusDaOrdem;
     }
 
     public String getDescricao() {
@@ -64,16 +52,8 @@ public class OrdemDeServicoModel
         this.idOrdemDeServico = idOrdemDeServico;
     }
 
-    public void setEmAndamento(boolean emAndamento) {
-        this.emAndamento = emAndamento;
-    }
-
-    public void setAtrasadas(boolean atrasadas) {
-        this.atrasadas = atrasadas;
-    }
-
-    public void setFechadas(boolean fechadas) {
-        this.fechadas = fechadas;
+    public void setStatusDaOrdem(int statusDaOrdem) {
+        this.statusDaOrdem = statusDaOrdem;
     }
 
     public void setDescricao(String descricao) {
