@@ -1,12 +1,13 @@
 package Menus;
 
 import ProjetoBase.Ferramentas;
+import ProjetoBase.TecnicoModel;
 
 import java.util.InputMismatchException;
 
 public class MenuTecnico
 {
-    public static void menuTecnico()
+    public static void menuTecnico(TecnicoModel tecnico)
     {
         boolean continuar = true;
 

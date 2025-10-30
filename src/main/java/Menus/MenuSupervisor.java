@@ -1,12 +1,13 @@
 package Menus;
 
 import ProjetoBase.Ferramentas;
+import ProjetoBase.SupervisorModel;
 
 import java.util.InputMismatchException;
 
 public class MenuSupervisor
 {
-    public static void menuSupervisor()
+    public static void menuSupervisor(SupervisorModel supervisor)
     {
         boolean continuar = false;
         int opcao = 0;

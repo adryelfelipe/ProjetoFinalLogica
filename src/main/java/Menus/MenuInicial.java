@@ -2,18 +2,17 @@ package Menus;
 
 import ProjetoBase.Ferramentas;
 
+import java.util.InputMismatchException;
+
 public class MenuInicial
 {
     private static final ProjetoBase.UsuarioService usuarioService = new ProjetoBase.UsuarioService();
 
     public static void Menu()
     {
-        int opcao = 0;
+        int opcao;
 
-        boolean checkopcao = false;
-
-        do
-        {
+        while(true) {
             System.out.println("|=================================|");
             System.out.println("|========  MENU INICIAL  =========|");
             System.out.println("|=================================|");
@@ -26,10 +25,8 @@ public class MenuInicial
             try
             {
                 opcao = Ferramentas.lInteiro();
-                checkopcao = true;
 
-                switch(opcao)
-                {
+                switch(opcao) {
                     case 1 ->
                     {
                         Ferramentas.limpaTerminal();
@@ -43,11 +40,9 @@ public class MenuInicial
                     default -> Ferramentas.menuDefault();
                 }
             }
-            catch (Exception e)
-            {
+            catch (InputMismatchException e) {
                 Ferramentas.menuDefault();
             }
         }
-        while (!checkopcao);
     }
 }

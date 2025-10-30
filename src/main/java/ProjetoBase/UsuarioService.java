@@ -17,4 +17,15 @@ public class UsuarioService {
             throw new IllegalStateException("ERRO! ID JÁ CADASTRADO");
         }
     }
+
+    public void isCpfExistenteValidator(String cpf) {
+        if(!usuarioDao.verificarCpf(cpf)) {
+            throw new IllegalStateException("ERRO! O CPF NÃO FOI ENCONTRADO");
+        }
+    }
+
+    public UsuarioModel loginUsuario(String cpf, String senha) {
+        isCpfExistenteValidator(cpf);
+        return usuarioDao.loginUsuario(cpf, senha);
+    }
 }

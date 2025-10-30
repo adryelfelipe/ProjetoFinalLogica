@@ -1,41 +1,59 @@
 package Menus;
 
-import ProjetoBase.Ferramentas;
-import ProjetoBase.UsuarioService;
-import ProjetoBase.UsuarioValidator;
+import ProjetoBase.*;
 
 public class MenuLogin
 {
-    public static void login(UsuarioService usuarioService)
-    {
-        boolean continuar = true;
+    public static void login(UsuarioService usuarioService) {
+        boolean verifica = false;
 
-        String cpfLogin = "1";
+        String cpfLogin = "";
         String senhaLogin = "1";
 
-        while(continuar) {
+        while(!verifica) {
             System.out.println("|================================|");
-            System.out.println("|             LOGIN            |");
+            System.out.println("|             LOGIN              |");
             System.out.println("|================================|\n");
 
             System.out.print("|     Digite seu CPF: ");
 
-            try
-            {
+            try {
                 cpfLogin = Ferramentas.lString();
                 UsuarioValidator.verificaIntegridadeCpf(cpfLogin);
-                //usuarioValidator.verii
-
-                System.out.print("|     Digite sua senha: ");
-                senhaLogin = Ferramentas.lString();
-
-
-
-            }
-            catch (IllegalArgumentException | IllegalStateException e) {
+                UsuarioValidator.verificarRegrasCpf(cpfLogin);
+                verifica = true;
+            } catch (IllegalArgumentException | IllegalStateException e) {
                 Ferramentas.mensagemErro(e.getMessage());
             }
         }
 
+        // RESETA A VARIÁVEL
+        verifica = false;
+
+        while (!verifica) {
+            try {
+                System.out.print("|     Digite sua senha: ");
+                senhaLogin = Ferramentas.lString();
+                UsuarioValidator.verificaIntegridadeSenha(senhaLogin);
+                UsuarioValidator.verificarRegrasSenha(senhaLogin);
+                verifica = true;
+            } catch (IllegalArgumentException | IllegalStateException e) {
+                Ferramentas.mensagemErro(e.getMessage());
+            }
+        }
+
+        UsuarioModel usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
+
+        if(usuario instanceof AdminModel){
+            //
+        } else if(usuario instanceof GerenteModel) {
+            MenuGerente.menuInicial((GerenteModel) usuario);
+        } else if(usuario instanceof SupervisorModel) {
+            MenuSupervisor.menuSupervisor((SupervisorModel) usuario);
+        } else if(usuario instanceof TecnicoModel) {
+            MenuTecnico.menuTecnico((TecnicoModel) usuario);
+        } else {
+            Ferramentas.mensagemErro("ERRO! CPF OU SENHA INVÁLIDOS");
+        }
     }
 }
