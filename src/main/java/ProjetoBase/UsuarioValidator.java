@@ -2,12 +2,9 @@ package ProjetoBase;
 
 public class UsuarioValidator {
 
-    // -- Atributos -- //
-    private final UsuarioService usuarioService;
-
     // -- Construtor -- //
-    public UsuarioValidator(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
+    public UsuarioValidator() {
+
     }
 
     // -- Métodos de Integridade -- //
@@ -46,6 +43,20 @@ public class UsuarioValidator {
     }
 
     // -- Métodos de Regras de Negócio -- //
+    public void verificaRegrasInsercaoUsuario(UsuarioModel usuario) {
+        verificarRegrasSenha(usuario.getSenha());
+        verificaRegrasNome(usuario.getNome());
+        verificarRegrasCpf(usuario.getCpf());
+        verificaRegrasNivelAcesso(usuario.getNivelAcesso());
+        verificaRegrasObjeto(usuario);
+    }
+
+    public void verificaRegrasObjeto(UsuarioModel usuario) {
+        if(usuario == null) {
+            throw new IllegalStateException("ERRO! O OBJETO NÃO PODE SER NULO");
+        }
+    }
+
     public void verificaRegrasNome(String nome) {
         if(nome == null) {
             throw new IllegalStateException("ERRO! O NOME NÃO PODE SER NULO");
@@ -53,6 +64,20 @@ public class UsuarioValidator {
 
         if(nome.length() < 2) {
             throw new IllegalStateException("ERRO! O NOME DEVE CONTER MAIS DE 1 CARACTER");
+        }
+
+        // -- VALIDAÇÃO DE CARACTERES ESPECIAIS -- //
+        boolean verificaEspecial = false;
+
+        for(String caractereEspecial : Ferramentas.listaEspeciais) {
+            if(nome.contains(caractereEspecial)) {
+                verificaEspecial = true;
+                break;
+            }
+        }
+
+        if(verificaEspecial) {
+            throw new IllegalStateException("ERRO! O NOME NÃO PODE CONTER UM CARACTERE ESPECIAL");
         }
     }
 
@@ -67,16 +92,69 @@ public class UsuarioValidator {
             throw new IllegalStateException("ERRO! A SENHA NÃO PODE SER NULA");
         }
 
+        if(senha.contains(" ")) {
+            throw new IllegalStateException("ERRO! A SENHA NÃO PODE CONTER ESPAÇOS");
+        }
+
         if(senha.length() < 6) {
             throw new IllegalStateException("ERRO! A SENHA DEVE CONTER MAIS DE 5 CARACTERES");
         }
 
 
+        // -- VALIDAÇÃO DE MAIUSCULAS E ESPECIAIS -- //
+        boolean verificaMaiuscula = false;
+        boolean verificaEspecial = false;
+
+        for(String maiuscula : Ferramentas.listaMaiusculos) {
+            if (senha.contains(maiuscula)) {
+                verificaMaiuscula = true;
+                break;
+            }
+        }
+
+        for(String caractereEspecial : Ferramentas.listaEspeciais) {
+            if(senha.contains(caractereEspecial)) {
+                verificaEspecial = true;
+                break;
+            }
+        }
+
+        if(!verificaMaiuscula) {
+            throw new IllegalStateException("ERRO! A SENHA DEVE CONTER UMA LETRA MAIÚSCULA");
+        }
+
+        if(!verificaEspecial) {
+            throw new IllegalStateException("ERRO! A SENHA DEVE CONTER UM CARACTERE ESPECIAL");
+        }
     }
 
     public void verificaRegrasNivelAcesso(int idNivelAcesso) {
         if(idNivelAcesso > 3) {
             throw new IllegalStateException("ERRO! ID DE NÍVEL DE ACESSO INVÁLIDO");
+        }
+    }
+
+    public void temNivelAcesso4(UsuarioModel usuario) {
+        if (!(usuario.getNivelAcesso() == 4)) {
+            throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
+        }
+    }
+
+    public void temNivelAcesso3(UsuarioModel usuario) {
+        if (!(usuario.getNivelAcesso() == 3)) {
+            throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
+        }
+    }
+
+    public void temNivelAcesso2(UsuarioModel usuario) {
+        if (!(usuario.getNivelAcesso() == 2)) {
+            throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
+        }
+    }
+
+    public void temNivelAcesso1(UsuarioModel usuario) {
+        if (!(usuario.getNivelAcesso() == 1)) {
+            throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
         }
     }
 }

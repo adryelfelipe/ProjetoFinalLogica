@@ -8,7 +8,7 @@ public class MenuDesligar
         System.out.println("     Desligando . . .    ");
         System.out.println("-------------------------");
 
-        Ferramentas.Delay(1500);
+        ProjetoBase.Ferramentas.Delay(1500);
 
         System.exit(0);
     }

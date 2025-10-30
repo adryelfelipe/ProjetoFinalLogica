@@ -2,8 +2,6 @@ package Menus;
 
 import ProjetoBase.Ferramentas;
 
-
-
 public class MenuLogin
 {
     //private static final ProjetoBase.UsuarioService usuarioService = new ProjetoBase.UsuarioService();
@@ -14,7 +12,7 @@ public class MenuLogin
         String cpfLogin = "1";
         String senhaLogin = "1";
 
-        while(continuar){
+        while(continuar) {
             System.out.println("================================");
             System.out.println("|             LOGIN            |");
             System.out.println("================================\n");
@@ -26,14 +24,13 @@ public class MenuLogin
 
             try
             {
-                Usuario usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
-            }
-            catch (SenhaInvalidaException | CpfInvalido Exception e)
+                //Usuario usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
+            } catch (IllegalArgumentException e)
             {
                 System.out.println("ERRO! SENHA OU CPF INVÁLIDOS");
             }
-
-
         }
+
+
     }
 }

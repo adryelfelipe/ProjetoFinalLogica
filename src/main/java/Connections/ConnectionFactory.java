@@ -15,11 +15,10 @@ public class ConnectionFactory {
 
         Connection conn = null;
 
-        try
-        {
+        try {
             return conn = DriverManager.getConnection(url, user, senha);
-        }catch (SQLException e)
-        {
+        }
+        catch (SQLException e) {
             System.err.println("Erro ao conectar ao banco");
         }
         return conn;

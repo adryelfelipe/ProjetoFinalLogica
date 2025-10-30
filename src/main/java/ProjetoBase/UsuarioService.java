@@ -2,15 +2,18 @@ package ProjetoBase;
 
 public class UsuarioService {
 
+    // -- Atributos -- //
+    UsuarioDAO usuarioDao = new UsuarioDAO();
+
     // -- Métodos -- //
     public void isCpfCadastradoValidator(String cpf) {
-        if(false) {  /// ALTERAR PARA VERIFICAÇÃO DE isCpfExistente da DAO
+        if(usuarioDao.verificarCpf(cpf)) {
             throw new IllegalStateException("ERRO! CPF JÁ CADASTRADO");
         }
     }
 
     public void isIdCadastradorValidator(long id) {
-        if(false) { /// ALTERAR PARA VERIFICAÇÃO DE isIdExistente da DAO
+        if(false) {
             throw new IllegalStateException("ERRO! ID JÁ CADASTRADO");
         }
     }

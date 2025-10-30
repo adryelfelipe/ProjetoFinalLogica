@@ -1,11 +1,15 @@
 package Menus;
 
 import ProjetoBase.Ferramentas;
+import ProjetoBase.UsuarioService;
 import ProjetoBase.UsuarioValidator;
 
-public class MenuSetUsuario {
+public class MenuSetUsuario
+{
+    private static final UsuarioValidator usuarioValidator = new UsuarioValidator();
 
-    public static String MenuSetNome(UsuarioValidator usuarioValidator)
+    //SET NOME DO USUÁRIO
+    public static String MenuSetNome()
     {
         boolean verifica = false;
 
@@ -25,5 +29,55 @@ public class MenuSetUsuario {
                 Ferramentas.mensagemErro(e.getMessage());
             }
         }
+        return " ";
+    }
+
+    //SET CPF DO USUÁRIO
+    public static String MenuSetCpf(){
+        boolean verifica = false;
+
+        String CPF = "";
+
+        while(!verifica){
+            System.out.print("Digite seu CPF: ");
+            CPF = Ferramentas.lString();
+
+            try
+            {
+                UsuarioValidator.verificaIntegridadeCpf(CPF);
+                usuarioValidator.verificarRegrasCpf(CPF);
+
+                verifica = true;
+            }
+            catch (IllegalArgumentException | IllegalStateException e)
+            {
+                Ferramentas.mensagemErro(e.getMessage());
+            }
+        }
+        return CPF;
+    }
+
+    //SET SENHA DO USUÁRIO
+    public static String MenuSetSenha(){
+        boolean verifica = false;
+
+        String senha = " ";
+
+        while(!verifica){
+            System.out.print("Digite sua senha: ");
+            senha = ProjetoBase.Ferramentas.lString();
+
+            try
+            {
+                UsuarioValidator.verificaIntegridadeSenha(senha);
+                usuarioValidator.verificarRegrasSenha(senha);
+                verifica = true;
+            }
+            catch (IllegalArgumentException | IllegalStateException e)
+            {
+                ProjetoBase.Ferramentas.mensagemErro(e.getMessage());
+            }
+        }
+        return senha;
     }
 }
