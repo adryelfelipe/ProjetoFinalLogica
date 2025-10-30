@@ -34,7 +34,7 @@ public class MenuCadastroGerente {
             System.out.println("GERENTE CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);
         } catch (IllegalArgumentException | IllegalStateException e) {
-            System.err.println("ERRO AO INSERIR O USUÁRIO");
+            Ferramentas.mensagemErro(e.getMessage());
         }
     }
 }

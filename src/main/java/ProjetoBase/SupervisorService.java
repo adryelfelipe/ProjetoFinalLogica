@@ -5,13 +5,11 @@ public class SupervisorService {
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
     private final SupervisorDAO supervisorDAO = new SupervisorDAO();
     private final UsuarioService usuarioService = new UsuarioService();
-    private final UsuarioValidator usuarioValidator = new UsuarioValidator();
-    private final SupervisorValidator supervisorValidator = new SupervisorValidator();
 
-
+    // -- Métodos -- //
     public void inserirSupervisor(UsuarioModel usuarioInseridor, SupervisorModel supervisorInserido) {
-        usuarioValidator.temNivelAcesso3(usuarioInseridor);
-        supervisorValidator.verificarRegrasInsercaoSupervisor(supervisorInserido);
+        UsuarioValidator.temNivelAcesso3(usuarioInseridor);
+        SupervisorValidator.verificarRegrasInsercaoSupervisor(supervisorInserido);
         usuarioService.isCpfCadastradoValidator(supervisorInserido.getCpf());
         usuarioDAO.inserirUsuario(supervisorInserido);
         supervisorDAO.inserirSupervisor(supervisorInserido);
