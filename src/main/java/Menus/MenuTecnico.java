@@ -27,22 +27,14 @@ public class MenuTecnico
 
                 switch (escolhaTecnica)
                 {
-                    case 1:
-                    {
-                        MenuTecnicoVisualizarDetalhes.visualizarDetalhesDeOS();
-                        break;
-                    }
-                    case 2:
-                    {
-                        MenuTecnicoAtualizarStatus.atualizarStatusDeSOs();
-                        break;
-                    }
-                    case 3:
+                    case 1 -> MenuTecnicoVisualizarDetalhes.visualizarDetalhesDeOS();
+                    case 2 -> MenuTecnicoAtualizarStatus.atualizarStatusDeSOs();
+                    case 3 ->
                     {
                         System.out.println("|  RETORNANDO AO MENU INICIAL ...");
                         MenuInicial.Menu();
-                        break;
                     }
+                    default -> Ferramentas.menuDefault();
                 }
             }
             catch (InputMismatchException e)
