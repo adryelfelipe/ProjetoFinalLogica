@@ -6,8 +6,6 @@ import ProjetoBase.UsuarioValidator;
 
 public class MenuSetUsuario
 {
-    private static final UsuarioValidator usuarioValidator = new UsuarioValidator();
-
     //SET NOME DO USUÁRIO
     public static String MenuSetNome()
     {
@@ -21,7 +19,7 @@ public class MenuSetUsuario
             try
             {
                 UsuarioValidator.verificaIntegridadeNome(nome);
-                usuarioValidator.verificaRegrasNome(nome);
+                UsuarioValidator.verificaRegrasNome(nome);
                 verifica = true;
             }
             catch (IllegalArgumentException | IllegalStateException e)
@@ -45,7 +43,7 @@ public class MenuSetUsuario
             try
             {
                 UsuarioValidator.verificaIntegridadeCpf(CPF);
-                usuarioValidator.verificarRegrasCpf(CPF);
+                UsuarioValidator.verificarRegrasCpf(CPF);
 
                 verifica = true;
             }
@@ -70,7 +68,7 @@ public class MenuSetUsuario
             try
             {
                 UsuarioValidator.verificaIntegridadeSenha(senha);
-                usuarioValidator.verificarRegrasSenha(senha);
+                UsuarioValidator.verificarRegrasSenha(senha);
                 verifica = true;
             }
             catch (IllegalArgumentException | IllegalStateException e)

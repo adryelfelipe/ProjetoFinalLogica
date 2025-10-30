@@ -3,7 +3,7 @@ package ProjetoBase;
 public class MaquinaValidator {
 
     // -- Verifica regras de negócio -- //
-    public void verificaRegrasNome(String nome) {
+    public static void verificaRegrasNome(String nome) {
         if (nome == null) {
             throw new IllegalStateException("ERRO! O NOME NÃO PODE SER NULO");
         }
