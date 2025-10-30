@@ -16,6 +16,8 @@ public class OrdemDeServicoDAO
             PreparedStatement stmt = conn.prepareStatement(querySQL))
         {
             stmt.setLong(1, ordemDeServico.getIdOrdemDeServico());
+            stmt.setString(2, ordemDeServico.getDescricao());
+            stmt.setString(3, ordemDeServico.get);
         }
     }
 }
