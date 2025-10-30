@@ -10,7 +10,7 @@ public class MaquinaModel {
 
 
     // Construtor com ID //
-    public MaquinaModel(long id, String nome, String localizacao, int status) {
+    public MaquinaModel(long id, String nome, String localizacao, int idStatus) {
         setNome(nome);
         setIdMaquina(id);
         setLocalizacao(localizacao);
@@ -18,8 +18,8 @@ public class MaquinaModel {
     }
 
     // Construtor sem ID //
-    public MaquinaModel(String nome, String localizacao, String status) {
-        //this(0, nome, localizacao, status);
+    public MaquinaModel(String nome, String localizacao, int idStatus) {
+        this(0, nome, localizacao, idStatus);
     }
 
     // -- Setters e Getters
