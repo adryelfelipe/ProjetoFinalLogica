@@ -67,7 +67,7 @@ public class SupervisorDAO
             stmt.executeQuery();
         }catch (SQLException e)
         {
-            System.err.println("ERRO ao atualizar ");
+            System.err.println("ERRO ao atualizar meta mensal do supervisor");
         }
     }
 

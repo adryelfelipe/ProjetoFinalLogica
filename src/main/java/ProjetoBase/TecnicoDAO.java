@@ -24,7 +24,7 @@ public class TecnicoDAO
             System.err.println("ERRO AO INSERIR PACIENTE");
         }
     }
-    public void deletarTecnico(long id)
+    public boolean deletarTecnico(long id)
     {
         String querySQL = "DELETE FROM Tecnico WHERE id_tecnico = ?";
 

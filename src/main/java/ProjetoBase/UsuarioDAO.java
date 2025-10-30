@@ -105,10 +105,11 @@ public class UsuarioDAO
     {
         // Consulta MYSQL.
         String querySQL = "SELECT " +
-                "U.id_usuario, U.nome, U.cpf, U.senha, U.nivel_acesso, " +
+                "U.ID_USUARIO, U.nome, U.cpf, U.senha, U.nivel_acesso, " +
                 "G.departamento, " +
-                "S.meta_mensal " +
-                "T.especialidade" +
+                "S.meta_mensal, " +
+                "T.especialidade " +
+                "FROM Usuario U " +
                 "LEFT JOIN Gerentes G ON U.id_usuario = G.id_gerente " +
                 "LEFT JOIN Supervisor S ON U.id_usuario = S.id_supervisor " +
                 "LEFT JOIN Tecnico T ON U.id_usuario = T.id_tecnico " +
@@ -136,9 +137,9 @@ public class UsuarioDAO
                     {
                         case 1:
                             // Criando objeto de acordo com seu nivel_acesso.
-                           int especialidade = rs.getInt("especialidade");
-                           usuarioModel = new TecnicoModel(id, nome, cpf, senha, especialidade);
-                           break;
+                            int especialidade = rs.getInt("especialidade");
+                            usuarioModel = new TecnicoModel(id, nome, cpf, senha, especialidade);
+                            break;
 
                         case 2:
                             double metaMensal = rs.getDouble("meta_mensal");
@@ -154,7 +155,7 @@ public class UsuarioDAO
             }
         } catch (SQLException e)
         {
-            System.err.println("ERRO ao buscar usuário por ID!");
+            System.err.println("ERRO ao buscar usuário por ID!"+e.getMessage());
         }
         return usuarioModel;
     }
@@ -240,7 +241,4 @@ public class UsuarioDAO
             System.err.println("ERRO ao atualizar cpf do usuário.");
         }
     }
-
-
-
 }
