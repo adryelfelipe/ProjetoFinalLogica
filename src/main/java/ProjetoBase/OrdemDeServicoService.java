@@ -9,8 +9,10 @@ public class OrdemDeServicoService
     {
         UsuarioValidator.temNivelAcesso2(usuarioInseridor);
         TecnicoValidator.verificaRegrasInsercaoTecnico(tecnicoInserido);
-        //usuarioService.isCpfCadastradoValidator(tecnicoInserido.getCpf());
-        //usuarioDAO.inserirUsuario(tecnicoInserido);
-        //tecnicoDAO.inserirTecnico(tecnicoInserido);
+        /*usuarioService.isCpfCadastradoValidator(tecnicoInserido.getCpf());
+        usuarioDAO.inserirUsuario(tecnicoInserido);
+        tecnicoDAO.inserirTecnico(tecnicoInserido);
     }
+}*/
+}
 }

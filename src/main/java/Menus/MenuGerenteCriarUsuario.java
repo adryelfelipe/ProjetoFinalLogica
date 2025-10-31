@@ -12,8 +12,7 @@ public class MenuGerenteCriarUsuario
         System.out.println("|==================================|");
         System.out.println("|  1 - Cadastrar Usuário Técnico   |");
         System.out.println("|  2 - Cadastrar Usuário Supervisor|");
-        System.out.println("|==================================|");
-        System.out.println("|  Escolha: ");
+        System.out.print("|  Escolha: ");
 
         try
         {
