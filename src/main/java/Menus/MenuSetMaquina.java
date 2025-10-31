@@ -12,7 +12,7 @@ public class MenuSetMaquina {
     public static String MenuSetNomeMaquina()
     {
         while(true) {
-            System.out.println("Digite o Nome: ");
+            System.out.print("Digite o Nome: ");
             String nome = Ferramentas.lString();
 
             try {
@@ -28,7 +28,7 @@ public class MenuSetMaquina {
 
     public static String MenuSetLocalizacao() {
         while(true) {
-            System.out.println("Digite a Localização: ");
+            System.out.print("Digite a Localização: ");
             String localizacao = Ferramentas.lString();
 
             try {

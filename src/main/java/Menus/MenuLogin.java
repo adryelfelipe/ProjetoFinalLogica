@@ -44,6 +44,7 @@ public class MenuLogin
 
         UsuarioModel usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
 
+        Ferramentas.limpaTerminal();
         if(usuario instanceof AdminModel){
             //
         } else if(usuario instanceof GerenteModel) {

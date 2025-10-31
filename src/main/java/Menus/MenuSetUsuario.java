@@ -1,16 +1,19 @@
 package Menus;
 
 import ProjetoBase.Ferramentas;
+import ProjetoBase.UsuarioService;
 import ProjetoBase.UsuarioValidator;
 
 public class MenuSetUsuario
 {
+    private static UsuarioService usuarioService = new UsuarioService();
+
     //SET NOME DO USUÁRIO
     public static String MenuSetNome()
     {
         while(true)
         {
-            System.out.println("Digite o Nome: ");
+            System.out.print("Digite o Nome: ");
             String nome = Ferramentas.lString();
 
             try {
@@ -35,6 +38,7 @@ public class MenuSetUsuario
             try {
                 UsuarioValidator.verificaIntegridadeCpf(CPF);
                 UsuarioValidator.verificarRegrasCpf(CPF);
+                usuarioService.isCpfCadastradoValidator(CPF);
                 return CPF;
             }
             catch (IllegalArgumentException | IllegalStateException e) {

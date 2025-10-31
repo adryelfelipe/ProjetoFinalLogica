@@ -15,19 +15,23 @@ public class MenuCadastroMaquina {
 
         // ----- Atribuição de caracteríscticas de uma Máquina ----- //
         String nome = MenuSetMaquina.MenuSetNomeMaquina();
-        String localizacao = MenuSetMaquina.MenuSetLocalizacao();
-        int idStatus = MenuSetMaquina.MenuSetStatusMaquina();
+        Ferramentas.limpaTerminal();
 
+        String localizacao = MenuSetMaquina.MenuSetLocalizacao();
+        Ferramentas.limpaTerminal();
+
+        int idStatus = MenuSetMaquina.MenuSetStatusMaquina();
+        Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //
         Ferramentas.limpaTerminal();
         System.out.println("PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
-        Ferramentas.limpaTerminal();
 
         try {
             MaquinaModel maquina = new MaquinaModel(nome, localizacao, idStatus);
             maquinaService.inserirMaquina(gerente, maquina);
+            Ferramentas.limpaTerminal();
             System.out.println("MÁQUINA CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);
         } catch (IllegalArgumentException | IllegalStateException e) {

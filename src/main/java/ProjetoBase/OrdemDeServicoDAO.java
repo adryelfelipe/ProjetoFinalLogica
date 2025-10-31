@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 public class OrdemDeServicoDAO
 {
+    /*
     public void inserirOrdemDeServico(OrdemDeServicoModel ordemDeServico)
     {
         String querySQL = "INSERT INTO OrdemServicos (id_os, descricao, status_ordem, custo) VALUES (?, ?, ?, ?)";
@@ -20,4 +21,6 @@ public class OrdemDeServicoDAO
             stmt.setString(3, ordemDeServico.get);
         }
     }
+
+     */
 }
