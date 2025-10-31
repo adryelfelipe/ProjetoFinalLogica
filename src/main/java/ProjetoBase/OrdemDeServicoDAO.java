@@ -8,7 +8,6 @@ import java.sql.SQLException;
 
 public class OrdemDeServicoDAO
 {
-    /*
     public void inserirOrdemDeServico(OrdemDeServicoModel ordemDeServico)
     {
         String querySQL = "INSERT INTO OrdemServicos (id_os, descricao, status_ordem, custo) VALUES (?, ?, ?, ?)";
@@ -163,6 +162,4 @@ public class OrdemDeServicoDAO
             System.err.println("ERRO ao atualizar o id do tecnico da ordem de serviços");
         }
     }
-
-     */
 }
