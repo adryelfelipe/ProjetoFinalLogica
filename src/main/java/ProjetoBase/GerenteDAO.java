@@ -52,5 +52,26 @@ public class GerenteDAO
             return false;
         }
     }
+
+    public void updatedepartamento(long id, int novoDepartamento)
+    {
+        String querySQL = "UPDATE FROM Gerente g " +
+                        "INNER JOIN Usuario u ON g.id_gerente = u.id_usuario " +
+                        "SET departamento = ? " +
+                        "WHERE id_usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQL))
+        {
+            stmt.setInt(1, novoDepartamento);
+            stmt.setLong(2, id);
+
+            stmt.executeQuery();
+        }catch (SQLException e)
+        {
+            System.err.println("ERRO ao atualizar departamento do gerente");
+        }
+    }
+
 }
 
