@@ -10,7 +10,7 @@ public class MenuSetUsuario
     {
         while(true)
         {
-            System.out.println("Digite o Nome: ");
+            System.out.print("Digite o Nome: ");
             String nome = Ferramentas.lString();
 
             try {

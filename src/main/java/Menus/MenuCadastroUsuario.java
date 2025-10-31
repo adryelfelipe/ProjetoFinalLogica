@@ -20,7 +20,7 @@ public class MenuCadastroUsuario
         System.out.println("|     1 - Técnico               |");
         System.out.println("|     2 - Supervisor            |");
         System.out.println("================================");
-        System.out.println("|     Escolha: ");
+        System.out.print("|     Escolha: ");
 
         int escolhaDeCadastro = 0;
 

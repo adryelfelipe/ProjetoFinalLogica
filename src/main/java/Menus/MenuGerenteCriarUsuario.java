@@ -7,6 +7,8 @@ public class MenuGerenteCriarUsuario
 {
     public static void criarUsuarios(GerenteModel gerenteModel)
     {
+        System.out.println(" ");
+        System.out.println(" ");
         System.out.println("|==================================|");
         System.out.println("|  1 - Cadastrar Usuário Técnico   |");
         System.out.println("|  2 - Cadastrar Usuário Supervisor|");

@@ -45,14 +45,15 @@ public class MenuLogin
         UsuarioModel usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
 
         if(usuario instanceof AdminModel){
-            //
+            MenuAdministrador.menuInicial((AdminModel) usuario);
         } else if(usuario instanceof GerenteModel) {
             MenuGerente.menuInicial((GerenteModel) usuario);
         } else if(usuario instanceof SupervisorModel) {
             MenuSupervisor.menuSupervisor((SupervisorModel) usuario);
         } else if(usuario instanceof TecnicoModel) {
             MenuTecnico.menuTecnico((TecnicoModel) usuario);
-        } else {
+        }
+        else {
             Ferramentas.mensagemErro("ERRO! CPF OU SENHA INVÁLIDOS");
         }
     }
