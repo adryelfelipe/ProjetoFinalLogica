@@ -46,10 +46,10 @@ public class MenuSetMaquina {
         while(true) {
             int opcao;
 
-            System.out.println("Escolha o Status: ");
             System.out.println("[1] - FUNCIONANDO ");
             System.out.println("[2] - DEFEITO ");
             System.out.println("[3] - EM_MANUTENÇÃO");
+            System.out.print("Escolha o Status: ");
 
             try
             {

@@ -6,11 +6,11 @@ public class MenuCadastroGerente {
     // -- Atributos -- //
     private static final GerenteService gerenteService = new GerenteService();
 
-    public static void menuCadastroGerente(AdminModel adm) {
+    public static void menuCadastroGerente(AdminModel adminModel) {
 
-        System.out.println("================================");
-        System.out.println("|       CADASTRO GERENTE       |");
-        System.out.println("================================\n");
+        System.out.println("|================================|");
+        System.out.println("|       CADASTRO GERENTE         |");
+        System.out.println("|================================|\n");
 
         System.out.println();
 
@@ -36,7 +36,7 @@ public class MenuCadastroGerente {
 
         try {
             GerenteModel gerente = new GerenteModel(nome, cpf, senha, idDepartamento);
-            gerenteService.inserirGerente(adm, gerente);
+            gerenteService.inserirGerente(adminModel, gerente);
             System.out.println("GERENTE CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);
         } catch (IllegalArgumentException | IllegalStateException e) {
