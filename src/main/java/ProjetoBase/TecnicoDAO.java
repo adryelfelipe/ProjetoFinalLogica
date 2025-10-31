@@ -10,7 +10,7 @@ public class TecnicoDAO
 {
     public void inserirTecnico(TecnicoModel tecnico)
     {
-        String querySQL = "INSERTO INTO Tecnico (id_tecnico, especialidade) VALUES (?, ?)";
+        String querySQL = "INSERT INTO Tecnico (id_tecnico, especialidade) VALUES (?, ?)";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
@@ -21,7 +21,7 @@ public class TecnicoDAO
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            System.err.println("ERRO AO INSERIR PACIENTE");
+            System.err.println("ERRO ao inserir tecnico");
         }
     }
     public boolean deletarTecnico(long id)
