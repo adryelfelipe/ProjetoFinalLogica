@@ -8,14 +8,15 @@ import java.sql.*;
 public class MaquinaDAO {
     //Comando para inserir as informações da máquina no Banco de Dados
     public void inserirMaquina(MaquinaModel maquina) {
-        String querySQL = "INSERT INTO Maquinas (id_maquina, nome, localizacao) VALUES (?, ?, ?)";
+        String querySQL = "INSERT INTO Maquinas (nome, localizacao, id_sm) VALUES (?, ?, ?)";
         long idGerado = -1;
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS)) {
             //Definindo parametros (PreparedStatement).
-            stmt.setString(2, maquina.getNome());
-            stmt.setString(3, maquina.getLocalizacao());
+            stmt.setString(1, maquina.getNome());
+            stmt.setString(2, maquina.getLocalizacao());
+            stmt.setLong(3, maquina.getStatus());
 
             int linhasAF = stmt.executeUpdate();
 
