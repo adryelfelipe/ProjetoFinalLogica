@@ -29,7 +29,7 @@ public class MenuUpdateGerente {
 
                 System.out.println("|  1 - Alterar Técnico           |");
                 System.out.println("|  2 - Alterar Supervisor        |");
-                System.out.println("|  3 - SAIR DO MENU              |");
+                System.out.println("|  3 - Sair do Menu              |");
                 System.out.println("|  Escolha: ");
 
                 try
@@ -79,6 +79,10 @@ public class MenuUpdateGerente {
             {
 
                 System.out.print("\n\n"); // pula linhas
+                System.out.println("          |================================|          ");
+                System.out.println("          |======  ATUALIZAR TECNICO  =====|          ");
+                System.out.println("          |================================|          ");
+                System.out.println("");
                 System.out.println("|--------------------|         |--------------------|");
                 System.out.println("|  EDITAR   TÉCNICO  |         |        ATUAL       |");
                 System.out.println("|--------------------|         |--------------------|");
@@ -154,7 +158,11 @@ public class MenuUpdateGerente {
         {
             while(!verifica)
             {
-                System.out.print("\n\n"); // pula linhas
+                System.out.println("\n\n");
+                System.out.println("             |================================|            ");
+                System.out.println("             |====  ATUALIZAR SUPERVISOR  ====|            ");
+                System.out.println("             |================================|            ");
+                System.out.println("");
                 System.out.println("|-----------------------|         |-----------------------|");
                 System.out.println("|  EDITAR   SUPERVISOR  |         |         ATUAL         |");
                 System.out.println("|-----------------------|         |-----------------------|");

@@ -17,27 +17,34 @@ public class MenuAdminRemoverGerente {
         private static UsuarioValidator usuarioValidator = new UsuarioValidator();
         private static GerenteDAO gerenteDAO = new GerenteDAO();
 
-        public static void removerGerente(AdminModel adm) {
+        public static void removerGerente(AdminModel adm)
+        {
             boolean verifica = false;
-            Long id;
-            Ferramentas.limpaTerminal();
+            Long idGerente;
 
-            System.out.println("[EXCLUIR]");
+            while (!verifica)
+            {
+                System.out.println("|  ----------------------------  |");
+                System.out.println("|  -----  EXCLUIR GERENTE -----  |");
+                System.out.println("|  ----------------------------  |");
+                System.out.println(" ");
+                System.out.println("Digite o ID do gerente: ");
 
-            while (!verifica) {
-                System.out.print("--- REMOVER GERENTE ---");
-                try {
-                    id = MenuEscolhaId.escolhaIdUpdate();
-                    UsuarioValidator.verificaIntegridadeIdUsuario(id);
-                    usuarioDAO.deletarUsuario(id);
-                    gerenteDAO.deletarGerente(id);
+                try
+                {
+                    idGerente = MenuEscolhaId.escolhaIdUpdate();
+                    UsuarioValidator.verificaIntegridadeIdUsuario(idGerente);
+                    //verificar nivel acesso
+                    gerenteDAO.deletarGerente(idGerente);
+                    usuarioDAO.deletarUsuario(idGerente);
 
                     Ferramentas.Delay(500);
-                    System.out.println("Gerente deletado");
+                    System.out.println("| -----  GERENTE DELETADO  ----- |");
                     Ferramentas.Delay(1500);
                     verifica = true;
-
-                } catch (RuntimeException e) {
+                }
+                catch (RuntimeException e)
+                {
                     Ferramentas.mensagemErro(e.getMessage());
                 }
             }
