@@ -16,7 +16,7 @@ public class MenuEscolhaId
 
             try {
                 long id = Ferramentas.lInteiro();
-                usuarioService.idExistenteValidator(id);
+                usuarioService.isIdExistenteValidator(id);
                 return id;
             } catch (InputMismatchException e) {
                 Ferramentas.mensagemErro(e.getMessage());

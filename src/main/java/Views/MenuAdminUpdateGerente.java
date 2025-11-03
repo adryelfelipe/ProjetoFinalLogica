@@ -1,12 +1,20 @@
 package Views;
 
 import Models.AdminModel;
+import Models.GerenteModel;
+import ProjetoBase.GerenteService;
+import ProjetoBase.UsuarioService;
+import Repositories.UsuarioDAO;
 import Util.Ferramentas;
 
 import java.sql.SQLOutput;
 
 public class MenuAdminUpdateGerente
 {
+    private static final UsuarioService usuarioService = new UsuarioService();
+    private static final GerenteService gerenteService = new GerenteService();
+    private static final UsuarioDAO usuarioDAO = new UsuarioDAO();
+
     public static void updateGerente(AdminModel adminModel)
     {
         boolean verifica = false;
@@ -19,6 +27,8 @@ public class MenuAdminUpdateGerente
             return;
         }
 
+        GerenteModel gerente = ((GerenteModel) usuarioDAO.findById(idGerente));
+
         while(!verifica)
         {
             System.out.println("|================================|");
@@ -26,11 +36,11 @@ public class MenuAdminUpdateGerente
             System.out.println("|================================|");
 
             System.out.println("       -------------------           --------- ATUAL --------");
-            System.out.println("       |EDITAR   GERENTE|           |Nome: " + .getNome());
-            System.out.println("       -------------------           |CPF: " + paciente.getCpf());
-            System.out.println("                                     |Senha: " + paciente.getSenha());
-            System.out.println(" [1] - Nome                          |Email: " + paciente.getEmail());
-            System.out.println(" [2] - CPF                           |Departamento: " + );
+            System.out.println("       |EDITAR   GERENTE|            |Nome: " + gerente.getNome());
+            System.out.println("       -------------------           |CPF: " + gerente.getCpf());
+            System.out.println("                                     |Senha: " + gerente.getSenha());
+            System.out.println(" [1] - Nome                          |Departamento: " + gerente.getDepartamento());
+            System.out.println(" [2] - CPF                           ");
             System.out.println(" [3] - Senha                         ");
             System.out.println(" [9] - Departamento                  ------------------------");
         }

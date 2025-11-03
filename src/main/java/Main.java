@@ -1,3 +1,4 @@
+import Models.AdminModel;
 import Views.MenuInicial;
 
 import java.sql.SQLException;
