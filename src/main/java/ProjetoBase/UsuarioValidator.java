@@ -10,6 +10,15 @@ public class UsuarioValidator {
 
     }
 
+    // -- Métodos de Verificação -- //
+    public static boolean isAutoUpdate(long idInsersor, long idInserido){
+        if(idInsersor == idInserido) {
+            return true;
+        }
+
+        return false;
+    }
+
     // -- Métodos de Integridade -- //
     public static void verificaIntegridadeNome(String nome) {
         if(nome.isBlank()) {

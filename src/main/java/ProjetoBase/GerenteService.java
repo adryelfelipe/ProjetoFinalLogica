@@ -20,4 +20,11 @@ public class GerenteService {
         usuarioDao.inserirUsuario(gerenteInserido);
         gerenteDAO.inserirGerente(gerenteInserido);
     }
+
+    public void updateDepartamento(UsuarioModel usuario, long id, int idDepartamento) {
+        UsuarioValidator.temNivelAcesso4(usuario);
+        GerenteValidator.verificaIntegridadeIdDepartamento(idDepartamento);
+        GerenteValidator.verificaRegrasIdDepartamento(idDepartamento);
+        gerenteDAO.updateDepartamento(id, idDepartamento);
+    }
 }

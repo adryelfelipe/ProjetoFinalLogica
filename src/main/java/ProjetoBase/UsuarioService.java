@@ -37,4 +37,41 @@ public class UsuarioService {
         isCpfExistenteValidator(cpf);
         return usuarioDao.loginUsuario(cpf, senha);
     }
+
+    public UsuarioModel findById(long id) {
+        return usuarioDao.findById(id);
+    }
+
+    public void updateSenhaUsuario(UsuarioModel usuario, long id, String senha) {
+        UsuarioValidator.temNivelAcesso3(usuario);
+        UsuarioValidator.verificarRegrasSenha(senha);
+        UsuarioValidator.verificaIntegridadeSenha(senha);
+        usuarioDao.updateSenhaUsuario(id, senha);
+
+        if(UsuarioValidator.isAutoUpdate(usuario.getIdUsuario(), id)) {
+            usuario.setSenha(senha);
+        }
+    }
+
+    public void updateNomeUsuario(UsuarioModel usuario, long id, String nome) {
+        UsuarioValidator.temNivelAcesso3(usuario);
+        UsuarioValidator.verificaIntegridadeNome(nome);
+        UsuarioValidator.verificaRegrasNome(nome);
+        usuarioDao.updateNomeUsuario(id, nome);
+
+        if(UsuarioValidator.isAutoUpdate(usuario.getIdUsuario(), id)) {
+            usuario.setNome(nome);
+        }
+    }
+
+    public void updateCpfUsuario(UsuarioModel usuario, long id, String cpf) {
+        UsuarioValidator.temNivelAcesso3(usuario);
+        UsuarioValidator.verificaIntegridadeCpf(cpf);
+        UsuarioValidator.verificarRegrasCpf(cpf);
+        usuarioDao.updateCpfUsuario(id, cpf);
+
+        if(UsuarioValidator.isAutoUpdate(usuario.getIdUsuario(), id)) {
+            usuario.setCpf(cpf);
+        }
+    }
 }

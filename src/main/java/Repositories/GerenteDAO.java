@@ -54,7 +54,7 @@ public class GerenteDAO
         }
     }
 
-    public void updatedepartamento(long id, int novoDepartamento)
+    public void updateDepartamento(long id, int novoDepartamento)
     {
         String querySQL = "UPDATE Gerentes SET id_departamento = ? WHERE id_gerente = ?";
 

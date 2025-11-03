@@ -20,4 +20,11 @@ public class TecnicoService {
         usuarioDAO.inserirUsuario(tecnicoInserido);
         tecnicoDAO.inserirTecnico(tecnicoInserido);
     }
+
+    public void updateEspecialidade(UsuarioModel usuario, long id, int idEspecialidade) {
+        UsuarioValidator.temNivelAcesso3(usuario);
+        TecnicoValidator.verificaIntegridadeEspecialidade(idEspecialidade);
+        TecnicoValidator.verificaRegrasEspecialidade(idEspecialidade);
+        tecnicoDAO.updateEspecialidadeTecnico(id, idEspecialidade);
+    }
 }

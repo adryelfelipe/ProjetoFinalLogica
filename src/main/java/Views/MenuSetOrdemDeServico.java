@@ -23,6 +23,8 @@ public class MenuSetOrdemDeServico {
                 return idTecnico;
             } catch (IllegalArgumentException e) {
                 Ferramentas.mensagemErro(e.getMessage());
+            } catch (InputMismatchException e) {
+                Ferramentas.menuDefault();
             }
         }
     }
@@ -41,6 +43,8 @@ public class MenuSetOrdemDeServico {
                 return idMaquina;
             } catch (IllegalArgumentException e) {
                 Ferramentas.mensagemErro(e.getMessage());
+            } catch (InputMismatchException e) {
+                Ferramentas.menuDefault();
             }
         }
     }

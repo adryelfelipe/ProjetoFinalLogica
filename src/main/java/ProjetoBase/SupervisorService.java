@@ -19,4 +19,11 @@ public class SupervisorService {
         usuarioDAO.inserirUsuario(supervisorInserido);
         supervisorDAO.inserirSupervisor(supervisorInserido);
     }
+
+    public void updateMetaMensal(UsuarioModel usuario, long id, double metaMensal) {
+        UsuarioValidator.temNivelAcesso3(usuario);
+        SupervisorValidator.verificaRegrasMetaMensal(metaMensal);
+        SupervisorValidator.verificaIntegridadeMetaMensal(metaMensal);
+        supervisorDAO.updateMetaMensal(id, metaMensal);
+    }
 }
