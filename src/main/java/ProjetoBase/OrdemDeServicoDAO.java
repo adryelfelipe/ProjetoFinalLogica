@@ -2,9 +2,7 @@ package ProjetoBase;
 
 import Connections.ConnectionFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class OrdemDeServicoDAO
 {
@@ -12,16 +10,27 @@ public class OrdemDeServicoDAO
     public void inserirOrdemDeServico(OrdemDeServicoModel ordemDeServico)
     {
         String querySQL = "INSERT INTO OrdemServicos (id_os, descricao, status_ordem, custo) VALUES (?, ?, ?, ?)";
-
+        long idGerado = -1;
         try(Connection conn = ConnectionFactory.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(querySQL))
+            PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS))
         {
-            stmt.setLong(1, ordemDeServico.getIdOrdemDeServico());
             stmt.setString(2, ordemDeServico.getDescricao());
             stmt.setInt(3, ordemDeServico.getStatusDaOrdem());
             stmt.setDouble(4, ordemDeServico.getValorDaOrdemDeServico());
 
-            stmt.executeUpdate();
+            int linhasAF = stmt.executeUpdate();
+
+            if(linhasAF > 0)
+            {
+                try(ResultSet rs = stmt.getGeneratedKeys())
+                {
+                    if(rs.next())
+                    {
+                        idGerado = rs.getLong(1);
+                        ordemDeServico.setIdOrdemDeServico(idGerado);
+                    }
+                }
+            }
         }
         catch (SQLException e)
         {
