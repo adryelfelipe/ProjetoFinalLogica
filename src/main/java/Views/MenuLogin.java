@@ -8,11 +8,13 @@ import ProjetoBase.UsuarioValidator;
 public class MenuLogin
 {
     public static void login(UsuarioService usuarioService) {
+        // Inicialização das variáveis
         boolean verifica = false;
-
         String cpfLogin = "";
         String senhaLogin = "1";
+        UsuarioModel usuario = null;
 
+        // Menu interativo
         while(!verifica) {
             System.out.println("|================================|");
             System.out.println("|             LOGIN              |");
@@ -44,7 +46,12 @@ public class MenuLogin
             }
         }
 
-        UsuarioModel usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
+        try {
+            usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
+        } catch (IllegalStateException e) {
+            Ferramentas.mensagemErro("ERRO! CPF OU SENHA INVÁLIDOS");
+            return;
+        }
 
         Ferramentas.limpaTerminal();
         if(usuario instanceof AdminModel){
