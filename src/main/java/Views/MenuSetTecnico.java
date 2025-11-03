@@ -2,11 +2,13 @@ package Views;
 
 import Util.Ferramentas;
 
+import java.util.InputMismatchException;
+
 public class MenuSetTecnico {
 
     public static int MenuSetEspecialidade()
     {
-        int idEspecialidade = 0;
+        int idEspecialidade;
 
         while(true)
         {
@@ -46,8 +48,7 @@ public class MenuSetTecnico {
                     default -> Ferramentas.menuDefault();
                 }
             }
-            catch(IllegalArgumentException e)
-            {
+            catch(IllegalArgumentException | InputMismatchException e) {
                 Ferramentas.menuDefault();
             }
         }
