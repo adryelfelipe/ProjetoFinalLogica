@@ -14,4 +14,10 @@ public class MaquinaService {
         MaquinaValidator.verificaRegrasInsercaoMaquina(maquina);
         maquinaDAO.inserirMaquina(maquina);
     }
+
+    public void isIdExistenteValidator(long id) {
+        if(!maquinaDAO.verificarId(id)) {
+            throw new IllegalStateException("ERRO! O ID DA MÁQUINA NÃO FOI ENCONTRADO");
+        }
+    }
 }

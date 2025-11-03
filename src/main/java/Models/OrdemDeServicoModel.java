@@ -6,7 +6,6 @@ public class OrdemDeServicoModel
 {
     //--------------------  ATRIBUTOS  --------------------//
     private int statusDaOrdem;
-
     private long idOrdemDeServico;
     private String descricao;
     private int id_Maquina;
