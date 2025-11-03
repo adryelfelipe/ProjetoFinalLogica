@@ -12,7 +12,8 @@ public class UsuarioValidator {
 
     // -- Métodos de Verificação -- //
     public static boolean isAutoUpdate(long idInsersor, long idInserido){
-        if(idInsersor == idInserido) {
+        if(idInsersor == idInserido)
+        {
             return true;
         }
 

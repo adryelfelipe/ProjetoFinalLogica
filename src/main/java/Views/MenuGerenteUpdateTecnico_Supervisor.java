@@ -1,12 +1,11 @@
 package Views;
-import Database.*;
 import Models.*;
 import Repositories.*;
 import ProjetoBase.*;
 import Util.Ferramentas;
 import java.util.InputMismatchException;
 
-public class MenuUpdateGerente {
+public class MenuGerenteUpdateTecnico_Supervisor {
     private static final UsuarioService usuarioService = new UsuarioService();
     private static final TecnicoService tecnicoService = new TecnicoService();
     private static final SupervisorService supervisorService = new SupervisorService();

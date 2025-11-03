@@ -28,13 +28,11 @@ public class MenuAdminRemoverGerente {
                 System.out.println("|  -----  EXCLUIR GERENTE -----  |");
                 System.out.println("|  ----------------------------  |");
                 System.out.println(" ");
-                System.out.println("Digite o ID do gerente: ");
-
                 try
                 {
                     idGerente = MenuEscolhaId.escolhaIdUpdate();
                     UsuarioValidator.verificaIntegridadeIdUsuario(idGerente);
-                    //verificar nivel acesso
+                    UsuarioValidator.temNivelAcesso4(adm);
                     gerenteDAO.deletarGerente(idGerente);
                     usuarioDAO.deletarUsuario(idGerente);
 

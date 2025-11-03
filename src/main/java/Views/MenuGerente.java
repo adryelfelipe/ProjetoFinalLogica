@@ -26,13 +26,15 @@ public class MenuGerente
                 int opcaoGerente = Ferramentas.lInteiro();
 
                 Ferramentas.limpaTerminal();
-                switch (opcaoGerente) {
+                switch (opcaoGerente)
+                {
                     case 1 -> MenuGerenteCadastrar.criarUsuarios(gerenteModel);
                     case 2 -> MenuGerenteVisualizarRelatorios.visualizarRelatorios();
-                    case 3 -> MenuUpdateGerente.menuUpdateEscolha(gerenteModel);
+                    case 3 -> MenuGerenteUpdateTecnico_Supervisor.menuUpdateEscolha(gerenteModel);
                     case 4 ->
                     {
                         System.out.println("|  RETORNANDO AO MENU INICIAL ...");
+                        continuar = true;
                         MenuInicial.Menu();
                     }
                     default -> Ferramentas.menuDefault();
