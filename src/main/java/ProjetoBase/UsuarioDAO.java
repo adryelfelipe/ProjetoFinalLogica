@@ -8,6 +8,7 @@ public class UsuarioDAO
 {
     public boolean verificarCpf(String cpf)
     {
+        // Consulta MYSQL.
         String querySql = "SELECT * FROM Usuario WHERE cpf = ? LIMIT 1";
 
         // Pega a conexão
@@ -37,7 +38,7 @@ public class UsuarioDAO
     {
         // Comando SQL
         String querySQL = "INSERT INTO Usuario (nome, cpf, senha, nivel_acesso) VALUES (?, ?, ?, ?)";
-        int idGerado = -1; // Armazena o id.
+        long idGerado = -1; // Armazena o id.
 
         // Pega a conexão
         try(Connection conn = ConnectionFactory.getConnection();
@@ -60,7 +61,7 @@ public class UsuarioDAO
                 {
                     {
                         if (rs.next()) {
-                            idGerado = rs.getInt(1);// Pega a chave (geralmente pela primeira coluna)
+                            idGerado = rs.getLong(1);// Pega a chave (geralmente pela primeira coluna)
                             usuario.setIdUsuario(idGerado);
                         }
                     }
@@ -75,6 +76,7 @@ public class UsuarioDAO
 
     public UsuarioModel loginUsuario(String cpf, String senha) {
 
+        // Consulta MYSQL.
         String querySQL = "SELECT id_usuario, senha FROM Usuario WHERE cpf = ? LIMIT 1";
 
         try (Connection conn = ConnectionFactory.getConnection();
@@ -162,6 +164,7 @@ public class UsuarioDAO
 
     public boolean deletarUsuario(long id)
     {
+        // Consulta MYSQL.
         String querySQL = "DELETE FROM Usuario WHERE id_usuario = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();
@@ -189,6 +192,7 @@ public class UsuarioDAO
     }
     public void updateNomeUsuario(long id, String novoNome)
     {
+        // Consulta MYSQL.
         String querySQl = "UPDATE Usuario " +
                         "SET nome = ?" +
                         "WHERE id_usuario = ?";
@@ -208,6 +212,7 @@ public class UsuarioDAO
 
     public void updateSenhaUsuario(long id, String senhaNova)
     {
+        // Consulta MYSQL.
         String querySQl = "UPDATE Usuario " +
                 "SET senha = ?" +
                 "WHERE id_usuario = ?";
@@ -226,6 +231,7 @@ public class UsuarioDAO
 
     public void updateCpfUsuario(long id, String cpfNovo)
     {
+        // Consulta MYSQL.
         String querySQl = "UPDATE Usuario " +
                 "SET cpf = ?" +
                 "WHERE id_usuario = ?";
