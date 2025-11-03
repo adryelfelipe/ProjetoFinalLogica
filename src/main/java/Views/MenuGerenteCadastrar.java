@@ -3,16 +3,17 @@ package Views;
 import Util.Ferramentas;
 import Models.GerenteModel;
 
-public class MenuGerenteCriarUsuario
+public class MenuGerenteCadastrar
 {
     public static void criarUsuarios(GerenteModel gerenteModel)
     {
         System.out.println(" ");
         System.out.println(" ");
         System.out.println("|==================================|");
-        System.out.println("|  1 - Cadastrar Usuário Técnico   |");
-        System.out.println("|  2 - Cadastrar Usuário Supervisor|");
-        System.out.print("|  Escolha: ");
+        System.out.println("|  1 - Cadastrar Técnico           |");
+        System.out.println("|  2 - Cadastrar Supervisor        |");
+        System.out.println("|  3 - Cadastrar Máquina           |");
+        System.out.print("  Escolha: ");
 
         try
         {
@@ -23,6 +24,7 @@ public class MenuGerenteCriarUsuario
             {
                 case 1 -> MenuCadastroTecnico.menuCadastroTecnico(gerenteModel);
                 case 2 -> MenuCadastroSupervisor.menuCadastroSupervisor(gerenteModel);
+                case 3 -> MenuCadastroMaquina.menuCadastroMaquina(gerenteModel);
                 default -> Ferramentas.menuDefault();
             }
         }

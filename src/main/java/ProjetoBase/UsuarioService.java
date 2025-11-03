@@ -28,7 +28,7 @@ public class UsuarioService {
     }
 
     public void isIdExistenteValidator(long id) {
-        if(!usuarioDao.verificarId()) {
+        if(!usuarioDao.verificarId(id)) {
             throw new IllegalStateException("ERRO! O ID NÃO FOI ENCONTRADO");
         }
     }

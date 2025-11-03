@@ -1,10 +1,9 @@
 package Views;
 
-import ProjetoBase.Ferramentas;
 
 public class MenuUpdateAdm
 {
-    public static void menuUpdateInicial()
+    /*public static void menuUpdateInicial()
     {
         System.out.println("|===============================|");
         System.out.println("|======  MENU UPDATE ADM  ======|");
@@ -23,5 +22,7 @@ public class MenuUpdateAdm
                 case 1 ->
             }
         } catch(I)
+
     }
+     */
 }
