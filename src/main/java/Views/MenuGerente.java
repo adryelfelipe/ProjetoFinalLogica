@@ -15,7 +15,7 @@ public class MenuGerente
             System.out.println("|=================================|");
             System.out.println("|=========  MENU GERENTE  ========|");
             System.out.println("|=================================|");
-            System.out.println("|  1 - Cadastro Usuários          |");
+            System.out.println("|  1 - Cadastros          |");
             System.out.println("|  2 - Visualizar Relatórios      |");
             System.out.println("|  3 - Retornar                   |");
             System.out.print("|  Escolha: ");
@@ -25,7 +25,7 @@ public class MenuGerente
 
                 Ferramentas.limpaTerminal();
                 switch (opcaoGerente) {
-                    case 1 -> MenuGerenteCriarUsuario.criarUsuarios(gerenteModel);
+                    case 1 -> MenuGerenteCadastrar.criarUsuarios(gerenteModel);
                     case 2 -> MenuGerenteVisualizarRelatorios.visualizarRelatorios();
                     case 3 ->
                     {

@@ -249,4 +249,33 @@ public class UsuarioDAO
             System.err.println("ERRO ao atualizar cpf do usuário.");
         }
     }
+
+    public boolean verificarId(long id)
+    {
+        // Consulta MYSQL.
+        String querySql = "SELECT * FROM Usuario WHERE id_usuario = ? LIMIT 1";
+
+        // Pega a conexão
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(querySql))
+        {
+            stmt.setLong(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println("Erro ao verificar ID: ");
+        }
+        return false;
+    }
 }
