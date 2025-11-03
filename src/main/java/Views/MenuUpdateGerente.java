@@ -9,6 +9,7 @@ import java.util.InputMismatchException;
 public class MenuUpdateGerente {
     private static final UsuarioService usuarioService = new UsuarioService();
     private static final TecnicoService tecnicoService = new TecnicoService();
+    private static final SupervisorService supervisorService = new SupervisorService();
     private static final UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     public static void menuUpdateEscolha(GerenteModel gerente) {
@@ -16,22 +17,27 @@ public class MenuUpdateGerente {
         boolean verifica = false;
         int opUpdate = 0;
 
-        while(true) {
+        while(true)
+        {
 
             while(!verifica) {
-                System.out.println("     -----------------------------");
-                System.out.println("     ----      MENU UPDATE    ----");
-                System.out.println("     -----------------------------");
+                System.out.println("|================================|");
+                System.out.println("|======== MENU ATUALIZAR  =======|");
+                System.out.println("|================================|");
 
                 System.out.print("\n\n"); // pula linhas
 
-                System.out.println("1 - Alterar Técnico");
-                System.out.println("2 - Alterar Supervisor");
-                System.out.println("3 - SAIR DO MENU");
-                try {
+                System.out.println("|  1 - Alterar Técnico           |");
+                System.out.println("|  2 - Alterar Supervisor        |");
+                System.out.println("|  3 - SAIR DO MENU              |");
+                System.out.println("|  Escolha: ");
+
+                try
+                {
                     opUpdate = Ferramentas.lInteiro();
                     verifica = true;
-                } catch (InputMismatchException e){
+                }
+                catch (InputMismatchException e){
                     Ferramentas.menuDefault();
                 }
             }
@@ -44,53 +50,47 @@ public class MenuUpdateGerente {
                 case 2 -> menuUpdateSupervisor(gerente);
                 case 3 -> {return;}
 
-                default -> Ferramentas.mensagemErro("ERRO, TENTE NOVAMENTE!");
+                default -> Ferramentas.mensagemErro("ERRO! TENTE NOVAMENTE!");
             }
         }
     }
 
     public static void menuUpdateTecnico(GerenteModel gerente) {
             // -- Garantia de inicialização -- //
-            long idTecnico;
+        long idTecnico;
+        int UpdateT = 0;
+        boolean verifica = false;
 
-            // Menu de escolha de ID
-            Ferramentas.limpaTerminal();
+        try
+        {
+            idTecnico = MenuEscolhaId.escolhaIdUpdate();
+        } catch (InputMismatchException e)
+        {
+            Ferramentas.mensagemErro(e.getMessage());
+            return;
+        }
 
-            try {
-                idTecnico = MenuEscolhaId.escolhaIdUpdate();
-            } catch (InputMismatchException e) {
-                Ferramentas.mensagemErro(e.getMessage());
-                return;
-            }
+        TecnicoModel tecnico = ((TecnicoModel) usuarioService.findById(idTecnico));
 
-            try{
-//                  TecnicoService(idTecnico);
-            } catch (InputMismatchException e) {
-                Ferramentas.mensagemErro(e.getMessage());
-                return;
-            }
+        while(true)
+        {
 
-            TecnicoModel tecnico = ((TecnicoModel) usuarioDAO.findById(idTecnico));
-
-            // -- Menu de escolha da mudança -- //
-            int UpdateT = 0;
-            boolean verifica = false;
-
-        while(true) {
-
-            while(!verifica) {
+            while(!verifica)
+            {
 
                 System.out.print("\n\n"); // pula linhas
-                System.out.println("       -------------------           -----------------");
-                System.out.println("       |EDITAR   TÉCNICO|                  |ATUAL|"    );
-                System.out.println("       -------------------           -------------------");
-                System.out.println(" [1] - Nome                          |Nome: " );
-                System.out.println(" [2] - CPF                           |CPF: " );
-                System.out.println(" [3] - Senha                         |Senha: " );
-                System.out.println(" [4] - Email                         |Email: " );
-                System.out.println(" [5] - Especialidade                 |Especialidade: ");
-                System.out.println(" [6] - SAIR DO MENU");
-                try {
+                System.out.println("|--------------------|         |--------------------|");
+                System.out.println("|  EDITAR   TÉCNICO  |         |        ATUAL       |");
+                System.out.println("|--------------------|         |--------------------|");
+                System.out.println("|  1 - Nome          |         |Nome: " + tecnico.getNome());
+                System.out.println("|  2 - CPF           |         |CPF: " + tecnico.getCpf());
+                System.out.println("|  3 - Senha         |         |Senha: " + tecnico.getSenha());
+                System.out.println("|  5 - Especialidade |         |Especialidade: " + tecnico.getEspecialidade());
+                System.out.println("|  6 - Sair do Menu  |");
+                System.out.println("|  Escolha:  ");
+
+                try
+                {
                     UpdateT = Ferramentas.lInteiro();
                     verifica = true;
                 } catch (InputMismatchException e){
@@ -102,25 +102,114 @@ public class MenuUpdateGerente {
             verifica = false;
 
             switch(UpdateT) {
-                case 1:{
-
+                case 1 -> {
+                    String nome = MenuSetUsuario.MenuSetNome();
+                    usuarioService.updateNomeUsuario(gerente, idTecnico, nome);
+                    tecnico.setNome(nome);
                 }
-                case 2:{
 
+                case 2 -> {
+                    String cpf = MenuSetUsuario.MenuSetCpf();
+                    usuarioService.updateCpfUsuario(gerente, idTecnico, cpf);
+                    tecnico.setCpf(cpf);
                 }
-                case 3 :{
 
+                case 3 -> {
+                    String senha = MenuSetUsuario.MenuSetSenha();
+                    usuarioService.updateSenhaUsuario(gerente, idTecnico, senha);
+                    tecnico.setSenha(senha);
                 }
-                case 4:{
-
+                case 4 -> {
+                    int especialidade = MenuSetTecnico.MenuSetEspecialidade();
+                    tecnicoService.updateEspecialidade(gerente, idTecnico, especialidade);
+                    tecnico.setEspecialidade(especialidade);
                 }
-                case 5 :{
+                case 5 ->
+                {
                     return;
                 }
+                default -> Ferramentas.menuDefault();
             }
         }
     }
-    public static void menuUpdateSupervisor(GerenteModel gerenteModel) {
+    public static void menuUpdateSupervisor(GerenteModel gerenteModel)
+    {
+        long idSupervisor;
+        int UpdateS = 0;
+        boolean verifica = false;
 
+        try
+        {
+            idSupervisor = MenuEscolhaId.escolhaIdUpdate();
+        }
+        catch (InputMismatchException e)
+        {
+            Ferramentas.mensagemErro(e.getMessage());
+            return;
+        }
+
+        SupervisorModel supervisor = ((SupervisorModel) usuarioService.findById(idSupervisor));
+
+        while(true)
+        {
+            while(!verifica)
+            {
+                System.out.print("\n\n"); // pula linhas
+                System.out.println("|-----------------------|         |-----------------------|");
+                System.out.println("|  EDITAR   SUPERVISOR  |         |         ATUAL         |");
+                System.out.println("|-----------------------|         |-----------------------|");
+                System.out.println("|  1 - Nome             |         |Nome: " + supervisor.getNome());
+                System.out.println("|  2 - CPF              |         |CPF: " + supervisor.getCpf());
+                System.out.println("|  3 - Senha            |         |Senha: " + supervisor.getSenha());
+                System.out.println("|  5 - Meta Mensal      |         |Meta Mensal: " + supervisor.getMetaMensal());
+                System.out.println("|  6 - Sair do Menu     |");
+                System.out.println("|  Escolha:  ");
+
+                try
+                {
+                    UpdateS = Ferramentas.lInteiro();
+                    verifica = true;
+                }
+                catch (InputMismatchException e)
+                {
+                    Ferramentas.menuDefault();
+                }
+            }
+
+            // Reinicia a veriável de verificação
+            verifica = false;
+
+            switch(UpdateS)
+            {
+                case 1 -> {
+                    String nome = MenuSetUsuario.MenuSetNome();
+                    usuarioService.updateNomeUsuario(gerenteModel, idSupervisor, nome);
+                    supervisor.setNome(nome);
+                }
+
+                case 2 -> {
+                    String cpf = MenuSetUsuario.MenuSetCpf();
+                    usuarioService.updateCpfUsuario(gerenteModel, idSupervisor, cpf);
+                    supervisor.setCpf(cpf);
+                }
+
+                case 3 -> {
+                    String senha = MenuSetUsuario.MenuSetSenha();
+                    usuarioService.updateSenhaUsuario(gerenteModel, idSupervisor, senha);
+                    supervisor.setSenha(senha);
+                }
+                case 4 -> {
+                    double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
+                    supervisorService.updateMetaMensal(gerenteModel, idSupervisor, metaMensal);
+                    supervisor.setMetaMensal(metaMensal);
+                }
+                case 5 ->
+                {
+                    return;
+                }
+
+                default -> Ferramentas.menuDefault();
+            }
+        }
     }
 }

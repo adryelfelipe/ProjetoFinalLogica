@@ -35,15 +35,16 @@ public class MenuAdminUpdateGerente {
             System.out.println("|======  ATUALIZAR GERENTE  =====|");
             System.out.println("|================================|");
 
-            System.out.println("       -------------------           --------- ATUAL --------");
-            System.out.println("       |EDITAR   GERENTE|            |Nome: " + gerente.getNome());
-            System.out.println("       -------------------           |CPF: " + gerente.getCpf());
-            System.out.println("                                     |Senha: " + gerente.getSenha());
-            System.out.println(" [1] - Nome                          |Departamento: " + gerente.getDepartamento());
-            System.out.println(" [2] - CPF                           ");
-            System.out.println(" [3] - Senha                         ");
-            System.out.println(" [4] - Departamento                  ");
-            System.out.println(" [5] - Retornar                      ------------------------");
+            System.out.print("\n\n"); // pula linhas
+            System.out.println("|--------------------|         |--------------------|");
+            System.out.println("|  EDITAR   GERENTE  |         |        ATUAL       |");
+            System.out.println("|--------------------|         |--------------------|");
+            System.out.println("|  1 - Nome          |         |Nome: " + gerente.getNome());
+            System.out.println("|  2 - CPF           |         |CPF: " + gerente.getCpf());
+            System.out.println("|  3 - Senha         |         |Senha: " + gerente.getSenha());
+            System.out.println("|  5 - Departamento  |         |Departamento: " + gerente.getDepartamento());
+            System.out.println("|  6 - Sair do Menu  |");
+            System.out.println("|  Escolha:  ");
 
             try {
                 opcaoAdm = Ferramentas.lInteiro();
@@ -68,11 +69,12 @@ public class MenuAdminUpdateGerente {
                     }
                     case 4 -> {
                         int departamento = MenuSetGerente.menuSetDepartamento();
-                        gerenteService.updatedepartamento(adminModel, idGerente, departamento);
+                        gerenteService.updateDepartamento(adminModel, idGerente, departamento);
                         gerente.setDepartamento(departamento);
                     }
                     case 5 ->
                     {
+                        verifica = true;
                         return;
                     }
                     default -> Ferramentas.menuDefault();
