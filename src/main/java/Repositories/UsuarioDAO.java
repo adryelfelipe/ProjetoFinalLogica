@@ -262,10 +262,12 @@ public class UsuarioDAO
 
             ResultSet rs = stmt.executeQuery();
 
+            //Se o id for lido, ou seja existe retorna true.
             if(rs.next())
             {
                 return true;
             }
+            //Caso contrario retorna false.
             else
             {
                 return false;

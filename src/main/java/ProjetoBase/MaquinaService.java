@@ -16,7 +16,7 @@ public class MaquinaService {
     }
 
     public void isIdExistenteValidator(long id) {
-        if(!maquinaDAO.verificarId(id)) {
+        if(!maquinaDAO.verificarIdMaquina(id)) {
             throw new IllegalStateException("ERRO! O ID DA MÁQUINA NÃO FOI ENCONTRADO");
         }
     }
