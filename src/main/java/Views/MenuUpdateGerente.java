@@ -9,6 +9,7 @@ import java.util.InputMismatchException;
 public class MenuUpdateGerente {
     private static final UsuarioService usuarioService = new UsuarioService();
     private static final TecnicoService tecnicoService = new TecnicoService();
+    private static final SupervisorService supervisorService = new SupervisorService();
     private static final UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     public static void menuUpdateEscolha(GerenteModel gerente) {
@@ -16,22 +17,27 @@ public class MenuUpdateGerente {
         boolean verifica = false;
         int opUpdate = 0;
 
-        while(true) {
+        while(true)
+        {
 
             while(!verifica) {
                 System.out.println("|================================|");
-                System.out.println("|==========  ATUALIZAR  =========|");
+                System.out.println("|======== MENU ATUALIZAR  =======|");
                 System.out.println("|================================|");
 
                 System.out.print("\n\n"); // pula linhas
 
-                System.out.println("1 - Alterar Técnico");
-                System.out.println("2 - Alterar Supervisor");
-                System.out.println("3 - SAIR DO MENU");
-                try {
+                System.out.println("|  1 - Alterar Técnico           |");
+                System.out.println("|  2 - Alterar Supervisor        |");
+                System.out.println("|  3 - SAIR DO MENU              |");
+                System.out.println("|  Escolha: ");
+
+                try
+                {
                     opUpdate = Ferramentas.lInteiro();
                     verifica = true;
-                } catch (InputMismatchException e){
+                }
+                catch (InputMismatchException e){
                     Ferramentas.menuDefault();
                 }
             }
@@ -44,7 +50,7 @@ public class MenuUpdateGerente {
                 case 2 -> menuUpdateSupervisor(gerente);
                 case 3 -> {return;}
 
-                default -> Ferramentas.mensagemErro("ERRO, TENTE NOVAMENTE!");
+                default -> Ferramentas.mensagemErro("ERRO! TENTE NOVAMENTE!");
             }
         }
     }
@@ -63,14 +69,7 @@ public class MenuUpdateGerente {
                 return;
             }
 
-            try{
-//                  TecnicoService(idTecnico);
-            } catch (InputMismatchException e) {
-                Ferramentas.mensagemErro(e.getMessage());
-                return;
-            }
-
-            TecnicoModel tecnico = ((TecnicoModel) usuarioDAO.findById(idTecnico));
+            TecnicoModel tecnico = ((TecnicoModel) usuarioService.findById(idTecnico));
 
             // -- Menu de escolha da mudança -- //
             int UpdateT = 0;
@@ -81,16 +80,18 @@ public class MenuUpdateGerente {
             while(!verifica) {
 
                 System.out.print("\n\n"); // pula linhas
-                System.out.println("       -------------------           -----------------");
-                System.out.println("       |EDITAR   TÉCNICO|                  |ATUAL|"    );
-                System.out.println("       -------------------           -------------------");
-                System.out.println(" [1] - Nome                          |Nome: " );
-                System.out.println(" [2] - CPF                           |CPF: " );
-                System.out.println(" [3] - Senha                         |Senha: " );
-                System.out.println(" [4] - Email                         |Email: " );
-                System.out.println(" [5] - Especialidade                 |Especialidade: ");
-                System.out.println(" [6] - SAIR DO MENU");
-                try {
+                System.out.println("|--------------------|         |--------------------|");
+                System.out.println("|  EDITAR   TÉCNICO  |         |        ATUAL       |");
+                System.out.println("|--------------------|         |--------------------|");
+                System.out.println("|  1 - Nome          |         |Nome: " + tecnico.getNome());
+                System.out.println("|  2 - CPF           |         |CPF: " + tecnico.getCpf());
+                System.out.println("|  3 - Senha         |         |Senha: " + tecnico.getSenha());
+                System.out.println("|  5 - Especialidade |         |Especialidade: " + tecnico.getEspecialidade());
+                System.out.println("|  6 - Sair do Menu  |");
+                System.out.println("|  Escolha:  ");
+
+                try
+                {
                     UpdateT = Ferramentas.lInteiro();
                     verifica = true;
                 } catch (InputMismatchException e){

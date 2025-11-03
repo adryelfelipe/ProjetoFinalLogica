@@ -73,6 +73,7 @@ public class MenuAdminUpdateGerente {
                     }
                     case 5 ->
                     {
+                        verifica = true;
                         return;
                     }
                     default -> Ferramentas.menuDefault();
