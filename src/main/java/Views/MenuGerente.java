@@ -18,7 +18,8 @@ public class MenuGerente
             System.out.println("|  1 - Cadastrar                   |");
             System.out.println("|  2 - Visualizar Relatórios       |");
             System.out.println("|  3 - Atualizar Técnico/Supervisor|");
-            System.out.println("|  4 - Retornar                    |");
+            System.out.println("|  4 - Remover Técnico/Supervisor  |");
+            System.out.println("|  5 - Retornar                    |");
             System.out.print("|  Escolha: ");
 
             try
@@ -30,7 +31,8 @@ public class MenuGerente
                     case 1 -> MenuGerenteCadastrar.criarUsuarios(gerenteModel);
                     case 2 -> MenuGerenteVisualizarRelatorios.visualizarRelatorios();
                     case 3 -> MenuUpdateGerente.menuUpdateEscolha(gerenteModel);
-                    case 4 ->
+                    case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha(gerenteModel);
+                    case 5 ->
                     {
                         System.out.println("|  RETORNANDO AO MENU INICIAL ...");
                         MenuInicial.Menu();
