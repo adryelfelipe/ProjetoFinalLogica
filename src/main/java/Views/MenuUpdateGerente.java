@@ -19,9 +19,9 @@ public class MenuUpdateGerente {
         while(true) {
 
             while(!verifica) {
-                System.out.println("     -----------------------------");
-                System.out.println("     ----      MENU UPDATE    ----");
-                System.out.println("     -----------------------------");
+                System.out.println("|================================|");
+                System.out.println("|==========  ATUALIZAR  =========|");
+                System.out.println("|================================|");
 
                 System.out.print("\n\n"); // pula linhas
 
