@@ -20,7 +20,7 @@ public class MenuCadastroMaquina {
         String localizacao = MenuSetMaquina.MenuSetLocalizacao();
         Ferramentas.limpaTerminal();
 
-        int idStatus;
+        int idStatus = MenuSetMaquina.MenuSetStatusMaquina();
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //

@@ -7,8 +7,7 @@ import java.util.InputMismatchException;
 
 public class MenuSetMaquina {
     //SET NOME DO USUÁRIO
-    public static String MenuSetNomeMaquina()
-    {
+    public static String MenuSetNomeMaquina() {
         while(true) {
             System.out.print("Digite o Nome: ");
             String nome = Ferramentas.lString();

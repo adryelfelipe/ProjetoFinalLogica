@@ -23,6 +23,8 @@ public class MenuSetOrdemDeServico {
                 return idTecnico;
             } catch (IllegalArgumentException e) {
                 Ferramentas.mensagemErro(e.getMessage());
+            } catch (InputMismatchException e) {
+                Ferramentas.menuDefault();
             }
         }
     }
@@ -41,47 +43,42 @@ public class MenuSetOrdemDeServico {
                 return idMaquina;
             } catch (IllegalArgumentException e) {
                 Ferramentas.mensagemErro(e.getMessage());
+            } catch (InputMismatchException e) {
+                Ferramentas.menuDefault();
             }
         }
     }
 
-    public static long SetStatusOS(){
+    public static String SetDescricao() {
         while(true) {
-            System.out.println(" ");
-            System.out.println("|==================================|");
-            System.out.println("|   SELECIONE O STATUS DA MÁQUINA  |");
-            System.out.println("|==================================|");
-            System.out.println("| 1 - EM MANUTENÇÃO                |");
-            System.out.println("| 2 - Eletricista Fabril           |");
-            System.out.println("| 3 - Soldador                     |");
-            System.out.println("| 4 - Eletromecânica               |");
-            System.out.println("| 5 - Pintor Industrial            |");
-            System.out.print("| Escolha: ");
+            System.out.print("Digite a descrição da OS: ");
+            String descricao = Ferramentas.lString();
 
-            try
-            {
-                idEspecialidade = Ferramentas.lInteiro();
-
-                switch (idEspecialidade)
-                {
-                    case 1 -> {
-                        return 1;
-                    }
-                    case 2 ->{
-                        return 2;
-                    }
-                    case 3 ->{
-                        return 3;
-                    }
-                    case 4 ->{
-                        return 4;
-                    }
-                    case 5 ->{
-                        return 5;
-                    }
-
-                    default -> Ferramentas.menuDefault();
-                }
+            try {
+                OrdemDeServicoValidator.verificaIntegridadeDescricao(descricao);
+                MaquinaValidator.verificaRegrasNome(descricao);
+                return descricao;
             }
+            catch (IllegalArgumentException | IllegalStateException e) {
+                Ferramentas.mensagemErro(e.getMessage());
+            }
+        }
+    }
+
+    public static double SetValorOS() {
+        while(true) {
+            System.out.print("Digite o valor da OS: ");
+
+            try {
+                double valorOS = Ferramentas.lDouble();
+                SupervisorValidator.verificaIntegridadeMetaMensal(valorOS);
+                SupervisorValidator.verificaRegrasMetaMensal(valorOS);
+                return valorOS;
+            } catch(InputMismatchException e) {
+                Ferramentas.menuDefault();
+            } catch (IllegalArgumentException | IllegalStateException e) {
+                Ferramentas.mensagemErro(e.getMessage());
+            }
+        }
     }
 }

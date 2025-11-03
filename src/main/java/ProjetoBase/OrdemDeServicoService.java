@@ -1,5 +1,6 @@
 package ProjetoBase;
 
+import Models.OrdemDeServicoModel;
 import Models.TecnicoModel;
 import Models.UsuarioModel;
 import Repositories.OrdemDeServicoDAO;
@@ -7,16 +8,10 @@ import Repositories.OrdemDeServicoDAO;
 public class OrdemDeServicoService
 {
     OrdemDeServicoDAO ordemDeServicoDAO = new OrdemDeServicoDAO();
-    OrdemDeServicoService ordemDeServicoService = new OrdemDeServicoService();
 
-    public void inserirOrdemDeServico(UsuarioModel usuarioInseridor, TecnicoModel tecnicoInserido)
-    {
+    public void inserirOrdemDeServico(UsuarioModel usuarioInseridor, OrdemDeServicoModel ordemInserida) {
         UsuarioValidator.temNivelAcesso2(usuarioInseridor);
-        TecnicoValidator.verificaRegrasInsercaoTecnico(tecnicoInserido);
-        /*usuarioService.isCpfCadastradoValidator(tecnicoInserido.getCpf());
-        usuarioDAO.inserirUsuario(tecnicoInserido);
-        tecnicoDAO.inserirTecnico(tecnicoInserido);
+        OrdemDeServicoValidator.verificaRegrasInsercaoOS(ordemInserida);
+        ordemDeServicoDAO.inserirOrdemDeServico(ordemInserida);
     }
-}*/
-}
 }
