@@ -8,12 +8,12 @@ public class OrdemDeServicoModel
     private int statusDaOrdem;
     private long idOrdemDeServico;
     private String descricao;
-    private int id_Maquina;
-    private int id_Tecnico;
+    private long id_Maquina;
+    private long id_Tecnico;
     private double valorDaOrdemDeServico;
 
     //--------------------  CONSTRUTOR COM ID --------------------//
-    public OrdemDeServicoModel(int idOrdemDeServico, int id_Tecnico, int id_Maquina, int statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
+    public OrdemDeServicoModel(long idOrdemDeServico, long id_Tecnico, long id_Maquina, int statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
         this.idOrdemDeServico = idOrdemDeServico;
         this.id_Tecnico = id_Tecnico;
         this.id_Maquina = id_Maquina;
@@ -23,7 +23,7 @@ public class OrdemDeServicoModel
     }
 
     //--------------------  CONSTRUTOR SEM ID --------------------//
-    public OrdemDeServicoModel(int id_Tecnico, int id_Maquina, int statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
+    public OrdemDeServicoModel(long id_Tecnico, long id_Maquina, int statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
         this(0, id_Tecnico, id_Maquina, statusDaOrdem, descricao, valorDaOrdemDeServico);
     }
 
@@ -44,12 +44,12 @@ public class OrdemDeServicoModel
         return descricao;
     }
 
-    public int getIdMaquina()
+    public long getIdMaquina()
     {
         return id_Maquina;
     }
 
-    public int getIdTecnico()
+    public long getIdTecnico()
     {
         return id_Tecnico;
     }

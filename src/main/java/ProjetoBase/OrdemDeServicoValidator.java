@@ -1,8 +1,15 @@
 package ProjetoBase;
 
+import Models.OrdemDeServicoModel;
+
 public class OrdemDeServicoValidator
 {
     // -- Verifica regras de negócio -- //
+    public static void verificaRegrasInsercaoOS(OrdemDeServicoModel ordemServico) {
+        verificaRegrasDescricao(ordemServico.getDescricao());
+        verificaRegrasStatus(ordemServico.getStatusDaOrdem());
+    }
+
     public static void verificaRegrasDescricao(String descricao) {
         if (descricao == null) {
             throw new IllegalStateException("ERRO! A DESCRIÇÃO NÃO PODE SER NULO");
@@ -47,6 +54,12 @@ public class OrdemDeServicoValidator
     public static void verificarValorDaOrdemDeServico(double valorDaOrdemDeServico) {
         if (valorDaOrdemDeServico < 0.0) {
             throw new IllegalArgumentException("O VALOR DA ORDEM DE SERVIÇO NAO PODE SER NEGATIVO");
+        }
+    }
+
+    public static void verificaIntegridadeDescricao(String descricao) {
+        if(descricao.isBlank()) {
+            throw new IllegalStateException("ERRO! A DESCRIÇÃO NÃO PODE SER VAZIA");
         }
     }
 }
