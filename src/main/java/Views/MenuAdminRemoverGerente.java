@@ -4,6 +4,7 @@ import Models.AdminModel;
 import ProjetoBase.UsuarioService;
 import ProjetoBase.UsuarioValidator;
 import Repositories.GerenteDAO;
+import Repositories.UsuarioDAO;
 import Util.Ferramentas;
 import ProjetoBase.GerenteValidator;
 import ProjetoBase.GerenteService;
@@ -11,6 +12,7 @@ import ProjetoBase.GerenteService;
 public class MenuAdminRemoverGerente {
 
         private static UsuarioService usuarioService = new UsuarioService();
+        private static UsuarioDAO usuarioDAO = new UsuarioDAO();
         private static GerenteService gerenteService = new GerenteService();
         private static UsuarioValidator usuarioValidator = new UsuarioValidator();
         private static GerenteDAO gerenteDAO = new GerenteDAO();
@@ -27,7 +29,9 @@ public class MenuAdminRemoverGerente {
                 try {
                     id = MenuEscolhaId.escolhaIdUpdate();
                     UsuarioValidator.verificaIntegridadeIdUsuario(id);
+                    usuarioDAO.deletarUsuario(id);
                     gerenteDAO.deletarGerente(id);
+
                     Ferramentas.Delay(500);
                     System.out.println("Gerente deletado");
                     Ferramentas.Delay(1500);
