@@ -1,6 +1,5 @@
 package Menus;
 
-import ProjetoBase.TecnicoValidator;
 import ProjetoBase.Ferramentas;
 
 public class MenuSetTecnico {
@@ -11,13 +10,15 @@ public class MenuSetTecnico {
 
         while(true)
         {
-            System.out.println("====  Digite a especialidade  ====");
-            System.out.println("| 1 - Técnico eletrotécnica       |");
-            System.out.println("| 2 - Eletricista Fabril          |");
-            System.out.println("| 3 - Soldador                    |");
-            System.out.println("| 4 - Eletromecânica              |");
-            System.out.println("| 5 - Pintor Industrial           |");
-            System.out.println("==================================");
+            System.out.println(" ");
+            System.out.println("|==================================|");
+            System.out.println("|     SELECIONE A ESPECIALIDADE    |");
+            System.out.println("|==================================|");
+            System.out.println("| 1 - Técnico eletrotécnica        |");
+            System.out.println("| 2 - Eletricista Fabril           |");
+            System.out.println("| 3 - Soldador                     |");
+            System.out.println("| 4 - Eletromecânica               |");
+            System.out.println("| 5 - Pintor Industrial            |");
             System.out.print("| Escolha: ");
 
             try

@@ -17,7 +17,6 @@ public class MenuSupervisor
             System.out.println("|================================|");
             System.out.println("|=======  MENU SUPERVISOR  ======|");
             System.out.println("|================================|");
-            System.out.println(" ");
             System.out.println("| 1 - Criar nova OS's            |");
             System.out.println("| 2 - Acompanhar status das OS   |");
             System.out.println("| 3 - Retornar ao menu inicial   |");

@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 public class OrdemDeServicoDAO
 {
+    // Comando para inserir uma ordem de serviço dentro do Banco de Dados
     public void inserirOrdemDeServico(OrdemDeServicoModel ordemDeServico)
     {
         String querySQL = "INSERT INTO OrdemServicos (id_os, descricao, status_ordem, custo) VALUES (?, ?, ?, ?)";
@@ -28,6 +29,7 @@ public class OrdemDeServicoDAO
         }
     }
 
+    // Comando para excluir uma ordem de serviço existente do Banco de Dados caso necessário
     public boolean deletarOrdemDeServico(long id)
     {
         String querySQL = "DELETE FROM OrdemServicos WHERE id_os";
@@ -55,6 +57,7 @@ public class OrdemDeServicoDAO
         }
     }
 
+    // Comando para atualizar a descrição de uma ordem de serviço existente do Banco de Dados
     public void updateDescricaoOrdemDeServico (long id, String novaDescricao)
     {
         String querySQL = "UPDATE OrdemServicos" + "SET descricao = ?" + "WHERE id_os";
@@ -73,6 +76,7 @@ public class OrdemDeServicoDAO
         }
     }
 
+    // Comando para atualizar os status de uma ordem de serviço existente do Banco de Dados
     public void updateStatusOrdemDeServicos (long id, int novoStatus)
     {
         String querySQL = "UPDATE OrdemServicos" + "SET status_ordem = ?" + "WHERE id_os";
@@ -91,6 +95,7 @@ public class OrdemDeServicoDAO
         }
     }
 
+    // Comando para atualizar o custo de uma ordem de serviço existente do Banco de Dados
     public void updateCustoOrdemDeServicos (long id, double novoValor)
     {
         String querySQL = "UPDATE OrdemServicos" + "SET custo = ?" + "WHERE id_os";
@@ -109,6 +114,7 @@ public class OrdemDeServicoDAO
         }
     }
 
+    // Comando para atualizar o id de máquina que referencia uma ordem de serviço existente do Banco de Dados
     public void updateIdMaquina (long id, long novoIdMaquina)
     {
         String querySQL = "UPDATE OrdemServicos" + "SET id_maquina = ?" + "WHERE id_os";
@@ -127,6 +133,7 @@ public class OrdemDeServicoDAO
         }
     }
 
+    // Comando para atualizar o id de supervisor que referencia uma ordem de serviço existente do Banco de Dados
     public void updateIdSupervisor (long id, long novoIdSupervisor)
     {
         String querySQL = "UPDATE OrdemServicos" + "SET id_maquina = ?" + "WHERE id_os";
@@ -145,6 +152,7 @@ public class OrdemDeServicoDAO
         }
     }
 
+    // Comando para atualizar o id de técnico que referencia uma ordem de serviço existente do Banco de Dados
     public void updateIdTecnico (long id, long novoIdTecnico)
     {
         String querySQL = "UPDATE OrdemServicos" + "SET id_maquina = ?" + "WHERE id_os";
