@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 public class MaquinaDAO
 {
+    //Comando para inserir as informações da máquina no Banco de Dados
     public void inserirMaquina(MaquinaModel maquina)
     {
         String querySQL = "INSERT INTO Maquinas (id_maquina, nome, localizacao) VALUES (?, ?, ?)";
@@ -27,6 +28,7 @@ public class MaquinaDAO
         }
     }
 
+    // Comando para excluir uma máquina existente do Banco de Dados caso necessário
     public boolean deletarMaquina(long id)
     {
         String querySQL = "DELETE FROM Maquinas WHERE id_maquina ";
@@ -54,6 +56,7 @@ public class MaquinaDAO
         }
     }
 
+    // Comando para atualizar o nome de uma máquina existente dentro do Banco de Dados
     public void updateNomeMaquina(long id, String novoNome)
     {
         String querySQL = "UPDATE Maquinas" + "SET nome = ?" + "WHERE id_maquina";
@@ -72,6 +75,7 @@ public class MaquinaDAO
         }
     }
 
+    // Comando para atualizar a localização de uma máquina existente dentro do Banco de Dados
     public void updateLocalizacaoMaquina(long id, String novaLocalizacao)
     {
         String querySQL = "UPDATE Maquinas" + "SET localizacao = ?" + "WHERE id_maquina";
@@ -90,6 +94,7 @@ public class MaquinaDAO
         }
     }
 
+    // Comando para atualizar o status de uma máquina existente dentro do Banco de Dados
     public void updateStatusMaquina(long id, String novoStatus)
     {
         String querySQL = "UPDATE Maquinas" + "SET id_sm = ?" + "WHERE id_maquina";
