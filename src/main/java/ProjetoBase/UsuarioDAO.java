@@ -59,11 +59,9 @@ public class UsuarioDAO
                 // Pega as chaves geradas.
                 try (ResultSet rs = stmt.getGeneratedKeys())
                 {
-                    {
-                        if (rs.next()) {
+                    if (rs.next()) {
                             idGerado = rs.getLong(1);// Pega a chave (geralmente pela primeira coluna)
                             usuario.setIdUsuario(idGerado);
-                        }
                     }
                 }
             }

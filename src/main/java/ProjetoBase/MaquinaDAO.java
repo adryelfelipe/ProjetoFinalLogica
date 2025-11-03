@@ -2,9 +2,7 @@ package ProjetoBase;
 
 import Connections.ConnectionFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class MaquinaDAO
 {
@@ -12,15 +10,29 @@ public class MaquinaDAO
     public void inserirMaquina(MaquinaModel maquina)
     {
         String querySQL = "INSERT INTO Maquinas (id_maquina, nome, localizacao) VALUES (?, ?, ?)";
+        long idGerado = -1;
 
         try(Connection conn = ConnectionFactory.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(querySQL))
+            PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS))
         {
-            stmt.setLong(1, maquina.getIdMaquina());
+            //Definindo parametros (PreparedStatement).
             stmt.setString(2, maquina.getNome());
             stmt.setString(3, maquina.getLocalizacao());
 
-            stmt.executeUpdate();
+            int linhasAF = stmt.executeUpdate();
+
+            if(linhasAF > 0)
+            {
+                // Pega as chaves geradas.
+                try(ResultSet rs = stmt.getGeneratedKeys())
+                {
+                    if(rs.next())
+                    {
+                        idGerado = rs.getLong(1);
+                        maquina.setIdMaquina(idGerado);
+                    }
+                }
+            }
         }
         catch (SQLException e)
         {
