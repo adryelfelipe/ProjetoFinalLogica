@@ -11,7 +11,7 @@ public class GerenteDAO
 {
     public void inserirGerente(GerenteModel gerente)
     {
-        String querySQL = "INSERT INTO Gerentes (id_gerente, departamento) VALUES (?, ?)";
+        String querySQL = "INSERT INTO Gerentes (id_gerente, id_departamento) VALUES (?, ?)";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
@@ -31,7 +31,7 @@ public class GerenteDAO
         String querySQL = "DELETE FROM Gerentes WHERE id_gerente = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();
-        PreparedStatement stmt = conn.prepareStatement(querySQL))
+            PreparedStatement stmt = conn.prepareStatement(querySQL))
         {
             stmt.setLong(1, id);
 
@@ -56,10 +56,7 @@ public class GerenteDAO
 
     public void updatedepartamento(long id, int novoDepartamento)
     {
-        String querySQL = "UPDATE FROM Gerente g " +
-                        "INNER JOIN Usuario u ON g.id_gerente = u.id_usuario " +
-                        "SET departamento = ? " +
-                        "WHERE id_usuario = ?";
+        String querySQL = "UPDATE Gerentes SET id_departamento = ? WHERE id_gerente = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
@@ -67,7 +64,7 @@ public class GerenteDAO
             stmt.setInt(1, novoDepartamento);
             stmt.setLong(2, id);
 
-            stmt.executeQuery();
+            stmt.executeUpdate();
         }catch (SQLException e)
         {
             System.err.println("ERRO ao atualizar departamento do gerente");
@@ -75,4 +72,3 @@ public class GerenteDAO
     }
 
 }
-
