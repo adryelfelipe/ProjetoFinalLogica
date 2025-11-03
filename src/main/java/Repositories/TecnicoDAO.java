@@ -11,7 +11,8 @@ public class TecnicoDAO
 {
     public void inserirTecnico(TecnicoModel tecnico)
     {
-        String querySQL = "INSERT INTO Tecnico (id_tecnico, especialidade) VALUES (?, ?)";
+
+        String querySQL = "INSERT INTO Tecnico (id_tecnico, id_especialidade) VALUES (?, ?)";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
@@ -53,10 +54,7 @@ public class TecnicoDAO
 
     public void updateEspecialidadeTecnico(long id, int novaEspecialidade)
     {
-        String querySQl = "UPDATE Tecnico t " +
-                        "INNER JOIN Usuario u ON t.id_tecnico = u.id_usuario" +
-                        "SET especialidade = ?" +
-                        "WHERE id_usuario = ?";
+        String querySQl = "UPDATE Tecnico SET id_especialidade = ? WHERE id_tecnico = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQl))
@@ -64,7 +62,7 @@ public class TecnicoDAO
             stmt.setInt(1, novaEspecialidade);
             stmt.setLong(2, id);
 
-            stmt.executeQuery();
+            stmt.executeUpdate();
         } catch (SQLException e) {
             System.err.println("ERRO ao atualizar especialidade do tecnico");
         }

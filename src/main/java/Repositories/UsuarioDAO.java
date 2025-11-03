@@ -41,7 +41,7 @@ public class UsuarioDAO
     public void inserirUsuario(UsuarioModel usuario)
     {
         // Comando SQL
-        String querySQL = "INSERT INTO Usuario (nome, cpf, senha, nivel_acesso) VALUES (?, ?, ?, ?)";
+        String querySQL = "INSERT INTO Usuario (nome, cpf, senha, id_na) VALUES (?, ?, ?, ?)";
         long idGerado = -1; // Armazena o id.
 
         // Pega a conexão
@@ -64,8 +64,8 @@ public class UsuarioDAO
                 try (ResultSet rs = stmt.getGeneratedKeys())
                 {
                     if (rs.next()) {
-                            idGerado = rs.getLong(1);// Pega a chave (geralmente pela primeira coluna)
-                            usuario.setIdUsuario(idGerado);
+                        idGerado = rs.getLong(1);// Pega a chave (geralmente pela primeira coluna)
+                        usuario.setIdUsuario(idGerado);
                     }
                 }
             }
@@ -89,7 +89,6 @@ public class UsuarioDAO
             try (ResultSet rs = stmt.executeQuery()) {
 
                 //  Verifica se o CPF foi encontrado
-
                 if (rs.next()) {
                     if (senha.equals(rs.getString("senha"))) {
 
@@ -109,10 +108,10 @@ public class UsuarioDAO
     {
         // Consulta MYSQL.
         String querySQL = "SELECT " +
-                "U.ID_USUARIO, U.nome, U.cpf, U.senha, U.nivel_acesso, " +
-                "G.departamento, " +
+                "U.ID_USUARIO, U.nome, U.cpf, U.senha, U.id_na, " +
+                "G.id_departamento, " +
                 "S.meta_mensal, " +
-                "T.especialidade " +
+                "T.id_especialidade " +
                 "FROM Usuario U " +
                 "LEFT JOIN Gerentes G ON U.id_usuario = G.id_gerente " +
                 "LEFT JOIN Supervisor S ON U.id_usuario = S.id_supervisor " +
@@ -135,13 +134,13 @@ public class UsuarioDAO
                     String nome = rs.getString("nome");
                     String cpf = rs.getString("cpf");
                     String senha = rs.getString("senha");
-                    int nivelAcesso = rs.getInt("nivel_acesso");
+                    int nivelAcesso = rs.getInt("id_na");
 
                     switch(nivelAcesso)
                     {
                         case 1:
                             // Criando objeto de acordo com seu nivel_acesso.
-                            int especialidade = rs.getInt("especialidade");
+                            int especialidade = rs.getInt("id_especialidade");
                             usuarioModel = new TecnicoModel(id, nome, cpf, senha, especialidade);
                             break;
 
@@ -151,7 +150,7 @@ public class UsuarioDAO
                             break;
 
                         case 3:
-                            int departamento = rs.getInt("departamento");
+                            int departamento = rs.getInt("id_departamento");
                             usuarioModel = new GerenteModel(id, nome, cpf, senha, departamento);
                             break;
                     }
@@ -196,8 +195,8 @@ public class UsuarioDAO
     {
         // Consulta MYSQL.
         String querySQl = "UPDATE Usuario " +
-                        "SET nome = ?" +
-                        "WHERE id_usuario = ?";
+                "SET nome = ?" +
+                "WHERE id_usuario = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQl))
