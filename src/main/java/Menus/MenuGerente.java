@@ -23,6 +23,7 @@ public class MenuGerente
             try {
                 int opcaoGerente = Ferramentas.lInteiro();
 
+                Ferramentas.limpaTerminal();
                 switch (opcaoGerente) {
                     case 1 -> MenuGerenteCriarUsuario.criarUsuarios(gerenteModel);
                     case 2 -> MenuGerenteVisualizarRelatorios.visualizarRelatorios();

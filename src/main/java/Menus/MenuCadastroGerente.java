@@ -16,14 +16,20 @@ public class MenuCadastroGerente {
 
         // ----- Atribuição de caracteríscticas de um Usuário ----- //
         String nome = MenuSetUsuario.MenuSetNome();
-        String cpf = MenuSetUsuario.MenuSetCpf();
-        String senha = MenuSetUsuario.MenuSetSenha();
+        Ferramentas.limpaTerminal();
 
+        String cpf = MenuSetUsuario.MenuSetCpf();
+        Ferramentas.limpaTerminal();
+
+        String senha = MenuSetUsuario.MenuSetSenha();
+        Ferramentas.limpaTerminal();
         // ----- Atribuição de caracteríscticas de um Gerente ----- //
         int idDepartamento = MenuSetGerente.menuSetDepartamento();
+        Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //
         Ferramentas.limpaTerminal();
+
         System.out.println("PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
         Ferramentas.limpaTerminal();

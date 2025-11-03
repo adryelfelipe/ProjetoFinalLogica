@@ -18,6 +18,7 @@ public class MenuGerenteCriarUsuario
         {
             int opcaoCriarUsuario = Ferramentas.lInteiro();
 
+            Ferramentas.limpaTerminal();
             switch(opcaoCriarUsuario)
             {
                 case 1 -> MenuCadastroTecnico.menuCadastroTecnico(gerenteModel);

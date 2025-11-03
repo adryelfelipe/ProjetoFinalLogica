@@ -14,9 +14,13 @@ public class MenuCadastroTecnico
 
         // ----- Atribuição de caracteríscticas de um Usuário ----- //
         String nome = MenuSetUsuario.MenuSetNome();
-        String cpf = MenuSetUsuario.MenuSetCpf();
-        String senha = MenuSetUsuario.MenuSetSenha();
+        Ferramentas.limpaTerminal();
 
+        String cpf = MenuSetUsuario.MenuSetCpf();
+        Ferramentas.limpaTerminal();
+
+        String senha = MenuSetUsuario.MenuSetSenha();
+        Ferramentas.limpaTerminal();
         // ----- Atribuição de caracteríscticas de um Técnico ----- //
         int especialidade = MenuSetTecnico.MenuSetEspecialidade();
 
@@ -25,15 +29,17 @@ public class MenuCadastroTecnico
         Ferramentas.limpaTerminal();
         System.out.println("PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
-        Ferramentas.limpaTerminal();
 
         try {
             TecnicoModel tecnico = new TecnicoModel(nome, cpf, senha, especialidade);
             tecnicoService.inserirTecnico(gerente, tecnico);
+            Ferramentas.limpaTerminal();
             System.out.println("TÉCNICO CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);
         } catch (IllegalArgumentException | IllegalStateException e) {
             Ferramentas.mensagemErro(e.getMessage());
         }
+
+        Ferramentas.limpaTerminal();
     }
 }
