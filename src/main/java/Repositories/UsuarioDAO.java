@@ -1,10 +1,7 @@
 package Repositories;
 
 import Database.ConnectionFactory;
-import Models.GerenteModel;
-import Models.SupervisorModel;
-import Models.TecnicoModel;
-import Models.UsuarioModel;
+import Models.*;
 
 import java.sql.*;
 
@@ -152,6 +149,10 @@ public class UsuarioDAO
                         case 3:
                             int departamento = rs.getInt("id_departamento");
                             usuarioModel = new GerenteModel(id, nome, cpf, senha, departamento);
+                            break;
+
+                        case 4:
+                            usuarioModel = new AdminModel(id, nome, cpf, senha);
                             break;
                     }
                 }
