@@ -1,5 +1,7 @@
 package ProjetoBase;
 
+import Models.TecnicoModel;
+
 public class TecnicoValidator {
 
     // -- Métodos de Regras de Negócio -- //

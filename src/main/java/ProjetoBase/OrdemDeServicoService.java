@@ -1,5 +1,9 @@
 package ProjetoBase;
 
+import Models.TecnicoModel;
+import Models.UsuarioModel;
+import Repositories.OrdemDeServicoDAO;
+
 public class OrdemDeServicoService
 {
     OrdemDeServicoDAO ordemDeServicoDAO = new OrdemDeServicoDAO();

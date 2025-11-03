@@ -1,0 +1,34 @@
+package Views;
+
+import Util.Ferramentas;
+import Models.GerenteModel;
+
+public class MenuGerenteCriarUsuario
+{
+    public static void criarUsuarios(GerenteModel gerenteModel)
+    {
+        System.out.println(" ");
+        System.out.println(" ");
+        System.out.println("|==================================|");
+        System.out.println("|  1 - Cadastrar Usuário Técnico   |");
+        System.out.println("|  2 - Cadastrar Usuário Supervisor|");
+        System.out.print("|  Escolha: ");
+
+        try
+        {
+            int opcaoCriarUsuario = Ferramentas.lInteiro();
+
+            Ferramentas.limpaTerminal();
+            switch(opcaoCriarUsuario)
+            {
+                case 1 -> MenuCadastroTecnico.menuCadastroTecnico(gerenteModel);
+                case 2 -> MenuCadastroSupervisor.menuCadastroSupervisor(gerenteModel);
+                default -> Ferramentas.menuDefault();
+            }
+        }
+        catch(IllegalArgumentException | IllegalStateException e)
+        {
+            Ferramentas.menuDefault();
+        }
+    }
+}

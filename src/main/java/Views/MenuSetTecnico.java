@@ -1,0 +1,55 @@
+package Views;
+
+import Util.Ferramentas;
+
+public class MenuSetTecnico {
+
+    public static int MenuSetEspecialidade()
+    {
+        int idEspecialidade = 0;
+
+        while(true)
+        {
+            System.out.println(" ");
+            System.out.println("|==================================|");
+            System.out.println("|     SELECIONE A ESPECIALIDADE    |");
+            System.out.println("|==================================|");
+            System.out.println("| 1 - Técnico eletrotécnica        |");
+            System.out.println("| 2 - Eletricista Fabril           |");
+            System.out.println("| 3 - Soldador                     |");
+            System.out.println("| 4 - Eletromecânica               |");
+            System.out.println("| 5 - Pintor Industrial            |");
+            System.out.print("| Escolha: ");
+
+            try
+            {
+                idEspecialidade = Ferramentas.lInteiro();
+
+                switch (idEspecialidade)
+                {
+                    case 1 -> {
+                        return 1;
+                    }
+                    case 2 ->{
+                        return 2;
+                    }
+                    case 3 ->{
+                        return 3;
+                    }
+                    case 4 ->{
+                        return 4;
+                    }
+                    case 5 ->{
+                        return 5;
+                    }
+
+                    default -> Ferramentas.menuDefault();
+                }
+            }
+            catch(IllegalArgumentException e)
+            {
+                Ferramentas.menuDefault();
+            }
+        }
+    }
+}

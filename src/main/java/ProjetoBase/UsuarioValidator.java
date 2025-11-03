@@ -1,5 +1,8 @@
 package ProjetoBase;
 
+import Models.UsuarioModel;
+import Util.Ferramentas;
+
 public class UsuarioValidator {
 
     // -- Construtor -- //

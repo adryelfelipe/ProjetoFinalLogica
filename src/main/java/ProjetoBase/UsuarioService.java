@@ -1,5 +1,8 @@
 package ProjetoBase;
 
+import Models.UsuarioModel;
+import Repositories.UsuarioDAO;
+
 public class UsuarioService {
 
     // -- Atributos -- //
@@ -21,6 +24,12 @@ public class UsuarioService {
     public void isCpfExistenteValidator(String cpf) {
         if(!usuarioDao.verificarCpf(cpf)) {
             throw new IllegalStateException("ERRO! O CPF NÃO FOI ENCONTRADO");
+        }
+    }
+
+    public void isIdExistenteValidator(long id) {
+        if(!usuarioDao.verificarId()) {
+            throw new IllegalStateException("ERRO! O ID NÃO FOI ENCONTRADO");
         }
     }
 

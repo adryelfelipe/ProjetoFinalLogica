@@ -1,5 +1,7 @@
 package ProjetoBase;
 
+import Models.GerenteModel;
+
 public class GerenteValidator {
     // -- Verifica regras de négoico -- //
     public static void verificaRegrasInsercaoGerente(GerenteModel gerente) {

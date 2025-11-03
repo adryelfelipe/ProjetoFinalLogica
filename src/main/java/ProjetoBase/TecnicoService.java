@@ -1,5 +1,10 @@
 package ProjetoBase;
 
+import Models.TecnicoModel;
+import Models.UsuarioModel;
+import Repositories.TecnicoDAO;
+import Repositories.UsuarioDAO;
+
 public class TecnicoService {
 
     // -- Atributos -- //

@@ -15,32 +15,32 @@ public class OrdemDeServicoValidator
 
     public static void verificaRegrasStatus(int Status){
         if(Status > 3) {
-            throw new IllegalArgumentException("ERRO! O ID_STATUS NÃO PODE SER MAIOR QUE 3");
-        }
-    }
-
-    public static void verificaIntegridadeStatus(int Status) {
-        if(Status < 0) {
-            throw new IllegalArgumentException("ERRO! O ID_STATUS NÃO PODE SER MENOR QUE 0");
+            throw new IllegalStateException("ERRO! O ID DO STATUS NÃO PODE SER MAIOR QUE 3");
         }
     }
 
     // -- Verifica integridade de dados -- //
+    public static void verificaIntegridadeStatus(int Status) {
+        if(Status < 0) {
+            throw new IllegalArgumentException("ERRO! O ID DO STATUS NÃO PODE SER NEGATIVO");
+        }
+    }
+
     public static void verificaIntegridadeIdTecnico(long idTecnico) {
         if(idTecnico < 0) {
-            throw new IllegalArgumentException("ERRO! O ID TÉCNICO NÃO PODE SER NEGATIVO");
+            throw new IllegalArgumentException("ERRO! O ID DO TÉCNICO NÃO PODE SER NEGATIVO");
         }
     }
 
     public static void verificaIntegridadeIdOrdem_Servico(long idOrdem_Servico) {
         if(idOrdem_Servico < 0) {
-            throw new IllegalArgumentException("ERRO! O ID DA ORDEM NÃO PODE SER NEGATIVO");
+            throw new IllegalArgumentException("ERRO! O ID DA ORDEM DE SERVIÇO NÃO PODE SER NEGATIVO");
         }
     }
 
     public static void verificaIntegridadeIdMaquina(long idMaquina) {
         if(idMaquina < 0) {
-            throw new IllegalArgumentException("ERRO! O ID MAQUINA NÃO PODE SER NEGATIVO");
+            throw new IllegalArgumentException("ERRO! O ID DA MÁQUINA NÃO PODE SER NEGATIVO");
         }
     }
 

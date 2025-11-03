@@ -1,5 +1,10 @@
 package ProjetoBase;
 
+import Models.GerenteModel;
+import Models.UsuarioModel;
+import Repositories.GerenteDAO;
+import Repositories.UsuarioDAO;
+
 public class GerenteService {
 
     // -- Atributos -- //

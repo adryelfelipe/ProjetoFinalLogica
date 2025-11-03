@@ -1,5 +1,7 @@
 package ProjetoBase;
 
+import Models.MaquinaModel;
+
 public class MaquinaValidator {
 
     // -- Verifica regras de negócio -- //

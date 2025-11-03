@@ -1,5 +1,10 @@
 package ProjetoBase;
 
+import Models.SupervisorModel;
+import Models.UsuarioModel;
+import Repositories.SupervisorDAO;
+import Repositories.UsuarioDAO;
+
 public class SupervisorService {
     // -- Atributos -- //
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
