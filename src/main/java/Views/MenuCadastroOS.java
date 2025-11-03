@@ -1,16 +1,17 @@
 package Views;
 
-import Util.Ferramentas;
 import Models.GerenteModel;
 import Models.MaquinaModel;
-import ProjetoBase.MaquinaService;
+import Models.OrdemDeServicoModel;
+import Repositories.OrdemDeServicoDAO;
+import Util.Ferramentas;
 
-public class MenuCadastroMaquina {
-    private static final MaquinaService maquinaService = new MaquinaService();
+public class MenuCadastroOS {
+    private static final OrdemDeServicoDAO ordemServicoDAO = new OrdemDeServicoDAO();
 
     public static void menuCadastroMaquina(GerenteModel gerente) {
         System.out.println("================================");
-        System.out.println("|      CADASTRO  MÁQUINA       |");
+        System.out.println("|  CADASTRO  ORDEM DE SERVIÇO  |");
         System.out.println("================================\n");
 
         // ----- Atribuição de caracteríscticas de uma Máquina ----- //
@@ -20,7 +21,7 @@ public class MenuCadastroMaquina {
         String localizacao = MenuSetMaquina.MenuSetLocalizacao();
         Ferramentas.limpaTerminal();
 
-        int idStatus;
+        int idStatus = MenuSetMaquina.MenuSetStatusMaquina();
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //
@@ -36,7 +37,7 @@ public class MenuCadastroMaquina {
             Ferramentas.Delay(800);
         } catch (IllegalArgumentException | IllegalStateException e) {
             Ferramentas.mensagemErro(e.getMessage());
+
         }
     }
 }
-
