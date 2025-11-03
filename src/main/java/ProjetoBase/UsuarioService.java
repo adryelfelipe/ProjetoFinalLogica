@@ -28,13 +28,17 @@ public class UsuarioService {
     }
 
     public void isIdExistenteValidator(long id) {
-        if(!usuarioDao.verificarId()) {
-            throw new IllegalStateException("ERRO! O ID NÃO FOI ENCONTRADO");
-        }
+        //if(!usuarioDao.verificarId()) {
+        //   throw new IllegalStateException("ERRO! O ID NÃO FOI ENCONTRADO");
+        //}
     }
 
     public UsuarioModel loginUsuario(String cpf, String senha) {
         isCpfExistenteValidator(cpf);
         return usuarioDao.loginUsuario(cpf, senha);
+    }
+
+    public UsuarioModel findById(long id) {
+        return usuarioDao.findById(id);
     }
 }
