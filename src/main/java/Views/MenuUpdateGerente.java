@@ -1,16 +1,15 @@
 package Views;
-import Models.GerenteModel;
-import Models.TecnicoModel;
-import Models.UsuarioModel;
-import ProjetoBase.TecnicoService;
+import Database.*;
+import Models.*;
+import Repositories.*;
+import ProjetoBase.*;
 import Util.Ferramentas;
-import ProjetoBase.SupervisorService;
-import ProjetoBase.TecnicoValidator;
-
-import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 
 public class MenuUpdateGerente {
+    private static final UsuarioService usuarioService = new UsuarioService();
+    private static final TecnicoService tecnicoService = new TecnicoService();
+    private static final UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     public static void menuUpdateEscolha(GerenteModel gerente) {
         // Menu
@@ -51,9 +50,31 @@ public class MenuUpdateGerente {
     }
 
     public static void menuUpdateTecnico(GerenteModel gerente) {
-        // Menu
-        boolean verifica = false;
-        int UpdateT = 0;
+            // -- Garantia de inicialização -- //
+            long idTecnico;
+
+            // Menu de escolha de ID
+            Ferramentas.limpaTerminal();
+
+            try {
+                idTecnico = MenuEscolhaId.escolhaIdUpdate();
+            } catch (InputMismatchException e) {
+                Ferramentas.mensagemErro(e.getMessage());
+                return;
+            }
+
+            try{
+//                  TecnicoService(idTecnico);
+            } catch (InputMismatchException e) {
+                Ferramentas.mensagemErro(e.getMessage());
+                return;
+            }
+
+            TecnicoModel tecnico = ((TecnicoModel) usuarioDAO.findById(idTecnico));
+
+            // -- Menu de escolha da mudança -- //
+            int UpdateT = 0;
+            boolean verifica = false;
 
         while(true) {
 
