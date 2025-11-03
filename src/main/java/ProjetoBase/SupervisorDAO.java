@@ -51,7 +51,7 @@ public class SupervisorDAO
         }
     }
 
-    public void updateMetaMensal(long id, double metaMensal)
+    public void updateMetaMensal(long id, double novaMetaMensal)
     {
         String querySQL = "UPDATE FROM Supervisor s " +
                         "INNER JOIN Usuario u ON s.id_supervisor = u.id_usuario " +
@@ -61,7 +61,7 @@ public class SupervisorDAO
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
         {
-            stmt.setDouble(1, metaMensal);
+            stmt.setDouble(1, novaMetaMensal);
             stmt.setLong(2, id);
 
             stmt.executeQuery();

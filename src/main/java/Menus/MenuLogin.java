@@ -13,9 +13,8 @@ public class MenuLogin
         while(!verifica) {
             System.out.println("|================================|");
             System.out.println("|             LOGIN              |");
-            System.out.println("|================================|\n");
-
-            System.out.print("|     Digite seu CPF: ");
+            System.out.println("|================================|");
+            System.out.print("|   Digite seu CPF: ");
 
             try {
                 cpfLogin = Ferramentas.lString();
@@ -32,7 +31,7 @@ public class MenuLogin
 
         while (!verifica) {
             try {
-                System.out.print("|     Digite sua senha: ");
+                System.out.print("|   Digite sua senha: ");
                 senhaLogin = Ferramentas.lString();
                 UsuarioValidator.verificaIntegridadeSenha(senhaLogin);
                 UsuarioValidator.verificarRegrasSenha(senhaLogin);
@@ -44,15 +43,17 @@ public class MenuLogin
 
         UsuarioModel usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
 
+        Ferramentas.limpaTerminal();
         if(usuario instanceof AdminModel){
-            //
+            MenuAdministrador.menuInicial((AdminModel) usuario);
         } else if(usuario instanceof GerenteModel) {
             MenuGerente.menuInicial((GerenteModel) usuario);
         } else if(usuario instanceof SupervisorModel) {
             MenuSupervisor.menuSupervisor((SupervisorModel) usuario);
         } else if(usuario instanceof TecnicoModel) {
             MenuTecnico.menuTecnico((TecnicoModel) usuario);
-        } else {
+        }
+        else {
             Ferramentas.mensagemErro("ERRO! CPF OU SENHA INVÁLIDOS");
         }
     }
