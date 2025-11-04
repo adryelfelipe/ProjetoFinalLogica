@@ -13,7 +13,7 @@ public class MenuSetSupervisor {
 
         // Menuzinho
         while(true) {
-            System.out.print("Digite a meta mensal: ");
+            System.out.print("|  Digite a meta mensal: R$");
 
             try
             {

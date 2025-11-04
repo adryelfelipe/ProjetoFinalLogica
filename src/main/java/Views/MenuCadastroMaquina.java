@@ -9,9 +9,9 @@ public class MenuCadastroMaquina {
     private static final MaquinaService maquinaService = new MaquinaService();
 
     public static void menuCadastroMaquina(GerenteModel gerente) {
-        System.out.println("================================");
-        System.out.println("|      CADASTRO  MÁQUINA       |");
-        System.out.println("================================\n");
+        System.out.println("|================================|");
+        System.out.println("|       CADASTRO  MÁQUINA        |");
+        System.out.println("|================================|\n");
 
         // ----- Atribuição de caracteríscticas de uma Máquina ----- //
         String nome = MenuSetMaquina.MenuSetNomeMaquina();

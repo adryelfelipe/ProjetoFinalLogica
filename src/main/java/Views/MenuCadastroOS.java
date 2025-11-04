@@ -17,9 +17,9 @@ public class MenuCadastroOS {
         long idMaquina = 0;
 
         // Menu de cadastro
-        System.out.println("================================");
-        System.out.println("|  CADASTRO  ORDEM DE SERVIÇO  |");
-        System.out.println("================================\n");
+        System.out.println("|================================|");
+        System.out.println("|   CADASTRO  ORDEM DE SERVIÇO   |");
+        System.out.println("|================================|\n");
 
         // ----- Atribuição de caracteríscticas de uma Máquina ----- //
         try{

@@ -12,9 +12,9 @@ public class MenuCadastroSupervisor
 
     public static void menuCadastroSupervisor(GerenteModel gerente)
     {
-        System.out.println("================================");
-        System.out.println("|      CADASTRO SUPERVISOR     |");
-        System.out.println("================================\n");
+        System.out.println("|================================|");
+        System.out.println("|       CADASTRO SUPERVISOR      |");
+        System.out.println("|================================|\n");
 
         System.out.println();
 

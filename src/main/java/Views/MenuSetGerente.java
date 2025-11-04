@@ -13,9 +13,14 @@ public class MenuSetGerente {
 
         while(true)
         {
-            System.out.println("Escolha o Departamento: ");
-            System.out.println("[1] - ELÉTRICA ");
-            System.out.println("[2] - MECÂNICA ");
+            System.out.println("|--------------------------------|");
+            System.out.println("|  -  Escolha o Departamento  -  |");
+            System.out.println("|--------------------------------|");
+            System.out.println("|                                |");
+            System.out.println("|  1 - Elétrica                  |");
+            System.out.println("|  2 - Mecânica                  |");
+            System.out.println("|--------------------------------|");
+            System.out.print("|  Escolha: ");
 
             try {
                 opcao = Ferramentas.lInteiro();

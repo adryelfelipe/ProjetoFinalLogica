@@ -31,14 +31,14 @@ public class MenuAdminUpdateGerente {
 
         while (!verifica)
         {
-            System.out.println("          |================================|          ");
-            System.out.println("          |======  ATUALIZAR GERENTE  =====|          ");
-            System.out.println("          |================================|          ");
+            System.out.println("          |  ----------------------------  |          ");
+            System.out.println("          |  ---  ATUALIZAR GERENTE  ----  |          ");
+            System.out.println("          |  ----------------------------  |          ");
 
             System.out.print("\n\n"); // pula linhas
-            System.out.println("|--------------------|          |--------------------|");
+            System.out.println("|  ----------------  |          |  ----------------  |");
             System.out.println("|  EDITAR   GERENTE  |          |        ATUAL       |");
-            System.out.println("|--------------------|          |--------------------|");
+            System.out.println("|  ----------------  |          |  ----------------  |");
             System.out.println("|  1 - Nome          |          |Nome: " + gerente.getNome());
             System.out.println("|  2 - CPF           |          |CPF: " + gerente.getCpf());
             System.out.println("|  3 - Senha         |          |Senha: " + gerente.getSenha());

@@ -30,14 +30,14 @@ public class MenuCadastroTecnico
 
         // -- Criação do objeto e inserção no banco de dados -- //
         Ferramentas.limpaTerminal();
-        System.out.println("PROCESSANDO DADOS...");
+        System.out.println("|  PROCESSANDO DADOS . . .");
         Ferramentas.Delay(1000);
 
         try {
             TecnicoModel tecnico = new TecnicoModel(nome, cpf, senha, especialidade);
             tecnicoService.inserirTecnico(gerente, tecnico);
             Ferramentas.limpaTerminal();
-            System.out.println("TÉCNICO CADASTRADO COM SUCESSO!");
+            System.out.println("|  TÉCNICO CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);
         } catch (IllegalArgumentException | IllegalStateException e) {
             Ferramentas.mensagemErro(e.getMessage());
