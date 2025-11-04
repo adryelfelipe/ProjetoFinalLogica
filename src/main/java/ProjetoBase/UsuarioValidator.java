@@ -35,6 +35,19 @@ public class UsuarioValidator {
         if(cpf.length() != 11) {
             throw  new IllegalArgumentException("ERRO! O CPF DEVE POSSUIR 11 DÍGITOS");
         }
+
+        if(cpf.contains(" ")) {
+            throw new IllegalArgumentException("ERRO! O CPF NÃO PODE CONTER ESPAÇOS");
+        }
+
+        // -- VALIDAÇÃO DE MAIUSCULAS E ESPECIAIS -- //
+        boolean verificaMaiuscula = FerramentaValidator.isContemMaiuscula(cpf);
+        boolean verificaMinuscula = FerramentaValidator.isContemMinuscula(cpf);
+        boolean verificaCaractereEspecial = FerramentaValidator.isContemCaractereEspecial(cpf);
+
+        if(verificaMaiuscula || verificaMinuscula || verificaCaractereEspecial) {
+            throw new IllegalArgumentException("ERRO! O CPF DEVE CONTER SOMENTE DÍGITOS");
+        }
     }
 
     public static void verificaIntegridadeSenha(String senha) {
@@ -115,22 +128,9 @@ public class UsuarioValidator {
 
 
         // -- VALIDAÇÃO DE MAIUSCULAS E ESPECIAIS -- //
-        boolean verificaMaiuscula = false;
-        boolean verificaEspecial = false;
-
-        for(String maiuscula : Ferramentas.listaMaiusculos) {
-            if (senha.contains(maiuscula)) {
-                verificaMaiuscula = true;
-                break;
-            }
-        }
-
-        for(String caractereEspecial : Ferramentas.listaEspeciais) {
-            if(senha.contains(caractereEspecial)) {
-                verificaEspecial = true;
-                break;
-            }
-        }
+        boolean verificaMaiuscula = FerramentaValidator.isContemMaiuscula(senha);
+        boolean verificaEspecial = FerramentaValidator.isContemCaractereEspecial(senha);
+        boolean verificaNumeros = FerramentaValidator.isContemNumero(senha);
 
         if(!verificaMaiuscula) {
             throw new IllegalStateException("ERRO! A SENHA DEVE CONTER UMA LETRA MAIÚSCULA");
@@ -138,6 +138,10 @@ public class UsuarioValidator {
 
         if(!verificaEspecial) {
             throw new IllegalStateException("ERRO! A SENHA DEVE CONTER UM CARACTERE ESPECIAL");
+        }
+
+        if(!verificaNumeros) {
+            throw new IllegalStateException("ERRO! A SENHA DEVE CONTER UM NÚMERO");
         }
     }
 

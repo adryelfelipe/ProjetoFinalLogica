@@ -31,6 +31,10 @@ public class MaquinaValidator {
         if(localizacao == null) {
             throw new IllegalStateException("ERRO! A LOCALIZAÇÃO NÃO PODE SER NULA");
         }
+
+        if (localizacao.length() < 2) {
+            throw new IllegalStateException("ERRO! A LOCALIZAÇÃO DEVE CONTER MAIS DE 1 CARACTER");
+        }
     }
 
     // -- Verifica integridade de dados -- //
