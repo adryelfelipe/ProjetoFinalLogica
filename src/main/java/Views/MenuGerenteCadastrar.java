@@ -22,9 +22,9 @@ public class MenuGerenteCadastrar
             Ferramentas.limpaTerminal();
             switch(opcaoCriarUsuario)
             {
-                case 1 -> MenuCadastroTecnico.menuCadastroTecnico(gerenteModel);
-                case 2 -> MenuCadastroSupervisor.menuCadastroSupervisor(gerenteModel);
-                case 3 -> MenuCadastroMaquina.menuCadastroMaquina(gerenteModel);
+                case 1 -> MenuCadastroGerente.menuCadastroTecnico(gerenteModel);
+                case 2 -> MenuCadastroGerente.menuCadastroSupervisor(gerenteModel);
+                case 3 -> MenuCadastroGerente.menuCadastroMaquina(gerenteModel);
                 default -> Ferramentas.menuDefault();
             }
         }
