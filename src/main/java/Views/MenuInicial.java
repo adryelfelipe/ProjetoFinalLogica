@@ -18,8 +18,10 @@ public class MenuInicial
             System.out.println("|=================================|");
             System.out.println("|========  MENU INICIAL  =========|");
             System.out.println("|=================================|");
+            System.out.println("|                                 |");
             System.out.println("|  1 - Login                      |");
             System.out.println("|  2 - Sair                       |");
+            System.out.println("|=================================|");
             System.out.print("|  Escolha: ");
 
             try

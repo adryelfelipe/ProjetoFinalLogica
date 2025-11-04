@@ -23,12 +23,11 @@ public class MenuGerenteUpdateTecnico_Supervisor {
                 System.out.println("|================================|");
                 System.out.println("|======== MENU ATUALIZAR  =======|");
                 System.out.println("|================================|");
-
-                System.out.print("\n\n"); // pula linhas
-
+                System.out.println("|                                |");
                 System.out.println("|  1 - Alterar Técnico           |");
                 System.out.println("|  2 - Alterar Supervisor        |");
                 System.out.println("|  3 - Sair do Menu              |");
+                System.out.println("|================================|");
                 System.out.println("|  Escolha: ");
 
                 try
@@ -77,11 +76,11 @@ public class MenuGerenteUpdateTecnico_Supervisor {
             while(!verifica)
             {
 
-                System.out.print("\n\n"); // pula linhas
-                System.out.println("          |================================|          ");
-                System.out.println("          |======  ATUALIZAR TECNICO  =====|          ");
-                System.out.println("          |================================|          ");
-                System.out.println("");
+                System.out.println("\n                                                 \n");
+                System.out.println("         |--------------------------------|          ");
+                System.out.println("         |------  ATUALIZAR TECNICO  -----|          ");
+                System.out.println("         |--------------------------------|          ");
+                System.out.println("                                                     ");
                 System.out.println("|--------------------|         |--------------------|");
                 System.out.println("|  EDITAR   TÉCNICO  |         |        ATUAL       |");
                 System.out.println("|--------------------|         |--------------------|");
@@ -157,11 +156,11 @@ public class MenuGerenteUpdateTecnico_Supervisor {
         {
             while(!verifica)
             {
-                System.out.println("\n\n");
-                System.out.println("             |================================|            ");
-                System.out.println("             |====  ATUALIZAR SUPERVISOR  ====|            ");
-                System.out.println("             |================================|            ");
-                System.out.println("");
+                System.out.println("\n                                                       \n");
+                System.out.println("             |--------------------------------|            ");
+                System.out.println("             |----  ATUALIZAR SUPERVISOR  ----|            ");
+                System.out.println("             |--------------------------------|            ");
+                System.out.println("                                                            ");
                 System.out.println("|-----------------------|         |-----------------------|");
                 System.out.println("|  EDITAR   SUPERVISOR  |         |         ATUAL         |");
                 System.out.println("|-----------------------|         |-----------------------|");

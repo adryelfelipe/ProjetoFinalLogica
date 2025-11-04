@@ -7,13 +7,15 @@ public class MenuGerenteCadastrar
 {
     public static void criarUsuarios(GerenteModel gerenteModel)
     {
-        System.out.println(" ");
-        System.out.println(" ");
         System.out.println("|==================================|");
+        System.out.println("|        CADASTRAR USUARIOS        |");
+        System.out.println("|==================================|");
+        System.out.println("|                                  |");
         System.out.println("|  1 - Cadastrar Técnico           |");
         System.out.println("|  2 - Cadastrar Supervisor        |");
         System.out.println("|  3 - Cadastrar Máquina           |");
-        System.out.print("  Escolha: ");
+        System.out.println("|==================================|");
+        System.out.print("|  Escolha: ");
 
         try
         {
