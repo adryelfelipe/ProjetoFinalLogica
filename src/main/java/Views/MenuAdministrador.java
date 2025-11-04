@@ -8,15 +8,16 @@ public class MenuAdministrador {
         boolean continuar = false;
 
         while (!continuar) {
-            System.out.println("|================================|");
-            System.out.println("|      MENU ADMINISTRADOR        |");
-            System.out.println("|================================|");
-
-            System.out.println("|  1 - Criar Gerente             |");
-            System.out.println("|  2 - Atualizar Gerente         |");
-            System.out.println("|  3 - Remover Gerente           |");
-            System.out.println("|  4 - Retornar                  |");
-            System.out.print("|  Escolha: ");
+            System.out.println("||================================||");
+            System.out.println("||      MENU ADMINISTRADOR        ||");
+            System.out.println("||================================||");
+            System.out.println("||                                ||");
+            System.out.println("||  1 - Criar Gerente             ||");
+            System.out.println("||  2 - Atualizar Gerente         ||");
+            System.out.println("||  3 - Remover Gerente           ||");
+            System.out.println("||  4 - Retornar                  ||");
+            System.out.println("||________________________________||");
+            System.out.print("||  Escolha: ");
 
             try
             {

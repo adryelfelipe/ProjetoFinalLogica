@@ -14,7 +14,7 @@ public class MaquinaModel {
         setNome(nome);
         setIdMaquina(id);
         setLocalizacao(localizacao);
-        setStatus(status);
+        setStatus(idStatus);
     }
 
     // Construtor sem ID //

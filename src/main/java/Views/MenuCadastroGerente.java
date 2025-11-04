@@ -14,8 +14,7 @@ public class MenuCadastroGerente {
         System.out.println("|================================|");
         System.out.println("|       CADASTRO GERENTE         |");
         System.out.println("|================================|\n");
-
-        System.out.println();
+        System.out.println(" ");
 
         // ----- Atribuição de caracteríscticas de um Usuário ----- //
         String nome = MenuSetUsuario.MenuSetNome();
@@ -26,6 +25,7 @@ public class MenuCadastroGerente {
 
         String senha = MenuSetUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
+
         // ----- Atribuição de caracteríscticas de um Gerente ----- //
         int idDepartamento = MenuSetGerente.menuSetDepartamento();
         Ferramentas.limpaTerminal();
