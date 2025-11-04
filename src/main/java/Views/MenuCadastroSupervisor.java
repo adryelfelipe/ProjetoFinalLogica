@@ -1,49 +1,52 @@
 package Views;
 
 import Models.GerenteModel;
+import Models.OrdemDeServicoModel;
 import Models.SupervisorModel;
+import ProjetoBase.OrdemDeServicoService;
 import Util.Ferramentas;
 import ProjetoBase.SupervisorService;
 
 public class MenuCadastroSupervisor
 {
     // -- Atributos -- //
-    private static final SupervisorService supervisorService = new SupervisorService();
+    private static final OrdemDeServicoService ordemDeServicoService = new OrdemDeServicoService();
 
-    public static void menuCadastroSupervisor(GerenteModel gerente)
-    {
+    public static void menuCadastroOrdem(SupervisorModel supervisor) {
+        // Garantia de inicialização
+        long idTecnico = 0;
+        long idMaquina = 0;
+
+        // Menu de cadastro
         System.out.println("================================");
-        System.out.println("|      CADASTRO SUPERVISOR     |");
+        System.out.println("|   CADASTRO ORDEM DE SERVIÇO  |");
         System.out.println("================================\n");
 
-        System.out.println();
-
-        // ----- Atribuição de caracteríscticas de um Usuário ----- //
-        String nome = MenuSetUsuario.MenuSetNome();
+        // ----- Atribuição de caracteríscticas de uma Máquina ----- //
+        try{
+            idTecnico = MenuSetOrdemDeServico.SetIdTecnico();
+            Ferramentas.limpaTerminal();
+            idMaquina = MenuSetOrdemDeServico.SetIdMaquina();
+        } catch (IllegalStateException e) {
+            Ferramentas.mensagemErro(e.getMessage());
+            return;
+        }
         Ferramentas.limpaTerminal();
-
-        String cpf = MenuSetUsuario.MenuSetCpf();
+        String descricao = MenuSetOrdemDeServico.SetDescricao();
         Ferramentas.limpaTerminal();
-
-        String senha = MenuSetUsuario.MenuSetSenha();
-        Ferramentas.limpaTerminal();
-        // ----- Atribuição de caracteríscticas de um Supervisor ----- //
-        double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
+        double valorOrdemServico = MenuSetOrdemDeServico.SetValorOS();
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //
-        Ferramentas.limpaTerminal();
         System.out.println("PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
 
-
         try {
-            SupervisorModel supervisor = new SupervisorModel(nome, cpf, senha, metaMensal);
-            supervisorService.inserirSupervisor(gerente, supervisor);
+            OrdemDeServicoModel ordemServico = new OrdemDeServicoModel(idTecnico, idMaquina,1, descricao, valorOrdemServico);
+            ordemDeServicoService.inserirOrdemDeServico(supervisor, ordemServico);
             Ferramentas.limpaTerminal();
-            System.out.println("SUPERVISOR CADASTRADO COM SUCESSO!");
+            System.out.println("MÁQUINA CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);
-            Ferramentas.limpaTerminal();
         } catch (IllegalArgumentException | IllegalStateException e) {
             Ferramentas.mensagemErro(e.getMessage());
         }

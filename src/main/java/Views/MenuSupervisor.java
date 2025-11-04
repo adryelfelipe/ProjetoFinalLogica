@@ -16,7 +16,8 @@ public class MenuSupervisor
             System.out.println("|================================|");
             System.out.println("|=======  MENU SUPERVISOR  ======|");
             System.out.println("|================================|");
-            System.out.println("| 1 - Criar nova OS              |");
+            System.out.println("|                                |");
+            System.out.println("| 1 - Cadastrar nova OS          |");
             System.out.println("| 2 - Acompanhar status das OS   |");
             System.out.println("| 3 - Retornar ao menu inicial   |");
             System.out.println("|=================================|");
@@ -26,7 +27,7 @@ public class MenuSupervisor
                 opcao = Ferramentas.lInteiro();
 
                 switch (opcao) {
-                    case 1 -> MenuCadastroOS.menuCadastroOrdem(supervisor);
+                    case 1 -> MenuCadastroSupervisor.menuCadastroOrdem(supervisor);
                     case 2 -> MenuSupervisorAcompanharStatus.acompanharStatus();
                     case 3 -> {
                         System.out.println("RETORNANDO AO MENU INICIAL! . . .");
