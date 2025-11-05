@@ -1,5 +1,6 @@
 package Models;
 
+import Models.joias.NivelAcesso;
 import ProjetoBase.UsuarioValidator;
 
 public abstract class UsuarioModel {
@@ -8,11 +9,11 @@ public abstract class UsuarioModel {
     private String nome;
     private String cpf;
     private String senha;
-    private int nivelAcesso;
+    private NivelAcesso nivelAcesso;
     private long idUsuario;
 
     // -- Construtor com ID -- //
-    public UsuarioModel(long id, String nome, String cpf, String senha, int nivelAcesso) {
+    public UsuarioModel(long id, String nome, String cpf, String senha, NivelAcesso nivelAcesso) {
         setIdUsuario(id);
         setNome(nome);
         setNivelAcesso(nivelAcesso);
@@ -21,7 +22,7 @@ public abstract class UsuarioModel {
     }
 
     // -- Construtor sem ID-- //
-    public UsuarioModel(String nome, String cpf, String senha, int nivelAcesso)
+    public UsuarioModel(String nome, String cpf, String senha, NivelAcesso nivelAcesso)
     {
         this(0, nome, cpf, senha, nivelAcesso);
     }
@@ -32,7 +33,7 @@ public abstract class UsuarioModel {
         return idUsuario;
     }
 
-    public int getNivelAcesso() {
+    public NivelAcesso getNivelAcesso() {
         return nivelAcesso;
     }
 
@@ -68,7 +69,7 @@ public abstract class UsuarioModel {
         this.nome = nome;
     }
 
-    public void setNivelAcesso(int nivelAcesso) {
+    public void setNivelAcesso(NivelAcesso nivelAcesso) {
         UsuarioValidator.verificaIntegridadeNivelAcesso(nivelAcesso);
         this.nivelAcesso = nivelAcesso;
     }

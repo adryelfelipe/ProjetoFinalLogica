@@ -1,6 +1,7 @@
 package Models;
 
 import Models.joias.Departamento;
+import Models.joias.NivelAcesso;
 import ProjetoBase.GerenteValidator;
 
 public class GerenteModel extends UsuarioModel{
@@ -10,7 +11,7 @@ public class GerenteModel extends UsuarioModel{
 
     // -- Construtor com ID -- //
     public GerenteModel(long id, String nome, String cpf, String senha, Departamento departamento) {
-        super(id, nome, cpf, senha, 3);
+        super(id, nome, cpf, senha, NivelAcesso.GERENTE);
         setDepartamento(departamento);
     }
 

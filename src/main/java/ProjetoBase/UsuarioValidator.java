@@ -1,6 +1,7 @@
 package ProjetoBase;
 
 import Models.UsuarioModel;
+import Models.joias.NivelAcesso;
 import Util.Ferramentas;
 
 public class UsuarioValidator {
@@ -62,8 +63,8 @@ public class UsuarioValidator {
         }
     }
 
-    public static void verificaIntegridadeNivelAcesso(long idNivelAcesso){
-        if(idNivelAcesso < 0) {
+    public static void verificaIntegridadeNivelAcesso(NivelAcesso nivelAcesso){
+        if(nivelAcesso.getId() < 0) {
             throw new IllegalArgumentException("ERRO! O ID NÃO PODE SER NEGATIVO");
         }
     }
@@ -145,32 +146,36 @@ public class UsuarioValidator {
         }
     }
 
-    public static void verificaRegrasNivelAcesso(int idNivelAcesso) {
-        if(idNivelAcesso > 3) {
+    public static void verificaRegrasNivelAcesso(NivelAcesso nivelAcesso) {
+        if(nivelAcesso == null) {
+            throw new IllegalStateException("ERRO! O NÍVEL DE ACESSO NÃO PODE SER NULO");
+        }
+
+        if(nivelAcesso.getId() > 3) {
             throw new IllegalStateException("ERRO! ID DE NÍVEL DE ACESSO INVÁLIDO");
         }
     }
 
     public static void temNivelAcesso4(UsuarioModel usuario) {
-        if (!(usuario.getNivelAcesso() == 4)) {
+        if (!(usuario.getNivelAcesso().getId() == 4)) {
             throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
         }
     }
 
     public static void temNivelAcesso3(UsuarioModel usuario) {
-        if (!(usuario.getNivelAcesso() == 3)) {
+        if (!(usuario.getNivelAcesso().getId() == 3)) {
             throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
         }
     }
 
     public static void temNivelAcesso2(UsuarioModel usuario) {
-        if (!(usuario.getNivelAcesso() == 2)) {
+        if (!(usuario.getNivelAcesso().getId() == 2)) {
             throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
         }
     }
 
     public static void temNivelAcesso1(UsuarioModel usuario) {
-        if (!(usuario.getNivelAcesso() == 1)) {
+        if (!(usuario.getNivelAcesso().getId() == 1)) {
             throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
         }
     }

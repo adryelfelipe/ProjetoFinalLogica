@@ -1,5 +1,6 @@
 package Models;
 
+import Models.joias.NivelAcesso;
 import ProjetoBase.SupervisorValidator;
 
 public class SupervisorModel extends UsuarioModel{
@@ -9,7 +10,7 @@ public class SupervisorModel extends UsuarioModel{
 
     // Construtor com ID //
     public SupervisorModel( long id, String nome, String cpf, String senha, double metaMensal) {
-        super(id,nome, cpf, senha, 2);
+        super(id,nome, cpf, senha, NivelAcesso.SUPERVISOR);
         setMetaMensal(metaMensal);
     }
 

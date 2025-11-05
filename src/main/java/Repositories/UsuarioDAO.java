@@ -51,7 +51,7 @@ public class UsuarioDAO
             stmt.setString(1, usuario.getNome());
             stmt.setString(2, usuario.getCpf());
             stmt.setString(3, usuario.getSenha());
-            stmt.setInt(4, usuario.getNivelAcesso());
+            stmt.setInt(4, usuario.getNivelAcesso().getId());
 
             //Executando a inserção
             int linhasAF = stmt.executeUpdate();

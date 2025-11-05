@@ -1,6 +1,7 @@
 package Models;
 
 import Models.joias.Especialidade;
+import Models.joias.NivelAcesso;
 import ProjetoBase.TecnicoValidator;
 
 public class TecnicoModel extends UsuarioModel{
@@ -8,7 +9,7 @@ public class TecnicoModel extends UsuarioModel{
 
     // Construtor com ID //
     public TecnicoModel(long id, String nome, String cpf, String senha, Especialidade especialidade) {
-        super(id, nome, cpf, senha, 1);
+        super(id, nome, cpf, senha, NivelAcesso.TECNICO);
         setEspecialidade(especialidade);
     }
 

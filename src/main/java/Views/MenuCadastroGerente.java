@@ -1,6 +1,7 @@
 package Views;
 
 import Models.*;
+import Models.joias.Especialidade;
 import ProjetoBase.MaquinaService;
 import ProjetoBase.SupervisorService;
 import ProjetoBase.TecnicoService;
@@ -98,7 +99,7 @@ public class MenuCadastroGerente {
         String senha = MenuSetUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
         // ----- Atribuição de caracteríscticas de um Técnico ----- //
-        int especialidade = MenuSetTecnico.MenuSetEspecialidade();
+        Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
 
 
         // -- Criação do objeto e inserção no banco de dados -- //
