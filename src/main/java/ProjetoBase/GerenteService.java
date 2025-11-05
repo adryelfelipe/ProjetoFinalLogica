@@ -2,7 +2,7 @@ package ProjetoBase;
 
 import Models.GerenteModel;
 import Models.UsuarioModel;
-import Models.enumeracoes.Departamento;
+import Models.joias.Departamento;
 import Repositories.GerenteDAO;
 import Repositories.UsuarioDAO;
 

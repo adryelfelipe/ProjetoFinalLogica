@@ -2,9 +2,8 @@ package Views;
 
 import Models.AdminModel;
 import Models.GerenteModel;
-import Models.enumeracoes.Departamento;
+import Models.joias.Departamento;
 import ProjetoBase.GerenteService;
-import ProjetoBase.GerenteValidator;
 import Util.Ferramentas;
 
 public class MenuCadastroADM {

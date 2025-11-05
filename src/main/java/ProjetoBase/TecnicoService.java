@@ -2,6 +2,7 @@ package ProjetoBase;
 
 import Models.TecnicoModel;
 import Models.UsuarioModel;
+import Models.joias.Especialidade;
 import Repositories.TecnicoDAO;
 import Repositories.UsuarioDAO;
 
@@ -21,10 +22,10 @@ public class TecnicoService {
         tecnicoDAO.inserirTecnico(tecnicoInserido);
     }
 
-    public void updateEspecialidade(UsuarioModel usuario, long id, int idEspecialidade) {
+    public void updateEspecialidade(UsuarioModel usuario, long id, Especialidade especialidade) {
         UsuarioValidator.temNivelAcesso3(usuario);
-        TecnicoValidator.verificaIntegridadeEspecialidade(idEspecialidade);
-        TecnicoValidator.verificaRegrasEspecialidade(idEspecialidade);
-        tecnicoDAO.updateEspecialidadeTecnico(id, idEspecialidade);
+        TecnicoValidator.verificaIntegridadeEspecialidade(especialidade);
+        TecnicoValidator.verificaRegrasEspecialidade(especialidade);
+        tecnicoDAO.updateEspecialidadeTecnico(id, especialidade);
     }
 }

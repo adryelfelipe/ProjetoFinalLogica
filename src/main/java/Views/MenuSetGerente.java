@@ -1,6 +1,6 @@
 package Views;
 
-import Models.enumeracoes.Departamento;
+import Models.joias.Departamento;
 import Util.Ferramentas;
 import ProjetoBase.GerenteValidator;
 

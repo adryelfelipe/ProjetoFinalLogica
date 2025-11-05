@@ -2,6 +2,7 @@ package Repositories;
 
 import Database.ConnectionFactory;
 import Models.TecnicoModel;
+import Models.joias.Especialidade;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +19,7 @@ public class TecnicoDAO
             PreparedStatement stmt = conn.prepareStatement(querySQL))
         {
             stmt.setLong(1, tecnico.getIdUsuario());
-            stmt.setInt(2, tecnico.getEspecialidade());
+            stmt.setInt(2, tecnico.getEspecialidade().getId());
 
             stmt.executeUpdate();
 
@@ -52,14 +53,14 @@ public class TecnicoDAO
         }
     }
 
-    public void updateEspecialidadeTecnico(long id, int novaEspecialidade)
+    public void updateEspecialidadeTecnico(long id, Especialidade novaEspecialidade)
     {
         String querySQl = "UPDATE Tecnico SET id_especialidade = ? WHERE id_tecnico = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQl))
         {
-            stmt.setInt(1, novaEspecialidade);
+            stmt.setInt(1, novaEspecialidade.getId());
             stmt.setLong(2, id);
 
             stmt.executeUpdate();

@@ -2,7 +2,7 @@ package Repositories;
 
 import Database.ConnectionFactory;
 import Models.GerenteModel;
-import Models.enumeracoes.Departamento;
+import Models.joias.Departamento;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,6 +1,6 @@
 package Models;
 
-import Models.enumeracoes.Departamento;
+import Models.joias.Departamento;
 import ProjetoBase.GerenteValidator;
 
 public class GerenteModel extends UsuarioModel{

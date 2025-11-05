@@ -1,5 +1,6 @@
 package Views;
 import Models.*;
+import Models.joias.Especialidade;
 import ProjetoBase.*;
 import Util.Ferramentas;
 import java.util.InputMismatchException;
@@ -120,7 +121,7 @@ public class MenuUpdateGerente {
                     tecnico.setSenha(senha);
                 }
                 case 4 -> {
-                    int especialidade = MenuSetTecnico.MenuSetEspecialidade();
+                    Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
                     tecnicoService.updateEspecialidade(gerente, idTecnico, especialidade);
                     tecnico.setEspecialidade(especialidade);
                 }

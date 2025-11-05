@@ -1,7 +1,7 @@
 package ProjetoBase;
 
 import Models.GerenteModel;
-import Models.enumeracoes.Departamento;
+import Models.joias.Departamento;
 
 public class GerenteValidator {
     // -- Verifica regras de négoico -- //

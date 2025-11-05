@@ -2,7 +2,8 @@ package Repositories;
 
 import Database.ConnectionFactory;
 import Models.*;
-import Models.enumeracoes.Departamento;
+import Models.joias.Departamento;
+import Models.joias.Especialidade;
 
 import java.sql.*;
 
@@ -138,7 +139,16 @@ public class UsuarioDAO
                     {
                         case 1:
                             // Criando objeto de acordo com seu nivel_acesso.
-                            int especialidade = rs.getInt("id_especialidade");
+                            int idEspecialidade = rs.getInt("id_especialidade");
+
+                            Especialidade especialidade = switch(idEspecialidade) {
+                                case 1 -> Especialidade.TECNICO_ELETROTECNICA;
+                                case 2 -> Especialidade.ELETRICISTA_FABRIL;
+                                case 3 -> Especialidade.SOLDADOR;
+                                case 4 -> Especialidade.TECNICO_ELETROMECANICA;
+                                default -> Especialidade.PINTOR_INDUSTRIAL;
+                            };
+
                             usuarioModel = new TecnicoModel(id, nome, cpf, senha, especialidade);
                             break;
 

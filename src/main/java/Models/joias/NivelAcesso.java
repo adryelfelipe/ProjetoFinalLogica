@@ -1,4 +1,4 @@
-package Models.enumeracoes;
+package Models.joias;
 
 public class NivelAcesso {
     // ID 1
