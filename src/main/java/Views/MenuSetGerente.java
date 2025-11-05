@@ -1,5 +1,6 @@
 package Views;
 
+import Models.enumeracoes.Departamento;
 import Util.Ferramentas;
 import ProjetoBase.GerenteValidator;
 
@@ -7,7 +8,7 @@ import java.util.InputMismatchException;
 
 public class MenuSetGerente {
 
-    public static int menuSetDepartamento()
+    public static Departamento menuSetDepartamento()
     {
         int opcao;
 
@@ -24,14 +25,17 @@ public class MenuSetGerente {
 
             try {
                 opcao = Ferramentas.lInteiro();
-                if(opcao > 2 || opcao < 1)
-                {
+                if(opcao > 2 || opcao < 1) {
                     Ferramentas.menuDefault();
-                } else
-                {
-                    GerenteValidator.verificaIntegridadeIdDepartamento(opcao);
-                    GerenteValidator.verificaRegrasIdDepartamento(opcao);
-                    return opcao;
+                } else {
+                    Departamento departamento = switch (opcao){
+                        case 1 -> Departamento.ELETRICA;
+                        default -> Departamento.MECANICA;
+                    };
+
+                    GerenteValidator.verificaRegrasDepartamento(departamento);
+                    GerenteValidator.verificaIntegridadeDepartamento(departamento);
+                    return departamento;
                 }
             } catch(InputMismatchException e) {
                 Ferramentas.menuDefault();

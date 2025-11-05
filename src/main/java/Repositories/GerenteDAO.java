@@ -2,6 +2,7 @@ package Repositories;
 
 import Database.ConnectionFactory;
 import Models.GerenteModel;
+import Models.enumeracoes.Departamento;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +18,7 @@ public class GerenteDAO
             PreparedStatement stmt = conn.prepareStatement(querySQL))
         {
             stmt.setLong(1, gerente.getIdUsuario());
-            stmt.setInt(2, gerente.getDepartamento());
+            stmt.setInt(2, gerente.getDepartamento().getId());
 
             stmt.executeUpdate();
 
@@ -54,14 +55,14 @@ public class GerenteDAO
         }
     }
 
-    public void updateDepartamento(long id, int novoDepartamento)
+    public void updateDepartamento(long id, Departamento departamento)
     {
         String querySQL = "UPDATE Gerentes SET id_departamento = ? WHERE id_gerente = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
         {
-            stmt.setInt(1, novoDepartamento);
+            stmt.setInt(1, departamento.getId());
             stmt.setLong(2, id);
 
             stmt.executeUpdate();

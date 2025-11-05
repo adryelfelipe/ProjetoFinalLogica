@@ -2,6 +2,7 @@ package Views;
 
 import Models.AdminModel;
 import Models.GerenteModel;
+import Models.enumeracoes.Departamento;
 import ProjetoBase.GerenteService;
 import ProjetoBase.UsuarioService;
 import Util.Ferramentas;
@@ -66,7 +67,7 @@ public class MenuUpdateADM {
                         gerente.setSenha(senha);
                     }
                     case 4 -> {
-                        int departamento = MenuSetGerente.menuSetDepartamento();
+                        Departamento departamento = MenuSetGerente.menuSetDepartamento();
                         gerenteService.updateDepartamento(adminModel, idGerente, departamento);
                         gerente.setDepartamento(departamento);
                     }

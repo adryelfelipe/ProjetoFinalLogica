@@ -1,23 +1,28 @@
 package ProjetoBase;
 
 import Models.GerenteModel;
+import Models.enumeracoes.Departamento;
 
 public class GerenteValidator {
     // -- Verifica regras de négoico -- //
     public static void verificaRegrasInsercaoGerente(GerenteModel gerente) {
-        verificaRegrasIdDepartamento(gerente.getDepartamento());
+        verificaRegrasDepartamento(gerente.getDepartamento());
         UsuarioValidator.verificaRegrasInsercaoUsuario(gerente);
     }
 
-    public static void verificaRegrasIdDepartamento(int idDepartamento) {
-        if(idDepartamento > 3) {
+    public static void verificaRegrasDepartamento(Departamento departamento) {
+        if(departamento == null) {
+            throw new IllegalStateException("ERRO! O DEPARTAMENTO NÃO PODE SER NULO");
+        }
+
+        if(departamento.getId() > 3) {
             throw new IllegalStateException("ERRO! ID DE DEPARTAMENTO INVÁLIDO");
         }
     }
 
     // -- Verifica integridade de dados -- //
-    public static void verificaIntegridadeIdDepartamento(int idDepartamento){
-        if(idDepartamento < 0) {
+    public static void verificaIntegridadeDepartamento(Departamento idDepartamento){
+        if(idDepartamento.getId() < 0) {
             throw new IllegalArgumentException("ERRO! O ID NÃO PODE SER NEGATIVO");
         }
     }

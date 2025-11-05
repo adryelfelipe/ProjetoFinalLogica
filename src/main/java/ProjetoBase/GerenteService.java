@@ -2,6 +2,7 @@ package ProjetoBase;
 
 import Models.GerenteModel;
 import Models.UsuarioModel;
+import Models.enumeracoes.Departamento;
 import Repositories.GerenteDAO;
 import Repositories.UsuarioDAO;
 
@@ -21,10 +22,10 @@ public class GerenteService {
         gerenteDAO.inserirGerente(gerenteInserido);
     }
 
-    public void updateDepartamento(UsuarioModel usuario, long id, int idDepartamento) {
+    public void updateDepartamento(UsuarioModel usuario, long id, Departamento departamento) {
         UsuarioValidator.temNivelAcesso4(usuario);
-        GerenteValidator.verificaIntegridadeIdDepartamento(idDepartamento);
-        GerenteValidator.verificaRegrasIdDepartamento(idDepartamento);
-        gerenteDAO.updateDepartamento(id, idDepartamento);
+        GerenteValidator.verificaRegrasDepartamento(departamento);
+        GerenteValidator.verificaIntegridadeDepartamento(departamento);
+        gerenteDAO.updateDepartamento(id, departamento);
     }
 }

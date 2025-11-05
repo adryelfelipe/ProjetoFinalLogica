@@ -2,6 +2,7 @@ package Views;
 
 import Models.AdminModel;
 import Models.GerenteModel;
+import Models.enumeracoes.Departamento;
 import ProjetoBase.GerenteService;
 import ProjetoBase.GerenteValidator;
 import Util.Ferramentas;
@@ -26,7 +27,7 @@ public class MenuCadastroADM {
         Ferramentas.limpaTerminal();
 
         // ----- Atribuição de caracteríscticas de um Gerente ----- //
-        int idDepartamento = MenuSetGerente.menuSetDepartamento();
+        Departamento idDepartamento = MenuSetGerente.menuSetDepartamento();
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //

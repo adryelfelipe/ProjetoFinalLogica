@@ -2,6 +2,7 @@ package Repositories;
 
 import Database.ConnectionFactory;
 import Models.*;
+import Models.enumeracoes.Departamento;
 
 import java.sql.*;
 
@@ -147,7 +148,13 @@ public class UsuarioDAO
                             break;
 
                         case 3:
-                            int departamento = rs.getInt("id_departamento");
+                            int idDepartamento = rs.getInt("id_departamento");
+
+                            Departamento departamento = switch (idDepartamento) {
+                                case 1 -> Departamento.ELETRICA;
+                                default -> Departamento.MECANICA;
+                            };
+
                             usuarioModel = new GerenteModel(id, nome, cpf, senha, departamento);
                             break;
 
