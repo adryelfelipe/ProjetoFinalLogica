@@ -8,7 +8,7 @@ public class MaquinaValidator {
     public static void verificaRegrasInsercaoMaquina(MaquinaModel maquina) {
         verificaRegrasNome(maquina.getNome());
         verificaRegrasLocalizacao(maquina.getLocalizacao());
-        verificaRegrasStatus(maquina.getStatus());
+        verificaRegrasStatus(maquina.getStatus().getId());
     }
 
     public static void verificaRegrasNome(String nome) {

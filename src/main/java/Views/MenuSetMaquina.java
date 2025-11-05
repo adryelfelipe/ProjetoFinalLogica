@@ -1,5 +1,6 @@
 package Views;
 
+import Models.joias.StatusMaquina;
 import Util.Ferramentas;
 import ProjetoBase.MaquinaValidator;
 
@@ -39,7 +40,7 @@ public class MenuSetMaquina {
         }
     }
 
-    public static int MenuSetStatusMaquina() {
+    public static StatusMaquina MenuSetStatusMaquina() {
         while(true) {
             int opcao;
 
@@ -48,17 +49,21 @@ public class MenuSetMaquina {
             System.out.println("|  3 - EM_MANUTENÇÃO             |");
             System.out.print("|  Escolha o Status: ");
 
-            try
-            {
+            try {
                 opcao = Ferramentas.lInteiro();
-                if(opcao > 3 || opcao < 1)
-                {
+
+                if(opcao > 3 || opcao < 1) {
                     Ferramentas.menuDefault();
-                } else
-                {
+                } else {
+                    StatusMaquina status = switch(opcao){
+                        case 1 -> StatusMaquina.FUNCIONANDO;
+                        case 2 -> StatusMaquina.DEFEITO;
+                        default -> StatusMaquina.EM_MANUTENCAO;
+                    };
+
                     MaquinaValidator.verificaIntegridadeStatus(opcao);
                     MaquinaValidator.verificaRegrasStatus(opcao);
-                    return opcao;
+                    return status;
                 }
             } catch(InputMismatchException e) {
                 Ferramentas.menuDefault();

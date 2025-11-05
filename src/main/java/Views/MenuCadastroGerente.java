@@ -2,6 +2,7 @@ package Views;
 
 import Models.*;
 import Models.joias.Especialidade;
+import Models.joias.StatusMaquina;
 import ProjetoBase.MaquinaService;
 import ProjetoBase.SupervisorService;
 import ProjetoBase.TecnicoService;
@@ -64,7 +65,7 @@ public class MenuCadastroGerente {
         String localizacao = MenuSetMaquina.MenuSetLocalizacao();
         Ferramentas.limpaTerminal();
 
-        int idStatus = MenuSetMaquina.MenuSetStatusMaquina();
+        StatusMaquina idStatus = MenuSetMaquina.MenuSetStatusMaquina();
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //

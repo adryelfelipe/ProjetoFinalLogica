@@ -1,16 +1,18 @@
 package Models;
 
+import Models.joias.StatusMaquina;
+
 public class MaquinaModel {
 
     // -- Atributos -- //
     private long idMaquina;
     private String nome;
     private String localizacao;
-    private int status;
+    private StatusMaquina status;
 
 
     // Construtor com ID //
-    public MaquinaModel(long id, String nome, String localizacao, int idStatus) {
+    public MaquinaModel(long id, String nome, String localizacao, StatusMaquina idStatus) {
         setNome(nome);
         setIdMaquina(id);
         setLocalizacao(localizacao);
@@ -18,7 +20,7 @@ public class MaquinaModel {
     }
 
     // Construtor sem ID //
-    public MaquinaModel(String nome, String localizacao, int idStatus) {
+    public MaquinaModel(String nome, String localizacao, StatusMaquina idStatus) {
         this(0, nome, localizacao, idStatus);
     }
 
@@ -39,11 +41,11 @@ public class MaquinaModel {
         this.localizacao = localizacao;
     }
 
-    public int getStatus() {
+    public StatusMaquina getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(StatusMaquina status) {
         this.status = status;
     }
 

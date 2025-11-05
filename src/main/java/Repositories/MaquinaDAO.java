@@ -16,7 +16,7 @@ public class MaquinaDAO {
             //Definindo parametros (PreparedStatement).
             stmt.setString(1, maquina.getNome());
             stmt.setString(2, maquina.getLocalizacao());
-            stmt.setLong(3, maquina.getStatus());
+            stmt.setLong(3, maquina.getStatus().getId());
 
             int linhasAF = stmt.executeUpdate();
 
