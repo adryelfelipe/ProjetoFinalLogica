@@ -67,8 +67,6 @@ public class MenuGerenteRemoverUsuarios {
         long id;
         Ferramentas.limpaTerminal();
 
-        System.out.println("[EXCLUIR]");
-
         while (!verifica) {
             System.out.print("--- REMOVER TÉCNICO ---");
             try {
@@ -93,8 +91,6 @@ public class MenuGerenteRemoverUsuarios {
         boolean verifica = false;
         long id;
         Ferramentas.limpaTerminal();
-
-        System.out.println("[EXCLUIR]");
 
         while (!verifica) {
             System.out.print("--- REMOVER SUPERVISOR ---");
