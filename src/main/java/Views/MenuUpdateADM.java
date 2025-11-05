@@ -4,13 +4,9 @@ import Models.AdminModel;
 import Models.GerenteModel;
 import ProjetoBase.GerenteService;
 import ProjetoBase.UsuarioService;
-import Repositories.GerenteDAO;
-import Repositories.UsuarioDAO;
 import Util.Ferramentas;
 
-import java.sql.SQLOutput;
-
-public class MenuAdminUpdateGerente {
+public class MenuUpdateADM {
 
     private static final GerenteService gerenteService = new GerenteService();
     private static final UsuarioService usuarioService = new UsuarioService();
@@ -20,9 +16,11 @@ public class MenuAdminUpdateGerente {
         long idGerente;
         int opcaoAdm = 0;
 
-        try {
+        try
+        {
             idGerente = MenuEscolhaId.escolhaIdUpdate();
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e)
+        {
             Ferramentas.mensagemErro(e.getMessage());
             return;
         }

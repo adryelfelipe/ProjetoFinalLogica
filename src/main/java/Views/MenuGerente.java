@@ -30,7 +30,7 @@ public class MenuGerente
                 switch (opcaoGerente) {
                     case 1 -> MenuGerenteCadastrar.criarUsuarios(gerenteModel);
                     case 2 -> MenuGerenteVisualizarRelatorios.visualizarRelatorios();
-                    case 3 -> MenuGerenteUpdateTecnico_Supervisor.menuUpdateEscolha(gerenteModel);
+                    case 3 -> MenuUpdateGerente.menuUpdateEscolha(gerenteModel);
                     case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha(gerenteModel);
                     case 5 ->
                     {
