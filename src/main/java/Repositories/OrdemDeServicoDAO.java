@@ -180,9 +180,33 @@ public class OrdemDeServicoDAO
             System.err.println("ERRO ao atualizar o id do tecnico da ordem de serviços");
         }
     }
-    public OrdemDeServicoModel findByIdOS(long idOS)
-    {
+    public OrdemDeServicoModel findByIdOS(long idOS) {
+        String querySQL = "SELECT * FROM OrdemServicos WHERE id_os = ?";
 
+        OrdemDeServicoModel os = null;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
+
+            stmt.setLong(1, idOS);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next())
+                {
+                    os.setIdOrdemDeServico(rs.getLong("id_os"));
+                    os.setDescricao(rs.getString("descricao"));
+                    os.setStatusOS.getId(rs.getInt("status_ordem"));
+                    os.setValorDaOrdemDeServico(rs.getDouble("custo"));
+                    os.setIdMaquina(rs.getInt("id_maquina"));
+                    os.setIdTecnico(rs.getInt("id_tecnico"));
+                    return os;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("ERRO ao buscar OS com ID: " + idOS);
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
