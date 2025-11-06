@@ -1,5 +1,7 @@
 package Views;
 
+import Models.joias.Departamento;
+import Models.joias.StatusOS;
 import ProjetoBase.*;
 import Util.Ferramentas;
 
@@ -7,7 +9,49 @@ import java.util.InputMismatchException;
 
 public class MenuSetOrdemDeServico {
     private static final UsuarioService usuarioService = new UsuarioService();
-    private static final MaquinaService maquinaService = new MaquinaService();
+
+    public static StatusOS menuSetStatusOS()
+    {
+        int opcao;
+
+        while(true)
+        {
+            System.out.println("|━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━|");
+            System.out.println("┃  Escolha   ┃");
+            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+            System.out.println("┃                                ┃");
+            System.out.println("┃  1 - Em Andamento              ┃");
+            System.out.println("┃  2 - Atrasada                  ┃");
+            System.out.println("┃  3 - Fechada                   ┃");
+            System.out.println("|━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━|");
+            System.out.print("┃  Escolha: ");
+
+            try
+            {
+                opcao = Ferramentas.lInteiro();
+                if(opcao > 3 || opcao < 1)
+                {
+                    Ferramentas.menuDefault();
+                } else
+                {
+                    StatusOS statusOS = switch (opcao)
+                    {
+                        case 1 -> StatusOS.EM_ANDAMENTO;
+                        case 2 -> StatusOS.ATRASADA;
+                        default -> StatusOS.FECHADA;
+                    };
+
+                    OrdemDeServicoValidator.verificaRegrasStatus(statusOS.getId());
+                    OrdemDeServicoValidator.verificaIntegridadeStatus(statusOS);
+                    return statusOS;
+                }
+            } catch(InputMismatchException e) {
+                Ferramentas.menuDefault();
+            } catch (IllegalArgumentException | IllegalStateException e) {
+                Ferramentas.mensagemErro(e.getMessage());
+            }
+        }
+    }
 
     public static long SetIdTecnico(){
         int idTecnico;
@@ -21,26 +65,6 @@ public class MenuSetOrdemDeServico {
                 UsuarioValidator.verificaIntegridadeIdUsuario(idTecnico);
                 usuarioService.isIdExistenteValidator(idTecnico);
                 return idTecnico;
-            } catch (IllegalArgumentException e) {
-                Ferramentas.mensagemErro(e.getMessage());
-            } catch (InputMismatchException e) {
-                Ferramentas.menuDefault();
-            }
-        }
-    }
-
-    public static long SetIdMaquina(){
-        int idMaquina;
-
-        while(true)
-        {
-            System.out.println("|  Digite o ID da máquina: ");
-
-            try {
-                idMaquina = Ferramentas.lInteiro();
-                UsuarioValidator.verificaIntegridadeIdUsuario(idMaquina);
-                maquinaService.isIdExistenteValidator(idMaquina);
-                return idMaquina;
             } catch (IllegalArgumentException e) {
                 Ferramentas.mensagemErro(e.getMessage());
             } catch (InputMismatchException e) {
