@@ -26,4 +26,11 @@ public class SupervisorService {
         SupervisorValidator.verificaIntegridadeMetaMensal(metaMensal);
         supervisorDAO.updateMetaMensal(id, metaMensal);
     }
+
+    public void removerSupervisor(UsuarioModel usuarioExecutor, long idSupervisorARemover) {
+        UsuarioValidator.temNivelAcesso3(usuarioExecutor);
+        usuarioService.isIdExistenteValidator(idSupervisorARemover);
+        supervisorDAO.deletarSupervisor(idSupervisorARemover);
+        usuarioDAO.deletarUsuario(idSupervisorARemover);
+    }
 }

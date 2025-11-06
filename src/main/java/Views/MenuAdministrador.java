@@ -27,7 +27,7 @@ public class MenuAdministrador {
                 {
                     case 1 -> MenuCadastroADM.menuCadastroGerente(adminModel);
                     case 2 -> MenuUpdateADM.updateGerente(adminModel);
-                    case 3 -> MenuAdminRemoverGerente.removerGerente(adminModel);
+                    case 3 -> MenuAdminRemoverGerente.menuRemoverEscolha(adminModel);
                     case 4 -> MenuInicial.Menu();
                     default -> Ferramentas.menuDefault();
                 }
