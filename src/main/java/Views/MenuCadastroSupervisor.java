@@ -3,6 +3,7 @@ package Views;
 import Models.GerenteModel;
 import Models.OrdemDeServicoModel;
 import Models.SupervisorModel;
+import Models.joias.StatusOS;
 import ProjetoBase.OrdemDeServicoService;
 import Util.Ferramentas;
 import ProjetoBase.SupervisorService;
@@ -42,7 +43,7 @@ public class MenuCadastroSupervisor
         Ferramentas.Delay(1000);
 
         try {
-            OrdemDeServicoModel ordemServico = new OrdemDeServicoModel(idTecnico, idMaquina,1, descricao, valorOrdemServico);
+            OrdemDeServicoModel ordemServico = new OrdemDeServicoModel(idTecnico, idMaquina,StatusOS.EM_ANDAMENTO, descricao, valorOrdemServico);
             ordemDeServicoService.inserirOrdemDeServico(supervisor, ordemServico);
             Ferramentas.limpaTerminal();
             System.out.println("MÁQUINA CADASTRADO COM SUCESSO!");

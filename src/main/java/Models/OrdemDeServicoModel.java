@@ -1,11 +1,13 @@
 package Models;
 
+import Models.joias.Departamento;
+import Models.joias.StatusOS;
 import ProjetoBase.OrdemDeServicoValidator;
 
 public class OrdemDeServicoModel
 {
     //--------------------  ATRIBUTOS  --------------------//
-    private int statusDaOrdem;
+    private StatusOS statusDaOrdem;
     private long idOrdemDeServico;
     private String descricao;
     private long id_Maquina;
@@ -13,7 +15,7 @@ public class OrdemDeServicoModel
     private double valorDaOrdemDeServico;
 
     //--------------------  CONSTRUTOR COM ID --------------------//
-    public OrdemDeServicoModel(long idOrdemDeServico, long id_Tecnico, long id_Maquina, int statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
+    public OrdemDeServicoModel(long idOrdemDeServico, long id_Tecnico, long id_Maquina, StatusOS statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
         this.idOrdemDeServico = idOrdemDeServico;
         this.id_Tecnico = id_Tecnico;
         this.id_Maquina = id_Maquina;
@@ -23,7 +25,7 @@ public class OrdemDeServicoModel
     }
 
     //--------------------  CONSTRUTOR SEM ID --------------------//
-    public OrdemDeServicoModel(long id_Tecnico, long id_Maquina, int statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
+    public OrdemDeServicoModel(long id_Tecnico, long id_Maquina, StatusOS statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
         this(0, id_Tecnico, id_Maquina, statusDaOrdem, descricao, valorDaOrdemDeServico);
     }
 
@@ -34,7 +36,7 @@ public class OrdemDeServicoModel
         return idOrdemDeServico;
     }
 
-    public int getStatusDaOrdem()
+    public StatusOS getStatusDaOrdem()
     {
         return statusDaOrdem;
     }
@@ -65,7 +67,7 @@ public class OrdemDeServicoModel
         this.idOrdemDeServico = idOrdemDeServico;
     }
 
-    public void setStatusDaOrdem(int statusDaOrdem)
+    public void setStatusDaOrdem(StatusOS statusDaOrdem)
     {
         OrdemDeServicoValidator.verificaIntegridadeStatus(statusDaOrdem);
         this.statusDaOrdem = statusDaOrdem;
