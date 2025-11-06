@@ -200,6 +200,7 @@ public class OrdemDeServicoDAO
                     double custo = rs.getDouble("custo");
                     long idMaquina = (rs.getLong("id_maquina"));
                     long idTecnico = rs.getLong("id_tecnico");
+                    long idSupervisor = (rs.getLong("id_supervisor"));
                     StatusOS statusOS = switch (StatusOrdem) {
                         case 1 -> StatusOS.EM_ANDAMENTO;
                         case 2 -> StatusOS.ATRASADA;
