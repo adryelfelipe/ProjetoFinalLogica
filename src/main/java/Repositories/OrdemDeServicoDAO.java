@@ -16,7 +16,7 @@ public class OrdemDeServicoDAO
             PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS))
         {
             stmt.setString(2, ordemDeServico.getDescricao());
-            stmt.setInt(3, ordemDeServico.getStatusDaOrdem());
+            stmt.setInt(3, ordemDeServico.getStatusOS().getId());
             stmt.setDouble(4, ordemDeServico.getValorDaOrdemDeServico());
 
             int linhasAF = stmt.executeUpdate();
@@ -180,4 +180,9 @@ public class OrdemDeServicoDAO
             System.err.println("ERRO ao atualizar o id do tecnico da ordem de serviços");
         }
     }
+    public OrdemDeServicoModel findByIdOS(long idOS)
+    {
+
+    }
+
 }

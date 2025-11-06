@@ -1,13 +1,14 @@
 package ProjetoBase;
 
 import Models.OrdemDeServicoModel;
+import Models.joias.StatusOS;
 
 public class OrdemDeServicoValidator
 {
     // -- Verifica regras de negócio -- //
     public static void verificaRegrasInsercaoOS(OrdemDeServicoModel ordemServico) {
         verificaRegrasDescricao(ordemServico.getDescricao());
-        verificaRegrasStatus(ordemServico.getStatusDaOrdem());
+        verificaRegrasStatus(ordemServico.getStatusDaOrdem().getId());
     }
 
     public static void verificaRegrasDescricao(String descricao) {
@@ -27,8 +28,8 @@ public class OrdemDeServicoValidator
     }
 
     // -- Verifica integridade de dados -- //
-    public static void verificaIntegridadeStatus(int Status) {
-        if(Status < 0) {
+    public static void verificaIntegridadeStatus(StatusOS statusOS) {
+        if(statusOS.getId() < 0) {
             throw new IllegalArgumentException("ERRO! O ID DO STATUS NÃO PODE SER NEGATIVO");
         }
     }
