@@ -2,6 +2,7 @@ package Repositories;
 
 import Database.ConnectionFactory;
 import Models.MaquinaModel;
+import Models.joias.StatusMaquina;
 
 import java.sql.*;
 
@@ -86,12 +87,12 @@ public class MaquinaDAO {
     }
 
     // Comando para atualizar o status de uma máquina existente dentro do Banco de Dados
-    public void updateStatusMaquina(long id, String novoStatus) {
+    public void updateStatusMaquina(long id, StatusMaquina novoStatus) {
         String querySQL = "UPDATE Maquinas" + "SET id_sm = ?" + "WHERE id_maquina";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(querySQL)) {
-            stmt.setString(1, novoStatus);
+            stmt.setInt(1, novoStatus.getId());
             stmt.setLong(2, id);
 
             stmt.executeUpdate();
@@ -111,7 +112,7 @@ public class MaquinaDAO {
 
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
+            if(rs.next()) {
                 return true;
             } else {
                 return false;
