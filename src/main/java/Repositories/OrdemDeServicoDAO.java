@@ -2,6 +2,7 @@ package Repositories;
 
 import Database.ConnectionFactory;
 import Models.OrdemDeServicoModel;
+import Models.joias.StatusOS;
 
 import java.sql.*;
 
@@ -16,7 +17,7 @@ public class OrdemDeServicoDAO
             PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS))
         {
             stmt.setString(2, ordemDeServico.getDescricao());
-            stmt.setInt(3, ordemDeServico.getStatusOS().getId());
+            stmt.setInt(3, ordemDeServico.getStatusDaOrdem().getId());
             stmt.setDouble(4, ordemDeServico.getValorDaOrdemDeServico());
 
             int linhasAF = stmt.executeUpdate();
@@ -193,20 +194,24 @@ public class OrdemDeServicoDAO
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next())
                 {
-                    os.setIdOrdemDeServico(rs.getLong("id_os"));
-                    os.setDescricao(rs.getString("descricao"));
-                    os.setStatusOS.getId(rs.getInt("status_ordem"));
-                    os.setValorDaOrdemDeServico(rs.getDouble("custo"));
-                    os.setIdMaquina(rs.getInt("id_maquina"));
-                    os.setIdTecnico(rs.getInt("id_tecnico"));
-                    return os;
+                    long id = rs.getLong("id_os");
+                    String descricao = rs.getString("descricao");
+                    int StatusOrdem = rs.getInt("status_ordem");
+                    double custo = rs.getDouble("custo");
+                    long idMaquina = (rs.getLong("id_maquina"));
+                    long idTecnico = rs.getLong("id_tecnico");
+                    StatusOS statusOS = switch (StatusOrdem) {
+                        case 1 -> StatusOS.EM_ANDAMENTO;
+                        case 2 -> StatusOS.ATRASADA;
+                        default -> StatusOS.FECHADA;
+                    };
+                    os = new OrdemDeServicoModel(id, idTecnico, idMaquina, statusOS, descricao, custo);
                 }
             }
+            return os;
         } catch (SQLException e) {
             System.err.println("ERRO ao buscar OS com ID: " + idOS);
-            e.printStackTrace();
         }
-        return null;
+        return os;
     }
-
 }
