@@ -27,7 +27,7 @@ public class MenuCadastroSupervisor
         try{
             idTecnico = MenuSetOrdemDeServico.SetIdTecnico();
             Ferramentas.limpaTerminal();
-            idMaquina = MenuSetOrdemDeServico.SetIdMaquina();
+            idMaquina = MenuSetMaquina.SetIdMaquina();
         } catch (IllegalStateException e) {
             Ferramentas.mensagemErro(e.getMessage());
             return;
@@ -43,7 +43,7 @@ public class MenuCadastroSupervisor
         Ferramentas.Delay(1000);
 
         try {
-            OrdemDeServicoModel ordemServico = new OrdemDeServicoModel(idTecnico, idMaquina,StatusOS.EM_ANDAMENTO, descricao, valorOrdemServico);
+            OrdemDeServicoModel ordemServico = new OrdemDeServicoModel(idTecnico, supervisor.getIdUsuario(), idMaquina,StatusOS.EM_ANDAMENTO, descricao, valorOrdemServico);
             ordemDeServicoService.inserirOrdemDeServico(supervisor, ordemServico);
             Ferramentas.limpaTerminal();
             System.out.println("MÁQUINA CADASTRADO COM SUCESSO!");

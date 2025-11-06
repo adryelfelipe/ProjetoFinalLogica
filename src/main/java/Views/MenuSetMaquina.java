@@ -1,14 +1,20 @@
 package Views;
 
 import Models.joias.StatusMaquina;
+import ProjetoBase.MaquinaService;
+import ProjetoBase.UsuarioValidator;
 import Util.Ferramentas;
 import ProjetoBase.MaquinaValidator;
 
 import java.util.InputMismatchException;
 
 public class MenuSetMaquina {
+
+    private static final MaquinaService maquinaService = new MaquinaService();
+
     //SET NOME DO USUÁRIO
-    public static String MenuSetNomeMaquina() {
+    public static String MenuSetNomeMaquina()
+    {
         while(true) {
             System.out.print("|  Digite o Nome: ");
             String nome = Ferramentas.lString();
@@ -69,6 +75,26 @@ public class MenuSetMaquina {
                 Ferramentas.menuDefault();
             } catch (IllegalArgumentException | IllegalStateException e) {
                 Ferramentas.mensagemErro(e.getMessage());
+            }
+        }
+    }
+
+    public static long SetIdMaquina(){
+        int idMaquina;
+
+        while(true)
+        {
+            System.out.println("|  Digite o ID da máquina: ");
+
+            try {
+                idMaquina = Ferramentas.lInteiro();
+                UsuarioValidator.verificaIntegridadeIdUsuario(idMaquina);
+                maquinaService.isIdExistenteValidator(idMaquina);
+                return idMaquina;
+            } catch (IllegalArgumentException e) {
+                Ferramentas.mensagemErro(e.getMessage());
+            } catch (InputMismatchException e) {
+                Ferramentas.menuDefault();
             }
         }
     }

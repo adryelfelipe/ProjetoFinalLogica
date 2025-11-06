@@ -12,12 +12,14 @@ public class OrdemDeServicoModel
     private String descricao;
     private long id_Maquina;
     private long id_Tecnico;
+    private long id_Supervisor;
     private double valorDaOrdemDeServico;
 
     //--------------------  CONSTRUTOR COM ID --------------------//
-    public OrdemDeServicoModel(long idOrdemDeServico, long id_Tecnico, long id_Maquina, StatusOS statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
+    public OrdemDeServicoModel(long idOrdemDeServico, long id_Tecnico, long id_Supervisor, long id_Maquina, StatusOS statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
         this.idOrdemDeServico = idOrdemDeServico;
         this.id_Tecnico = id_Tecnico;
+        this.id_Supervisor = id_Supervisor;
         this.id_Maquina = id_Maquina;
         this.statusDaOrdem = statusDaOrdem;
         this.descricao = descricao;
@@ -25,8 +27,8 @@ public class OrdemDeServicoModel
     }
 
     //--------------------  CONSTRUTOR SEM ID --------------------//
-    public OrdemDeServicoModel(long id_Tecnico, long id_Maquina, StatusOS statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
-        this(0, id_Tecnico, id_Maquina, statusDaOrdem, descricao, valorDaOrdemDeServico);
+    public OrdemDeServicoModel(long id_Tecnico, long id_Supervisor, long id_Maquina, StatusOS statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
+        this(0, id_Tecnico, id_Supervisor, id_Maquina, statusDaOrdem, descricao, valorDaOrdemDeServico);
     }
 
     //-------------  SETTERS E GETTERS  -------------//
@@ -56,6 +58,10 @@ public class OrdemDeServicoModel
         return id_Tecnico;
     }
 
+    public long getId_Supervisor() {
+        return id_Supervisor;
+    }
+
     public double getValorDaOrdemDeServico()
     {
         return valorDaOrdemDeServico;
@@ -79,16 +85,22 @@ public class OrdemDeServicoModel
         this.descricao = descricao;
     }
 
-    public void setIdMaquina(int idMaquina)
+    public void setIdMaquina(long idMaquina)
     {
         OrdemDeServicoValidator.verificaIntegridadeIdMaquina(idMaquina);
         this.id_Maquina = idMaquina;
     }
 
-    public void setIdTecnico(int idTecnico)
+    public void setIdTecnico(long idTecnico)
     {
         OrdemDeServicoValidator.verificaIntegridadeIdTecnico(idTecnico);
         this.id_Tecnico = idTecnico;
+    }
+
+    public void setId_Supervisor(long id_Supervisor)
+    {
+        //OrdemDeServicoValidator.
+        this.id_Supervisor = id_Supervisor;
     }
 
     public void setValorDaOrdemDeServico(double valorDaOrdemDeServico)
