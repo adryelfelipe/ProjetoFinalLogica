@@ -28,4 +28,11 @@ public class GerenteService {
         GerenteValidator.verificaIntegridadeDepartamento(departamento);
         gerenteDAO.updateDepartamento(id, departamento);
     }
+
+    public void removerGerente(UsuarioModel usuarioExecutor, long idGerenteARemover) {
+        UsuarioValidator.temNivelAcesso4(usuarioExecutor);
+        usuarioService.isIdExistenteValidator(idGerenteARemover);
+        gerenteDAO.deletarGerente(idGerenteARemover);
+        usuarioDao.deletarUsuario(idGerenteARemover);
+    }
 }

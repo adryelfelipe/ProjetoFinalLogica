@@ -1,6 +1,7 @@
 package ProjetoBase;
 
 import Models.UsuarioModel;
+import Models.joias.NivelAcesso;
 import Repositories.UsuarioDAO;
 
 public class UsuarioService {
@@ -10,25 +11,25 @@ public class UsuarioService {
 
     // -- Métodos -- //
     public void isCpfCadastradoValidator(String cpf) {
-        if(usuarioDao.verificarCpf(cpf)) {
+        if (usuarioDao.verificarCpf(cpf)) {
             throw new IllegalStateException("ERRO! CPF JÁ CADASTRADO");
         }
     }
 
     public void isIdCadastradorValidator(long id) {
-        if(false) {
+        if (false) {
             throw new IllegalStateException("ERRO! ID JÁ CADASTRADO");
         }
     }
 
     public void isCpfExistenteValidator(String cpf) {
-        if(!usuarioDao.verificarCpf(cpf)) {
+        if (!usuarioDao.verificarCpf(cpf)) {
             throw new IllegalStateException("ERRO! O CPF NÃO FOI ENCONTRADO");
         }
     }
 
     public void isIdExistenteValidator(long id) {
-        if(!usuarioDao.verificarId(id)) {
+        if (!usuarioDao.verificarId(id)) {
             throw new IllegalStateException("ERRO! O ID NÃO FOI ENCONTRADO");
         }
     }
@@ -48,7 +49,7 @@ public class UsuarioService {
         UsuarioValidator.verificaIntegridadeSenha(senha);
         usuarioDao.updateSenhaUsuario(id, senha);
 
-        if(UsuarioValidator.isAutoUpdate(usuario.getIdUsuario(), id)) {
+        if (UsuarioValidator.isAutoUpdate(usuario.getIdUsuario(), id)) {
             usuario.setSenha(senha);
         }
     }
@@ -59,7 +60,7 @@ public class UsuarioService {
         UsuarioValidator.verificaRegrasNome(nome);
         usuarioDao.updateNomeUsuario(id, nome);
 
-        if(UsuarioValidator.isAutoUpdate(usuario.getIdUsuario(), id)) {
+        if (UsuarioValidator.isAutoUpdate(usuario.getIdUsuario(), id)) {
             usuario.setNome(nome);
         }
     }
@@ -70,8 +71,15 @@ public class UsuarioService {
         UsuarioValidator.verificarRegrasCpf(cpf);
         usuarioDao.updateCpfUsuario(id, cpf);
 
-        if(UsuarioValidator.isAutoUpdate(usuario.getIdUsuario(), id)) {
+        if (UsuarioValidator.isAutoUpdate(usuario.getIdUsuario(), id)) {
             usuario.setCpf(cpf);
         }
     }
+
+    public long getNivelAcessoById(UsuarioModel usuario, long idUsuario) {
+        UsuarioValidator.temNivelAcesso3(usuario);
+        isIdExistenteValidator(idUsuario);
+        return usuarioDao.getNivelAcessoByID(idUsuario);
+    }
 }
+

@@ -28,4 +28,11 @@ public class TecnicoService {
         TecnicoValidator.verificaRegrasEspecialidade(especialidade);
         tecnicoDAO.updateEspecialidadeTecnico(id, especialidade);
     }
+
+    public void removerTecnico(UsuarioModel usuarioExecutor, long idTecnicoARemover) {
+        UsuarioValidator.temNivelAcesso3(usuarioExecutor);
+        usuarioService.isIdExistenteValidator(idTecnicoARemover);
+        tecnicoDAO.deletarTecnico(idTecnicoARemover);
+        usuarioDAO.deletarUsuario(idTecnicoARemover);
+    }
 }
