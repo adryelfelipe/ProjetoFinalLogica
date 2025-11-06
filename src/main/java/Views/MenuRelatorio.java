@@ -11,7 +11,8 @@ public class MenuRelatorio {
             System.out.println("|==========  RELATÓRIO  =========|");
             System.out.println("|================================|\n");
 
-            try{
+            try
+            {
 
             }catch(IllegalArgumentException | IllegalStateException e){
                 Ferramentas.menuDefault();
