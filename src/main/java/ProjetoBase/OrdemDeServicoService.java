@@ -17,7 +17,7 @@ public class OrdemDeServicoService
     }
 
     public void isIdExistenteValidator(long id) {
-        if(!ordemDeServicoDAO.) {
+        if(!ordemDeServicoDAO.verificarIdOS(id)) {
             throw new IllegalStateException("ERRO! O ID NÃO FOI ENCONTRADO");
         }
     }
@@ -61,6 +61,6 @@ public class OrdemDeServicoService
         UsuarioValidator.temNivelAcesso1(usuario);
         OrdemDeServicoValidator.verificaRegrasStatus(statusOS.getId());
         OrdemDeServicoValidator.verificaIntegridadeStatus(statusOS);
-        ordemDeServicoDAO.updateStatusOrdemDeServicos(idOS, statusOS.getId());
+        ordemDeServicoDAO.updateStatusOrdemDeServicos(idOS, statusOS);
     }
 }
