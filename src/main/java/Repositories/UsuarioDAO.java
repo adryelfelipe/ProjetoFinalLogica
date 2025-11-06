@@ -280,12 +280,12 @@ public class UsuarioDAO
 
             ResultSet rs = stmt.executeQuery();
 
-            //Se o id for lido, ou seja existe retorna true.
+            //Se o id for lido, ou seja, existe. Retorna true.
             if(rs.next())
             {
                 return true;
             }
-            //Caso contrario retorna false.
+            //Caso contrario, retorna false.
             else
             {
                 return false;
@@ -296,5 +296,28 @@ public class UsuarioDAO
             System.err.println("Erro ao verificar ID: ");
         }
         return false;
+    }
+
+    public long getNivelAcessoByID(long id)
+    {
+        String querySQL = "SELECT id_na FROM Usuario WHERE id_usuario = ?";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQL))
+        {
+            stmt.setLong(1, id);
+
+            try(ResultSet rs = stmt.executeQuery())
+            {
+                if(rs.next())
+                {
+                    return rs.getLong("id_na");
+                }
+            }
+        }
+         catch (SQLException e) {
+             System.err.println("ERRO ao consultar Nivel de Acesso do ID: " + id);
+         }
+        return -1;
     }
 }
