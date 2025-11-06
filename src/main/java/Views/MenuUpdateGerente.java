@@ -19,14 +19,14 @@ public class MenuUpdateGerente {
         {
 
             while(!verifica) {
-                System.out.println("|================================|");
-                System.out.println("|======== MENU ATUALIZAR  =======|");
-                System.out.println("|================================|");
-                System.out.println("|                                |");
-                System.out.println("|  1 - Alterar Técnico           |");
-                System.out.println("|  2 - Alterar Supervisor        |");
-                System.out.println("|  3 - Sair do Menu              |");
-                System.out.println("|================================|");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃         MENU ATUALIZAR         ┃");
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+                System.out.println("┃                                ┃");
+                System.out.println("┃  1 - Alterar Técnico           ┃");
+                System.out.println("┃  2 - Alterar Supervisor        ┃");
+                System.out.println("┃  3 - Sair do Menu              ┃");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("|  Escolha: ");
 
                 try
@@ -76,18 +76,19 @@ public class MenuUpdateGerente {
             {
 
                 System.out.println("\n                                                 \n");
-                System.out.println("         |--------------------------------|          ");
-                System.out.println("         |------  ATUALIZAR TECNICO  -----|          ");
-                System.out.println("         |--------------------------------|          ");
+                System.out.println("         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓          ");
+                System.out.println("         ┃       ATUALIZAR TECNICO       ┃         ");
+                System.out.println("         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛          ");
                 System.out.println("                                                     ");
-                System.out.println("|--------------------|         |--------------------|");
-                System.out.println("|  EDITAR   TÉCNICO  |         |        ATUAL       |");
-                System.out.println("|--------------------|         |--------------------|");
-                System.out.println("|  1 - Nome          |         |Nome: " + tecnico.getNome());
-                System.out.println("|  2 - CPF           |         |CPF: " + tecnico.getCpf());
-                System.out.println("|  3 - Senha         |         |Senha: " + tecnico.getSenha());
-                System.out.println("|  5 - Especialidade |         |Especialidade: " + tecnico.getEspecialidade());
-                System.out.println("|  6 - Sair do Menu  |");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃  EDITAR   TÉCNICO  ┃         ┃        ATUAL       ┃");
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┃  1 - Nome          ┃         ┃Nome: " + tecnico.getNome());
+                System.out.println("┃  2 - CPF           ┃         ┃CPF: " + tecnico.getCpf());
+                System.out.println("┃  3 - Senha         ┃         ┃Senha: " + tecnico.getSenha());
+                System.out.println("┃  5 - Especialidade ┃         ┃Especialidade: " + tecnico.getEspecialidade());
+                System.out.println("┃  6 - Sair do Menu  ┃");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("|  Escolha:  ");
 
                 try
@@ -156,18 +157,19 @@ public class MenuUpdateGerente {
             while(!verifica)
             {
                 System.out.println("\n                                                       \n");
-                System.out.println("             |--------------------------------|            ");
-                System.out.println("             |----  ATUALIZAR SUPERVISOR  ----|            ");
-                System.out.println("             |--------------------------------|            ");
+                System.out.println("             ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓            ");
+                System.out.println("             ┃      ATUALIZAR SUPERVISOR     ┃            ");
+                System.out.println("             ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛            ");
                 System.out.println("                                                            ");
-                System.out.println("|-----------------------|         |-----------------------|");
-                System.out.println("|  EDITAR   SUPERVISOR  |         |         ATUAL         |");
-                System.out.println("|-----------------------|         |-----------------------|");
-                System.out.println("|  1 - Nome             |         |Nome: " + supervisor.getNome());
-                System.out.println("|  2 - CPF              |         |CPF: " + supervisor.getCpf());
-                System.out.println("|  3 - Senha            |         |Senha: " + supervisor.getSenha());
-                System.out.println("|  5 - Meta Mensal      |         |Meta Mensal: " + supervisor.getMetaMensal());
-                System.out.println("|  6 - Sair do Menu     |");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃  EDITAR   SUPERVISOR  ┃         ┃         ATUAL         ┃");
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┃  1 - Nome             ┃         ┃Nome: " + supervisor.getNome());
+                System.out.println("┃  2 - CPF              ┃         ┃CPF: " + supervisor.getCpf());
+                System.out.println("┃  3 - Senha            ┃         ┃Senha: " + supervisor.getSenha());
+                System.out.println("┃  5 - Meta Mensal      ┃         ┃Meta Mensal: " + supervisor.getMetaMensal());
+                System.out.println("┃  6 - Sair do Menu     ┃");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("|  Escolha:  ");
 
                 try

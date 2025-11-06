@@ -24,9 +24,9 @@ public class MenuAdminRemoverGerente {
 
             while (!verifica)
             {
-                System.out.println("|  ----------------------------  |");
-                System.out.println("|  -----  EXCLUIR GERENTE -----  |");
-                System.out.println("|  ----------------------------  |");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃         EXCLUIR GERENTE        ┃");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println(" ");
                 try
                 {

@@ -10,9 +10,9 @@ public class MenuCadastroADM {
     private static final GerenteService gerenteService = new GerenteService();
 
     public static void menuCadastroGerente(AdminModel adminModel) {
-        System.out.println("|================================|");
-        System.out.println("|       CADASTRO GERENTE         |");
-        System.out.println("|================================|\n");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃       CADASTRO GERENTE         ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
         System.out.println(" ");
 
         // ----- Atribuição de caracteríscticas de um Usuário ----- //

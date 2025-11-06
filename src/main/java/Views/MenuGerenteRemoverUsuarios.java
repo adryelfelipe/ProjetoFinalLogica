@@ -28,16 +28,15 @@ public class MenuGerenteRemoverUsuarios {
         {
 
             while(!verifica) {
-                System.out.println("|================================|");
-                System.out.println("|======== MENU REMOVER  =======|");
-                System.out.println("|================================|");
-
-                System.out.print("\n\n"); // pula linhas
-
-                System.out.println("|  1 - REMOVER TÉCNICO           |");
-                System.out.println("|  2 - REMOVER SUPERVISOR        |");
-                System.out.println("|  3 - SAIR DO MENU              |");
-                System.out.println("|  Escolha: ");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃         MENU REMOVER           ┃");
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+                System.out.println("┃                                ┃");
+                System.out.println("┃  1 - REMOVER TÉCNICO           ┃");
+                System.out.println("┃  2 - REMOVER SUPERVISOR        ┃");
+                System.out.println("┃  3 - SAIR DO MENU              ┃");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┃ ➤ Escolha: ");
 
                 try
                 {

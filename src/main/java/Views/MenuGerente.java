@@ -12,14 +12,15 @@ public class MenuGerente
         while(!continuar) {
             System.out.println(" ");
             System.out.println(" ");
-            System.out.println("|==================================|");
-            System.out.println("|==========  MENU GERENTE  ========|");
-            System.out.println("|==================================|");
-            System.out.println("|  1 - Cadastrar                   |");
-            System.out.println("|  2 - Visualizar Relatórios       |");
-            System.out.println("|  3 - Atualizar Técnico/Supervisor|");
-            System.out.println("|  4 - Remover Técnico/Supervisor  |");
-            System.out.println("|  5 - Retornar                    |");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃          MENU GERENTE          ┃");
+            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+            System.out.println("┃  1 - Cadastrar                   ┃");
+            System.out.println("┃  2 - Visualizar Relatórios       ┃");
+            System.out.println("┃  3 - Atualizar Técnico/Supervisor┃");
+            System.out.println("┃  4 - Remover Técnico/Supervisor  ┃");
+            System.out.println("┗  5 - Retornar                    ");
+            System.out.println("┛");
             System.out.print("|  Escolha: ");
 
             try

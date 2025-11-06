@@ -13,14 +13,14 @@ public class MenuSupervisor
         int opcao = 0;
 
         while(!continuar) {
-            System.out.println("|================================|");
-            System.out.println("|=======  MENU SUPERVISOR  ======|");
-            System.out.println("|================================|");
-            System.out.println("|                                |");
-            System.out.println("| 1 - Cadastrar nova OS          |");
-            System.out.println("| 2 - Acompanhar status das OS   |");
-            System.out.println("| 3 - Retornar ao menu inicial   |");
-            System.out.println("|=================================|");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃         MENU SUPERVISOR        ┃");
+            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+            System.out.println("┃                                ┃");
+            System.out.println("┃  1 - Cadastrar nova OS         ┃");
+            System.out.println("┃  2 - Acompanhar status das OS  ┃");
+            System.out.println("┃  3 - Retornar ao menu inicial  ┃");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("| Escolha: ");
 
             try {

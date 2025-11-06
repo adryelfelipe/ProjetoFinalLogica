@@ -16,9 +16,9 @@ public class MenuCadastroGerente {
     private static final TecnicoService tecnicoService = new TecnicoService();
 
     public static void menuCadastroSupervisor(GerenteModel gerente) {
-        System.out.println("|================================|");
-        System.out.println("|       CADASTRO SUPERVISOR      |");
-        System.out.println("|================================|\n");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃       CADASTRO SUPERVISOR      ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
 
         System.out.println();
 
@@ -54,9 +54,9 @@ public class MenuCadastroGerente {
     }
 
     public static void menuCadastroMaquina(GerenteModel gerente) {
-        System.out.println("|================================|");
-        System.out.println("|       CADASTRO  MÁQUINA        |");
-        System.out.println("|================================|\n");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃       CADASTRO  MÁQUINA        ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
 
         // ----- Atribuição de caracteríscticas de uma Máquina ----- //
         String nome = MenuSetMaquina.MenuSetNomeMaquina();
@@ -86,9 +86,9 @@ public class MenuCadastroGerente {
 
     public static void menuCadastroTecnico(GerenteModel gerente) {
         System.out.println(" ");
-        System.out.println("|================================|");
-        System.out.println("|       CADASTRO  TÉCNICO        |");
-        System.out.println("|================================|");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃       CADASTRO  TÉCNICO        ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         // ----- Atribuição de caracteríscticas de um Usuário ----- //
         String nome = MenuSetUsuario.MenuSetNome();

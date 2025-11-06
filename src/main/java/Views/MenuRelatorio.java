@@ -7,9 +7,9 @@ public class MenuRelatorio {
         boolean continuar = true;
 
         while(!continuar){
-            System.out.println("|================================|");
-            System.out.println("|==========  RELATÓRIO  =========|");
-            System.out.println("|================================|\n");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃            RELATÓRIO           ┃");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
 
             try
             {

@@ -16,9 +16,9 @@ public class MenuLogin
 
         // Menu interativo
         while(!verifica) {
-            System.out.println("|================================|");
-            System.out.println("|             LOGIN              |");
-            System.out.println("|================================|");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃             LOGIN              ┃");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("|   Digite seu CPF: ");
 
             try {
