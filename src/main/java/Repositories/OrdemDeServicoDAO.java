@@ -88,14 +88,14 @@ public class OrdemDeServicoDAO
     }
 
     // Comando para atualizar os status de uma ordem de serviço existente do Banco de Dados
-    public void updateStatusOrdemDeServicos (long id, int novoStatus)
+    public void updateStatusOrdemDeServicos (long id, StatusOS novoStatus)
     {
         String querySQL = "UPDATE OrdemServicos" + "SET status_ordem = ?" + "WHERE id_os";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
         {
-            stmt.setInt(1, novoStatus);
+            stmt.setInt(1, novoStatus.getId());
             stmt.setLong(2, id);
 
             stmt.executeUpdate();
@@ -213,5 +213,34 @@ public class OrdemDeServicoDAO
             System.err.println("ERRO ao buscar OS com ID: " + idOS);
         }
         return os;
+    }
+
+    public boolean verificarIdOS(long id)
+    {
+        // Consulta MYSQL.
+        String querySql = "SELECT * FROM OrdemServico WHERE id_os = ? LIMIT 1";
+
+        // Pega a conexão
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(querySql))
+        {
+            stmt.setLong(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            //Se o id for lido, ou seja, existe. Retorna true.
+            if(rs.next()) {
+                return true;
+            }
+            //Caso contrario, retorna false.
+            else {
+                return false;
+            }
+        }
+        catch (SQLException e)
+        {
+            System.err.println("Erro ao verificar ID da ordem de servico: " + id);
+        }
+        return false;
     }
 }
