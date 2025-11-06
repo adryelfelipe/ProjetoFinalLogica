@@ -206,7 +206,7 @@ public class OrdemDeServicoDAO
                         case 2 -> StatusOS.ATRASADA;
                         default -> StatusOS.FECHADA;
                     };
-                    os = new OrdemDeServicoModel(id, idTecnico, idMaquina, statusOS, descricao, custo);
+                    os = new OrdemDeServicoModel(id, idTecnico, idSupervisor, idMaquina, statusOS, descricao, custo);
                 }
             }
             return os;
