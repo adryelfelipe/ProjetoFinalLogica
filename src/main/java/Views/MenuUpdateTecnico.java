@@ -47,10 +47,10 @@ public class MenuUpdateTecnico
                 System.out.println("┃   EDITAR   ORDEM   ┃         ┃        ATUAL       ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃  1 - Status        ┃         ┃Status: " + ordemDeServico.getStatusDaOrdem());
-                System.out.println("┃  \uD83D\uDEAB - Descrição     ┃         ┃Descrição: " + ordemDeServico.getDescricao());
-                System.out.println("┃  \uD83D\uDEAB - Maquina       ┃         ┃Maquina: " + ordemDeServico.getIdMaquina());
-                System.out.println("┃  \uD83D\uDEAB - Tecnico       ┃         ┃Técnico: " + ordemDeServico.getIdTecnico());
-                System.out.println("┃  \uD83D\uDEAB - Valor         ┃         ┃Valor: " + ordemDeServico.getValorDaOrdemDeServico());
+                System.out.println("┃  \uD83D\uDD12 - Descrição    ┃         ┃Descrição: " + ordemDeServico.getDescricao());
+                System.out.println("┃  \uD83D\uDD12 - Maquina      ┃         ┃Maquina: " + ordemDeServico.getIdMaquina());
+                System.out.println("┃  \uD83D\uDD12 - Tecnico      ┃         ┃Técnico: " + ordemDeServico.getIdTecnico());
+                System.out.println("┃  \uD83D\uDD12 - Valor        ┃         ┃Valor: " + ordemDeServico.getValorDaOrdemDeServico());
                 System.out.println("┃  6 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("  Escolha:  ");
