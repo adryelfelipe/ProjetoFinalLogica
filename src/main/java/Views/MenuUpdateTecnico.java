@@ -47,10 +47,10 @@ public class MenuUpdateTecnico
                 System.out.println("┃   EDITAR   ORDEM   ┃         ┃        ATUAL       ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃  1 - Status        ┃         ┃Status: " + ordemDeServico.getStatusDaOrdem());
-                System.out.println("┃  2 - Descrição     ┃         ┃Descrição: " + ordemDeServico.getDescricao());
-                System.out.println("┃  3 - Maquina       ┃         ┃Maquina: " + ordemDeServico.getIdMaquina());
-                System.out.println("┃  4 - Tecnico       ┃         ┃Técnico: " + ordemDeServico.getIdTecnico());
-                System.out.println("┃  5 - Valor         ┃         ┃Valor: " + ordemDeServico.getValorDaOrdemDeServico());
+                System.out.println("┃  \uD83D\uDD12 - Descrição    ┃         ┃Descrição: " + ordemDeServico.getDescricao());
+                System.out.println("┃  \uD83D\uDD12 - Maquina      ┃         ┃Maquina: " + ordemDeServico.getIdMaquina());
+                System.out.println("┃  \uD83D\uDD12 - Tecnico      ┃         ┃Técnico: " + ordemDeServico.getIdTecnico());
+                System.out.println("┃  \uD83D\uDD12 - Valor        ┃         ┃Valor: " + ordemDeServico.getValorDaOrdemDeServico());
                 System.out.println("┃  6 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("  Escolha:  ");
@@ -80,7 +80,7 @@ public class MenuUpdateTecnico
                     ordemDeServicoService.updateDescricaoOS(tecnico, idOrdem, descricao);
                     ordemDeServico.setDescricao(descricao);
                 }
-
+/*
                 case 3 -> {
                     long idMaquina = MenuSetMaquina.SetIdMaquina();
                     ordemDeServicoService.updateIdMaquinaOS(tecnico, idOrdem, idMaquina);
@@ -96,7 +96,7 @@ public class MenuUpdateTecnico
                     double valorOS = MenuSetOrdemDeServico.SetValorOS();
                     ordemDeServicoService.updateValorOS(tecnico, idOrdem, valorOS);
                     ordemDeServico.setValorDaOrdemDeServico(valorOS);
-                }
+                }*/
                 case 6 ->
                 {
                     return;
