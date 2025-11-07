@@ -11,14 +11,17 @@ public class OrdemDeServicoDAO
     // Comando para inserir uma ordem de serviço dentro do Banco de Dados
     public void inserirOrdemDeServico(OrdemDeServicoModel ordemDeServico)
     {
-        String querySQL = "INSERT INTO OrdemServicos (id_os, descricao, status_ordem, custo) VALUES (?, ?, ?, ?)";
+        String querySQL = "INSERT INTO OrdemServicos ( descricao, status_ordem, custo, id_supervisor, id_maquina, id_tecnico) VALUES (?, ?, ?, ?, ?, ?)";
         long idGerado = -1;
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS))
         {
-            stmt.setString(2, ordemDeServico.getDescricao());
-            stmt.setInt(3, ordemDeServico.getStatusDaOrdem().getId());
-            stmt.setDouble(4, ordemDeServico.getValorDaOrdemDeServico());
+            stmt.setString(1, ordemDeServico.getDescricao());
+            stmt.setInt(2, ordemDeServico.getStatusDaOrdem().getId());
+            stmt.setDouble(3, ordemDeServico.getValorDaOrdemDeServico());
+            stmt.setLong(4, ordemDeServico.getId_Supervisor());
+            stmt.setLong(5, ordemDeServico.getIdMaquina());
+            stmt.setLong(6, ordemDeServico.getIdTecnico());
 
             int linhasAF = stmt.executeUpdate();
 
@@ -36,7 +39,7 @@ public class OrdemDeServicoDAO
         }
         catch (SQLException e)
         {
-            System.err.println("ERRO AO INSERIR A ORDEM DE SERVIÇO");
+            System.err.println("ERRO AO INSERIR A ORDEM DE SERVIÇO" + e);
         }
     }
 
@@ -219,7 +222,7 @@ public class OrdemDeServicoDAO
     public boolean verificarIdOS(long id)
     {
         // Consulta MYSQL.
-        String querySql = "SELECT * FROM OrdemServico WHERE id_os = ? LIMIT 1";
+        String querySql = "SELECT * FROM OrdemServicos WHERE id_os = ? LIMIT 1";
 
         // Pega a conexão
         try (Connection conn = ConnectionFactory.getConnection();
@@ -240,7 +243,7 @@ public class OrdemDeServicoDAO
         }
         catch (SQLException e)
         {
-            System.err.println("Erro ao verificar ID da ordem de servico: " + id);
+            System.err.println("Erro ao verificar ID da ordem de servico: " + id + e);
         }
         return false;
     }
