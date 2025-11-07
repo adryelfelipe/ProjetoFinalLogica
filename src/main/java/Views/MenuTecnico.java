@@ -9,7 +9,7 @@ public class MenuTecnico
 {
     public static void menuTecnico(TecnicoModel tecnico)
     {
-        boolean continuar = true;
+        boolean continuar = false;
 
         while(!continuar)
         {

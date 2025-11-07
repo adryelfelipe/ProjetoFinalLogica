@@ -17,7 +17,7 @@ public class MenuSetOrdemDeServico {
         while(true)
         {
             System.out.println("|━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━|");
-            System.out.println("┃  Escolha   ┃");
+            System.out.println("┃     ESCOLHA O STATUS DA OS     ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                ┃");
             System.out.println("┃  1 - Em Andamento              ┃");
