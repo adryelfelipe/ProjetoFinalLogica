@@ -1,8 +1,16 @@
 package ProjetoBase;
 
+import Models.MaquinaModel;
+
 public class MaquinaValidator {
 
     // -- Verifica regras de negócio -- //
+    public static void verificaRegrasInsercaoMaquina(MaquinaModel maquina) {
+        verificaRegrasNome(maquina.getNome());
+        verificaRegrasLocalizacao(maquina.getLocalizacao());
+        verificaRegrasStatus(maquina.getStatus().getId());
+    }
+
     public static void verificaRegrasNome(String nome) {
         if (nome == null) {
             throw new IllegalStateException("ERRO! O NOME NÃO PODE SER NULO");
@@ -22,6 +30,10 @@ public class MaquinaValidator {
     public static void verificaRegrasLocalizacao(String localizacao) {
         if(localizacao == null) {
             throw new IllegalStateException("ERRO! A LOCALIZAÇÃO NÃO PODE SER NULA");
+        }
+
+        if (localizacao.length() < 2) {
+            throw new IllegalStateException("ERRO! A LOCALIZAÇÃO DEVE CONTER MAIS DE 1 CARACTER");
         }
     }
 

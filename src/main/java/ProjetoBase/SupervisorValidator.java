@@ -1,5 +1,7 @@
 package ProjetoBase;
 
+import Models.SupervisorModel;
+
 public class SupervisorValidator {
     // -- Verificações de Regras de Negócio -- //
     public static void verificarRegrasInsercaoSupervisor(SupervisorModel supervisor) {

@@ -1,10 +1,24 @@
 package ProjetoBase;
 
+import Models.UsuarioModel;
+import Models.joias.NivelAcesso;
+import Util.Ferramentas;
+
 public class UsuarioValidator {
 
     // -- Construtor -- //
     public UsuarioValidator() {
 
+    }
+
+    // -- Métodos de Verificação -- //
+    public static boolean isAutoUpdate(long idInsersor, long idInserido){
+        if(idInsersor == idInserido)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     // -- Métodos de Integridade -- //
@@ -22,6 +36,19 @@ public class UsuarioValidator {
         if(cpf.length() != 11) {
             throw  new IllegalArgumentException("ERRO! O CPF DEVE POSSUIR 11 DÍGITOS");
         }
+
+        if(cpf.contains(" ")) {
+            throw new IllegalArgumentException("ERRO! O CPF NÃO PODE CONTER ESPAÇOS");
+        }
+
+        // -- VALIDAÇÃO DE MAIUSCULAS E ESPECIAIS -- //
+        boolean verificaMaiuscula = FerramentaValidator.isContemMaiuscula(cpf);
+        boolean verificaMinuscula = FerramentaValidator.isContemMinuscula(cpf);
+        boolean verificaCaractereEspecial = FerramentaValidator.isContemCaractereEspecial(cpf);
+
+        if(verificaMaiuscula || verificaMinuscula || verificaCaractereEspecial) {
+            throw new IllegalArgumentException("ERRO! O CPF DEVE CONTER SOMENTE DÍGITOS");
+        }
     }
 
     public static void verificaIntegridadeSenha(String senha) {
@@ -36,8 +63,8 @@ public class UsuarioValidator {
         }
     }
 
-    public static void verificaIntegridadeNivelAcesso(long idNivelAcesso){
-        if(idNivelAcesso < 0) {
+    public static void verificaIntegridadeNivelAcesso(NivelAcesso nivelAcesso){
+        if(nivelAcesso.getId() < 0) {
             throw new IllegalArgumentException("ERRO! O ID NÃO PODE SER NEGATIVO");
         }
     }
@@ -102,22 +129,9 @@ public class UsuarioValidator {
 
 
         // -- VALIDAÇÃO DE MAIUSCULAS E ESPECIAIS -- //
-        boolean verificaMaiuscula = false;
-        boolean verificaEspecial = false;
-
-        for(String maiuscula : Ferramentas.listaMaiusculos) {
-            if (senha.contains(maiuscula)) {
-                verificaMaiuscula = true;
-                break;
-            }
-        }
-
-        for(String caractereEspecial : Ferramentas.listaEspeciais) {
-            if(senha.contains(caractereEspecial)) {
-                verificaEspecial = true;
-                break;
-            }
-        }
+        boolean verificaMaiuscula = FerramentaValidator.isContemMaiuscula(senha);
+        boolean verificaEspecial = FerramentaValidator.isContemCaractereEspecial(senha);
+        boolean verificaNumeros = FerramentaValidator.isContemNumero(senha);
 
         if(!verificaMaiuscula) {
             throw new IllegalStateException("ERRO! A SENHA DEVE CONTER UMA LETRA MAIÚSCULA");
@@ -126,34 +140,42 @@ public class UsuarioValidator {
         if(!verificaEspecial) {
             throw new IllegalStateException("ERRO! A SENHA DEVE CONTER UM CARACTERE ESPECIAL");
         }
+
+        if(!verificaNumeros) {
+            throw new IllegalStateException("ERRO! A SENHA DEVE CONTER UM NÚMERO");
+        }
     }
 
-    public static void verificaRegrasNivelAcesso(int idNivelAcesso) {
-        if(idNivelAcesso > 3) {
+    public static void verificaRegrasNivelAcesso(NivelAcesso nivelAcesso) {
+        if(nivelAcesso == null) {
+            throw new IllegalStateException("ERRO! O NÍVEL DE ACESSO NÃO PODE SER NULO");
+        }
+
+        if(nivelAcesso.getId() > 3) {
             throw new IllegalStateException("ERRO! ID DE NÍVEL DE ACESSO INVÁLIDO");
         }
     }
 
     public static void temNivelAcesso4(UsuarioModel usuario) {
-        if (!(usuario.getNivelAcesso() == 4)) {
+        if (!(usuario.getNivelAcesso().getId() == 4)) {
             throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
         }
     }
 
     public static void temNivelAcesso3(UsuarioModel usuario) {
-        if (!(usuario.getNivelAcesso() == 3)) {
+        if (!(usuario.getNivelAcesso().getId() == 3)) {
             throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
         }
     }
 
     public static void temNivelAcesso2(UsuarioModel usuario) {
-        if (!(usuario.getNivelAcesso() == 2)) {
+        if (!(usuario.getNivelAcesso().getId() == 2)) {
             throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
         }
     }
 
     public static void temNivelAcesso1(UsuarioModel usuario) {
-        if (!(usuario.getNivelAcesso() == 1)) {
+        if (!(usuario.getNivelAcesso().getId() == 1)) {
             throw new IllegalStateException("ERRO! FALTA DE PERMISSÃO");
         }
     }
