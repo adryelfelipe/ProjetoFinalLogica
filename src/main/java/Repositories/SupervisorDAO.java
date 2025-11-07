@@ -56,7 +56,7 @@ public class SupervisorDAO
     {
         String querySQL = "UPDATE FROM Supervisor s " +
                         "INNER JOIN Usuario u ON s.id_supervisor = u.id_usuario " +
-                        "SET meta_mensal = ?" +
+                        "SET meta_mensal = ? " +
                         "WHERE id_usuario = ?";
 
         try(Connection conn = ConnectionFactory.getConnection();

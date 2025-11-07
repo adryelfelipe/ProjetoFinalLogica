@@ -52,7 +52,7 @@ public class OrdemDeServicoValidator
         }
     }
 
-    public static void verificarValorDaOrdemDeServico(double valorDaOrdemDeServico) {
+    public static void verificarIntegridadeValor(double valorDaOrdemDeServico) {
         if (valorDaOrdemDeServico < 0.0) {
             throw new IllegalArgumentException("O VALOR DA ORDEM DE SERVIÇO NAO PODE SER NEGATIVO");
         }

@@ -9,7 +9,9 @@ import Repositories.OrdemDeServicoDAO;
 
 public class OrdemDeServicoService
 {
-    OrdemDeServicoDAO ordemDeServicoDAO = new OrdemDeServicoDAO();
+    private final OrdemDeServicoDAO ordemDeServicoDAO = new OrdemDeServicoDAO();
+    private final UsuarioService usuarioService = new UsuarioService();
+    private final MaquinaService maquinaService = new MaquinaService();
 
     public void inserirOrdemDeServico(UsuarioModel usuarioInseridor, OrdemDeServicoModel ordemInserida) {
         UsuarioValidator.temNivelAcesso2(usuarioInseridor);
@@ -33,6 +35,7 @@ public class OrdemDeServicoService
         OrdemDeServicoValidator.verificaIntegridadeIdOrdem_Servico(idOS);
         OrdemDeServicoValidator.verificaRegrasDescricao(descricao);
         OrdemDeServicoValidator.verificaIntegridadeDescricao(descricao);
+        isIdExistenteValidator(idOS);
         ordemDeServicoDAO.updateDescricaoOrdemDeServico(idOS, descricao);
     }
     public void updateIdMaquinaOS(UsuarioModel usuario, long idOS, long idMaquina)
@@ -40,6 +43,8 @@ public class OrdemDeServicoService
         UsuarioValidator.temNivelAcesso2(usuario);
         OrdemDeServicoValidator.verificaIntegridadeIdOrdem_Servico(idOS);
         OrdemDeServicoValidator.verificaIntegridadeIdMaquina(idMaquina);
+        maquinaService.isIdExistenteValidator(idMaquina);
+        isIdExistenteValidator(idOS);
         ordemDeServicoDAO.updateIdMaquina(idOS, idMaquina);
     }
     public void updateIdTecnico(UsuarioModel usuario, long idOS, long idTecnico)
@@ -47,6 +52,8 @@ public class OrdemDeServicoService
         UsuarioValidator.temNivelAcesso2(usuario);
         OrdemDeServicoValidator.verificaIntegridadeIdOrdem_Servico(idOS);
         OrdemDeServicoValidator.verificaIntegridadeIdTecnico(idTecnico);
+        usuarioService.isIdExistenteValidator(idTecnico);
+        isIdExistenteValidator(idOS);
         ordemDeServicoDAO.updateIdTecnico(idOS, idTecnico);
     }
 
@@ -54,7 +61,8 @@ public class OrdemDeServicoService
     {
         UsuarioValidator.temNivelAcesso2(usuario);
         OrdemDeServicoValidator.verificaIntegridadeIdOrdem_Servico(idOS);
-        OrdemDeServicoValidator.verificarValorDaOrdemDeServico(valorOS);
+        OrdemDeServicoValidator.verificarIntegridadeValor(valorOS);
+        isIdExistenteValidator(idOS);
         ordemDeServicoDAO.updateCustoOrdemDeServicos(idOS, valorOS);
     }
     public void updateStatusOS(UsuarioModel usuario, long idOS, StatusOS statusOS)
@@ -62,6 +70,7 @@ public class OrdemDeServicoService
         UsuarioValidator.temNivelAcesso1(usuario);
         OrdemDeServicoValidator.verificaRegrasStatus(statusOS.getId());
         OrdemDeServicoValidator.verificaIntegridadeStatus(statusOS);
+        isIdExistenteValidator(idOS);
         ordemDeServicoDAO.updateStatusOrdemDeServicos(idOS, statusOS);
     }
 

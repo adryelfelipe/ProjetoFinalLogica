@@ -55,4 +55,10 @@ public class MaquinaValidator {
             throw new IllegalArgumentException("ERRO! O ID_STATUS NÃO PODE SER NEGATIVO");
         }
     }
+
+    public static void verificaIntegridadeIdMaquina(long idMaquina) {
+        if(idMaquina < 0) {
+            throw new IllegalArgumentException("ERRO! O ID DA MÁQUINA NÃO PODE SER NEGATIVO");
+        }
+    }
 }

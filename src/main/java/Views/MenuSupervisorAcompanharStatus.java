@@ -3,10 +3,7 @@ package Views;
 import Models.AdminModel;
 import Models.OrdemDeServicoModel;
 import Models.SupervisorModel;
-import ProjetoBase.GerenteService;
-import ProjetoBase.OrdemDeServicoService;
-import ProjetoBase.SupervisorService;
-import ProjetoBase.UsuarioService;
+import ProjetoBase.*;
 import Util.Ferramentas;
 
     public class MenuSupervisorAcompanharStatus{
@@ -15,15 +12,13 @@ import Util.Ferramentas;
     private static final SupervisorService supervisorService = new SupervisorService();
     private static final OrdemDeServicoService ordemService = new OrdemDeServicoService();
 
-        // (Seus services...)
-        private static final OrdemDeServicoService ordemDeServicoService = new OrdemDeServicoService();
-
         public static void acompanharStatus(SupervisorModel supervisor) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃    ACOMPANHAR STATUS DE SO     ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
             try {
+                UsuarioValidator.temNivelAcesso2(supervisor);
                 long idDaOS = MenuEscolhaId.escolhaIdUpdate();
 
                OrdemDeServicoModel osEncontrada = ordemService.visualizarDetalhesDaOS(supervisor, idDaOS);
@@ -36,6 +31,4 @@ import Util.Ferramentas;
                 Ferramentas.mensagemErro(e.getMessage());
             }
         }
-
-
 }

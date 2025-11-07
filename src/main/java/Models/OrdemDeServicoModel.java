@@ -2,7 +2,9 @@ package Models;
 
 import Models.joias.Departamento;
 import Models.joias.StatusOS;
+import ProjetoBase.MaquinaValidator;
 import ProjetoBase.OrdemDeServicoValidator;
+import ProjetoBase.UsuarioValidator;
 
 public class OrdemDeServicoModel
 {
@@ -87,13 +89,13 @@ public class OrdemDeServicoModel
 
     public void setIdMaquina(long idMaquina)
     {
-        OrdemDeServicoValidator.verificaIntegridadeIdMaquina(idMaquina);
+        MaquinaValidator.verificaIntegridadeIdMaquina(idMaquina);
         this.id_Maquina = idMaquina;
     }
 
     public void setIdTecnico(long idTecnico)
     {
-        OrdemDeServicoValidator.verificaIntegridadeIdTecnico(idTecnico);
+        UsuarioValidator.verificaIntegridadeIdUsuario(idTecnico);
         this.id_Tecnico = idTecnico;
     }
 
@@ -105,7 +107,7 @@ public class OrdemDeServicoModel
 
     public void setValorDaOrdemDeServico(double valorDaOrdemDeServico)
     {
-        OrdemDeServicoValidator.verificarValorDaOrdemDeServico(valorDaOrdemDeServico);
+        OrdemDeServicoValidator.verificarIntegridadeValor(valorDaOrdemDeServico);
         this.valorDaOrdemDeServico = valorDaOrdemDeServico;
     }
 }
