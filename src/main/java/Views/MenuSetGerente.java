@@ -21,7 +21,7 @@ public class MenuSetGerente {
             System.out.println("┃  1 - Elétrica                  ┃");
             System.out.println("┃  2 - Mecânica                  ┃");
             System.out.println("|━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━|");
-            System.out.print("┃  Escolha: ");
+            System.out.print("┃ ➤ Escolha: ");
 
             try {
                 opcao = Ferramentas.lInteiro();

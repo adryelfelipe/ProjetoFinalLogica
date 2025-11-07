@@ -80,16 +80,17 @@ public class MenuUpdateGerente {
                 System.out.println("         ┃       ATUALIZAR TECNICO       ┃         ");
                 System.out.println("         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛          ");
                 System.out.println("                                                     ");
-                System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃  EDITAR   TÉCNICO  ┃         ┃        ATUAL       ┃");
-                System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┃  1 - Nome          ┃         ┃Nome: " + tecnico.getNome());
-                System.out.println("┃  2 - CPF           ┃         ┃CPF: " + tecnico.getCpf());
-                System.out.println("┃  3 - Senha         ┃         ┃Senha: " + tecnico.getSenha());
-                System.out.println("┃  5 - Especialidade ┃         ┃Especialidade: " + tecnico.getEspecialidade());
-                System.out.println("┃  6 - Sair do Menu  ┃");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃  EDITAR   TÉCNICO  ┃         ┃            ATUAL           ┃");
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+
+                System.out.println(String.format("┃  1 - Nome          ┃         ┃  %-26s┃", tecnico.getNome()));
+                System.out.println(String.format("┃  2 - CPF           ┃         ┃  %-26s┃", tecnico.getCpf()));
+                System.out.println(String.format("┃  3 - Senha         ┃         ┃  %-26s┃", tecnico.getSenha()));
+                System.out.println(String.format("┃  4 - Especialidade ┃         ┃  %-26s┃", tecnico.getEspecialidade()));
+                System.out.println("┃  5 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("|  Escolha:  ");
+                System.out.println("| ➤ Escolha:  ");
 
                 try
                 {
@@ -170,7 +171,7 @@ public class MenuUpdateGerente {
                 System.out.println("┃  5 - Meta Mensal      ┃         ┃Meta Mensal: " + supervisor.getMetaMensal());
                 System.out.println("┃  6 - Sair do Menu     ┃");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("|  Escolha:  ");
+                System.out.println("| ➤ Escolha:  ");
 
                 try
                 {

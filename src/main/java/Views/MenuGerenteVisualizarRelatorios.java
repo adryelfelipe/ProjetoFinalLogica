@@ -8,7 +8,7 @@ public class MenuGerenteVisualizarRelatorios
     {
         System.out.println(" ");
         System.out.println("|━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━|");
-        System.out.print("|  Digite o ID da Ordem de Serviço(SO): ");
+        System.out.print("| ➤ Digite o ID da Ordem de Serviço(SO): ");
 
         try
         {

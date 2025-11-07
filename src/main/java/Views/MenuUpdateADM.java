@@ -44,7 +44,7 @@ public class MenuUpdateADM {
             System.out.println("┃  5 - Departamento  ┃          ┃Departamento: " + gerente.getDepartamento());
             System.out.println("┃  6 - Sair do Menu  ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.println("|  Escolha:  ");
+            System.out.println("| ➤ Escolha:  ");
 
             try {
                 opcaoAdm = Ferramentas.lInteiro();

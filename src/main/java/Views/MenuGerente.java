@@ -21,7 +21,7 @@ public class MenuGerente
             System.out.println("┃  4 - Remover Técnico/Supervisor  ┃");
             System.out.println("┗  5 - Retornar                    ");
             System.out.println("┛");
-            System.out.print("|  Escolha: ");
+            System.out.print("| ➤ Escolha: ");
 
             try
             {

@@ -24,7 +24,7 @@ public class MenuSetOrdemDeServico {
             System.out.println("┃  2 - Atrasada                  ┃");
             System.out.println("┃  3 - Fechada                   ┃");
             System.out.println("|━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━|");
-            System.out.print("┃  Escolha: ");
+            System.out.print("┃ ➤ Escolha: ");
 
             try
             {
@@ -58,7 +58,7 @@ public class MenuSetOrdemDeServico {
 
         while(true)
         {
-            System.out.println("|  Digite o ID do técnico: ");
+            System.out.println("| ➤ Digite o ID do técnico: ");
 
             try {
                 idTecnico = Ferramentas.lInteiro();
@@ -75,7 +75,7 @@ public class MenuSetOrdemDeServico {
 
     public static String SetDescricao() {
         while(true) {
-            System.out.print("|  Digite a descrição da OS: ");
+            System.out.print("| ➤ Digite a descrição da OS: ");
             String descricao = Ferramentas.lString();
 
             try {
@@ -91,7 +91,7 @@ public class MenuSetOrdemDeServico {
 
     public static double SetValorOS() {
         while(true) {
-            System.out.print("|  Digite o valor da OS: R$");
+            System.out.print("| ➤ Digite o valor da OS: R$");
 
             try {
                 double valorOS = Ferramentas.lDouble();

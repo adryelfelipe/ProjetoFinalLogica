@@ -31,4 +31,9 @@ public class Especialidade {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return nome; // Retorna apenas o nome da especialidade
+    }
 }
