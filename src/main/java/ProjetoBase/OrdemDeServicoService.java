@@ -1,6 +1,7 @@
 package ProjetoBase;
 
 import Models.OrdemDeServicoModel;
+import Models.SupervisorModel;
 import Models.TecnicoModel;
 import Models.UsuarioModel;
 import Models.joias.StatusOS;
@@ -62,5 +63,14 @@ public class OrdemDeServicoService
         OrdemDeServicoValidator.verificaRegrasStatus(statusOS.getId());
         OrdemDeServicoValidator.verificaIntegridadeStatus(statusOS);
         ordemDeServicoDAO.updateStatusOrdemDeServicos(idOS, statusOS);
+    }
+
+    public OrdemDeServicoModel visualizarDetalhesDaOS(SupervisorModel supervisorModel, long idDaOS)
+    {
+        OrdemDeServicoModel os = ordemDeServicoDAO.findByIdOS(idDaOS);
+        if (os == null) {
+            throw new RuntimeException("Ordem de Serviço com ID " + idDaOS + " não encontrada.");
+        }
+        return os;
     }
 }
