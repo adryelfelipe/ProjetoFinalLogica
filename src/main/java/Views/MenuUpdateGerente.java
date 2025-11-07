@@ -83,7 +83,6 @@ public class MenuUpdateGerente {
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃  EDITAR   TÉCNICO  ┃         ┃            ATUAL           ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-
                 System.out.println(String.format("┃  1 - Nome          ┃         ┃  %-26s┃", tecnico.getNome()));
                 System.out.println(String.format("┃  2 - CPF           ┃         ┃  %-26s┃", tecnico.getCpf()));
                 System.out.println(String.format("┃  3 - Senha         ┃         ┃  %-26s┃", tecnico.getSenha()));
@@ -162,14 +161,14 @@ public class MenuUpdateGerente {
                 System.out.println("             ┃      ATUALIZAR SUPERVISOR     ┃            ");
                 System.out.println("             ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛            ");
                 System.out.println("                                                            ");
-                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃  EDITAR   SUPERVISOR  ┃         ┃         ATUAL         ┃");
-                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┃  1 - Nome             ┃         ┃Nome: " + supervisor.getNome());
-                System.out.println("┃  2 - CPF              ┃         ┃CPF: " + supervisor.getCpf());
-                System.out.println("┃  3 - Senha            ┃         ┃Senha: " + supervisor.getSenha());
-                System.out.println("┃  5 - Meta Mensal      ┃         ┃Meta Mensal: " + supervisor.getMetaMensal());
-                System.out.println("┃  6 - Sair do Menu     ┃");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃  EDITAR   SUPERVISOR  ┃         ┃            ATUAL           ┃");
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println(String.format("┃  1 - Nome          ┃         ┃  %-26s┃", supervisor.getNome()));
+                System.out.println(String.format("┃  2 - CPF           ┃         ┃  %-26s┃", supervisor.getCpf()));
+                System.out.println(String.format("┃  3 - Senha         ┃         ┃  %-26s┃", supervisor.getSenha()));
+                System.out.println(String.format("┃  4 - Meta Mensal   ┃         ┃  %-26s┃", supervisor.getMetaMensal()));
+                System.out.println("┃  6 - Sair do Menu     ┃         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("| ➤ Escolha:  ");
 

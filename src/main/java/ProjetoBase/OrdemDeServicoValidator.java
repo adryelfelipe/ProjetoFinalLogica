@@ -40,6 +40,12 @@ public class OrdemDeServicoValidator
         }
     }
 
+    public static void verificaIntegridadeIdSupervisor(long idSupervisor) {
+        if(idSupervisor < 0) {
+            throw new IllegalArgumentException("ERRO! O ID DO TÉCNICO NÃO PODE SER NEGATIVO");
+        }
+    }
+
     public static void verificaIntegridadeIdOrdem_Servico(long idOrdem_Servico) {
         if(idOrdem_Servico < 0) {
             throw new IllegalArgumentException("ERRO! O ID DA ORDEM DE SERVIÇO NÃO PODE SER NEGATIVO");

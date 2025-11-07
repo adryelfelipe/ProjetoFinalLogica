@@ -101,7 +101,7 @@ public class OrdemDeServicoModel
 
     public void setId_Supervisor(long id_Supervisor)
     {
-        //OrdemDeServicoValidator.
+        OrdemDeServicoValidator.verificaIntegridadeIdSupervisor(id_Supervisor);
         this.id_Supervisor = id_Supervisor;
     }
 

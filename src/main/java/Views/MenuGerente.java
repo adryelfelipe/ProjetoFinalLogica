@@ -12,15 +12,15 @@ public class MenuGerente
         while(!continuar) {
             System.out.println(" ");
             System.out.println(" ");
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃          MENU GERENTE          ┃");
-            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-            System.out.println("┃  1 - Cadastrar                   ┃");
-            System.out.println("┃  2 - Visualizar Relatórios       ┃");
-            System.out.println("┃  3 - Atualizar Técnico/Supervisor┃");
-            System.out.println("┃  4 - Remover Técnico/Supervisor  ┃");
-            System.out.println("┗  5 - Retornar                    ");
-            System.out.println("┛");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃            MENU GERENTE           ┃");
+            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+            System.out.println("┃  1 - Cadastrar                    ┃");
+            System.out.println("┃  2 - Visualizar Relatórios        ┃");
+            System.out.println("┃  3 - Atualizar Técnico/Supervisor ┃");
+            System.out.println("┃  4 - Remover Técnico/Supervisor   ┃");
+            System.out.println("┃  5 - Retornar                     ┃");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("| ➤ Escolha: ");
 
             try
@@ -30,7 +30,7 @@ public class MenuGerente
                 Ferramentas.limpaTerminal();
                 switch (opcaoGerente) {
                     case 1 -> MenuGerenteCadastrar.criarUsuarios(gerenteModel);
-                    case 2 -> MenuGerenteVisualizarRelatorios.visualizarRelatorios();
+                    case 2 -> MenuGerenteRelatorios.visualizarRelatorios();
                     case 3 -> MenuUpdateGerente.menuUpdateEscolha(gerenteModel);
                     case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha(gerenteModel);
                     case 5 ->

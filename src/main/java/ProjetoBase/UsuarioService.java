@@ -16,7 +16,7 @@ public class UsuarioService {
         }
     }
 
-    public void isIdCadastradorValidator(long id) {
+    public void isIdCadastradoValidator(long id) {
         if (false) {
             throw new IllegalStateException("ERRO! ID JÁ CADASTRADO");
         }
