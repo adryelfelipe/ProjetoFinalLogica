@@ -35,16 +35,16 @@ public class MenuUpdateADM {
             System.out.println("          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛          ");
 
             System.out.print("\n\n"); // pula linhas
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓          ┏━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃  EDITAR   GERENTE  ┃          ┃        ATUAL       ┃");
-            System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃          ┃━━━━━━━━━━━━━━━━━━━━┃");
-            System.out.println("┃  1 - Nome          ┃          ┃Nome: " + gerente.getNome());
-            System.out.println("┃  2 - CPF           ┃          ┃CPF: " + gerente.getCpf());
-            System.out.println("┃  3 - Senha         ┃          ┃Senha: " + gerente.getSenha());
-            System.out.println("┃  5 - Departamento  ┃          ┃Departamento: " + gerente.getDepartamento());
-            System.out.println("┃  6 - Sair do Menu  ┃");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓          ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃  EDITAR   GERENTE  ┃          ┃            ATUAL           ┃");
+            System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃          ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+            System.out.println(String.format("┃  1 - Nome          ┃          ┃  %-26s┃", gerente.getNome()));
+            System.out.println(String.format("┃  2 - CPF           ┃          ┃  %-26s┃" + gerente.getCpf()));
+            System.out.println(String.format("┃  3 - Senha         ┃          ┃  %-26s┃" + gerente.getSenha()));
+            System.out.println(String.format("┃  5 - Departamento  ┃          ┃  %-26s┃" + gerente.getDepartamento()));
+            System.out.println("┃  6 - Sair do Menu  ┃          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.println("| ➤ Escolha:  ");
+            System.out.println("┃ ➤ Escolha:  ");
 
             try {
                 opcaoAdm = Ferramentas.lInteiro();

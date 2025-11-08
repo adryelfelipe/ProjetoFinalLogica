@@ -43,7 +43,7 @@ public class MenuUpdateSupervisor
                 System.out.println(String.format("┃  2 - Descrição     ┃         ┃  %-26s┃" + ordemDeServico.getDescricao()));
                 System.out.println(String.format("┃  3 - Maquina       ┃         ┃  %-26s┃" + ordemDeServico.getIdMaquina()));
                 System.out.println(String.format("┃  4 - Tecnico       ┃         ┃  %-26s┃" + ordemDeServico.getIdTecnico()));
-                System.out.println(String.format("┃  5 - Valor         ┃         ┃  %-26s┃" + ordemDeServico.getValorDaOrdemDeServico()));
+                System.out.println(String.format("┃  5 - Valor        ┃         ┃  %-26s┃" + ordemDeServico.getValorDaOrdemDeServico()));
                 System.out.println("┃  6 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃ ➤ Escolha:  ");
@@ -51,8 +51,7 @@ public class MenuUpdateSupervisor
                 try {
                     UpdateOs = Ferramentas.lInteiro();
                     verifica = true;
-                } catch (InputMismatchException e)
-                {
+                } catch (InputMismatchException e) {
                     Ferramentas.menuDefault();
                 }
             }

@@ -21,6 +21,7 @@ public class Ferramentas {
 
     public static final List<String> listaNumeros = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "0"));
     // Cores padrão
+    public static final String AZUL_ACINZENTADO = "\u001B[38;2;10;20;80m"; // RAL 5009
     public static final String RESET = "\u001B[0m";
     public static final String BLACK = "\u001B[30m";
     public static final String RED = "\u001B[31m";

@@ -21,7 +21,7 @@ public class MenuGerente
             System.out.println("┃  4 - Remover Técnico/Supervisor   ┃");
             System.out.println("┃  5 - Retornar                     ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("| ➤ Escolha: ");
+            System.out.print("┃ ➤ Escolha: ");
 
             try
             {
@@ -35,7 +35,7 @@ public class MenuGerente
                     case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha(gerenteModel);
                     case 5 ->
                     {
-                        System.out.println("|  RETORNANDO AO MENU INICIAL ...");
+                        System.out.println("┃  RETORNANDO AO MENU INICIAL ...");
                         MenuInicial.Menu();
                     }
                     default -> Ferramentas.menuDefault();

@@ -21,7 +21,7 @@ public class MenuTecnico
             System.out.println("┃  2 - Atualizar status de OS's  ┃");
             System.out.println("┃  3 - Retornar ao menu inicial  ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("| ➤ Escolha: ");
+            System.out.print("┃ ➤ Escolha: ");
 
             try
             {
@@ -33,7 +33,7 @@ public class MenuTecnico
                     case 2 -> MenuUpdateTecnico.menuUpdateOS(tecnico);
                     case 3 ->
                     {
-                        System.out.println("|  RETORNANDO AO MENU INICIAL ...");
+                        System.out.println("┃  RETORNANDO AO MENU INICIAL ...");
                         MenuInicial.Menu();
                     }
                     default -> Ferramentas.menuDefault();

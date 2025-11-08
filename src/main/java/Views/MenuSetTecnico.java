@@ -15,7 +15,7 @@ public class MenuSetTecnico {
 
         while(true) {
             System.out.println(" ");
-            System.out.println("|━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━|");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃    SELECIONE A ESPECIALIDADE   ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                ┃");
@@ -24,7 +24,7 @@ public class MenuSetTecnico {
             System.out.println("┃ 3 - Soldador                   ┃");
             System.out.println("┃ 4 - Eletromecânica             ┃");
             System.out.println("┃ 5 - Pintor Industrial          ┃");
-            System.out.println("|━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━|");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
             try {
