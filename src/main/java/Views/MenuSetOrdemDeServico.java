@@ -1,7 +1,6 @@
 package Views;
 
-import Models.joias.Departamento;
-import Models.joias.StatusOS;
+import Dominio.Enumeracoes.StatusOS;
 import ProjetoBase.*;
 import Util.Ferramentas;
 

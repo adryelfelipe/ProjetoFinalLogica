@@ -1,15 +1,8 @@
 package Views;
 
-import Models.AdminModel;
-import Models.GerenteModel;
+import Dominio.Entidades.Gerente;
 import ProjetoBase.*;
-import Repositories.GerenteDAO;
-import Repositories.SupervisorDAO;
-import Repositories.TecnicoDAO;
-import Repositories.UsuarioDAO;
 import Util.Ferramentas;
-
-import java.util.InputMismatchException;
 
 public class MenuGerenteRemoverUsuarios {
 
@@ -17,7 +10,7 @@ public class MenuGerenteRemoverUsuarios {
     private static final TecnicoService tecnicoService = new TecnicoService();
     private static final SupervisorService supervisorService = new SupervisorService();
 
-    public static void menuRemoverEscolha(GerenteModel gerente) {
+    public static void menuRemoverEscolha(Gerente gerente) {
         try {
             long id = MenuEscolhaId.escolhaIdUpdate();
             long nivelAcesso = usuarioService.getNivelAcessoById(gerente, id);

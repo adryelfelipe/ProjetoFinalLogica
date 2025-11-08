@@ -1,10 +1,7 @@
 package Views;
 
-import Models.AdminModel;
-import Models.GerenteModel;
+import Dominio.Entidades.Administrador;
 import ProjetoBase.*;
-import Repositories.GerenteDAO;
-import Repositories.UsuarioDAO;
 import Util.Ferramentas;
 
 public class MenuAdminRemoverGerente {
@@ -12,7 +9,7 @@ public class MenuAdminRemoverGerente {
     private static final UsuarioService usuarioService = new UsuarioService();
     private static final GerenteService gerenteService = new GerenteService();
 
-    public static void menuRemoverEscolha(AdminModel administrador) {
+    public static void menuRemoverEscolha(Administrador administrador) {
         try {
             long id = MenuEscolhaId.escolhaIdUpdate();
             long nivelAcesso = usuarioService.getNivelAcessoById(administrador, id);

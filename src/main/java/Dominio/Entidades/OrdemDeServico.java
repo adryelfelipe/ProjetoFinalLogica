@@ -1,12 +1,11 @@
-package Models;
+package Dominio.Entidades;
 
-import Models.joias.Departamento;
-import Models.joias.StatusOS;
+import Dominio.Enumeracoes.StatusOS;
 import ProjetoBase.MaquinaValidator;
 import ProjetoBase.OrdemDeServicoValidator;
 import ProjetoBase.UsuarioValidator;
 
-public class OrdemDeServicoModel
+public class OrdemDeServico
 {
     //--------------------  ATRIBUTOS  --------------------//
     private StatusOS statusDaOrdem;
@@ -18,7 +17,7 @@ public class OrdemDeServicoModel
     private double valorDaOrdemDeServico;
 
     //--------------------  CONSTRUTOR COM ID --------------------//
-    public OrdemDeServicoModel(long idOrdemDeServico, long id_Tecnico, long id_Supervisor, long id_Maquina, StatusOS statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
+    public OrdemDeServico(long idOrdemDeServico, long id_Tecnico, long id_Supervisor, long id_Maquina, StatusOS statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
         this.idOrdemDeServico = idOrdemDeServico;
         this.id_Tecnico = id_Tecnico;
         this.id_Supervisor = id_Supervisor;
@@ -29,7 +28,7 @@ public class OrdemDeServicoModel
     }
 
     //--------------------  CONSTRUTOR SEM ID --------------------//
-    public OrdemDeServicoModel(long id_Tecnico, long id_Supervisor, long id_Maquina, StatusOS statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
+    public OrdemDeServico(long id_Tecnico, long id_Supervisor, long id_Maquina, StatusOS statusDaOrdem, String descricao, double valorDaOrdemDeServico) {
         this(0, id_Tecnico, id_Supervisor, id_Maquina, statusDaOrdem, descricao, valorDaOrdemDeServico);
     }
 

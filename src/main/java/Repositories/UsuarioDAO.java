@@ -1,9 +1,9 @@
 package Repositories;
 
 import Database.ConnectionFactory;
-import Models.*;
-import Models.joias.Departamento;
-import Models.joias.Especialidade;
+import Dominio.Entidades.*;
+import Dominio.Enumeracoes.Departamento;
+import Dominio.Enumeracoes.Especialidade;
 
 import java.sql.*;
 
@@ -37,7 +37,7 @@ public class UsuarioDAO
         }
         return false;
     }
-    public void inserirUsuario(UsuarioModel usuario)
+    public void inserirUsuario(Usuario usuario)
     {
         // Comando SQL
         String querySQL = "INSERT INTO Usuario (nome, cpf, senha, id_na) VALUES (?, ?, ?, ?)";
@@ -75,7 +75,7 @@ public class UsuarioDAO
         }
     }
 
-    public UsuarioModel loginUsuario(String cpf, String senha) {
+    public Usuario loginUsuario(String cpf, String senha) {
 
         // Consulta MYSQL.
         String querySQL = "SELECT id_usuario, senha FROM Usuario WHERE cpf = ? LIMIT 1";
@@ -103,7 +103,7 @@ public class UsuarioDAO
 
         return null;
     }
-    public UsuarioModel findById(long idDoUsuarioLogado)
+    public Usuario findById(long idDoUsuarioLogado)
     {
         // Consulta MYSQL.
         String querySQL = "SELECT " +
@@ -117,7 +117,7 @@ public class UsuarioDAO
                 "LEFT JOIN Tecnico T ON U.id_usuario = T.id_tecnico " +
                 "WHERE U.id_usuario = ?";
 
-        UsuarioModel usuarioModel = null;
+        Usuario usuario = null;
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
@@ -149,12 +149,12 @@ public class UsuarioDAO
                                 default -> Especialidade.PINTOR_INDUSTRIAL;
                             };
 
-                            usuarioModel = new TecnicoModel(id, nome, cpf, senha, especialidade);
+                            usuario = new Tecnico(id, nome, cpf, senha, especialidade);
                             break;
 
                         case 2:
                             double metaMensal = rs.getDouble("meta_mensal");
-                            usuarioModel = new SupervisorModel(id, nome, cpf, senha, metaMensal);
+                            usuario = new Supervisor(id, nome, cpf, senha, metaMensal);
                             break;
 
                         case 3:
@@ -165,11 +165,11 @@ public class UsuarioDAO
                                 default -> Departamento.MECANICA;
                             };
 
-                            usuarioModel = new GerenteModel(id, nome, cpf, senha, departamento);
+                            usuario = new Gerente(id, nome, cpf, senha, departamento);
                             break;
 
                         case 4:
-                            usuarioModel = new AdminModel(id, nome, cpf, senha);
+                            usuario = new Administrador(id, nome, cpf, senha);
                             break;
                     }
                 }
@@ -178,7 +178,7 @@ public class UsuarioDAO
         {
             System.err.println("ERRO ao buscar usuário por ID!"+e.getMessage());
         }
-        return usuarioModel;
+        return usuario;
     }
 
     public boolean deletarUsuario(long id)

@@ -1,8 +1,8 @@
 package Views;
 
-import Models.AdminModel;
-import Models.GerenteModel;
-import Models.joias.Departamento;
+import Dominio.Entidades.Administrador;
+import Dominio.Entidades.Gerente;
+import Dominio.Enumeracoes.Departamento;
 import ProjetoBase.GerenteService;
 import ProjetoBase.UsuarioService;
 import Util.Ferramentas;
@@ -12,7 +12,7 @@ public class MenuUpdateADM {
     private static final GerenteService gerenteService = new GerenteService();
     private static final UsuarioService usuarioService = new UsuarioService();
 
-    public static void updateGerente(AdminModel adminModel) {
+    public static void updateGerente(Administrador administrador) {
         boolean verifica = false;
         long idGerente;
         int opcaoAdm = 0;
@@ -26,7 +26,7 @@ public class MenuUpdateADM {
             return;
         }
 
-        GerenteModel gerente = ((GerenteModel) usuarioService.findById(idGerente));
+        Gerente gerente = ((Gerente) usuarioService.findById(idGerente));
 
         while (!verifica)
         {
@@ -52,24 +52,24 @@ public class MenuUpdateADM {
                 switch (opcaoAdm) {
                     case 1 -> {
                         String nome = MenuSetUsuario.MenuSetNome();
-                        usuarioService.updateNomeUsuario(adminModel, idGerente, nome);
+                        usuarioService.updateNomeUsuario(administrador, idGerente, nome);
                         gerente.setNome(nome);
                     }
 
                     case 2 -> {
                         String cpf = MenuSetUsuario.MenuSetCpf();
-                        usuarioService.updateCpfUsuario(adminModel, idGerente, cpf);
+                        usuarioService.updateCpfUsuario(administrador, idGerente, cpf);
                         gerente.setCpf(cpf);
                     }
 
                     case 3 -> {
                         String senha = MenuSetUsuario.MenuSetSenha();
-                        usuarioService.updateSenhaUsuario(adminModel, idGerente, senha);
+                        usuarioService.updateSenhaUsuario(administrador, idGerente, senha);
                         gerente.setSenha(senha);
                     }
                     case 4 -> {
                         Departamento departamento = MenuSetGerente.menuSetDepartamento();
-                        gerenteService.updateDepartamento(adminModel, idGerente, departamento);
+                        gerenteService.updateDepartamento(administrador, idGerente, departamento);
                         gerente.setDepartamento(departamento);
                     }
                     case 5 ->

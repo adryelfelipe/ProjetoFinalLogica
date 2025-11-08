@@ -1,11 +1,11 @@
 package ProjetoBase;
 
-import Models.GerenteModel;
-import Models.joias.Departamento;
+import Dominio.Entidades.Gerente;
+import Dominio.Enumeracoes.Departamento;
 
 public class GerenteValidator {
     // -- Verifica regras de négoico -- //
-    public static void verificaRegrasInsercaoGerente(GerenteModel gerente) {
+    public static void verificaRegrasInsercaoGerente(Gerente gerente) {
         verificaRegrasDepartamento(gerente.getDepartamento());
         UsuarioValidator.verificaRegrasInsercaoUsuario(gerente);
     }

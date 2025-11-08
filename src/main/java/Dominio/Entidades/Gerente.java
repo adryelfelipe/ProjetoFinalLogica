@@ -1,22 +1,22 @@
-package Models;
+package Dominio.Entidades;
 
-import Models.joias.Departamento;
-import Models.joias.NivelAcesso;
+import Dominio.Enumeracoes.Departamento;
+import Dominio.Enumeracoes.NivelAcesso;
 import ProjetoBase.GerenteValidator;
 
-public class GerenteModel extends UsuarioModel{
+public class Gerente extends Usuario {
 
     // -- Atributos -- //
     private Departamento departamento;
 
     // -- Construtor com ID -- //
-    public GerenteModel(long id, String nome, String cpf, String senha, Departamento departamento) {
+    public Gerente(long id, String nome, String cpf, String senha, Departamento departamento) {
         super(id, nome, cpf, senha, NivelAcesso.GERENTE);
         setDepartamento(departamento);
     }
 
     // -- Construtor sem ID -- //
-    public GerenteModel(String nome, String cpf, String senha, Departamento departamento) {
+    public Gerente(String nome, String cpf, String senha, Departamento departamento) {
         this(0, nome, cpf, senha, departamento);
     }
 

@@ -1,8 +1,8 @@
 package Views;
 
 //import Models.AdminModel;
-import Models.OrdemDeServicoModel;
-import Models.SupervisorModel;
+import Dominio.Entidades.OrdemDeServico;
+import Dominio.Entidades.Supervisor;
 import ProjetoBase.*;
 import Util.Ferramentas;
 
@@ -12,7 +12,7 @@ import Util.Ferramentas;
     private static final SupervisorService supervisorService = new SupervisorService();
     private static final OrdemDeServicoService ordemService = new OrdemDeServicoService();
 
-        public static void acompanharStatus(SupervisorModel supervisor) {
+        public static void acompanharStatus(Supervisor supervisor) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃    ACOMPANHAR STATUS DE SO     ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
@@ -21,7 +21,7 @@ import Util.Ferramentas;
                 UsuarioValidator.temNivelAcesso2(supervisor);
                 long idDaOS = MenuEscolhaId.escolhaIdUpdate();
 
-               OrdemDeServicoModel osEncontrada = ordemService.visualizarDetalhesDaOS(supervisor, idDaOS);
+               OrdemDeServico osEncontrada = ordemService.visualizarDetalhesDaOS(supervisor, idDaOS);
 
                 System.out.println("\n--- Detalhes da OS #" + osEncontrada.getIdOrdemDeServico() + " ---");
                 System.out.println("Status: " + osEncontrada.getStatusDaOrdem());

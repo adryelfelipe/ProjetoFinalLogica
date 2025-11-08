@@ -1,13 +1,15 @@
 package Views;
 
-import Models.*;
-import Models.joias.Especialidade;
-import Models.joias.StatusMaquina;
+import Dominio.Entidades.Gerente;
+import Dominio.Entidades.Maquina;
+import Dominio.Entidades.Supervisor;
+import Dominio.Entidades.Tecnico;
+import Dominio.Enumeracoes.Especialidade;
+import Dominio.Enumeracoes.StatusMaquina;
 import ProjetoBase.MaquinaService;
 import ProjetoBase.SupervisorService;
 import ProjetoBase.TecnicoService;
 import Util.Ferramentas;
-import ProjetoBase.GerenteService;
 
 public class MenuCadastroGerente {
     // -- Atributos -- //
@@ -15,7 +17,7 @@ public class MenuCadastroGerente {
     private static final MaquinaService maquinaService = new MaquinaService();
     private static final TecnicoService tecnicoService = new TecnicoService();
 
-    public static void menuCadastroSupervisor(GerenteModel gerente) {
+    public static void menuCadastroSupervisor(Gerente gerente) {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃       CADASTRO SUPERVISOR      ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
@@ -42,7 +44,7 @@ public class MenuCadastroGerente {
 
 
         try {
-            SupervisorModel supervisor = new SupervisorModel(nome, cpf, senha, metaMensal);
+            Supervisor supervisor = new Supervisor(nome, cpf, senha, metaMensal);
             supervisorService.inserirSupervisor(gerente, supervisor);
             Ferramentas.limpaTerminal();
             System.out.println("SUPERVISOR CADASTRADO COM SUCESSO!");
@@ -53,7 +55,7 @@ public class MenuCadastroGerente {
         }
     }
 
-    public static void menuCadastroMaquina(GerenteModel gerente) {
+    public static void menuCadastroMaquina(Gerente gerente) {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃       CADASTRO  MÁQUINA        ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
@@ -74,7 +76,7 @@ public class MenuCadastroGerente {
         Ferramentas.Delay(1000);
 
         try {
-            MaquinaModel maquina = new MaquinaModel(nome, localizacao, idStatus);
+            Maquina maquina = new Maquina(nome, localizacao, idStatus);
             maquinaService.inserirMaquina(gerente, maquina);
             Ferramentas.limpaTerminal();
             System.out.println("MÁQUINA CADASTRADO COM SUCESSO!");
@@ -84,7 +86,7 @@ public class MenuCadastroGerente {
         }
     }
 
-    public static void menuCadastroTecnico(GerenteModel gerente) {
+    public static void menuCadastroTecnico(Gerente gerente) {
         System.out.println(" ");
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃       CADASTRO  TÉCNICO        ┃");
@@ -109,7 +111,7 @@ public class MenuCadastroGerente {
         Ferramentas.Delay(1000);
 
         try {
-            TecnicoModel tecnico = new TecnicoModel(nome, cpf, senha, especialidade);
+            Tecnico tecnico = new Tecnico(nome, cpf, senha, especialidade);
             tecnicoService.inserirTecnico(gerente, tecnico);
             Ferramentas.limpaTerminal();
             System.out.println("TÉCNICO CADASTRADO COM SUCESSO!");

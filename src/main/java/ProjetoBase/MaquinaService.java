@@ -1,7 +1,7 @@
 package ProjetoBase;
 
-import Models.MaquinaModel;
-import Models.UsuarioModel;
+import Dominio.Entidades.Maquina;
+import Dominio.Entidades.Usuario;
 import Repositories.MaquinaDAO;
 
 public class MaquinaService {
@@ -9,7 +9,7 @@ public class MaquinaService {
     private final MaquinaDAO maquinaDAO = new MaquinaDAO();
 
     // -- Métodos -- //
-    public void inserirMaquina(UsuarioModel usuarioInseridor, MaquinaModel maquina) {
+    public void inserirMaquina(Usuario usuarioInseridor, Maquina maquina) {
         UsuarioValidator.temNivelAcesso3(usuarioInseridor);
         MaquinaValidator.verificaRegrasInsercaoMaquina(maquina);
         maquinaDAO.inserirMaquina(maquina);

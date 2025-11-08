@@ -1,14 +1,14 @@
 package ProjetoBase;
 
-import Models.TecnicoModel;
-import Models.joias.Especialidade;
+import Dominio.Entidades.Tecnico;
+import Dominio.Enumeracoes.Especialidade;
 
 public class TecnicoValidator {
 
     // -- Métodos de Regras de Negócio -- //
-    public static void verificaRegrasInsercaoTecnico(TecnicoModel tecnicoModel) {
-        UsuarioValidator.verificaRegrasInsercaoUsuario(tecnicoModel);
-        verificaRegrasEspecialidade(tecnicoModel.getEspecialidade());
+    public static void verificaRegrasInsercaoTecnico(Tecnico tecnico) {
+        UsuarioValidator.verificaRegrasInsercaoUsuario(tecnico);
+        verificaRegrasEspecialidade(tecnico.getEspecialidade());
     }
 
     public static void verificaRegrasEspecialidade(Especialidade especialidade) {

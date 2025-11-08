@@ -1,6 +1,6 @@
 package Views;
 
-import Models.*;
+import Dominio.Entidades.*;
 import Util.Ferramentas;
 import ProjetoBase.UsuarioService;
 import ProjetoBase.UsuarioValidator;
@@ -12,7 +12,7 @@ public class MenuLogin
         boolean verifica = false;
         String cpfLogin = "";
         String senhaLogin = "1";
-        UsuarioModel usuario = null;
+        Usuario usuario = null;
 
         // Menu interativo
         while(!verifica) {
@@ -54,14 +54,14 @@ public class MenuLogin
         }
 
         Ferramentas.limpaTerminal();
-        if(usuario instanceof AdminModel){
-            MenuAdministrador.menuInicial((AdminModel) usuario);
-        } else if(usuario instanceof GerenteModel) {
-            MenuGerente.menuInicial((GerenteModel) usuario);
-        } else if(usuario instanceof SupervisorModel) {
-            MenuSupervisor.menuSupervisor((SupervisorModel) usuario);
-        } else if(usuario instanceof TecnicoModel) {
-            MenuTecnico.menuTecnico((TecnicoModel) usuario);
+        if(usuario instanceof Administrador){
+            MenuAdministrador.menuInicial((Administrador) usuario);
+        } else if(usuario instanceof Gerente) {
+            MenuGerente.menuInicial((Gerente) usuario);
+        } else if(usuario instanceof Supervisor) {
+            MenuSupervisor.menuSupervisor((Supervisor) usuario);
+        } else if(usuario instanceof Tecnico) {
+            MenuTecnico.menuTecnico((Tecnico) usuario);
         }
         else {
             Ferramentas.mensagemErro("ERRO! CPF OU SENHA INVÁLIDOS");

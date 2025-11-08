@@ -1,10 +1,9 @@
-package Models;
+package Dominio.Entidades;
 
-import Models.joias.Departamento;
-import Models.joias.NivelAcesso;
+import Dominio.Enumeracoes.NivelAcesso;
 import ProjetoBase.UsuarioValidator;
 
-public abstract class UsuarioModel {
+public abstract class Usuario {
 
     // -- Atributos -- //
     private String nome;
@@ -12,22 +11,20 @@ public abstract class UsuarioModel {
     private String senha;
     private NivelAcesso nivelAcesso;
     private long idUsuario;
-    private Departamento departamento;
 
     // -- Construtor com ID -- //
-    public UsuarioModel(long id, String nome, String cpf, String senha, Departamento departamento, NivelAcesso nivelAcesso) {
+    public Usuario(long id, String nome, String cpf, String senha, NivelAcesso nivelAcesso) {
         setIdUsuario(id);
         setNome(nome);
         setNivelAcesso(nivelAcesso);
         setCpf(cpf);
         setSenha(senha);
-        setDepartamento(departamento);
     }
 
     // -- Construtor sem ID-- //
-    public UsuarioModel(String nome, String cpf, String senha, Departamento departamento, NivelAcesso nivelAcesso)
+    public Usuario(String nome, String cpf, String senha, NivelAcesso nivelAcesso)
     {
-        this(0, nome, cpf, senha, departamento, nivelAcesso);
+        this(0, nome, cpf, senha, nivelAcesso);
     }
 
     // -- Setters e Getters -- //
@@ -46,10 +43,6 @@ public abstract class UsuarioModel {
 
     public String getCpf() {
         return cpf;
-    }
-
-    public Departamento getDepartamento() {
-        return departamento;
     }
 
     public String getNome() {
@@ -79,10 +72,5 @@ public abstract class UsuarioModel {
     public void setNivelAcesso(NivelAcesso nivelAcesso) {
         UsuarioValidator.verificaIntegridadeNivelAcesso(nivelAcesso);
         this.nivelAcesso = nivelAcesso;
-    }
-
-    public void setDepartamento(Departamento departamento)
-    {
-        this.departamento = departamento;
     }
 }

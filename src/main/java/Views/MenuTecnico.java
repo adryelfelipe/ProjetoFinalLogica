@@ -1,13 +1,13 @@
 package Views;
 
 import Util.Ferramentas;
-import Models.TecnicoModel;
+import Dominio.Entidades.Tecnico;
 
 import java.util.InputMismatchException;
 
 public class MenuTecnico
 {
-    public static void menuTecnico(TecnicoModel tecnico)
+    public static void menuTecnico(Tecnico tecnico)
     {
         boolean continuar = false;
 

@@ -1,6 +1,8 @@
 package Views;
-import Models.*;
-import Models.joias.Especialidade;
+import Dominio.Entidades.Gerente;
+import Dominio.Entidades.Supervisor;
+import Dominio.Entidades.Tecnico;
+import Dominio.Enumeracoes.Especialidade;
 import ProjetoBase.*;
 import Util.Ferramentas;
 import java.util.InputMismatchException;
@@ -10,7 +12,7 @@ public class MenuUpdateGerente {
     private static final TecnicoService tecnicoService = new TecnicoService();
     private static final SupervisorService supervisorService = new SupervisorService();
 
-    public static void menuUpdateEscolha(GerenteModel gerente) {
+    public static void menuUpdateEscolha(Gerente gerente) {
         // Menu
         boolean verifica = false;
         int opUpdate = 0;
@@ -52,7 +54,7 @@ public class MenuUpdateGerente {
         }
     }
 
-    public static void menuUpdateTecnico(GerenteModel gerente) {
+    public static void menuUpdateTecnico(Gerente gerente) {
             // -- Garantia de inicialização -- //
         long idTecnico;
         int UpdateT = 0;
@@ -67,7 +69,7 @@ public class MenuUpdateGerente {
             return;
         }
 
-        TecnicoModel tecnico = ((TecnicoModel) usuarioService.findById(idTecnico));
+        Tecnico tecnico = ((Tecnico) usuarioService.findById(idTecnico));
 
         while(true)
         {
@@ -134,7 +136,7 @@ public class MenuUpdateGerente {
             }
         }
     }
-    public static void menuUpdateSupervisor(GerenteModel gerenteModel)
+    public static void menuUpdateSupervisor(Gerente gerente)
     {
         long idSupervisor;
         int UpdateS = 0;
@@ -150,7 +152,7 @@ public class MenuUpdateGerente {
             return;
         }
 
-        SupervisorModel supervisor = ((SupervisorModel) usuarioService.findById(idSupervisor));
+        Supervisor supervisor = ((Supervisor) usuarioService.findById(idSupervisor));
 
         while(true)
         {
@@ -190,24 +192,24 @@ public class MenuUpdateGerente {
             {
                 case 1 -> {
                     String nome = MenuSetUsuario.MenuSetNome();
-                    usuarioService.updateNomeUsuario(gerenteModel, idSupervisor, nome);
+                    usuarioService.updateNomeUsuario(gerente, idSupervisor, nome);
                     supervisor.setNome(nome);
                 }
 
                 case 2 -> {
                     String cpf = MenuSetUsuario.MenuSetCpf();
-                    usuarioService.updateCpfUsuario(gerenteModel, idSupervisor, cpf);
+                    usuarioService.updateCpfUsuario(gerente, idSupervisor, cpf);
                     supervisor.setCpf(cpf);
                 }
 
                 case 3 -> {
                     String senha = MenuSetUsuario.MenuSetSenha();
-                    usuarioService.updateSenhaUsuario(gerenteModel, idSupervisor, senha);
+                    usuarioService.updateSenhaUsuario(gerente, idSupervisor, senha);
                     supervisor.setSenha(senha);
                 }
                 case 4 -> {
                     double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
-                    supervisorService.updateMetaMensal(gerenteModel, idSupervisor, metaMensal);
+                    supervisorService.updateMetaMensal(gerente, idSupervisor, metaMensal);
                     supervisor.setMetaMensal(metaMensal);
                 }
                 case 5 ->

@@ -1,7 +1,7 @@
 package Repositories;
 
 import Database.ConnectionFactory;
-import Models.SupervisorModel;
+import Dominio.Entidades.Supervisor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class SupervisorDAO
 {
-    public void inserirSupervisor(SupervisorModel supervisor)
+    public void inserirSupervisor(Supervisor supervisor)
     {
         String querySQL = "INSERT INTO Supervisor (id_supervisor, meta_mensal) VALUES (?, ?)";
 

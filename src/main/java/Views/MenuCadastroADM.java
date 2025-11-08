@@ -1,15 +1,15 @@
 package Views;
 
-import Models.AdminModel;
-import Models.GerenteModel;
-import Models.joias.Departamento;
+import Dominio.Entidades.Administrador;
+import Dominio.Entidades.Gerente;
+import Dominio.Enumeracoes.Departamento;
 import ProjetoBase.GerenteService;
 import Util.Ferramentas;
 
 public class MenuCadastroADM {
     private static final GerenteService gerenteService = new GerenteService();
 
-    public static void menuCadastroGerente(AdminModel adminModel) {
+    public static void menuCadastroGerente(Administrador administrador) {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃       CADASTRO GERENTE         ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
@@ -37,8 +37,8 @@ public class MenuCadastroADM {
         Ferramentas.limpaTerminal();
 
         try {
-            GerenteModel gerente = new GerenteModel(nome, cpf, senha, idDepartamento);
-            gerenteService.inserirGerente(adminModel, gerente);
+            Gerente gerente = new Gerente(nome, cpf, senha, idDepartamento);
+            gerenteService.inserirGerente(administrador, gerente);
             System.out.println("GERENTE CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);
         } catch (IllegalArgumentException | IllegalStateException e) {

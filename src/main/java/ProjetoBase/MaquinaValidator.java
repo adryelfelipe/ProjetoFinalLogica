@@ -1,11 +1,11 @@
 package ProjetoBase;
 
-import Models.MaquinaModel;
+import Dominio.Entidades.Maquina;
 
 public class MaquinaValidator {
 
     // -- Verifica regras de negócio -- //
-    public static void verificaRegrasInsercaoMaquina(MaquinaModel maquina) {
+    public static void verificaRegrasInsercaoMaquina(Maquina maquina) {
         verificaRegrasNome(maquina.getNome());
         verificaRegrasLocalizacao(maquina.getLocalizacao());
         verificaRegrasStatus(maquina.getStatus().getId());

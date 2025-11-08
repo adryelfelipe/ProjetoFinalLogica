@@ -1,8 +1,8 @@
 package Views;
 
-import Models.OrdemDeServicoModel;
-import Models.SupervisorModel;
-import Models.joias.StatusOS;
+import Dominio.Entidades.OrdemDeServico;
+import Dominio.Entidades.Supervisor;
+import Dominio.Enumeracoes.StatusOS;
 import ProjetoBase.OrdemDeServicoService;
 import Util.Ferramentas;
 
@@ -12,7 +12,7 @@ public class MenuUpdateSupervisor
 {
     public static final OrdemDeServicoService ordemDeServicoService = new OrdemDeServicoService();
 
-    public static void menuUpdateOS(SupervisorModel supervisor) {
+    public static void menuUpdateOS(Supervisor supervisor) {
         long idOrdem;
         int UpdateOs = 0;
         boolean verifica = false;
@@ -25,7 +25,7 @@ public class MenuUpdateSupervisor
             return;
         }
 
-        OrdemDeServicoModel ordemDeServico = ((OrdemDeServicoModel) ordemDeServicoService.findById(idOrdem));
+        OrdemDeServico ordemDeServico = ((OrdemDeServico) ordemDeServicoService.findById(idOrdem));
 
         while (true) {
 

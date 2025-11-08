@@ -1,10 +1,10 @@
 package ProjetoBase;
 
-import Models.SupervisorModel;
+import Dominio.Entidades.Supervisor;
 
 public class SupervisorValidator {
     // -- Verificações de Regras de Negócio -- //
-    public static void verificarRegrasInsercaoSupervisor(SupervisorModel supervisor) {
+    public static void verificarRegrasInsercaoSupervisor(Supervisor supervisor) {
         UsuarioValidator.verificaRegrasInsercaoUsuario(supervisor);
         verificaIntegridadeMetaMensal(supervisor.getMetaMensal());
     }

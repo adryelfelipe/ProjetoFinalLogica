@@ -1,7 +1,6 @@
 package ProjetoBase;
 
-import Models.UsuarioModel;
-import Models.joias.NivelAcesso;
+import Dominio.Entidades.Usuario;
 import Repositories.UsuarioDAO;
 
 public class UsuarioService {
@@ -34,16 +33,16 @@ public class UsuarioService {
         }
     }
 
-    public UsuarioModel loginUsuario(String cpf, String senha) {
+    public Usuario loginUsuario(String cpf, String senha) {
         isCpfExistenteValidator(cpf);
         return usuarioDao.loginUsuario(cpf, senha);
     }
 
-    public UsuarioModel findById(long id) {
+    public Usuario findById(long id) {
         return usuarioDao.findById(id);
     }
 
-    public void updateSenhaUsuario(UsuarioModel usuario, long id, String senha) {
+    public void updateSenhaUsuario(Usuario usuario, long id, String senha) {
         UsuarioValidator.temNivelAcesso3(usuario);
         UsuarioValidator.verificarRegrasSenha(senha);
         UsuarioValidator.verificaIntegridadeSenha(senha);
@@ -54,7 +53,7 @@ public class UsuarioService {
         }
     }
 
-    public void updateNomeUsuario(UsuarioModel usuario, long id, String nome) {
+    public void updateNomeUsuario(Usuario usuario, long id, String nome) {
         UsuarioValidator.temNivelAcesso3(usuario);
         UsuarioValidator.verificaIntegridadeNome(nome);
         UsuarioValidator.verificaRegrasNome(nome);
@@ -65,7 +64,7 @@ public class UsuarioService {
         }
     }
 
-    public void updateCpfUsuario(UsuarioModel usuario, long id, String cpf) {
+    public void updateCpfUsuario(Usuario usuario, long id, String cpf) {
         UsuarioValidator.temNivelAcesso3(usuario);
         UsuarioValidator.verificaIntegridadeCpf(cpf);
         UsuarioValidator.verificarRegrasCpf(cpf);
@@ -76,7 +75,7 @@ public class UsuarioService {
         }
     }
 
-    public long getNivelAcessoById(UsuarioModel usuario, long idUsuario) {
+    public long getNivelAcessoById(Usuario usuario, long idUsuario) {
         UsuarioValidator.temNivelAcesso3(usuario);
         isIdExistenteValidator(idUsuario);
         return usuarioDao.getNivelAcessoByID(idUsuario);

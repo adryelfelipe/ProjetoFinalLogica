@@ -1,14 +1,14 @@
 package Repositories;
 
 import Database.ConnectionFactory;
-import Models.MaquinaModel;
-import Models.joias.StatusMaquina;
+import Dominio.Entidades.Maquina;
+import Dominio.Enumeracoes.StatusMaquina;
 
 import java.sql.*;
 
 public class MaquinaDAO {
     //Comando para inserir as informações da máquina no Banco de Dados
-    public void inserirMaquina(MaquinaModel maquina) {
+    public void inserirMaquina(Maquina maquina) {
         String querySQL = "INSERT INTO Maquinas (nome, localizacao, id_sm) VALUES (?, ?, ?)";
         long idGerado = -1;
 

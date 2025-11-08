@@ -1,15 +1,15 @@
 package Repositories;
 
 import Database.ConnectionFactory;
-import Models.OrdemDeServicoModel;
-import Models.joias.StatusOS;
+import Dominio.Entidades.OrdemDeServico;
+import Dominio.Enumeracoes.StatusOS;
 
 import java.sql.*;
 
 public class OrdemDeServicoDAO
 {
     // Comando para inserir uma ordem de serviço dentro do Banco de Dados
-    public void inserirOrdemDeServico(OrdemDeServicoModel ordemDeServico)
+    public void inserirOrdemDeServico(OrdemDeServico ordemDeServico)
     {
         String querySQL = "INSERT INTO OrdemServicos ( descricao, status_ordem, custo, id_supervisor, id_maquina, id_tecnico) VALUES (?, ?, ?, ?, ?, ?)";
         long idGerado = -1;
@@ -184,10 +184,10 @@ public class OrdemDeServicoDAO
             System.err.println("ERRO ao atualizar o id do tecnico da ordem de serviços");
         }
     }
-    public OrdemDeServicoModel findByIdOS(long idOS) {
+    public OrdemDeServico findByIdOS(long idOS) {
         String querySQL = "SELECT * FROM OrdemServicos WHERE id_os = ?";
 
-        OrdemDeServicoModel os = null;
+        OrdemDeServico os = null;
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(querySQL)) {
@@ -209,7 +209,7 @@ public class OrdemDeServicoDAO
                         case 2 -> StatusOS.ATRASADA;
                         default -> StatusOS.FECHADA;
                     };
-                    os = new OrdemDeServicoModel(id, idTecnico, idSupervisor, idMaquina, statusOS, descricao, custo);
+                    os = new OrdemDeServico(id, idTecnico, idSupervisor, idMaquina, statusOS, descricao, custo);
                 }
             }
             return os;

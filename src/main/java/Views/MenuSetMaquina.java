@@ -1,6 +1,6 @@
 package Views;
 
-import Models.joias.StatusMaquina;
+import Dominio.Enumeracoes.StatusMaquina;
 import ProjetoBase.MaquinaService;
 import ProjetoBase.UsuarioValidator;
 import Util.Ferramentas;

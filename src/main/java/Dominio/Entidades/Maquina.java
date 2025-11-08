@@ -1,8 +1,8 @@
-package Models;
+package Dominio.Entidades;
 
-import Models.joias.StatusMaquina;
+import Dominio.Enumeracoes.StatusMaquina;
 
-public class MaquinaModel {
+public class Maquina {
 
     // -- Atributos -- //
     private long idMaquina;
@@ -12,7 +12,7 @@ public class MaquinaModel {
 
 
     // Construtor com ID //
-    public MaquinaModel(long id, String nome, String localizacao, StatusMaquina idStatus) {
+    public Maquina(long id, String nome, String localizacao, StatusMaquina idStatus) {
         setNome(nome);
         setIdMaquina(id);
         setLocalizacao(localizacao);
@@ -20,7 +20,7 @@ public class MaquinaModel {
     }
 
     // Construtor sem ID //
-    public MaquinaModel(String nome, String localizacao, StatusMaquina idStatus) {
+    public Maquina(String nome, String localizacao, StatusMaquina idStatus) {
         this(0, nome, localizacao, idStatus);
     }
 

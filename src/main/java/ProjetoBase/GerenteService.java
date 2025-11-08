@@ -1,8 +1,8 @@
 package ProjetoBase;
 
-import Models.GerenteModel;
-import Models.UsuarioModel;
-import Models.joias.Departamento;
+import Dominio.Entidades.Gerente;
+import Dominio.Entidades.Usuario;
+import Dominio.Enumeracoes.Departamento;
 import Repositories.GerenteDAO;
 import Repositories.UsuarioDAO;
 
@@ -14,7 +14,7 @@ public class GerenteService {
     private final UsuarioService usuarioService = new UsuarioService();
 
     // -- Métodos -- //
-    public void inserirGerente(UsuarioModel usuarioInseridor, GerenteModel gerenteInserido) {
+    public void inserirGerente(Usuario usuarioInseridor, Gerente gerenteInserido) {
         UsuarioValidator.temNivelAcesso4(usuarioInseridor);
         GerenteValidator.verificaRegrasInsercaoGerente(gerenteInserido);
         usuarioService.isCpfCadastradoValidator(gerenteInserido.getCpf());
@@ -22,14 +22,14 @@ public class GerenteService {
         gerenteDAO.inserirGerente(gerenteInserido);
     }
 
-    public void updateDepartamento(UsuarioModel usuario, long id, Departamento departamento) {
+    public void updateDepartamento(Usuario usuario, long id, Departamento departamento) {
         UsuarioValidator.temNivelAcesso4(usuario);
         GerenteValidator.verificaRegrasDepartamento(departamento);
         GerenteValidator.verificaIntegridadeDepartamento(departamento);
         gerenteDAO.updateDepartamento(id, departamento);
     }
 
-    public void removerGerente(UsuarioModel usuarioExecutor, long idGerenteARemover) {
+    public void removerGerente(Usuario usuarioExecutor, long idGerenteARemover) {
         UsuarioValidator.temNivelAcesso4(usuarioExecutor);
         usuarioService.isIdExistenteValidator(idGerenteARemover);
         gerenteDAO.deletarGerente(idGerenteARemover);

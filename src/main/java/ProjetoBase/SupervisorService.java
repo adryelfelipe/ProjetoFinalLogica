@@ -1,7 +1,7 @@
 package ProjetoBase;
 
-import Models.SupervisorModel;
-import Models.UsuarioModel;
+import Dominio.Entidades.Supervisor;
+import Dominio.Entidades.Usuario;
 import Repositories.SupervisorDAO;
 import Repositories.UsuarioDAO;
 
@@ -12,7 +12,7 @@ public class SupervisorService {
     private final UsuarioService usuarioService = new UsuarioService();
 
     // -- Métodos -- //
-    public void inserirSupervisor(UsuarioModel usuarioInseridor, SupervisorModel supervisorInserido) {
+    public void inserirSupervisor(Usuario usuarioInseridor, Supervisor supervisorInserido) {
         UsuarioValidator.temNivelAcesso3(usuarioInseridor);
         SupervisorValidator.verificarRegrasInsercaoSupervisor(supervisorInserido);
         usuarioService.isCpfCadastradoValidator(supervisorInserido.getCpf());
@@ -20,14 +20,14 @@ public class SupervisorService {
         supervisorDAO.inserirSupervisor(supervisorInserido);
     }
 
-    public void updateMetaMensal(UsuarioModel usuario, long id, double metaMensal) {
+    public void updateMetaMensal(Usuario usuario, long id, double metaMensal) {
         UsuarioValidator.temNivelAcesso3(usuario);
         SupervisorValidator.verificaRegrasMetaMensal(metaMensal);
         SupervisorValidator.verificaIntegridadeMetaMensal(metaMensal);
         supervisorDAO.updateMetaMensal(id, metaMensal);
     }
 
-    public void removerSupervisor(UsuarioModel usuarioExecutor, long idSupervisorARemover) {
+    public void removerSupervisor(Usuario usuarioExecutor, long idSupervisorARemover) {
         UsuarioValidator.temNivelAcesso3(usuarioExecutor);
         usuarioService.isIdExistenteValidator(idSupervisorARemover);
         supervisorDAO.deletarSupervisor(idSupervisorARemover);

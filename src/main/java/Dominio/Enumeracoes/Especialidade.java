@@ -1,4 +1,4 @@
-package Models.joias;
+package Dominio.Enumeracoes;
 
 public class Especialidade {
     // -- Atributos enumerados -- //

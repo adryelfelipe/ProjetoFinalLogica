@@ -1,8 +1,8 @@
 package Repositories;
 
 import Database.ConnectionFactory;
-import Models.TecnicoModel;
-import Models.joias.Especialidade;
+import Dominio.Entidades.Tecnico;
+import Dominio.Enumeracoes.Especialidade;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class TecnicoDAO
 {
-    public void inserirTecnico(TecnicoModel tecnico)
+    public void inserirTecnico(Tecnico tecnico)
     {
 
         String querySQL = "INSERT INTO Tecnico (id_tecnico, id_especialidade) VALUES (?, ?)";

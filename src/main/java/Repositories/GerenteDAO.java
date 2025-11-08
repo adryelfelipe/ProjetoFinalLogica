@@ -1,8 +1,8 @@
 package Repositories;
 
 import Database.ConnectionFactory;
-import Models.GerenteModel;
-import Models.joias.Departamento;
+import Dominio.Entidades.Gerente;
+import Dominio.Enumeracoes.Departamento;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class GerenteDAO
 {
-    public void inserirGerente(GerenteModel gerente)
+    public void inserirGerente(Gerente gerente)
     {
         String querySQL = "INSERT INTO Gerentes (id_gerente, id_departamento) VALUES (?, ?)";
 

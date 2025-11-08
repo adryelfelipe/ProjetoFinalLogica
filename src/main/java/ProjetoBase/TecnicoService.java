@@ -1,8 +1,8 @@
 package ProjetoBase;
 
-import Models.TecnicoModel;
-import Models.UsuarioModel;
-import Models.joias.Especialidade;
+import Dominio.Entidades.Tecnico;
+import Dominio.Entidades.Usuario;
+import Dominio.Enumeracoes.Especialidade;
 import Repositories.TecnicoDAO;
 import Repositories.UsuarioDAO;
 
@@ -14,7 +14,7 @@ public class TecnicoService {
     UsuarioService usuarioService = new UsuarioService();
 
 
-    public void inserirTecnico(UsuarioModel usuarioInseridor, TecnicoModel tecnicoInserido) {
+    public void inserirTecnico(Usuario usuarioInseridor, Tecnico tecnicoInserido) {
         UsuarioValidator.temNivelAcesso3(usuarioInseridor);
         TecnicoValidator.verificaRegrasInsercaoTecnico(tecnicoInserido);
         usuarioService.isCpfCadastradoValidator(tecnicoInserido.getCpf());
@@ -22,14 +22,14 @@ public class TecnicoService {
         tecnicoDAO.inserirTecnico(tecnicoInserido);
     }
 
-    public void updateEspecialidade(UsuarioModel usuario, long id, Especialidade especialidade) {
+    public void updateEspecialidade(Usuario usuario, long id, Especialidade especialidade) {
         UsuarioValidator.temNivelAcesso3(usuario);
         TecnicoValidator.verificaIntegridadeEspecialidade(especialidade);
         TecnicoValidator.verificaRegrasEspecialidade(especialidade);
         tecnicoDAO.updateEspecialidadeTecnico(id, especialidade);
     }
 
-    public void removerTecnico(UsuarioModel usuarioExecutor, long idTecnicoARemover) {
+    public void removerTecnico(Usuario usuarioExecutor, long idTecnicoARemover) {
         UsuarioValidator.temNivelAcesso3(usuarioExecutor);
         usuarioService.isIdExistenteValidator(idTecnicoARemover);
         tecnicoDAO.deletarTecnico(idTecnicoARemover);

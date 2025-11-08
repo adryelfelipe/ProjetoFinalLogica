@@ -1,11 +1,9 @@
 package Views;
 
-import Models.OrdemDeServicoModel;
-import Models.TecnicoModel;
-import Models.joias.Especialidade;
-import Models.joias.StatusOS;
+import Dominio.Entidades.OrdemDeServico;
+import Dominio.Entidades.Tecnico;
+import Dominio.Enumeracoes.StatusOS;
 import ProjetoBase.OrdemDeServicoService;
-import ProjetoBase.UsuarioService;
 import Util.Ferramentas;
 
 import java.util.InputMismatchException;
@@ -14,7 +12,7 @@ public class MenuUpdateTecnico
 {
     public static final OrdemDeServicoService ordemDeServicoService = new OrdemDeServicoService();
 
-    public static void menuUpdateOS(TecnicoModel tecnico)
+    public static void menuUpdateOS(Tecnico tecnico)
     {
         long idOrdem;
         int UpdateOs = 0;
@@ -30,7 +28,7 @@ public class MenuUpdateTecnico
             return;
         }
 
-        OrdemDeServicoModel ordemDeServico = ((OrdemDeServicoModel) ordemDeServicoService.findById(idOrdem));
+        OrdemDeServico ordemDeServico = ((OrdemDeServico) ordemDeServicoService.findById(idOrdem));
 
         while(true)
         {

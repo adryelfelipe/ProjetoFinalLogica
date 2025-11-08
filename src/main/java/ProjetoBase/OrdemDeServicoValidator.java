@@ -1,12 +1,12 @@
 package ProjetoBase;
 
-import Models.OrdemDeServicoModel;
-import Models.joias.StatusOS;
+import Dominio.Entidades.OrdemDeServico;
+import Dominio.Enumeracoes.StatusOS;
 
 public class OrdemDeServicoValidator
 {
     // -- Verifica regras de negócio -- //
-    public static void verificaRegrasInsercaoOS(OrdemDeServicoModel ordemServico) {
+    public static void verificaRegrasInsercaoOS(OrdemDeServico ordemServico) {
         verificaRegrasDescricao(ordemServico.getDescricao());
         verificaRegrasStatus(ordemServico.getStatusDaOrdem().getId());
     }

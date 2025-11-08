@@ -1,6 +1,6 @@
 package Views;
 
-import Models.joias.Especialidade;
+import Dominio.Enumeracoes.Especialidade;
 import ProjetoBase.TecnicoValidator;
 import Util.Ferramentas;
 

@@ -1,11 +1,11 @@
 package Views;
 
 import Util.Ferramentas;
-import Models.GerenteModel;
+import Dominio.Entidades.Gerente;
 
 public class MenuGerenteCadastrar
 {
-    public static void criarUsuarios(GerenteModel gerenteModel)
+    public static void criarUsuarios(Gerente gerente)
     {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃        CADASTRAR USUARIOS        ┃");
@@ -24,9 +24,9 @@ public class MenuGerenteCadastrar
             Ferramentas.limpaTerminal();
             switch(opcaoCriarUsuario)
             {
-                case 1 -> MenuCadastroGerente.menuCadastroTecnico(gerenteModel);
-                case 2 -> MenuCadastroGerente.menuCadastroSupervisor(gerenteModel);
-                case 3 -> MenuCadastroGerente.menuCadastroMaquina(gerenteModel);
+                case 1 -> MenuCadastroGerente.menuCadastroTecnico(gerente);
+                case 2 -> MenuCadastroGerente.menuCadastroSupervisor(gerente);
+                case 3 -> MenuCadastroGerente.menuCadastroMaquina(gerente);
                 default -> Ferramentas.menuDefault();
             }
         }
