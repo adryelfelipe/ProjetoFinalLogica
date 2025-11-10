@@ -1,7 +1,7 @@
 package Views;
 
 //import Models.AdminModel;
-import Dominio.OrdemDeServico;
+import Dominio.OrdemDeServico.OrdemDeServico;
 import Dominio.Funcionario.Supervisor.Supervisor;
 import ProjetoBase.*;
 import Util.Ferramentas;
@@ -23,8 +23,8 @@ import Util.Ferramentas;
 
                OrdemDeServico osEncontrada = ordemService.visualizarDetalhesDaOS(supervisor, idDaOS);
 
-                System.out.println("\n--- Detalhes da OS #" + osEncontrada.getIdOrdemDeServico() + " ---");
-                System.out.println("Status: " + osEncontrada.getStatusDaOrdem());
+                System.out.println("\n--- Detalhes da OS #" + osEncontrada.getIdOs() + " ---");
+                System.out.println("Status: " + osEncontrada.getStatusOS());
                 System.out.println("Descrição: " + osEncontrada.getDescricao());
 
             } catch (RuntimeException e) {

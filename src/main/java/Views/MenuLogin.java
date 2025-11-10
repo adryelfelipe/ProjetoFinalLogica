@@ -1,8 +1,9 @@
 package Views;
 
 import Dominio.Funcionario.Administrador.Administrador;
-import Dominio.Funcionario.Funcionario.Funcionario;
+import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Gerente.Gerente;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
 import Dominio.Funcionario.Supervisor.Supervisor;
 import Dominio.Funcionario.Tecnico.Tecnico;
 import Util.Ferramentas;
@@ -13,45 +14,21 @@ public class MenuLogin
 {
     public static void login(UsuarioService usuarioService) {
         // Inicialização das variáveis
-        boolean verifica = false;
-        String cpfLogin = "";
-        String senhaLogin = "1";
-        Funcionario funcionario = null;
+        Funcionario funcionario;
 
         // Menu interativo
-        while(!verifica) {
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃             LOGIN              ┃");
-            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃ ➤ Digite seu CPF: ");
 
-            try {
-                cpfLogin = Ferramentas.lString();
-                UsuarioValidator.verificaIntegridadeCpf(cpfLogin);
-                UsuarioValidator.verificarRegrasCpf(cpfLogin);
-                verifica = true;
-            } catch (IllegalArgumentException | IllegalStateException e) {
-                Ferramentas.mensagemErro(e.getMessage());
-            }
-        }
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃             LOGIN              ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+        System.out.print("┃ ➤ Digite seu CPF: ");
+        String cpf = Ferramentas.lString();
 
-        // RESETA A VARIÁVEL
-        verifica = false;
-
-        while (!verifica) {
-            try {
-                System.out.print("┃ ➤ Digite sua senha: ");
-                senhaLogin = Ferramentas.lString();
-                UsuarioValidator.verificaIntegridadeSenha(senhaLogin);
-                UsuarioValidator.verificarRegrasSenha(senhaLogin);
-                verifica = true;
-            } catch (IllegalArgumentException | IllegalStateException e) {
-                Ferramentas.mensagemErro(e.getMessage());
-            }
-        }
+        System.out.print("┃ ➤ Digite sua senha: ");
+        String senhaLogin = Ferramentas.lString();
 
         try {
-            funcionario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
+            funcionario = usuarioService.loginUsuario(new CPF(cpf), senhaLogin);
         } catch (IllegalStateException e) {
             Ferramentas.mensagemErro("ERRO! CPF OU SENHA INVÁLIDOS");
             return;

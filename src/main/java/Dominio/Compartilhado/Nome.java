@@ -1,6 +1,6 @@
 package Dominio.Compartilhado;
 
-import Dominio.Funcionario.Funcionario.Exceptions.NomeFuncionarioException;
+import Dominio.Funcionario.Nucleo.Exceptions.NomeFuncionarioException;
 
 public abstract class Nome {
     private final String nome;

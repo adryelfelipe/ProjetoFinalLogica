@@ -1,8 +1,10 @@
 package Views;
 
-import Dominio.OrdemDeServico;
+import Dominio.OrdemDeServico.ObjetosDeValor.Descricao;
+import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
+import Dominio.OrdemDeServico.OrdemDeServico;
 import Dominio.Funcionario.Tecnico.Tecnico;
-import Dominio.Enumeracoes.StatusOS;
+import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
 import ProjetoBase.OrdemDeServicoService;
 import Util.Ferramentas;
 
@@ -44,11 +46,11 @@ public class MenuUpdateTecnico
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃   EDITAR   ORDEM   ┃         ┃        ATUAL       ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println(String.format("┃  1 - Status        ┃         ┃  %-26s┃" + ordemDeServico.getStatusDaOrdem()));
-                System.out.println(String.format("┃  \uD83D\uDD12 - Descrição    ┃         ┃  %-26s┃" + ordemDeServico.getDescricao()));
+                System.out.println(String.format("┃  1 - Status        ┃         ┃  %-26s┃" + ordemDeServico.getStatusOS().getNome()));
+                System.out.println(String.format("┃  \uD83D\uDD12 - Descrição    ┃         ┃  %-26s┃" + ordemDeServico.getDescricao().getDescricao()));
                 System.out.println(String.format("┃  \uD83D\uDD12 - Maquina      ┃         ┃  %-26s┃" + ordemDeServico.getIdMaquina()));
                 System.out.println(String.format("┃  \uD83D\uDD12 - Tecnico      ┃         ┃  %-26s┃" + ordemDeServico.getIdTecnico()));
-                System.out.println(String.format("┃  \uD83D\uDD12 - Valor        ┃         ┃  %-26s┃" + ordemDeServico.getValorDaOrdemDeServico()));
+                System.out.println(String.format("┃  \uD83D\uDD12 - Valor        ┃         ┃  %-26s┃" + ordemDeServico.getValorOS().getValorOS()));
                 System.out.println("┃  6 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃ ➤ Escolha:  ");
@@ -70,30 +72,30 @@ public class MenuUpdateTecnico
                 {
                     StatusOS statusOS = MenuSetOrdemDeServico.menuSetStatusOS();
                     ordemDeServicoService.updateStatusOS(tecnico, idOrdem, statusOS);
-                    ordemDeServico.setStatusDaOrdem(statusOS);
+                    ordemDeServico.alteraStatusOS(statusOS);
                 }
 
                 case 2 -> {
-                    String descricao = MenuSetOrdemDeServico.SetDescricao();
+                    Descricao descricao = MenuSetOrdemDeServico.SetDescricao();
                     ordemDeServicoService.updateDescricaoOS(tecnico, idOrdem, descricao);
-                    ordemDeServico.setDescricao(descricao);
+                    ordemDeServico.alteraDescricao(descricao);
                 }
 
                 case 3 -> {
                     long idMaquina = MenuSetMaquina.SetIdMaquina();
                     ordemDeServicoService.updateIdMaquinaOS(tecnico, idOrdem, idMaquina);
-                    ordemDeServico.setIdMaquina(idMaquina);
+                    ordemDeServico.alteraIdMaquina(idMaquina);
                 }
                 case 4 -> {
                     long idTecnico = MenuSetOrdemDeServico.SetIdTecnico();
                     ordemDeServicoService.updateIdTecnico(tecnico, idOrdem, idTecnico);
-                    ordemDeServico.setIdTecnico(idTecnico);
+                    ordemDeServico.alteraIdTecnico(idTecnico);
                 }
                 case 5 ->
                 {
-                    double valorOS = MenuSetOrdemDeServico.SetValorOS();
+                    ValorOS valorOS = MenuSetOrdemDeServico.SetValorOS();
                     ordemDeServicoService.updateValorOS(tecnico, idOrdem, valorOS);
-                    ordemDeServico.setValorDaOrdemDeServico(valorOS);
+                    ordemDeServico.alteraValorOS(valorOS);
                 }
                 case 6 ->
                 {

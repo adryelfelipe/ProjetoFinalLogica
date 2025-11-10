@@ -2,10 +2,10 @@ package Views;
 
 import Dominio.Compartilhado.Nome;
 import Dominio.Funcionario.Administrador.Administrador;
-import Dominio.Funcionario.Funcionario.Enumeracoes.Departamento;
-import Dominio.Funcionario.Funcionario.Funcionario.Enumeracoes.Departamento;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.Senha;
+import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
+import Dominio.Funcionario.Nucleo.Funcionario.Enumeracoes.Departamento;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
 import Dominio.Funcionario.Gerente.Gerente;
 import Departamento;
 import ProjetoBase.GerenteService;

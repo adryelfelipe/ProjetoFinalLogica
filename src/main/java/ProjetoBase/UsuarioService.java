@@ -1,9 +1,9 @@
 package ProjetoBase;
 
-import Dominio.Funcionario.Funcionario.Funcionario;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.NomeFuncionario;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.Senha;
+import Dominio.Funcionario.Nucleo.Funcionario;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
 import Repositories.FuncionarioDAO;
 
 public class UsuarioService {
@@ -12,7 +12,7 @@ public class UsuarioService {
     FuncionarioDAO funcionarioDao = new FuncionarioDAO();
 
     // -- Métodos -- //
-    public void isCpfCadastradoValidator(String cpf) {
+    public void isCpfCadastradoValidator(CPF cpf) {
         if (funcionarioDao.existeCpf(cpf)) {
             throw new IllegalStateException("ERRO! CPF JÁ CADASTRADO");
         }
@@ -24,7 +24,7 @@ public class UsuarioService {
         }
     }
 
-    public void isCpfExistenteValidator(String cpf) {
+    public void isCpfExistenteValidator(CPF cpf) {
         if (!funcionarioDao.existeCpf(cpf)) {
             throw new IllegalStateException("ERRO! O CPF NÃO FOI ENCONTRADO");
         }
@@ -36,7 +36,7 @@ public class UsuarioService {
         }
     }
 
-    public Funcionario loginUsuario(String cpf, String senha) {
+    public Funcionario loginUsuario(CPF cpf, String senha) {
         isCpfExistenteValidator(cpf);
         return funcionarioDao.loginUsuario(cpf, senha);
     }

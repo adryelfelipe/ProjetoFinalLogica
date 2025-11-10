@@ -1,11 +1,10 @@
 package Views;
 
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.NomeFuncionario;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.Senha;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
 import Util.Ferramentas;
 import ProjetoBase.UsuarioService;
-import ProjetoBase.UsuarioValidator;
 
 public class MenuSetUsuario
 {

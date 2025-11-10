@@ -1,7 +1,7 @@
 package ProjetoBase;
 
 import Dominio.Maquina.Maquina;
-import Dominio.Funcionario.Funcionario.Funcionario;
+import Dominio.Funcionario.Nucleo.Funcionario;
 import Repositories.MaquinaDAO;
 
 public class MaquinaService {

@@ -1,7 +1,7 @@
 package ProjetoBase;
 
 import Dominio.Funcionario.Supervisor.Supervisor;
-import Dominio.Funcionario.Funcionario.Funcionario;
+import Dominio.Funcionario.Nucleo.Funcionario;
 import Repositories.SupervisorDAO;
 import Repositories.FuncionarioDAO;
 

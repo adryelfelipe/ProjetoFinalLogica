@@ -1,7 +1,7 @@
 package ProjetoBase;
 
 import Dominio.Funcionario.Tecnico.Tecnico;
-import Dominio.Funcionario.Funcionario.Funcionario;
+import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
 import Repositories.TecnicoDAO;
 import Repositories.FuncionarioDAO;

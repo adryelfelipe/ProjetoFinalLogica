@@ -1,7 +1,7 @@
 package ProjetoBase;
 
-import Dominio.Funcionario.Funcionario.Funcionario;
-import Dominio.Funcionario.Funcionario.Enumeracoes.NivelAcesso;
+import Dominio.Funcionario.Nucleo.Funcionario;
+import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Util.Ferramentas;
 
 public class UsuarioValidator {

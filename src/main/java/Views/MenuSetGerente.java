@@ -1,7 +1,7 @@
 package Views;
 
 
-import Dominio.Funcionario.Funcionario.Enumeracoes.Departamento;
+import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Util.Ferramentas;
 import ProjetoBase.GerenteValidator;
 

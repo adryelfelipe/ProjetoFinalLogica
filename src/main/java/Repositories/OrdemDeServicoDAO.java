@@ -1,8 +1,10 @@
 package Repositories;
 
 import Database.ConnectionFactory;
-import Dominio.OrdemDeServico;
-import Dominio.Enumeracoes.StatusOS;
+import Dominio.OrdemDeServico.ObjetosDeValor.Descricao;
+import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
+import Dominio.OrdemDeServico.OrdemDeServico;
+import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
 
 import java.sql.*;
 
@@ -16,10 +18,10 @@ public class OrdemDeServicoDAO
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS))
         {
-            stmt.setString(1, ordemDeServico.getDescricao());
-            stmt.setInt(2, ordemDeServico.getStatusDaOrdem().getId());
-            stmt.setDouble(3, ordemDeServico.getValorDaOrdemDeServico());
-            stmt.setLong(4, ordemDeServico.getId_Supervisor());
+            stmt.setString(1, ordemDeServico.getDescricao().getDescricao());
+            stmt.setInt(2, ordemDeServico.getStatusOS().getId());
+            stmt.setDouble(3, ordemDeServico.getValorOS().getValorOS());
+            stmt.setLong(4, ordemDeServico.getIdSupervisor());
             stmt.setLong(5, ordemDeServico.getIdMaquina());
             stmt.setLong(6, ordemDeServico.getIdTecnico());
 
@@ -32,7 +34,7 @@ public class OrdemDeServicoDAO
                     if(rs.next())
                     {
                         idGerado = rs.getLong(1);
-                        ordemDeServico.setIdOrdemDeServico(idGerado);
+                        ordemDeServico.alteraIdOS(idGerado);
                     }
                 }
             }
@@ -72,14 +74,14 @@ public class OrdemDeServicoDAO
     }
 
     // Comando para atualizar a descrição de uma ordem de serviço existente do Banco de Dados
-    public void updateDescricaoOrdemDeServico (long id, String novaDescricao)
+    public void updateDescricaoOrdemDeServico (long id, Descricao novaDescricao)
     {
         String querySQL = "UPDATE OrdemServicos " + "SET descricao = ? " + "WHERE id_os";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
         {
-            stmt.setString(1, novaDescricao);
+            stmt.setString(1, novaDescricao.getDescricao());
             stmt.setLong(2, id);
 
             stmt.executeUpdate();
@@ -110,14 +112,14 @@ public class OrdemDeServicoDAO
     }
 
     // Comando para atualizar o custo de uma ordem de serviço existente do Banco de Dados
-    public void updateCustoOrdemDeServicos (long id, double novoValor)
+    public void updateCustoOrdemDeServicos (long id, ValorOS novoValor)
     {
         String querySQL = "UPDATE OrdemServicos " + "SET custo = ? " + "WHERE id_os";
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
         {
-            stmt.setDouble(1, novoValor);
+            stmt.setDouble(1, novoValor.getValorOS());
             stmt.setLong(2, id);
 
             stmt.executeUpdate();
@@ -209,7 +211,7 @@ public class OrdemDeServicoDAO
                         case 2 -> StatusOS.ATRASADA;
                         default -> StatusOS.FECHADA;
                     };
-                    os = new OrdemDeServico(id, idTecnico, idSupervisor, idMaquina, statusOS, descricao, custo);
+                    os = new OrdemDeServico(id, idTecnico, idSupervisor, idMaquina, statusOS, new Descricao(descricao), new ValorOS(custo));
                 }
             }
             return os;

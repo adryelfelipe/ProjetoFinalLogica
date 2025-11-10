@@ -1,15 +1,19 @@
 package Views;
 
 import Dominio.Funcionario.Administrador.Administrador;
-import Dominio.Funcionario.Funcionario.Funcionario.Enumeracoes.Departamento;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.NomeFuncionario;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.Senha;
+import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
+import Dominio.Funcionario.Nucleo.Funcionario.Enumeracoes.Departamento;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
 import Dominio.Funcionario.Gerente.Gerente;
 import Departamento;
 import ProjetoBase.GerenteService;
 import ProjetoBase.UsuarioService;
 import Util.Ferramentas;
+
+import java.util.Arrays;
 
 public class MenuUpdateADM {
 
@@ -45,7 +49,7 @@ public class MenuUpdateADM {
             System.out.println(String.format("┃  1 - Nome          ┃          ┃  %-26s┃", gerente.getNome()));
             System.out.println(String.format("┃  2 - CPF           ┃          ┃  %-26s┃" + gerente.getCpf()));
             System.out.println(String.format("┃  3 - Senha         ┃          ┃  %-26s┃" + gerente.getSenha()));
-            System.out.println(String.format("┃  5 - Departamento  ┃          ┃  %-26s┃" + gerente.getDepartamento()));
+            System.out.println(String.format("┃  5 - Departamento  ┃          ┃  %-26s┃" + gerente.getDepartamentos().getListaDepartamentos().get(0)));
             System.out.println("┃  6 - Sair do Menu  ┃          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println("┃ ➤ Escolha:  ");
@@ -73,8 +77,8 @@ public class MenuUpdateADM {
                     }
                     case 4 -> {
                         Departamento departamento = MenuSetGerente.menuSetDepartamento();
-                        gerenteService.updateDepartamento(administrador, idGerente, departamento);
-                        gerente.setDepartamento(departamento);
+                        gerenteService.updateDepartamento(administrador, idGerente, new ListaDepartamentos(Arrays.asList(departamento)));
+                        gerente.adicionarDepartamento(departamento);
                     }
                     case 5 ->
                     {

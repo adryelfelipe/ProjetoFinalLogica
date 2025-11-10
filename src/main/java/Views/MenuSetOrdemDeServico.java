@@ -1,6 +1,8 @@
 package Views;
 
-import Dominio.Enumeracoes.StatusOS;
+import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
+import Dominio.OrdemDeServico.ObjetosDeValor.Descricao;
+import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
 import ProjetoBase.*;
 import Util.Ferramentas;
 
@@ -72,35 +74,21 @@ public class MenuSetOrdemDeServico {
         }
     }
 
-    public static String SetDescricao() {
-        while(true) {
-            System.out.print("┃ ➤ Digite a descrição da OS: ");
-            String descricao = Ferramentas.lString();
-
-            try {
-                OrdemDeServicoValidator.verificaIntegridadeDescricao(descricao);
-                MaquinaValidator.verificaRegrasNome(descricao);
-                return descricao;
-            }
-            catch (IllegalArgumentException | IllegalStateException e) {
-                Ferramentas.mensagemErro(e.getMessage());
-            }
-        }
+    public static Descricao SetDescricao() {
+        System.out.print("┃ ➤ Digite a descrição da OS: ");
+        String descricao = Ferramentas.lString();
+        return new Descricao(descricao);
     }
 
-    public static double SetValorOS() {
+    public static ValorOS SetValorOS() {
         while(true) {
             System.out.print("┃ ➤ Digite o valor da OS: R$");
 
             try {
                 double valorOS = Ferramentas.lDouble();
-                SupervisorValidator.verificaIntegridadeMetaMensal(valorOS);
-                SupervisorValidator.verificaRegrasMetaMensal(valorOS);
-                return valorOS;
+                return new ValorOS(valorOS);
             } catch(InputMismatchException e) {
                 Ferramentas.menuDefault();
-            } catch (IllegalArgumentException | IllegalStateException e) {
-                Ferramentas.mensagemErro(e.getMessage());
             }
         }
     }

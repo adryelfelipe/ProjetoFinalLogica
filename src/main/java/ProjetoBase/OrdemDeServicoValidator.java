@@ -1,14 +1,14 @@
 package ProjetoBase;
 
-import Dominio.OrdemDeServico;
-import Dominio.Enumeracoes.StatusOS;
+import Dominio.OrdemDeServico.OrdemDeServico;
+import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
 
 public class OrdemDeServicoValidator
 {
     // -- Verifica regras de negócio -- //
     public static void verificaRegrasInsercaoOS(OrdemDeServico ordemServico) {
-        verificaRegrasDescricao(ordemServico.getDescricao());
-        verificaRegrasStatus(ordemServico.getStatusDaOrdem().getId());
+        verificaRegrasDescricao(ordemServico.getDescricao().getDescricao());
+        verificaRegrasStatus(ordemServico.getStatusOS().getId());
     }
 
     public static void verificaRegrasDescricao(String descricao) {

@@ -1,9 +1,11 @@
 package ProjetoBase;
 
-import Dominio.OrdemDeServico;
+import Dominio.OrdemDeServico.ObjetosDeValor.Descricao;
+import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
+import Dominio.OrdemDeServico.OrdemDeServico;
 import Dominio.Funcionario.Supervisor.Supervisor;
-import Dominio.Funcionario.Funcionario.Funcionario;
-import Dominio.Enumeracoes.StatusOS;
+import Dominio.Funcionario.Nucleo.Funcionario;
+import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
 import Repositories.OrdemDeServicoDAO;
 
 public class OrdemDeServicoService
@@ -29,11 +31,8 @@ public class OrdemDeServicoService
         return ordemDeServicoDAO.findByIdOS(id);
     }
 
-    public void updateDescricaoOS(Funcionario funcionario, long idOS, String descricao) {
+    public void updateDescricaoOS(Funcionario funcionario, long idOS, Descricao descricao) {
         UsuarioValidator.temNivelAcesso2(funcionario);
-        OrdemDeServicoValidator.verificaIntegridadeIdOrdem_Servico(idOS);
-        OrdemDeServicoValidator.verificaRegrasDescricao(descricao);
-        OrdemDeServicoValidator.verificaIntegridadeDescricao(descricao);
         isIdExistenteValidator(idOS);
         ordemDeServicoDAO.updateDescricaoOrdemDeServico(idOS, descricao);
     }
@@ -56,11 +55,9 @@ public class OrdemDeServicoService
         ordemDeServicoDAO.updateIdTecnico(idOS, idTecnico);
     }
 
-    public void updateValorOS(Funcionario funcionario, long idOS, double valorOS)
+    public void updateValorOS(Funcionario funcionario, long idOS, ValorOS valorOS)
     {
         UsuarioValidator.temNivelAcesso2(funcionario);
-        OrdemDeServicoValidator.verificaIntegridadeIdOrdem_Servico(idOS);
-        OrdemDeServicoValidator.verificarIntegridadeValor(valorOS);
         isIdExistenteValidator(idOS);
         ordemDeServicoDAO.updateCustoOrdemDeServicos(idOS, valorOS);
     }

@@ -1,8 +1,10 @@
 package ProjetoBase;
 
 import Dominio.Funcionario.Gerente.Gerente;
-import Dominio.Funcionario.Funcionario.Funcionario;
+import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
+import Dominio.Funcionario.Nucleo.Funcionario;
 import Departamento;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
 import Repositories.GerenteDAO;
 import Repositories.FuncionarioDAO;
 
@@ -22,10 +24,8 @@ public class GerenteService {
         gerenteDAO.salvar(gerenteInserido);
     }
 
-    public void updateDepartamento(Funcionario funcionario, long id, Departamento departamento) {
+    public void updateDepartamento(Funcionario funcionario, long id, ListaDepartamentos departamento) {
         UsuarioValidator.temNivelAcesso4(funcionario);
-        GerenteValidator.verificaRegrasDepartamento(departamento);
-        GerenteValidator.verificaIntegridadeDepartamento(departamento);
         gerenteDAO.updateDepartamento(id, departamento);
     }
 

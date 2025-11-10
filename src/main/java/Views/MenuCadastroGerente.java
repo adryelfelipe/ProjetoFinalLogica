@@ -1,10 +1,10 @@
 package Views;
 
-import Dominio.Funcionario.Funcionario.Enumeracoes.Departamento;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.ListaDepartamentos;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.NomeFuncionario;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.Senha;
+import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
 import Dominio.Funcionario.Gerente.Gerente;
 import Dominio.Funcionario.Supervisor.ObjetosDeValor.MetaMensal;
 import Dominio.Maquina.Maquina;

@@ -1,11 +1,11 @@
 package Dominio.Funcionario.Supervisor;
 
-import Dominio.Funcionario.Funcionario.Enumeracoes.NivelAcesso;
-import Dominio.Funcionario.Funcionario.Funcionario;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.ListaDepartamentos;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.NomeFuncionario;
-import Dominio.Funcionario.Funcionario.ObjetosDeValor.Senha;
+import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
+import Dominio.Funcionario.Nucleo.Funcionario;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
 import Dominio.Funcionario.Supervisor.Exceptions.MetaMensalExeption;
 import Dominio.Funcionario.Supervisor.ObjetosDeValor.MetaMensal;
 

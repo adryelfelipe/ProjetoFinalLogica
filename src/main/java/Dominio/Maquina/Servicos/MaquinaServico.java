@@ -13,9 +13,15 @@ public class MaquinaServico {
     }
 
     // -- Métodos -- //
-    public void existeID(long idMaquina) {
+    public void idEncontrado(long idMaquina) {
         if (!maquinaRepositorio.existeID(idMaquina)) {
             throw new IdMaquinaException("O ID da máquina não foi encontrado");
+        }
+    }
+
+    public void idUtilizado(long idMaquina) {
+        if(maquinaRepositorio.existeID(idMaquina)) {
+            throw new IdMaquinaException("O ID da máquina informado já foi utilizado");
         }
     }
 }

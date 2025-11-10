@@ -1,5 +1,6 @@
 package Dominio.Maquina;
 
+import Dominio.Funcionario.Nucleo.Exceptions.IdFuncionarioException;
 import Dominio.Maquina.Enumeracoes.StatusMaquina;
 import Dominio.Maquina.Exceptions.IdMaquinaException;
 import Dominio.Maquina.Exceptions.LocalizacaoInvalidaException;
@@ -11,23 +12,23 @@ import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
 public class Maquina {
 
     // -- Atributos -- //
-    private long idMaquina;
+    private Long idMaquina;
     private NomeMaquina nome;
     private Localizacao localizacao;
     private StatusMaquina status;
 
 
     // -- Construtor com ID -- //
-    public Maquina(long id, NomeMaquina nome, Localizacao localizacao, StatusMaquina idStatus) {
-        alteraNome(nome);
+    public Maquina(Long id, NomeMaquina nome, Localizacao localizacao, StatusMaquina status) {
         alteraIdMaquina(id);
+        alteraNome(nome);
         alteraLocalizacao(localizacao);
-        alteraStatus(idStatus);
+        alteraStatus(status);
     }
 
     // -- Construtor sem ID -- //
-    public Maquina(NomeMaquina nome, Localizacao localizacao, StatusMaquina idStatus) {
-        this(0, nome, localizacao, idStatus);
+    public Maquina(NomeMaquina nome, Localizacao localizacao, StatusMaquina status) {
+        this(null, nome, localizacao, status);
     }
 
     // --  Getters -- //
@@ -44,14 +45,18 @@ public class Maquina {
         return status;
     }
 
-    public long getIdMaquina() {
+    public Long getIdMaquina() {
         return idMaquina;
     }
 
     // -- Alteradores -- //
-    public void alteraIdMaquina(long idMaquina) {
-        if(idMaquina < 0) {
-            throw new IdMaquinaException("A máquina não pode possuir um ID negativo");
+    public void alteraIdMaquina(Long idMaquina) {
+        if(this.idMaquina != null) {
+            throw new IdMaquinaException("Não é possível alterar o ID de uma máquina");
+        }
+
+        if(idMaquina != null && idMaquina < 1) {
+            throw new IdMaquinaException("O ID da máquina informado está inválido");
         }
 
         this.idMaquina = idMaquina;
