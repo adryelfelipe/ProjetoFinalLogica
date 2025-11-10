@@ -35,7 +35,7 @@ public abstract class Funcionario {
     }
 
     // -- Getters -- //
-    public Long getIdUsuario() {
+    public Long getId() {
         return idFuncionario;
     }
 

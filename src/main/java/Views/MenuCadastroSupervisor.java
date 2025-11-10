@@ -43,7 +43,7 @@ public class MenuCadastroSupervisor
         Ferramentas.Delay(1000);
 
         try {
-            OrdemDeServico ordemServico = new OrdemDeServico(idTecnico, supervisor.getIdUsuario(), idMaquina,StatusOS.EM_ANDAMENTO, descricao, valorOS);
+            OrdemDeServico ordemServico = new OrdemDeServico(idTecnico, supervisor.getId(), idMaquina,StatusOS.EM_ANDAMENTO, descricao, valorOS);
             ordemDeServicoService.inserirOrdemDeServico(supervisor, ordemServico);
             Ferramentas.limpaTerminal();
             System.out.println("MÁQUINA CADASTRADO COM SUCESSO!");

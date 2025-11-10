@@ -1,15 +1,17 @@
-package Views;
+package Views.Gerente;
 
 
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
 import Util.Ferramentas;
 import ProjetoBase.GerenteValidator;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
 
 public class MenuSetGerente {
 
-    public static Departamento menuSetDepartamento()
+    public static ListaDepartamentos menuSetDepartamento()
     {
         int opcao;
 
@@ -29,19 +31,13 @@ public class MenuSetGerente {
                 if(opcao > 2 || opcao < 1) {
                     Ferramentas.menuDefault();
                 } else {
-                    Departamento departamento = switch (opcao){
-                        case 1 -> Departamento.ELETRICA;
-                        default -> Departamento.MECANICA;
+                    return switch (opcao){
+                        case 1 -> new ListaDepartamentos(Arrays.asList(Departamento.ELETRICA));
+                        default -> new ListaDepartamentos(Arrays.asList(Departamento.MECANICA));
                     };
-
-                    GerenteValidator.verificaRegrasDepartamento(departamento);
-                    GerenteValidator.verificaIntegridadeDepartamento(departamento);
-                    return departamento;
                 }
             } catch(InputMismatchException e) {
                 Ferramentas.menuDefault();
-            } catch (IllegalArgumentException | IllegalStateException e) {
-                Ferramentas.mensagemErro(e.getMessage());
             }
         }
     }

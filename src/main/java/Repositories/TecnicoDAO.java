@@ -18,7 +18,7 @@ public class TecnicoDAO
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
         {
-            stmt.setLong(1, tecnico.getIdUsuario());
+            stmt.setLong(1, tecnico.getId());
             stmt.setInt(2, tecnico.getEspecialidade().getId());
 
             stmt.executeUpdate();
@@ -27,7 +27,7 @@ public class TecnicoDAO
             System.err.println("ERRO ao inserir tecnico");
         }
     }
-    public boolean excluirPorID(long id)
+    public boolean excluirPorId(long id)
     {
         String querySQL = "DELETE FROM Tecnico WHERE id_tecnico = ?";
 

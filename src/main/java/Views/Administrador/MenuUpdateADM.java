@@ -1,4 +1,4 @@
-package Views;
+package Views.Administrador;
 
 import Dominio.Funcionario.Administrador.Administrador;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
@@ -12,6 +12,9 @@ import Departamento;
 import ProjetoBase.GerenteService;
 import ProjetoBase.UsuarioService;
 import Util.Ferramentas;
+import Views.Gerente.MenuSetGerente;
+import Views.MenuEscolhaId;
+import Views.MenuSetUsuario;
 
 import java.util.Arrays;
 

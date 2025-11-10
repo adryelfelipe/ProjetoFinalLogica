@@ -2,6 +2,10 @@ package Views;
 
 import Util.Ferramentas;
 import Dominio.Funcionario.Gerente.Gerente;
+import Views.Gerente.MenuGerenteCadastrar;
+import Views.Gerente.MenuGerenteRelatorios;
+import Views.Gerente.MenuGerenteRemoverUsuarios;
+import Views.Gerente.MenuUpdateGerente;
 
 public class MenuGerente
 {

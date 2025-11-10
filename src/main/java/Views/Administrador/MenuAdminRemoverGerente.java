@@ -1,8 +1,9 @@
-package Views;
+package Views.Administrador;
 
 import Dominio.Funcionario.Administrador.Administrador;
 import ProjetoBase.*;
 import Util.Ferramentas;
+import Views.MenuEscolhaId;
 
 public class MenuAdminRemoverGerente {
 

@@ -1,27 +1,32 @@
-package Views;
+package Views.Administrador;
 
-import Dominio.Compartilhado.Nome;
+import Aplicacao.Funcionario.Gerente.CasosDeUso.CadastrarGerente.Dtos.CadastroGerenteRequest;
+import Aplicacao.Funcionario.Gerente.CasosDeUso.CadastrarGerente.Dtos.CadastroGerenteResponse;
+import Aplicacao.Funcionario.Gerente.GerenteController;
 import Dominio.Funcionario.Administrador.Administrador;
-import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
-import Dominio.Funcionario.Nucleo.Funcionario.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
-import Dominio.Funcionario.Gerente.Gerente;
-import Departamento;
-import ProjetoBase.GerenteService;
 import Util.Ferramentas;
+import Views.Gerente.MenuSetGerente;
+import Views.MenuSetUsuario;
 
 public class MenuCadastroADM {
-    private static final GerenteService gerenteService = new GerenteService();
+    private GerenteController gerenteController;
 
-    public static void menuCadastroGerente(Administrador administrador) {
+    public MenuCadastroADM(GerenteController gerenteController) {
+        this.gerenteController = gerenteController;
+    }
+
+    public void menuCadastroGerente(Administrador administrador) {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃       CADASTRO GERENTE         ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
         System.out.println(" ");
 
         // ----- Atribuição de caracteríscticas de um Usuário ----- //
-        Nome nome = MenuSetUsuario.MenuSetNome();
+        NomeFuncionario nome = MenuSetUsuario.MenuSetNome();
         Ferramentas.limpaTerminal();
 
         CPF cpf = MenuSetUsuario.MenuSetCpf();
@@ -31,7 +36,7 @@ public class MenuCadastroADM {
         Ferramentas.limpaTerminal();
 
         // ----- Atribuição de caracteríscticas de um Gerente ----- //
-        Departamento idDepartamento = MenuSetGerente.menuSetDepartamento();
+        ListaDepartamentos listaDepartamentos = MenuSetGerente.menuSetDepartamento();
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //
@@ -41,13 +46,10 @@ public class MenuCadastroADM {
         Ferramentas.Delay(1000);
         Ferramentas.limpaTerminal();
 
-        try {
-            Gerente gerente = new Gerente(nome, cpf, senha, idDepartamento);
-            gerenteService.inserirGerente(administrador, gerente);
-            System.out.println("GERENTE CADASTRADO COM SUCESSO!");
-            Ferramentas.Delay(800);
-        } catch (IllegalArgumentException | IllegalStateException e) {
-            Ferramentas.mensagemErro(e.getMessage());
-        }
+        // -- Gerando request para cadastro de gerente -- //
+        CadastroGerenteRequest gerenteRequest = new CadastroGerenteRequest(nome, cpf, senha, listaDepartamentos);
+        CadastroGerenteResponse gerenteResponse = gerenteController.salvar(gerenteRequest);
+        Ferramentas.mensagemErro(gerenteResponse.mensagem());
+        Ferramentas.Delay(800);
     }
 }

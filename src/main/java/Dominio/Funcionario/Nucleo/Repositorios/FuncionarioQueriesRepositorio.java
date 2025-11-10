@@ -6,7 +6,7 @@ import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
 
 public interface FuncionarioQueriesRepositorio {
     boolean existeCpf(CPF cpf);
-    boolean existeID(long id);
+    boolean existeId(long id);
     Funcionario buscarPorID(long id);
     NivelAcesso nivelAcessoPorId(long id);
     Funcionario buscarPorCpf(CPF cpf);
