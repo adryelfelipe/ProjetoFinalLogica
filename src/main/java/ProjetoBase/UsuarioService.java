@@ -1,16 +1,19 @@
 package ProjetoBase;
 
-import Dominio.Entidades.Usuario;
-import Repositories.UsuarioDAO;
+import Dominio.Funcionario.Funcionario.Funcionario;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.NomeFuncionario;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.Senha;
+import Repositories.FuncionarioDAO;
 
 public class UsuarioService {
 
     // -- Atributos -- //
-    UsuarioDAO usuarioDao = new UsuarioDAO();
+    FuncionarioDAO funcionarioDao = new FuncionarioDAO();
 
     // -- Métodos -- //
     public void isCpfCadastradoValidator(String cpf) {
-        if (usuarioDao.verificarCpf(cpf)) {
+        if (funcionarioDao.existeCpf(cpf)) {
             throw new IllegalStateException("ERRO! CPF JÁ CADASTRADO");
         }
     }
@@ -22,63 +25,57 @@ public class UsuarioService {
     }
 
     public void isCpfExistenteValidator(String cpf) {
-        if (!usuarioDao.verificarCpf(cpf)) {
+        if (!funcionarioDao.existeCpf(cpf)) {
             throw new IllegalStateException("ERRO! O CPF NÃO FOI ENCONTRADO");
         }
     }
 
     public void isIdExistenteValidator(long id) {
-        if (!usuarioDao.verificarId(id)) {
+        if (!funcionarioDao.existeID(id)) {
             throw new IllegalStateException("ERRO! O ID NÃO FOI ENCONTRADO");
         }
     }
 
-    public Usuario loginUsuario(String cpf, String senha) {
+    public Funcionario loginUsuario(String cpf, String senha) {
         isCpfExistenteValidator(cpf);
-        return usuarioDao.loginUsuario(cpf, senha);
+        return funcionarioDao.loginUsuario(cpf, senha);
     }
 
-    public Usuario findById(long id) {
-        return usuarioDao.findById(id);
+    public Funcionario findById(long id) {
+        return funcionarioDao.buscarPorID(id);
     }
 
-    public void updateSenhaUsuario(Usuario usuario, long id, String senha) {
-        UsuarioValidator.temNivelAcesso3(usuario);
-        UsuarioValidator.verificarRegrasSenha(senha);
-        UsuarioValidator.verificaIntegridadeSenha(senha);
-        usuarioDao.updateSenhaUsuario(id, senha);
+    public void updateSenhaUsuario(Funcionario funcionario, long id, Senha senha) {
+        UsuarioValidator.temNivelAcesso3(funcionario);
+        funcionarioDao.updateSenhaUsuario(id, senha.getSenha());
 
-        if (UsuarioValidator.isAutoUpdate(usuario.getIdUsuario(), id)) {
-            usuario.setSenha(senha);
+        if (funcionario.igualMeuId(id)) {
+            funcionario.alteraSenha(senha);
         }
     }
 
-    public void updateNomeUsuario(Usuario usuario, long id, String nome) {
-        UsuarioValidator.temNivelAcesso3(usuario);
-        UsuarioValidator.verificaIntegridadeNome(nome);
-        UsuarioValidator.verificaRegrasNome(nome);
-        usuarioDao.updateNomeUsuario(id, nome);
+    public void updateNomeUsuario(Funcionario funcionario, long id, NomeFuncionario nome) {
+        UsuarioValidator.temNivelAcesso3(funcionario);
+        funcionarioDao.alterarNomeUsuario(id, nome.getNome());
 
-        if (UsuarioValidator.isAutoUpdate(usuario.getIdUsuario(), id)) {
-            usuario.setNome(nome);
+        if (funcionario.igualMeuId(id)) {
+            funcionario.alteraNome(nome);
         }
     }
 
-    public void updateCpfUsuario(Usuario usuario, long id, String cpf) {
-        UsuarioValidator.temNivelAcesso3(usuario);
-        UsuarioValidator.verificaIntegridadeCpf(cpf);
-        UsuarioValidator.verificarRegrasCpf(cpf);
-        usuarioDao.updateCpfUsuario(id, cpf);
+    public void updateCpfUsuario(Funcionario funcionario, long id, CPF cpf) {
+        UsuarioValidator.temNivelAcesso3(funcionario);
+        funcionarioDao.updateCpfUsuario(id, cpf.getCpf());
 
-        if (UsuarioValidator.isAutoUpdate(usuario.getIdUsuario(), id)) {
-            usuario.setCpf(cpf);
+        if (funcionario.igualMeuId(id)) {
+            funcionario.alteraCpf(cpf);
         }
     }
 
-    public long getNivelAcessoById(Usuario usuario, long idUsuario) {
-        UsuarioValidator.temNivelAcesso3(usuario);
+    public long getNivelAcessoById(Funcionario funcionario, long idUsuario) {
+        UsuarioValidator.temNivelAcesso3(funcionario);
         isIdExistenteValidator(idUsuario);
-        return usuarioDao.getNivelAcessoByID(idUsuario);
+        return funcionarioDao.nivelAcessoPorID(idUsuario);
     }
 }
 

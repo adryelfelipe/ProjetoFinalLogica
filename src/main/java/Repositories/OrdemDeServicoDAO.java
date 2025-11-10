@@ -1,7 +1,7 @@
 package Repositories;
 
 import Database.ConnectionFactory;
-import Dominio.Entidades.OrdemDeServico;
+import Dominio.OrdemDeServico;
 import Dominio.Enumeracoes.StatusOS;
 
 import java.sql.*;

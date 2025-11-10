@@ -1,38 +1,38 @@
 package ProjetoBase;
 
-import Dominio.Entidades.Gerente;
-import Dominio.Entidades.Usuario;
-import Dominio.Enumeracoes.Departamento;
+import Dominio.Funcionario.Gerente.Gerente;
+import Dominio.Funcionario.Funcionario.Funcionario;
+import Departamento;
 import Repositories.GerenteDAO;
-import Repositories.UsuarioDAO;
+import Repositories.FuncionarioDAO;
 
 public class GerenteService {
 
     // -- Atributos -- //
-    private final UsuarioDAO usuarioDao = new UsuarioDAO();
+    private final FuncionarioDAO funcionarioDao = new FuncionarioDAO();
     private final GerenteDAO gerenteDAO = new GerenteDAO();
     private final UsuarioService usuarioService = new UsuarioService();
 
     // -- Métodos -- //
-    public void inserirGerente(Usuario usuarioInseridor, Gerente gerenteInserido) {
-        UsuarioValidator.temNivelAcesso4(usuarioInseridor);
+    public void inserirGerente(Funcionario funcionarioInseridor, Gerente gerenteInserido) {
+        UsuarioValidator.temNivelAcesso4(funcionarioInseridor);
         GerenteValidator.verificaRegrasInsercaoGerente(gerenteInserido);
-        usuarioService.isCpfCadastradoValidator(gerenteInserido.getCpf());
-        usuarioDao.inserirUsuario(gerenteInserido);
-        gerenteDAO.inserirGerente(gerenteInserido);
+        usuarioService.isCpfCadastradoValidator(gerenteInserido.getCpf().getCpf());
+        funcionarioDao.salvar(gerenteInserido);
+        gerenteDAO.salvar(gerenteInserido);
     }
 
-    public void updateDepartamento(Usuario usuario, long id, Departamento departamento) {
-        UsuarioValidator.temNivelAcesso4(usuario);
+    public void updateDepartamento(Funcionario funcionario, long id, Departamento departamento) {
+        UsuarioValidator.temNivelAcesso4(funcionario);
         GerenteValidator.verificaRegrasDepartamento(departamento);
         GerenteValidator.verificaIntegridadeDepartamento(departamento);
         gerenteDAO.updateDepartamento(id, departamento);
     }
 
-    public void removerGerente(Usuario usuarioExecutor, long idGerenteARemover) {
-        UsuarioValidator.temNivelAcesso4(usuarioExecutor);
+    public void removerGerente(Funcionario funcionarioExecutor, long idGerenteARemover) {
+        UsuarioValidator.temNivelAcesso4(funcionarioExecutor);
         usuarioService.isIdExistenteValidator(idGerenteARemover);
-        gerenteDAO.deletarGerente(idGerenteARemover);
-        usuarioDao.deletarUsuario(idGerenteARemover);
+        gerenteDAO.excluirPorID(idGerenteARemover);
+        funcionarioDao.excluirPorID(idGerenteARemover);
     }
 }

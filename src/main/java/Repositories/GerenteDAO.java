@@ -1,8 +1,7 @@
 package Repositories;
 
 import Database.ConnectionFactory;
-import Dominio.Entidades.Gerente;
-import Dominio.Enumeracoes.Departamento;
+import Dominio.Funcionario.Gerente.Gerente;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +9,7 @@ import java.sql.SQLException;
 
 public class GerenteDAO
 {
-    public void inserirGerente(Gerente gerente)
+    public void salvar(Gerente gerente)
     {
         String querySQL = "INSERT INTO Gerentes (id_gerente, id_departamento) VALUES (?, ?)";
 
@@ -18,7 +17,7 @@ public class GerenteDAO
             PreparedStatement stmt = conn.prepareStatement(querySQL))
         {
             stmt.setLong(1, gerente.getIdUsuario());
-            stmt.setInt(2, gerente.getDepartamento().getId());
+            stmt.setInt(2, gerente.getDepartamentos().getListaDepartamentos().get(0).getId());
 
             stmt.executeUpdate();
 
@@ -27,7 +26,7 @@ public class GerenteDAO
         }
     }
 
-    public boolean deletarGerente(long id)
+    public boolean excluirPorID(long id)
     {
         String querySQL = "DELETE FROM Gerentes WHERE id_gerente = ?";
 

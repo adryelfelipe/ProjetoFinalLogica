@@ -1,8 +1,8 @@
 package Repositories;
 
 import Database.ConnectionFactory;
-import Dominio.Entidades.Maquina;
-import Dominio.Enumeracoes.StatusMaquina;
+import Dominio.Maquina.Maquina;
+import Dominio.Maquina.Enumeracoes.StatusMaquina;
 
 import java.sql.*;
 
@@ -15,8 +15,8 @@ public class MaquinaDAO {
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS)) {
             //Definindo parametros (PreparedStatement).
-            stmt.setString(1, maquina.getNome());
-            stmt.setString(2, maquina.getLocalizacao());
+            stmt.setString(1, maquina.getNome().getNome());
+            stmt.setString(2, maquina.getLocalizacao().getLocalizacao());
             stmt.setLong(3, maquina.getStatus().getId());
 
             int linhasAF = stmt.executeUpdate();
@@ -101,7 +101,7 @@ public class MaquinaDAO {
         }
     }
 
-    public boolean verificarIdMaquina(long id) {
+    public boolean existeID(long id) {
         // Consulta MYSQL.
         String querySql = "SELECT * FROM Maquinas WHERE id_maquina = ? LIMIT 1";
 

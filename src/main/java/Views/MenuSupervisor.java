@@ -1,7 +1,7 @@
 package Views;
 
 import Util.Ferramentas;
-import Dominio.Entidades.Supervisor;
+import Dominio.Funcionario.Supervisor.Supervisor;
 
 import java.util.InputMismatchException;
 

@@ -1,5 +1,8 @@
 package Views;
 
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.NomeFuncionario;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.Senha;
 import Util.Ferramentas;
 import ProjetoBase.UsuarioService;
 import ProjetoBase.UsuarioValidator;
@@ -9,61 +12,24 @@ public class MenuSetUsuario
     private static UsuarioService usuarioService = new UsuarioService();
 
     //SET NOME DO USUÁRIO
-    public static String MenuSetNome()
+    public static NomeFuncionario MenuSetNome()
     {
-        while(true)
-        {
-            System.out.print("┃ ➤ Digite o Nome: ");
-            String nome = Ferramentas.lString();
-
-            try {
-                UsuarioValidator.verificaIntegridadeNome(nome);
-                UsuarioValidator.verificaRegrasNome(nome);
-                return nome;
-            }
-            catch (IllegalArgumentException | IllegalStateException e) {
-                Ferramentas.mensagemErro(e.getMessage());
-            }
-        }
+        System.out.print("┃ ➤ Digite o Nome: ");
+        String nome = Ferramentas.lString();
+        return new NomeFuncionario(nome);
     }
 
     //SET CPF DO USUÁRIO
-    public static String MenuSetCpf(){
-        String CPF;
-
-        while(true){
-            System.out.print("┃ ➤ Digite o CPF: ");
-            CPF = Ferramentas.lString();
-
-            try {
-                UsuarioValidator.verificaIntegridadeCpf(CPF);
-                UsuarioValidator.verificarRegrasCpf(CPF);
-                usuarioService.isCpfCadastradoValidator(CPF);
-                return CPF;
-            }
-            catch (IllegalArgumentException | IllegalStateException e) {
-                Ferramentas.mensagemErro(e.getMessage());
-            }
-        }
+    public static CPF MenuSetCpf(){
+        System.out.print("┃ ➤ Digite o CPF: ");
+        String CPF = Ferramentas.lString();
+        return new CPF(CPF);
     }
 
     //SET SENHA DO USUÁRIO
-    public static String MenuSetSenha(){
-        String senha;
-
-        while(true){
-            System.out.print("┃ ➤ Digite a senha: ");
-            senha = Ferramentas.lString();
-
-            try
-           {
-                UsuarioValidator.verificaIntegridadeSenha(senha);
-                UsuarioValidator.verificarRegrasSenha(senha);
-                return senha;
-            }
-            catch (IllegalArgumentException | IllegalStateException e) {
-                Ferramentas.mensagemErro(e.getMessage());
-            }
-        }
+    public static Senha MenuSetSenha() {
+        System.out.print("┃ ➤ Digite a senha: ");
+        String senha = Ferramentas.lString();
+        return new Senha(senha);
     }
 }

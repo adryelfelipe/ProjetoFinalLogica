@@ -1,4 +1,4 @@
-package Dominio.Entidades;
+package Dominio;
 
 import Dominio.Enumeracoes.StatusOS;
 import ProjetoBase.MaquinaValidator;

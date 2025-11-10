@@ -1,6 +1,6 @@
 package ProjetoBase;
 
-import Dominio.Entidades.OrdemDeServico;
+import Dominio.OrdemDeServico;
 import Dominio.Enumeracoes.StatusOS;
 
 public class OrdemDeServicoValidator

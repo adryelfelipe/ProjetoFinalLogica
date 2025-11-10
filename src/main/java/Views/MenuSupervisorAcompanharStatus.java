@@ -1,8 +1,8 @@
 package Views;
 
 //import Models.AdminModel;
-import Dominio.Entidades.OrdemDeServico;
-import Dominio.Entidades.Supervisor;
+import Dominio.OrdemDeServico;
+import Dominio.Funcionario.Supervisor.Supervisor;
 import ProjetoBase.*;
 import Util.Ferramentas;
 

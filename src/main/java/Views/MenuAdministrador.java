@@ -1,6 +1,6 @@
 package Views;
 
-import Dominio.Entidades.Administrador;
+import Dominio.Funcionario.Administrador.Administrador;
 import Util.Ferramentas;
 
 public class MenuAdministrador {

@@ -1,12 +1,12 @@
 package ProjetoBase;
 
-import Dominio.Entidades.Supervisor;
+import Dominio.Funcionario.Supervisor.Supervisor;
 
 public class SupervisorValidator {
     // -- Verificações de Regras de Negócio -- //
     public static void verificarRegrasInsercaoSupervisor(Supervisor supervisor) {
         UsuarioValidator.verificaRegrasInsercaoUsuario(supervisor);
-        verificaIntegridadeMetaMensal(supervisor.getMetaMensal());
+        verificaIntegridadeMetaMensal(supervisor.getMetaMensal().getValorMetaMensal());
     }
 
     public static void verificaRegrasMetaMensal(double mentaMensal) {

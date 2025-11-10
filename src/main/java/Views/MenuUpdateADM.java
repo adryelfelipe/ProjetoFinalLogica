@@ -1,8 +1,12 @@
 package Views;
 
-import Dominio.Entidades.Administrador;
-import Dominio.Entidades.Gerente;
-import Dominio.Enumeracoes.Departamento;
+import Dominio.Funcionario.Administrador.Administrador;
+import Dominio.Funcionario.Funcionario.Funcionario.Enumeracoes.Departamento;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.NomeFuncionario;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.Senha;
+import Dominio.Funcionario.Gerente.Gerente;
+import Departamento;
 import ProjetoBase.GerenteService;
 import ProjetoBase.UsuarioService;
 import Util.Ferramentas;
@@ -51,21 +55,21 @@ public class MenuUpdateADM {
 
                 switch (opcaoAdm) {
                     case 1 -> {
-                        String nome = MenuSetUsuario.MenuSetNome();
+                        NomeFuncionario nome = MenuSetUsuario.MenuSetNome();
                         usuarioService.updateNomeUsuario(administrador, idGerente, nome);
-                        gerente.setNome(nome);
+                        gerente.alteraNome(nome);
                     }
 
                     case 2 -> {
-                        String cpf = MenuSetUsuario.MenuSetCpf();
+                        CPF cpf = MenuSetUsuario.MenuSetCpf();
                         usuarioService.updateCpfUsuario(administrador, idGerente, cpf);
-                        gerente.setCpf(cpf);
+                        gerente.alteraCpf(cpf);
                     }
 
                     case 3 -> {
-                        String senha = MenuSetUsuario.MenuSetSenha();
+                        Senha senha = MenuSetUsuario.MenuSetSenha();
                         usuarioService.updateSenhaUsuario(administrador, idGerente, senha);
-                        gerente.setSenha(senha);
+                        gerente.alteraSenha(senha);
                     }
                     case 4 -> {
                         Departamento departamento = MenuSetGerente.menuSetDepartamento();

@@ -1,8 +1,8 @@
 package Repositories;
 
 import Database.ConnectionFactory;
-import Dominio.Entidades.Tecnico;
-import Dominio.Enumeracoes.Especialidade;
+import Dominio.Funcionario.Tecnico.Tecnico;
+import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class TecnicoDAO
 {
-    public void inserirTecnico(Tecnico tecnico)
+    public void salvar(Tecnico tecnico)
     {
 
         String querySQL = "INSERT INTO Tecnico (id_tecnico, id_especialidade) VALUES (?, ?)";
@@ -27,7 +27,7 @@ public class TecnicoDAO
             System.err.println("ERRO ao inserir tecnico");
         }
     }
-    public boolean deletarTecnico(long id)
+    public boolean excluirPorID(long id)
     {
         String querySQL = "DELETE FROM Tecnico WHERE id_tecnico = ?";
 

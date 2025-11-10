@@ -1,6 +1,6 @@
 package Views;
 
-import Dominio.Entidades.Administrador;
+import Dominio.Funcionario.Administrador.Administrador;
 import ProjetoBase.*;
 import Util.Ferramentas;
 

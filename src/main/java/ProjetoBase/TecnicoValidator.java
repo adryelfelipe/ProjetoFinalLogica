@@ -1,7 +1,7 @@
 package ProjetoBase;
 
-import Dominio.Entidades.Tecnico;
-import Dominio.Enumeracoes.Especialidade;
+import Dominio.Funcionario.Tecnico.Tecnico;
+import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
 
 public class TecnicoValidator {
 

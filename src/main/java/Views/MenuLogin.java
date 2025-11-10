@@ -1,6 +1,10 @@
 package Views;
 
-import Dominio.Entidades.*;
+import Dominio.Funcionario.Administrador.Administrador;
+import Dominio.Funcionario.Funcionario.Funcionario;
+import Dominio.Funcionario.Gerente.Gerente;
+import Dominio.Funcionario.Supervisor.Supervisor;
+import Dominio.Funcionario.Tecnico.Tecnico;
 import Util.Ferramentas;
 import ProjetoBase.UsuarioService;
 import ProjetoBase.UsuarioValidator;
@@ -12,7 +16,7 @@ public class MenuLogin
         boolean verifica = false;
         String cpfLogin = "";
         String senhaLogin = "1";
-        Usuario usuario = null;
+        Funcionario funcionario = null;
 
         // Menu interativo
         while(!verifica) {
@@ -47,21 +51,21 @@ public class MenuLogin
         }
 
         try {
-            usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
+            funcionario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
         } catch (IllegalStateException e) {
             Ferramentas.mensagemErro("ERRO! CPF OU SENHA INVÁLIDOS");
             return;
         }
 
         Ferramentas.limpaTerminal();
-        if(usuario instanceof Administrador){
-            MenuAdministrador.menuInicial((Administrador) usuario);
-        } else if(usuario instanceof Gerente) {
-            MenuGerente.menuInicial((Gerente) usuario);
-        } else if(usuario instanceof Supervisor) {
-            MenuSupervisor.menuSupervisor((Supervisor) usuario);
-        } else if(usuario instanceof Tecnico) {
-            MenuTecnico.menuTecnico((Tecnico) usuario);
+        if(funcionario instanceof Administrador){
+            MenuAdministrador.menuInicial((Administrador) funcionario);
+        } else if(funcionario instanceof Gerente) {
+            MenuGerente.menuInicial((Gerente) funcionario);
+        } else if(funcionario instanceof Supervisor) {
+            MenuSupervisor.menuSupervisor((Supervisor) funcionario);
+        } else if(funcionario instanceof Tecnico) {
+            MenuTecnico.menuTecnico((Tecnico) funcionario);
         }
         else {
             Ferramentas.mensagemErro("ERRO! CPF OU SENHA INVÁLIDOS");

@@ -1,7 +1,7 @@
 package ProjetoBase;
 
-import Dominio.Entidades.Maquina;
-import Dominio.Entidades.Usuario;
+import Dominio.Maquina.Maquina;
+import Dominio.Funcionario.Funcionario.Funcionario;
 import Repositories.MaquinaDAO;
 
 public class MaquinaService {
@@ -9,14 +9,14 @@ public class MaquinaService {
     private final MaquinaDAO maquinaDAO = new MaquinaDAO();
 
     // -- Métodos -- //
-    public void inserirMaquina(Usuario usuarioInseridor, Maquina maquina) {
-        UsuarioValidator.temNivelAcesso3(usuarioInseridor);
+    public void inserirMaquina(Funcionario funcionarioInseridor, Maquina maquina) {
+        UsuarioValidator.temNivelAcesso3(funcionarioInseridor);
         MaquinaValidator.verificaRegrasInsercaoMaquina(maquina);
         maquinaDAO.inserirMaquina(maquina);
     }
 
     public void isIdExistenteValidator(long id) {
-        if(!maquinaDAO.verificarIdMaquina(id)) {
+        if(!maquinaDAO.existeID(id)) {
             throw new IllegalStateException("ERRO! O ID DA MÁQUINA NÃO FOI ENCONTRADO");
         }
     }

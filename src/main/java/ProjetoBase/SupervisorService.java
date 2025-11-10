@@ -1,36 +1,36 @@
 package ProjetoBase;
 
-import Dominio.Entidades.Supervisor;
-import Dominio.Entidades.Usuario;
+import Dominio.Funcionario.Supervisor.Supervisor;
+import Dominio.Funcionario.Funcionario.Funcionario;
 import Repositories.SupervisorDAO;
-import Repositories.UsuarioDAO;
+import Repositories.FuncionarioDAO;
 
 public class SupervisorService {
     // -- Atributos -- //
-    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
+    private final FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
     private final SupervisorDAO supervisorDAO = new SupervisorDAO();
     private final UsuarioService usuarioService = new UsuarioService();
 
     // -- Métodos -- //
-    public void inserirSupervisor(Usuario usuarioInseridor, Supervisor supervisorInserido) {
-        UsuarioValidator.temNivelAcesso3(usuarioInseridor);
+    public void inserirSupervisor(Funcionario funcionarioInseridor, Supervisor supervisorInserido) {
+        UsuarioValidator.temNivelAcesso3(funcionarioInseridor);
         SupervisorValidator.verificarRegrasInsercaoSupervisor(supervisorInserido);
-        usuarioService.isCpfCadastradoValidator(supervisorInserido.getCpf());
-        usuarioDAO.inserirUsuario(supervisorInserido);
-        supervisorDAO.inserirSupervisor(supervisorInserido);
+        usuarioService.isCpfCadastradoValidator(supervisorInserido.getCpf().getCpf());
+        funcionarioDAO.salvar(supervisorInserido);
+        supervisorDAO.salvar(supervisorInserido);
     }
 
-    public void updateMetaMensal(Usuario usuario, long id, double metaMensal) {
-        UsuarioValidator.temNivelAcesso3(usuario);
+    public void updateMetaMensal(Funcionario funcionario, long id, double metaMensal) {
+        UsuarioValidator.temNivelAcesso3(funcionario);
         SupervisorValidator.verificaRegrasMetaMensal(metaMensal);
         SupervisorValidator.verificaIntegridadeMetaMensal(metaMensal);
         supervisorDAO.updateMetaMensal(id, metaMensal);
     }
 
-    public void removerSupervisor(Usuario usuarioExecutor, long idSupervisorARemover) {
-        UsuarioValidator.temNivelAcesso3(usuarioExecutor);
+    public void removerSupervisor(Funcionario funcionarioExecutor, long idSupervisorARemover) {
+        UsuarioValidator.temNivelAcesso3(funcionarioExecutor);
         usuarioService.isIdExistenteValidator(idSupervisorARemover);
-        supervisorDAO.deletarSupervisor(idSupervisorARemover);
-        usuarioDAO.deletarUsuario(idSupervisorARemover);
+        supervisorDAO.excluirPorID(idSupervisorARemover);
+        funcionarioDAO.excluirPorID(idSupervisorARemover);
     }
 }

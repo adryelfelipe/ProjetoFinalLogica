@@ -1,4 +1,4 @@
-package Dominio.Enumeracoes;
+package Dominio.Maquina.Enumeracoes;
 
 public class StatusMaquina {
     // ID 1

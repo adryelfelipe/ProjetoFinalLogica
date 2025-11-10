@@ -1,7 +1,7 @@
 package Views;
 
-import Dominio.Entidades.OrdemDeServico;
-import Dominio.Entidades.Tecnico;
+import Dominio.OrdemDeServico;
+import Dominio.Funcionario.Tecnico.Tecnico;
 import Dominio.Enumeracoes.StatusOS;
 import ProjetoBase.OrdemDeServicoService;
 import Util.Ferramentas;

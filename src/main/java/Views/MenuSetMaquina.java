@@ -1,6 +1,8 @@
 package Views;
 
-import Dominio.Enumeracoes.StatusMaquina;
+import Dominio.Maquina.Enumeracoes.StatusMaquina;
+import Dominio.Maquina.ObjetosDeValor.Localizacao;
+import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
 import ProjetoBase.MaquinaService;
 import ProjetoBase.UsuarioValidator;
 import Util.Ferramentas;
@@ -13,37 +15,16 @@ public class MenuSetMaquina {
     private static final MaquinaService maquinaService = new MaquinaService();
 
     //SET NOME DO USUÁRIO
-    public static String MenuSetNomeMaquina()
-    {
-        while(true) {
-            System.out.print("┃ ➤ Digite o Nome: ");
-            String nome = Ferramentas.lString();
-
-            try {
-                MaquinaValidator.verificaIntegridadeNome(nome);
-                MaquinaValidator.verificaRegrasNome(nome);
-                return nome;
-            }
-            catch (IllegalArgumentException | IllegalStateException e) {
-                Ferramentas.mensagemErro(e.getMessage());
-            }
-        }
+    public static NomeMaquina MenuSetNomeMaquina() {
+        System.out.print("┃ ➤ Digite o Nome: ");
+        String nome = Ferramentas.lString();
+        return new NomeMaquina(nome);
     }
 
-    public static String MenuSetLocalizacao() {
-        while(true) {
-            System.out.print("┃ ➤ Digite a Localização: ");
-            String localizacao = Ferramentas.lString();
-
-            try {
-                MaquinaValidator.verificaIntegridadeLocalizacao(localizacao);
-                MaquinaValidator.verificaRegrasLocalizacao(localizacao);
-                return localizacao;
-            }
-            catch (IllegalArgumentException | IllegalStateException e) {
-                Ferramentas.mensagemErro(e.getMessage());
-            }
-        }
+    public static Localizacao MenuSetLocalizacao() {
+        System.out.print("┃ ➤ Digite a Localização: ");
+        String localizacao = Ferramentas.lString();
+        return new Localizacao(localizacao);
     }
 
     public static StatusMaquina MenuSetStatusMaquina() {

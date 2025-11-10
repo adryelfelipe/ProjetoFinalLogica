@@ -1,4 +1,4 @@
-package Dominio.Enumeracoes;
+package Dominio.Funcionario.Funcionario.Enumeracoes;
 
 public class Departamento {
 

@@ -1,0 +1,21 @@
+package Dominio.Maquina.Servicos;
+
+import Dominio.Maquina.Exceptions.IdMaquinaException;
+import Dominio.Maquina.Repositories.MaquinaRepositorio;
+
+public class MaquinaServico {
+    // -- Atributos -- //
+    private final MaquinaRepositorio maquinaRepositorio;
+
+    // -- Construtor -- //
+    public MaquinaServico(MaquinaRepositorio maquinaRepositorio) {
+        this.maquinaRepositorio = maquinaRepositorio;
+    }
+
+    // -- Métodos -- //
+    public void existeID(long idMaquina) {
+        if (!maquinaRepositorio.existeID(idMaquina)) {
+            throw new IdMaquinaException("O ID da máquina não foi encontrado");
+        }
+    }
+}

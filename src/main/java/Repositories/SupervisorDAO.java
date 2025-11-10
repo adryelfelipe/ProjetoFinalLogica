@@ -1,7 +1,7 @@
 package Repositories;
 
 import Database.ConnectionFactory;
-import Dominio.Entidades.Supervisor;
+import Dominio.Funcionario.Supervisor.Supervisor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class SupervisorDAO
 {
-    public void inserirSupervisor(Supervisor supervisor)
+    public void salvar(Supervisor supervisor)
     {
         String querySQL = "INSERT INTO Supervisor (id_supervisor, meta_mensal) VALUES (?, ?)";
 
@@ -17,7 +17,7 @@ public class SupervisorDAO
             PreparedStatement stmt = conn.prepareStatement(querySQL))
         {
             stmt.setLong(1, supervisor.getIdUsuario());
-            stmt.setDouble(2, supervisor.getMetaMensal());
+            stmt.setDouble(2, supervisor.getMetaMensal().getValorMetaMensal());
 
             stmt.executeUpdate();
 
@@ -26,7 +26,7 @@ public class SupervisorDAO
         }
     }
 
-    public boolean deletarSupervisor(long id)
+    public boolean excluirPorID(long id)
     {
         String querySQL = "DELETE FROM Supervisor WHERE id_supervisor = ?";
 

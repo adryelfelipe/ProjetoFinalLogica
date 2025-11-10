@@ -1,6 +1,6 @@
 package Views;
 
-import Dominio.Enumeracoes.Especialidade;
+import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
 import ProjetoBase.TecnicoValidator;
 import Util.Ferramentas;
 

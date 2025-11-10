@@ -1,8 +1,13 @@
 package Views;
 
-import Dominio.Entidades.Administrador;
-import Dominio.Entidades.Gerente;
-import Dominio.Enumeracoes.Departamento;
+import Dominio.Compartilhado.Nome;
+import Dominio.Funcionario.Administrador.Administrador;
+import Dominio.Funcionario.Funcionario.Enumeracoes.Departamento;
+import Dominio.Funcionario.Funcionario.Funcionario.Enumeracoes.Departamento;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.Senha;
+import Dominio.Funcionario.Gerente.Gerente;
+import Departamento;
 import ProjetoBase.GerenteService;
 import Util.Ferramentas;
 
@@ -16,13 +21,13 @@ public class MenuCadastroADM {
         System.out.println(" ");
 
         // ----- Atribuição de caracteríscticas de um Usuário ----- //
-        String nome = MenuSetUsuario.MenuSetNome();
+        Nome nome = MenuSetUsuario.MenuSetNome();
         Ferramentas.limpaTerminal();
 
-        String cpf = MenuSetUsuario.MenuSetCpf();
+        CPF cpf = MenuSetUsuario.MenuSetCpf();
         Ferramentas.limpaTerminal();
 
-        String senha = MenuSetUsuario.MenuSetSenha();
+        Senha senha = MenuSetUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
 
         // ----- Atribuição de caracteríscticas de um Gerente ----- //

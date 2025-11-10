@@ -1,7 +1,7 @@
 package Views;
 
 import Util.Ferramentas;
-import Dominio.Entidades.Gerente;
+import Dominio.Funcionario.Gerente.Gerente;
 
 public class MenuGerente
 {

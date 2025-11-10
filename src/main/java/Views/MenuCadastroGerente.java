@@ -1,15 +1,25 @@
 package Views;
 
-import Dominio.Entidades.Gerente;
-import Dominio.Entidades.Maquina;
-import Dominio.Entidades.Supervisor;
-import Dominio.Entidades.Tecnico;
-import Dominio.Enumeracoes.Especialidade;
-import Dominio.Enumeracoes.StatusMaquina;
+import Dominio.Funcionario.Funcionario.Enumeracoes.Departamento;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.ListaDepartamentos;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.NomeFuncionario;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.Senha;
+import Dominio.Funcionario.Gerente.Gerente;
+import Dominio.Funcionario.Supervisor.ObjetosDeValor.MetaMensal;
+import Dominio.Maquina.Maquina;
+import Dominio.Funcionario.Supervisor.Supervisor;
+import Dominio.Funcionario.Tecnico.Tecnico;
+import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
+import Dominio.Maquina.Enumeracoes.StatusMaquina;
+import Dominio.Maquina.ObjetosDeValor.Localizacao;
+import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
 import ProjetoBase.MaquinaService;
 import ProjetoBase.SupervisorService;
 import ProjetoBase.TecnicoService;
 import Util.Ferramentas;
+
+import java.util.Arrays;
 
 public class MenuCadastroGerente {
     // -- Atributos -- //
@@ -25,16 +35,16 @@ public class MenuCadastroGerente {
         System.out.println();
 
         // ----- Atribuição de caracteríscticas de um Usuário ----- //
-        String nome = MenuSetUsuario.MenuSetNome();
+        NomeFuncionario nome = MenuSetUsuario.MenuSetNome();
         Ferramentas.limpaTerminal();
 
-        String cpf = MenuSetUsuario.MenuSetCpf();
+        CPF cpf = MenuSetUsuario.MenuSetCpf();
         Ferramentas.limpaTerminal();
 
-        String senha = MenuSetUsuario.MenuSetSenha();
+        Senha senha = MenuSetUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
         // ----- Atribuição de caracteríscticas de um Supervisor ----- //
-        double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
+        MetaMensal metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //
@@ -61,10 +71,10 @@ public class MenuCadastroGerente {
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
 
         // ----- Atribuição de caracteríscticas de uma Máquina ----- //
-        String nome = MenuSetMaquina.MenuSetNomeMaquina();
+        NomeMaquina nome = MenuSetMaquina.MenuSetNomeMaquina();
         Ferramentas.limpaTerminal();
 
-        String localizacao = MenuSetMaquina.MenuSetLocalizacao();
+        Localizacao localizacao = MenuSetMaquina.MenuSetLocalizacao();
         Ferramentas.limpaTerminal();
 
         StatusMaquina idStatus = MenuSetMaquina.MenuSetStatusMaquina();
@@ -93,17 +103,20 @@ public class MenuCadastroGerente {
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         // ----- Atribuição de caracteríscticas de um Usuário ----- //
-        String nome = MenuSetUsuario.MenuSetNome();
+        NomeFuncionario nome = MenuSetUsuario.MenuSetNome();
         Ferramentas.limpaTerminal();
 
-        String cpf = MenuSetUsuario.MenuSetCpf();
+        CPF cpf = MenuSetUsuario.MenuSetCpf();
         Ferramentas.limpaTerminal();
 
-        String senha = MenuSetUsuario.MenuSetSenha();
+        Senha senha = MenuSetUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
+
+        Departamento departamento = MenuSetGerente.menuSetDepartamento();
+        ListaDepartamentos departamentos = new ListaDepartamentos(Arrays.asList(departamento));
+
         // ----- Atribuição de caracteríscticas de um Técnico ----- //
         Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
-
 
         // -- Criação do objeto e inserção no banco de dados -- //
         Ferramentas.limpaTerminal();
@@ -111,7 +124,7 @@ public class MenuCadastroGerente {
         Ferramentas.Delay(1000);
 
         try {
-            Tecnico tecnico = new Tecnico(nome, cpf, senha, especialidade);
+            Tecnico tecnico = new Tecnico(nome, cpf, senha, departamentos, especialidade);
             tecnicoService.inserirTecnico(gerente, tecnico);
             Ferramentas.limpaTerminal();
             System.out.println("TÉCNICO CADASTRADO COM SUCESSO!");

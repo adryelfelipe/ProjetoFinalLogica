@@ -1,7 +1,7 @@
 package ProjetoBase;
 
-import Dominio.Entidades.Gerente;
-import Dominio.Enumeracoes.Departamento;
+import Dominio.Funcionario.Gerente.Gerente;
+import Departamento;
 
 public class GerenteValidator {
     // -- Verifica regras de négoico -- //

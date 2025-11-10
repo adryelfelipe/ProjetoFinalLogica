@@ -1,7 +1,7 @@
 package Views;
 
 import Util.Ferramentas;
-import Dominio.Entidades.Tecnico;
+import Dominio.Funcionario.Tecnico.Tecnico;
 
 import java.util.InputMismatchException;
 

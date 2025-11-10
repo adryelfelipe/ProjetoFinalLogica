@@ -1,5 +1,6 @@
 package Views;
 
+import Dominio.Funcionario.Supervisor.ObjetosDeValor.MetaMensal;
 import Util.Ferramentas;
 import ProjetoBase.SupervisorValidator;
 import java.util.InputMismatchException;
@@ -7,7 +8,7 @@ import java.util.InputMismatchException;
 public class MenuSetSupervisor {
     private static final SupervisorValidator supervisorValidator = new SupervisorValidator();
 
-    public static double MenuSetMetaMensal(){
+    public static MetaMensal MenuSetMetaMensal(){
         // Garantia de inicialização
         double metaMensal;
 
@@ -17,16 +18,10 @@ public class MenuSetSupervisor {
 
             try
             {
-                metaMensal = Ferramentas.lDouble();
-                SupervisorValidator.verificaIntegridadeMetaMensal(metaMensal);
-                SupervisorValidator.verificaRegrasMetaMensal(metaMensal);
-                return metaMensal;
-            } catch(InputMismatchException e)
-            {
+                double valorMetaMensal = Ferramentas.lDouble();
+                return new MetaMensal(valorMetaMensal);
+            } catch(InputMismatchException e) {
                 Ferramentas.menuDefault();
-            } catch (IllegalArgumentException | IllegalStateException e)
-            {
-                Ferramentas.mensagemErro(e.getMessage());
             }
         }
     }

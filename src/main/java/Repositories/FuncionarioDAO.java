@@ -1,15 +1,24 @@
 package Repositories;
 
 import Database.ConnectionFactory;
-import Dominio.Entidades.*;
-import Dominio.Enumeracoes.Departamento;
-import Dominio.Enumeracoes.Especialidade;
+import Dominio.Funcionario.Funcionario.Enumeracoes.Departamento;
+import Dominio.Funcionario.Supervisor.ObjetosDeValor.MetaMensal;
+import Dominio.Funcionario.Supervisor.Supervisor;
+import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
+import Dominio.Funcionario.Administrador.Administrador;
+import Dominio.Funcionario.Funcionario.Funcionario;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.ListaDepartamentos;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.NomeFuncionario;
+import Dominio.Funcionario.Funcionario.ObjetosDeValor.Senha;
+import Dominio.Funcionario.Gerente.Gerente;
+import Dominio.Funcionario.Tecnico.Tecnico;
 
 import java.sql.*;
 
-public class UsuarioDAO
+public class FuncionarioDAO
 {
-    public boolean verificarCpf(String cpf)
+    public boolean existeCpf(CPF cpf)
     {
         // Consulta MYSQL.
         String querySql = "SELECT * FROM Usuario WHERE cpf = ? LIMIT 1";
@@ -18,7 +27,7 @@ public class UsuarioDAO
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(querySql))
         {
-            stmt.setString(1, cpf);
+            stmt.setString(1, cpf.getCpf());
 
             ResultSet rs = stmt.executeQuery();
 
@@ -37,7 +46,7 @@ public class UsuarioDAO
         }
         return false;
     }
-    public void inserirUsuario(Usuario usuario)
+    public void salvar(Funcionario funcionario)
     {
         // Comando SQL
         String querySQL = "INSERT INTO Usuario (nome, cpf, senha, id_na) VALUES (?, ?, ?, ?)";
@@ -48,10 +57,10 @@ public class UsuarioDAO
             PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS))
         {
             //Definindo parametros (PreparedStatement).
-            stmt.setString(1, usuario.getNome());
-            stmt.setString(2, usuario.getCpf());
-            stmt.setString(3, usuario.getSenha());
-            stmt.setInt(4, usuario.getNivelAcesso().getId());
+            stmt.setString(1, funcionario.getNome().getNome());
+            stmt.setString(2, funcionario.getCpf().getCpf());
+            stmt.setString(3, funcionario.getSenha().getSenha());
+            stmt.setInt(4, funcionario.getNivelAcesso().getId());
 
             //Executando a inserção
             int linhasAF = stmt.executeUpdate();
@@ -64,7 +73,7 @@ public class UsuarioDAO
                 {
                     if (rs.next()) {
                         idGerado = rs.getLong(1);// Pega a chave (geralmente pela primeira coluna)
-                        usuario.setIdUsuario(idGerado);
+                        funcionario.alteraIdUsuario(idGerado);
                     }
                 }
             }
@@ -75,7 +84,7 @@ public class UsuarioDAO
         }
     }
 
-    public Usuario loginUsuario(String cpf, String senha) {
+    public Funcionario loginUsuario(String cpf, String senha) {
 
         // Consulta MYSQL.
         String querySQL = "SELECT id_usuario, senha FROM Usuario WHERE cpf = ? LIMIT 1";
@@ -93,7 +102,7 @@ public class UsuarioDAO
 
                         long idDoUsuarioLogado = rs.getLong("id_usuario");
 
-                        return findById(idDoUsuarioLogado);
+                        return buscarPorID(idDoUsuarioLogado);
                     }
                 }
             }
@@ -103,7 +112,7 @@ public class UsuarioDAO
 
         return null;
     }
-    public Usuario findById(long idDoUsuarioLogado)
+    public Funcionario buscarPorID(long idDoUsuarioLogado)
     {
         // Consulta MYSQL.
         String querySQL = "SELECT " +
@@ -117,7 +126,7 @@ public class UsuarioDAO
                 "LEFT JOIN Tecnico T ON U.id_usuario = T.id_tecnico " +
                 "WHERE U.id_usuario = ?";
 
-        Usuario usuario = null;
+        Funcionario funcionario = null;
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
@@ -149,12 +158,12 @@ public class UsuarioDAO
                                 default -> Especialidade.PINTOR_INDUSTRIAL;
                             };
 
-                            usuario = new Tecnico(id, nome, cpf, senha, especialidade);
+                            funcionario = new Tecnico(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha),new ListaDepartamentos(departamento), especialidade);
                             break;
 
                         case 2:
                             double metaMensal = rs.getDouble("meta_mensal");
-                            usuario = new Supervisor(id, nome, cpf, senha, metaMensal);
+                            funcionario = new Supervisor(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos(departamento), new MetaMensal(metaMensal));
                             break;
 
                         case 3:
@@ -165,11 +174,11 @@ public class UsuarioDAO
                                 default -> Departamento.MECANICA;
                             };
 
-                            usuario = new Gerente(id, nome, cpf, senha, departamento);
+                            funcionario = new Gerente(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos();
                             break;
 
                         case 4:
-                            usuario = new Administrador(id, nome, cpf, senha);
+                            funcionario = new Administrador(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos();
                             break;
                     }
                 }
@@ -178,10 +187,10 @@ public class UsuarioDAO
         {
             System.err.println("ERRO ao buscar usuário por ID!"+e.getMessage());
         }
-        return usuario;
+        return funcionario;
     }
 
-    public boolean deletarUsuario(long id)
+    public boolean excluirPorID(long id)
     {
         // Consulta MYSQL.
         String querySQL = "DELETE FROM Usuario WHERE id_usuario = ?";
@@ -209,7 +218,7 @@ public class UsuarioDAO
             return false;
         }
     }
-    public void updateNomeUsuario(long id, String novoNome)
+    public void alterarNomeUsuario(long id, String novoNome)
     {
         // Consulta MYSQL.
         String querySQl = "UPDATE Usuario " +
@@ -267,7 +276,7 @@ public class UsuarioDAO
         }
     }
 
-    public boolean verificarId(long id)
+    public boolean existeID(long id)
     {
         // Consulta MYSQL.
         String querySql = "SELECT * FROM Usuario WHERE id_usuario = ? LIMIT 1";
@@ -298,7 +307,7 @@ public class UsuarioDAO
         return false;
     }
 
-    public long getNivelAcessoByID(long id)
+    public long nivelAcessoPorID(long id)
     {
         String querySQL = "SELECT id_na FROM Usuario WHERE id_usuario = ?";
 
@@ -318,6 +327,6 @@ public class UsuarioDAO
          catch (SQLException e) {
              System.err.println("ERRO ao consultar Nivel de Acesso do ID: " + id);
          }
-        return -1;
+        return 0;
     }
 }
