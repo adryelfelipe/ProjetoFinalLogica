@@ -1,10 +1,22 @@
-package Views;
+package Views.Administrador;
 
+import Aplicacao.Funcionario.Gerente.GerenteController;
 import Dominio.Funcionario.Administrador.Administrador;
 import Util.Ferramentas;
+import Views.MenuInicial;
 
 public class MenuAdministrador {
-    public static void menuInicial(Administrador administrador) {
+    // -- Atributos -- //
+    private GerenteController gerenteController;
+    MenuCadastroADM menuCadastroADM = new MenuCadastroADM(gerenteController);
+
+    // -- Construtor -- //
+    public MenuAdministrador(GerenteController gerenteController) {
+        this.gerenteController = gerenteController;
+    }
+
+    // -- Métodos -- //
+    public void menuInicial(Administrador administrador) {
         boolean continuar = false;
 
         while (!continuar) {
@@ -25,7 +37,7 @@ public class MenuAdministrador {
 
                 switch (opcaoAdmin)
                 {
-                    case 1 -> MenuCadastroADM.menuCadastroGerente(administrador);
+                    case 1 -> menuCadastroADM.menuCadastroGerente(administrador);
                     case 2 -> MenuUpdateADM.updateGerente(administrador);
                     case 3 -> MenuAdminRemoverGerente.menuRemoverEscolha(administrador);
                     case 4 -> MenuInicial.Menu();

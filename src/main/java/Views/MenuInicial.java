@@ -1,5 +1,6 @@
 package Views;
 
+import Aplicacao.Funcionario.Gerente.GerenteController;
 import Util.Ferramentas;
 import ProjetoBase.UsuarioService;
 
@@ -7,9 +8,17 @@ import java.util.InputMismatchException;
 
 public class MenuInicial
 {
-    private static final UsuarioService usuarioService = new UsuarioService();
+    // -- Atributos -- //
+    private GerenteController gerenteController;
+    private MenuLogin menuLogin = new MenuLogin(gerenteController);
 
-    public static void Menu()
+    // -- Construtor -- //
+    public MenuInicial(GerenteController gerenteController) {
+        this.gerenteController = gerenteController;
+    }
+
+    // -- Métodos -- //
+    public void Menu()
     {
         int opcao;
 
@@ -32,7 +41,7 @@ public class MenuInicial
                     case 1 ->
                     {
                         Ferramentas.limpaTerminal();
-                        MenuLogin.login(usuarioService);
+                        menuLogin.login();
                     }
                     case 2 ->
                     {

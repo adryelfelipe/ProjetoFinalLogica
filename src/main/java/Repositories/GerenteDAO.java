@@ -2,12 +2,12 @@ package Repositories;
 
 import Database.ConnectionFactory;
 import Dominio.Funcionario.Gerente.Gerente;
-
+import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class GerenteDAO
+public class GerenteDAO implements FuncionarioRepositorio
 {
     public void salvar(Gerente gerente)
     {
@@ -16,7 +16,7 @@ public class GerenteDAO
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
         {
-            stmt.setLong(1, gerente.getIdUsuario());
+            stmt.setLong(1, gerente.getId());
             stmt.setInt(2, gerente.getDepartamentos().getListaDepartamentos().get(0).getId());
 
             stmt.executeUpdate();

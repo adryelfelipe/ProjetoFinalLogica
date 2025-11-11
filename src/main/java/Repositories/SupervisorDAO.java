@@ -16,7 +16,7 @@ public class SupervisorDAO
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
         {
-            stmt.setLong(1, supervisor.getIdUsuario());
+            stmt.setLong(1, supervisor.getId());
             stmt.setDouble(2, supervisor.getMetaMensal().getValorMetaMensal());
 
             stmt.executeUpdate();
@@ -26,7 +26,7 @@ public class SupervisorDAO
         }
     }
 
-    public boolean excluirPorID(long id)
+    public boolean excluirPorId(long id)
     {
         String querySQL = "DELETE FROM Supervisor WHERE id_supervisor = ?";
 

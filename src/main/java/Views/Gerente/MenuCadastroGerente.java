@@ -1,4 +1,4 @@
-package Views;
+package Views.Gerente;
 
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
@@ -18,6 +18,10 @@ import ProjetoBase.MaquinaService;
 import ProjetoBase.SupervisorService;
 import ProjetoBase.TecnicoService;
 import Util.Ferramentas;
+import Views.MenuSetMaquina;
+import Views.MenuSetSupervisor;
+import Views.MenuSetTecnico;
+import Views.MenuSetUsuario;
 
 import java.util.Arrays;
 

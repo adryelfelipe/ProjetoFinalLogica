@@ -1,4 +1,4 @@
-package Views;
+package Views.Gerente;
 
 import Util.Ferramentas;
 import Dominio.Funcionario.Gerente.Gerente;

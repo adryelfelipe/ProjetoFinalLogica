@@ -1,4 +1,4 @@
-package Views;
+package Views.Gerente;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
@@ -9,6 +9,11 @@ import Dominio.Funcionario.Tecnico.Tecnico;
 import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
 import ProjetoBase.*;
 import Util.Ferramentas;
+import Views.MenuEscolhaId;
+import Views.MenuSetSupervisor;
+import Views.MenuSetTecnico;
+import Views.MenuSetUsuario;
+
 import java.util.InputMismatchException;
 
 public class MenuUpdateGerente {
