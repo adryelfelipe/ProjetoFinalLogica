@@ -93,7 +93,7 @@ public class FuncionarioDAO implements FuncionarioRepositorio
                                 }
                             }
                         }
-                        else if(funcionario.getNivelAcesso().equals(NivelAcesso.SUPERVISOR))
+                        if(funcionario.getNivelAcesso().equals(NivelAcesso.SUPERVISOR))
                         {
                             Supervisor supervisor = (Supervisor) funcionario;
                             String querySupervisor = "INSERT INTO Supervisor (id_supervisor, meta_mensal) VALUES (?, ?)";
@@ -105,7 +105,7 @@ public class FuncionarioDAO implements FuncionarioRepositorio
                                 stmtSupervisor.executeUpdate();
                             }
                         }
-                        else if (funcionario.getNivelAcesso().equals(NivelAcesso.TECNICO)) {
+                        if (funcionario.getNivelAcesso().equals(NivelAcesso.TECNICO)) {
                             Tecnico tecnico = (Tecnico) funcionario;
                             String queryTecnico = "INSERT INTO Tecnico (id_tecnico, id_especialidade) VALUES (?, ?)";
 
@@ -358,7 +358,80 @@ public class FuncionarioDAO implements FuncionarioRepositorio
     @Override
     public Funcionario buscarPorCpf(CPF cpf)
     {
-        return null;
+        // Consulta MYSQL.
+        String querySQL = "SELECT " +
+                "U.ID_USUARIO, U.nome, U.cpf, U.senha, U.id_na, " +
+                "G.id_departamento, " +
+                "S.meta_mensal, " +
+                "T.id_especialidade " +
+                "FROM Usuario U " +
+                "LEFT JOIN Gerentes G ON U.id_usuario = G.id_gerente " +
+                "LEFT JOIN Supervisor S ON U.id_usuario = S.id_supervisor " +
+                "LEFT JOIN Tecnico T ON U.id_usuario = T.id_tecnico " +
+                "WHERE U.cpf = ?";
+
+        Funcionario funcionario = null;
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQL))
+        {
+            stmt.setString(1, cpf.getCpf());
+
+            try(ResultSet rs = stmt.executeQuery())
+            {
+                if(rs.next())
+                {
+                    // Pega dados comuns...
+                    long id = rs.getLong("id_usuario");
+                    String nome = rs.getString("nome");
+                    String cpfUsuario = rs.getString("cpf");
+                    String senha = rs.getString("senha");
+                    int nivelAcesso = rs.getInt("id_na");
+
+                    switch(nivelAcesso)
+                    {
+                        case 1:
+                            // Criando objeto de acordo com seu nivel_acesso.
+                            int idEspecialidade = rs.getInt("id_especialidade");
+
+                            Especialidade especialidade = switch(idEspecialidade) {
+                                case 1 -> Especialidade.TECNICO_ELETROTECNICA;
+                                case 2 -> Especialidade.ELETRICISTA_FABRIL;
+                                case 3 -> Especialidade.SOLDADOR;
+                                case 4 -> Especialidade.TECNICO_ELETROMECANICA;
+                                default -> Especialidade.PINTOR_INDUSTRIAL;
+                            };
+
+                            funcionario = new Tecnico(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), new ListaDepartamentos(), especialidade);
+                            break;
+
+                        case 2:
+                            double metaMensal = rs.getDouble("meta_mensal");
+                            funcionario = new Supervisor(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), new ListaDepartamentos(), new MetaMensal(metaMensal));
+                            break;
+
+                        case 3:
+                            int idDepartamento = rs.getInt("id_departamento");
+
+                            Departamento departamento = switch (idDepartamento) {
+                                case 1 -> Departamento.ELETRICA;
+                                default -> Departamento.MECANICA;
+                            };
+
+                            funcionario = new Gerente(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), new ListaDepartamentos());
+                            break;
+
+                        case 4:
+                            funcionario = new Administrador(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), new ListaDepartamentos());
+                            break;
+                    }
+                }
+            }
+        } catch (SQLException e)
+        {
+            System.err.println("ERRO ao buscar usuário por CPF!" + cpf);
+        }
+        return funcionario;
     }
 
 }
