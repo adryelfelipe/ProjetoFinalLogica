@@ -21,6 +21,47 @@ import java.sql.*;
 
 public class FuncionarioDAO implements FuncionarioRepositorio, FuncionarioQueriesRepositorio
 {
+    @Override
+    public boolean existeCpf(CPF cpf) {
+        return false;
+    }
+
+    @Override
+    public boolean existeId(long id) {
+        return false;
+    }
+
+    @Override
+    public Funcionario buscarPorId(long id) {
+        return null;
+    }
+
+    @Override
+    public NivelAcesso nivelAcessoPorID(long id) {
+        return null;
+    }
+
+    @Override
+    public Funcionario buscarPorCpf(CPF cpf) {
+        return null;
+    }
+
+    @Override
+    public void salvar(Funcionario funcionario) {
+
+    }
+
+    @Override
+    public void atualizar(Funcionario funcionario) {
+
+    }
+
+    @Override
+    public boolean excluirPorId(long id) {
+        return false;
+    }
+
+    /*
     public boolean existeCpf(CPF cpf)
     {
         // Consulta MYSQL.
@@ -318,4 +359,6 @@ public class FuncionarioDAO implements FuncionarioRepositorio, FuncionarioQuerie
     {
 
     }
+
+     */
 }

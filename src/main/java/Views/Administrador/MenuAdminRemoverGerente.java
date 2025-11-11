@@ -7,9 +7,7 @@ import Views.MenuEscolhaId;
 
 public class MenuAdminRemoverGerente {
 
-    private static final UsuarioService usuarioService = new UsuarioService();
-    private static final GerenteService gerenteService = new GerenteService();
-
+    /*
     public static void menuRemoverEscolha(Administrador administrador) {
         try {
             long id = MenuEscolhaId.escolhaIdUpdate();
@@ -22,4 +20,6 @@ public class MenuAdminRemoverGerente {
             Ferramentas.mensagemErro(e.getMessage());
         }
     }
+
+     */
 }

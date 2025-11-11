@@ -5,14 +5,13 @@ import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
 import Dominio.OrdemDeServico.OrdemDeServico;
 import Dominio.Funcionario.Supervisor.Supervisor;
 import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
-import ProjetoBase.OrdemDeServicoService;
 import Util.Ferramentas;
 
 import java.util.InputMismatchException;
 
 public class MenuUpdateSupervisor
 {
-    public static final OrdemDeServicoService ordemDeServicoService = new OrdemDeServicoService();
+    /*
 
     public static void menuUpdateOS(Supervisor supervisor) {
         long idOrdem;
@@ -96,4 +95,6 @@ public class MenuUpdateSupervisor
             }
         }
     }
+
+     */
 }

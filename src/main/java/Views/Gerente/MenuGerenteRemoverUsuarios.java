@@ -6,7 +6,7 @@ import Util.Ferramentas;
 import Views.MenuEscolhaId;
 
 public class MenuGerenteRemoverUsuarios {
-
+/*
     private static final UsuarioService usuarioService = new UsuarioService();
     private static final TecnicoService tecnicoService = new TecnicoService();
     private static final SupervisorService supervisorService = new SupervisorService();
@@ -25,4 +25,6 @@ public class MenuGerenteRemoverUsuarios {
             Ferramentas.mensagemErro(e.getMessage());
         }
     }
+
+ */
 }

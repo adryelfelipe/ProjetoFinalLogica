@@ -9,12 +9,7 @@ import Util.Ferramentas;
 import java.util.InputMismatchException;
 
 public class MenuSetOrdemDeServico {
-    private static final UsuarioService usuarioService = new UsuarioService();
-
-    public static StatusOS menuSetStatusOS()
-    {
-        int opcao;
-
+    public static StatusOS menuSetStatusOS() {
         while(true)
         {
             System.out.println("|━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━|");
@@ -29,27 +24,21 @@ public class MenuSetOrdemDeServico {
 
             try
             {
-                opcao = Ferramentas.lInteiro();
+                int opcao = Ferramentas.lInteiro();
                 if(opcao > 3 || opcao < 1)
                 {
                     Ferramentas.menuDefault();
                 } else
                 {
-                    StatusOS statusOS = switch (opcao)
+                    return switch (opcao)
                     {
                         case 1 -> StatusOS.EM_ANDAMENTO;
                         case 2 -> StatusOS.ATRASADA;
                         default -> StatusOS.FECHADA;
                     };
-
-                    OrdemDeServicoValidator.verificaRegrasStatus(statusOS.getId());
-                    OrdemDeServicoValidator.verificaIntegridadeStatus(statusOS);
-                    return statusOS;
                 }
             } catch(InputMismatchException e) {
                 Ferramentas.menuDefault();
-            } catch (IllegalArgumentException | IllegalStateException e) {
-                Ferramentas.mensagemErro(e.getMessage());
             }
         }
     }
@@ -57,36 +46,28 @@ public class MenuSetOrdemDeServico {
     public static long SetIdTecnico(){
         int idTecnico;
 
-        while(true)
-        {
+        while(true) {
             System.out.println("┃ ➤ Digite o ID do técnico: ");
 
             try {
-                idTecnico = Ferramentas.lInteiro();
-                UsuarioValidator.verificaIntegridadeIdUsuario(idTecnico);
-                usuarioService.isIdExistenteValidator(idTecnico);
-                return idTecnico;
-            } catch (IllegalArgumentException e) {
-                Ferramentas.mensagemErro(e.getMessage());
+                return Ferramentas.lInteiro();
             } catch (InputMismatchException e) {
                 Ferramentas.menuDefault();
             }
         }
     }
 
-    public static Descricao SetDescricao() {
+    public static String SetDescricao() {
         System.out.print("┃ ➤ Digite a descrição da OS: ");
-        String descricao = Ferramentas.lString();
-        return new Descricao(descricao);
+        return Ferramentas.lString();
     }
 
-    public static ValorOS SetValorOS() {
+    public static double SetValorOS() {
         while(true) {
             System.out.print("┃ ➤ Digite o valor da OS: R$");
 
             try {
-                double valorOS = Ferramentas.lDouble();
-                return new ValorOS(valorOS);
+                return Ferramentas.lDouble();
             } catch(InputMismatchException e) {
                 Ferramentas.menuDefault();
             }

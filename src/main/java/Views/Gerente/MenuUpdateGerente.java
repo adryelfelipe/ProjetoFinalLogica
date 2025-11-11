@@ -17,6 +17,7 @@ import Views.MenuSetUsuario;
 import java.util.InputMismatchException;
 
 public class MenuUpdateGerente {
+    /*
     private static final UsuarioService usuarioService = new UsuarioService();
     private static final TecnicoService tecnicoService = new TecnicoService();
     private static final SupervisorService supervisorService = new SupervisorService();
@@ -230,4 +231,6 @@ public class MenuUpdateGerente {
             }
         }
     }
+
+     */
 }

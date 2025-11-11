@@ -33,7 +33,7 @@ public class MenuSupervisor
                         System.out.println("RETORNANDO AO MENU INICIAL! . . .");
                         Ferramentas.Delay(500);
                         continuar = true;
-                        MenuInicial.Menu();
+                        //MenuInicial.Menu();
                     }
                     default -> Ferramentas.menuDefault();
                 }

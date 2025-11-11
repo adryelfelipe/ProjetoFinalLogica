@@ -26,7 +26,7 @@ public class MaquinaDAO {
                 try (ResultSet rs = stmt.getGeneratedKeys()) {
                     if (rs.next()) {
                         idGerado = rs.getLong(1);
-                        maquina.setIdMaquina(idGerado);
+                        maquina.alteraIdMaquina(idGerado);
                     }
                 }
             }

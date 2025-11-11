@@ -7,12 +7,8 @@ import ProjetoBase.*;
 import Util.Ferramentas;
 
     public class MenuSupervisorAcompanharStatus{
-
-    private static final UsuarioService usuarioService = new UsuarioService();
-    private static final SupervisorService supervisorService = new SupervisorService();
-    private static final OrdemDeServicoService ordemService = new OrdemDeServicoService();
-
         public static void acompanharStatus(Supervisor supervisor) {
+            /*
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃    ACOMPANHAR STATUS DE SO     ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
@@ -30,5 +26,7 @@ import Util.Ferramentas;
             } catch (RuntimeException e) {
                 Ferramentas.mensagemErro(e.getMessage());
             }
+
+             */
         }
 }

@@ -7,6 +7,7 @@ public class MenuGerenteCadastrar
 {
     public static void criarUsuarios(Gerente gerente)
     {
+        /*
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃        CADASTRAR USUARIOS        ┃");
         System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
@@ -34,5 +35,7 @@ public class MenuGerenteCadastrar
         {
             Ferramentas.menuDefault();
         }
+
+         */
     }
 }

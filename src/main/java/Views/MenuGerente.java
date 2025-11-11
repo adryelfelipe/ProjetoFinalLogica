@@ -9,6 +9,7 @@ import Views.Gerente.MenuUpdateGerente;
 
 public class MenuGerente
 {
+    /*
     public static void menuInicial(Gerente gerente)
     {
         boolean continuar = false;
@@ -40,7 +41,7 @@ public class MenuGerente
                     case 5 ->
                     {
                         System.out.println("┃  RETORNANDO AO MENU INICIAL ...");
-                        MenuInicial.Menu();
+                        //MenuInicial.Menu();
                     }
                     default -> Ferramentas.menuDefault();
                 }
@@ -49,4 +50,6 @@ public class MenuGerente
             }
         }
     }
+
+     */
 }

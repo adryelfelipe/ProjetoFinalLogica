@@ -1,6 +1,7 @@
 package Repositories;
 
 import Database.ConnectionFactory;
+import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.OrdemDeServico.ObjetosDeValor.Descricao;
 import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
 import Dominio.OrdemDeServico.OrdemDeServico;
@@ -211,7 +212,8 @@ public class OrdemDeServicoDAO
                         case 2 -> StatusOS.ATRASADA;
                         default -> StatusOS.FECHADA;
                     };
-                    os = new OrdemDeServico(id, idTecnico, idSupervisor, idMaquina, statusOS, new Descricao(descricao), new ValorOS(custo));
+
+                    os = new OrdemDeServico(id, idTecnico, idSupervisor, idMaquina, statusOS, new Descricao(descricao), new ValorOS(custo), Departamento.ELETRICA);
                 }
             }
             return os;

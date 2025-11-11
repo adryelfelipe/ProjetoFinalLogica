@@ -1,8 +1,8 @@
 package Views;
 
-import Aplicacao.Funcionario.Gerente.GerenteController;
+import Aplicacao.Funcionario.Gerente.Controller.GerenteController;
+import Aplicacao.Funcionario.Nucleo.Controller.FuncionarioController;
 import Util.Ferramentas;
-import ProjetoBase.UsuarioService;
 
 import java.util.InputMismatchException;
 
@@ -10,11 +10,14 @@ public class MenuInicial
 {
     // -- Atributos -- //
     private GerenteController gerenteController;
-    private MenuLogin menuLogin = new MenuLogin(gerenteController);
+    private FuncionarioController funcionarioController;
+    private MenuLogin menuLogin;
 
     // -- Construtor -- //
-    public MenuInicial(GerenteController gerenteController) {
+    public MenuInicial(GerenteController gerenteController, FuncionarioController funcionarioController) {
         this.gerenteController = gerenteController;
+        this.funcionarioController = funcionarioController;
+        menuLogin = new MenuLogin(this.gerenteController, this.funcionarioController);
     }
 
     // -- Métodos -- //

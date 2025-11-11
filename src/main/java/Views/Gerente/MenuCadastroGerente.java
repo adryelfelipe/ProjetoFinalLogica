@@ -14,9 +14,6 @@ import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
 import Dominio.Maquina.Enumeracoes.StatusMaquina;
 import Dominio.Maquina.ObjetosDeValor.Localizacao;
 import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
-import ProjetoBase.MaquinaService;
-import ProjetoBase.SupervisorService;
-import ProjetoBase.TecnicoService;
 import Util.Ferramentas;
 import Views.MenuSetMaquina;
 import Views.MenuSetSupervisor;
@@ -27,10 +24,7 @@ import java.util.Arrays;
 
 public class MenuCadastroGerente {
     // -- Atributos -- //
-    private static final SupervisorService supervisorService = new SupervisorService();
-    private static final MaquinaService maquinaService = new MaquinaService();
-    private static final TecnicoService tecnicoService = new TecnicoService();
-
+    /*
     public static void menuCadastroSupervisor(Gerente gerente) {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃       CADASTRO SUPERVISOR      ┃");
@@ -39,16 +33,16 @@ public class MenuCadastroGerente {
         System.out.println();
 
         // ----- Atribuição de caracteríscticas de um Usuário ----- //
-        NomeFuncionario nome = MenuSetUsuario.MenuSetNome();
+        String nome = MenuSetUsuario.MenuSetNome();
         Ferramentas.limpaTerminal();
 
-        CPF cpf = MenuSetUsuario.MenuSetCpf();
+        String cpf = MenuSetUsuario.MenuSetCpf();
         Ferramentas.limpaTerminal();
 
-        Senha senha = MenuSetUsuario.MenuSetSenha();
+        String senha = MenuSetUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
         // ----- Atribuição de caracteríscticas de um Supervisor ----- //
-        MetaMensal metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
+        double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //
@@ -58,8 +52,8 @@ public class MenuCadastroGerente {
 
 
         try {
-            Supervisor supervisor = new Supervisor(nome, cpf, senha, metaMensal);
-            supervisorService.inserirSupervisor(gerente, supervisor);
+            //Supervisor supervisor = new Supervisor(nome, cpf, senha, metaMensal);
+            //supervisorService.inserirSupervisor(gerente, supervisor);
             Ferramentas.limpaTerminal();
             System.out.println("SUPERVISOR CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);
@@ -139,4 +133,6 @@ public class MenuCadastroGerente {
 
         Ferramentas.limpaTerminal();
     }
+
+     */
 }

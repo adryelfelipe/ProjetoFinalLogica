@@ -7,8 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class GerenteDAO implements FuncionarioRepositorio
-{
+public class GerenteDAO {
+    /*
     public void salvar(Gerente gerente)
     {
         String querySQL = "INSERT INTO Gerentes (id_gerente, id_departamento) VALUES (?, ?)";
@@ -71,4 +71,6 @@ public class GerenteDAO implements FuncionarioRepositorio
         }
     }
 
+
+     */
 }

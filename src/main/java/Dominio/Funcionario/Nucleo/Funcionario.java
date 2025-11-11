@@ -138,7 +138,7 @@ public abstract class Funcionario {
     }
 
 
-    public boolean igualMinhaSenha(String senha) {
-        return this.getSenha().getSenha().equals(senha);
+    public boolean igualMinhaSenha(Senha senha) {
+        return this.getSenha().getSenha().equals(senha.getSenha());
     }
 }

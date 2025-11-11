@@ -10,9 +10,6 @@ public class MenuSetTecnico {
 
     public static Especialidade MenuSetEspecialidade()
     {
-        boolean verifica = false;
-        int opcao = 0;
-
         while(true) {
             System.out.println(" ");
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
@@ -28,24 +25,18 @@ public class MenuSetTecnico {
             System.out.print("┃ ➤ Escolha: ");
 
             try {
-                opcao = Ferramentas.lInteiro();
+                int opcao = Ferramentas.lInteiro();
                 if(opcao > 5 || opcao < 1) {
                    Ferramentas.menuDefault();
                 } else {
-                    Especialidade especialidade = switch (opcao) {
+                    return switch (opcao) {
                         case 1 -> Especialidade.TECNICO_ELETROTECNICA;
                         case 2 -> Especialidade.ELETRICISTA_FABRIL;
                         case 3 -> Especialidade.SOLDADOR;
                         case 4 -> Especialidade.TECNICO_ELETROMECANICA;
                         default -> Especialidade.PINTOR_INDUSTRIAL;
                     };
-
-                    TecnicoValidator.verificaRegrasEspecialidade(especialidade);
-                    TecnicoValidator.verificaIntegridadeEspecialidade(especialidade);
-                    return especialidade;
                 }
-            } catch (IllegalStateException e) {
-                Ferramentas.mensagemErro(e.getMessage());
             } catch (InputMismatchException e) {
                 Ferramentas.menuDefault();;
             }
