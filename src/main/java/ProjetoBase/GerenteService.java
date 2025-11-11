@@ -1,7 +1,6 @@
 package ProjetoBase;
 
 import Dominio.Funcionario.Gerente.Gerente;
-import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Departamento;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
@@ -33,6 +32,6 @@ public class GerenteService {
         UsuarioValidator.temNivelAcesso4(funcionarioExecutor);
         usuarioService.isIdExistenteValidator(idGerenteARemover);
         gerenteDAO.excluirPorID(idGerenteARemover);
-        funcionarioDao.excluirPorID(idGerenteARemover);
+        funcionarioDao.excluirPorId(idGerenteARemover);
     }
 }

@@ -31,7 +31,7 @@ public class UsuarioService {
     }
 
     public void isIdExistenteValidator(long id) {
-        if (!funcionarioDao.existeID(id)) {
+        if (!funcionarioDao.existeId(id)) {
             throw new IllegalStateException("ERRO! O ID NÃO FOI ENCONTRADO");
         }
     }
@@ -42,7 +42,7 @@ public class UsuarioService {
     }
 
     public Funcionario findById(long id) {
-        return funcionarioDao.buscarPorID(id);
+        return funcionarioDao.buscarPorId(id);
     }
 
     public void updateSenhaUsuario(Funcionario funcionario, long id, Senha senha) {

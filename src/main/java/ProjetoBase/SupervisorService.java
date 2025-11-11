@@ -31,6 +31,6 @@ public class SupervisorService {
         UsuarioValidator.temNivelAcesso3(funcionarioExecutor);
         usuarioService.isIdExistenteValidator(idSupervisorARemover);
         supervisorDAO.excluirPorID(idSupervisorARemover);
-        funcionarioDAO.excluirPorID(idSupervisorARemover);
+        funcionarioDAO.excluirPorId(idSupervisorARemover);
     }
 }

@@ -33,6 +33,6 @@ public class TecnicoService {
         UsuarioValidator.temNivelAcesso3(funcionarioExecutor);
         usuarioService.isIdExistenteValidator(idTecnicoARemover);
         tecnicoDAO.excluirPorID(idTecnicoARemover);
-        funcionarioDAO.excluirPorID(idTecnicoARemover);
+        funcionarioDAO.excluirPorId(idTecnicoARemover);
     }
 }

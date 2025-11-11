@@ -28,13 +28,13 @@ public class FuncionarioServico {
     }
 
     public void idEncontrado(long id) {
-        if(!funcionarioRepositorio.existeID(id)) {
+        if(!funcionarioRepositorio.existeId(id)) {
             throw new IdFuncionarioException("O ID de funcionário informado não foi encontrado");
         }
     }
 
     public void idUtilizado(long id) {
-        if(funcionarioRepositorio.existeID(id)) {
+        if(funcionarioRepositorio.existeId(id)) {
             throw new IdFuncionarioException("O ID de funcionário informado já foi utilizado");
         }
     }

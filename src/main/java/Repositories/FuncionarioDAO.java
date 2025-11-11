@@ -2,6 +2,9 @@ package Repositories;
 
 import Database.ConnectionFactory;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
+import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
+import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioQueriesRepositorio;
+import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 import Dominio.Funcionario.Supervisor.ObjetosDeValor.MetaMensal;
 import Dominio.Funcionario.Supervisor.Supervisor;
 import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
@@ -16,7 +19,7 @@ import Dominio.Funcionario.Tecnico.Tecnico;
 
 import java.sql.*;
 
-public class FuncionarioDAO
+public class FuncionarioDAO implements FuncionarioRepositorio, FuncionarioQueriesRepositorio
 {
     public boolean existeCpf(CPF cpf)
     {
@@ -102,7 +105,7 @@ public class FuncionarioDAO
 
                         long idDoUsuarioLogado = rs.getLong("id_usuario");
 
-                        return buscarPorID(idDoUsuarioLogado);
+                        return buscarPorId(idDoUsuarioLogado);
                     }
                 }
             }
@@ -112,7 +115,7 @@ public class FuncionarioDAO
 
         return null;
     }
-    public Funcionario buscarPorID(long idDoUsuarioLogado)
+    public Funcionario buscarPorId(long idDoUsuarioLogado)
     {
         // Consulta MYSQL.
         String querySQL = "SELECT " +
@@ -190,7 +193,7 @@ public class FuncionarioDAO
         return funcionario;
     }
 
-    public boolean excluirPorID(long id)
+    public boolean excluirPorId(long id)
     {
         // Consulta MYSQL.
         String querySQL = "DELETE FROM Usuario WHERE id_usuario = ?";
@@ -218,65 +221,34 @@ public class FuncionarioDAO
             return false;
         }
     }
-    public void alterarNomeUsuario(long id, String novoNome)
-    {
-        // Consulta MYSQL.
-        String querySQl = "UPDATE Usuario " +
-                "SET nome = ?" +
+    public void atualizar(Funcionario funcionario) {
+        // Consulta MySQL CORRIGIDA
+        String querySQL = "UPDATE Usuario " +
+                "SET nome = ?, cpf = ?, senha = ? " +
                 "WHERE id_usuario = ?";
 
-        try(Connection conn = ConnectionFactory.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(querySQl))
-        {
-            stmt.setString(1, novoNome);
-            stmt.setLong(2, id);
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
 
-            stmt.executeUpdate();
-        } catch (SQLException e)
-        {
-            System.err.println("ERRO ao atualizar nome do usuário.");
-        }
-    }
+            stmt.setString(1, funcionario.getNome().toString());
+            stmt.setString(2, funcionario.getCpf().toString());
+            stmt.setString(3, funcionario.getSenha().toString());
+            stmt.setLong(4, funcionario.getIdUsuario());
 
-    public void updateSenhaUsuario(long id, String senhaNova)
-    {
-        // Consulta MYSQL.
-        String querySQl = "UPDATE Usuario " +
-                "SET senha = ?" +
-                "WHERE id_usuario = ?";
+            int linhasAfetadas = stmt.executeUpdate();
 
-        try(Connection conn = ConnectionFactory.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(querySQl))
-        {
-            stmt.setString(1, senhaNova);
-            stmt.setLong(2, id);
+            if (linhasAfetadas > 0) {
+                System.out.println("Usuário atualizado com sucesso!");
+            } else {
+                System.out.println("Nenhum usuário encontrado com o ID: " + funcionario.getIdUsuario());
+            }
 
-            stmt.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("ERRO ao atualizar senha do usuário.");
+            System.err.println("ERRO ao atualizar usuário: " + e.getMessage());
         }
     }
 
-    public void updateCpfUsuario(long id, String cpfNovo)
-    {
-        // Consulta MYSQL.
-        String querySQl = "UPDATE Usuario " +
-                "SET cpf = ?" +
-                "WHERE id_usuario = ?";
-
-        try(Connection conn = ConnectionFactory.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(querySQl))
-        {
-            stmt.setString(1, cpfNovo);
-            stmt.setLong(2, id);
-
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("ERRO ao atualizar cpf do usuário.");
-        }
-    }
-
-    public boolean existeID(long id)
+    public boolean existeId(long id)
     {
         // Consulta MYSQL.
         String querySql = "SELECT * FROM Usuario WHERE id_usuario = ? LIMIT 1";
@@ -307,7 +279,7 @@ public class FuncionarioDAO
         return false;
     }
 
-    public long nivelAcessoPorID(long id)
+    public NivelAcesso nivelAcessoPorID(long id)
     {
         String querySQL = "SELECT id_na FROM Usuario WHERE id_usuario = ?";
 
@@ -320,13 +292,30 @@ public class FuncionarioDAO
             {
                 if(rs.next())
                 {
-                    return rs.getLong("id_na");
+                    int nivelAcesso = rs.getInt("id_na");
+
+                    switch (nivelAcesso)
+                    {
+                        case 1:
+                            return NivelAcesso.TECNICO;
+                        case 2:
+                            return NivelAcesso.SUPERVISOR;
+                        case 3:
+                            return NivelAcesso.GERENTE;
+                        default:
+                            return NivelAcesso.ADMIN;
+                    }
                 }
             }
         }
          catch (SQLException e) {
              System.err.println("ERRO ao consultar Nivel de Acesso do ID: " + id);
-         }
-        return 0;
+
+         } return null;
+    }
+
+    public Funcionario buscarPorCpf(CPF cpf)
+    {
+
     }
 }
