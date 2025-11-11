@@ -1,6 +1,4 @@
-package ProjetoBase;
-
-import Util.Ferramentas;
+package Util;
 
 public class FerramentaValidator {
     public static boolean isContemMaiuscula(String palavra) {

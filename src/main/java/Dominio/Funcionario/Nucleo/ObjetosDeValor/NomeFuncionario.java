@@ -2,7 +2,7 @@ package Dominio.Funcionario.Nucleo.ObjetosDeValor;
 
 import Dominio.Compartilhado.Nome;
 import Dominio.Funcionario.Nucleo.Exceptions.NomeFuncionarioException;
-import ProjetoBase.FerramentaValidator;
+import Util.FerramentaValidator;
 
 public final class NomeFuncionario extends Nome {
     public NomeFuncionario(String nome) {

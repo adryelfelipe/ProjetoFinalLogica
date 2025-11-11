@@ -1,4 +1,4 @@
-package Repositories;
+package Infraestrutura;
 
 import Database.ConnectionFactory;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;

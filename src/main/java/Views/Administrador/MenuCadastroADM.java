@@ -13,17 +13,12 @@ import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
 import Util.Ferramentas;
 import Views.Gerente.MenuSetGerente;
 import Views.MenuSetUsuario;
+import testesProjeto.MainTestes;
 
 import java.util.List;
 
 public class MenuCadastroADM {
-    private GerenteController gerenteController;
-
-    public MenuCadastroADM(GerenteController gerenteController) {
-        this.gerenteController = gerenteController;
-    }
-
-    public void menuCadastroGerente(NivelAcesso nivelAcesso) {
+    public static void menuCadastroGerente(NivelAcesso nivelAcesso) {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃       CADASTRO GERENTE         ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
@@ -52,7 +47,7 @@ public class MenuCadastroADM {
 
         // -- Gerando request para cadastro de gerente -- //
         CadastroGerenteRequest gerenteRequest = new CadastroGerenteRequest(nome, cpf, senha, listaDepartamentos);
-        CadastroGerenteResponse gerenteResponse = gerenteController.salvar(nivelAcesso,gerenteRequest);
+        CadastroGerenteResponse gerenteResponse = MainTestes.gerenteController.salvar(nivelAcesso,gerenteRequest);
         Ferramentas.mensagemErro(gerenteResponse.mensagem());
         Ferramentas.Delay(800);
     }

@@ -3,9 +3,8 @@ package Views;
 import Dominio.Maquina.Enumeracoes.StatusMaquina;
 import Dominio.Maquina.ObjetosDeValor.Localizacao;
 import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
-import ProjetoBase.UsuarioValidator;
 import Util.Ferramentas;
-import ProjetoBase.MaquinaValidator;
+
 
 import java.util.InputMismatchException;
 

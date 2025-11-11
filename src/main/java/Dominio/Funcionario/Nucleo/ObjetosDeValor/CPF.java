@@ -1,7 +1,7 @@
 package Dominio.Funcionario.Nucleo.ObjetosDeValor;
 
 import Dominio.Funcionario.Nucleo.Exceptions.CpfInvalidoException;
-import ProjetoBase.FerramentaValidator;
+import Util.FerramentaValidator;
 
 public final class CPF {
     private final String cpf;

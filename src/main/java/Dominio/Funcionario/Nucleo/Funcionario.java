@@ -15,23 +15,17 @@ public abstract class Funcionario {
     private CPF cpf;
     private Senha senha;
     private NivelAcesso nivelAcesso;
-    private Long idFuncionario;
+    private long idFuncionario;
     private ListaDepartamentos listaDepartamentos;
 
     // -- Construtor com ID -- //
-    public Funcionario(Long id, NomeFuncionario nome, CPF cpf, Senha senha, NivelAcesso nivelAcesso, ListaDepartamentos listaDepartamentos) {
+    public Funcionario(long id, NomeFuncionario nome, CPF cpf, Senha senha, NivelAcesso nivelAcesso, ListaDepartamentos listaDepartamentos) {
         alteraListaDepartamentos(listaDepartamentos);
         alteraIdUsuario(id);
         alteraNome(nome);
         alteraNivelAcesso(nivelAcesso);
         alteraCpf(cpf);
         alteraSenha(senha);
-    }
-
-    // -- Construtor sem ID -- //
-    public Funcionario(NomeFuncionario nome, CPF cpf, Senha senha, NivelAcesso nivelAcesso, ListaDepartamentos listaDepartamentos)
-    {
-        this(null, nome, cpf, senha, nivelAcesso, listaDepartamentos);
     }
 
     // -- Getters -- //
@@ -68,12 +62,8 @@ public abstract class Funcionario {
         this.listaDepartamentos = listaDepartamentos;
     }
 
-    public void alteraIdUsuario(Long id) {
-        if(this.idFuncionario != null) {
-            throw new IdFuncionarioException("Não é possível alterar o ID de um funcionário");
-        }
-
-        if(id != null && id < 1) {
+    public void alteraIdUsuario(long id) {
+        if(id < 0) {
             throw new IdFuncionarioException("O ID do funcionário informado está inválido");
         }
 
@@ -133,8 +123,8 @@ public abstract class Funcionario {
         this.listaDepartamentos.getListaDepartamentos().remove(departamento);
     }
 
-    public boolean igualMeuId(Long idComparado) {
-        return idFuncionario != null && idFuncionario.equals(idComparado);
+    public boolean igualMeuId(long idComparado) {
+        return idFuncionario == idComparado;
     }
 
 

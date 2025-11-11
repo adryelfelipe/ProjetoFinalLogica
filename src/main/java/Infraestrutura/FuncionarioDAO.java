@@ -1,23 +1,10 @@
-package Repositories;
+package Infraestrutura;
 
-import Database.ConnectionFactory;
-import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioQueriesRepositorio;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
-import Dominio.Funcionario.Supervisor.ObjetosDeValor.MetaMensal;
-import Dominio.Funcionario.Supervisor.Supervisor;
-import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
-import Dominio.Funcionario.Administrador.Administrador;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
-import Dominio.Funcionario.Gerente.Gerente;
-import Dominio.Funcionario.Tecnico.Tecnico;
-
-import java.sql.*;
 
 public class FuncionarioDAO implements FuncionarioRepositorio, FuncionarioQueriesRepositorio
 {
@@ -57,8 +44,8 @@ public class FuncionarioDAO implements FuncionarioRepositorio, FuncionarioQuerie
     }
 
     @Override
-    public boolean excluirPorId(long id) {
-        return false;
+    public void excluirPorId(long id) {
+
     }
 
     /*

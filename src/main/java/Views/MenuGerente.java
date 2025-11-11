@@ -9,9 +9,7 @@ import Views.Gerente.MenuUpdateGerente;
 
 public class MenuGerente
 {
-    /*
-    public static void menuInicial(Gerente gerente)
-    {
+    public static void menuInicial() {
         boolean continuar = false;
 
         while(!continuar) {
@@ -34,10 +32,10 @@ public class MenuGerente
 
                 Ferramentas.limpaTerminal();
                 switch (opcaoGerente) {
-                    case 1 -> MenuGerenteCadastrar.criarUsuarios(gerente);
+                    case 1 -> MenuGerenteCadastrar.criarUsuarios();
                     case 2 -> MenuGerenteRelatorios.visualizarRelatorios();
-                    case 3 -> MenuUpdateGerente.menuUpdateEscolha(gerente);
-                    case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha(gerente);
+                    case 3 -> MenuUpdateGerente.menuUpdateEscolha();
+                    case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha();
                     case 5 ->
                     {
                         System.out.println("┃  RETORNANDO AO MENU INICIAL ...");
@@ -50,6 +48,4 @@ public class MenuGerente
             }
         }
     }
-
-     */
 }

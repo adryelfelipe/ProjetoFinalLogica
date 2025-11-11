@@ -2,9 +2,7 @@ package Views.Gerente;
 
 
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
 import Util.Ferramentas;
-import ProjetoBase.GerenteValidator;
 
 import java.util.ArrayList;
 import java.util.Arrays;

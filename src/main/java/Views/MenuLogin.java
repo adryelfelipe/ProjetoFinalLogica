@@ -8,21 +8,11 @@ import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Util.Ferramentas;
 import Views.Administrador.MenuAdministrador;
+import testesProjeto.MainTestes;
 
 public class MenuLogin
 {
-    // -- Atributos -- //
-    private GerenteController gerenteController;
-    private FuncionarioController funcionarioController;
-    private MenuAdministrador menuAdministrador;
-    // -- Construtor -- //
-    public MenuLogin(GerenteController gerenteController, FuncionarioController funcionarioController) {
-        this.gerenteController = gerenteController;
-        this.funcionarioController = funcionarioController;
-        this.menuAdministrador = new MenuAdministrador(this.gerenteController);
-    }
-
-    public void login() {
+    public static void login() {
         // Menu interativo
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃             LOGIN              ┃");
@@ -34,12 +24,16 @@ public class MenuLogin
         String senhaLogin = Ferramentas.lString();
 
         LoginFuncionarioRequest request = new LoginFuncionarioRequest(cpf, senhaLogin);
-        LoginFuncionarioResponse response = funcionarioController.login(request);
+        LoginFuncionarioResponse response = MainTestes.funcionarioController.login(request);
         Ferramentas.mensagemErro(response.mensagem());
 
         if(response.operacao()) {
             if(response.nivelAcesso().equals(NivelAcesso.ADMIN)) {
-                menuAdministrador.menuInicial(response.nivelAcesso());
+                MenuAdministrador.menuInicial(response.nivelAcesso());
+            }
+
+            if(response.nivelAcesso().equals(NivelAcesso.GERENTE)) {
+                MenuGerente.menuInicial();
             }
         }
     }

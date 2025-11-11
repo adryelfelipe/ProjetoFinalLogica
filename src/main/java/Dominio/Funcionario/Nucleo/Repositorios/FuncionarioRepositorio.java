@@ -5,5 +5,5 @@ import Dominio.Funcionario.Nucleo.Funcionario;
 public interface FuncionarioRepositorio {
     void salvar(Funcionario funcionario);
     void atualizar(Funcionario funcionario);
-    boolean excluirPorId(long id);
+    void excluirPorId(long id);
 }

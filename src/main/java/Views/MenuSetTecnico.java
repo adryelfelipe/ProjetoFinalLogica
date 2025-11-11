@@ -1,7 +1,6 @@
 package Views;
 
 import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
-import ProjetoBase.TecnicoValidator;
 import Util.Ferramentas;
 
 import java.util.InputMismatchException;

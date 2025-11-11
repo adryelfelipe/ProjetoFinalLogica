@@ -1,11 +1,4 @@
-package Repositories;
-
-import Database.ConnectionFactory;
-import Dominio.Funcionario.Gerente.Gerente;
-import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+package Infraestrutura;
 
 public class GerenteDAO {
     /*

@@ -8,16 +8,8 @@ import Util.Ferramentas;
 import Views.MenuInicial;
 
 public class MenuAdministrador {
-    // -- Atributos -- //
-    MenuCadastroADM menuCadastroADM;
-
-    // -- Construtor -- //
-    public MenuAdministrador(GerenteController gerenteController) {
-        menuCadastroADM = new MenuCadastroADM(gerenteController);
-    }
-
     // -- Métodos -- //
-    public void menuInicial(NivelAcesso nivelAcesso) {
+    public static void menuInicial(NivelAcesso nivelAcesso) {
         boolean continuar = false;
 
         while (!continuar) {
@@ -36,7 +28,7 @@ public class MenuAdministrador {
                 int opcaoAdmin = Ferramentas.lInteiro();
 
                 switch (opcaoAdmin) {
-                    case 1 -> menuCadastroADM.menuCadastroGerente(nivelAcesso);
+                    case 1 ->  MenuCadastroADM.menuCadastroGerente(nivelAcesso);
                     //case 2 -> MenuUpdateADM.updateGerente();
                     //case 3 -> MenuAdminRemoverGerente.menuRemoverEscolha();
                     //case 4 -> MenuInicial.Menu();

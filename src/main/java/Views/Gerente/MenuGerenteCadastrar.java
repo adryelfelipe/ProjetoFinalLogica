@@ -5,7 +5,7 @@ import Dominio.Funcionario.Gerente.Gerente;
 
 public class MenuGerenteCadastrar
 {
-    public static void criarUsuarios(Gerente gerente)
+    public static void criarUsuarios()
     {
         /*
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");

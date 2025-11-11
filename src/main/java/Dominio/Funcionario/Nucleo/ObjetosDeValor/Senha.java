@@ -1,7 +1,7 @@
 package Dominio.Funcionario.Nucleo.ObjetosDeValor;
 
 import Dominio.Funcionario.Nucleo.Exceptions.SenhaInvalidaException;
-import ProjetoBase.FerramentaValidator;
+import Util.FerramentaValidator;
 
 public final class Senha {
     private final String senha;
