@@ -1,14 +1,8 @@
 package Views;
 
 import Aplicacao.Funcionario.Gerente.GerenteController;
-import Dominio.Funcionario.Administrador.Administrador;
 import Dominio.Funcionario.Nucleo.Funcionario;
-import Dominio.Funcionario.Gerente.Gerente;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Supervisor.Supervisor;
-import Dominio.Funcionario.Tecnico.Tecnico;
 import Util.Ferramentas;
-import ProjetoBase.UsuarioService;
 import Views.Administrador.MenuAdministrador;
 
 public class MenuLogin
