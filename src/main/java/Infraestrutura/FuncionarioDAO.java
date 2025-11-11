@@ -1,54 +1,27 @@
 package Infraestrutura;
 
+import Database.ConnectionFactory;
+import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioQueriesRepositorio;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
+import Dominio.Funcionario.Supervisor.ObjetosDeValor.MetaMensal;
+import Dominio.Funcionario.Supervisor.Supervisor;
+import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
+import Dominio.Funcionario.Administrador.Administrador;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
+import Dominio.Funcionario.Gerente.Gerente;
+import Dominio.Funcionario.Tecnico.Tecnico;
+
+import java.sql.*;
 
 public class FuncionarioDAO implements FuncionarioRepositorio, FuncionarioQueriesRepositorio
 {
     @Override
-    public boolean existeCpf(CPF cpf) {
-        return false;
-    }
-
-    @Override
-    public boolean existeId(long id) {
-        return false;
-    }
-
-    @Override
-    public Funcionario buscarPorId(long id) {
-        return null;
-    }
-
-    @Override
-    public NivelAcesso nivelAcessoPorID(long id) {
-        return null;
-    }
-
-    @Override
-    public Funcionario buscarPorCpf(CPF cpf) {
-        return null;
-    }
-
-    @Override
-    public void salvar(Funcionario funcionario) {
-
-    }
-
-    @Override
-    public void atualizar(Funcionario funcionario) {
-
-    }
-
-    @Override
-    public void excluirPorId(long id) {
-
-    }
-
-    /*
     public boolean existeCpf(CPF cpf)
     {
         // Consulta MYSQL.
@@ -77,43 +50,80 @@ public class FuncionarioDAO implements FuncionarioRepositorio, FuncionarioQuerie
         }
         return false;
     }
-    public void salvar(Funcionario funcionario)
-    {
-        // Comando SQL
-        String querySQL = "INSERT INTO Usuario (nome, cpf, senha, id_na) VALUES (?, ?, ?, ?)";
-        long idGerado = -1; // Armazena o id.
 
-        // Pega a conexão
-        try(Connection conn = ConnectionFactory.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS))
+        @Override
+        public void salvar(Funcionario funcionario)
         {
-            //Definindo parametros (PreparedStatement).
-            stmt.setString(1, funcionario.getNome().getNome());
-            stmt.setString(2, funcionario.getCpf().getCpf());
-            stmt.setString(3, funcionario.getSenha().getSenha());
-            stmt.setInt(4, funcionario.getNivelAcesso().getId());
+            // Comando SQL
+            String querySQL = "INSERT INTO Usuario (nome, cpf, senha, id_na) VALUES (?, ?, ?, ?)";
+            long idGerado = -1; // Armazena o id.
 
-            //Executando a inserção
-            int linhasAF = stmt.executeUpdate();
-
-            // Verificando se o comando ocorreu
-            if (linhasAF > 0)
+            // Pega a conexão
+            try(Connection conn = ConnectionFactory.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS))
             {
-                // Pega as chaves geradas.
-                try (ResultSet rs = stmt.getGeneratedKeys())
+                //Definindo parametros (PreparedStatement).
+                stmt.setString(1, funcionario.getNome().getNome());
+                stmt.setString(2, funcionario.getCpf().getCpf());
+                stmt.setString(3, funcionario.getSenha().getSenha());
+                stmt.setInt(4, funcionario.getNivelAcesso().getId());
+
+                //Executando a inserção
+                int linhasAF = stmt.executeUpdate();
+
+                // Verificando se o comando ocorreu
+                if (linhasAF > 0)
                 {
-                    if (rs.next()) {
-                        idGerado = rs.getLong(1);// Pega a chave (geralmente pela primeira coluna)
-                        funcionario.alteraIdUsuario(idGerado);
+                    // Pega as chaves geradas.
+                    try (ResultSet rs = stmt.getGeneratedKeys())
+                    {
+                        if (rs.next()) {
+                            idGerado = rs.getLong(1);// Pega a chave (geralmente pela primeira coluna)
+                            funcionario.alteraIdUsuario(idGerado);
+
+                            if(funcionario.getNivelAcesso().equals(NivelAcesso.GERENTE))
+                            {
+                                Gerente gerente = (Gerente) funcionario;
+                                String querySQLG = "INSERT INTO Gerentes (id_gerente, id_departamento) VALUES (?, ?)";
+
+                                try(PreparedStatement stmtGerente = conn.prepareStatement(querySQLG))
+                                {
+                                    stmtGerente.setLong(1, gerente.getId());
+                                    stmtGerente.setInt(2, gerente.getDepartamentos().getListaDepartamentos().getFirst().getId());
+                                    stmtGerente.executeUpdate();
+                                }
+                            }
+                        }
+                        else if(funcionario.getNivelAcesso().equals(NivelAcesso.SUPERVISOR))
+                        {
+                            Supervisor supervisor = (Supervisor) funcionario;
+                            String querySupervisor = "INSERT INTO Supervisor (id_supervisor, meta_mensal) VALUES (?, ?)";
+
+                            try(PreparedStatement stmtSupervisor = conn.prepareStatement(querySupervisor))
+                            {
+                                stmtSupervisor.setLong(1, supervisor.getId());
+                                stmtSupervisor.setDouble(2, supervisor.getMetaMensal().getValorMetaMensal());
+                                stmtSupervisor.executeUpdate();
+                            }
+                        }
+                        else if (funcionario.getNivelAcesso().equals(NivelAcesso.TECNICO)) {
+                            Tecnico tecnico = (Tecnico) funcionario;
+                            String queryTecnico = "INSERT INTO Tecnico (id_tecnico, id_especialidade) VALUES (?, ?)";
+
+                            try (PreparedStatement stmtTecnico = conn.prepareStatement(queryTecnico)) {
+                                stmtTecnico.setLong(1, tecnico.getId());
+                                stmtTecnico.setInt(2, tecnico.getEspecialidade().getId());
+                                stmtTecnico.executeUpdate();
+                            }
+                        }
                     }
                 }
             }
+            catch (SQLException e)
+            {
+                System.err.println("Erro ao inserir o Usuario");
+            }
         }
-        catch (SQLException e)
-        {
-            System.err.println("Erro ao inserir o Usuario");
-        }
-    }
 
     public Funcionario loginUsuario(String cpf, String senha) {
 
@@ -143,6 +153,7 @@ public class FuncionarioDAO implements FuncionarioRepositorio, FuncionarioQuerie
 
         return null;
     }
+    @Override
     public Funcionario buscarPorId(long idDoUsuarioLogado)
     {
         // Consulta MYSQL.
@@ -220,7 +231,7 @@ public class FuncionarioDAO implements FuncionarioRepositorio, FuncionarioQuerie
         }
         return funcionario;
     }
-
+    @Override
     public boolean excluirPorId(long id)
     {
         // Consulta MYSQL.
@@ -249,6 +260,7 @@ public class FuncionarioDAO implements FuncionarioRepositorio, FuncionarioQuerie
             return false;
         }
     }
+    @Override
     public void atualizar(Funcionario funcionario) {
         // Consulta MySQL CORRIGIDA
         String querySQL = "UPDATE Usuario " +
@@ -261,14 +273,14 @@ public class FuncionarioDAO implements FuncionarioRepositorio, FuncionarioQuerie
             stmt.setString(1, funcionario.getNome().toString());
             stmt.setString(2, funcionario.getCpf().toString());
             stmt.setString(3, funcionario.getSenha().toString());
-            stmt.setLong(4, funcionario.getIdUsuario());
+            stmt.setLong(4, funcionario.getId());
 
             int linhasAfetadas = stmt.executeUpdate();
 
             if (linhasAfetadas > 0) {
                 System.out.println("Usuário atualizado com sucesso!");
             } else {
-                System.out.println("Nenhum usuário encontrado com o ID: " + funcionario.getIdUsuario());
+                System.out.println("Nenhum usuário encontrado com o ID: " + funcionario.getId());
             }
 
         } catch (SQLException e) {
@@ -276,6 +288,7 @@ public class FuncionarioDAO implements FuncionarioRepositorio, FuncionarioQuerie
         }
     }
 
+    @Override
     public boolean existeId(long id)
     {
         // Consulta MYSQL.
@@ -307,6 +320,7 @@ public class FuncionarioDAO implements FuncionarioRepositorio, FuncionarioQuerie
         return false;
     }
 
+    @Override
     public NivelAcesso nivelAcessoPorID(long id)
     {
         String querySQL = "SELECT id_na FROM Usuario WHERE id_usuario = ?";
@@ -342,10 +356,10 @@ public class FuncionarioDAO implements FuncionarioRepositorio, FuncionarioQuerie
          } return null;
     }
 
+    @Override
     public Funcionario buscarPorCpf(CPF cpf)
     {
-
+        return null;
     }
 
-     */
 }
