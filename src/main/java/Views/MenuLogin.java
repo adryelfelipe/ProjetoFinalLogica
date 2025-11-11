@@ -1,11 +1,8 @@
 package Views;
 
-import Aplicacao.Funcionario.Gerente.Controller.GerenteController;
-import Aplicacao.Funcionario.Nucleo.Controller.FuncionarioController;
 import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioRequest;
 import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioResponse;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
-import Dominio.Funcionario.Nucleo.Funcionario;
 import Util.Ferramentas;
 import Views.Administrador.MenuAdministrador;
 import testesProjeto.MainTestes;
@@ -27,7 +24,7 @@ public class MenuLogin
         LoginFuncionarioResponse response = MainTestes.funcionarioController.login(request);
         Ferramentas.mensagemErro(response.mensagem());
 
-        if(response.operacao()) {
+        if(response.status()) {
             if(response.nivelAcesso().equals(NivelAcesso.ADMIN)) {
                 MenuAdministrador.menuInicial(response.nivelAcesso());
             }

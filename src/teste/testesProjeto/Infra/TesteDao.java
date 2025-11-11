@@ -3,7 +3,6 @@ package testesProjeto.Infra;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioQueriesRepositorio;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 
 import java.util.ArrayList;

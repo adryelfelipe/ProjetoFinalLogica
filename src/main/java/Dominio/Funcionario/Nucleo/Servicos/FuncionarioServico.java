@@ -3,14 +3,14 @@ package Dominio.Funcionario.Nucleo.Servicos;
 import Dominio.Funcionario.Nucleo.Exceptions.CpfInvalidoException;
 import Dominio.Funcionario.Nucleo.Exceptions.IdFuncionarioException;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioQueriesRepositorio;
+import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 
 public class FuncionarioServico {
     // -- Atributos -- //
-    private FuncionarioQueriesRepositorio funcionarioRepositorio;
+    private FuncionarioRepositorio funcionarioRepositorio;
 
     // -- Construtor -- //
-    public FuncionarioServico(FuncionarioQueriesRepositorio funcionarioRepositorio) {
+    public FuncionarioServico(FuncionarioRepositorio funcionarioRepositorio) {
         this.funcionarioRepositorio = funcionarioRepositorio;
     }
 
@@ -18,18 +18,6 @@ public class FuncionarioServico {
     public void cpfUtilizado(CPF cpf) {
         if(funcionarioRepositorio.existeCpf(cpf)) {
             throw new CpfInvalidoException("O cpf informado já foi utilizado");
-        }
-    }
-
-    public void cpfEncontrado(CPF cpf) {
-        if(!funcionarioRepositorio.existeCpf(cpf)) {
-            throw new CpfInvalidoException("O cpf informado não foi encontrado");
-        }
-    }
-
-    public void idEncontrado(long id) {
-        if(!funcionarioRepositorio.existeId(id)) {
-            throw new IdFuncionarioException("O ID de funcionário informado não foi encontrado");
         }
     }
 

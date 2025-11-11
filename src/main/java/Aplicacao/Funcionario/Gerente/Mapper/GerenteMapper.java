@@ -24,6 +24,6 @@ public class GerenteMapper {
 
     // Cadastro falhou
     public CadastroGerenteResponse paraResponseCadastro(String mensagemErro) {
-        return new CadastroGerenteResponse(null, null,false, mensagemErro);
+        return new CadastroGerenteResponse(-1, null,false, mensagemErro);
     }
 }

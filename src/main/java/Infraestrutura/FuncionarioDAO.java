@@ -3,7 +3,6 @@ package Infraestrutura;
 import Database.ConnectionFactory;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
-import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioQueriesRepositorio;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 import Dominio.Funcionario.Supervisor.ObjetosDeValor.MetaMensal;
 import Dominio.Funcionario.Supervisor.Supervisor;
@@ -19,7 +18,7 @@ import Dominio.Funcionario.Tecnico.Tecnico;
 
 import java.sql.*;
 
-public class FuncionarioDAO implements FuncionarioRepositorio, FuncionarioQueriesRepositorio
+public class FuncionarioDAO implements FuncionarioRepositorio
 {
     @Override
     public boolean existeCpf(CPF cpf)
