@@ -2,6 +2,7 @@ package Views.Administrador;
 
 import Aplicacao.Funcionario.Gerente.CasosDeUso.CadastrarGerente.Dtos.CadastroGerenteRequest;
 import Aplicacao.Funcionario.Gerente.CasosDeUso.CadastrarGerente.Dtos.CadastroGerenteResponse;
+import Aplicacao.Funcionario.Gerente.CasosDeUso.CadastrarGerente.Handler.CadastroGerenteHandler;
 import Aplicacao.Funcionario.Gerente.GerenteController;
 import Dominio.Funcionario.Administrador.Administrador;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
