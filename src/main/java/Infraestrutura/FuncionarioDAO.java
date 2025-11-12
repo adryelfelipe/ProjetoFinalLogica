@@ -17,7 +17,9 @@ import Dominio.Funcionario.Gerente.Gerente;
 import Dominio.Funcionario.Tecnico.Tecnico;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public abstract class FuncionarioDAO implements FuncionarioRepositorio
 {
@@ -378,10 +380,9 @@ public abstract class FuncionarioDAO implements FuncionarioRepositorio
     @Override
     public Funcionario buscarPorCpf(CPF cpf)
     {
-        // Consulta MYSQL.
+        // Consulta SQL
         String querySQL = "SELECT " +
                 "U.ID_USUARIO, U.nome, U.cpf, U.senha, U.id_na, " +
-                "G.id_departamento, " +
                 "S.meta_mensal, " +
                 "T.id_especialidade " +
                 "FROM Usuario U " +
@@ -399,68 +400,70 @@ public abstract class FuncionarioDAO implements FuncionarioRepositorio
 
             try(ResultSet rs = stmt.executeQuery())
             {
+                // Pegar Dados
                 if(rs.next())
                 {
-                    // Pega dados comuns...
+                    // Dados comuns do usuário
                     long id = rs.getLong("id_usuario");
                     String nome = rs.getString("nome");
                     String cpfUsuario = rs.getString("cpf");
                     String senha = rs.getString("senha");
                     int nivelAcesso = rs.getInt("id_na");
 
+                    // Buscar departamentos associados com o usuario do CPF = ?
+                    List<Departamento> departamentosDoUsuario = new ArrayList<>();
+                    String sqlDepartamentos = "SELECT id_departamento FROM UsuarioDepartamento WHERE id_usuario = ?";
+
+                    try (PreparedStatement stmtDepartamentos = conn.prepareStatement(sqlDepartamentos))
+                    {
+                        stmtDepartamentos.setLong(1, id); // Passa o ID do usuário
+
+                        try (ResultSet rsDepartamentos = stmtDepartamentos.executeQuery())
+                        {
+                            // Loop para carregar todos os departamentos, ou seja esquanto o rs estiver lendo, vai carregando.
+                            while (rsDepartamentos.next())
+                            {
+                                int idDepartamento = rsDepartamentos.getInt("id_departamento");
+
+                                Departamento departamento = switch (idDepartamento)
+                                {
+                                    case 1 -> Departamento.ELETRICA;
+                                    default -> Departamento.MECANICA;
+                                };
+                                departamentosDoUsuario.add(departamento);
+                            }
+                        }
+                    }
+                    // Monta a lista final de departamentos
+                    ListaDepartamentos listaDepartamentos = new ListaDepartamentos(departamentosDoUsuario);
+
                     switch(nivelAcesso)
                     {
-                        case 1:
-                            int idDepartamentoT = rs.getInt("id_departamento");
-
-                            Departamento departamentoT = switch (idDepartamentoT) {
-                                case 1 -> Departamento.ELETRICA;
-                                default -> Departamento.MECANICA;
-                            };
-                            // Criando objeto de acordo com seu nivel_acesso.
+                        case 1: // Tecnico
                             int idEspecialidade = rs.getInt("id_especialidade");
-
-                            Especialidade especialidade = switch(idEspecialidade) {
+                            Especialidade especialidade = switch(idEspecialidade)
+                            {
                                 case 1 -> Especialidade.TECNICO_ELETROTECNICA;
                                 case 2 -> Especialidade.ELETRICISTA_FABRIL;
                                 case 3 -> Especialidade.SOLDADOR;
                                 case 4 -> Especialidade.TECNICO_ELETROMECANICA;
                                 default -> Especialidade.PINTOR_INDUSTRIAL;
                             };
-
-                            funcionario = new Tecnico(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamentoT)), especialidade);
+                            funcionario = new Tecnico(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), listaDepartamentos, especialidade);
                             break;
 
-                        case 2:
-                            int idDepartamentoS = rs.getInt("id_departamento");
-
-                            Departamento departamentoS = switch (idDepartamentoS) {
-                                case 1 -> Departamento.ELETRICA;
-                                default -> Departamento.MECANICA;
-                            };
+                        case 2: // Supervisor
                             double metaMensal = rs.getDouble("meta_mensal");
-                            funcionario = new Supervisor(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamentoS)), new MetaMensal(metaMensal));
+
+                            funcionario = new Supervisor(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), listaDepartamentos, new MetaMensal(metaMensal));
                             break;
 
-                        case 3:
-                            int idDepartamento = rs.getInt("id_departamento");
-
-                            Departamento departamento = switch (idDepartamento) {
-                                case 1 -> Departamento.ELETRICA;
-                                default -> Departamento.MECANICA;
-                            };
-
-                            funcionario = new Gerente(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamento)));
+                        case 3: // Gerente
+                            funcionario = new Gerente(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), listaDepartamentos);
                             break;
 
-                        case 4:
-                            int idDepartamentoA = rs.getInt("id_departamento");
-
-                            Departamento departamentoA = switch (idDepartamentoA) {
-                                case 1 -> Departamento.ELETRICA;
-                                default -> Departamento.MECANICA;
-                            };
-                            funcionario = new Administrador(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamentoA)));
+                        case 4: // Administrador
+                            funcionario = new Administrador(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), listaDepartamentos);
                             break;
                     }
                 }
@@ -471,5 +474,4 @@ public abstract class FuncionarioDAO implements FuncionarioRepositorio
         }
         return funcionario;
     }
-
 }
