@@ -25,6 +25,6 @@ public class TecnicoMapper {
 
     // Cadastro falhou
     public CadastroTecnicoResponse paraResponseCadastro(String mensagem) {
-        return new CadastroTecnicoResponse(-1, null, false, mensagem);
+        return new CadastroTecnicoResponse(null, null, false, mensagem);
     }
 }

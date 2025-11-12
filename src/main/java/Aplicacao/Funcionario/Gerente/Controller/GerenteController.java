@@ -2,6 +2,7 @@ package Aplicacao.Funcionario.Gerente.Controller;
 
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteRequest;
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteResponse;
+import Aplicacao.Funcionario.Gerente.Exceptions.CadastroGerenteNuloException;
 import Aplicacao.Funcionario.Gerente.Handler.GerenteHandler;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 
@@ -16,6 +17,10 @@ public class GerenteController {
 
     // -- Métodos -- //
     public CadastroGerenteResponse salvar(NivelAcesso nivelAcesso, CadastroGerenteRequest request) {
+        if(request == null) {
+            throw new CadastroGerenteNuloException();
+        }
+
         return gerenteHandler.cadastrar(nivelAcesso, request);
     }
 }

@@ -29,7 +29,7 @@ public abstract class Funcionario {
     }
 
     // -- Getters -- //
-    public Long getId() {
+    public long getId() {
         return idFuncionario;
     }
 

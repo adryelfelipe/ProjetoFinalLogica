@@ -5,5 +5,5 @@ import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
 
 import java.util.List;
 
-public record CadastroSupervisorResponse(long id, NomeFuncionario nome, boolean status, String mensagem) {
+public record CadastroSupervisorResponse(Long id, NomeFuncionario nome, boolean status, String mensagem) {
 }

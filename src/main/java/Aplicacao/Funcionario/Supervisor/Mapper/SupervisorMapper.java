@@ -28,6 +28,6 @@ public class SupervisorMapper {
 
     // Cadastro falhou
     public CadastroSupervisorResponse paraResponseCadastro(String mensagemErro) {
-        return new CadastroSupervisorResponse(-1, null, false, mensagemErro);
+        return new CadastroSupervisorResponse(null, null, false, mensagemErro);
     }
 }

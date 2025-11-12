@@ -4,7 +4,7 @@ public class TipoOS {
     // ID 1
     public static TipoOS CORRETIVA = new TipoOS("Corretiva ", 1);
     // ID 2
-    public static TipoOS PREDITIVA = new TipoOS("", 2);
+    public static TipoOS PREDITIVA = new TipoOS("Preditiva", 2);
 
     // -- Atributos -- //
     private final String nome;
