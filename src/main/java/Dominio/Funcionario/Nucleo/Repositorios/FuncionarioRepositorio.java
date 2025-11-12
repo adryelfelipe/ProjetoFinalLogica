@@ -7,7 +7,7 @@ import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
 public interface FuncionarioRepositorio {
     void salvar(Funcionario funcionario);
     void atualizar(Funcionario funcionario);
-    void excluirPorId(long id);
+    boolean excluirPorId(long id);
     boolean existeCpf(CPF cpf);
     boolean existeId(long id);
     Funcionario buscarPorId(long id);

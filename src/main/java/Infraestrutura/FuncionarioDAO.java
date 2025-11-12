@@ -153,7 +153,6 @@ public abstract class FuncionarioDAO implements FuncionarioRepositorio
 
         return null;
     }
-    /*
     @Override
     public Funcionario buscarPorId(long idDoUsuarioLogado)
     {
@@ -200,13 +199,25 @@ public abstract class FuncionarioDAO implements FuncionarioRepositorio
                                 case 4 -> Especialidade.TECNICO_ELETROMECANICA;
                                 default -> Especialidade.PINTOR_INDUSTRIAL;
                             };
+                            int idDepartamentoTe = rs.getInt("id_departamento");
 
-                            funcionario = new Tecnico(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha),new ListaDepartamentos(departamento), especialidade);
+                            Departamento departamentoTe = switch (idDepartamentoTe) {
+                                case 1 -> Departamento.ELETRICA;
+                                default -> Departamento.MECANICA;
+                            };
+
+                            funcionario = new Tecnico(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha),new ListaDepartamentos(Arrays.asList(departamentoTe)), especialidade);
                             break;
 
                         case 2:
+                            int idDepartamentoSs = rs.getInt("id_departamento");
+
+                            Departamento departamentoSs = switch (idDepartamentoSs) {
+                                case 1 -> Departamento.ELETRICA;
+                                default -> Departamento.MECANICA;
+                            };
                             double metaMensal = rs.getDouble("meta_mensal");
-                            funcionario = new Supervisor(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos(departamento), new MetaMensal(metaMensal));
+                            funcionario = new Supervisor(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamentoSs)), new MetaMensal(metaMensal));
                             break;
 
                         case 3:
@@ -217,11 +228,17 @@ public abstract class FuncionarioDAO implements FuncionarioRepositorio
                                 default -> Departamento.MECANICA;
                             };
 
-                            funcionario = new Gerente(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos();
+                            funcionario = new Gerente(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamento)));
                             break;
 
                         case 4:
-                            funcionario = new Administrador(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos();
+                            int idDepartamentoAd = rs.getInt("id_departamento");
+
+                            Departamento departamentoAd = switch (idDepartamentoAd) {
+                                case 1 -> Departamento.ELETRICA;
+                                default -> Departamento.MECANICA;
+                            };
+                            funcionario = new Administrador(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamentoAd)));
                             break;
                     }
                 }
@@ -322,7 +339,6 @@ public abstract class FuncionarioDAO implements FuncionarioRepositorio
     }
 
 
-     */
     @Override
     public NivelAcesso nivelAcessoPorID(long id)
     {
