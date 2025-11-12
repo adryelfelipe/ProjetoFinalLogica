@@ -4,15 +4,17 @@ import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Util.Ferramentas;
 import Dominio.Funcionario.Gerente.Gerente;
 
+import java.util.InputMismatchException;
+
 public class MenuGerenteCadastrar {
     public static void criarUsuarios(NivelAcesso nivelAcesso) {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃        CADASTRAR USUARIOS        ┃");
+        System.out.println("┃        CADASTRAR USUARIOS      ┃");
         System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-        System.out.println("┃                                  ┃");
-        System.out.println("┃  1 - Cadastrar Técnico           ┃");
-        System.out.println("┃  2 - Cadastrar Supervisor        ┃");
-        System.out.println("┃  3 - Cadastrar Máquina           ┃");
+        System.out.println("┃                                ┃");
+        System.out.println("┃  1 - Cadastrar Técnico         ┃");
+        System.out.println("┃  2 - Cadastrar Supervisor      ┃");
+        System.out.println("┃  3 - Cadastrar Máquina         ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         System.out.print("┃ ➤ Escolha: ");
 
@@ -23,11 +25,11 @@ public class MenuGerenteCadastrar {
             switch(opcaoCriarUsuario) {
                 case 1 -> MenuCadastroGerente.menuCadastroTecnico(nivelAcesso);
                 case 2 -> MenuCadastroGerente.menuCadastroSupervisor(nivelAcesso);
-                case 3 -> MenuCadastroGerente.menuCadastroMaquina();
+                case 3 -> MenuCadastroGerente.menuCadastroMaquina(nivelAcesso);
                 default -> Ferramentas.menuDefault();
             }
         }
-        catch(IllegalArgumentException | IllegalStateException e) {
+        catch(InputMismatchException e) {
             Ferramentas.menuDefault();
         }
     }

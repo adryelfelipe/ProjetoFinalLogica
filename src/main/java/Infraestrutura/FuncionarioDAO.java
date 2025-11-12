@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class FuncionarioDAO implements FuncionarioRepositorio
+public class FuncionarioDAO implements FuncionarioRepositorio
 {
     @Override
     public boolean existeCpf(CPF cpf)
@@ -470,7 +470,7 @@ public abstract class FuncionarioDAO implements FuncionarioRepositorio
             }
         } catch (SQLException e)
         {
-            System.err.println("ERRO ao buscar usuário por CPF!" + cpf);
+            System.err.println("ERRO ao buscar usuário por CPF!" + cpf + e.getMessage());
         }
         return funcionario;
     }

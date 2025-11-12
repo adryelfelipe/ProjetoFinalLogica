@@ -10,16 +10,14 @@ import java.util.InputMismatchException;
 
 public class MenuSetMaquina {
     //SET NOME DO USUÁRIO
-    public static NomeMaquina MenuSetNomeMaquina() {
+    public static String MenuSetNomeMaquina() {
         System.out.print("┃ ➤ Digite o Nome: ");
-        String nome = Ferramentas.lString();
-        return new NomeMaquina(nome);
+        return Ferramentas.lString();
     }
 
-    public static Localizacao MenuSetLocalizacao() {
+    public static String MenuSetLocalizacao() {
         System.out.print("┃ ➤ Digite a Localização: ");
-        String localizacao = Ferramentas.lString();
-        return new Localizacao(localizacao);
+        return Ferramentas.lString();
     }
 
     public static StatusMaquina MenuSetStatusMaquina() {
