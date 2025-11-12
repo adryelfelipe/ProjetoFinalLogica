@@ -10,13 +10,11 @@ import Dominio.Maquina.ObjetosDeValor.Localizacao;
 import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
 
 public class Maquina {
-
     // -- Atributos -- //
     private Long idMaquina;
     private NomeMaquina nome;
     private Localizacao localizacao;
     private StatusMaquina status;
-
 
     // -- Construtor com ID -- //
     public Maquina(Long id, NomeMaquina nome, Localizacao localizacao, StatusMaquina status) {
