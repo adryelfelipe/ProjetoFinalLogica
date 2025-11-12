@@ -1,4 +1,4 @@
-package Infraestrutura;
+package Infraestrutura.testes;
 
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Funcionario;
@@ -7,7 +7,7 @@ import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 
 import java.util.ArrayList;
 
-public class TesteDao implements FuncionarioRepositorio {
+public class FuncionarioTesteDAO implements FuncionarioRepositorio {
     public final ArrayList<Funcionario> funcionarioArrayList = new ArrayList<>();
 
     @Override
@@ -85,12 +85,14 @@ public class TesteDao implements FuncionarioRepositorio {
     }
 
     @Override
-    public void excluirPorId(long id) {
+    public boolean excluirPorId(long id) {
         for(Funcionario funcionario : funcionarioArrayList) {
             if(funcionario.getId() == id) {
                 funcionarioArrayList.remove(funcionario);
-                break;
+                return true;
             }
         }
+
+        return false;
     }
 }

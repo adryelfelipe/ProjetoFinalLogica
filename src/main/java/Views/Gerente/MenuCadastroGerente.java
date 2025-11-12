@@ -1,9 +1,13 @@
 package Views.Gerente;
 
+import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteRequest;
+import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteResponse;
 import Aplicacao.Funcionario.Supervisor.Dtos.Cadastro.CadastroSupervisorRequest;
 import Aplicacao.Funcionario.Supervisor.Dtos.Cadastro.CadastroSupervisorResponse;
 import Aplicacao.Funcionario.Tecnico.Dtos.Cadastro.CadastroTecnicoRequest;
 import Aplicacao.Funcionario.Tecnico.Dtos.Cadastro.CadastroTecnicoResponse;
+import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaRequest;
+import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaResponse;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Maquina.Maquina;
@@ -50,34 +54,30 @@ public class MenuCadastroGerente {
         Ferramentas.mensagemErro(response.mensagem());
     }
 
-    public static void menuCadastroMaquina() {
+    public static void menuCadastroMaquina(NivelAcesso nivelAcesso) {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃       CADASTRO  MÁQUINA        ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
 
         // ----- Atribuição de caracteríscticas de uma Máquina ----- //
-        NomeMaquina nome = MenuSetMaquina.MenuSetNomeMaquina();
+        String nome = MenuSetMaquina.MenuSetNomeMaquina();
         Ferramentas.limpaTerminal();
 
-        Localizacao localizacao = MenuSetMaquina.MenuSetLocalizacao();
+        String localizacao = MenuSetMaquina.MenuSetLocalizacao();
         Ferramentas.limpaTerminal();
 
-        StatusMaquina idStatus = MenuSetMaquina.MenuSetStatusMaquina();
+        StatusMaquina status = MenuSetMaquina.MenuSetStatusMaquina();
         Ferramentas.limpaTerminal();
 
-        // -- Criação do objeto e inserção no banco de dados -- //
         Ferramentas.limpaTerminal();
         System.out.println("PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
 
-        try {
-            Maquina maquina = new Maquina(nome, localizacao, idStatus);
-            Ferramentas.limpaTerminal();
-            System.out.println("MÁQUINA CADASTRADO COM SUCESSO!");
-            Ferramentas.Delay(800);
-        } catch (IllegalArgumentException | IllegalStateException e) {
-            Ferramentas.mensagemErro(e.getMessage());
-        }
+        // -- Gerando request para cadastro de Máquina -- //
+        CadastroMaquinaRequest request = new CadastroMaquinaRequest(nome, localizacao, status);
+        CadastroMaquinaResponse response = Main.maquinaController.salvar(nivelAcesso, request);
+        Ferramentas.mensagemErro(response.mensagem());
+        Ferramentas.Delay(800);
     }
 
     public static void menuCadastroTecnico(NivelAcesso nivelAcesso) {

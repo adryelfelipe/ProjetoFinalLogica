@@ -3,12 +3,10 @@ package Views.Gerente;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Util.Ferramentas;
 
-public class MenuGerente
-{
+public class MenuGerente {
     public static void menuInicial(NivelAcesso nivelAcesso) {
-        boolean continuar = false;
 
-        while(!continuar) {
+        while(true) {
             System.out.println(" ");
             System.out.println(" ");
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
@@ -35,7 +33,7 @@ public class MenuGerente
                     case 5 -> {
                         System.out.println("┃  RETORNANDO AO MENU INICIAL ...");
                         Ferramentas.Delay(500);
-                        continuar = true;
+                        return;
                     }
 
                     default -> Ferramentas.menuDefault();
