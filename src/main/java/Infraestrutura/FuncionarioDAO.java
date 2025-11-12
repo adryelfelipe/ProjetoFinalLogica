@@ -18,7 +18,7 @@ import Dominio.Funcionario.Tecnico.Tecnico;
 
 import java.sql.*;
 
-public class FuncionarioDAO implements FuncionarioRepositorio
+public abstract class FuncionarioDAO implements FuncionarioRepositorio
 {
     @Override
     public boolean existeCpf(CPF cpf)
@@ -152,6 +152,7 @@ public class FuncionarioDAO implements FuncionarioRepositorio
 
         return null;
     }
+    /*
     @Override
     public Funcionario buscarPorId(long idDoUsuarioLogado)
     {
@@ -319,6 +320,8 @@ public class FuncionarioDAO implements FuncionarioRepositorio
         return false;
     }
 
+
+     */
     @Override
     public NivelAcesso nivelAcessoPorID(long id)
     {

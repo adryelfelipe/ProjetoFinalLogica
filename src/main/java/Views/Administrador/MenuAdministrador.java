@@ -1,11 +1,7 @@
 package Views.Administrador;
 
-import Aplicacao.Funcionario.Gerente.Controller.GerenteController;
-import Aplicacao.Funcionario.Nucleo.Exceptions.AutorizacaoException;
-import Dominio.Funcionario.Administrador.Administrador;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Util.Ferramentas;
-import Views.MenuInicial;
 
 public class MenuAdministrador {
     // -- Métodos -- //

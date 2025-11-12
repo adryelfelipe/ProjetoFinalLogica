@@ -1,6 +1,7 @@
 package Aplicacao.Funcionario.Supervisor.Controller;
 
 import Aplicacao.Funcionario.Supervisor.Dtos.Cadastro.CadastroSupervisorRequest;
+import Aplicacao.Funcionario.Supervisor.Dtos.Cadastro.CadastroSupervisorResponse;
 import Aplicacao.Funcionario.Supervisor.Handler.SupervisorHandler;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 
@@ -14,7 +15,7 @@ public class SupervisorController {
     }
 
     // -- Métodos -- //
-    public void salvar(NivelAcesso nivelAcesso, CadastroSupervisorRequest request) {
-        supervisorHandler.salvar(nivelAcesso, request);
+    public CadastroSupervisorResponse salvar(NivelAcesso nivelAcesso, CadastroSupervisorRequest request) {
+        return supervisorHandler.salvar(nivelAcesso, request);
     }
 }

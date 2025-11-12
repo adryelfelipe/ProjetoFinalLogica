@@ -4,7 +4,6 @@ import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteRequest;
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteResponse;
 import Aplicacao.Funcionario.Gerente.Handler.GerenteHandler;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
-import Dominio.Funcionario.Nucleo.Funcionario;
 
 public class GerenteController {
     // -- Atributos -- //

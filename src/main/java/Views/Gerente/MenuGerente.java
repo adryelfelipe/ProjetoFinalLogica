@@ -1,15 +1,11 @@
-package Views;
+package Views.Gerente;
 
+import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Util.Ferramentas;
-import Dominio.Funcionario.Gerente.Gerente;
-import Views.Gerente.MenuGerenteCadastrar;
-import Views.Gerente.MenuGerenteRelatorios;
-import Views.Gerente.MenuGerenteRemoverUsuarios;
-import Views.Gerente.MenuUpdateGerente;
 
 public class MenuGerente
 {
-    public static void menuInicial() {
+    public static void menuInicial(NivelAcesso nivelAcesso) {
         boolean continuar = false;
 
         while(!continuar) {
@@ -32,15 +28,16 @@ public class MenuGerente
 
                 Ferramentas.limpaTerminal();
                 switch (opcaoGerente) {
-                    case 1 -> MenuGerenteCadastrar.criarUsuarios();
+                    case 1 -> MenuGerenteCadastrar.criarUsuarios(nivelAcesso);
                     case 2 -> MenuGerenteRelatorios.visualizarRelatorios();
                     case 3 -> MenuUpdateGerente.menuUpdateEscolha();
                     case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha();
-                    case 5 ->
-                    {
+                    case 5 -> {
                         System.out.println("┃  RETORNANDO AO MENU INICIAL ...");
-                        //MenuInicial.Menu();
+                        Ferramentas.Delay(500);
+                        continuar = true;
                     }
+
                     default -> Ferramentas.menuDefault();
                 }
             } catch (IllegalArgumentException | IllegalStateException e) {

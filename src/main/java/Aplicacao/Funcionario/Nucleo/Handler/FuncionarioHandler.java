@@ -8,15 +8,16 @@ import Dominio.Funcionario.Nucleo.Exceptions.SenhaInvalidaException;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
+import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 
 public class FuncionarioHandler {
     // -- Atributos -- //
-    private FuncionarioQueriesRepositorio funcionarioQueriesRepositorio;
+    private FuncionarioRepositorio funcionarioRepositorio;
     private FuncionarioMapper funcionarioMapper;
 
     // -- Construtor -- //
-    public FuncionarioHandler(FuncionarioQueriesRepositorio funcionarioQueriesRepositorio, FuncionarioMapper funcionarioMapper) {
-        this.funcionarioQueriesRepositorio = funcionarioQueriesRepositorio;
+    public FuncionarioHandler(FuncionarioRepositorio funcionarioQueriesRepositorio, FuncionarioMapper funcionarioMapper) {
+        this.funcionarioRepositorio = funcionarioQueriesRepositorio;
         this.funcionarioMapper = funcionarioMapper;
     }
 
@@ -25,7 +26,7 @@ public class FuncionarioHandler {
         try {
             CPF cpf = new CPF(request.cpf());
             Senha senha = new Senha(request.senha());
-            Funcionario funcionario = funcionarioQueriesRepositorio.buscarPorCpf(cpf);
+            Funcionario funcionario = funcionarioRepositorio.buscarPorCpf(cpf);
 
             if(funcionario == null) {
                 return funcionarioMapper.paraLoginResponse("Cpf ou senha inválidos");

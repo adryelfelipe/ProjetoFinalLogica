@@ -1,7 +1,5 @@
 package Views;
 
-import Aplicacao.Funcionario.Gerente.Controller.GerenteController;
-import Aplicacao.Funcionario.Nucleo.Controller.FuncionarioController;
 import Util.Ferramentas;
 
 import java.util.InputMismatchException;

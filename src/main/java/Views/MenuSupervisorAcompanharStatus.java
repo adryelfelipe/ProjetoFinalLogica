@@ -1,10 +1,7 @@
 package Views;
 
-//import Models.AdminModel;
-import Dominio.OrdemDeServico.OrdemDeServico;
 import Dominio.Funcionario.Supervisor.Supervisor;
-import ProjetoBase.*;
-import Util.Ferramentas;
+
 
     public class MenuSupervisorAcompanharStatus{
         public static void acompanharStatus(Supervisor supervisor) {

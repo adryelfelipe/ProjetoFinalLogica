@@ -5,7 +5,7 @@ import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioResponse;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Util.Ferramentas;
 import Views.Administrador.MenuAdministrador;
-import testesProjeto.MainTestes;
+import Views.Gerente.MenuGerente;
 
 public class MenuLogin
 {
@@ -21,7 +21,7 @@ public class MenuLogin
         String senhaLogin = Ferramentas.lString();
 
         LoginFuncionarioRequest request = new LoginFuncionarioRequest(cpf, senhaLogin);
-        LoginFuncionarioResponse response = MainTestes.funcionarioController.login(request);
+        LoginFuncionarioResponse response = Main.funcionarioController.login(request);
         Ferramentas.mensagemErro(response.mensagem());
 
         if(response.status()) {
@@ -30,7 +30,7 @@ public class MenuLogin
             }
 
             if(response.nivelAcesso().equals(NivelAcesso.GERENTE)) {
-                MenuGerente.menuInicial();
+                MenuGerente.menuInicial(response.nivelAcesso());
             }
         }
     }

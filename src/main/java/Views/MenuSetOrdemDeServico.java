@@ -1,9 +1,7 @@
 package Views;
 
 import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
-import Dominio.OrdemDeServico.ObjetosDeValor.Descricao;
-import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
-import ProjetoBase.*;
+
 import Util.Ferramentas;
 
 import java.util.InputMismatchException;

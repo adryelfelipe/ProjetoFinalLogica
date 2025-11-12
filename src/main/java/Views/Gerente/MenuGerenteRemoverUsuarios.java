@@ -1,7 +1,6 @@
 package Views.Gerente;
 
 import Dominio.Funcionario.Gerente.Gerente;
-import ProjetoBase.*;
 import Util.Ferramentas;
 import Views.MenuEscolhaId;
 

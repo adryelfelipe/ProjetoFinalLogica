@@ -2,18 +2,12 @@ package Views.Administrador;
 
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteRequest;
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteResponse;
-import Aplicacao.Funcionario.Gerente.Controller.GerenteController;
-import Dominio.Funcionario.Administrador.Administrador;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
 import Util.Ferramentas;
 import Views.Gerente.MenuSetGerente;
+import Views.Main;
 import Views.MenuSetUsuario;
-import testesProjeto.MainTestes;
 
 import java.util.List;
 
@@ -47,7 +41,7 @@ public class MenuCadastroADM {
 
         // -- Gerando request para cadastro de gerente -- //
         CadastroGerenteRequest gerenteRequest = new CadastroGerenteRequest(nome, cpf, senha, listaDepartamentos);
-        CadastroGerenteResponse gerenteResponse = MainTestes.gerenteController.salvar(nivelAcesso,gerenteRequest);
+        CadastroGerenteResponse gerenteResponse = Main.gerenteController.salvar(nivelAcesso,gerenteRequest);
         Ferramentas.mensagemErro(gerenteResponse.mensagem());
         Ferramentas.Delay(800);
     }

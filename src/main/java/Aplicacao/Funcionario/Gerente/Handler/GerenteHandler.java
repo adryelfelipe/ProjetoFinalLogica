@@ -3,13 +3,11 @@ package Aplicacao.Funcionario.Gerente.Handler;
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteRequest;
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteResponse;
 import Aplicacao.Funcionario.Gerente.Mapper.GerenteMapper;
-import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Exceptions.AutorizacaoException;
 import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
 import Dominio.Funcionario.Gerente.Gerente;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Exceptions.FuncionarioException;
-import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 import Dominio.Funcionario.Nucleo.Servicos.FuncionarioServico;
 
