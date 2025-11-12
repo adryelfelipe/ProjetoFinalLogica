@@ -17,6 +17,7 @@ import Dominio.Funcionario.Gerente.Gerente;
 import Dominio.Funcionario.Tecnico.Tecnico;
 
 import java.sql.*;
+import java.util.Arrays;
 
 public abstract class FuncionarioDAO implements FuncionarioRepositorio
 {
@@ -394,6 +395,12 @@ public abstract class FuncionarioDAO implements FuncionarioRepositorio
                     switch(nivelAcesso)
                     {
                         case 1:
+                            int idDepartamentoT = rs.getInt("id_departamento");
+
+                            Departamento departamentoT = switch (idDepartamentoT) {
+                                case 1 -> Departamento.ELETRICA;
+                                default -> Departamento.MECANICA;
+                            };
                             // Criando objeto de acordo com seu nivel_acesso.
                             int idEspecialidade = rs.getInt("id_especialidade");
 
@@ -405,12 +412,18 @@ public abstract class FuncionarioDAO implements FuncionarioRepositorio
                                 default -> Especialidade.PINTOR_INDUSTRIAL;
                             };
 
-                            funcionario = new Tecnico(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), new ListaDepartamentos(), especialidade);
+                            funcionario = new Tecnico(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamentoT)), especialidade);
                             break;
 
                         case 2:
+                            int idDepartamentoS = rs.getInt("id_departamento");
+
+                            Departamento departamentoS = switch (idDepartamentoS) {
+                                case 1 -> Departamento.ELETRICA;
+                                default -> Departamento.MECANICA;
+                            };
                             double metaMensal = rs.getDouble("meta_mensal");
-                            funcionario = new Supervisor(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), new ListaDepartamentos(), new MetaMensal(metaMensal));
+                            funcionario = new Supervisor(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamentoS)), new MetaMensal(metaMensal));
                             break;
 
                         case 3:
@@ -421,11 +434,17 @@ public abstract class FuncionarioDAO implements FuncionarioRepositorio
                                 default -> Departamento.MECANICA;
                             };
 
-                            funcionario = new Gerente(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), new ListaDepartamentos());
+                            funcionario = new Gerente(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamento)));
                             break;
 
                         case 4:
-                            funcionario = new Administrador(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), new ListaDepartamentos());
+                            int idDepartamentoA = rs.getInt("id_departamento");
+
+                            Departamento departamentoA = switch (idDepartamentoA) {
+                                case 1 -> Departamento.ELETRICA;
+                                default -> Departamento.MECANICA;
+                            };
+                            funcionario = new Administrador(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamentoA)));
                             break;
                     }
                 }
