@@ -5,14 +5,11 @@ import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
 import Dominio.OrdemDeServico.OrdemDeServico;
 import Dominio.Funcionario.Supervisor.Supervisor;
 import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
-import ProjetoBase.OrdemDeServicoService;
 import Util.Ferramentas;
 
 public class MenuCadastroSupervisor
 {
     // -- Atributos -- //
-    private static final OrdemDeServicoService ordemDeServicoService = new OrdemDeServicoService();
-
     public static void menuCadastroOrdem(Supervisor supervisor) {
         // Garantia de inicialização
         long idTecnico = 0;
@@ -33,9 +30,9 @@ public class MenuCadastroSupervisor
             return;
         }
         Ferramentas.limpaTerminal();
-        Descricao descricao = MenuSetOrdemDeServico.SetDescricao();
+        String descricao = MenuSetOrdemDeServico.SetDescricao();
         Ferramentas.limpaTerminal();
-        ValorOS valorOS = MenuSetOrdemDeServico.SetValorOS();
+        double valorOS = MenuSetOrdemDeServico.SetValorOS();
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //
@@ -43,8 +40,8 @@ public class MenuCadastroSupervisor
         Ferramentas.Delay(1000);
 
         try {
-            OrdemDeServico ordemServico = new OrdemDeServico(idTecnico, supervisor.getId(), idMaquina,StatusOS.EM_ANDAMENTO, descricao, valorOS);
-            ordemDeServicoService.inserirOrdemDeServico(supervisor, ordemServico);
+            //OrdemDeServico ordemServico = new OrdemDeServico(idTecnico, supervisor.getId(), idMaquina,StatusOS.EM_ANDAMENTO, descricao, valorOS);
+            //ordemDeServicoService.inserirOrdemDeServico(supervisor, ordemServico);
             Ferramentas.limpaTerminal();
             System.out.println("MÁQUINA CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);

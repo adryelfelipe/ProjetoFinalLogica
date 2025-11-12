@@ -3,14 +3,14 @@ package Dominio.Funcionario.Nucleo.Servicos;
 import Dominio.Funcionario.Nucleo.Exceptions.CpfInvalidoException;
 import Dominio.Funcionario.Nucleo.Exceptions.IdFuncionarioException;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioQueriesRepositorio;
+import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 
 public class FuncionarioServico {
     // -- Atributos -- //
-    private FuncionarioQueriesRepositorio funcionarioRepositorio;
+    private FuncionarioRepositorio funcionarioRepositorio;
 
     // -- Construtor -- //
-    public FuncionarioServico(FuncionarioQueriesRepositorio funcionarioRepositorio) {
+    public FuncionarioServico(FuncionarioRepositorio funcionarioRepositorio) {
         this.funcionarioRepositorio = funcionarioRepositorio;
     }
 

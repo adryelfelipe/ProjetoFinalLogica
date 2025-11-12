@@ -5,15 +5,13 @@ import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
 import Dominio.OrdemDeServico.OrdemDeServico;
 import Dominio.Funcionario.Tecnico.Tecnico;
 import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
-import ProjetoBase.OrdemDeServicoService;
 import Util.Ferramentas;
 
 import java.util.InputMismatchException;
 
 public class MenuUpdateTecnico
 {
-    public static final OrdemDeServicoService ordemDeServicoService = new OrdemDeServicoService();
-
+    /*
     public static void menuUpdateOS(Tecnico tecnico)
     {
         long idOrdem;
@@ -105,4 +103,6 @@ public class MenuUpdateTecnico
             }
         }
     }
+
+     */
 }

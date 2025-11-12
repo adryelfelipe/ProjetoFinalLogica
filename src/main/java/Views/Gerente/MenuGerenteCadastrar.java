@@ -1,12 +1,11 @@
 package Views.Gerente;
 
+import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Util.Ferramentas;
 import Dominio.Funcionario.Gerente.Gerente;
 
-public class MenuGerenteCadastrar
-{
-    public static void criarUsuarios(Gerente gerente)
-    {
+public class MenuGerenteCadastrar {
+    public static void criarUsuarios(NivelAcesso nivelAcesso) {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃        CADASTRAR USUARIOS        ┃");
         System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
@@ -17,21 +16,18 @@ public class MenuGerenteCadastrar
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         System.out.print("┃ ➤ Escolha: ");
 
-        try
-        {
+        try {
             int opcaoCriarUsuario = Ferramentas.lInteiro();
 
             Ferramentas.limpaTerminal();
-            switch(opcaoCriarUsuario)
-            {
-                case 1 -> MenuCadastroGerente.menuCadastroTecnico(gerente);
-                case 2 -> MenuCadastroGerente.menuCadastroSupervisor(gerente);
-                case 3 -> MenuCadastroGerente.menuCadastroMaquina(gerente);
+            switch(opcaoCriarUsuario) {
+                case 1 -> MenuCadastroGerente.menuCadastroTecnico(nivelAcesso);
+                case 2 -> MenuCadastroGerente.menuCadastroSupervisor(nivelAcesso);
+                case 3 -> MenuCadastroGerente.menuCadastroMaquina();
                 default -> Ferramentas.menuDefault();
             }
         }
-        catch(IllegalArgumentException | IllegalStateException e)
-        {
+        catch(IllegalArgumentException | IllegalStateException e) {
             Ferramentas.menuDefault();
         }
     }

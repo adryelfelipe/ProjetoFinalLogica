@@ -1,31 +1,15 @@
 package Views;
 
-import Aplicacao.Funcionario.Gerente.GerenteController;
-import Dominio.Funcionario.Administrador.Administrador;
-import Dominio.Funcionario.Nucleo.Funcionario;
-import Dominio.Funcionario.Gerente.Gerente;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Supervisor.Supervisor;
-import Dominio.Funcionario.Tecnico.Tecnico;
+import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioRequest;
+import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioResponse;
+import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Util.Ferramentas;
-import ProjetoBase.UsuarioService;
 import Views.Administrador.MenuAdministrador;
+import Views.Gerente.MenuGerente;
 
 public class MenuLogin
 {
-    // -- Atributos -- //
-    private GerenteController gerenteController;
-    private MenuAdministrador menuAdministrador = new MenuAdministrador(gerenteController);
-
-    // -- Construtor -- //
-    public MenuLogin(GerenteController gerenteController) {
-        this.gerenteController = gerenteController;
-    }
-
-    public void login() {
-        // Inicialização das variáveis
-        Funcionario funcionario;
-
+    public static void login() {
         // Menu interativo
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃             LOGIN              ┃");
@@ -35,5 +19,19 @@ public class MenuLogin
 
         System.out.print("┃ ➤ Digite sua senha: ");
         String senhaLogin = Ferramentas.lString();
+
+        LoginFuncionarioRequest request = new LoginFuncionarioRequest(cpf, senhaLogin);
+        LoginFuncionarioResponse response = Main.funcionarioController.login(request);
+        Ferramentas.mensagemErro(response.mensagem());
+
+        if(response.status()) {
+            if(response.nivelAcesso().equals(NivelAcesso.ADMIN)) {
+                MenuAdministrador.menuInicial(response.nivelAcesso());
+            }
+
+            if(response.nivelAcesso().equals(NivelAcesso.GERENTE)) {
+                MenuGerente.menuInicial(response.nivelAcesso());
+            }
+        }
     }
 }

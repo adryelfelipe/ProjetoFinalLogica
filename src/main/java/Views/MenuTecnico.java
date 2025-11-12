@@ -7,6 +7,7 @@ import java.util.InputMismatchException;
 
 public class MenuTecnico
 {
+    /*
     public static void menuTecnico(Tecnico tecnico)
     {
         boolean continuar = false;
@@ -45,4 +46,6 @@ public class MenuTecnico
             }
         }
     }
+
+     */
 }

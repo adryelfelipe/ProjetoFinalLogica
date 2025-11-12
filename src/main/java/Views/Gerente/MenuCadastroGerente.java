@@ -1,75 +1,56 @@
 package Views.Gerente;
 
+import Aplicacao.Funcionario.Supervisor.Dtos.Cadastro.CadastroSupervisorRequest;
+import Aplicacao.Funcionario.Supervisor.Dtos.Cadastro.CadastroSupervisorResponse;
+import Aplicacao.Funcionario.Tecnico.Dtos.Cadastro.CadastroTecnicoRequest;
+import Aplicacao.Funcionario.Tecnico.Dtos.Cadastro.CadastroTecnicoResponse;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
-import Dominio.Funcionario.Gerente.Gerente;
-import Dominio.Funcionario.Supervisor.ObjetosDeValor.MetaMensal;
+import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Maquina.Maquina;
-import Dominio.Funcionario.Supervisor.Supervisor;
-import Dominio.Funcionario.Tecnico.Tecnico;
 import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
 import Dominio.Maquina.Enumeracoes.StatusMaquina;
 import Dominio.Maquina.ObjetosDeValor.Localizacao;
 import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
-import ProjetoBase.MaquinaService;
-import ProjetoBase.SupervisorService;
-import ProjetoBase.TecnicoService;
 import Util.Ferramentas;
-import Views.MenuSetMaquina;
-import Views.MenuSetSupervisor;
-import Views.MenuSetTecnico;
-import Views.MenuSetUsuario;
+import Views.*;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class MenuCadastroGerente {
     // -- Atributos -- //
-    private static final SupervisorService supervisorService = new SupervisorService();
-    private static final MaquinaService maquinaService = new MaquinaService();
-    private static final TecnicoService tecnicoService = new TecnicoService();
-
-    public static void menuCadastroSupervisor(Gerente gerente) {
+    public static void menuCadastroSupervisor(NivelAcesso nivelAcesso) {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃       CADASTRO SUPERVISOR      ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
 
         System.out.println();
 
-        // ----- Atribuição de caracteríscticas de um Usuário ----- //
-        NomeFuncionario nome = MenuSetUsuario.MenuSetNome();
+        // ----- Atribuição de caracteríscticas de um Funcionário ----- //
+        String nome = MenuSetUsuario.MenuSetNome();
         Ferramentas.limpaTerminal();
 
-        CPF cpf = MenuSetUsuario.MenuSetCpf();
+        String cpf = MenuSetUsuario.MenuSetCpf();
         Ferramentas.limpaTerminal();
 
-        Senha senha = MenuSetUsuario.MenuSetSenha();
+        String senha = MenuSetUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
+
+        ArrayList<Departamento> departamentos = MenuSetGerente.menuSetDepartamento();
+
         // ----- Atribuição de caracteríscticas de um Supervisor ----- //
-        MetaMensal metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
+        double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
         Ferramentas.limpaTerminal();
 
-        // -- Criação do objeto e inserção no banco de dados -- //
-        Ferramentas.limpaTerminal();
         System.out.println("PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
 
-
-        try {
-            Supervisor supervisor = new Supervisor(nome, cpf, senha, metaMensal);
-            supervisorService.inserirSupervisor(gerente, supervisor);
-            Ferramentas.limpaTerminal();
-            System.out.println("SUPERVISOR CADASTRADO COM SUCESSO!");
-            Ferramentas.Delay(800);
-            Ferramentas.limpaTerminal();
-        } catch (IllegalArgumentException | IllegalStateException e) {
-            Ferramentas.mensagemErro(e.getMessage());
-        }
+        // -- Gerando request para cadastro de Supervisor -- //
+        CadastroSupervisorRequest request = new CadastroSupervisorRequest(nome, cpf, senha, departamentos, metaMensal);
+        CadastroSupervisorResponse response = Main.supervisorController.salvar(nivelAcesso, request);
+        Ferramentas.mensagemErro(response.mensagem());
     }
 
-    public static void menuCadastroMaquina(Gerente gerente) {
+    public static void menuCadastroMaquina() {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃       CADASTRO  MÁQUINA        ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
@@ -91,7 +72,6 @@ public class MenuCadastroGerente {
 
         try {
             Maquina maquina = new Maquina(nome, localizacao, idStatus);
-            maquinaService.inserirMaquina(gerente, maquina);
             Ferramentas.limpaTerminal();
             System.out.println("MÁQUINA CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);
@@ -100,42 +80,36 @@ public class MenuCadastroGerente {
         }
     }
 
-    public static void menuCadastroTecnico(Gerente gerente) {
+    public static void menuCadastroTecnico(NivelAcesso nivelAcesso) {
         System.out.println(" ");
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃       CADASTRO  TÉCNICO        ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
-        // ----- Atribuição de caracteríscticas de um Usuário ----- //
-        NomeFuncionario nome = MenuSetUsuario.MenuSetNome();
+        // ----- Atribuição de caracteríscticas de um Funcionário ----- //
+        String nome = MenuSetUsuario.MenuSetNome();
         Ferramentas.limpaTerminal();
 
-        CPF cpf = MenuSetUsuario.MenuSetCpf();
+        String cpf = MenuSetUsuario.MenuSetCpf();
         Ferramentas.limpaTerminal();
 
-        Senha senha = MenuSetUsuario.MenuSetSenha();
+        String senha = MenuSetUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
 
-        Departamento departamento = MenuSetGerente.menuSetDepartamento();
-        ListaDepartamentos departamentos = new ListaDepartamentos(Arrays.asList(departamento));
+        ArrayList<Departamento> departamentos = MenuSetGerente.menuSetDepartamento();
 
         // ----- Atribuição de caracteríscticas de um Técnico ----- //
         Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
 
-        // -- Criação do objeto e inserção no banco de dados -- //
-        Ferramentas.limpaTerminal();
         System.out.println("PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
 
-        try {
-            Tecnico tecnico = new Tecnico(nome, cpf, senha, departamentos, especialidade);
-            tecnicoService.inserirTecnico(gerente, tecnico);
-            Ferramentas.limpaTerminal();
-            System.out.println("TÉCNICO CADASTRADO COM SUCESSO!");
-            Ferramentas.Delay(800);
-        } catch (IllegalArgumentException | IllegalStateException e) {
-            Ferramentas.mensagemErro(e.getMessage());
-        }
+        // -- Gerando request para cadastro de Supervisor -- //
+        CadastroTecnicoRequest request = new CadastroTecnicoRequest(nome, cpf, senha, departamentos, especialidade);
+        CadastroTecnicoResponse response = Main.tecnicoController.salvar(nivelAcesso, request);
+        Ferramentas.mensagemErro(response.mensagem());
+
+
 
         Ferramentas.limpaTerminal();
     }

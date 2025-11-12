@@ -1,29 +1,11 @@
 package Views.Administrador;
 
-import Dominio.Funcionario.Administrador.Administrador;
-import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
-import Dominio.Funcionario.Nucleo.Funcionario.Enumeracoes.Departamento;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
-import Dominio.Funcionario.Gerente.Gerente;
-import Departamento;
-import ProjetoBase.GerenteService;
-import ProjetoBase.UsuarioService;
-import Util.Ferramentas;
-import Views.Gerente.MenuSetGerente;
-import Views.MenuEscolhaId;
-import Views.MenuSetUsuario;
-
-import java.util.Arrays;
-
 public class MenuUpdateADM {
-
+/*
     private static final GerenteService gerenteService = new GerenteService();
     private static final UsuarioService usuarioService = new UsuarioService();
 
-    public static void updateGerente(Administrador administrador) {
+    public static void updateGerente() {
         boolean verifica = false;
         long idGerente;
         int opcaoAdm = 0;
@@ -62,25 +44,25 @@ public class MenuUpdateADM {
 
                 switch (opcaoAdm) {
                     case 1 -> {
-                        NomeFuncionario nome = MenuSetUsuario.MenuSetNome();
-                        usuarioService.updateNomeUsuario(administrador, idGerente, nome);
+                        String nome = MenuSetUsuario.MenuSetNome();
+                        usuarioService.updateNomeUsuario(idGerente, nome);
                         gerente.alteraNome(nome);
                     }
 
                     case 2 -> {
                         CPF cpf = MenuSetUsuario.MenuSetCpf();
-                        usuarioService.updateCpfUsuario(administrador, idGerente, cpf);
+                        usuarioService.updateCpfUsuario(idGerente, cpf);
                         gerente.alteraCpf(cpf);
                     }
 
                     case 3 -> {
                         Senha senha = MenuSetUsuario.MenuSetSenha();
-                        usuarioService.updateSenhaUsuario(administrador, idGerente, senha);
+                        usuarioService.updateSenhaUsuario(idGerente, senha);
                         gerente.alteraSenha(senha);
                     }
                     case 4 -> {
                         Departamento departamento = MenuSetGerente.menuSetDepartamento();
-                        gerenteService.updateDepartamento(administrador, idGerente, new ListaDepartamentos(Arrays.asList(departamento)));
+                        gerenteService.updateDepartamento(idGerente, new ListaDepartamentos(Arrays.asList(departamento)));
                         gerente.adicionarDepartamento(departamento);
                     }
                     case 5 ->
@@ -96,5 +78,9 @@ public class MenuUpdateADM {
                 Ferramentas.mensagemErro(e.getMessage());
             }
         }
+
+
     }
+
+             */
 }

@@ -1,22 +1,11 @@
 package Views.Administrador;
 
-import Aplicacao.Funcionario.Gerente.GerenteController;
-import Dominio.Funcionario.Administrador.Administrador;
+import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Util.Ferramentas;
-import Views.MenuInicial;
 
 public class MenuAdministrador {
-    // -- Atributos -- //
-    private GerenteController gerenteController;
-    MenuCadastroADM menuCadastroADM = new MenuCadastroADM(gerenteController);
-
-    // -- Construtor -- //
-    public MenuAdministrador(GerenteController gerenteController) {
-        this.gerenteController = gerenteController;
-    }
-
     // -- Métodos -- //
-    public void menuInicial(Administrador administrador) {
+    public static void menuInicial(NivelAcesso nivelAcesso) {
         boolean continuar = false;
 
         while (!continuar) {
@@ -31,16 +20,14 @@ public class MenuAdministrador {
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
-            try
-            {
+            try {
                 int opcaoAdmin = Ferramentas.lInteiro();
 
-                switch (opcaoAdmin)
-                {
-                    case 1 -> menuCadastroADM.menuCadastroGerente(administrador);
-                    case 2 -> MenuUpdateADM.updateGerente(administrador);
-                    case 3 -> MenuAdminRemoverGerente.menuRemoverEscolha(administrador);
-                    case 4 -> MenuInicial.Menu();
+                switch (opcaoAdmin) {
+                    case 1 ->  MenuCadastroADM.menuCadastroGerente(nivelAcesso);
+                    //case 2 -> MenuUpdateADM.updateGerente();
+                    //case 3 -> MenuAdminRemoverGerente.menuRemoverEscolha();
+                    //case 4 -> MenuInicial.Menu();
                     default -> Ferramentas.menuDefault();
                 }
             }

@@ -1,13 +1,8 @@
 package Views.Gerente;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
 import Dominio.Funcionario.Gerente.Gerente;
-import Dominio.Funcionario.Supervisor.ObjetosDeValor.MetaMensal;
 import Dominio.Funcionario.Supervisor.Supervisor;
 import Dominio.Funcionario.Tecnico.Tecnico;
 import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
-import ProjetoBase.*;
 import Util.Ferramentas;
 import Views.MenuEscolhaId;
 import Views.MenuSetSupervisor;
@@ -17,11 +12,7 @@ import Views.MenuSetUsuario;
 import java.util.InputMismatchException;
 
 public class MenuUpdateGerente {
-    private static final UsuarioService usuarioService = new UsuarioService();
-    private static final TecnicoService tecnicoService = new TecnicoService();
-    private static final SupervisorService supervisorService = new SupervisorService();
-
-    public static void menuUpdateEscolha(Gerente gerente) {
+    public static void menuUpdateEscolha() {
         // Menu
         boolean verifica = false;
         int opUpdate = 0;
@@ -54,8 +45,8 @@ public class MenuUpdateGerente {
             verifica = false;
 
             switch(opUpdate) {
-                case 1 -> menuUpdateTecnico(gerente);
-                case 2 -> menuUpdateSupervisor(gerente);
+                case 1 -> menuUpdateTecnico();
+                case 2 -> menuUpdateSupervisor();
                 case 3 -> {return;}
 
                 default -> Ferramentas.mensagemErro("ERRO! TENTE NOVAMENTE!");
@@ -63,7 +54,7 @@ public class MenuUpdateGerente {
         }
     }
 
-    public static void menuUpdateTecnico(Gerente gerente) {
+    public static void menuUpdateTecnico() {
             // -- Garantia de inicialização -- //
         long idTecnico;
         int UpdateT = 0;
@@ -78,7 +69,7 @@ public class MenuUpdateGerente {
             return;
         }
 
-        Tecnico tecnico = ((Tecnico) usuarioService.findById(idTecnico));
+        Tecnico tecnico = null;
 
         while(true)
         {
@@ -116,26 +107,22 @@ public class MenuUpdateGerente {
 
             switch(UpdateT) {
                 case 1 -> {
-                    NomeFuncionario nome = MenuSetUsuario.MenuSetNome();
-                    usuarioService.updateNomeUsuario(gerente, idTecnico, nome);
-                    tecnico.alteraNome(nome);
+                    String nome = MenuSetUsuario.MenuSetNome();
+
                 }
 
                 case 2 -> {
-                    CPF cpf = MenuSetUsuario.MenuSetCpf();
-                    usuarioService.updateCpfUsuario(gerente, idTecnico, cpf);
-                    tecnico.alteraCpf(cpf);
+                    String cpf = MenuSetUsuario.MenuSetCpf();
+
                 }
 
                 case 3 -> {
-                    Senha senha = MenuSetUsuario.MenuSetSenha();
-                    usuarioService.updateSenhaUsuario(gerente, idTecnico, senha);
-                    tecnico.alteraSenha(senha);
+                    String senha = MenuSetUsuario.MenuSetSenha();
+
                 }
                 case 4 -> {
                     Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
-                    tecnicoService.updateEspecialidade(gerente, idTecnico, especialidade);
-                    tecnico.alteraEspecialidade(especialidade);
+
                 }
                 case 5 ->
                 {
@@ -145,7 +132,7 @@ public class MenuUpdateGerente {
             }
         }
     }
-    public static void menuUpdateSupervisor(Gerente gerente)
+    public static void menuUpdateSupervisor()
     {
         long idSupervisor;
         int UpdateS = 0;
@@ -161,7 +148,7 @@ public class MenuUpdateGerente {
             return;
         }
 
-        Supervisor supervisor = ((Supervisor) usuarioService.findById(idSupervisor));
+        Supervisor supervisor = null;
 
         while(true)
         {
@@ -200,26 +187,22 @@ public class MenuUpdateGerente {
             switch(UpdateS)
             {
                 case 1 -> {
-                    NomeFuncionario nome = MenuSetUsuario.MenuSetNome();
-                    usuarioService.updateNomeUsuario(gerente, idSupervisor, nome);
-                    supervisor.alteraNome(nome);
+                    String nome = MenuSetUsuario.MenuSetNome();
+
                 }
 
                 case 2 -> {
-                    CPF cpf = MenuSetUsuario.MenuSetCpf();
-                    usuarioService.updateCpfUsuario(gerente, idSupervisor, cpf);
-                    supervisor.alteraCpf(cpf);
+                    String cpf = MenuSetUsuario.MenuSetCpf();
+
                 }
 
                 case 3 -> {
-                    Senha senha = MenuSetUsuario.MenuSetSenha();
-                    usuarioService.updateSenhaUsuario(gerente, idSupervisor, senha);
-                    supervisor.alteraSenha(senha);
+                    String senha = MenuSetUsuario.MenuSetSenha();
+
                 }
                 case 4 -> {
-                    MetaMensal metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
-                    supervisorService.updateMetaMensal(gerente, idSupervisor, metaMensal);
-                    supervisor.alteraMetaMensal(metaMensal);
+                    double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
+
                 }
                 case 5 ->
                 {
@@ -230,4 +213,5 @@ public class MenuUpdateGerente {
             }
         }
     }
+
 }

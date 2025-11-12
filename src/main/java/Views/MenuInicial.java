@@ -1,31 +1,29 @@
 package Views;
 
-import Aplicacao.Funcionario.Gerente.GerenteController;
 import Util.Ferramentas;
-import ProjetoBase.UsuarioService;
 
 import java.util.InputMismatchException;
 
 public class MenuInicial
 {
-    // -- Atributos -- //
-    private GerenteController gerenteController;
-    private MenuLogin menuLogin = new MenuLogin(gerenteController);
-
-    // -- Construtor -- //
-    public MenuInicial(GerenteController gerenteController) {
-        this.gerenteController = gerenteController;
-    }
-
     // -- Métodos -- //
-    public void Menu()
+    public static void Menu()
     {
         int opcao;
 
         while(true) {
-            System.out.println(" ");
+            System.out.println(Ferramentas.BLUE+"▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉");
+            System.out.println("▉▉▉  ");
+            System.out.println("▉▉▉   ▉▉▉   ▉▉▉   ▉▉▉▉▉▉▉   ▉▉▉▉▉▉▉▉▉");
+            System.out.println("▉▉▉   ▉▉▉   ▉▉▉   ▉▉▉       ▉▉▉   ▉▉▉");
+            System.out.println("▉▉▉   ▉▉▉   ▉▉▉   ▉▉▉▉▉▉▉   ▉▉▉   ▉▉▉");
+            System.out.println("▉▉▉   ▉▉▉   ▉▉▉   ▉▉▉       ▉▉▉   ▉▉▉");
+            System.out.println("▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉   ▉▉▉▉▉▉▉   ▉▉▉▉▉▉▉▉▉");
+            System.out.println("                                  ▉▉▉");
+            System.out.println("▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉"+Ferramentas.RESET);
+
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃          MENU INICIAL          ┃");
+            System.out.println("┃             WEG OS             ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                ┃");
             System.out.println("┃  1 - Login                     ┃");
@@ -33,18 +31,15 @@ public class MenuInicial
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
-            try
-            {
+            try {
                 opcao = Ferramentas.lInteiro();
 
                 switch(opcao) {
-                    case 1 ->
-                    {
+                    case 1 -> {
                         Ferramentas.limpaTerminal();
-                        menuLogin.login();
+                        MenuLogin.login();
                     }
-                    case 2 ->
-                    {
+                    case 2 -> {
                         Ferramentas.limpaTerminal();
                         MenuDesligar.desligar();
                     }

@@ -1,0 +1,42 @@
+package Aplicacao.Maquina.Handler;
+
+import Aplicacao.Funcionario.Nucleo.Exceptions.AutorizacaoException;
+import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
+import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaRequest;
+import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaResponse;
+import Aplicacao.Maquina.Mapper.MaquinaMapper;
+import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
+import Dominio.Maquina.Exceptions.MaquinaException;
+import Dominio.Maquina.Maquina;
+import Dominio.Maquina.Repositories.MaquinaRepositorio;
+import Dominio.Maquina.Servicos.MaquinaServico;
+
+public class MaquinaHandler {
+
+    // -- Atributos -- //
+    private MaquinaServico maquinaServico;
+    private MaquinaMapper maquinaMapper;
+    private AutorizacaoServico autorizacaoServico;
+    private MaquinaRepositorio maquinaRepositorio;
+
+    // -- Construtor -- //
+    public MaquinaHandler(MaquinaServico maquinaServico, MaquinaMapper maquinaMapper, AutorizacaoServico autorizacaoServico, MaquinaRepositorio maquinaRepositorio) {
+        this.maquinaServico = maquinaServico;
+        this.maquinaMapper = maquinaMapper;
+        this.autorizacaoServico = autorizacaoServico;
+        this.maquinaRepositorio = maquinaRepositorio;
+    }
+
+    // -- Métodos -- //
+    public CadastroMaquinaResponse salvar(NivelAcesso nivelAcesso, CadastroMaquinaRequest request) {
+        try {
+            autorizacaoServico.temAcessoGerente(nivelAcesso);
+            Maquina maquina = maquinaMapper.paraEntidade(request);
+            maquinaServico.idUtilizado(maquina.getIdMaquina());
+            maquinaRepositorio.salvar(maquina);
+            return maquinaMapper.paraResponseCadastro(maquina);
+        } catch (AutorizacaoException | MaquinaException e) {
+            return maquinaMapper.paraResponseCadastro(e.getMessage());
+        }
+    }
+}

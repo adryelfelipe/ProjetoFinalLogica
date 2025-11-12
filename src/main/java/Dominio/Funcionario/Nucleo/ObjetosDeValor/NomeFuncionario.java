@@ -2,7 +2,8 @@ package Dominio.Funcionario.Nucleo.ObjetosDeValor;
 
 import Dominio.Compartilhado.Nome;
 import Dominio.Funcionario.Nucleo.Exceptions.NomeFuncionarioException;
-import ProjetoBase.FerramentaValidator;
+import Util.FerramentaValidator;
+import Util.Ferramentas;
 
 public final class NomeFuncionario extends Nome {
     public NomeFuncionario(String nome) {
@@ -13,9 +14,10 @@ public final class NomeFuncionario extends Nome {
     private void validaNomeFuncionario(String nome) {
         // -- VALIDAÇÃO DE CARACTERES ESPECIAIS -- //
         boolean caractereEspcial = FerramentaValidator.isContemCaractereEspecial(nome);
+        boolean numero = FerramentaValidator.isContemNumero(nome);
 
-        if(caractereEspcial) {
-            throw new NomeFuncionarioException("Um nome de funcionário não pode possuir caractere especial");
+        if(caractereEspcial || numero) {
+            throw new NomeFuncionarioException("Um nome de funcionário pode possuir apenas letras");
         }
     }
 }

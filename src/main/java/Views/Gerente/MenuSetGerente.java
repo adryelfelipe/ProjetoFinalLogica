@@ -2,16 +2,15 @@ package Views.Gerente;
 
 
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
 import Util.Ferramentas;
-import ProjetoBase.GerenteValidator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
 
 public class MenuSetGerente {
 
-    public static ListaDepartamentos menuSetDepartamento()
+    public static ArrayList<Departamento> menuSetDepartamento()
     {
         int opcao;
 
@@ -32,8 +31,8 @@ public class MenuSetGerente {
                     Ferramentas.menuDefault();
                 } else {
                     return switch (opcao){
-                        case 1 -> new ListaDepartamentos(Arrays.asList(Departamento.ELETRICA));
-                        default -> new ListaDepartamentos(Arrays.asList(Departamento.MECANICA));
+                        case 1 -> new ArrayList<>(Arrays.asList(Departamento.ELETRICA));
+                        default -> new ArrayList<>(Arrays.asList(Departamento.MECANICA));
                     };
                 }
             } catch(InputMismatchException e) {
