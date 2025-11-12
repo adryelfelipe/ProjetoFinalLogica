@@ -20,7 +20,7 @@ public class OrdemDeServico
     private ValorOS valorOS;
 
     //--------------------  CONSTRUTOR COM ID --------------------//
-    public OrdemDeServico(Long idOS, long idTecnico, long idSupervisor, long idMaquina, StatusOS statusOS, Descricao descricao, ValorOS valorOS, Departamento departamento) {
+    public OrdemDeServico(long idOS, long idTecnico, long idSupervisor, long idMaquina, StatusOS statusOS, Descricao descricao, ValorOS valorOS, Departamento departamento) {
         alteraIdOS(idOS);
         alteraIdTecnico(idTecnico);
         alteraIdSupervisor(idSupervisor);
@@ -33,11 +33,11 @@ public class OrdemDeServico
 
     //--------------------  CONSTRUTOR SEM ID --------------------//
     public OrdemDeServico(long idTecnico, long idSupervisor, long idMaquina, StatusOS statusOS, Descricao descricao, ValorOS valorOS, Departamento departamento) {
-        this(null, idTecnico, idSupervisor,idMaquina, statusOS, descricao, valorOS, departamento);
+        this(0, idTecnico, idSupervisor,idMaquina, statusOS, descricao, valorOS, departamento);
     }
 
     //------------- GETTERS  -------------//
-    public Long getIdOs() {
+    public long getIdOs() {
         return idOS;
     }
 
@@ -86,12 +86,12 @@ public class OrdemDeServico
        this.valorOS = valorOS;
     }
 
-    public void alteraIdOS(Long idOS) {
-        if(this.idOS != null) {
+    public void alteraIdOS(long idOS) {
+        if(this.idOS != 0) {
             throw new IdOsException("Não é possível alterar o ID de uma ordem de serviço");
         }
 
-        if(idOS != null && idOS < 1) {
+        if(idOS < 0) {
             throw new IdOsException("O ID da ordem de serviço informado está inválido");
         }
 
