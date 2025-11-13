@@ -1,4 +1,4 @@
-package Infraestrutura.Persistencia.Implementacao.Funcionario.Nucleo.Mapper;
+package Infraestrutura.Persistencia.Implementacao.Funcionario.Mapper;
 
 import Dominio.Funcionario.Administrador.Administrador;
 import Dominio.Funcionario.Gerente.Gerente;

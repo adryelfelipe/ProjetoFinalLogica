@@ -1,4 +1,4 @@
-package Infraestrutura.Persistencia.Implementacao.Funcionario.Supervisor.JDBC;
+package Infraestrutura.Persistencia.Implementacao;
 
 import Infraestrutura.Configuracao.ConnectionFactory;
 import Dominio.Funcionario.Supervisor.Supervisor;

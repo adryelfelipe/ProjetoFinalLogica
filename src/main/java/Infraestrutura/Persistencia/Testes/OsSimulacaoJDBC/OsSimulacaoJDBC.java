@@ -7,9 +7,12 @@ import java.util.ArrayList;
 
 public class OsSimulacaoJDBC implements OrdemDeServicoRepositorio {
     public static ArrayList<OrdemDeServico> listaOs = new ArrayList<>();
+    private static long qtdOs = 0;
 
     @Override
     public void salvar(OrdemDeServico ordemDeServico) {
+        qtdOs += 1;
+        ordemDeServico.alteraIdOS(qtdOs);
         listaOs.add(ordemDeServico);
     }
 

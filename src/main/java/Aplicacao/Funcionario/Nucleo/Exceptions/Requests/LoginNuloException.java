@@ -1,4 +1,4 @@
-package Aplicacao.Funcionario.Nucleo.Exceptions;
+package Aplicacao.Funcionario.Nucleo.Exceptions.Requests;
 
 public class LoginNuloException extends RuntimeException {
     public LoginNuloException() {

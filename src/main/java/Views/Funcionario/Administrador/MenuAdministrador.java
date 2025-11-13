@@ -5,10 +5,9 @@ import Util.Ferramentas;
 
 public class MenuAdministrador {
     // -- Métodos -- //
-    public static void menuInicial(NivelAcesso nivelAcesso) {
-        boolean continuar = false;
+    public static void menuInicial(long idAdm, NivelAcesso nivelAcesso) {
 
-        while (!continuar) {
+        while (true) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃      MENU ADMINISTRADOR        ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
@@ -26,8 +25,11 @@ public class MenuAdministrador {
                 switch (opcaoAdmin) {
                     case 1 ->  MenuCadastroADM.menuCadastroGerente(nivelAcesso);
                     //case 2 -> MenuUpdateADM.updateGerente();
-                    //case 3 -> MenuAdminRemoverGerente.menuRemoverEscolha();
-                    //case 4 -> MenuInicial.Menu();
+                    case 3 -> MenuAdminRemoverGerente.menuRemoverEscolha(idAdm, nivelAcesso);
+                    case 4 -> {
+                        return;
+                    }
+
                     default -> Ferramentas.menuDefault();
                 }
             }

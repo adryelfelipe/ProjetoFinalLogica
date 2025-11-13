@@ -1,4 +1,4 @@
-package Infraestrutura.Persistencia.Implementacao.Funcionario.Nucleo.JDBC;
+package Infraestrutura.Persistencia.Implementacao.Funcionario.JDBC;
 
 import Infraestrutura.Configuracao.ConnectionFactory;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
@@ -8,9 +8,10 @@ import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
 import Dominio.Funcionario.Gerente.Gerente;
 import Dominio.Funcionario.Tecnico.Tecnico;
-import Infraestrutura.Persistencia.Implementacao.Funcionario.Nucleo.Mapper.FuncionarioJdbcMapper;
+import Infraestrutura.Persistencia.Implementacao.Funcionario.Mapper.FuncionarioJdbcMapper;
 
 import java.sql.*;
+import java.util.List;
 
 public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
 {
@@ -78,7 +79,7 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
                     {
                         if (rs.next()) {
                             idGerado = rs.getLong(1);// Pega a chave (geralmente pela primeira coluna)
-                            funcionario.alteraIdUsuario(idGerado);
+                            funcionario.alteraIdFuncionario(idGerado);
 
                             if(funcionario.getNivelAcesso().equals(NivelAcesso.GERENTE))
                             {
@@ -142,7 +143,7 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
 
                         long idDoUsuarioLogado = rs.getLong("id_usuario");
 
-                        return buscarPorId(idDoUsuarioLogado);
+                        return this.buscar(idDoUsuarioLogado);
                     }
                 }
             }
@@ -153,7 +154,7 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
         return null;
     }
     @Override
-    public Funcionario buscarPorId(long idDoUsuarioLogado)
+    public Funcionario buscar(long idDoUsuarioLogado)
     {
         // Consulta MYSQL.
         String querySQL = "SELECT " +
@@ -189,7 +190,7 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
     }
 
     @Override
-    public boolean excluirPorId(long id)
+    public boolean excluir(long id)
     {
         // Consulta MYSQL.
         String querySQL = "DELETE FROM Usuario WHERE id_usuario = ?";
@@ -201,16 +202,8 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
 
             int linhasAF = stmt.executeUpdate();
 
-            // Se conseguir deletar retorna true.
-            if(linhasAF > 0)
-            {
-                return true;
-            }
-            // Senão retorna false.
-            else
-            {
-                return false;
-            }
+            return linhasAF > 0;
+
         }catch (SQLException e)
         {
             System.err.println("ERRO ao deletar usuário com o ID: " + id);
@@ -303,7 +296,7 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
     }
 
     @Override
-    public Funcionario buscarPorCpf(CPF cpf)
+    public Funcionario buscar(CPF cpf)
     {
         // Consulta SQL
         String querySQL = "SELECT " +
@@ -336,5 +329,10 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
             System.err.println("ERRO ao buscar usuário por CPF!" + cpf + e.getMessage());
         }
         return funcionario;
+    }
+
+    @Override
+    public List<Funcionario> listarFuncionarios() {
+        return List.of();
     }
 }

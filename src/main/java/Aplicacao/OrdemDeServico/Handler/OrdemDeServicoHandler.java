@@ -1,6 +1,6 @@
 package Aplicacao.OrdemDeServico.Handler;
 
-import Aplicacao.Funcionario.Nucleo.Exceptions.AutorizacaoException;
+import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.AutorizacaoException;
 import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsResponse;
@@ -26,7 +26,7 @@ public class OrdemDeServicoHandler {
 
     public CadastroOsResponse salvar(NivelAcesso nivelAcesso, CadastroOsRequest request) {
         try {
-            autorizacaoServico.temAcessoSupervisor(nivelAcesso);
+            autorizacaoServico.validaAcessoSupervisor(nivelAcesso);
             osServico.supervisorExiste(request.idSupervisor());
             osServico.tecnicoExiste(request.idTecnico());
             osServico.maquinaExiste(request.idMaquina());

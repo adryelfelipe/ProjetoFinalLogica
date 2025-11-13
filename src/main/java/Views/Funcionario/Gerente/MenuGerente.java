@@ -6,7 +6,7 @@ import Util.Ferramentas;
 import java.util.InputMismatchException;
 
 public class MenuGerente {
-    public static void menuInicial(NivelAcesso nivelAcesso) {
+    public static void menuInicial(long idGerente, NivelAcesso nivelAcesso) {
 
         while(true) {
             System.out.println(" ");
@@ -30,7 +30,7 @@ public class MenuGerente {
                     case 1 -> MenuGerenteCadastrar.criarUsuarios(nivelAcesso);
                     case 2 -> MenuGerenteRelatorios.visualizarRelatorios();
                     case 3 -> MenuUpdateGerente.menuUpdateEscolha();
-                    case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha();
+                    case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha(idGerente, nivelAcesso);
                     case 5 -> {
                         System.out.println("┃  RETORNANDO AO MENU INICIAL ...");
                         Ferramentas.Delay(500);

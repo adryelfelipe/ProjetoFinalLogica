@@ -1,11 +1,16 @@
 package Aplicacao.Funcionario.Nucleo.Handler;
 
+import Aplicacao.Funcionario.Nucleo.Dtos.Excluir.ExcluirFuncionarioRequest;
+import Aplicacao.Funcionario.Nucleo.Dtos.Excluir.ExcluirFuncionarioResponse;
+import Aplicacao.Funcionario.Nucleo.Dtos.ListarFuncionarios.ListaFuncionariosResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioRequest;
 import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioResponse;
+import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.AutoExclusaoException;
+import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.AutorizacaoException;
 import Aplicacao.Funcionario.Nucleo.Mapper.FuncionarioMapper;
-import Dominio.Funcionario.Nucleo.Exceptions.CpfInvalidoException;
+import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
+import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Exceptions.FuncionarioException;
-import Dominio.Funcionario.Nucleo.Exceptions.SenhaInvalidaException;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
@@ -15,11 +20,13 @@ public class FuncionarioHandler {
     // -- Atributos -- //
     private FuncionarioRepositorio funcionarioRepositorio;
     private FuncionarioMapper funcionarioMapper;
+    private AutorizacaoServico autorizacaoServico;
 
     // -- Construtor -- //
-    public FuncionarioHandler(FuncionarioRepositorio funcionarioQueriesRepositorio, FuncionarioMapper funcionarioMapper) {
+    public FuncionarioHandler(FuncionarioRepositorio funcionarioQueriesRepositorio, FuncionarioMapper funcionarioMapper, AutorizacaoServico autorizacaoServico) {
         this.funcionarioRepositorio = funcionarioQueriesRepositorio;
         this.funcionarioMapper = funcionarioMapper;
+        this.autorizacaoServico = autorizacaoServico;
     }
 
     // -- Métodos -- //
@@ -27,19 +34,56 @@ public class FuncionarioHandler {
         try {
             CPF cpf = new CPF(request.cpf());
             Senha senha = new Senha(request.senha());
-            Funcionario funcionario = funcionarioRepositorio.buscarPorCpf(cpf);
+            Funcionario funcionario = funcionarioRepositorio.buscar(cpf);
 
             if(funcionario == null) {
-                return funcionarioMapper.paraLoginResponse("Cpf ou senha inválidos");
+                return funcionarioMapper.paraLoginResponse("CPF ou senha inválidos");
             }
 
             if(!funcionario.igualMinhaSenha(senha)) {
-                return funcionarioMapper.paraLoginResponse("Cpf ou senha inválidos");
+                return funcionarioMapper.paraLoginResponse("CPF ou senha inválidos");
             }
 
             return funcionarioMapper.paraLoginResponse(funcionario);
         } catch (FuncionarioException e) {
             return funcionarioMapper.paraLoginResponse(e.getMessage());
         }
+    }
+
+    public ExcluirFuncionarioResponse excluir(NivelAcesso nivelAcesso, ExcluirFuncionarioRequest request) {
+        try {
+            autorizacaoServico.validaAcessoExcluir(nivelAcesso);
+
+            if(request.idExcluidor() == request.idExcluido()) {
+            throw new AutoExclusaoException();
+            }
+
+            Funcionario funcionarioExcluido = funcionarioRepositorio.buscar(request.idExcluido());
+
+            if(funcionarioExcluido == null) {
+                return funcionarioMapper.paraExcluirResponse("Funcionário não identificado com o id: " + request.idExcluido(), false);
+            }
+
+            autorizacaoServico.validaExclusaoAdm(funcionarioExcluido.souAdministrador());
+
+            if(funcionarioExcluido.souGerente()) {
+                autorizacaoServico.validaAcessoAdmin(nivelAcesso);
+            }
+
+            boolean sucesso = funcionarioRepositorio.excluir(request.idExcluido());
+            return funcionarioMapper.paraExcluirResponse(sucesso ? "Funcionário excluído com sucesso" : "Falha ao excluir o funcionário", sucesso);
+        } catch (AutorizacaoException | AutoExclusaoException e) {
+            return funcionarioMapper.paraExcluirResponse(e.getMessage(), false);
+        }
+    }
+
+    public ListaFuncionariosResponse listarFuncionariosParaAdm(NivelAcesso nivelAcesso) {
+        autorizacaoServico.validaAcessoListarFuncionarios(nivelAcesso);
+        return funcionarioMapper.paraListaResponseAdm(funcionarioRepositorio.listarFuncionarios());
+    }
+
+    public ListaFuncionariosResponse listaFuncionariosParaGerente(NivelAcesso nivelAcesso) {
+        autorizacaoServico.validaAcessoListarFuncionarios(nivelAcesso);
+        return funcionarioMapper.paraListaResponseGerente(funcionarioRepositorio.listarFuncionarios());
     }
 }

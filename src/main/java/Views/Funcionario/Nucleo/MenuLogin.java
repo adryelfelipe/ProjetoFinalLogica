@@ -29,11 +29,11 @@ public class MenuLogin
 
         if(response.status()) {
             if(response.nivelAcesso().equals(NivelAcesso.ADMIN)) {
-                MenuAdministrador.menuInicial(response.nivelAcesso());
+                MenuAdministrador.menuInicial(response.id(),response.nivelAcesso());
             }
 
             if(response.nivelAcesso().equals(NivelAcesso.GERENTE)) {
-                MenuGerente.menuInicial(response.nivelAcesso());
+                MenuGerente.menuInicial(response.id(),response.nivelAcesso());
             }
 
             if(response.nivelAcesso().equals(NivelAcesso.SUPERVISOR)) {

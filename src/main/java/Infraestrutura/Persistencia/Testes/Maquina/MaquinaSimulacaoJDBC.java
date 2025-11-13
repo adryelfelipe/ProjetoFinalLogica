@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class MaquinaSimulacaoJDBC implements MaquinaRepositorio {
     // -- Atributos -- //
     public static ArrayList<Maquina> listaMaquinas = new ArrayList<>();
+    private static long qtdMaquinas = 0;
 
     @Override
     public boolean existeId(long id) {
@@ -22,6 +23,8 @@ public class MaquinaSimulacaoJDBC implements MaquinaRepositorio {
 
     @Override
     public void salvar(Maquina maquina) {
+        qtdMaquinas += 1;
+        maquina.alteraIdMaquina(qtdMaquinas);
         listaMaquinas.add(maquina);
     }
 

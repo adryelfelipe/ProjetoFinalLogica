@@ -1,6 +1,6 @@
 package Aplicacao.Funcionario.Tecnico.Handler;
 
-import Aplicacao.Funcionario.Nucleo.Exceptions.AutorizacaoException;
+import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.AutorizacaoException;
 import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
 import Aplicacao.Funcionario.Tecnico.Dtos.Cadastro.CadastroTecnicoRequest;
 import Aplicacao.Funcionario.Tecnico.Dtos.Cadastro.CadastroTecnicoResponse;
@@ -26,7 +26,7 @@ public class TecnicoHandler {
 
     public CadastroTecnicoResponse salvar(NivelAcesso nivelAcesso, CadastroTecnicoRequest request) {
         try {
-            autorizacaoServico.temAcessoGerente(nivelAcesso);
+            autorizacaoServico.validaAcessoGerente(nivelAcesso);
             Tecnico tecnico = tecnicoMapper.paraEntidade(request);
             funcionarioServico.cpfUtilizado(tecnico.getCpf());
             funcionarioServico.idUtilizado(tecnico.getId());

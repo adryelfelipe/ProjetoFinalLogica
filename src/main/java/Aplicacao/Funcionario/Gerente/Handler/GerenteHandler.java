@@ -3,7 +3,7 @@ package Aplicacao.Funcionario.Gerente.Handler;
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteRequest;
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteResponse;
 import Aplicacao.Funcionario.Gerente.Mapper.GerenteMapper;
-import Aplicacao.Funcionario.Nucleo.Exceptions.AutorizacaoException;
+import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.AutorizacaoException;
 import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
 import Dominio.Funcionario.Gerente.Gerente;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
@@ -29,7 +29,7 @@ public class GerenteHandler {
     // -- Métodos -- //
     public CadastroGerenteResponse cadastrar(NivelAcesso nivelAcesso, CadastroGerenteRequest request) {
         try {
-            autorizacaoServico.temAcessoAdmin(nivelAcesso);
+            autorizacaoServico.validaAcessoAdmin(nivelAcesso);
             Gerente gerente = gerenteMapper.paraEntidade(request);
             funcionarioServico.cpfUtilizado(gerente.getCpf());
             funcionarioServico.idUtilizado(gerente.getId());

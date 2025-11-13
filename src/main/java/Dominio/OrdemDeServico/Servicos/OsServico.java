@@ -4,10 +4,7 @@ import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
-import Dominio.Funcionario.Nucleo.Servicos.FuncionarioServico;
-import Dominio.Funcionario.Tecnico.Tecnico;
 import Dominio.Maquina.Repositories.MaquinaRepositorio;
-import Dominio.Maquina.Servicos.MaquinaServico;
 import Dominio.OrdemDeServico.Exceptions.IdMaquinaOsException;
 import Dominio.OrdemDeServico.Exceptions.IdOsException;
 import Dominio.OrdemDeServico.Exceptions.IdSupervisorOsException;
@@ -34,19 +31,19 @@ public class OsServico {
     }
 
     public void tecnicoPertenceAoDepartamento(long idTenico, Departamento departamento) {
-        if(!funcionarioRepositorio.buscarPorId(idTenico).igualMeuDepartamento(departamento)) {
+        if(!funcionarioRepositorio.buscar(idTenico).igualMeuDepartamento(departamento)) {
             throw new IdTecnicoOsException("O técnico indicado não pode operar neste departamento");
         }
     }
 
     public void supervisorPertenceAoDepartamento(long idSupervisor, Departamento departamento) {
-        if(!funcionarioRepositorio.buscarPorId(idSupervisor).igualMeuDepartamento(departamento)) {
+        if(!funcionarioRepositorio.buscar(idSupervisor).igualMeuDepartamento(departamento)) {
             throw new IdSupervisorOsException("O supervisor indicado não pode operar neste departamento");
         }
     }
 
     public void tecnicoExiste(long idTecnico) {
-        Funcionario tecnico = funcionarioRepositorio.buscarPorId(idTecnico);
+        Funcionario tecnico = funcionarioRepositorio.buscar(idTecnico);
 
         if(tecnico == null || tecnico.getNivelAcesso() != NivelAcesso.TECNICO) {
             throw new IdTecnicoOsException("O téncico indicado para a operação não foi encontrado");
@@ -54,7 +51,7 @@ public class OsServico {
     }
 
     public void supervisorExiste(long idSupervisor) {
-        Funcionario supervisor = funcionarioRepositorio.buscarPorId(idSupervisor);
+        Funcionario supervisor = funcionarioRepositorio.buscar(idSupervisor);
 
         if(supervisor == null || supervisor.getNivelAcesso() != NivelAcesso.SUPERVISOR) {
             throw new IdSupervisorOsException("O supervisor indicado para a operação não foi encontrado");

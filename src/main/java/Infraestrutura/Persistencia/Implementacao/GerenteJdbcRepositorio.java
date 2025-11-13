@@ -1,4 +1,4 @@
-package Infraestrutura.Persistencia.Implementacao.Funcionario.Gerente.JDBC;
+package Infraestrutura.Persistencia.Implementacao;
 
 public class GerenteJdbcRepositorio {
     /*

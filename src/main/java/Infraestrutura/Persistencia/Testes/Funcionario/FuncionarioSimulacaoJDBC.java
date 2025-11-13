@@ -6,9 +6,11 @@ import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FuncionarioSimulacaoJDBC implements FuncionarioRepositorio {
     public final ArrayList<Funcionario> funcionarioArrayList = new ArrayList<>();
+    private static long qtdFuncionarios = 0;
 
     @Override
     public boolean existeCpf(CPF cpf) {
@@ -33,7 +35,7 @@ public class FuncionarioSimulacaoJDBC implements FuncionarioRepositorio {
     }
 
     @Override
-    public Funcionario buscarPorId(long id) {
+    public Funcionario buscar(long id) {
         for(Funcionario funcionario : funcionarioArrayList) {
             if(funcionario.getId() == id) {
                 return funcionario;
@@ -55,7 +57,7 @@ public class FuncionarioSimulacaoJDBC implements FuncionarioRepositorio {
     }
 
     @Override
-    public Funcionario buscarPorCpf(CPF cpf) {
+    public Funcionario buscar(CPF cpf) {
         for(Funcionario funcionario : funcionarioArrayList) {
             if(funcionario.getCpf().getCpf().equals(cpf.getCpf())) {
                 return funcionario;
@@ -66,7 +68,14 @@ public class FuncionarioSimulacaoJDBC implements FuncionarioRepositorio {
     }
 
     @Override
+    public List<Funcionario> listarFuncionarios() {
+        return funcionarioArrayList;
+    }
+
+    @Override
     public void salvar(Funcionario funcionario) {
+        qtdFuncionarios += 1;
+        funcionario.alteraIdFuncionario(qtdFuncionarios);
         funcionarioArrayList.add(funcionario);
     }
 
@@ -85,7 +94,7 @@ public class FuncionarioSimulacaoJDBC implements FuncionarioRepositorio {
     }
 
     @Override
-    public boolean excluirPorId(long id) {
+    public boolean excluir(long id) {
         for(Funcionario funcionario : funcionarioArrayList) {
             if(funcionario.getId() == id) {
                 funcionarioArrayList.remove(funcionario);

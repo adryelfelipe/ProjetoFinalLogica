@@ -1,6 +1,6 @@
 package Aplicacao.Maquina.Handler;
 
-import Aplicacao.Funcionario.Nucleo.Exceptions.AutorizacaoException;
+import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.AutorizacaoException;
 import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
 import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaRequest;
 import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaResponse;
@@ -30,7 +30,7 @@ public class MaquinaHandler {
     // -- Métodos -- //
     public CadastroMaquinaResponse salvar(NivelAcesso nivelAcesso, CadastroMaquinaRequest request) {
         try {
-            autorizacaoServico.temAcessoGerente(nivelAcesso);
+            autorizacaoServico.validaAcessoGerente(nivelAcesso);
             Maquina maquina = maquinaMapper.paraEntidade(request);
             maquinaServico.idUtilizado(maquina.getIdMaquina());
             maquinaRepositorio.salvar(maquina);
