@@ -13,7 +13,7 @@ public class MaquinaMapper {
 
     // Cadastro foi um sucesso
     public CadastroMaquinaResponse paraResponseCadastro(Maquina maquina) {
-        return new CadastroMaquinaResponse(maquina.getIdMaquina(), maquina.getNome(), true, "Cadastro realizado com sucesso!");
+        return new CadastroMaquinaResponse(maquina.getIdMaquina(), maquina.getNome(), true, "✅ Cadastro realizado com sucesso!");
     }
 
     // Cadastro falhou

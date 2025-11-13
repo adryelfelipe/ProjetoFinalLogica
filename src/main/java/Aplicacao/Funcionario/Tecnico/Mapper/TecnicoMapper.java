@@ -20,7 +20,7 @@ public class TecnicoMapper {
 
     // Cadastro foi um sucesso
     public CadastroTecnicoResponse paraResponseCadastro(Tecnico tecnico) {
-        return new CadastroTecnicoResponse(tecnico.getId(), tecnico.getNome(), true, "Cadastro realizado com sucesso");
+        return new CadastroTecnicoResponse(tecnico.getId(), tecnico.getNome(), true, "✅ Cadastro realizado com sucesso");
     }
 
     // Cadastro falhou

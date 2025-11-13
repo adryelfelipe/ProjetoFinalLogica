@@ -1,7 +1,7 @@
 package Views.Funcionario.Administrador;
 
 public class MenuUpdateADM {
-/*
+
     private static final GerenteService gerenteService = new GerenteService();
     private static final UsuarioService usuarioService = new UsuarioService();
 
@@ -32,8 +32,8 @@ public class MenuUpdateADM {
             System.out.println(String.format("┃  2 - CPF           ┃          ┃  %-26s┃" + gerente.getCpf()));
             System.out.println(String.format("┃  3 - Senha         ┃          ┃  %-26s┃" + gerente.getSenha()));
             System.out.println(String.format("┃  5 - Departamento  ┃          ┃  %-26s┃" + gerente.getDepartamentos().getListaDepartamentos().get(0)));
-            System.out.println("┃  6 - Sair do Menu  ┃          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
+            System.out.println("║  6 - Sair do Menu  ┃          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+            System.out.println("╚════════════════════┛");
             System.out.println("┃ ➤ Escolha:  ");
 
             try {
@@ -73,6 +73,5 @@ public class MenuUpdateADM {
             }
         }
 
-*/
     }
 }
