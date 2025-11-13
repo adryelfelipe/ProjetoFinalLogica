@@ -10,19 +10,16 @@ public class MenuUpdateADM {
         long idGerente;
         int opcaoAdm = 0;
 
-        try
-        {
+        try {
             idGerente = MenuEscolhaId.escolhaIdUpdate();
-        } catch (IllegalArgumentException e)
-        {
+        } catch (IllegalArgumentException e) {
             Ferramentas.mensagemErro(e.getMessage());
             return;
         }
 
         Gerente gerente = ((Gerente) usuarioService.findById(idGerente));
 
-        while (!verifica)
-        {
+        while (!verifica) {
             System.out.println("          ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓          ");
             System.out.println("          ┃       ATUALIZAR GERENTE        ┃          ");
             System.out.println("          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛          ");
@@ -65,22 +62,17 @@ public class MenuUpdateADM {
                         gerenteService.updateDepartamento(idGerente, new ListaDepartamentos(Arrays.asList(departamento)));
                         gerente.adicionarDepartamento(departamento);
                     }
-                    case 5 ->
-                    {
+                    case 5 -> {
                         verifica = true;
                         return;
                     }
                     default -> Ferramentas.menuDefault();
                 }
-            }
-            catch(IllegalArgumentException e)
-            {
+            } catch (IllegalArgumentException e) {
                 Ferramentas.mensagemErro(e.getMessage());
             }
         }
 
-
+*/
     }
-
-             */
 }
