@@ -14,7 +14,7 @@ public class OrdemDeServicoMapper {
                 request.statusOS(),
                 new Descricao(request.descricao()),
                 new ValorOS(request.valorOS()),
-                request.departamento());
+                request.departamento(), request.tipoOS());
     }
 
     // Cadastro foi um sucesso

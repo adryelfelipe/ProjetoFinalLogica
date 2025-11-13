@@ -1,5 +1,6 @@
 package Views.Funcionario.Supervisor;
 
+import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Util.Ferramentas;
 import Dominio.Funcionario.Supervisor.Supervisor;
 
@@ -7,12 +8,8 @@ import java.util.InputMismatchException;
 
 public class MenuSupervisor
 {
-    public static void menuSupervisor(Supervisor supervisor)
-    {
-        boolean continuar = false;
-        int opcao = 0;
-
-        while(!continuar) {
+    public static void menuSupervisor(NivelAcesso nivelAcesso) {
+        while(true) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃         MENU SUPERVISOR        ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
@@ -24,16 +21,15 @@ public class MenuSupervisor
             System.out.print("┃ ➤ Escolha: ");
 
             try {
-                opcao = Ferramentas.lInteiro();
+                int opcao = Ferramentas.lInteiro();
 
                 switch (opcao) {
-                    case 1 -> MenuCadastroSupervisor.menuCadastroOrdem(supervisor);
-                    case 2 -> MenuSupervisorAcompanharStatus.acompanharStatus(supervisor);
+                    case 1 -> MenuCadastroSupervisor.menuCadastroOrdem(nivelAcesso);
+                    case 2 -> MenuSupervisorAcompanharStatus.acompanharStatus();
                     case 3 -> {
                         System.out.println("RETORNANDO AO MENU INICIAL! . . .");
                         Ferramentas.Delay(500);
-                        continuar = true;
-                        //MenuInicial.Menu();
+                        return;
                     }
                     default -> Ferramentas.menuDefault();
                 }

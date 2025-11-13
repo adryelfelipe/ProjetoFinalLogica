@@ -1,28 +1,22 @@
 package Dominio.Maquina.Enumeracoes;
 
-public class StatusMaquina {
+public enum StatusMaquina {
     // ID 1
-    public static StatusMaquina FUNCIONANDO = new StatusMaquina("Funcionando ", 1);
+    FUNCIONANDO(1),
     // ID 2
-    public static StatusMaquina DEFEITO = new StatusMaquina("Defeito", 2);
+    DEFEITO(2),
     // ID 3
-    public static StatusMaquina EM_MANUTENCAO = new StatusMaquina("Em Manutenção", 3);
+    EM_MANUTENCAO(3);
 
     // -- Atributos -- //
-    private final String nome;
     private final int id;
 
     // -- Construtor privado -- //
-    private StatusMaquina(String nome, int id) {
-        this.nome = nome;
+    private StatusMaquina(int id) {
         this.id = id;
     }
 
     // -- Getters -- //
-    public String getNome() {
-        return nome;
-    }
-
     public int getId() {
         return id;
     }

@@ -1,12 +1,12 @@
-package Infraestrutura;
+package Infraestrutura.Persistencia.Implementacao.Maquina.JDBC;
 
-import Database.ConnectionFactory;
+import Infraestrutura.Configuracao.ConnectionFactory;
 import Dominio.Maquina.Maquina;
 import Dominio.Maquina.Enumeracoes.StatusMaquina;
 
 import java.sql.*;
 
-public class MaquinaDAO {
+public class MaquinaJdbcRepositorio {
     //Comando para inserir as informações da máquina no Banco de Dados
     public void inserirMaquina(Maquina maquina) {
         String querySQL = "INSERT INTO Maquinas (nome, localizacao, id_sm) VALUES (?, ?, ?)";

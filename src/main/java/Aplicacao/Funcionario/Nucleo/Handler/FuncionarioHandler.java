@@ -4,6 +4,7 @@ import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioRequest;
 import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Mapper.FuncionarioMapper;
 import Dominio.Funcionario.Nucleo.Exceptions.CpfInvalidoException;
+import Dominio.Funcionario.Nucleo.Exceptions.FuncionarioException;
 import Dominio.Funcionario.Nucleo.Exceptions.SenhaInvalidaException;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
@@ -37,7 +38,7 @@ public class FuncionarioHandler {
             }
 
             return funcionarioMapper.paraLoginResponse(funcionario);
-        } catch (CpfInvalidoException | SenhaInvalidaException e) {
+        } catch (FuncionarioException e) {
             return funcionarioMapper.paraLoginResponse(e.getMessage());
         }
     }

@@ -1,11 +1,11 @@
-package Infraestrutura.testes;
+package Infraestrutura.Persistencia.Testes.OsSimulacaoJDBC;
 
 import Dominio.OrdemDeServico.OrdemDeServico;
 import Dominio.OrdemDeServico.Repositorios.OrdemDeServicoRepositorio;
 
 import java.util.ArrayList;
 
-public class OsTesteDAO implements OrdemDeServicoRepositorio {
+public class OsSimulacaoJDBC implements OrdemDeServicoRepositorio {
     public static ArrayList<OrdemDeServico> listaOs = new ArrayList<>();
 
     @Override

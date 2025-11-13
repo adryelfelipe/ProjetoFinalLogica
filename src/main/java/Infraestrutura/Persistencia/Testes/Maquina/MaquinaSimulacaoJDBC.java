@@ -1,11 +1,11 @@
-package Infraestrutura.testes;
+package Infraestrutura.Persistencia.Testes.Maquina;
 
 import Dominio.Maquina.Maquina;
 import Dominio.Maquina.Repositories.MaquinaRepositorio;
 
 import java.util.ArrayList;
 
-public class MaquinaTesteDAO implements MaquinaRepositorio {
+public class MaquinaSimulacaoJDBC implements MaquinaRepositorio {
     // -- Atributos -- //
     public static ArrayList<Maquina> listaMaquinas = new ArrayList<>();
 

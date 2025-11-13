@@ -1,13 +1,13 @@
-package Infraestrutura;
+package Infraestrutura.Persistencia.Implementacao.Funcionario.Supervisor.JDBC;
 
-import Database.ConnectionFactory;
+import Infraestrutura.Configuracao.ConnectionFactory;
 import Dominio.Funcionario.Supervisor.Supervisor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class SupervisorDAO
+public class SupervisorJdbcRepositorio
 {
     public void salvar(Supervisor supervisor)
     {

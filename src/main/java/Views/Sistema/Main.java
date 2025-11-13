@@ -27,47 +27,61 @@ import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
 import Dominio.Funcionario.Nucleo.Servicos.FuncionarioServico;
+import Dominio.Funcionario.Supervisor.ObjetosDeValor.MetaMensal;
+import Dominio.Funcionario.Supervisor.Supervisor;
+import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
+import Dominio.Funcionario.Tecnico.Tecnico;
+import Dominio.Maquina.Enumeracoes.StatusMaquina;
+import Dominio.Maquina.Maquina;
+import Dominio.Maquina.ObjetosDeValor.Localizacao;
+import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
 import Dominio.Maquina.Servicos.MaquinaServico;
 import Dominio.OrdemDeServico.Servicos.OsServico;
-import Infraestrutura.testes.FuncionarioTesteDAO;
-import Infraestrutura.testes.MaquinaTesteDAO;
-import Infraestrutura.testes.OsTesteDAO;
+import Infraestrutura.Persistencia.Implementacao.Funcionario.Nucleo.Mapper.FuncionarioJdbcMapper;
+import Infraestrutura.Persistencia.Testes.Funcionario.FuncionarioSimulacaoJDBC;
+import Infraestrutura.Persistencia.Testes.Maquina.MaquinaSimulacaoJDBC;
+import Infraestrutura.Persistencia.Testes.OsSimulacaoJDBC.OsSimulacaoJDBC;
 import Views.Funcionario.Nucleo.MenuInicial;
 
 import java.util.Arrays;
 
 public class Main {
-    // Dao para testes
-    private static FuncionarioTesteDAO funcionarioDAO = new FuncionarioTesteDAO();
-    //private static FuncionarioDAO funcionarioDAO = new FuncionarioDAO();
-    private static MaquinaTesteDAO maquinaDAO = new MaquinaTesteDAO();
-    private static OsTesteDAO osDAO = new OsTesteDAO();
+    // Dao para funcionario
+    private static FuncionarioSimulacaoJDBC funcionarioDAO = new FuncionarioSimulacaoJDBC();
+    private static FuncionarioJdbcMapper funcionarioJdbcMapper = new FuncionarioJdbcMapper();
+    //private static FuncionarioRepositorioJdbc funcionarioDAO = new FuncionarioRepositorioJdbc(funcionarioJdbcMapper);
 
-    // Aplicação teste de funcionário
+    // Dao para maquina
+    private static MaquinaSimulacaoJDBC maquinaDAO = new MaquinaSimulacaoJDBC();
+
+    // Dao para ordem de serviço
+    private static OsSimulacaoJDBC osDAO = new OsSimulacaoJDBC();
+
+    // Aplicação de funcionário
     private static FuncionarioMapper funcionarioMapper = new FuncionarioMapper();
     private static FuncionarioHandler funcionarioHandler = new FuncionarioHandler(funcionarioDAO,funcionarioMapper);
     private static AutorizacaoServico autorizacaoServico = new AutorizacaoServico();
     private static FuncionarioServico funcionarioServico = new FuncionarioServico(funcionarioDAO);
 
-    // Aplicação teste de Gerente
+    // Aplicação de Gerente
     private static GerenteMapper gerenteMapper = new GerenteMapper();
     private static GerenteHandler gerenteHandler = new GerenteHandler(gerenteMapper, funcionarioDAO, funcionarioServico, autorizacaoServico);
 
-    // Aplicação teste de Supervisor
+    // Aplicação de Supervisor
     private static SupervisorMapper supervisorMapper = new SupervisorMapper();
     private static SupervisorHandler supervisorHandler = new SupervisorHandler(supervisorMapper, funcionarioDAO, funcionarioServico, autorizacaoServico);
 
-    // Aplicação para teste de Tecnico
+    // Aplicação de Tecnico
     private static TecnicoMapper tecnicoMapper = new TecnicoMapper();
     private static TecnicoHandler tecnicoHandler = new TecnicoHandler(funcionarioDAO, funcionarioServico, autorizacaoServico, tecnicoMapper);
 
-    // Aplicação para teste de máquina
+    // Aplicação de máquina
     private static MaquinaMapper maquinaMapper = new MaquinaMapper();
     private static MaquinaServico maquinaServico = new MaquinaServico(maquinaDAO);
     private static MaquinaHandler maquinaHandler = new MaquinaHandler(maquinaServico, maquinaMapper, autorizacaoServico, maquinaDAO);
 
-    // Aplicação para teste de Ordem de Serviço
-    private static OsServico osServico = new OsServico(maquinaDAO);
+    // Aplicaçã de Ordem de Serviço
+    private static OsServico osServico = new OsServico(maquinaDAO, funcionarioDAO, osDAO);
     private static OrdemDeServicoMapper osMapper = new OrdemDeServicoMapper();
     private static OrdemDeServicoHandler osHandler = new OrdemDeServicoHandler(osDAO, autorizacaoServico, osServico, osMapper);
 
@@ -82,7 +96,10 @@ public class Main {
     // Inicialização do código
     public static void main(String[] args) {
         funcionarioDAO.funcionarioArrayList.add(new Administrador(1,new NomeFuncionario("joaozera"),new CPF("12345678910"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA))));
-        funcionarioDAO.funcionarioArrayList.add(new Gerente(1,new NomeFuncionario("joaozera"),new CPF("12345678912"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA))));
+        funcionarioDAO.funcionarioArrayList.add(new Gerente(2,new NomeFuncionario("joaozera"),new CPF("12345678912"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA))));
+        funcionarioDAO.funcionarioArrayList.add(new Tecnico(3,new NomeFuncionario("joaozera"),new CPF("12345678913"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA)), Especialidade.SOLDADOR));
+        funcionarioDAO.funcionarioArrayList.add(new Supervisor(4,new NomeFuncionario("joaozera"),new CPF("12345678914"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA)), new MetaMensal(60000)));
+        maquinaDAO.salvar(new Maquina(1, new NomeMaquina("MatheusCNC"), new Localizacao("toper"), StatusMaquina.FUNCIONANDO));
         MenuInicial.Menu();
     }
 }

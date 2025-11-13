@@ -1,6 +1,6 @@
-package Infraestrutura;
+package Infraestrutura.Persistencia.Implementacao.Funcionario.Gerente.JDBC;
 
-public class GerenteDAO {
+public class GerenteJdbcRepositorio {
     /*
     public void salvar(Gerente gerente)
     {

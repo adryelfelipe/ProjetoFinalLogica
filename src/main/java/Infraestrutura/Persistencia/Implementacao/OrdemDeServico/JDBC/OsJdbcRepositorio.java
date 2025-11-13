@@ -1,16 +1,8 @@
-package Infraestrutura;
+package Infraestrutura.Persistencia.Implementacao.OrdemDeServico.JDBC;
 
-import Database.ConnectionFactory;
-import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
-import Dominio.OrdemDeServico.ObjetosDeValor.Descricao;
-import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
-import Dominio.OrdemDeServico.OrdemDeServico;
-import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
-
-import java.sql.*;
-
-public class OrdemDeServicoDAO
+public class OsJdbcRepositorio
 {
+    /*
     // Comando para inserir uma ordem de serviço dentro do Banco de Dados
     public void inserirOrdemDeServico(OrdemDeServico ordemDeServico)
     {
@@ -251,4 +243,6 @@ public class OrdemDeServicoDAO
         }
         return false;
     }
+
+     */
 }

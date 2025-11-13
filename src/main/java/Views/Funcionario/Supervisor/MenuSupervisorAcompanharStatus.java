@@ -4,7 +4,7 @@ import Dominio.Funcionario.Supervisor.Supervisor;
 
 
     public class MenuSupervisorAcompanharStatus{
-        public static void acompanharStatus(Supervisor supervisor) {
+        public static void acompanharStatus() {
             /*
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃    ACOMPANHAR STATUS DE SO     ┃");

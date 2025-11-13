@@ -1,4 +1,4 @@
-package Infraestrutura.testes;
+package Infraestrutura.Persistencia.Testes.Funcionario;
 
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Funcionario;
@@ -7,7 +7,7 @@ import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 
 import java.util.ArrayList;
 
-public class FuncionarioTesteDAO implements FuncionarioRepositorio {
+public class FuncionarioSimulacaoJDBC implements FuncionarioRepositorio {
     public final ArrayList<Funcionario> funcionarioArrayList = new ArrayList<>();
 
     @Override

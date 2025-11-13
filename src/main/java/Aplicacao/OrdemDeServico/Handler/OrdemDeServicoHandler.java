@@ -29,6 +29,7 @@ public class OrdemDeServicoHandler {
             autorizacaoServico.temAcessoSupervisor(nivelAcesso);
             osServico.supervisorExiste(request.idSupervisor());
             osServico.tecnicoExiste(request.idTecnico());
+            osServico.maquinaExiste(request.idMaquina());
             osServico.tecnicoPertenceAoDepartamento(request.idTecnico(), request.departamento());
             osServico.supervisorPertenceAoDepartamento(request.idSupervisor(), request.departamento());
             OrdemDeServico os = ordemDeServicoMapper.paraEntidade(request);

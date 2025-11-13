@@ -6,6 +6,8 @@ import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Util.Ferramentas;
 import Views.Funcionario.Administrador.MenuAdministrador;
 import Views.Funcionario.Gerente.MenuGerente;
+import Views.Funcionario.Supervisor.MenuSupervisor;
+import Views.Funcionario.Tecnico.MenuTecnico;
 import Views.Sistema.Main;
 
 public class MenuLogin
@@ -32,6 +34,14 @@ public class MenuLogin
 
             if(response.nivelAcesso().equals(NivelAcesso.GERENTE)) {
                 MenuGerente.menuInicial(response.nivelAcesso());
+            }
+
+            if(response.nivelAcesso().equals(NivelAcesso.SUPERVISOR)) {
+                MenuSupervisor.menuSupervisor(response.nivelAcesso());
+            }
+
+            if(response.nivelAcesso().equals(NivelAcesso.TECNICO)) {
+                //MenuTecnico.menu
             }
         }
     }

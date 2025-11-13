@@ -1,6 +1,6 @@
-package Infraestrutura;
+package Infraestrutura.Persistencia.Implementacao.Funcionario.Tecnico.JDBC;
 
-import Database.ConnectionFactory;
+import Infraestrutura.Configuracao.ConnectionFactory;
 import Dominio.Funcionario.Tecnico.Tecnico;
 import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
 
@@ -8,7 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class TecnicoDAO
+public class TecnicoJdbcRepositorio
 {
     public void salvar(Tecnico tecnico)
     {

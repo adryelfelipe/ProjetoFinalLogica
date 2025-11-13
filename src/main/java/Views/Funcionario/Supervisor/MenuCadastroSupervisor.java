@@ -8,6 +8,7 @@ import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Supervisor.Supervisor;
 import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
+import Dominio.OrdemDeServico.Enumeracoes.TipoOS;
 import Util.Ferramentas;
 import Views.Funcionario.Gerente.MenuSetGerente;
 import Views.Maquina.MenuSetMaquina;
@@ -42,7 +43,7 @@ public class MenuCadastroSupervisor
         Ferramentas.Delay(1000);
 
         // -- Gerando request para cadastro de Ordem de Serviço -- //
-        CadastroOsRequest request = new CadastroOsRequest(idTecnico, idSupervisor, idMaquina, StatusOS.EM_ANDAMENTO, descricao, valorOS, departamento.getFirst());
+        CadastroOsRequest request = new CadastroOsRequest(idTecnico, idSupervisor, idMaquina, StatusOS.EM_ANDAMENTO, descricao, valorOS, departamento.getFirst(), TipoOS.CORRETIVA);
         CadastroOsResponse response = Main.osController.salvar(nivelAcesso, request);
         Ferramentas.mensagemErro(response.mensagem());
         Ferramentas.limpaTerminal();

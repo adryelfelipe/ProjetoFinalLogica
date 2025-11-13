@@ -1,28 +1,25 @@
-package Infraestrutura;
+package Infraestrutura.Persistencia.Implementacao.Funcionario.Nucleo.JDBC;
 
-import Database.ConnectionFactory;
-import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
+import Infraestrutura.Configuracao.ConnectionFactory;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
-import Dominio.Funcionario.Supervisor.ObjetosDeValor.MetaMensal;
 import Dominio.Funcionario.Supervisor.Supervisor;
-import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
-import Dominio.Funcionario.Administrador.Administrador;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
 import Dominio.Funcionario.Gerente.Gerente;
 import Dominio.Funcionario.Tecnico.Tecnico;
+import Infraestrutura.Persistencia.Implementacao.Funcionario.Nucleo.Mapper.FuncionarioJdbcMapper;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-public class FuncionarioDAO implements FuncionarioRepositorio
+public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
 {
+    FuncionarioJdbcMapper mapper;
+
+    public FuncionarioRepositorioJdbc(FuncionarioJdbcMapper mapper) {
+        this.mapper = mapper;
+    }
+
     @Override
     public boolean existeCpf(CPF cpf)
     {
@@ -170,7 +167,6 @@ public class FuncionarioDAO implements FuncionarioRepositorio
                 "LEFT JOIN Tecnico T ON U.id_usuario = T.id_tecnico " +
                 "WHERE U.id_usuario = ?";
 
-        Funcionario funcionario = null;
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
@@ -181,76 +177,17 @@ public class FuncionarioDAO implements FuncionarioRepositorio
             {
                 if(rs.next())
                 {
-                    // Pega dados comuns...
-                    long id = rs.getLong("id_usuario");
-                    String nome = rs.getString("nome");
-                    String cpf = rs.getString("cpf");
-                    String senha = rs.getString("senha");
-                    int nivelAcesso = rs.getInt("id_na");
-
-                    switch(nivelAcesso)
-                    {
-                        case 1:
-                            // Criando objeto de acordo com seu nivel_acesso.
-                            int idEspecialidade = rs.getInt("id_especialidade");
-
-                            Especialidade especialidade = switch(idEspecialidade) {
-                                case 1 -> Especialidade.TECNICO_ELETROTECNICA;
-                                case 2 -> Especialidade.ELETRICISTA_FABRIL;
-                                case 3 -> Especialidade.SOLDADOR;
-                                case 4 -> Especialidade.TECNICO_ELETROMECANICA;
-                                default -> Especialidade.PINTOR_INDUSTRIAL;
-                            };
-                            int idDepartamentoTe = rs.getInt("id_departamento");
-
-                            Departamento departamentoTe = switch (idDepartamentoTe) {
-                                case 1 -> Departamento.ELETRICA;
-                                default -> Departamento.MECANICA;
-                            };
-
-                            funcionario = new Tecnico(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha),new ListaDepartamentos(Arrays.asList(departamentoTe)), especialidade);
-                            break;
-
-                        case 2:
-                            int idDepartamentoSs = rs.getInt("id_departamento");
-
-                            Departamento departamentoSs = switch (idDepartamentoSs) {
-                                case 1 -> Departamento.ELETRICA;
-                                default -> Departamento.MECANICA;
-                            };
-                            double metaMensal = rs.getDouble("meta_mensal");
-                            funcionario = new Supervisor(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamentoSs)), new MetaMensal(metaMensal));
-                            break;
-
-                        case 3:
-                            int idDepartamento = rs.getInt("id_departamento");
-
-                            Departamento departamento = switch (idDepartamento) {
-                                case 1 -> Departamento.ELETRICA;
-                                default -> Departamento.MECANICA;
-                            };
-
-                            funcionario = new Gerente(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamento)));
-                            break;
-
-                        case 4:
-                            int idDepartamentoAd = rs.getInt("id_departamento");
-
-                            Departamento departamentoAd = switch (idDepartamentoAd) {
-                                case 1 -> Departamento.ELETRICA;
-                                default -> Departamento.MECANICA;
-                            };
-                            funcionario = new Administrador(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamentoAd)));
-                            break;
-                    }
+                    return mapper.paraEntidadePorId(rs);
                 }
             }
         } catch (SQLException e)
         {
             System.err.println("ERRO ao buscar usuário por ID!"+e.getMessage());
         }
-        return funcionario;
+
+        return null;
     }
+
     @Override
     public boolean excluirPorId(long id)
     {
@@ -355,19 +292,7 @@ public class FuncionarioDAO implements FuncionarioRepositorio
             {
                 if(rs.next())
                 {
-                    int nivelAcesso = rs.getInt("id_na");
-
-                    switch (nivelAcesso)
-                    {
-                        case 1:
-                            return NivelAcesso.TECNICO;
-                        case 2:
-                            return NivelAcesso.SUPERVISOR;
-                        case 3:
-                            return NivelAcesso.GERENTE;
-                        default:
-                            return NivelAcesso.ADMIN;
-                    }
+                    return mapper.paraNivelAcesso(rs);
                 }
             }
         }
@@ -403,69 +328,7 @@ public class FuncionarioDAO implements FuncionarioRepositorio
                 // Pegar Dados
                 if(rs.next())
                 {
-                    // Dados comuns do usuário
-                    long id = rs.getLong("id_usuario");
-                    String nome = rs.getString("nome");
-                    String cpfUsuario = rs.getString("cpf");
-                    String senha = rs.getString("senha");
-                    int nivelAcesso = rs.getInt("id_na");
-
-                    // Buscar departamentos associados com o usuario do CPF = ?
-                    List<Departamento> departamentosDoUsuario = new ArrayList<>();
-                    String sqlDepartamentos = "SELECT id_departamento FROM UsuarioDepartamento WHERE id_usuario = ?";
-
-                    try (PreparedStatement stmtDepartamentos = conn.prepareStatement(sqlDepartamentos))
-                    {
-                        stmtDepartamentos.setLong(1, id); // Passa o ID do usuário
-
-                        try (ResultSet rsDepartamentos = stmtDepartamentos.executeQuery())
-                        {
-                            // Loop para carregar todos os departamentos, ou seja esquanto o rs estiver lendo, vai carregando.
-                            while (rsDepartamentos.next())
-                            {
-                                int idDepartamento = rsDepartamentos.getInt("id_departamento");
-
-                                Departamento departamento = switch (idDepartamento)
-                                {
-                                    case 1 -> Departamento.ELETRICA;
-                                    default -> Departamento.MECANICA;
-                                };
-                                departamentosDoUsuario.add(departamento);
-                            }
-                        }
-                    }
-                    // Monta a lista final de departamentos
-                    ListaDepartamentos listaDepartamentos = new ListaDepartamentos(departamentosDoUsuario);
-
-                    switch(nivelAcesso)
-                    {
-                        case 1: // Tecnico
-                            int idEspecialidade = rs.getInt("id_especialidade");
-                            Especialidade especialidade = switch(idEspecialidade)
-                            {
-                                case 1 -> Especialidade.TECNICO_ELETROTECNICA;
-                                case 2 -> Especialidade.ELETRICISTA_FABRIL;
-                                case 3 -> Especialidade.SOLDADOR;
-                                case 4 -> Especialidade.TECNICO_ELETROMECANICA;
-                                default -> Especialidade.PINTOR_INDUSTRIAL;
-                            };
-                            funcionario = new Tecnico(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), listaDepartamentos, especialidade);
-                            break;
-
-                        case 2: // Supervisor
-                            double metaMensal = rs.getDouble("meta_mensal");
-
-                            funcionario = new Supervisor(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), listaDepartamentos, new MetaMensal(metaMensal));
-                            break;
-
-                        case 3: // Gerente
-                            funcionario = new Gerente(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), listaDepartamentos);
-                            break;
-
-                        case 4: // Administrador
-                            funcionario = new Administrador(id, new NomeFuncionario(nome), new CPF(cpfUsuario), new Senha(senha), listaDepartamentos);
-                            break;
-                    }
+                    return mapper.paraEntidadePorCpf(rs, conn);
                 }
             }
         } catch (SQLException e)

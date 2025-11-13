@@ -2,8 +2,10 @@ package Dominio.OrdemDeServico.Servicos;
 
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
+import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 import Dominio.Funcionario.Nucleo.Servicos.FuncionarioServico;
+import Dominio.Funcionario.Tecnico.Tecnico;
 import Dominio.Maquina.Repositories.MaquinaRepositorio;
 import Dominio.Maquina.Servicos.MaquinaServico;
 import Dominio.OrdemDeServico.Exceptions.IdMaquinaOsException;
@@ -15,16 +17,18 @@ import Dominio.OrdemDeServico.Repositorios.OrdemDeServicoRepositorio;
 public class OsServico {
     // -- Atributos -- //
     private MaquinaRepositorio maquinaRepositorio;
-    private OrdemDeServicoRepositorio ordemDeServicoRepositorio;
+    private OrdemDeServicoRepositorio osRepositorio;
     private FuncionarioRepositorio funcionarioRepositorio;
 
     // -- Construtor -- //
-    public OsServico(MaquinaRepositorio maquinaRepositorio) {
+    public OsServico(MaquinaRepositorio maquinaRepositorio, FuncionarioRepositorio funcionarioRepositorio, OrdemDeServicoRepositorio osRepositorio) {
         this.maquinaRepositorio = maquinaRepositorio;
+        this.funcionarioRepositorio = funcionarioRepositorio;
+        this.osRepositorio = osRepositorio;
     }
 
     public void idUtilizado(long idOs) {
-        if(ordemDeServicoRepositorio.existeId(idOs)) {
+        if(osRepositorio.existeId(idOs)) {
             throw new IdOsException("O ID da ordem de serviço informado já foi utilizado");
         }
     }
@@ -42,13 +46,17 @@ public class OsServico {
     }
 
     public void tecnicoExiste(long idTecnico) {
-        if(!funcionarioRepositorio.existeId(idTecnico) || funcionarioRepositorio.buscarPorId(idTecnico).getNivelAcesso() != NivelAcesso.TECNICO) {
+        Funcionario tecnico = funcionarioRepositorio.buscarPorId(idTecnico);
+
+        if(tecnico == null || tecnico.getNivelAcesso() != NivelAcesso.TECNICO) {
             throw new IdTecnicoOsException("O téncico indicado para a operação não foi encontrado");
         }
     }
 
     public void supervisorExiste(long idSupervisor) {
-        if(!funcionarioRepositorio.existeId(idSupervisor) || funcionarioRepositorio.buscarPorId(idSupervisor).getNivelAcesso() != NivelAcesso.SUPERVISOR) {
+        Funcionario supervisor = funcionarioRepositorio.buscarPorId(idSupervisor);
+
+        if(supervisor == null || supervisor.getNivelAcesso() != NivelAcesso.SUPERVISOR) {
             throw new IdSupervisorOsException("O supervisor indicado para a operação não foi encontrado");
         }
     }
