@@ -1,6 +1,7 @@
 package Aplicacao.OrdemDeServico.Controller;
 
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsRequest;
+import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsResponse;
 import Aplicacao.OrdemDeServico.Exceptions.CadastroOsNulaException;
 import Aplicacao.OrdemDeServico.Handler.OrdemDeServicoHandler;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
@@ -15,11 +16,11 @@ public class OrdemDeServicoController {
     }
 
     // -- Métodos -- //
-    public void salvar(NivelAcesso nivelAcesso, CadastroOsRequest request) {
+    public CadastroOsResponse salvar(NivelAcesso nivelAcesso, CadastroOsRequest request) {
         if(request == null) {
             throw new CadastroOsNulaException();
         }
 
-        osHandler.salvar(nivelAcesso, request);
+        return osHandler.salvar(nivelAcesso, request);
     }
 }

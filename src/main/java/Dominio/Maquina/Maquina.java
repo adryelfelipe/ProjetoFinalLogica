@@ -43,7 +43,7 @@ public class Maquina {
         return status;
     }
 
-    public Long getIdMaquina() {
+    public long getIdMaquina() {
         return idMaquina;
     }
 

@@ -48,7 +48,7 @@ public class MaquinaTesteDAO implements MaquinaRepositorio {
     @Override
     public void atualizar(Maquina maquinaB) {
         for(Maquina maquinaA : listaMaquinas) {
-            if(maquinaA.equals(maquinaB)) {
+            if(maquinaA.getIdMaquina() == maquinaB.getIdMaquina()) {
                 listaMaquinas.set(listaMaquinas.indexOf(maquinaA), maquinaB);
             }
         }
