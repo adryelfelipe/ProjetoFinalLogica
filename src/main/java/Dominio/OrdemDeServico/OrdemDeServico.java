@@ -1,6 +1,7 @@
 package Dominio.OrdemDeServico;
 
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
+import Dominio.OrdemDeServico.Enumeracoes.TipoOS;
 import Dominio.OrdemDeServico.Exceptions.IdTecnicoOsException;
 import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
 import Dominio.OrdemDeServico.Exceptions.*;
@@ -11,33 +12,35 @@ public class OrdemDeServico
 {
     //--------------------  ATRIBUTOS  --------------------//
     private StatusOS statusOS;
-    private Long idOS;
+    private long idOS;
     private Descricao descricao;
     private long idMaquina;
     private long idTecnico;
     private long idSupervisor;
     private Departamento departamento;
     private ValorOS valorOS;
+    private TipoOS tipoOS;
 
     //--------------------  CONSTRUTOR COM ID --------------------//
-    public OrdemDeServico(Long idOS, long idTecnico, long idSupervisor, long idMaquina, StatusOS statusOS, Descricao descricao, ValorOS valorOS, Departamento departamento) {
+    public OrdemDeServico(long idOS, long idTecnico, long idSupervisor, long idMaquina, StatusOS statusOS, Descricao descricao, ValorOS valorOS, Departamento departamento, TipoOS tipoOS) {
         alteraIdOS(idOS);
         alteraIdTecnico(idTecnico);
         alteraIdSupervisor(idSupervisor);
         alteraIdMaquina(idMaquina);
-        alteraStatusOS(statusOS);
+        alteraStatusOs(statusOS);
         alteraDescricao(descricao);
         alteraValorOS(valorOS);
         alteraDepartamento(departamento);
+        alteraTipoOs(tipoOS);
     }
 
     //--------------------  CONSTRUTOR SEM ID --------------------//
-    public OrdemDeServico(long idTecnico, long idSupervisor, long idMaquina, StatusOS statusOS, Descricao descricao, ValorOS valorOS, Departamento departamento) {
-        this(null, idTecnico, idSupervisor,idMaquina, statusOS, descricao, valorOS, departamento);
+    public OrdemDeServico(long idTecnico, long idSupervisor, long idMaquina, StatusOS statusOS, Descricao descricao, ValorOS valorOS, Departamento departamento, TipoOS tipoOS) {
+        this(0, idTecnico, idSupervisor,idMaquina, statusOS, descricao, valorOS, departamento, tipoOS);
     }
 
     //------------- GETTERS  -------------//
-    public Long getIdOs() {
+    public long getIdOs() {
         return idOS;
     }
 
@@ -86,12 +89,12 @@ public class OrdemDeServico
        this.valorOS = valorOS;
     }
 
-    public void alteraIdOS(Long idOS) {
-        if(this.idOS != null) {
+    public void alteraIdOS(long idOS) {
+        if(this.idOS != 0) {
             throw new IdOsException("Não é possível alterar o ID de uma ordem de serviço");
         }
 
-        if(idOS != null && idOS < 1) {
+        if(idOS < 0) {
             throw new IdOsException("O ID da ordem de serviço informado está inválido");
         }
 
@@ -122,7 +125,7 @@ public class OrdemDeServico
         this.idSupervisor = idSupervisor;
     }
 
-    public void alteraStatusOS(StatusOS statusOS) {
+    public void alteraStatusOs(StatusOS statusOS) {
         if(statusOS == null) {
             throw new StatusOsException("Uma ordem de serviço deve possuir seu status bem definido");
         }
@@ -136,5 +139,9 @@ public class OrdemDeServico
         }
 
         this.departamento = departamento;
+    }
+
+    public void alteraTipoOs(TipoOS tipoOS) {
+        this.tipoOS = tipoOS;
     }
 }

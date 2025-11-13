@@ -21,7 +21,7 @@ public abstract class Funcionario {
     // -- Construtor com ID -- //
     public Funcionario(long id, NomeFuncionario nome, CPF cpf, Senha senha, NivelAcesso nivelAcesso, ListaDepartamentos listaDepartamentos) {
         alteraListaDepartamentos(listaDepartamentos);
-        alteraIdUsuario(id);
+        alteraIdFuncionario(id);
         alteraNome(nome);
         alteraNivelAcesso(nivelAcesso);
         alteraCpf(cpf);
@@ -62,7 +62,7 @@ public abstract class Funcionario {
         this.listaDepartamentos = listaDepartamentos;
     }
 
-    public void alteraIdUsuario(long id) {
+    public void alteraIdFuncionario(long id) {
         if(id < 0) {
             throw new IdFuncionarioException("O ID do funcionário informado está inválido");
         }
@@ -131,4 +131,25 @@ public abstract class Funcionario {
     public boolean igualMinhaSenha(Senha senha) {
         return this.getSenha().getSenha().equals(senha.getSenha());
     }
+
+    public boolean igualMeuDepartamento(Departamento departamento) {
+        return this.listaDepartamentos.getListaDepartamentos().contains(departamento);
+    }
+
+    public boolean souAdministrador() {
+        return nivelAcesso == NivelAcesso.ADMIN;
+    }
+
+    public boolean souGerente() {
+        return nivelAcesso == NivelAcesso.GERENTE;
+    }
+
+    public boolean souSupervisor() {
+        return nivelAcesso == NivelAcesso.SUPERVISOR;
+    }
+
+    public boolean souTecnico() {
+        return nivelAcesso == NivelAcesso.TECNICO;
+    }
+
 }

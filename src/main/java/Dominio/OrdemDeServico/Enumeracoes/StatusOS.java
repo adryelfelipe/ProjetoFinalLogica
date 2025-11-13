@@ -1,28 +1,22 @@
 package Dominio.OrdemDeServico.Enumeracoes;
 
-public class StatusOS {
+public enum StatusOS {
     // ID 1
-    public static StatusOS EM_ANDAMENTO = new StatusOS("Em Andamento ", 1);
+    EM_ANDAMENTO( 1),
     // ID 2
-    public static StatusOS ATRASADA = new StatusOS("Atrasada", 2);
+    ATRASADA( 2),
     // ID 3
-    public static StatusOS FECHADA = new StatusOS("Fechada", 3);
+    FECHADA( 3);
 
     // -- Atributos -- //
-    private final String nome;
     private final int id;
 
     // -- Construtor privado -- //
-    private StatusOS(String nome, int id) {
-        this.nome = nome;
+    StatusOS( int id) {
         this.id = id;
     }
 
     // -- Getters -- //
-    public String getNome() {
-        return nome;
-    }
-
     public int getId() {
         return id;
     }

@@ -1,0 +1,99 @@
+package Views.Funcionario.Tecnico;
+
+public class MenuUpdateTecnico
+{
+    /*
+    public static void menuUpdateOS(Tecnico tecnico)
+    {
+        long idOrdem;
+        int UpdateOs = 0;
+        boolean verifica = false;
+
+        try
+        {
+            idOrdem = MenuEscolhaId.escolhaIdOs();
+        }
+        catch (InputMismatchException e)
+        {
+            Ferramentas.mensagemErro(e.getMessage());
+            return;
+        }
+
+        OrdemDeServico ordemDeServico = ((OrdemDeServico) ordemDeServicoService.findById(idOrdem));
+
+        while(true)
+        {
+
+            while(!verifica)
+            {
+
+                System.out.println("\n                                                 \n");
+                System.out.println("         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓          ");
+                System.out.println("         ┃   ATUALIZAR ORDEM DE SERVIÇO   ┃          ");
+                System.out.println("         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛          ");
+                System.out.println("                                                     ");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃   EDITAR   ORDEM   ┃         ┃        ATUAL       ┃");
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println(String.format("┃  1 - Status        ┃         ┃  %-26s┃" + ordemDeServico.getStatusOS().getNome()));
+                System.out.println(String.format("┃  \uD83D\uDD12 - Descrição    ┃         ┃  %-26s┃" + ordemDeServico.getDescricao().getDescricao()));
+                System.out.println(String.format("┃  \uD83D\uDD12 - Maquina      ┃         ┃  %-26s┃" + ordemDeServico.getIdMaquina()));
+                System.out.println(String.format("┃  \uD83D\uDD12 - Tecnico      ┃         ┃  %-26s┃" + ordemDeServico.getIdTecnico()));
+                System.out.println(String.format("┃  \uD83D\uDD12 - Valor        ┃         ┃  %-26s┃" + ordemDeServico.getValorOS().getValorOS()));
+                System.out.println("┃  6 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┃ ➤ Escolha:  ");
+
+                try
+                {
+                    UpdateOs = Ferramentas.lInteiro();
+                    verifica = true;
+                } catch (InputMismatchException e){
+                    Ferramentas.menuDefault();
+                }
+            }
+
+            // Reinicia a veriável de verificação
+            verifica = false;
+
+            switch(UpdateOs) {
+                case 1 ->
+                {
+                    StatusOS statusOS = MenuSetOrdemDeServico.menuSetStatusOS();
+                    ordemDeServicoService.updateStatusOS(tecnico, idOrdem, statusOS);
+                    ordemDeServico.alteraStatusOS(statusOS);
+                }
+
+                case 2 -> {
+                    Descricao descricao = MenuSetOrdemDeServico.SetDescricao();
+                    ordemDeServicoService.updateDescricaoOS(tecnico, idOrdem, descricao);
+                    ordemDeServico.alteraDescricao(descricao);
+                }
+
+                case 3 -> {
+                    long idMaquina = MenuSetMaquina.SetIdMaquina();
+                    ordemDeServicoService.updateIdMaquinaOS(tecnico, idOrdem, idMaquina);
+                    ordemDeServico.alteraIdMaquina(idMaquina);
+                }
+                case 4 -> {
+                    long idTecnico = MenuSetOrdemDeServico.SetIdTecnico();
+                    ordemDeServicoService.updateIdTecnico(tecnico, idOrdem, idTecnico);
+                    ordemDeServico.alteraIdTecnico(idTecnico);
+                }
+                case 5 ->
+                {
+                    ValorOS valorOS = MenuSetOrdemDeServico.SetValorOS();
+                    ordemDeServicoService.updateValorOS(tecnico, idOrdem, valorOS);
+                    ordemDeServico.alteraValorOS(valorOS);
+                }
+                case 6 ->
+                {
+                    return;
+                }
+                default -> Ferramentas.menuDefault();
+            }
+        }
+    }
+
+     */
+}

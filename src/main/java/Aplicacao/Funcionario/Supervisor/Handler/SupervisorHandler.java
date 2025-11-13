@@ -1,6 +1,6 @@
 package Aplicacao.Funcionario.Supervisor.Handler;
 
-import Aplicacao.Funcionario.Nucleo.Exceptions.AutorizacaoException;
+import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.AutorizacaoException;
 import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
 import Aplicacao.Funcionario.Supervisor.Dtos.Cadastro.CadastroSupervisorRequest;
 import Aplicacao.Funcionario.Supervisor.Dtos.Cadastro.CadastroSupervisorResponse;
@@ -29,7 +29,7 @@ public class SupervisorHandler {
     // -- Métodos -- //
     public CadastroSupervisorResponse salvar(NivelAcesso nivelAcesso, CadastroSupervisorRequest request) {
         try {
-            autorizacaoServico.temAcessoGerente(nivelAcesso);
+            autorizacaoServico.validaAcessoGerente(nivelAcesso);
             Supervisor supervisor = supervisorMapper.paraEntidade(request);
             funcionarioServico.cpfUtilizado(supervisor.getCpf());
             funcionarioServico.idUtilizado(supervisor.getId());

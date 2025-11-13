@@ -11,13 +11,13 @@ import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
 
 public class Maquina {
     // -- Atributos -- //
-    private Long idMaquina;
+    private long idMaquina;
     private NomeMaquina nome;
     private Localizacao localizacao;
     private StatusMaquina status;
 
     // -- Construtor com ID -- //
-    public Maquina(Long id, NomeMaquina nome, Localizacao localizacao, StatusMaquina status) {
+    public Maquina(long id, NomeMaquina nome, Localizacao localizacao, StatusMaquina status) {
         alteraIdMaquina(id);
         alteraNome(nome);
         alteraLocalizacao(localizacao);
@@ -26,7 +26,7 @@ public class Maquina {
 
     // -- Construtor sem ID -- //
     public Maquina(NomeMaquina nome, Localizacao localizacao, StatusMaquina status) {
-        this(null, nome, localizacao, status);
+        this(0, nome, localizacao, status);
     }
 
     // --  Getters -- //
@@ -43,17 +43,17 @@ public class Maquina {
         return status;
     }
 
-    public Long getIdMaquina() {
+    public long getIdMaquina() {
         return idMaquina;
     }
 
     // -- Alteradores -- //
     public void alteraIdMaquina(Long idMaquina) {
-        if(this.idMaquina != null) {
+        if(this.idMaquina != 0) {
             throw new IdMaquinaException("Não é possível alterar o ID de uma máquina");
         }
 
-        if(idMaquina != null && idMaquina < 1) {
+        if(idMaquina < 0) {
             throw new IdMaquinaException("O ID da máquina informado está inválido");
         }
 

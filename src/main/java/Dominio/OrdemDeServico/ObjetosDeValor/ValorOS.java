@@ -6,12 +6,13 @@ public final class ValorOS {
     private final double valorOS;
 
     public ValorOS(double valorOS) {
+        validaValorOS(valorOS);
         this.valorOS = valorOS;
     }
 
     private void validaValorOS(double valorOS) {
         if (valorOS < 0) {
-            throw new ValorOsException("O VALOR DA ORDEM DE SERVIÇO NAO PODE SER NEGATIVO");
+            throw new ValorOsException("O valor da ordem de serviço não pode ser negativo");
         }
     }
 

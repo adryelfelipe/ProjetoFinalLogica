@@ -9,6 +9,4 @@ public interface OrdemDeServicoRepositorio {
     void excluirPorId(long idOs);
     OrdemDeServico buscarPorId(long idOs);
     boolean existeId(long idOs);
-    boolean tecnicoPertenceAoDepartamento(long idTecnico, Departamento departamento);
-    boolean supervisorPertenceAoDepartamento(long idSupervisor, Departamento departamento);
 }
