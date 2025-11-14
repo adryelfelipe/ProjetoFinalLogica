@@ -14,7 +14,7 @@ public class MenuUpdateTecnico
     public static final OrdemDeServicoService ordemDeServicoService = new OrdemDeServicoService();
 
     public static void menuUpdateOS(Tecnico tecnico) {
- /*
+
         long idOrdem;
         int UpdateOs = 0;
         boolean verifica = false;
@@ -98,8 +98,6 @@ public class MenuUpdateTecnico
 
 
         }
-
- */
     }
 
 

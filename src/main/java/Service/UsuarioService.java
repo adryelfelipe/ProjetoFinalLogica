@@ -35,8 +35,16 @@ public class UsuarioService {
     }
 
     public Funcionario loginUsuario(String cpf, String senha) {
-        isCpfExistenteValidator(cpf);
-        return usuarioDao.loginUsuario(cpf, senha);
+        Funcionario funcionario = usuarioDao.buscar(cpf);
+        if(funcionario == null) {
+            throw new IllegalStateException("ERRO! SENHA OU CPF INVÁLIDOS");
+        }
+
+        if(funcionario.getSenha().equals(senha)) {
+            return  funcionario;
+        }
+
+        throw new IllegalStateException("ERRO! SENHA OU CPF INVÁLIDOS");
     }
 
     public Funcionario findById(long id) {
@@ -56,22 +64,19 @@ public class UsuarioService {
 
     public void salvarGerente(Funcionario funcionario, Funcionario cadastrado) {
         UsuarioValidator.temNivelAcesso4(funcionario);
-        isCpfExistenteValidator(cadastrado.getCpf());
-        isIdCadastradorValidator(cadastrado.getIdUsuario());
+        isCpfCadastradoValidator(cadastrado.getCpf());
         usuarioDao.salvar(cadastrado);
     }
 
     public void salvarTecnico(Funcionario funcionario, Funcionario cadastrado) {
         UsuarioValidator.temNivelAcesso3(funcionario);
-        isCpfExistenteValidator(cadastrado.getCpf());
-        isIdCadastradorValidator(cadastrado.getIdUsuario());
+        isCpfCadastradoValidator(cadastrado.getCpf());
         usuarioDao.salvar(cadastrado);
     }
 
     public void salvarSupervisor(Funcionario funcionario, Funcionario cadastrado) {
         UsuarioValidator.temNivelAcesso3(funcionario);
-        isCpfExistenteValidator(cadastrado.getCpf());
-        isIdCadastradorValidator(cadastrado.getIdUsuario());
+        isCpfCadastradoValidator(cadastrado.getCpf());;
         usuarioDao.salvar(cadastrado);
     }
 
