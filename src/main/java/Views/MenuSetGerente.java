@@ -1,8 +1,8 @@
 package Views;
 
-import Models.joias.Departamento;
+import Models.Enumeracoes.Departamento;
 import Util.Ferramentas;
-import ProjetoBase.GerenteValidator;
+import Service.Validator.GerenteValidator;
 
 import java.util.InputMismatchException;
 

@@ -1,19 +1,18 @@
 package Views;
 
-import Models.AdminModel;
-import Models.GerenteModel;
-import Models.joias.Departamento;
-import ProjetoBase.GerenteService;
-import ProjetoBase.UsuarioService;
+import Models.Administrador;
+import Models.Gerente;
+import Models.Enumeracoes.Departamento;
+import Service.UsuarioService;
 import Util.Ferramentas;
+
+import java.util.Arrays;
 
 public class MenuUpdateADM {
 
-    private static final GerenteService gerenteService = new GerenteService();
     private static final UsuarioService usuarioService = new UsuarioService();
 
-    public static void updateGerente(AdminModel adminModel) {
-        boolean verifica = false;
+    public static void updateGerente(Administrador administrador) {
         long idGerente;
         int opcaoAdm = 0;
 
@@ -26,9 +25,9 @@ public class MenuUpdateADM {
             return;
         }
 
-        GerenteModel gerente = ((GerenteModel) usuarioService.findById(idGerente));
+        Gerente gerente = ((Gerente) usuarioService.findById(idGerente));
 
-        while (!verifica)
+        while (true)
         {
             System.out.println("          |  ----------------------------  |          ");
             System.out.println("          |  ---  ATUALIZAR GERENTE  ----  |          ");
@@ -41,7 +40,7 @@ public class MenuUpdateADM {
             System.out.println("|  1 - Nome          |          |Nome: " + gerente.getNome());
             System.out.println("|  2 - CPF           |          |CPF: " + gerente.getCpf());
             System.out.println("|  3 - Senha         |          |Senha: " + gerente.getSenha());
-            System.out.println("|  5 - Departamento  |          |Departamento: " + gerente.getDepartamento());
+            System.out.println("|  5 - Departamento  |          |Departamento: " + gerente.getListaDepartamentos().getFirst());
             System.out.println("|  6 - Sair do Menu  |");
             System.out.println("|  Escolha:  ");
 
@@ -51,29 +50,25 @@ public class MenuUpdateADM {
                 switch (opcaoAdm) {
                     case 1 -> {
                         String nome = MenuSetUsuario.MenuSetNome();
-                        usuarioService.updateNomeUsuario(adminModel, idGerente, nome);
                         gerente.setNome(nome);
                     }
 
                     case 2 -> {
                         String cpf = MenuSetUsuario.MenuSetCpf();
-                        usuarioService.updateCpfUsuario(adminModel, idGerente, cpf);
                         gerente.setCpf(cpf);
                     }
 
                     case 3 -> {
                         String senha = MenuSetUsuario.MenuSetSenha();
-                        usuarioService.updateSenhaUsuario(adminModel, idGerente, senha);
                         gerente.setSenha(senha);
                     }
                     case 4 -> {
                         Departamento departamento = MenuSetGerente.menuSetDepartamento();
-                        gerenteService.updateDepartamento(adminModel, idGerente, departamento);
-                        gerente.setDepartamento(departamento);
+                        gerente.setListaDepartamentos(Arrays.asList(departamento));
                     }
                     case 5 ->
                     {
-                        verifica = true;
+                        usuarioService.atualizar(administrador, gerente);
                         return;
                     }
                     default -> Ferramentas.menuDefault();

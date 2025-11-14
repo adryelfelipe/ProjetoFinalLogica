@@ -1,15 +1,17 @@
 package Views;
 
-import Models.AdminModel;
-import Models.GerenteModel;
-import Models.joias.Departamento;
-import ProjetoBase.GerenteService;
+import Models.Administrador;
+import Models.Gerente;
+import Models.Enumeracoes.Departamento;
+import Service.UsuarioService;
 import Util.Ferramentas;
 
-public class MenuCadastroADM {
-    private static final GerenteService gerenteService = new GerenteService();
+import java.util.Arrays;
 
-    public static void menuCadastroGerente(AdminModel adminModel) {
+public class MenuCadastroADM {
+    private static final UsuarioService usuarioService = new UsuarioService();
+
+    public static void menuCadastroGerente(Administrador administrador) {
         System.out.println("|================================|");
         System.out.println("|       CADASTRO GERENTE         |");
         System.out.println("|================================|\n");
@@ -26,7 +28,7 @@ public class MenuCadastroADM {
         Ferramentas.limpaTerminal();
 
         // ----- Atribuição de caracteríscticas de um Gerente ----- //
-        Departamento idDepartamento = MenuSetGerente.menuSetDepartamento();
+        Departamento departamento = MenuSetGerente.menuSetDepartamento();
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //
@@ -37,8 +39,8 @@ public class MenuCadastroADM {
         Ferramentas.limpaTerminal();
 
         try {
-            GerenteModel gerente = new GerenteModel(nome, cpf, senha, idDepartamento);
-            gerenteService.inserirGerente(adminModel, gerente);
+            Gerente gerente = new Gerente(nome, cpf, senha, Arrays.asList(departamento));
+            usuarioService.salvarGerente(administrador, gerente);
             System.out.println("GERENTE CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);
         } catch (IllegalArgumentException | IllegalStateException e) {

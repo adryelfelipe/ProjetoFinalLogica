@@ -2,8 +2,8 @@ package Views;
 
 import Models.*;
 import Util.Ferramentas;
-import ProjetoBase.UsuarioService;
-import ProjetoBase.UsuarioValidator;
+import Service.UsuarioService;
+import Service.Validator.UsuarioValidator;
 
 public class MenuLogin
 {
@@ -12,7 +12,7 @@ public class MenuLogin
         boolean verifica = false;
         String cpfLogin = "";
         String senhaLogin = "1";
-        UsuarioModel usuario = null;
+        Funcionario funcionario = null;
 
         // Menu interativo
         while(!verifica) {
@@ -47,21 +47,21 @@ public class MenuLogin
         }
 
         try {
-            usuario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
+            funcionario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
         } catch (IllegalStateException e) {
             Ferramentas.mensagemErro("ERRO! CPF OU SENHA INVÁLIDOS");
             return;
         }
 
         Ferramentas.limpaTerminal();
-        if(usuario instanceof AdminModel){
-            MenuAdministrador.menuInicial((AdminModel) usuario);
-        } else if(usuario instanceof GerenteModel) {
-            MenuGerente.menuInicial((GerenteModel) usuario);
-        } else if(usuario instanceof SupervisorModel) {
-            MenuSupervisor.menuSupervisor((SupervisorModel) usuario);
-        } else if(usuario instanceof TecnicoModel) {
-            MenuTecnico.menuTecnico((TecnicoModel) usuario);
+        if(funcionario instanceof Administrador){
+            MenuAdministrador.menuInicial((Administrador) funcionario);
+        } else if(funcionario instanceof Gerente) {
+            MenuGerente.menuInicial((Gerente) funcionario);
+        } else if(funcionario instanceof Supervisor) {
+            MenuSupervisor.menuSupervisor((Supervisor) funcionario);
+        } else if(funcionario instanceof Tecnico) {
+            MenuTecnico.menuTecnico((Tecnico) funcionario);
         }
         else {
             Ferramentas.mensagemErro("ERRO! CPF OU SENHA INVÁLIDOS");

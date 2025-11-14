@@ -1,8 +1,8 @@
 package Views;
 
-import Models.joias.StatusMaquina;
+import Models.Enumeracoes.StatusMaquina;
 import Util.Ferramentas;
-import ProjetoBase.MaquinaValidator;
+import Service.Validator.MaquinaValidator;
 
 import java.util.InputMismatchException;
 

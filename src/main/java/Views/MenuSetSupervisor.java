@@ -1,7 +1,7 @@
 package Views;
 
 import Util.Ferramentas;
-import ProjetoBase.SupervisorValidator;
+import Service.Validator.SupervisorValidator;
 import java.util.InputMismatchException;
 
 public class MenuSetSupervisor {

@@ -1,6 +1,10 @@
 package Views;
 
-import ProjetoBase.*;
+import Service.*;
+import Service.Validator.MaquinaValidator;
+import Service.Validator.OrdemDeServicoValidator;
+import Service.Validator.SupervisorValidator;
+import Service.Validator.UsuarioValidator;
 import Util.Ferramentas;
 
 import java.util.InputMismatchException;

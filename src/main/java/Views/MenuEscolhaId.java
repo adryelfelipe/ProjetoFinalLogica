@@ -1,7 +1,7 @@
 package Views;
 
-import ProjetoBase.OrdemDeServicoService;
-import ProjetoBase.UsuarioService;
+import Service.OrdemDeServicoService;
+import Service.UsuarioService;
 import Util.Ferramentas;
 
 import java.util.InputMismatchException;

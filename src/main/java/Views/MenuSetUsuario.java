@@ -1,8 +1,8 @@
 package Views;
 
 import Util.Ferramentas;
-import ProjetoBase.UsuarioService;
-import ProjetoBase.UsuarioValidator;
+import Service.UsuarioService;
+import Service.Validator.UsuarioValidator;
 
 public class MenuSetUsuario
 {

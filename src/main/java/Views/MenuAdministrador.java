@@ -1,10 +1,10 @@
 package Views;
 
-import Models.AdminModel;
+import Models.Administrador;
 import Util.Ferramentas;
 
 public class MenuAdministrador {
-    public static void menuInicial(AdminModel adminModel) {
+    public static void menuInicial(Administrador administrador) {
         boolean continuar = false;
 
         while (!continuar) {
@@ -25,9 +25,9 @@ public class MenuAdministrador {
 
                 switch (opcaoAdmin)
                 {
-                    case 1 -> MenuCadastroADM.menuCadastroGerente(adminModel);
-                    case 2 -> MenuUpdateADM.updateGerente(adminModel);
-                    case 3 -> MenuAdminRemoverGerente.menuRemoverEscolha(adminModel);
+                    case 1 -> MenuCadastroADM.menuCadastroGerente(administrador);
+                    case 2 -> MenuUpdateADM.updateGerente(administrador);
+                    case 3 -> MenuAdminRemoverGerente.menuRemoverEscolha(administrador);
                     case 4 -> MenuInicial.Menu();
                     default -> Ferramentas.menuDefault();
                 }

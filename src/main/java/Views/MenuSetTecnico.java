@@ -1,7 +1,7 @@
 package Views;
 
-import Models.joias.Especialidade;
-import ProjetoBase.TecnicoValidator;
+import Models.Enumeracoes.Especialidade;
+import Service.Validator.TecnicoValidator;
 import Util.Ferramentas;
 
 import java.util.InputMismatchException;

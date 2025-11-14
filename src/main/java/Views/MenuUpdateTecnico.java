@@ -1,20 +1,20 @@
 package Views;
 
-import Models.OrdemDeServicoModel;
-import Models.TecnicoModel;
-import Models.joias.Especialidade;
-import ProjetoBase.OrdemDeServicoService;
-import ProjetoBase.UsuarioService;
+import Models.OrdemDeServico;
+import Models.Tecnico;
+import Models.Enumeracoes.Especialidade;
+import Service.OrdemDeServicoService;
 import Util.Ferramentas;
 
 import java.util.InputMismatchException;
 
 public class MenuUpdateTecnico
 {
+
     public static final OrdemDeServicoService ordemDeServicoService = new OrdemDeServicoService();
 
-    public static void menuUpdateOS(TecnicoModel tecnico)
-    {
+    public static void menuUpdateOS(Tecnico tecnico) {
+ /*
         long idOrdem;
         int UpdateOs = 0;
         boolean verifica = false;
@@ -29,7 +29,7 @@ public class MenuUpdateTecnico
             return;
         }
 
-        OrdemDeServicoModel ordemDeServico = ((OrdemDeServicoModel) ordemDeServicoService.findById(idOrdem));
+        OrdemDeServico ordemDeServico = ((OrdemDeServico) ordemDeServicoService.findById(idOrdem));
 
         while(true)
         {
@@ -66,6 +66,7 @@ public class MenuUpdateTecnico
             verifica = false;
 
             switch(UpdateOs) {
+
                 case 1 -> {
                     String nome = MenuSetUsuario.MenuSetNome();
                     ordemDeServicoService.updateNomeUsuario(gerente, idTecnico, nome);
@@ -94,6 +95,12 @@ public class MenuUpdateTecnico
                 }
                 default -> Ferramentas.menuDefault();
             }
+
+
         }
+
+ */
     }
+
+
 }

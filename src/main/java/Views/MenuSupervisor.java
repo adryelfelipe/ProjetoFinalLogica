@@ -1,13 +1,13 @@
 package Views;
 
 import Util.Ferramentas;
-import Models.SupervisorModel;
+import Models.Supervisor;
 
 import java.util.InputMismatchException;
 
 public class MenuSupervisor
 {
-    public static void menuSupervisor(SupervisorModel supervisor)
+    public static void menuSupervisor(Supervisor supervisor)
     {
         boolean continuar = false;
         int opcao = 0;

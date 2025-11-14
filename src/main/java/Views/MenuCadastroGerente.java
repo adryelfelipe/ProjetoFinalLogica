@@ -1,21 +1,21 @@
 package Views;
 
 import Models.*;
-import Models.joias.Especialidade;
-import Models.joias.StatusMaquina;
-import ProjetoBase.MaquinaService;
-import ProjetoBase.SupervisorService;
-import ProjetoBase.TecnicoService;
+import Models.Enumeracoes.Departamento;
+import Models.Enumeracoes.Especialidade;
+import Models.Enumeracoes.StatusMaquina;
+import Service.MaquinaService;
+import Service.UsuarioService;
 import Util.Ferramentas;
-import ProjetoBase.GerenteService;
+
+import java.util.Arrays;
 
 public class MenuCadastroGerente {
     // -- Atributos -- //
-    private static final SupervisorService supervisorService = new SupervisorService();
     private static final MaquinaService maquinaService = new MaquinaService();
-    private static final TecnicoService tecnicoService = new TecnicoService();
+    private static final UsuarioService usuarioService = new UsuarioService();
 
-    public static void menuCadastroSupervisor(GerenteModel gerente) {
+    public static void menuCadastroSupervisor(Gerente gerente) {
         System.out.println("|================================|");
         System.out.println("|       CADASTRO SUPERVISOR      |");
         System.out.println("|================================|\n");
@@ -31,6 +31,10 @@ public class MenuCadastroGerente {
 
         String senha = MenuSetUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
+
+        Departamento departamento = MenuSetGerente.menuSetDepartamento();
+        Ferramentas.limpaTerminal();
+
         // ----- Atribuição de caracteríscticas de um Supervisor ----- //
         double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
         Ferramentas.limpaTerminal();
@@ -42,8 +46,8 @@ public class MenuCadastroGerente {
 
 
         try {
-            SupervisorModel supervisor = new SupervisorModel(nome, cpf, senha, metaMensal);
-            supervisorService.inserirSupervisor(gerente, supervisor);
+            Supervisor supervisor = new Supervisor(nome, cpf, senha, metaMensal, Arrays.asList(departamento));
+            usuarioService.salvarSupervisor(gerente, supervisor);
             Ferramentas.limpaTerminal();
             System.out.println("SUPERVISOR CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);
@@ -53,7 +57,7 @@ public class MenuCadastroGerente {
         }
     }
 
-    public static void menuCadastroMaquina(GerenteModel gerente) {
+    public static void menuCadastroMaquina(Gerente gerente) {
         System.out.println("|================================|");
         System.out.println("|       CADASTRO  MÁQUINA        |");
         System.out.println("|================================|\n");
@@ -62,7 +66,7 @@ public class MenuCadastroGerente {
         String nome = MenuSetMaquina.MenuSetNomeMaquina();
         Ferramentas.limpaTerminal();
 
-        String localizacao = MenuSetMaquina.MenuSetLocalizacao();
+        Departamento departamento = MenuSetGerente.menuSetDepartamento();
         Ferramentas.limpaTerminal();
 
         StatusMaquina idStatus = MenuSetMaquina.MenuSetStatusMaquina();
@@ -74,7 +78,7 @@ public class MenuCadastroGerente {
         Ferramentas.Delay(1000);
 
         try {
-            MaquinaModel maquina = new MaquinaModel(nome, localizacao, idStatus);
+            Maquina maquina = new Maquina(nome, departamento, idStatus);
             maquinaService.inserirMaquina(gerente, maquina);
             Ferramentas.limpaTerminal();
             System.out.println("MÁQUINA CADASTRADO COM SUCESSO!");
@@ -84,7 +88,7 @@ public class MenuCadastroGerente {
         }
     }
 
-    public static void menuCadastroTecnico(GerenteModel gerente) {
+    public static void menuCadastroTecnico(Gerente gerente) {
         System.out.println(" ");
         System.out.println("|================================|");
         System.out.println("|       CADASTRO  TÉCNICO        |");
@@ -99,6 +103,10 @@ public class MenuCadastroGerente {
 
         String senha = MenuSetUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
+
+        Departamento departamento = MenuSetGerente.menuSetDepartamento();
+        Ferramentas.limpaTerminal();
+
         // ----- Atribuição de caracteríscticas de um Técnico ----- //
         Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
 
@@ -109,8 +117,8 @@ public class MenuCadastroGerente {
         Ferramentas.Delay(1000);
 
         try {
-            TecnicoModel tecnico = new TecnicoModel(nome, cpf, senha, especialidade);
-            tecnicoService.inserirTecnico(gerente, tecnico);
+            Tecnico tecnico = new Tecnico(nome, cpf, senha, especialidade, Arrays.asList(departamento));
+            usuarioService.salvarTecnico(gerente, tecnico);
             Ferramentas.limpaTerminal();
             System.out.println("TÉCNICO CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);

@@ -1,11 +1,11 @@
 package Views;
 
 import Util.Ferramentas;
-import Models.GerenteModel;
+import Models.Gerente;
 
 public class MenuGerente
 {
-    public static void menuInicial(GerenteModel gerenteModel)
+    public static void menuInicial(Gerente gerente)
     {
         boolean continuar = false;
 
@@ -28,10 +28,10 @@ public class MenuGerente
 
                 Ferramentas.limpaTerminal();
                 switch (opcaoGerente) {
-                    case 1 -> MenuGerenteCadastrar.criarUsuarios(gerenteModel);
+                    case 1 -> MenuGerenteCadastrar.criarUsuarios(gerente);
                     case 2 -> MenuGerenteVisualizarRelatorios.visualizarRelatorios();
-                    case 3 -> MenuUpdateGerente.menuUpdateEscolha(gerenteModel);
-                    case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha(gerenteModel);
+                    case 3 -> MenuUpdateGerente.menuUpdateEscolha(gerente);
+                    case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha(gerente);
                     case 5 ->
                     {
                         System.out.println("|  RETORNANDO AO MENU INICIAL ...");
