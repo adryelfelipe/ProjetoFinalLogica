@@ -20,6 +20,8 @@ public class MenuEscolhaId
                 usuarioService.isIdExistenteValidator(id);
                 return id;
             } catch (InputMismatchException e) {
+                Ferramentas.menuDefault();
+            } catch (IllegalStateException e) {
                 Ferramentas.mensagemErro(e.getMessage());
             }
         }

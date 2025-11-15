@@ -1,6 +1,7 @@
 package Views;
 
 import Models.Enumeracoes.Departamento;
+import Models.Enumeracoes.TipoOs;
 import Models.OrdemDeServico;
 import Models.Supervisor;
 import Models.Enumeracoes.StatusOS;
@@ -46,7 +47,7 @@ public class MenuCadastroSupervisor
         Departamento departamento = maquinaService.maquinaParaDepartamento(idMaquina);
 
         try {
-            OrdemDeServico ordemServico =   new OrdemDeServico(idTecnico, idMaquina,StatusOS.EM_ANDAMENTO, descricao, valorOrdemServico, departamento);
+            OrdemDeServico ordemServico =   new OrdemDeServico(idTecnico, idMaquina,StatusOS.ABERTA, descricao, valorOrdemServico, departamento, TipoOs.CORRETIVA);
             ordemDeServicoService.inserirOrdemDeServico(supervisor, ordemServico);
             Ferramentas.limpaTerminal();
             System.out.println("MÁQUINA CADASTRADO COM SUCESSO!");

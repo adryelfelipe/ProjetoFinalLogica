@@ -2,6 +2,7 @@ package Models;
 
 import Models.Enumeracoes.Departamento;
 import Models.Enumeracoes.StatusOS;
+import Models.Enumeracoes.TipoOs;
 import Service.Validator.OrdemDeServicoValidator;
 
 public class OrdemDeServico
@@ -13,10 +14,11 @@ public class OrdemDeServico
     private long idMaquina;
     private long idTecnico;
     private Departamento departamento;
+    private TipoOs tipoOs;
     private double valorDaOrdemDeServico;
 
     //--------------------  CONSTRUTOR COM ID --------------------//
-    public OrdemDeServico(long idOrdemDeServico, long id_Tecnico, long id_Maquina, StatusOS statusDaOrdem, String descricao, double valorDaOrdemDeServico, Departamento departamento) {
+    public OrdemDeServico(long idOrdemDeServico, long id_Tecnico, long id_Maquina, StatusOS statusDaOrdem, String descricao, double valorDaOrdemDeServico, Departamento departamento, TipoOs tipoOs) {
         this.idOrdemDeServico = idOrdemDeServico;
         this.idTecnico = id_Tecnico;
         this.idMaquina = id_Maquina;
@@ -27,8 +29,8 @@ public class OrdemDeServico
     }
 
     //--------------------  CONSTRUTOR SEM ID --------------------//
-    public OrdemDeServico(long id_Tecnico, long id_Maquina, StatusOS statusDaOrdem, String descricao, double valorDaOrdemDeServico, Departamento departamento) {
-        this(0, id_Tecnico, id_Maquina, statusDaOrdem, descricao, valorDaOrdemDeServico, departamento);
+    public OrdemDeServico(long id_Tecnico, long id_Maquina, StatusOS statusDaOrdem, String descricao, double valorDaOrdemDeServico, Departamento departamento, TipoOs tipoOs) {
+        this(0, id_Tecnico, id_Maquina, statusDaOrdem, descricao, valorDaOrdemDeServico, departamento, tipoOs);
     }
 
     //-------------  SETTERS E GETTERS  -------------//

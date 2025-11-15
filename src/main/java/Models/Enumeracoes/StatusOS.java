@@ -2,9 +2,9 @@ package Models.Enumeracoes;
 
 public class StatusOS {
     // ID 1
-    public static StatusOS EM_ANDAMENTO = new StatusOS("Em Andamento ", 1);
+    public static StatusOS ABERTA = new StatusOS("Aberta ", 1);
     // ID 2
-    public static StatusOS ATRASADA = new StatusOS("Atrasada", 2);
+    public static StatusOS EM_ANDAMENTO = new StatusOS("Em andamento", 2);
     // ID 3
     public static StatusOS FECHADA = new StatusOS("Fechada", 3);
 
