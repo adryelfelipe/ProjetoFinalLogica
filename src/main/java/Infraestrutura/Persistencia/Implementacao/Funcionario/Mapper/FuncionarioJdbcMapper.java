@@ -13,6 +13,7 @@ import Dominio.Funcionario.Supervisor.ObjetosDeValor.MetaMensal;
 import Dominio.Funcionario.Supervisor.Supervisor;
 import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
 import Dominio.Funcionario.Tecnico.Tecnico;
+import Infraestrutura.Configuracao.ConnectionFactory;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +23,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FuncionarioJdbcMapper {
+public class FuncionarioJdbcMapper
+{
 
     public Funcionario paraEntidadePorId(ResultSet rs) throws SQLException {
         // Pega dados comuns...
