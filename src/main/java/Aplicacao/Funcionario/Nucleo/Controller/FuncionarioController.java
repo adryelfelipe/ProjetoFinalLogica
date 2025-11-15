@@ -41,6 +41,6 @@ public class FuncionarioController {
     }
 
     public ListaFuncionariosResponse listaFuncionariosParaGerente(NivelAcesso nivelAcesso) {
-        return funcionarioHandler.listaFuncionariosParaGerente(nivelAcesso);
+        return funcionarioHandler.listarFuncionariosParaGerente(nivelAcesso);
     }
 }

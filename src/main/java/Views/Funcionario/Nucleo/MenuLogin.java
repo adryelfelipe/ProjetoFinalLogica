@@ -37,7 +37,7 @@ public class MenuLogin
             }
 
             if(response.nivelAcesso().equals(NivelAcesso.SUPERVISOR)) {
-                MenuSupervisor.menuSupervisor(response.nivelAcesso());
+                MenuSupervisor.menuSupervisor(response.id(), response.nivelAcesso());
             }
 
             if(response.nivelAcesso().equals(NivelAcesso.TECNICO)) {

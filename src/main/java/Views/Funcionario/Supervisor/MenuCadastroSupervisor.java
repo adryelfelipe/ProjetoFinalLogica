@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class MenuCadastroSupervisor
 {
     // -- Atributos -- //
-    public static void menuCadastroOrdem(NivelAcesso nivelAcesso) {
+    public static void menuCadastroOrdem(long idSupervisor, NivelAcesso nivelAcesso) {
         // Menu de cadastro
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃    CADASTRO ORDEM DE SERVIÇO   ┃");
@@ -31,19 +31,17 @@ public class MenuCadastroSupervisor
         Ferramentas.limpaTerminal();
         long idMaquina = MenuSetMaquina.SetIdMaquina();
         Ferramentas.limpaTerminal();
-        long idSupervisor = MenuSetOrdemDeServico.SetIdSupervisor();
         String descricao = MenuSetOrdemDeServico.SetDescricao();
         Ferramentas.limpaTerminal();
         double valorOS = MenuSetOrdemDeServico.SetValorOS();
         Ferramentas.limpaTerminal();
-        ArrayList<Departamento> departamento = MenuSetGerente.menuSetDepartamento();
 
         // -- Criação do objeto e inserção no banco de dados -- //
         System.out.println("PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
 
         // -- Gerando request para cadastro de Ordem de Serviço -- //
-        CadastroOsRequest request = new CadastroOsRequest(idTecnico, idSupervisor, idMaquina, StatusOS.EM_ANDAMENTO, descricao, valorOS, departamento.getFirst(), TipoOS.CORRETIVA);
+        CadastroOsRequest request = new CadastroOsRequest(idTecnico, idSupervisor, idMaquina, StatusOS.EM_ANDAMENTO, descricao, valorOS, TipoOS.CORRETIVA);
         CadastroOsResponse response = Main.osController.salvar(nivelAcesso, request);
         Ferramentas.mensagemErro(response.mensagem());
         Ferramentas.limpaTerminal();

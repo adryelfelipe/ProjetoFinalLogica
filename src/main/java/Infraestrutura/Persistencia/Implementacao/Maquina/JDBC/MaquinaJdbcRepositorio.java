@@ -16,7 +16,7 @@ public class MaquinaJdbcRepositorio {
              PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS)) {
             //Definindo parametros (PreparedStatement).
             stmt.setString(1, maquina.getNome().getNome());
-            stmt.setString(2, maquina.getLocalizacao().getLocalizacao());
+            stmt.setString(2, maquina.getDepartamento().name());
             stmt.setLong(3, maquina.getStatus().getId());
 
             int linhasAF = stmt.executeUpdate();

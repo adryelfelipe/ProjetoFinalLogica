@@ -13,12 +13,18 @@ public class MenuAdminRemoverGerente {
     public static void menuRemoverEscolha(long idAdm, NivelAcesso nivelAcesso) {
         ListaFuncionariosResponse responseLista = Main.funcionarioController.listaFuncionariosParaAdm(nivelAcesso);
 
+        if(responseLista.listaFuncionarios() == null) {
+            Ferramentas.mensagemErro(responseLista.mensagem());
+            return;
+        }
+
         if(responseLista.listaFuncionarios().isEmpty()) {
             Ferramentas.mensagemErro("Não há nenhum funcionário para excluir");
-        } else{
-            for(FuncionarioResponse funcionario : responseLista.listaFuncionarios()) {
-                System.out.println("ID: " + funcionario.id() + " Nome: " + funcionario.nome().getNome() + "  // Cargo: " + funcionario.nivelAcesso().name());
-            }
+            return;
+        }
+
+        for(FuncionarioResponse funcionario : responseLista.listaFuncionarios()) {
+            System.out.println("ID: " + funcionario.id() + " Nome: " + funcionario.nome().getNome() + "  // Cargo: " + funcionario.nivelAcesso().name());
         }
 
         long id = MenuEscolhaId.escolhaIdUpdate();

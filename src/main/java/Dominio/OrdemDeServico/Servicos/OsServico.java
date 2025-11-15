@@ -38,7 +38,7 @@ public class OsServico {
 
     public void supervisorPertenceAoDepartamento(long idSupervisor, Departamento departamento) {
         if(!funcionarioRepositorio.buscar(idSupervisor).igualMeuDepartamento(departamento)) {
-            throw new IdSupervisorOsException("O supervisor indicado não pode operar neste departamento");
+            throw new IdSupervisorOsException("O supervisor criador não pode operar neste departamento");
         }
     }
 

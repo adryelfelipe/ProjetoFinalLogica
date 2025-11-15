@@ -2,19 +2,20 @@ package Aplicacao.OrdemDeServico.Mapper;
 
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsResponse;
+import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.OrdemDeServico.ObjetosDeValor.Descricao;
 import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
 import Dominio.OrdemDeServico.OrdemDeServico;
 
 public class OrdemDeServicoMapper {
-    public OrdemDeServico paraEntidade(CadastroOsRequest request) {
+    public OrdemDeServico paraEntidade(CadastroOsRequest request, Departamento departamento) {
         return new OrdemDeServico(request.idTecnico(),
                 request.idSupervisor(),
                 request.idMaquina(),
                 request.statusOS(),
                 new Descricao(request.descricao()),
                 new ValorOS(request.valorOS()),
-                request.departamento(), request.tipoOS());
+                departamento, request.tipoOS());
     }
 
     // Cadastro foi um sucesso

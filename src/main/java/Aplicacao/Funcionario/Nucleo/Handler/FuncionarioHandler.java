@@ -78,12 +78,20 @@ public class FuncionarioHandler {
     }
 
     public ListaFuncionariosResponse listarFuncionariosParaAdm(NivelAcesso nivelAcesso) {
-        autorizacaoServico.validaAcessoListarFuncionarios(nivelAcesso);
-        return funcionarioMapper.paraListaResponseAdm(funcionarioRepositorio.listarFuncionarios());
+        try {
+            autorizacaoServico.validaAcessoListarFuncionarios(nivelAcesso);
+            return funcionarioMapper.paraListaResponseAdm(funcionarioRepositorio.listarFuncionarios());
+        } catch (AutorizacaoException e) {
+            return funcionarioMapper.paraListaResponseAdm(e.getMessage());
+        }
     }
 
-    public ListaFuncionariosResponse listaFuncionariosParaGerente(NivelAcesso nivelAcesso) {
-        autorizacaoServico.validaAcessoListarFuncionarios(nivelAcesso);
-        return funcionarioMapper.paraListaResponseGerente(funcionarioRepositorio.listarFuncionarios());
+    public ListaFuncionariosResponse listarFuncionariosParaGerente(NivelAcesso nivelAcesso) {
+        try {
+            autorizacaoServico.validaAcessoListarFuncionarios(nivelAcesso);
+            return funcionarioMapper.paraListaResponseGerente(funcionarioRepositorio.listarFuncionarios());
+        } catch (AutorizacaoException e) {
+            return funcionarioMapper.paraListaResponseGerente(e.getMessage());
+        }
     }
 }

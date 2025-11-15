@@ -25,6 +25,7 @@ public class FuncionarioMapper {
         return new ExcluirFuncionarioResponse(mensagem, status);
     }
 
+    // Listagem de funcionários para o ADM foi um sucesso
     public ListaFuncionariosResponse paraListaResponseAdm(List<Funcionario> listaFuncionarios) {
         List<FuncionarioResponse> listaFuncionariosResponse = new ArrayList<>();
 
@@ -35,9 +36,15 @@ public class FuncionarioMapper {
             }
         }
 
-        return new ListaFuncionariosResponse(listaFuncionariosResponse, true);
+        return new ListaFuncionariosResponse(listaFuncionariosResponse, true, "Listagem bem sucedida");
     }
 
+    // Listagem de funcionários para o ADM falhou
+    public ListaFuncionariosResponse paraListaResponseAdm(String mensagem) {
+        return new ListaFuncionariosResponse(null, false, mensagem);
+    }
+
+    // Listagem de funcionários para o Gerente foi um sucesso
     public ListaFuncionariosResponse paraListaResponseGerente(List<Funcionario> listaFuncionarios) {
         List<FuncionarioResponse> listaFuncionariosResponse = new ArrayList<>();
 
@@ -48,6 +55,11 @@ public class FuncionarioMapper {
             }
         }
 
-        return new ListaFuncionariosResponse(listaFuncionariosResponse, true);
+        return new ListaFuncionariosResponse(listaFuncionariosResponse, true, "Listagem bem sucedida");
+    }
+
+    // Listagem de funcionários para o ADM falhou
+    public ListaFuncionariosResponse paraListaResponseGerente(String mensagem) {
+        return new ListaFuncionariosResponse(null, false, mensagem);
     }
 }

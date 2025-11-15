@@ -1,6 +1,6 @@
 package Dominio.Maquina;
 
-import Dominio.Funcionario.Nucleo.Exceptions.IdFuncionarioException;
+import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Maquina.Enumeracoes.StatusMaquina;
 import Dominio.Maquina.Exceptions.IdMaquinaException;
 import Dominio.Maquina.Exceptions.LocalizacaoInvalidaException;
@@ -13,20 +13,20 @@ public class Maquina {
     // -- Atributos -- //
     private long idMaquina;
     private NomeMaquina nome;
-    private Localizacao localizacao;
+    private Departamento departamento;
     private StatusMaquina status;
 
     // -- Construtor com ID -- //
-    public Maquina(long id, NomeMaquina nome, Localizacao localizacao, StatusMaquina status) {
+    public Maquina(long id, NomeMaquina nome, Departamento departamento, StatusMaquina status) {
         alteraIdMaquina(id);
         alteraNome(nome);
-        alteraLocalizacao(localizacao);
+        alteraDepartamento(departamento);
         alteraStatus(status);
     }
 
     // -- Construtor sem ID -- //
-    public Maquina(NomeMaquina nome, Localizacao localizacao, StatusMaquina status) {
-        this(0, nome, localizacao, status);
+    public Maquina(NomeMaquina nome, Departamento departamento, StatusMaquina status) {
+        this(0, nome, departamento, status);
     }
 
     // --  Getters -- //
@@ -34,8 +34,8 @@ public class Maquina {
         return nome;
     }
 
-    public Localizacao getLocalizacao() {
-        return localizacao;
+    public Departamento getDepartamento() {
+        return departamento;
     }
 
 
@@ -76,12 +76,12 @@ public class Maquina {
         this.status = status;
     }
 
-    public void alteraLocalizacao(Localizacao localizacao) {
-        if(localizacao == null) {
+    public void alteraDepartamento(Departamento departamento) {
+        if(departamento == null) {
             throw new LocalizacaoInvalidaException("A máquina deve possuir sua localização bem definida");
         }
 
-        this.localizacao = localizacao;
+        this.departamento = departamento;
     }
 
 }

@@ -8,7 +8,7 @@ import java.util.InputMismatchException;
 
 public class MenuSupervisor
 {
-    public static void menuSupervisor(NivelAcesso nivelAcesso) {
+    public static void menuSupervisor(long idSupervisor, NivelAcesso nivelAcesso) {
         while(true) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃         MENU SUPERVISOR        ┃");
@@ -24,7 +24,7 @@ public class MenuSupervisor
                 int opcao = Ferramentas.lInteiro();
 
                 switch (opcao) {
-                    case 1 -> MenuCadastroSupervisor.menuCadastroOrdem(nivelAcesso);
+                    case 1 -> MenuCadastroSupervisor.menuCadastroOrdem(idSupervisor, nivelAcesso);
                     case 2 -> MenuSupervisorAcompanharStatus.acompanharStatus();
                     case 3 -> {
                         System.out.println("RETORNANDO AO MENU INICIAL! . . .");

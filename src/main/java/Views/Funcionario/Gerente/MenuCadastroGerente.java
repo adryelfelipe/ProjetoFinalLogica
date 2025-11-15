@@ -62,7 +62,7 @@ public class MenuCadastroGerente {
         String nome = MenuSetMaquina.MenuSetNomeMaquina();
         Ferramentas.limpaTerminal();
 
-        String localizacao = MenuSetMaquina.MenuSetLocalizacao();
+        Departamento departamento = MenuSetGerente.menuSetDepartamento().getFirst();
         Ferramentas.limpaTerminal();
 
         StatusMaquina status = MenuSetMaquina.MenuSetStatusMaquina();
@@ -73,7 +73,7 @@ public class MenuCadastroGerente {
         Ferramentas.Delay(1000);
 
         // -- Gerando request para cadastro de Máquina -- //
-        CadastroMaquinaRequest request = new CadastroMaquinaRequest(nome, localizacao, status);
+        CadastroMaquinaRequest request = new CadastroMaquinaRequest(nome, departamento, status);
         CadastroMaquinaResponse response = Main.maquinaController.salvar(nivelAcesso, request);
         Ferramentas.mensagemErro(response.mensagem());
         Ferramentas.Delay(800);

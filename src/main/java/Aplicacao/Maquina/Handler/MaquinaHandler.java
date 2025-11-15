@@ -4,6 +4,7 @@ import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.AutorizacaoException;
 import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
 import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaRequest;
 import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaResponse;
+import Aplicacao.Maquina.Dtos.Listar.ListaMaquinasResponse;
 import Aplicacao.Maquina.Mapper.MaquinaMapper;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Maquina.Exceptions.MaquinaException;
@@ -39,4 +40,15 @@ public class MaquinaHandler {
             return maquinaMapper.paraResponseCadastro(e.getMessage());
         }
     }
+
+    public ListaMaquinasResponse listarMaquinas(NivelAcesso nivelAcesso) {
+        try {
+            autorizacaoServico.validaAcessoSupervisor(nivelAcesso);
+            return maquinaMapper.paraListaResponse(maquinaRepositorio.listaMaquinas());
+        } catch (AutorizacaoException e) {
+            return maquinaMapper.paraListaResponse(e.getMessage());
+        }
+    }
+
+    public
 }
