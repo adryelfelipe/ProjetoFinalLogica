@@ -8,15 +8,15 @@ public class MenuAdministrador {
     public static void menuInicial(long idAdm, NivelAcesso nivelAcesso) {
 
         while (true) {
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃      MENU ADMINISTRADOR        ┃");
-            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-            System.out.println("┃                                ┃");
-            System.out.println("┃  1 - Criar Gerente             ┃");
-            System.out.println("┃  2 - Atualizar Gerente         ┃");
-            System.out.println("┃  3 - Remover Gerente           ┃");
-            System.out.println("┃  4 - Retornar                  ┃");
-            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃          MENU ADMINISTRADOR          ┃");
+            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+            System.out.println("┃                                      ┃");
+            System.out.println("┃  1 - Criar Gerente                   ┃");
+            System.out.println("┃  2 - Atualizar Gerente               ┃");
+            System.out.println("┃  3 - Remover Gerente                 ┃");
+            System.out.println("┃  4 - Retornar                        ┃");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
             try {

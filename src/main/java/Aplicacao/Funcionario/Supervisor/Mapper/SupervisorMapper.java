@@ -23,7 +23,7 @@ public class SupervisorMapper {
 
     // Cadastro foi um sucesso
     public CadastroSupervisorResponse paraResponseCadastro(Supervisor supervisor) {
-        return new CadastroSupervisorResponse(supervisor.getId(), supervisor.getNome(), true, "Supervisor cadastrado com sucesso!");
+        return new CadastroSupervisorResponse(supervisor.getId(), supervisor.getNome(), true, "✅ Supervisor cadastrado com sucesso!");
     }
 
     // Cadastro falhou

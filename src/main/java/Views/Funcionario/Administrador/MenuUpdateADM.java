@@ -1,7 +1,7 @@
 package Views.Funcionario.Administrador;
 
 public class MenuUpdateADM {
-/*
+
     private static final GerenteService gerenteService = new GerenteService();
     private static final UsuarioService usuarioService = new UsuarioService();
 
@@ -10,19 +10,16 @@ public class MenuUpdateADM {
         long idGerente;
         int opcaoAdm = 0;
 
-        try
-        {
+        try {
             idGerente = MenuEscolhaId.escolhaIdUpdate();
-        } catch (IllegalArgumentException e)
-        {
+        } catch (IllegalArgumentException e) {
             Ferramentas.mensagemErro(e.getMessage());
             return;
         }
 
         Gerente gerente = ((Gerente) usuarioService.findById(idGerente));
 
-        while (!verifica)
-        {
+        while (!verifica) {
             System.out.println("          ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓          ");
             System.out.println("          ┃       ATUALIZAR GERENTE        ┃          ");
             System.out.println("          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛          ");
@@ -35,8 +32,8 @@ public class MenuUpdateADM {
             System.out.println(String.format("┃  2 - CPF           ┃          ┃  %-26s┃" + gerente.getCpf()));
             System.out.println(String.format("┃  3 - Senha         ┃          ┃  %-26s┃" + gerente.getSenha()));
             System.out.println(String.format("┃  5 - Departamento  ┃          ┃  %-26s┃" + gerente.getDepartamentos().getListaDepartamentos().get(0)));
-            System.out.println("┃  6 - Sair do Menu  ┃          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
+            System.out.println("║  6 - Sair do Menu  ┃          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+            System.out.println("╚════════════════════┛");
             System.out.println("┃ ➤ Escolha:  ");
 
             try {
@@ -65,22 +62,16 @@ public class MenuUpdateADM {
                         gerenteService.updateDepartamento(idGerente, new ListaDepartamentos(Arrays.asList(departamento)));
                         gerente.adicionarDepartamento(departamento);
                     }
-                    case 5 ->
-                    {
+                    case 5 -> {
                         verifica = true;
                         return;
                     }
                     default -> Ferramentas.menuDefault();
                 }
-            }
-            catch(IllegalArgumentException e)
-            {
+            } catch (IllegalArgumentException e) {
                 Ferramentas.mensagemErro(e.getMessage());
             }
         }
 
-
     }
-
-             */
 }

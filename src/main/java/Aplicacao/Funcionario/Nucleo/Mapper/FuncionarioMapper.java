@@ -13,7 +13,7 @@ import java.util.List;
 public class FuncionarioMapper {
     // Login realizado com sucesso
     public LoginFuncionarioResponse paraLoginResponse(Funcionario funcionario) {
-        return new LoginFuncionarioResponse(funcionario.getId(), funcionario.getNivelAcesso(), "Login realizado com sucesso", true);
+        return new LoginFuncionarioResponse(funcionario.getId(), funcionario.getNivelAcesso(), "✅ Login realizado com sucesso", true);
     }
 
     // Login falhou
