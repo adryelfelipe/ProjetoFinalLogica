@@ -12,7 +12,7 @@ import java.util.List;
 
 public class FuncionarioDAO {
 
-        FuncionarioDaoMapper mapper;
+        FuncionarioDaoMapper mapper = new FuncionarioDaoMapper();
 
         public boolean existeCpf(String cpf)
         {
