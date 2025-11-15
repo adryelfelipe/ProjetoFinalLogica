@@ -1,7 +1,7 @@
 package Infraestrutura.Persistencia.Testes.Maquina;
 
 import Dominio.Maquina.Maquina;
-import Dominio.Maquina.Repositories.MaquinaRepositorio;
+import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 
 import java.util.ArrayList;
 

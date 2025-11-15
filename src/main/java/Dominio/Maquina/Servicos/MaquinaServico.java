@@ -1,7 +1,7 @@
 package Dominio.Maquina.Servicos;
 
 import Dominio.Maquina.Exceptions.IdMaquinaException;
-import Dominio.Maquina.Repositories.MaquinaRepositorio;
+import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 
 public class MaquinaServico {
     // -- Atributos -- //

@@ -30,8 +30,7 @@ public class MenuUpdateGerente {
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃ ➤ Escolha: ");
 
-                try
-                {
+                try {
                     opUpdate = Ferramentas.lInteiro();
                     verifica = true;
                 }
@@ -59,8 +58,7 @@ public class MenuUpdateGerente {
         int UpdateT = 0;
         boolean verifica = false;
 
-        try
-        {
+        try {
             idTecnico = MenuEscolhaId.escolhaIdUpdate();
         } catch (InputMismatchException e)
         {
