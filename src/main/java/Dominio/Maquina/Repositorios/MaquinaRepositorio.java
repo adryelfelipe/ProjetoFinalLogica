@@ -1,4 +1,4 @@
-package Dominio.Maquina.Repositories;
+package Dominio.Maquina.Repositorios;
 
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Maquina.Maquina;

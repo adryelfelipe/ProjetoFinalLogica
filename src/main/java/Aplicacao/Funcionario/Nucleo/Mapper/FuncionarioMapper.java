@@ -1,7 +1,7 @@
 package Aplicacao.Funcionario.Nucleo.Mapper;
 
 import Aplicacao.Funcionario.Nucleo.Dtos.Excluir.ExcluirFuncionarioResponse;
-import Aplicacao.Funcionario.Nucleo.Dtos.ListarFuncionarios.FuncionarioResponse;
+import Aplicacao.Funcionario.Nucleo.Dtos.Funcionario.FuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.ListarFuncionarios.ListaFuncionariosResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioResponse;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
@@ -13,7 +13,7 @@ import java.util.List;
 public class FuncionarioMapper {
     // Login realizado com sucesso
     public LoginFuncionarioResponse paraLoginResponse(Funcionario funcionario) {
-        return new LoginFuncionarioResponse(funcionario.getId(), funcionario.getNivelAcesso(), "Login realizado com sucesso", true);
+        return new LoginFuncionarioResponse(funcionario.getId(), funcionario.getNivelAcesso(), "✅ Login realizado com sucesso", true);
     }
 
     // Login falhou
@@ -50,7 +50,7 @@ public class FuncionarioMapper {
 
         for(Funcionario funcionario : listaFuncionarios) {
             if(!funcionario.souAdministrador() && !funcionario.souGerente()) {
-                FuncionarioResponse funcionarioResponse = new FuncionarioResponse(funcionario.getId(), funcionario.getNome(), funcionario.getNivelAcesso());
+                FuncionarioResponse funcionarioResponse = paraFuncionarioResponse(funcionario);
                 listaFuncionariosResponse.add(funcionarioResponse);
             }
         }
@@ -61,5 +61,9 @@ public class FuncionarioMapper {
     // Listagem de funcionários para o ADM falhou
     public ListaFuncionariosResponse paraListaResponseGerente(String mensagem) {
         return new ListaFuncionariosResponse(null, false, mensagem);
+    }
+
+    public FuncionarioResponse paraFuncionarioResponse(Funcionario funcionario) {
+        return new FuncionarioResponse(funcionario.getId(), funcionario.getNome(), funcionario.getNivelAcesso());
     }
 }

@@ -19,7 +19,7 @@ public class GerenteMapper {
 
     // Cadastro foi um sucesso
     public CadastroGerenteResponse paraResponseCadastro(Gerente gerente) {
-        return new CadastroGerenteResponse(gerente.getId(), gerente.getNome(), true, "Cadastro realizado com sucesso");
+        return new CadastroGerenteResponse(gerente.getId(), gerente.getNome(), true, "✅ Cadastro realizado com sucesso");
     }
 
     // Cadastro falhou

@@ -2,7 +2,7 @@ package Aplicacao.Funcionario.Supervisor.Controller;
 
 import Aplicacao.Funcionario.Supervisor.Dtos.Cadastro.CadastroSupervisorRequest;
 import Aplicacao.Funcionario.Supervisor.Dtos.Cadastro.CadastroSupervisorResponse;
-import Aplicacao.Funcionario.Supervisor.Exceptions.CadastroSupervisorNuloException;
+import Aplicacao.Funcionario.Supervisor.Exceptions.Requests.CadastroSupervisorNuloException;
 import Aplicacao.Funcionario.Supervisor.Handler.SupervisorHandler;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 

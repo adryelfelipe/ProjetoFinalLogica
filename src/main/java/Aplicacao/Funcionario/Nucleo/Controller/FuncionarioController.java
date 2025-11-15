@@ -1,14 +1,19 @@
 package Aplicacao.Funcionario.Nucleo.Controller;
 
+import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
+import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.Excluir.ExcluirFuncionarioRequest;
 import Aplicacao.Funcionario.Nucleo.Dtos.Excluir.ExcluirFuncionarioResponse;
+import Aplicacao.Funcionario.Nucleo.Dtos.Funcionario.FuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.ListarFuncionarios.ListaFuncionariosResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioRequest;
 import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioResponse;
+import Aplicacao.Funcionario.Nucleo.Exceptions.Requests.BuscarPorIdNuloException;
 import Aplicacao.Funcionario.Nucleo.Exceptions.Requests.ExclusaoFuncionarioNulaException;
 import Aplicacao.Funcionario.Nucleo.Exceptions.Requests.LoginNuloException;
 import Aplicacao.Funcionario.Nucleo.Handler.FuncionarioHandler;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
+import Dominio.Funcionario.Nucleo.Funcionario;
 
 public class FuncionarioController {
     // -- Atributos -- //
@@ -42,5 +47,21 @@ public class FuncionarioController {
 
     public ListaFuncionariosResponse listaFuncionariosParaGerente(NivelAcesso nivelAcesso) {
         return funcionarioHandler.listarFuncionariosParaGerente(nivelAcesso);
+    }
+
+    public FuncionarioPorIdResponse buscarPorId(FuncionarioPorIdRequest request) {
+        if(request == null) {
+            throw new BuscarPorIdNuloException();
+        }
+
+        return funcionarioHandler.buscarPorId(request);
+    }
+
+    public Funcionario buscarPorIdUpdate(FuncionarioPorIdRequest request) {
+        if(request == null) {
+            throw new BuscarPorIdNuloException();
+        }
+
+        return funcionarioHandler.buscarPorIdUpdate(request);
     }
 }

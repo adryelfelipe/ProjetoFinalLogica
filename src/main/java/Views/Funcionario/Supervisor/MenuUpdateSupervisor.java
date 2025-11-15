@@ -1,10 +1,15 @@
 package Views.Funcionario.Supervisor;
 
+import Dominio.OrdemDeServico.OrdemDeServico;
+import Util.Ferramentas;
+import Views.Sistema.MenuEscolhaId;
+
+import java.util.InputMismatchException;
+
 public class MenuUpdateSupervisor
 {
     /*
-
-    public static void menuUpdateOS(Supervisor supervisor) {
+    public static void menuUpdateOS() {
         long idOrdem;
         int UpdateOs = 0;
         boolean verifica = false;

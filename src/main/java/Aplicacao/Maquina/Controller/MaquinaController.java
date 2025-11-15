@@ -2,7 +2,7 @@ package Aplicacao.Maquina.Controller;
 
 import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaRequest;
 import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaResponse;
-import Aplicacao.Maquina.Exceptions.CadastroMaquinaNulaException;
+import Aplicacao.Maquina.Exceptions.Requests.CadastroMaquinaNulaException;
 import Aplicacao.Maquina.Handler.MaquinaHandler;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 

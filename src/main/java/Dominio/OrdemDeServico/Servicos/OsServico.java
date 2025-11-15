@@ -4,7 +4,7 @@ import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
-import Dominio.Maquina.Repositories.MaquinaRepositorio;
+import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 import Dominio.OrdemDeServico.Exceptions.IdMaquinaOsException;
 import Dominio.OrdemDeServico.Exceptions.IdOsException;
 import Dominio.OrdemDeServico.Exceptions.IdSupervisorOsException;

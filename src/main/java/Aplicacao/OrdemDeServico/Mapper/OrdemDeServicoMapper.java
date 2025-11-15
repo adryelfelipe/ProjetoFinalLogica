@@ -20,7 +20,7 @@ public class OrdemDeServicoMapper {
 
     // Cadastro foi um sucesso
     public CadastroOsResponse paraResponse(OrdemDeServico ordemDeServico) {
-        return new CadastroOsResponse(ordemDeServico.getIdOs(),true, "Cadastro da ordem de serviço foi um sucesso");
+        return new CadastroOsResponse(ordemDeServico.getIdOs(),true, "✅ Cadastro da ordem de serviço foi um sucesso");
     }
 
     // Cadastro falhou

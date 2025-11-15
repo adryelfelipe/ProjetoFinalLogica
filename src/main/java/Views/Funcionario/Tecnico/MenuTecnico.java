@@ -2,21 +2,20 @@ package Views.Funcionario.Tecnico;
 
 public class MenuTecnico
 {
-    /*
     public static void menuTecnico(Tecnico tecnico)
     {
         boolean continuar = false;
 
         while(!continuar)
         {
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃           MENU TÉCNICO         ┃");
-            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-            System.out.println("┃                                ┃");
-            System.out.println("┃  1 - Detalhes de uma OS        ┃");
-            System.out.println("┃  2 - Atualizar status de OS's  ┃");
-            System.out.println("┃  3 - Retornar ao menu inicial  ┃");
-            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃             MENU TÉCNICO             ┃");
+            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+            System.out.println("┃                                      ┃");
+            System.out.println("┃  1 - Detalhes de uma Ordem           ┃");
+            System.out.println("┃  2 - Atualizar Status de uma Ordem   ┃");
+            System.out.println("┃  5 - Retornar                        ┃");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
             try
@@ -42,5 +41,5 @@ public class MenuTecnico
         }
     }
 
-     */
+
 }
