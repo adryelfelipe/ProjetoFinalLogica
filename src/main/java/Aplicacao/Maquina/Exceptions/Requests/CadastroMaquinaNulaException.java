@@ -1,4 +1,4 @@
-package Aplicacao.Maquina.Exceptions;
+package Aplicacao.Maquina.Exceptions.Requests;
 
 public class CadastroMaquinaNulaException extends MaquinaRequestException {
     public CadastroMaquinaNulaException() {

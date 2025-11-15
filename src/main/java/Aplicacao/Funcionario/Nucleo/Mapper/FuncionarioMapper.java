@@ -1,7 +1,7 @@
 package Aplicacao.Funcionario.Nucleo.Mapper;
 
 import Aplicacao.Funcionario.Nucleo.Dtos.Excluir.ExcluirFuncionarioResponse;
-import Aplicacao.Funcionario.Nucleo.Dtos.ListarFuncionarios.FuncionarioResponse;
+import Aplicacao.Funcionario.Nucleo.Dtos.Funcionario.FuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.ListarFuncionarios.ListaFuncionariosResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioResponse;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
@@ -43,11 +43,15 @@ public class FuncionarioMapper {
 
         for(Funcionario funcionario : listaFuncionarios) {
             if(!funcionario.souAdministrador() && !funcionario.souGerente()) {
-                FuncionarioResponse funcionarioResponse = new FuncionarioResponse(funcionario.getId(), funcionario.getNome(), funcionario.getNivelAcesso());
+                FuncionarioResponse funcionarioResponse = paraFuncionarioResponse(funcionario);
                 listaFuncionariosResponse.add(funcionarioResponse);
             }
         }
 
         return new ListaFuncionariosResponse(listaFuncionariosResponse, true);
+    }
+
+    public FuncionarioResponse paraFuncionarioResponse(Funcionario funcionario) {
+        return new FuncionarioResponse(funcionario.getId(), funcionario.getNome(), funcionario.getNivelAcesso());
     }
 }

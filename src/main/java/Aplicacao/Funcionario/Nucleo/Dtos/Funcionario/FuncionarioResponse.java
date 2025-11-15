@@ -1,4 +1,4 @@
-package Aplicacao.Funcionario.Nucleo.Dtos.ListarFuncionarios;
+package Aplicacao.Funcionario.Nucleo.Dtos.Funcionario;
 
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;

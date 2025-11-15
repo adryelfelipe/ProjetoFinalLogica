@@ -1,4 +1,4 @@
-package Aplicacao.Funcionario.Supervisor.Exceptions;
+package Aplicacao.Funcionario.Supervisor.Exceptions.Requests;
 
 public class CadastroSupervisorNuloException extends SupervisorRequestException {
     public CadastroSupervisorNuloException() {

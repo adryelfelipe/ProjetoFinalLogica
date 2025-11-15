@@ -2,7 +2,7 @@ package Aplicacao.OrdemDeServico.Controller;
 
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsResponse;
-import Aplicacao.OrdemDeServico.Exceptions.CadastroOsNulaException;
+import Aplicacao.OrdemDeServico.Exceptions.Requests.CadastroOsNulaException;
 import Aplicacao.OrdemDeServico.Handler.OrdemDeServicoHandler;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 

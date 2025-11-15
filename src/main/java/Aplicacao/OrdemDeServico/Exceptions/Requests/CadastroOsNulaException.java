@@ -1,4 +1,4 @@
-package Aplicacao.OrdemDeServico.Exceptions;
+package Aplicacao.OrdemDeServico.Exceptions.Requests;
 
 public class CadastroOsNulaException extends OsRequestException {
     public CadastroOsNulaException() {
