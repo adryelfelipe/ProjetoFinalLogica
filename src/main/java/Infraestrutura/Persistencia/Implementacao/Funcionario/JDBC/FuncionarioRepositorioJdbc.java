@@ -1,5 +1,9 @@
 package Infraestrutura.Persistencia.Implementacao.Funcionario.JDBC;
 
+import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
 import Infraestrutura.Configuracao.ConnectionFactory;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
@@ -11,6 +15,7 @@ import Dominio.Funcionario.Tecnico.Tecnico;
 import Infraestrutura.Persistencia.Implementacao.Funcionario.Mapper.FuncionarioJdbcMapper;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
@@ -330,9 +335,33 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
         }
         return funcionario;
     }
+    public List<Funcionario> listarFuncionarios()
+    {
+        List<Funcionario> funcionarios = new ArrayList<>();
 
-    @Override
-    public List<Funcionario> listarFuncionarios() {
+        String querySQL = "SELECT * FROM Usuarios";
+
+        try(Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(querySQL))
+        {
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next())
+            {
+                // Pega dados comuns.
+                long id = rs.getLong("id_usuario");
+                String nome = rs.getString("nome");
+                String cpf = rs.getString("cpf");
+                String senha = rs.getString("senha");
+                int nivelAcesso = rs.getInt("id_na");
+
+
+                // Cria funcionario (Comum).
+                Funcionario funcionario = new Funcionario(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos());
+            }
+        }catch (SQLException e)
+        {
+            System.err.println("ERRO ao visualizar a lista.");
+        }
         return List.of();
     }
 }
