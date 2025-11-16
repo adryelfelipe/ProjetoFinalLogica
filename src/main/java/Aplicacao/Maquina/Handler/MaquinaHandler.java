@@ -33,7 +33,6 @@ public class MaquinaHandler {
         try {
             autorizacaoServico.validaAcessoGerente(nivelAcesso);
             Maquina maquina = maquinaMapper.paraEntidade(request);
-            maquinaServico.idUtilizado(maquina.getIdMaquina());
             maquinaRepositorio.salvar(maquina);
             return maquinaMapper.paraResponseCadastro(maquina);
         } catch (AutorizacaoException | MaquinaException e) {
@@ -49,6 +48,4 @@ public class MaquinaHandler {
             return maquinaMapper.paraListaResponse(e.getMessage());
         }
     }
-
-    public
 }

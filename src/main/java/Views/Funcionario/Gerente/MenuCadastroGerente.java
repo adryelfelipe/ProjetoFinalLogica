@@ -50,7 +50,12 @@ public class MenuCadastroGerente {
         // -- Gerando request para cadastro de Supervisor -- //
         CadastroSupervisorRequest request = new CadastroSupervisorRequest(nome, cpf, senha, departamentos, metaMensal);
         CadastroSupervisorResponse response = Main.supervisorController.salvar(nivelAcesso, request);
-        Ferramentas.mensagemErro(response.mensagem());
+
+        if(response.status()) {
+            Ferramentas.mensagemSucesso(response.mensagem());
+        } else {
+            Ferramentas.mensagemErro(response.mensagem());
+        }
     }
 
     public static void menuCadastroMaquina(NivelAcesso nivelAcesso) {
@@ -75,7 +80,11 @@ public class MenuCadastroGerente {
         // -- Gerando request para cadastro de Máquina -- //
         CadastroMaquinaRequest request = new CadastroMaquinaRequest(nome, departamento, status);
         CadastroMaquinaResponse response = Main.maquinaController.salvar(nivelAcesso, request);
-        Ferramentas.mensagemErro(response.mensagem());
+        if(response.status()) {
+            Ferramentas.mensagemSucesso(response.mensagem());
+        } else {
+            Ferramentas.mensagemErro(response.mensagem());
+        }
         Ferramentas.Delay(800);
     }
 
@@ -106,7 +115,13 @@ public class MenuCadastroGerente {
         // -- Gerando request para cadastro de Supervisor -- //
         CadastroTecnicoRequest request = new CadastroTecnicoRequest(nome, cpf, senha, departamentos, especialidade);
         CadastroTecnicoResponse response = Main.tecnicoController.salvar(nivelAcesso, request);
-        Ferramentas.mensagemErro(response.mensagem());
+
+        if(response.status()) {
+            Ferramentas.mensagemSucesso(response.mensagem());
+        } else {
+            Ferramentas.mensagemErro(response.mensagem());
+        }
+
         Ferramentas.limpaTerminal();
     }
 }

@@ -7,7 +7,7 @@ import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsResponse;
 import Aplicacao.OrdemDeServico.Mapper.OrdemDeServicoMapper;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
-import Dominio.Maquina.Repositories.MaquinaRepositorio;
+import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 import Dominio.OrdemDeServico.Exceptions.OrdemDeServicoException;
 import Dominio.OrdemDeServico.OrdemDeServico;
 import Dominio.OrdemDeServico.Repositorios.OrdemDeServicoRepositorio;
@@ -38,7 +38,6 @@ public class OrdemDeServicoHandler {
             osServico.tecnicoExiste(request.idTecnico());;
             osServico.tecnicoPertenceAoDepartamento(request.idTecnico(), os.getDepartamento());
             osServico.supervisorPertenceAoDepartamento(request.idSupervisor(), os.getDepartamento());
-            osServico.idUtilizado(os.getIdOs());
             ordemRepositorio.salvar(os);
             return ordemDeServicoMapper.paraResponse(os);
         } catch (OrdemDeServicoException | AutorizacaoException e) {

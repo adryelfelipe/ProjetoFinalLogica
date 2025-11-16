@@ -32,7 +32,6 @@ public class SupervisorHandler {
             autorizacaoServico.validaAcessoGerente(nivelAcesso);
             Supervisor supervisor = supervisorMapper.paraEntidade(request);
             funcionarioServico.cpfUtilizado(supervisor.getCpf());
-            funcionarioServico.idUtilizado(supervisor.getId());
             funcionarioRepositorio.salvar(supervisor);
             return supervisorMapper.paraResponseCadastro(supervisor);
         } catch (AutorizacaoException | FuncionarioException e) {

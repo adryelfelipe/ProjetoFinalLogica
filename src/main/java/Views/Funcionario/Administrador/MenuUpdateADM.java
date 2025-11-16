@@ -1,12 +1,24 @@
 package Views.Funcionario.Administrador;
 
+import Aplicacao.Funcionario.Gerente.Dtos.Atualizar.GerenteAtualizarResponse;
+import Aplicacao.Funcionario.Gerente.Dtos.BuscarPorId.GerentePorIdResponse;
+import Aplicacao.Funcionario.Gerente.Dtos.Atualizar.GerenteAtualizarRequest;
+import Aplicacao.Funcionario.Nucleo.Dtos.Atualizar.AtualizarFuncionarioResponse;
+import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
+import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
+import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
+import Util.Ferramentas;
+import Views.Funcionario.Gerente.MenuSetGerente;
+import Views.Funcionario.Nucleo.MenuSetFuncionario;
+import Views.Sistema.Main;
+import Views.Sistema.MenuEscolhaId;
+
+import java.util.InputMismatchException;
+import java.util.List;
+
 public class MenuUpdateADM {
 
-    private static final GerenteService gerenteService = new GerenteService();
-    private static final UsuarioService usuarioService = new UsuarioService();
-
-    public static void updateGerente() {
-        boolean verifica = false;
+    public static void updateGerente(NivelAcesso nivelAcesso) {
         long idGerente;
         int opcaoAdm = 0;
 
@@ -17,61 +29,79 @@ public class MenuUpdateADM {
             return;
         }
 
-        Gerente gerente = ((Gerente) usuarioService.findById(idGerente));
+        while (true) {
+            FuncionarioPorIdRequest requestId = new FuncionarioPorIdRequest(idGerente);
+            GerentePorIdResponse responseId = Main.gerenteController.buscarPorIdUpate(nivelAcesso, requestId);
 
-        while (!verifica) {
-            System.out.println("          ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓          ");
-            System.out.println("          ┃       ATUALIZAR GERENTE        ┃          ");
-            System.out.println("          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛          ");
+            if(responseId.status()) {
+                System.out.println("          ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓          ");
+                System.out.println("          ┃       ATUALIZAR GERENTE        ┃          ");
+                System.out.println("          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛          ");
 
-            System.out.print("\n\n"); // pula linhas
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓          ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃  EDITAR   GERENTE  ┃          ┃            ATUAL           ┃");
-            System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃          ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-            System.out.println(String.format("┃  1 - Nome          ┃          ┃  %-26s┃", gerente.getNome()));
-            System.out.println(String.format("┃  2 - CPF           ┃          ┃  %-26s┃" + gerente.getCpf()));
-            System.out.println(String.format("┃  3 - Senha         ┃          ┃  %-26s┃" + gerente.getSenha()));
-            System.out.println(String.format("┃  5 - Departamento  ┃          ┃  %-26s┃" + gerente.getDepartamentos().getListaDepartamentos().get(0)));
-            System.out.println("║  6 - Sair do Menu  ┃          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.println("╚════════════════════┛");
-            System.out.println("┃ ➤ Escolha:  ");
+                System.out.print("\n\n"); // pula linhas
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓          ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃  EDITAR   GERENTE  ┃          ┃            ATUAL           ┃");
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃          ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+                System.out.printf("┃  1 - Nome          ┃          ┃  %-26s┃%n", responseId.nome().getNome());
+                System.out.printf("┃  2 - CPF           ┃          ┃  %-26s┃%n", responseId.cpf().getCpf());
+                System.out.printf("┃  3 - Departamento  ┃          ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
+                System.out.println("║  4 - Sair do Menu  ┃          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("╚════════════════════┛");
+                System.out.println("┃ ➤ Escolha:  ");
 
-            try {
-                opcaoAdm = Ferramentas.lInteiro();
+                try {
+                    opcaoAdm = Ferramentas.lInteiro();
 
-                switch (opcaoAdm) {
-                    case 1 -> {
-                        String nome = MenuSetUsuario.MenuSetNome();
-                        usuarioService.updateNomeUsuario(idGerente, nome);
-                        gerente.alteraNome(nome);
+                    switch (opcaoAdm) {
+                        case 1 -> {
+                            String nome = MenuSetFuncionario.MenuSetNome();
+                            GerenteAtualizarRequest atualizarRequest = new GerenteAtualizarRequest(responseId.id(), nome, null, null);
+                            AtualizarFuncionarioResponse atualizarResponse = Main.gerenteController.atualizar(nivelAcesso, atualizarRequest);
+
+                            if(atualizarResponse.status()) {
+                                Ferramentas.mensagemSucesso(atualizarResponse.mensagem());
+                            } else {
+                                Ferramentas.mensagemErro(atualizarResponse.mensagem());
+                            }
+                        }
+
+                        case 2 -> {
+                            String cpf = MenuSetFuncionario.MenuSetCpf();
+                            GerenteAtualizarRequest atualizarRequest = new GerenteAtualizarRequest(responseId.id(), null, cpf, null);
+                            AtualizarFuncionarioResponse atualizarResponse = Main.gerenteController.atualizar(nivelAcesso, atualizarRequest);
+
+                            if(atualizarResponse.status()) {
+                                Ferramentas.mensagemSucesso(atualizarResponse.mensagem());
+                            } else {
+                                Ferramentas.mensagemErro(atualizarResponse.mensagem());
+                            }
+                        }
+
+                        case 3 -> {
+                            List<Departamento> departamentos = MenuSetGerente.menuSetDepartamento();
+                            GerenteAtualizarRequest atualizarRequest = new GerenteAtualizarRequest(responseId.id(), null, null, departamentos);
+                            AtualizarFuncionarioResponse atualizarResponse = Main.gerenteController.atualizar(nivelAcesso, atualizarRequest);
+
+                            if(atualizarResponse.status()) {
+                                Ferramentas.mensagemSucesso(atualizarResponse.mensagem());
+                            } else {
+                                Ferramentas.mensagemErro(atualizarResponse.mensagem());
+                            }
+                        }
+
+                        case 4 -> {
+                            return;
+                        }
+
+                        default -> Ferramentas.menuDefault();
                     }
-
-                    case 2 -> {
-                        CPF cpf = MenuSetUsuario.MenuSetCpf();
-                        usuarioService.updateCpfUsuario(idGerente, cpf);
-                        gerente.alteraCpf(cpf);
-                    }
-
-                    case 3 -> {
-                        Senha senha = MenuSetUsuario.MenuSetSenha();
-                        usuarioService.updateSenhaUsuario(idGerente, senha);
-                        gerente.alteraSenha(senha);
-                    }
-                    case 4 -> {
-                        Departamento departamento = MenuSetGerente.menuSetDepartamento();
-                        gerenteService.updateDepartamento(idGerente, new ListaDepartamentos(Arrays.asList(departamento)));
-                        gerente.adicionarDepartamento(departamento);
-                    }
-                    case 5 -> {
-                        verifica = true;
-                        return;
-                    }
-                    default -> Ferramentas.menuDefault();
+                } catch (InputMismatchException e) {
+                    Ferramentas.menuDefault();
                 }
-            } catch (IllegalArgumentException e) {
-                Ferramentas.mensagemErro(e.getMessage());
+            } else {
+                Ferramentas.mensagemErro(responseId.mensagem());
+                return;
             }
         }
-
     }
 }

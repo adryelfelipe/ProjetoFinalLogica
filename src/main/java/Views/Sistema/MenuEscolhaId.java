@@ -23,10 +23,8 @@ public class MenuEscolhaId
             System.out.print("┃ ➤ Digite o ID: ");
 
             try {
-                long id = Ferramentas.lInteiro();
-                return id;
-            } catch (InputMismatchException e)
-            {
+                return Ferramentas.lInteiro();
+            } catch (InputMismatchException e) {
                 Ferramentas.mensagemErro(e.getMessage());
             }
         }

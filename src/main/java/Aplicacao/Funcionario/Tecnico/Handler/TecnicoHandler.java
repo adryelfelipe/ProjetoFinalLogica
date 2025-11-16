@@ -29,7 +29,6 @@ public class TecnicoHandler {
             autorizacaoServico.validaAcessoGerente(nivelAcesso);
             Tecnico tecnico = tecnicoMapper.paraEntidade(request);
             funcionarioServico.cpfUtilizado(tecnico.getCpf());
-            funcionarioServico.idUtilizado(tecnico.getId());
             funcionarioRepositorio.salvar(tecnico);
             return tecnicoMapper.paraResponseCadastro(tecnico);
         } catch (FuncionarioException | AutorizacaoException e) {

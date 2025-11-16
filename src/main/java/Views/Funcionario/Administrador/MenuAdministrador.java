@@ -24,7 +24,7 @@ public class MenuAdministrador {
 
                 switch (opcaoAdmin) {
                     case 1 ->  MenuCadastroADM.menuCadastroGerente(nivelAcesso);
-                    //case 2 -> MenuUpdateADM.updateGerente();
+                    case 2 -> MenuUpdateADM.updateGerente(nivelAcesso);
                     case 3 -> MenuAdminRemoverGerente.menuRemoverEscolha(idAdm, nivelAcesso);
                     case 4 -> {
                         return;

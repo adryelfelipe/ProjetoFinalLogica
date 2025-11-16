@@ -33,7 +33,7 @@ public class MaquinaMapper {
             listaMaquinasResponse.add(new MaquinaResponse(maquina.getIdMaquina(), maquina.getNome()));
         }
 
-        return new ListaMaquinasResponse(listaMaquinasResponse, true, "Listagem bem sucedida");
+        return new ListaMaquinasResponse(listaMaquinasResponse, true, "✅ Listagem realizada com sucesso");
     }
 
     // Listagem de máquinas falhou

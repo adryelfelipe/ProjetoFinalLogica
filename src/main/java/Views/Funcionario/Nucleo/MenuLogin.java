@@ -25,9 +25,8 @@ public class MenuLogin
 
         LoginFuncionarioRequest request = new LoginFuncionarioRequest(cpf, senhaLogin);
         LoginFuncionarioResponse response = Main.funcionarioController.login(request);
-        Ferramentas.mensagemErro(response.mensagem());
-
         if(response.status()) {
+            Ferramentas.mensagemSucesso(response.mensagem());
             if(response.nivelAcesso().equals(NivelAcesso.ADMIN)) {
                 MenuAdministrador.menuInicial(response.id(),response.nivelAcesso());
             }
@@ -43,6 +42,8 @@ public class MenuLogin
             if(response.nivelAcesso().equals(NivelAcesso.TECNICO)) {
                 //MenuTecnico.menu
             }
+        } else {
+            Ferramentas.mensagemErro(response.mensagem());
         }
     }
 }

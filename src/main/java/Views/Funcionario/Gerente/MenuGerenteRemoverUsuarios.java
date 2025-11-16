@@ -24,7 +24,11 @@ public class MenuGerenteRemoverUsuarios {
             long id = MenuEscolhaId.escolhaIdUpdate();
             ExcluirFuncionarioRequest request = new ExcluirFuncionarioRequest(idAdm, id);
             ExcluirFuncionarioResponse responseExclusao = Main.funcionarioController.excluir(nivelAcesso, request);
-            Ferramentas.mensagemErro(responseExclusao.mensagem());
+            if(responseExclusao.status()) {
+                Ferramentas.mensagemSucesso(responseExclusao.mensagem());
+            } else {
+                Ferramentas.mensagemErro(responseExclusao.mensagem());
+            }
         }
     }
 }

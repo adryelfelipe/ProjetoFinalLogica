@@ -136,6 +136,14 @@ public abstract class Funcionario {
         return this.listaDepartamentos.getListaDepartamentos().contains(departamento);
     }
 
+    public boolean igualMeuNome(NomeFuncionario nome) {
+        return this.nomeFuncionario.getNome().equalsIgnoreCase(nome.getNome());
+    }
+
+    public boolean igualMeuCpf(CPF cpf) {
+        return this.getCpf().getCpf().equals(cpf.getCpf());
+    }
+
     public boolean souAdministrador() {
         return nivelAcesso == NivelAcesso.ADMIN;
     }

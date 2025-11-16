@@ -7,6 +7,7 @@ import Aplicacao.Funcionario.Nucleo.Controller.FuncionarioController;
 import Aplicacao.Funcionario.Nucleo.Handler.FuncionarioHandler;
 import Aplicacao.Funcionario.Nucleo.Mapper.FuncionarioMapper;
 import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
+import Aplicacao.Funcionario.Nucleo.Servicos.TipoFuncionarioServico;
 import Aplicacao.Funcionario.Supervisor.Controller.SupervisorController;
 import Aplicacao.Funcionario.Supervisor.Handler.SupervisorHandler;
 import Aplicacao.Funcionario.Supervisor.Mapper.SupervisorMapper;
@@ -58,6 +59,7 @@ public class Main {
     private static OsSimulacaoJDBC osDAO = new OsSimulacaoJDBC();
 
     // Aplicação de funcionário
+    private static TipoFuncionarioServico tipoFuncionarioServico = new TipoFuncionarioServico();
     private static FuncionarioMapper funcionarioMapper = new FuncionarioMapper();
     private static AutorizacaoServico autorizacaoServico = new AutorizacaoServico();
     private static FuncionarioHandler funcionarioHandler = new FuncionarioHandler(funcionarioDAO,funcionarioMapper, autorizacaoServico);
@@ -65,7 +67,7 @@ public class Main {
 
     // Aplicação de Gerente
     private static GerenteMapper gerenteMapper = new GerenteMapper();
-    private static GerenteHandler gerenteHandler = new GerenteHandler(gerenteMapper, funcionarioDAO, funcionarioServico, autorizacaoServico);
+    private static GerenteHandler gerenteHandler = new GerenteHandler(gerenteMapper, funcionarioDAO, funcionarioServico, autorizacaoServico, tipoFuncionarioServico);
 
     // Aplicação de Supervisor
     private static SupervisorMapper supervisorMapper = new SupervisorMapper();
@@ -97,8 +99,8 @@ public class Main {
     public static void main(String[] args) {
 
         // Testes com ArrayList
-        funcionarioDAO.funcionarioArrayList.add(new Administrador(0,new NomeFuncionario("joaoAdmA"),new CPF("12345678910"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA))));
-        funcionarioDAO.funcionarioArrayList.add(new Administrador(7,new NomeFuncionario("joaoAdmB"),new CPF("12345678911"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA))));
+        funcionarioDAO.funcionarioArrayList.add(new Administrador(998,new NomeFuncionario("joaoAdmA"),new CPF("12345678910"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA))));
+        funcionarioDAO.funcionarioArrayList.add(new Administrador(999,new NomeFuncionario("joaoAdmB"),new CPF("12345678911"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA))));
         funcionarioDAO.salvar(new Gerente(new NomeFuncionario("joaoGerenteA"),new CPF("12345678912"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA))));
         funcionarioDAO.salvar(new Gerente(new NomeFuncionario("joaoGerenteB"),new CPF("12345678913"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA))));
         funcionarioDAO.salvar(new Tecnico(new NomeFuncionario("joaoTecnicoA"),new CPF("12345678914"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA)), Especialidade.SOLDADOR));

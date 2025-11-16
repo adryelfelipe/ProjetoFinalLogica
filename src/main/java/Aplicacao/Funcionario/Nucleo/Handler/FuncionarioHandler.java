@@ -105,8 +105,9 @@ public class FuncionarioHandler {
         return new FuncionarioPorIdResponse(funcionarioResponse);
     }
 
-    public Funcionario buscarPorIdUpdate(FuncionarioPorIdRequest request) {
+    public FuncionarioPorIdUpdateResponse buscarPorIdUpdate(FuncionarioPorIdRequest request) {
         Funcionario funcionario = funcionarioRepositorio.buscar(request.idFuncionario());
+        FuncionarioPorIdUpdateResponse response = funcionarioMapper.paraFuncionarioUpdateResponse(funcionario);
         return new FuncionarioPorIdUpdateResponse(funcionario);
     }
 }

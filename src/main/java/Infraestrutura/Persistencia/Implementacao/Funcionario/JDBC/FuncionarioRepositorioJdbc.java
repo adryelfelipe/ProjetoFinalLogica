@@ -356,7 +356,7 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
 
 
                 // Cria funcionario (Comum).
-                Funcionario funcionario = new Funcionario(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos());
+                //Funcionario funcionario = new Funcionario(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos());
             }
         }catch (SQLException e)
         {

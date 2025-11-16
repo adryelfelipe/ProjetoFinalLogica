@@ -1,5 +1,7 @@
 package Aplicacao.Funcionario.Nucleo.Mapper;
 
+import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdResponse;
+import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdUpdateResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.Excluir.ExcluirFuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.Funcionario.FuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.ListarFuncionarios.ListaFuncionariosResponse;
@@ -36,7 +38,7 @@ public class FuncionarioMapper {
             }
         }
 
-        return new ListaFuncionariosResponse(listaFuncionariosResponse, true, "Listagem bem sucedida");
+        return new ListaFuncionariosResponse(listaFuncionariosResponse, true, "✅ Listagem realizada com sucesso");
     }
 
     // Listagem de funcionários para o ADM falhou
@@ -55,7 +57,7 @@ public class FuncionarioMapper {
             }
         }
 
-        return new ListaFuncionariosResponse(listaFuncionariosResponse, true, "Listagem bem sucedida");
+        return new ListaFuncionariosResponse(listaFuncionariosResponse, true, "✅ Listagem realizada com sucesso");
     }
 
     // Listagem de funcionários para o ADM falhou
@@ -63,7 +65,13 @@ public class FuncionarioMapper {
         return new ListaFuncionariosResponse(null, false, mensagem);
     }
 
+    // Resposta de funcionário foi um sucesso
     public FuncionarioResponse paraFuncionarioResponse(Funcionario funcionario) {
         return new FuncionarioResponse(funcionario.getId(), funcionario.getNome(), funcionario.getNivelAcesso());
+    }
+
+    // Resposta de funcionário voltada para Update
+    public FuncionarioPorIdUpdateResponse paraFuncionarioUpdateResponse(Funcionario funcionario) {
+        return new FuncionarioPorIdUpdateResponse(funcionario);
     }
 }

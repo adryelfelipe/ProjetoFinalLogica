@@ -1,5 +1,7 @@
 package Util;
 
+import Aplicacao.Maquina.Mapper.MaquinaMapper;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -176,6 +178,14 @@ public class Ferramentas {
     public static void mensagemErro(String mensagem) {
         Ferramentas.limpaTerminal();
         System.err.println(mensagem);
+        Ferramentas.Delay(1700);
+        Ferramentas.limpaTerminal();
+    }
+
+    // ------- RECEBE MENSAGEM DE SUCESSO E EXIBE ------- //
+    public static void mensagemSucesso(String mensagem) {
+        Ferramentas.limpaTerminal();
+        System.out.println(BRIGHT_GREEN + mensagem + RESET);
         Ferramentas.Delay(1700);
         Ferramentas.limpaTerminal();
     }

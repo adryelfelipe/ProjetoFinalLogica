@@ -1,8 +1,12 @@
 package Aplicacao.Funcionario.Gerente.Mapper;
 
+import Aplicacao.Funcionario.Gerente.Dtos.Atualizar.GerenteAtualizarResponse;
+import Aplicacao.Funcionario.Gerente.Dtos.BuscarPorId.GerentePorIdResponse;
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteRequest;
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteResponse;
+import Aplicacao.Funcionario.Nucleo.Dtos.Atualizar.AtualizarFuncionarioResponse;
 import Dominio.Funcionario.Gerente.Gerente;
+import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
@@ -25,5 +29,25 @@ public class GerenteMapper {
     // Cadastro falhou
     public CadastroGerenteResponse paraResponseCadastro(String mensagemErro) {
         return new CadastroGerenteResponse(null, null,false, mensagemErro);
+    }
+
+    // Busca por ID para update foi um sucesso
+    public GerentePorIdResponse paraResponseGerenteAtualizar(Gerente gerente) {
+        return new GerentePorIdResponse(gerente.getId(),gerente.getNome(), gerente.getCpf(), gerente.getDepartamentos(), true, "✅ Busca realizada por ID com sucesso");
+    }
+
+    // Busca por ID para update falhou
+    public GerentePorIdResponse paraResponseGerenteAtualizar(String mensagem) {
+        return new GerentePorIdResponse(-1, null, null, null,false, mensagem);
+    }
+
+    // Atualização foi um sucesso
+    public AtualizarFuncionarioResponse paraResponseAtualizar(Funcionario funcionario) {
+        return new AtualizarFuncionarioResponse(funcionario.getId(), true, "✅ Gerente atualizado com sucesso");
+    }
+
+    // Atualização falhou
+    public AtualizarFuncionarioResponse paraResponseAtualizar(String mensagem) {
+        return new AtualizarFuncionarioResponse(-1, false, mensagem);
     }
 }

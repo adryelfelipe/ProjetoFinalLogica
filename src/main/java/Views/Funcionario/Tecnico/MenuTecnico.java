@@ -1,5 +1,11 @@
 package Views.Funcionario.Tecnico;
 
+import Dominio.Funcionario.Tecnico.Tecnico;
+import Util.Ferramentas;
+import Views.Funcionario.Nucleo.MenuInicial;
+
+import java.util.InputMismatchException;
+
 public class MenuTecnico
 {
     public static void menuTecnico(Tecnico tecnico)
@@ -25,7 +31,7 @@ public class MenuTecnico
                 switch(escolhaTecnica)
                 {
                     case 1 -> MenuTecnicoVisualizarDetalhes.visualizarDetalhesDeOS();
-                    case 2 -> MenuUpdateTecnico.menuUpdateOS(tecnico);
+                     //case 2 -> MenuUpdateTecnico.menuUpdateOS(tecnico);
                     case 3 ->
                     {
                         System.out.println("┃  RETORNANDO AO MENU INICIAL ...");

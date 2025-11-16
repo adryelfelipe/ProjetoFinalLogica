@@ -1,8 +1,11 @@
 package Views.Funcionario.Gerente;
+import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
+import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdUpdateResponse;
 import Dominio.Funcionario.Supervisor.Supervisor;
 import Dominio.Funcionario.Tecnico.Tecnico;
 import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
 import Util.Ferramentas;
+import Views.Sistema.Main;
 import Views.Sistema.MenuEscolhaId;
 import Views.Funcionario.Supervisor.MenuSetSupervisor;
 import Views.Funcionario.Tecnico.MenuSetTecnico;
@@ -13,6 +16,7 @@ import java.util.InputMismatchException;
 public class MenuUpdateGerente {
     public static void menuUpdateEscolha() {
         // Menu
+        /*
         boolean verifica = false;
         int opUpdate = 0;
 
@@ -60,20 +64,19 @@ public class MenuUpdateGerente {
 
         try {
             idTecnico = MenuEscolhaId.escolhaIdUpdate();
-        } catch (InputMismatchException e)
-        {
+        } catch (InputMismatchException e) {
             Ferramentas.mensagemErro(e.getMessage());
             return;
         }
 
-        Tecnico tecnico = null;
+        FuncionarioPorIdRequest request = new FuncionarioPorIdRequest(idTecnico);
+        FuncionarioPorIdUpdateResponse response = Main.funcionarioController.buscarPorIdUpdate(request);
+        if(!(response.funcionario() instanceof Tecnico)) {
 
-        while(true)
-        {
+        }
 
-            while(!verifica)
-            {
-
+        while(true) {
+            while(!verifica) {
                 System.out.println("\n                                                 \n");
                 System.out.println("         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓          ");
                 System.out.println("         ┃       ATUALIZAR TECNICO       ┃         ");
@@ -90,11 +93,10 @@ public class MenuUpdateGerente {
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃ ➤ Escolha:  ");
 
-                try
-                {
+                try {
                     UpdateT = Ferramentas.lInteiro();
                     verifica = true;
-                } catch (InputMismatchException e){
+                } catch (InputMismatchException e) {
                     Ferramentas.menuDefault();
                 }
             }
@@ -129,28 +131,24 @@ public class MenuUpdateGerente {
             }
         }
     }
-    public static void menuUpdateSupervisor()
-    {
+
+    public static void menuUpdateSupervisor() {
         long idSupervisor;
         int UpdateS = 0;
         boolean verifica = false;
 
-        try
-        {
+        try {
             idSupervisor = MenuEscolhaId.escolhaIdUpdate();
         }
-        catch (InputMismatchException e)
-        {
+        catch (InputMismatchException e) {
             Ferramentas.mensagemErro(e.getMessage());
             return;
         }
 
         Supervisor supervisor = null;
 
-        while(true)
-        {
-            while(!verifica)
-            {
+        while(true) {
+            while(!verifica) {
                 System.out.println("\n                                                       \n");
                 System.out.println("             ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓            ");
                 System.out.println("             ┃      ATUALIZAR SUPERVISOR     ┃            ");
@@ -167,13 +165,11 @@ public class MenuUpdateGerente {
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃ ➤ Escolha:  ");
 
-                try
-                {
+                try {
                     UpdateS = Ferramentas.lInteiro();
                     verifica = true;
                 }
-                catch (InputMismatchException e)
-                {
+                catch (InputMismatchException e){
                     Ferramentas.menuDefault();
                 }
             }
@@ -181,8 +177,7 @@ public class MenuUpdateGerente {
             // Reinicia a veriável de verificação
             verifica = false;
 
-            switch(UpdateS)
-            {
+            switch(UpdateS) {
                 case 1 -> {
                     String nome = MenuSetFuncionario.MenuSetNome();
 
@@ -201,14 +196,14 @@ public class MenuUpdateGerente {
                     double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
 
                 }
-                case 5 ->
-                {
+                case 5 -> {
                     return;
                 }
 
                 default -> Ferramentas.menuDefault();
             }
         }
-    }
 
+         */
+    }
 }

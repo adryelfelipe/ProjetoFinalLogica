@@ -42,7 +42,13 @@ public class MenuCadastroADM {
         // -- Gerando request para cadastro de gerente -- //
         CadastroGerenteRequest gerenteRequest = new CadastroGerenteRequest(nome, cpf, senha, listaDepartamentos);
         CadastroGerenteResponse gerenteResponse = Main.gerenteController.salvar(nivelAcesso,gerenteRequest);
-        Ferramentas.mensagemErro(gerenteResponse.mensagem());
+
+        if(gerenteResponse.status()) {
+            Ferramentas.mensagemSucesso(gerenteResponse.mensagem());
+        } else {
+            Ferramentas.mensagemErro(gerenteResponse.mensagem());
+        }
+
         Ferramentas.Delay(800);
     }
 }

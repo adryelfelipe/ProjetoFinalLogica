@@ -43,7 +43,13 @@ public class MenuCadastroSupervisor
         // -- Gerando request para cadastro de Ordem de Serviço -- //
         CadastroOsRequest request = new CadastroOsRequest(idTecnico, idSupervisor, idMaquina, StatusOS.EM_ANDAMENTO, descricao, valorOS, TipoOS.CORRETIVA);
         CadastroOsResponse response = Main.osController.salvar(nivelAcesso, request);
-        Ferramentas.mensagemErro(response.mensagem());
+
+        if(response.status()) {
+            Ferramentas.mensagemSucesso(response.mensagem());
+        } else {
+            Ferramentas.mensagemErro(response.mensagem());
+        }
+
         Ferramentas.limpaTerminal();
     }
 }
