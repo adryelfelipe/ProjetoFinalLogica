@@ -1,4 +1,4 @@
-package Aplicacao.Funcionario.Tecnico.Exceptions;
+package Aplicacao.Funcionario.Tecnico.Exceptions.Requests;
 
 public class CadastroTecnicoNuloException extends TecnicoRequestException {
     public CadastroTecnicoNuloException() {

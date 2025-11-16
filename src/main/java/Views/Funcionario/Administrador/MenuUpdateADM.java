@@ -1,8 +1,7 @@
 package Views.Funcionario.Administrador;
 
-import Aplicacao.Funcionario.Gerente.Dtos.Atualizar.GerenteAtualizarResponse;
 import Aplicacao.Funcionario.Gerente.Dtos.BuscarPorId.GerentePorIdResponse;
-import Aplicacao.Funcionario.Gerente.Dtos.Atualizar.GerenteAtualizarRequest;
+import Aplicacao.Funcionario.Gerente.Dtos.Atualizar.AtualizarGerenteRequest;
 import Aplicacao.Funcionario.Nucleo.Dtos.Atualizar.AtualizarFuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
@@ -55,7 +54,7 @@ public class MenuUpdateADM {
                     switch (opcaoAdm) {
                         case 1 -> {
                             String nome = MenuSetFuncionario.MenuSetNome();
-                            GerenteAtualizarRequest atualizarRequest = new GerenteAtualizarRequest(responseId.id(), nome, null, null);
+                            AtualizarGerenteRequest atualizarRequest = new AtualizarGerenteRequest(responseId.id(), nome, null, null);
                             AtualizarFuncionarioResponse atualizarResponse = Main.gerenteController.atualizar(nivelAcesso, atualizarRequest);
 
                             if(atualizarResponse.status()) {
@@ -67,7 +66,7 @@ public class MenuUpdateADM {
 
                         case 2 -> {
                             String cpf = MenuSetFuncionario.MenuSetCpf();
-                            GerenteAtualizarRequest atualizarRequest = new GerenteAtualizarRequest(responseId.id(), null, cpf, null);
+                            AtualizarGerenteRequest atualizarRequest = new AtualizarGerenteRequest(responseId.id(), null, cpf, null);
                             AtualizarFuncionarioResponse atualizarResponse = Main.gerenteController.atualizar(nivelAcesso, atualizarRequest);
 
                             if(atualizarResponse.status()) {
@@ -79,7 +78,7 @@ public class MenuUpdateADM {
 
                         case 3 -> {
                             List<Departamento> departamentos = MenuSetGerente.menuSetDepartamento();
-                            GerenteAtualizarRequest atualizarRequest = new GerenteAtualizarRequest(responseId.id(), null, null, departamentos);
+                            AtualizarGerenteRequest atualizarRequest = new AtualizarGerenteRequest(responseId.id(), null, null, departamentos);
                             AtualizarFuncionarioResponse atualizarResponse = Main.gerenteController.atualizar(nivelAcesso, atualizarRequest);
 
                             if(atualizarResponse.status()) {

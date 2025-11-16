@@ -1,29 +1,33 @@
 package Views.Funcionario.Gerente;
+import Aplicacao.Funcionario.Gerente.Dtos.Atualizar.AtualizarGerenteRequest;
+import Aplicacao.Funcionario.Nucleo.Dtos.Atualizar.AtualizarFuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
-import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdUpdateResponse;
-import Dominio.Funcionario.Supervisor.Supervisor;
-import Dominio.Funcionario.Tecnico.Tecnico;
+import Aplicacao.Funcionario.Supervisor.Dtos.Atualizar.AtualizarSupervisorRequest;
+import Aplicacao.Funcionario.Supervisor.Dtos.BuscarPorId.SupervisorPorIdResponse;
+import Aplicacao.Funcionario.Tecnico.Dtos.Atualizar.TecnicoAtualizarRequest;
+import Aplicacao.Funcionario.Tecnico.Dtos.BuscarPorId.TecnicoPorIdResponse;
+import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
+import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
 import Util.Ferramentas;
+import Views.Funcionario.Supervisor.MenuSetSupervisor;
 import Views.Sistema.Main;
 import Views.Sistema.MenuEscolhaId;
-import Views.Funcionario.Supervisor.MenuSetSupervisor;
 import Views.Funcionario.Tecnico.MenuSetTecnico;
 import Views.Funcionario.Nucleo.MenuSetFuncionario;
 
 import java.util.InputMismatchException;
+import java.util.List;
 
 public class MenuUpdateGerente {
-    public static void menuUpdateEscolha() {
-        // Menu
-        /*
-        boolean verifica = false;
-        int opUpdate = 0;
+    public static void menuUpdateEscolha(NivelAcesso nivelAcesso) {
+        int opUpdate;
+        boolean loop;
 
-        while(true)
-        {
+        while(true) {
+            loop = false;
 
-            while(!verifica) {
+            while(!loop) {
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃         MENU ATUALIZAR         ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
@@ -36,47 +40,42 @@ public class MenuUpdateGerente {
 
                 try {
                     opUpdate = Ferramentas.lInteiro();
-                    verifica = true;
+                    loop = true;
+
+                    switch(opUpdate) {
+                        case 1 -> menuUpdateTecnico(nivelAcesso);
+                        case 2 -> menuUpdateSupervisor(nivelAcesso);
+                        case 3 -> {
+                            return;
+                        }
+
+                        default -> Ferramentas.mensagemErro("ERRO! TENTE NOVAMENTE!");
+                    }
                 }
                 catch (InputMismatchException e){
                     Ferramentas.menuDefault();
                 }
             }
-
-            // Reinicia a veriável de verificação
-            verifica = false;
-
-            switch(opUpdate) {
-                case 1 -> menuUpdateTecnico();
-                case 2 -> menuUpdateSupervisor();
-                case 3 -> {return;}
-
-                default -> Ferramentas.mensagemErro("ERRO! TENTE NOVAMENTE!");
-            }
         }
     }
 
-    public static void menuUpdateTecnico() {
-            // -- Garantia de inicialização -- //
+    public static void menuUpdateTecnico(NivelAcesso nivelAcesso) {
+        // -- Garantia de inicialização -- //
         long idTecnico;
-        int UpdateT = 0;
-        boolean verifica = false;
+        int opcaoGer = 0;
 
         try {
             idTecnico = MenuEscolhaId.escolhaIdUpdate();
-        } catch (InputMismatchException e) {
+        } catch (IllegalArgumentException e) {
             Ferramentas.mensagemErro(e.getMessage());
             return;
         }
 
-        FuncionarioPorIdRequest request = new FuncionarioPorIdRequest(idTecnico);
-        FuncionarioPorIdUpdateResponse response = Main.funcionarioController.buscarPorIdUpdate(request);
-        if(!(response.funcionario() instanceof Tecnico)) {
-
-        }
-
         while(true) {
-            while(!verifica) {
+            FuncionarioPorIdRequest requestId = new FuncionarioPorIdRequest(idTecnico);
+            TecnicoPorIdResponse responseId = Main.tecnicoController.buscarPorIdUpate(nivelAcesso, requestId);
+
+            if(responseId.status()) {
                 System.out.println("\n                                                 \n");
                 System.out.println("         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓          ");
                 System.out.println("         ┃       ATUALIZAR TECNICO       ┃         ");
@@ -85,70 +84,101 @@ public class MenuUpdateGerente {
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃  EDITAR   TÉCNICO  ┃         ┃            ATUAL           ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.println(String.format("┃  1 - Nome          ┃         ┃  %-26s┃", tecnico.getNome()));
-                System.out.println(String.format("┃  2 - CPF           ┃         ┃  %-26s┃", tecnico.getCpf()));
-                System.out.println(String.format("┃  3 - Senha         ┃         ┃  %-26s┃", tecnico.getSenha()));
-                System.out.println(String.format("┃  4 - Especialidade ┃         ┃  %-26s┃", tecnico.getEspecialidade()));
+                System.out.printf("┃  1 - Nome           ┃         ┃  %-26s┃%n", responseId.nome().getNome());
+                System.out.printf("┃  2 - CPF            ┃         ┃  %-26s┃%n", responseId.cpf().getCpf());
+                System.out.printf("┃  3 - Departamenmto  ┃         ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
+                System.out.printf("┃  4 - Especialidade  ┃         ┃  %-26s┃%n", responseId.especialidade());
                 System.out.println("┃  5 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃ ➤ Escolha:  ");
 
                 try {
-                    UpdateT = Ferramentas.lInteiro();
-                    verifica = true;
+                    opcaoGer = Ferramentas.lInteiro();
+
+                    switch(opcaoGer) {
+                        case 1 -> {
+                            String nome = MenuSetFuncionario.MenuSetNome();
+                            TecnicoAtualizarRequest atualizarRequest = new TecnicoAtualizarRequest(responseId.id(), nome, null, null, null);
+                            AtualizarFuncionarioResponse atualizarResponse = Main.tecnicoController.atualizar(nivelAcesso, atualizarRequest);
+
+                            if(atualizarResponse.status()) {
+                                Ferramentas.mensagemSucesso(atualizarResponse.mensagem());
+                            } else {
+                                Ferramentas.mensagemErro(atualizarResponse.mensagem());
+                            }
+                        }
+
+                        case 2 -> {
+                            String cpf = MenuSetFuncionario.MenuSetCpf();
+                            TecnicoAtualizarRequest atualizarRequest = new TecnicoAtualizarRequest(responseId.id(), null, cpf, null, null);
+                            AtualizarFuncionarioResponse atualizarResponse = Main.tecnicoController.atualizar(nivelAcesso, atualizarRequest);
+
+                            if(atualizarResponse.status()) {
+                                Ferramentas.mensagemSucesso(atualizarResponse.mensagem());
+                            } else {
+                                Ferramentas.mensagemErro(atualizarResponse.mensagem());
+                            }
+                        }
+
+                        case 3 -> {
+                            List<Departamento> departamentos = MenuSetGerente.menuSetDepartamento();
+
+                            TecnicoAtualizarRequest atualizarRequest = new TecnicoAtualizarRequest(responseId.id(), null, null, departamentos, null);
+                            AtualizarFuncionarioResponse atualizarResponse = Main.tecnicoController.atualizar(nivelAcesso, atualizarRequest);
+
+                            if(atualizarResponse.status()) {
+                                Ferramentas.mensagemSucesso(atualizarResponse.mensagem());
+                            } else {
+                                Ferramentas.mensagemErro(atualizarResponse.mensagem());
+                            }
+                        }
+
+                        case 4 -> {
+                            Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
+
+                            TecnicoAtualizarRequest atualizarRequest = new TecnicoAtualizarRequest(responseId.id(), null, null, null, especialidade);
+                            AtualizarFuncionarioResponse atualizarResponse = Main.tecnicoController.atualizar(nivelAcesso, atualizarRequest);
+
+                            if(atualizarResponse.status()) {
+                                Ferramentas.mensagemSucesso(atualizarResponse.mensagem());
+                            } else {
+                                Ferramentas.mensagemErro(atualizarResponse.mensagem());
+                            }
+                        }
+
+                        case 5 -> {
+                            return;
+                        }
+
+                        default -> Ferramentas.menuDefault();
+                    }
                 } catch (InputMismatchException e) {
                     Ferramentas.menuDefault();
                 }
-            }
-
-            // Reinicia a veriável de verificação
-            verifica = false;
-
-            switch(UpdateT) {
-                case 1 -> {
-                    String nome = MenuSetFuncionario.MenuSetNome();
-
-                }
-
-                case 2 -> {
-                    String cpf = MenuSetFuncionario.MenuSetCpf();
-
-                }
-
-                case 3 -> {
-                    String senha = MenuSetFuncionario.MenuSetSenha();
-
-                }
-                case 4 -> {
-                    Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
-
-                }
-                case 5 ->
-                {
-                    return;
-                }
-                default -> Ferramentas.menuDefault();
+            } else {
+                Ferramentas.mensagemErro(responseId.mensagem());
+                return;
             }
         }
     }
 
-    public static void menuUpdateSupervisor() {
+    public static void menuUpdateSupervisor(NivelAcesso nivelAcesso) {
+        // -- Garantia de inicialização -- //
         long idSupervisor;
-        int UpdateS = 0;
-        boolean verifica = false;
+        int opcaoGer = 0;
 
         try {
             idSupervisor = MenuEscolhaId.escolhaIdUpdate();
-        }
-        catch (InputMismatchException e) {
+        } catch (IllegalArgumentException e) {
             Ferramentas.mensagemErro(e.getMessage());
             return;
         }
 
-        Supervisor supervisor = null;
-
         while(true) {
-            while(!verifica) {
+            FuncionarioPorIdRequest requestId = new FuncionarioPorIdRequest(idSupervisor);
+            SupervisorPorIdResponse responseId = Main.supervisorController.buscarPorIdUpate(nivelAcesso, requestId);
+
+            if(responseId.status()) {
                 System.out.println("\n                                                       \n");
                 System.out.println("             ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓            ");
                 System.out.println("             ┃      ATUALIZAR SUPERVISOR     ┃            ");
@@ -157,53 +187,67 @@ public class MenuUpdateGerente {
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃  EDITAR   SUPERVISOR  ┃         ┃            ATUAL           ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println(String.format("┃  1 - Nome          ┃         ┃  %-26s┃", supervisor.getNome()));
-                System.out.println(String.format("┃  2 - CPF           ┃         ┃  %-26s┃", supervisor.getCpf()));
-                System.out.println(String.format("┃  3 - Senha         ┃         ┃  %-26s┃", supervisor.getSenha()));
-                System.out.println(String.format("┃  4 - Meta Mensal   ┃         ┃  %-26s┃", supervisor.getMetaMensal()));
-                System.out.println("┃  6 - Sair do Menu     ┃         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.printf("┃  1 - Nome          ┃         ┃  %-26s┃%n", responseId.nome().getNome());
+                System.out.printf("┃  2 - CPF           ┃         ┃  %-26s┃%n", responseId.cpf().getCpf());
+                System.out.printf("┃  3 - Meta Mensal   ┃         ┃  %-26s┃%n", responseId.metaMensal().getValorMetaMensal());
+                System.out.println("┃  4 - Sair do Menu     ┃         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃ ➤ Escolha:  ");
 
                 try {
-                    UpdateS = Ferramentas.lInteiro();
-                    verifica = true;
-                }
-                catch (InputMismatchException e){
+                    opcaoGer = Ferramentas.lInteiro();
+                } catch (InputMismatchException e) {
                     Ferramentas.menuDefault();
                 }
-            }
 
-            // Reinicia a veriável de verificação
-            verifica = false;
+                switch(opcaoGer) {
+                    case 1 -> {
+                        String nome = MenuSetFuncionario.MenuSetNome();
+                        AtualizarSupervisorRequest atualizarRequest = new AtualizarSupervisorRequest(responseId.id(), nome, null, null, null);
+                        AtualizarFuncionarioResponse atualizarResponse = Main.supervisorController.atualizar(nivelAcesso, atualizarRequest);
 
-            switch(UpdateS) {
-                case 1 -> {
-                    String nome = MenuSetFuncionario.MenuSetNome();
+                        if(atualizarResponse.status()) {
+                            Ferramentas.mensagemSucesso(atualizarResponse.mensagem());
+                        } else {
+                            Ferramentas.mensagemErro(atualizarResponse.mensagem());
+                        }
+                    }
 
+                    case 2 -> {
+                        String cpf = MenuSetFuncionario.MenuSetCpf();
+                        AtualizarSupervisorRequest atualizarRequest = new AtualizarSupervisorRequest(responseId.id(), null, cpf, null, null);
+                        AtualizarFuncionarioResponse atualizarResponse = Main.supervisorController.atualizar(nivelAcesso, atualizarRequest);
+
+                        if(atualizarResponse.status()) {
+                            Ferramentas.mensagemSucesso(atualizarResponse.mensagem());
+                        } else {
+                            Ferramentas.mensagemErro(atualizarResponse.mensagem());
+                        }
+
+                    }
+
+                    case 3 -> {
+                        double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
+                        AtualizarSupervisorRequest atualizarRequest = new AtualizarSupervisorRequest(responseId.id(), null, null, null, metaMensal);
+                        AtualizarFuncionarioResponse atualizarResponse = Main.supervisorController.atualizar(nivelAcesso, atualizarRequest);
+
+                        if(atualizarResponse.status()) {
+                            Ferramentas.mensagemSucesso(atualizarResponse.mensagem());
+                        } else {
+                            Ferramentas.mensagemErro(atualizarResponse.mensagem());
+                        }
+                    }
+
+                    case 4 -> {
+                        return;
+                    }
+
+                    default -> Ferramentas.menuDefault();
                 }
-
-                case 2 -> {
-                    String cpf = MenuSetFuncionario.MenuSetCpf();
-
-                }
-
-                case 3 -> {
-                    String senha = MenuSetFuncionario.MenuSetSenha();
-
-                }
-                case 4 -> {
-                    double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
-
-                }
-                case 5 -> {
-                    return;
-                }
-
-                default -> Ferramentas.menuDefault();
+            } else {
+                Ferramentas.mensagemErro(responseId.mensagem());
+                return;
             }
         }
-
-         */
     }
 }

@@ -30,7 +30,7 @@ public class MenuGerente {
                 switch (opcaoGerente) {
                     case 1 -> MenuGerenteCadastrar.criarUsuarios(nivelAcesso);
                     case 2 -> MenuGerenteRelatorios.visualizarRelatorios();
-                    case 3 -> MenuUpdateGerente.menuUpdateEscolha();
+                    case 3 -> MenuUpdateGerente.menuUpdateEscolha(nivelAcesso);
                     case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha(idGerente, nivelAcesso);
                     case 5 -> {
                         System.out.println("┃  RETORNANDO AO MENU INICIAL ...");

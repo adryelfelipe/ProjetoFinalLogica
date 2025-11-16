@@ -67,15 +67,15 @@ public class Main {
 
     // Aplicação de Gerente
     private static GerenteMapper gerenteMapper = new GerenteMapper();
-    private static GerenteHandler gerenteHandler = new GerenteHandler(gerenteMapper, funcionarioDAO, funcionarioServico, autorizacaoServico, tipoFuncionarioServico);
+    private static GerenteHandler gerenteHandler = new GerenteHandler(gerenteMapper, funcionarioDAO, funcionarioServico, autorizacaoServico, tipoFuncionarioServico, funcionarioMapper);
 
     // Aplicação de Supervisor
     private static SupervisorMapper supervisorMapper = new SupervisorMapper();
-    private static SupervisorHandler supervisorHandler = new SupervisorHandler(supervisorMapper, funcionarioDAO, funcionarioServico, autorizacaoServico);
+    private static SupervisorHandler supervisorHandler = new SupervisorHandler(supervisorMapper, funcionarioDAO, funcionarioServico, autorizacaoServico, tipoFuncionarioServico, funcionarioMapper);
 
     // Aplicação de Tecnico
     private static TecnicoMapper tecnicoMapper = new TecnicoMapper();
-    private static TecnicoHandler tecnicoHandler = new TecnicoHandler(funcionarioDAO, funcionarioServico, autorizacaoServico, tecnicoMapper);
+    private static TecnicoHandler tecnicoHandler = new TecnicoHandler(funcionarioDAO, funcionarioServico, autorizacaoServico, tecnicoMapper, tipoFuncionarioServico, funcionarioMapper);
 
     // Aplicação de máquina
     private static MaquinaMapper maquinaMapper = new MaquinaMapper();

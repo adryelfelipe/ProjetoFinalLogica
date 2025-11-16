@@ -1,12 +1,24 @@
 package Aplicacao.Funcionario.Tecnico.Handler;
 
-import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.AutorizacaoException;
+import Aplicacao.Funcionario.Nucleo.Dtos.Atualizar.AtualizarFuncionarioResponse;
+import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
+import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.*;
+import Aplicacao.Funcionario.Nucleo.Mapper.FuncionarioMapper;
 import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
+import Aplicacao.Funcionario.Nucleo.Servicos.TipoFuncionarioServico;
+import Aplicacao.Funcionario.Tecnico.Dtos.Atualizar.TecnicoAtualizarRequest;
+import Aplicacao.Funcionario.Tecnico.Dtos.BuscarPorId.TecnicoPorIdResponse;
 import Aplicacao.Funcionario.Tecnico.Dtos.Cadastro.CadastroTecnicoRequest;
 import Aplicacao.Funcionario.Tecnico.Dtos.Cadastro.CadastroTecnicoResponse;
+import Aplicacao.Funcionario.Tecnico.Exceptions.Handler.FuncionarioNaoEhTecnicoException;
+import Aplicacao.Funcionario.Tecnico.Exceptions.Handler.MesmaEspecialidadeException;
 import Aplicacao.Funcionario.Tecnico.Mapper.TecnicoMapper;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Exceptions.FuncionarioException;
+import Dominio.Funcionario.Nucleo.Funcionario;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 import Dominio.Funcionario.Nucleo.Servicos.FuncionarioServico;
 import Dominio.Funcionario.Tecnico.Tecnico;
@@ -16,12 +28,16 @@ public class TecnicoHandler {
     private FuncionarioServico funcionarioServico;
     private AutorizacaoServico autorizacaoServico;
     private TecnicoMapper tecnicoMapper;
+    private TipoFuncionarioServico tipoFuncionarioServico;
+    private FuncionarioMapper funcionarioMapper;
 
-    public TecnicoHandler(FuncionarioRepositorio funcionarioRepositorio, FuncionarioServico funcionarioServico, AutorizacaoServico autorizacaoServico, TecnicoMapper tecnicoMapper) {
+    public TecnicoHandler(FuncionarioRepositorio funcionarioRepositorio, FuncionarioServico funcionarioServico, AutorizacaoServico autorizacaoServico, TecnicoMapper tecnicoMapper, TipoFuncionarioServico tipoFuncionarioServico, FuncionarioMapper funcionarioMapper) {
         this.funcionarioRepositorio = funcionarioRepositorio;
         this.funcionarioServico = funcionarioServico;
         this.autorizacaoServico = autorizacaoServico;
         this.tecnicoMapper = tecnicoMapper;
+        this.tipoFuncionarioServico = tipoFuncionarioServico;
+        this.funcionarioMapper = funcionarioMapper;
     }
 
     public CadastroTecnicoResponse salvar(NivelAcesso nivelAcesso, CadastroTecnicoRequest request) {
@@ -33,6 +49,71 @@ public class TecnicoHandler {
             return tecnicoMapper.paraResponseCadastro(tecnico);
         } catch (FuncionarioException | AutorizacaoException e) {
             return tecnicoMapper.paraResponseCadastro(e.getMessage());
+        }
+    }
+
+    public TecnicoPorIdResponse buscarPorId(NivelAcesso nivelAcesso, FuncionarioPorIdRequest request) {
+        try {
+            autorizacaoServico.validaAcessoGerente(nivelAcesso);
+            Funcionario funcionario = funcionarioRepositorio.buscar(request.idFuncionario());
+            Tecnico tenico = tipoFuncionarioServico.validaFuncionarioTecnico(funcionario);
+
+            return tecnicoMapper.paraResponseTecnico(tenico);
+        } catch (AutorizacaoException | FuncionarioNaoEhTecnicoException | IdNaoEncontradoException e) {
+            return tecnicoMapper.paraResponseTecnico(e.getMessage());
+        }
+    }
+
+    public AtualizarFuncionarioResponse atualizar(NivelAcesso nivelAcesso, TecnicoAtualizarRequest request) {
+        try {
+            autorizacaoServico.validaAcessoGerente(nivelAcesso);
+            Funcionario funcionario = funcionarioRepositorio.buscar(request.id());
+            Tecnico tecnico = tipoFuncionarioServico.validaFuncionarioTecnico(funcionario);
+
+            if(request.cpf() != null) {
+                CPF cpf = new CPF(request.cpf());
+
+                if(tecnico.igualMeuCpf(cpf)) {
+                    throw new MesmoCpfException();
+                }
+
+                funcionarioServico.cpfUtilizado(cpf);
+                tecnico.alteraCpf(cpf);
+            }
+
+            if(request.nome() != null) {
+                NomeFuncionario nome = new NomeFuncionario(request.nome());
+
+                if(tecnico.igualMeuNome(nome)) {
+                    throw new MesmoNomeException();
+                }
+
+                tecnico.alteraNome(nome);
+            }
+
+            if(request.departamentos() != null) {
+                ListaDepartamentos departamentos = new ListaDepartamentos(request.departamentos());
+
+                if(tecnico.igualMeuDepartamento(departamentos.getListaDepartamentos().getFirst())) {
+                    throw new MesmoDepartamentoException();
+                }
+
+                tecnico.alteraListaDepartamentos(departamentos);
+            }
+
+            if(request.especialidade() != null) {
+                if(tecnico.igualMinhaEspecialidade(request.especialidade())) {
+                    throw new MesmaEspecialidadeException();
+                }
+
+                tecnico.alteraEspecialidade(request.especialidade());
+            }
+
+            funcionarioRepositorio.atualizar(tecnico);
+            return funcionarioMapper.paraResponseAtualizar(tecnico);
+        } catch (AutorizacaoException | FuncionarioException | FuncionarioNaoEhTecnicoException |
+                 IdNaoEncontradoException | MesmoDadoException e) {
+            return funcionarioMapper.paraResponseAtualizar(e.getMessage());
         }
     }
 }

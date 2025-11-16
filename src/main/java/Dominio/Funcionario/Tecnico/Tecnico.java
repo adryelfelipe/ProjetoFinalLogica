@@ -36,4 +36,8 @@ public class Tecnico extends Funcionario {
 
         this.especialidade = especialidade;
     }
+
+    public boolean igualMinhaEspecialidade(Especialidade especialidade) {
+        return this.especialidade == especialidade;
+    }
 }

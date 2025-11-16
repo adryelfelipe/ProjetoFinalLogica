@@ -1,6 +1,6 @@
 package Aplicacao.Funcionario.Gerente.Handler;
 
-import Aplicacao.Funcionario.Gerente.Dtos.Atualizar.GerenteAtualizarRequest;
+import Aplicacao.Funcionario.Gerente.Dtos.Atualizar.AtualizarGerenteRequest;
 import Aplicacao.Funcionario.Gerente.Dtos.BuscarPorId.GerentePorIdResponse;
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteRequest;
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteResponse;
@@ -8,10 +8,8 @@ import Aplicacao.Funcionario.Gerente.Exceptions.Handler.FuncionarioNaoEhGerenteE
 import Aplicacao.Funcionario.Gerente.Mapper.GerenteMapper;
 import Aplicacao.Funcionario.Nucleo.Dtos.Atualizar.AtualizarFuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
-import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.AutorizacaoException;
-import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.IdNaoEncontradoException;
-import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.MesmoDadoException;
-import Aplicacao.Funcionario.Nucleo.Exceptions.Requests.BuscarPorIdNuloException;
+import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.*;
+import Aplicacao.Funcionario.Nucleo.Mapper.FuncionarioMapper;
 import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
 import Aplicacao.Funcionario.Nucleo.Servicos.TipoFuncionarioServico;
 import Dominio.Funcionario.Gerente.Gerente;
@@ -31,14 +29,16 @@ public class GerenteHandler {
     private FuncionarioServico funcionarioServico;
     private AutorizacaoServico autorizacaoServico;
     private TipoFuncionarioServico tipoFuncionarioServico;
+    private FuncionarioMapper funcionarioMapper;
 
     // -- Construtor -- //
-    public GerenteHandler(GerenteMapper gerenteMapper, FuncionarioRepositorio funcionarioRepositorio, FuncionarioServico funcionarioServico, AutorizacaoServico autorizacaoServico, TipoFuncionarioServico tipoFuncionarioServico) {
+    public GerenteHandler(GerenteMapper gerenteMapper, FuncionarioRepositorio funcionarioRepositorio, FuncionarioServico funcionarioServico, AutorizacaoServico autorizacaoServico, TipoFuncionarioServico tipoFuncionarioServico, FuncionarioMapper funcionarioMapper) {
         this.gerenteMapper = gerenteMapper;
         this.funcionarioRepositorio = funcionarioRepositorio;
         this.funcionarioServico = funcionarioServico;
         this.autorizacaoServico = autorizacaoServico;
         this.tipoFuncionarioServico = tipoFuncionarioServico;
+        this.funcionarioMapper = funcionarioMapper;
     }
 
     // -- Métodos -- //
@@ -54,19 +54,19 @@ public class GerenteHandler {
         }
     }
 
-    public GerentePorIdResponse buscarPorIdAtualizar(NivelAcesso nivelAcesso, FuncionarioPorIdRequest request) {
+    public GerentePorIdResponse buscarPorId(NivelAcesso nivelAcesso, FuncionarioPorIdRequest request) {
         try {
             autorizacaoServico.validaAcessoAdmin(nivelAcesso);
             Funcionario funcionario = funcionarioRepositorio.buscar(request.idFuncionario());
             Gerente gerente = tipoFuncionarioServico.validaFuncionarioGerente(funcionario);
 
-            return gerenteMapper.paraResponseGerenteAtualizar(gerente);
+            return gerenteMapper.paraResponseGerente(gerente);
         } catch (AutorizacaoException | FuncionarioNaoEhGerenteException | IdNaoEncontradoException e) {
-            return gerenteMapper.paraResponseGerenteAtualizar(e.getMessage());
+            return gerenteMapper.paraResponseGerente(e.getMessage());
         }
     }
 
-    public AtualizarFuncionarioResponse atualizar(NivelAcesso nivelAcesso, GerenteAtualizarRequest request) {
+    public AtualizarFuncionarioResponse atualizar(NivelAcesso nivelAcesso, AtualizarGerenteRequest request) {
         try {
             autorizacaoServico.validaAcessoAdmin(nivelAcesso);
             Funcionario funcionario = funcionarioRepositorio.buscar(request.id());
@@ -76,7 +76,7 @@ public class GerenteHandler {
                 CPF cpf = new CPF(request.cpf());
 
                 if(gerente.igualMeuCpf(cpf)) {
-                    throw new MesmoDadoException("O cpf deve ser diferente do atual");
+                    throw new MesmoCpfException();
                 }
 
                 funcionarioServico.cpfUtilizado(cpf);
@@ -88,7 +88,7 @@ public class GerenteHandler {
                 NomeFuncionario nome = new NomeFuncionario(request.nome());
 
                 if(gerente.igualMeuNome(nome)) {
-                    throw new MesmoDadoException("O nome deve ser diferente do atual");
+                    throw new MesmoNomeException();
                 }
 
                 gerente.alteraNome(nome);
@@ -98,17 +98,17 @@ public class GerenteHandler {
                 ListaDepartamentos departamentos = new ListaDepartamentos(request.departamentos());
 
                 if(gerente.igualMeuDepartamento(departamentos.getListaDepartamentos().getFirst())) {
-                    throw new MesmoDadoException("O departamento deve ser diferente do atual");
+                    throw new MesmoDepartamentoException();
                 }
 
                 gerente.alteraListaDepartamentos(departamentos);
             }
 
             funcionarioRepositorio.atualizar(gerente);
-            return gerenteMapper.paraResponseAtualizar(gerente);
+            return funcionarioMapper.paraResponseAtualizar(gerente);
         } catch (AutorizacaoException | FuncionarioException | FuncionarioNaoEhGerenteException |
                  IdNaoEncontradoException | MesmoDadoException e) {
-            return gerenteMapper.paraResponseAtualizar(e.getMessage());
+            return funcionarioMapper.paraResponseAtualizar(e.getMessage());
         }
     }
 }

@@ -38,4 +38,8 @@ public class Supervisor extends Funcionario {
 
         this.metaMensal = metaMensal;
     }
+
+    public boolean igualMinhaMetaMensal(MetaMensal metaMensal) {
+        return this.metaMensal.getValorMetaMensal() == metaMensal.getValorMetaMensal();
+    }
 }

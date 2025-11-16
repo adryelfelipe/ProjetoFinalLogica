@@ -1,7 +1,6 @@
 package Aplicacao.Funcionario.Gerente.Controller;
 
-import Aplicacao.Funcionario.Gerente.Dtos.Atualizar.GerenteAtualizarRequest;
-import Aplicacao.Funcionario.Gerente.Dtos.Atualizar.GerenteAtualizarResponse;
+import Aplicacao.Funcionario.Gerente.Dtos.Atualizar.AtualizarGerenteRequest;
 import Aplicacao.Funcionario.Gerente.Dtos.BuscarPorId.GerentePorIdResponse;
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteRequest;
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteResponse;
@@ -34,10 +33,10 @@ public class GerenteController {
             throw new CadastroGerenteNuloException();
         }
 
-        return gerenteHandler.buscarPorIdAtualizar(nivelAcesso, request);
+        return gerenteHandler.buscarPorId(nivelAcesso, request);
     }
 
-    public AtualizarFuncionarioResponse atualizar(NivelAcesso nivelAcesso, GerenteAtualizarRequest request) {
+    public AtualizarFuncionarioResponse atualizar(NivelAcesso nivelAcesso, AtualizarGerenteRequest request) {
         if(request == null) {
             throw new CadastroGerenteNuloException();
         }
