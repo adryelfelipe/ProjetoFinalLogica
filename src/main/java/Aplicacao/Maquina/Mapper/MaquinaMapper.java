@@ -1,9 +1,14 @@
 package Aplicacao.Maquina.Mapper;
 
+import Aplicacao.Funcionario.Nucleo.Dtos.Atualizar.AtualizarFuncionarioResponse;
+import Aplicacao.Maquina.Dtos.Atualizar.AtualizarMaquinaResponse;
+import Aplicacao.Maquina.Dtos.BuscarPorId.MaquinaPorIdRequest;
+import Aplicacao.Maquina.Dtos.BuscarPorId.MaquinaPorIdResponse;
 import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaRequest;
 import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaResponse;
 import Aplicacao.Maquina.Dtos.Listar.ListaMaquinasResponse;
 import Aplicacao.Maquina.Dtos.Listar.MaquinaResponse;
+import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Maquina.Maquina;
 import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
 
@@ -39,5 +44,25 @@ public class MaquinaMapper {
     // Listagem de máquinas falhou
     public ListaMaquinasResponse paraListaResponse(String mensagem) {
         return new ListaMaquinasResponse(null, false, mensagem);
+    }
+
+    // Busca por ID foi um sucesso
+    public MaquinaPorIdResponse paraMaquinaPorIdResponse(Maquina maquina) {
+        return new MaquinaPorIdResponse(maquina.getIdMaquina(), maquina.getNome(), maquina.getStatus(), maquina.getDepartamento(), true, "✅ Busca realizada por ID com sucesso");
+    }
+
+    // Busca por ID falhou
+    public MaquinaPorIdResponse paraMaquinaPorIdResponse(String mensagem) {
+        return new MaquinaPorIdResponse(null, null, null, null, false, mensagem);
+    }
+
+    // Atualização foi um sucesso
+    public AtualizarMaquinaResponse paraAtualizarResponse(Maquina maquina) {
+        return new AtualizarMaquinaResponse(maquina.getIdMaquina(),true, "✅ Máquina atualizada com sucesso");
+    }
+
+    // Atualização falhou
+    public AtualizarMaquinaResponse paraAtualizarResponse(String mensagem) {
+        return new AtualizarMaquinaResponse(null,false, mensagem);
     }
 }

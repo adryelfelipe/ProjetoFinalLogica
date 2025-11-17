@@ -1,7 +1,7 @@
 package Aplicacao.Funcionario.Nucleo.Servicos;
 
 import Aplicacao.Funcionario.Gerente.Exceptions.Handler.FuncionarioNaoEhGerenteException;
-import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.IdNaoEncontradoException;
+import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.IdFuncionarioNaoEncontradoException;
 import Aplicacao.Funcionario.Supervisor.Exceptions.Handler.FuncionarioNaoEhSupervisorException;
 import Aplicacao.Funcionario.Tecnico.Exceptions.Handler.FuncionarioNaoEhTecnicoException;
 import Dominio.Funcionario.Gerente.Gerente;
@@ -14,7 +14,7 @@ public class TipoFuncionarioServico {
     // -- Métodos -- //
     public Gerente validaFuncionarioGerente(Funcionario funcionario) {
         if(funcionario == null) {
-            throw new IdNaoEncontradoException();
+            throw new IdFuncionarioNaoEncontradoException();
         }
 
         if(!(funcionario instanceof Gerente)) {
@@ -26,7 +26,7 @@ public class TipoFuncionarioServico {
 
     public Tecnico validaFuncionarioTecnico(Funcionario funcionario) {
         if(funcionario == null) {
-            throw new IdNaoEncontradoException();
+            throw new IdFuncionarioNaoEncontradoException();
         }
 
         if(!(funcionario instanceof Tecnico)) {
@@ -38,7 +38,7 @@ public class TipoFuncionarioServico {
 
     public Supervisor validaFuncionarioSupervisor(Funcionario funcionario) {
         if(funcionario == null) {
-            throw new IdNaoEncontradoException();
+            throw new IdFuncionarioNaoEncontradoException();
         }
 
         if(!(funcionario instanceof Supervisor)) {

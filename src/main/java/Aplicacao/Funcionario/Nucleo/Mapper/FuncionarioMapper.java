@@ -1,10 +1,8 @@
 package Aplicacao.Funcionario.Nucleo.Mapper;
 
 import Aplicacao.Funcionario.Nucleo.Dtos.Atualizar.AtualizarFuncionarioResponse;
-import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdResponse;
-import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdUpdateResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.Excluir.ExcluirFuncionarioResponse;
-import Aplicacao.Funcionario.Nucleo.Dtos.Funcionario.FuncionarioResponse;
+import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.ListarFuncionarios.ListaFuncionariosResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioResponse;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
@@ -71,10 +69,6 @@ public class FuncionarioMapper {
         return new FuncionarioResponse(funcionario.getId(), funcionario.getNome(), funcionario.getNivelAcesso());
     }
 
-    // Resposta de funcionário voltada para Update
-    public FuncionarioPorIdUpdateResponse paraFuncionarioUpdateResponse(Funcionario funcionario) {
-        return new FuncionarioPorIdUpdateResponse(funcionario);
-    }
     // Atualização foi um sucesso
     public AtualizarFuncionarioResponse paraResponseAtualizar(Funcionario funcionario) {
         return new AtualizarFuncionarioResponse(funcionario.getId(), true, "✅ Funcionário atualizado com sucesso");
@@ -82,6 +76,6 @@ public class FuncionarioMapper {
 
     // Atualização falhou
     public AtualizarFuncionarioResponse paraResponseAtualizar(String mensagem) {
-        return new AtualizarFuncionarioResponse(-1, false, mensagem);
+        return new AtualizarFuncionarioResponse(null, false, mensagem);
     }
 }

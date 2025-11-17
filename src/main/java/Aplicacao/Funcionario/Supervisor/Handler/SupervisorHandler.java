@@ -1,6 +1,5 @@
 package Aplicacao.Funcionario.Supervisor.Handler;
 
-import Aplicacao.Funcionario.Gerente.Exceptions.Handler.FuncionarioNaoEhGerenteException;
 import Aplicacao.Funcionario.Nucleo.Dtos.Atualizar.AtualizarFuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
 import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.*;
@@ -12,7 +11,7 @@ import Aplicacao.Funcionario.Supervisor.Dtos.BuscarPorId.SupervisorPorIdResponse
 import Aplicacao.Funcionario.Supervisor.Dtos.Cadastro.CadastroSupervisorRequest;
 import Aplicacao.Funcionario.Supervisor.Dtos.Cadastro.CadastroSupervisorResponse;
 import Aplicacao.Funcionario.Supervisor.Exceptions.Handler.FuncionarioNaoEhSupervisorException;
-import Aplicacao.Funcionario.Supervisor.Exceptions.Handler.MesmaMetaMensalException;
+import Aplicacao.Funcionario.Supervisor.Exceptions.Handler.MesmaMetaMensalFuncionarioException;
 import Aplicacao.Funcionario.Supervisor.Mapper.SupervisorMapper;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Exceptions.FuncionarioException;
@@ -64,7 +63,7 @@ public class SupervisorHandler {
             Supervisor supervisor = tipoFuncionarioServico.validaFuncionarioSupervisor(funcionario);
 
             return supervisorMapper.paraResponseSupervisor(supervisor);
-        } catch (AutorizacaoException | FuncionarioNaoEhSupervisorException | IdNaoEncontradoException e) {
+        } catch (AutorizacaoException | FuncionarioNaoEhSupervisorException | IdFuncionarioNaoEncontradoException e) {
             return supervisorMapper.paraResponseSupervisor(e.getMessage());
         }
     }
@@ -79,7 +78,7 @@ public class SupervisorHandler {
                 CPF cpf = new CPF(request.cpf());
 
                 if(supervisor.igualMeuCpf(cpf)) {
-                    throw new MesmoCpfException();
+                    throw new MesmoCpfFuncionarioException();
                 }
 
                 funcionarioServico.cpfUtilizado(cpf);
@@ -90,7 +89,7 @@ public class SupervisorHandler {
                 NomeFuncionario nome = new NomeFuncionario(request.nome());
 
                 if(supervisor.igualMeuNome(nome)) {
-                    throw new MesmoNomeException();
+                    throw new MesmoNomeFuncionarioException();
                 }
 
                 supervisor.alteraNome(nome);
@@ -100,7 +99,7 @@ public class SupervisorHandler {
                 ListaDepartamentos departamentos = new ListaDepartamentos(request.departamentos());
 
                 if(supervisor.igualMeuDepartamento(departamentos.getListaDepartamentos().getFirst())) {
-                    throw new MesmoDepartamentoException();
+                    throw new MesmoDepartamentoFuncionarioException();
                 }
 
                 supervisor.alteraListaDepartamentos(departamentos);
@@ -110,7 +109,7 @@ public class SupervisorHandler {
                 MetaMensal metaMensal = new MetaMensal(request.metaMensal());
 
                 if(supervisor.igualMinhaMetaMensal(metaMensal)) {
-                    throw new MesmaMetaMensalException();
+                    throw new MesmaMetaMensalFuncionarioException();
                 }
 
                 supervisor.alteraMetaMensal(metaMensal);
@@ -119,7 +118,7 @@ public class SupervisorHandler {
             funcionarioRepositorio.atualizar(supervisor);
             return funcionarioMapper.paraResponseAtualizar(supervisor);
         } catch (AutorizacaoException | FuncionarioException | FuncionarioNaoEhSupervisorException |
-                 IdNaoEncontradoException | MesmoDadoException e) {
+                 IdFuncionarioNaoEncontradoException | MesmoDadoFuncionarioException e) {
             return funcionarioMapper.paraResponseAtualizar(e.getMessage());
         }
     }

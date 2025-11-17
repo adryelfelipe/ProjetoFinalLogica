@@ -31,7 +31,7 @@ public class MaquinaSimulacaoJDBC implements MaquinaRepositorio {
     }
 
     @Override
-    public void excluirPorId(long id) {
+    public void excluir(long id) {
         for(Maquina maquina : listaMaquinas) {
             if(maquina.getIdMaquina() == id) {
                 listaMaquinas.remove(maquina);
@@ -40,7 +40,7 @@ public class MaquinaSimulacaoJDBC implements MaquinaRepositorio {
     }
 
     @Override
-    public Maquina buscarPorId(long id) {
+    public Maquina buscar(long id) {
         for(Maquina maquina : listaMaquinas) {
             if(maquina.getIdMaquina() == id) {
                 return maquina;

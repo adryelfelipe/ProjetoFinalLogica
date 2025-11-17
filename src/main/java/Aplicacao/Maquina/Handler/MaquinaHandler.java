@@ -1,14 +1,24 @@
 package Aplicacao.Maquina.Handler;
 
-import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.AutorizacaoException;
+import Aplicacao.Funcionario.Gerente.Exceptions.Handler.FuncionarioNaoEhGerenteException;
+import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.*;
 import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
+import Aplicacao.Maquina.Dtos.Atualizar.AtualizarMaquinaRequest;
+import Aplicacao.Maquina.Dtos.Atualizar.AtualizarMaquinaResponse;
+import Aplicacao.Maquina.Dtos.BuscarPorId.MaquinaPorIdRequest;
+import Aplicacao.Maquina.Dtos.BuscarPorId.MaquinaPorIdResponse;
 import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaRequest;
 import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaResponse;
 import Aplicacao.Maquina.Dtos.Listar.ListaMaquinasResponse;
+import Aplicacao.Maquina.Exceptions.Handler.*;
 import Aplicacao.Maquina.Mapper.MaquinaMapper;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
+import Dominio.Funcionario.Nucleo.Exceptions.FuncionarioException;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
 import Dominio.Maquina.Exceptions.MaquinaException;
 import Dominio.Maquina.Maquina;
+import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
 import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 import Dominio.Maquina.Servicos.MaquinaServico;
 
@@ -46,6 +56,63 @@ public class MaquinaHandler {
             return maquinaMapper.paraListaResponse(maquinaRepositorio.listaMaquinas());
         } catch (AutorizacaoException e) {
             return maquinaMapper.paraListaResponse(e.getMessage());
+        }
+    }
+
+    public MaquinaPorIdResponse buscar(NivelAcesso nivelAcesso, MaquinaPorIdRequest request) {
+        try {
+            autorizacaoServico.validaAcessoGerente(nivelAcesso);
+            Maquina maquina = maquinaRepositorio.buscar(request.idMaquina());
+
+            if(maquina == null) {
+                throw new IdMaquinaNaoEncontradoException();
+            }
+
+            return maquinaMapper.paraMaquinaPorIdResponse(maquina);
+        } catch (AutorizacaoException | IdMaquinaNaoEncontradoException e) {
+            return maquinaMapper.paraMaquinaPorIdResponse(e.getMessage());
+        }
+    }
+
+    public AtualizarMaquinaResponse atualizar(NivelAcesso nivelAcesso, AtualizarMaquinaRequest request) {
+        try {
+            autorizacaoServico.validaAcessoAdmin(nivelAcesso);
+            Maquina maquina = maquinaRepositorio.buscar(request.idMaquina());
+
+            if(maquina == null) {
+                throw new IdMaquinaNaoEncontradoException();
+            }
+
+            if(request.departamento() != null) {
+                if(maquina.igualMeuDepartamento(request.departamento())) {
+                    throw new MesmoDepartamentoMaquinaException();
+                }
+
+                maquina.alteraDepartamento(request.departamento());
+            }
+
+            if(request.nome() != null) {
+                NomeMaquina nome = new NomeMaquina(request.nome());
+                if(maquina.igualMeuNome(nome)) {
+                    throw new MesmoNomeMaquinaException();
+                }
+
+                maquina.alteraNome(nome);
+            }
+
+            if(request.status() != null) {
+                if(maquina.igualMeuStatus(request.status())) {
+                    throw new MesmoStatusMaquinaException();
+                }
+
+                maquina.alteraStatus(request.status());
+            }
+
+            maquinaRepositorio.atualizar(maquina);
+            return maquinaMapper.paraAtualizarResponse(maquina);
+        } catch (AutorizacaoException | MaquinaException |
+                 IdMaquinaNaoEncontradoException | MesmoDadoMaquinaException e) {
+            return maquinaMapper.paraAtualizarResponse(e.getMessage());
         }
     }
 }

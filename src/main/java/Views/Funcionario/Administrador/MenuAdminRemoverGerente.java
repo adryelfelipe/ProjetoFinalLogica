@@ -2,7 +2,7 @@ package Views.Funcionario.Administrador;
 
 import Aplicacao.Funcionario.Nucleo.Dtos.Excluir.ExcluirFuncionarioRequest;
 import Aplicacao.Funcionario.Nucleo.Dtos.Excluir.ExcluirFuncionarioResponse;
-import Aplicacao.Funcionario.Nucleo.Dtos.Funcionario.FuncionarioResponse;
+import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.ListarFuncionarios.ListaFuncionariosResponse;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Util.Ferramentas;

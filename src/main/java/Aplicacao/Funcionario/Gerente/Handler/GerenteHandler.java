@@ -61,7 +61,7 @@ public class GerenteHandler {
             Gerente gerente = tipoFuncionarioServico.validaFuncionarioGerente(funcionario);
 
             return gerenteMapper.paraResponseGerente(gerente);
-        } catch (AutorizacaoException | FuncionarioNaoEhGerenteException | IdNaoEncontradoException e) {
+        } catch (AutorizacaoException | FuncionarioNaoEhGerenteException | IdFuncionarioNaoEncontradoException e) {
             return gerenteMapper.paraResponseGerente(e.getMessage());
         }
     }
@@ -76,7 +76,7 @@ public class GerenteHandler {
                 CPF cpf = new CPF(request.cpf());
 
                 if(gerente.igualMeuCpf(cpf)) {
-                    throw new MesmoCpfException();
+                    throw new MesmoCpfFuncionarioException();
                 }
 
                 funcionarioServico.cpfUtilizado(cpf);
@@ -88,7 +88,7 @@ public class GerenteHandler {
                 NomeFuncionario nome = new NomeFuncionario(request.nome());
 
                 if(gerente.igualMeuNome(nome)) {
-                    throw new MesmoNomeException();
+                    throw new MesmoNomeFuncionarioException();
                 }
 
                 gerente.alteraNome(nome);
@@ -98,7 +98,7 @@ public class GerenteHandler {
                 ListaDepartamentos departamentos = new ListaDepartamentos(request.departamentos());
 
                 if(gerente.igualMeuDepartamento(departamentos.getListaDepartamentos().getFirst())) {
-                    throw new MesmoDepartamentoException();
+                    throw new MesmoDepartamentoFuncionarioException();
                 }
 
                 gerente.alteraListaDepartamentos(departamentos);
@@ -107,7 +107,7 @@ public class GerenteHandler {
             funcionarioRepositorio.atualizar(gerente);
             return funcionarioMapper.paraResponseAtualizar(gerente);
         } catch (AutorizacaoException | FuncionarioException | FuncionarioNaoEhGerenteException |
-                 IdNaoEncontradoException | MesmoDadoException e) {
+                 IdFuncionarioNaoEncontradoException | MesmoDadoFuncionarioException e) {
             return funcionarioMapper.paraResponseAtualizar(e.getMessage());
         }
     }

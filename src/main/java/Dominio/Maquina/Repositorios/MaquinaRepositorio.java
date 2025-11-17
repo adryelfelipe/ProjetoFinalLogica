@@ -8,8 +8,8 @@ import java.util.List;
 public interface MaquinaRepositorio {
     boolean existeId(long id);
     void salvar(Maquina maquina);
-    void excluirPorId(long id);
-    Maquina buscarPorId(long id);
+    void excluir(long id);
+    Maquina buscar(long id);
     void atualizar(Maquina maquina);
     List<Maquina> listaMaquinas();
     Departamento maquinaParaDepartamento(long idMaquina);

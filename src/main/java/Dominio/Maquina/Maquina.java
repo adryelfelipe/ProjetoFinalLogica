@@ -84,4 +84,15 @@ public class Maquina {
         this.departamento = departamento;
     }
 
+    public boolean igualMeuDepartamento(Departamento departamento) {
+        return this.departamento == departamento;
+    }
+
+    public boolean igualMeuNome(NomeMaquina nomeMaquina) {
+        return this.nome.equals(nomeMaquina);
+    }
+
+    public boolean igualMeuStatus(StatusMaquina status) {
+        return this.status == status;
+    }
 }

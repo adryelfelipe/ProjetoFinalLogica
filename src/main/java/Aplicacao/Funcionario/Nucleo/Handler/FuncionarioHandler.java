@@ -1,11 +1,7 @@
 package Aplicacao.Funcionario.Nucleo.Handler;
 
-import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
-import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdResponse;
-import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdUpdateResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.Excluir.ExcluirFuncionarioRequest;
 import Aplicacao.Funcionario.Nucleo.Dtos.Excluir.ExcluirFuncionarioResponse;
-import Aplicacao.Funcionario.Nucleo.Dtos.Funcionario.FuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.ListarFuncionarios.ListaFuncionariosResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioRequest;
 import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioResponse;
@@ -97,17 +93,5 @@ public class FuncionarioHandler {
         } catch (AutorizacaoException e) {
             return funcionarioMapper.paraListaResponseGerente(e.getMessage());
         }
-    }
-
-    public FuncionarioPorIdResponse buscarPorId(FuncionarioPorIdRequest request) {
-        Funcionario funcionario = funcionarioRepositorio.buscar(request.idFuncionario());
-        FuncionarioResponse funcionarioResponse = funcionarioMapper.paraFuncionarioResponse(funcionario);
-        return new FuncionarioPorIdResponse(funcionarioResponse);
-    }
-
-    public FuncionarioPorIdUpdateResponse buscarPorIdUpdate(FuncionarioPorIdRequest request) {
-        Funcionario funcionario = funcionarioRepositorio.buscar(request.idFuncionario());
-        FuncionarioPorIdUpdateResponse response = funcionarioMapper.paraFuncionarioUpdateResponse(funcionario);
-        return new FuncionarioPorIdUpdateResponse(funcionario);
     }
 }

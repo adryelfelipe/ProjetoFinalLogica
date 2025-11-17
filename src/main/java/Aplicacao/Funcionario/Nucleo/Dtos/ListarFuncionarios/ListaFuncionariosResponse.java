@@ -1,6 +1,6 @@
 package Aplicacao.Funcionario.Nucleo.Dtos.ListarFuncionarios;
 
-import Aplicacao.Funcionario.Nucleo.Dtos.Funcionario.FuncionarioResponse;
+import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioResponse;
 
 import java.util.List;
 

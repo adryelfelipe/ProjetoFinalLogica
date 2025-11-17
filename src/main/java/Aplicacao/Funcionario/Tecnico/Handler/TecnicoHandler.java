@@ -11,7 +11,7 @@ import Aplicacao.Funcionario.Tecnico.Dtos.BuscarPorId.TecnicoPorIdResponse;
 import Aplicacao.Funcionario.Tecnico.Dtos.Cadastro.CadastroTecnicoRequest;
 import Aplicacao.Funcionario.Tecnico.Dtos.Cadastro.CadastroTecnicoResponse;
 import Aplicacao.Funcionario.Tecnico.Exceptions.Handler.FuncionarioNaoEhTecnicoException;
-import Aplicacao.Funcionario.Tecnico.Exceptions.Handler.MesmaEspecialidadeException;
+import Aplicacao.Funcionario.Tecnico.Exceptions.Handler.MesmaEspecialidadeFuncionarioException;
 import Aplicacao.Funcionario.Tecnico.Mapper.TecnicoMapper;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Exceptions.FuncionarioException;
@@ -59,7 +59,7 @@ public class TecnicoHandler {
             Tecnico tenico = tipoFuncionarioServico.validaFuncionarioTecnico(funcionario);
 
             return tecnicoMapper.paraResponseTecnico(tenico);
-        } catch (AutorizacaoException | FuncionarioNaoEhTecnicoException | IdNaoEncontradoException e) {
+        } catch (AutorizacaoException | FuncionarioNaoEhTecnicoException | IdFuncionarioNaoEncontradoException e) {
             return tecnicoMapper.paraResponseTecnico(e.getMessage());
         }
     }
@@ -74,7 +74,7 @@ public class TecnicoHandler {
                 CPF cpf = new CPF(request.cpf());
 
                 if(tecnico.igualMeuCpf(cpf)) {
-                    throw new MesmoCpfException();
+                    throw new MesmoCpfFuncionarioException();
                 }
 
                 funcionarioServico.cpfUtilizado(cpf);
@@ -85,7 +85,7 @@ public class TecnicoHandler {
                 NomeFuncionario nome = new NomeFuncionario(request.nome());
 
                 if(tecnico.igualMeuNome(nome)) {
-                    throw new MesmoNomeException();
+                    throw new MesmoNomeFuncionarioException();
                 }
 
                 tecnico.alteraNome(nome);
@@ -95,7 +95,7 @@ public class TecnicoHandler {
                 ListaDepartamentos departamentos = new ListaDepartamentos(request.departamentos());
 
                 if(tecnico.igualMeuDepartamento(departamentos.getListaDepartamentos().getFirst())) {
-                    throw new MesmoDepartamentoException();
+                    throw new MesmoDepartamentoFuncionarioException();
                 }
 
                 tecnico.alteraListaDepartamentos(departamentos);
@@ -103,7 +103,7 @@ public class TecnicoHandler {
 
             if(request.especialidade() != null) {
                 if(tecnico.igualMinhaEspecialidade(request.especialidade())) {
-                    throw new MesmaEspecialidadeException();
+                    throw new MesmaEspecialidadeFuncionarioException();
                 }
 
                 tecnico.alteraEspecialidade(request.especialidade());
@@ -112,7 +112,7 @@ public class TecnicoHandler {
             funcionarioRepositorio.atualizar(tecnico);
             return funcionarioMapper.paraResponseAtualizar(tecnico);
         } catch (AutorizacaoException | FuncionarioException | FuncionarioNaoEhTecnicoException |
-                 IdNaoEncontradoException | MesmoDadoException e) {
+                 IdFuncionarioNaoEncontradoException | MesmoDadoFuncionarioException e) {
             return funcionarioMapper.paraResponseAtualizar(e.getMessage());
         }
     }
