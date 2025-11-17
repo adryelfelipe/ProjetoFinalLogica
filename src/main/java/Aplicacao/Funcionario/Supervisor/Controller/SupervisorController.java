@@ -31,12 +31,12 @@ public class SupervisorController {
         return supervisorHandler.salvar(nivelAcesso, request);
     }
 
-    public SupervisorPorIdResponse buscarPorId(NivelAcesso nivelAcesso, FuncionarioPorIdRequest request) {
+    public SupervisorPorIdResponse buscarPorId(FuncionarioPorIdRequest request) {
         if(request == null) {
             throw new BuscarPorIdNuloException();
         }
 
-        return supervisorHandler.buscarPorId(nivelAcesso, request);
+        return supervisorHandler.buscarPorId(request);
     }
 
     public AtualizarFuncionarioResponse atualizar(NivelAcesso nivelAcesso, AtualizarSupervisorRequest request) {

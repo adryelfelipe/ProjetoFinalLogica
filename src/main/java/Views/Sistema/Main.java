@@ -86,7 +86,7 @@ public class Main {
     // Aplicaçã de Ordem de Serviço
     private static OsServico osServico = new OsServico(maquinaDAO, funcionarioDAO, osDAO);
     private static OrdemDeServicoMapper osMapper = new OrdemDeServicoMapper(funcionarioDAO, maquinaDAO);
-    private static OrdemDeServicoHandler osHandler = new OrdemDeServicoHandler(osDAO, autorizacaoServico, osServico, osMapper, maquinaDAO);
+    private static OrdemDeServicoHandler osHandler = new OrdemDeServicoHandler(osDAO, autorizacaoServico, osServico, osMapper, maquinaDAO, funcionarioDAO);
 
     // Controllers públicas
     public static GerenteController gerenteController = new GerenteController(gerenteHandler);

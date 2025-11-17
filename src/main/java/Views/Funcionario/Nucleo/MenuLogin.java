@@ -40,7 +40,7 @@ public class MenuLogin
             }
 
             if(response.nivelAcesso().equals(NivelAcesso.TECNICO)) {
-                //MenuTecnico.menu
+                MenuTecnico.menuTecnico(response.id(), response.nivelAcesso());
             }
         } else {
             Ferramentas.mensagemErro(response.mensagem());

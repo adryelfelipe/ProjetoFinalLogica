@@ -1,51 +1,43 @@
 package Views.Funcionario.Tecnico;
 
+import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Tecnico.Tecnico;
 import Util.Ferramentas;
 import Views.Funcionario.Nucleo.MenuInicial;
+import Views.Funcionario.Supervisor.MenuVisualizarOs;
 
 import java.util.InputMismatchException;
 
-public class MenuTecnico
-{
-    public static void menuTecnico(Tecnico tecnico)
-    {
-        boolean continuar = false;
-
-        while(!continuar)
-        {
+public class MenuTecnico {
+    public static void menuTecnico(long idTecnico, NivelAcesso nivelAcesso) {
+        while(true) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃             MENU TÉCNICO             ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                      ┃");
-            System.out.println("┃  1 - Detalhes de uma Ordem           ┃");
+            System.out.println("┃  1 - Ordens de Serviço               ┃");
             System.out.println("┃  2 - Atualizar Status de uma Ordem   ┃");
-            System.out.println("┃  5 - Retornar                        ┃");
+            System.out.println("┃  3 - Retornar                        ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
-            try
-            {
+            try {
                 int escolhaTecnica = Ferramentas.lInteiro();
 
-                switch(escolhaTecnica)
-                {
-                    case 1 -> MenuTecnicoVisualizarDetalhes.visualizarDetalhesDeOS();
-                     //case 2 -> MenuUpdateTecnico.menuUpdateOS(tecnico);
-                    case 3 ->
-                    {
-                        System.out.println("┃  RETORNANDO AO MENU INICIAL ...");
-                        MenuInicial.Menu();
+                switch(escolhaTecnica) {
+                    case 1 -> MenuTecnicoOs.ordensServicos(idTecnico, nivelAcesso);
+
+                    case 3 -> {
+                        Ferramentas.mensagemSucesso("┃  RETORNANDO AO MENU INICIAL ...");
+                        return;
                     }
+
                     default -> Ferramentas.menuDefault();
                 }
             }
-            catch (InputMismatchException e)
-            {
+            catch (InputMismatchException e) {
                 Ferramentas.menuDefault();
             }
         }
     }
-
-
 }

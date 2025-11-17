@@ -52,14 +52,13 @@ public class TecnicoHandler {
         }
     }
 
-    public TecnicoPorIdResponse buscarPorId(NivelAcesso nivelAcesso, FuncionarioPorIdRequest request) {
+    public TecnicoPorIdResponse buscarPorId(FuncionarioPorIdRequest request) {
         try {
-            autorizacaoServico.validaAcessoGerente(nivelAcesso);
             Funcionario funcionario = funcionarioRepositorio.buscar(request.idFuncionario());
             Tecnico tenico = tipoFuncionarioServico.validaFuncionarioTecnico(funcionario);
 
             return tecnicoMapper.paraResponseTecnico(tenico);
-        } catch (AutorizacaoException | FuncionarioNaoEhTecnicoException | IdFuncionarioNaoEncontradoException e) {
+        } catch (FuncionarioNaoEhTecnicoException | IdFuncionarioNaoEncontradoException e) {
             return tecnicoMapper.paraResponseTecnico(e.getMessage());
         }
     }

@@ -34,4 +34,12 @@ public class OrdemDeServicoController {
 
         return osHandler.listarOsDepartamento(nivelAcesso, request);
     }
+
+    public ListarOsResponse listarOsTecnico(NivelAcesso nivelAcesso, ListarOsRequest request) {
+        if(request == null) {
+            throw new ListarNulaException();
+        }
+
+        return osHandler.listarOsTecnico(nivelAcesso, request);
+    }
 }

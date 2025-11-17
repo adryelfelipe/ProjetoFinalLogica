@@ -46,7 +46,7 @@ public class OrdemDeServicoMapper {
         return new CadastroOsResponse(null, false, mensagem);
     }
 
-    // Listagem de ordens de serviço foi um sucesso
+    // Listagem de ordens de serviço em tal departamento foi um sucesso
     public ListarOsResponse paraListaOsResponseDepartamento(Departamento departamento, List<OrdemDeServico> lista) {
         List<OrdemServicoResponse> listaResponse = new ArrayList<>();
 
@@ -63,7 +63,23 @@ public class OrdemDeServicoMapper {
     }
 
     // Listagem de ordens de serviço falhou
-    public ListarOsResponse paraListaOsResponseDepartamento(String mensagem) {
+    public ListarOsResponse paraListaOsResponse(String mensagem) {
         return new ListarOsResponse(null, false, mensagem);
+    }
+
+    // Listagem de ordens de serviço de um determinado técnico foi um sucesso
+    public ListarOsResponse paraListaOsResponseTecnico(long idTecnico, List<OrdemDeServico> lista) {
+        List<OrdemServicoResponse> listaResponse = new ArrayList<>();
+
+        for(OrdemDeServico os : lista) {
+            if(os.getIdTecnico() == idTecnico) {
+                NomeFuncionario nomeTecnico = funcionarioRepositorio.buscarNome(os.getIdTecnico());
+                NomeMaquina nomeMaquina = maquinaRepositorio.buscarNome(os.getIdMaquina());
+                OrdemServicoResponse osResponse = new OrdemServicoResponse(os.getIdOs(), os.getStatusOS(),os.getDescricao() ,os.getTipoOS(), os.getValorOS(), os.getIdTecnico(), nomeTecnico, os.getIdMaquina(), nomeMaquina);
+                listaResponse.add(osResponse);
+            }
+        }
+
+        return new ListarOsResponse(listaResponse, true, "✅ Listagem de ordens de serviço realizada com sucesso!");
     }
 }

@@ -56,7 +56,7 @@ public class SupervisorHandler {
         }
     }
 
-    public SupervisorPorIdResponse buscarPorId(NivelAcesso nivelAcesso, FuncionarioPorIdRequest request) {
+    public SupervisorPorIdResponse buscarPorId(FuncionarioPorIdRequest request) {
         try {
             Funcionario funcionario = funcionarioRepositorio.buscar(request.idFuncionario());
             Supervisor supervisor = tipoFuncionarioServico.validaFuncionarioSupervisor(funcionario);

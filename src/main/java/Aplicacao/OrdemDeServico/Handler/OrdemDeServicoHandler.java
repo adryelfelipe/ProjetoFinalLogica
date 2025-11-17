@@ -1,7 +1,9 @@
 package Aplicacao.OrdemDeServico.Handler;
 
 import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.AutorizacaoException;
+import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.IdFuncionarioNaoEncontradoException;
 import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
+import Aplicacao.Funcionario.Tecnico.Exceptions.Handler.FuncionarioNaoEhTecnicoException;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsResponse;
 import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsRequest;
@@ -9,6 +11,7 @@ import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsResponse;
 import Aplicacao.OrdemDeServico.Mapper.OrdemDeServicoMapper;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
+import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 import Dominio.OrdemDeServico.Exceptions.OrdemDeServicoException;
@@ -24,13 +27,15 @@ public class OrdemDeServicoHandler {
     private AutorizacaoServico autorizacaoServico;
     private OrdemDeServicoMapper ordemDeServicoMapper;
     private MaquinaRepositorio maquinaRepositorio;
+    private FuncionarioRepositorio funcionarioRepositorio;
 
-    public OrdemDeServicoHandler(OrdemDeServicoRepositorio ordemRepositorio, AutorizacaoServico autorizacaoServico, OsServico osServico, OrdemDeServicoMapper ordemDeServicoMapper, MaquinaRepositorio maquinaRepositorio) {
+    public OrdemDeServicoHandler(OrdemDeServicoRepositorio ordemRepositorio, AutorizacaoServico autorizacaoServico, OsServico osServico, OrdemDeServicoMapper ordemDeServicoMapper, MaquinaRepositorio maquinaRepositorio, FuncionarioRepositorio funcionarioRepositorio) {
         this.ordemRepositorio = ordemRepositorio;
         this.autorizacaoServico = autorizacaoServico;
         this.osServico = osServico;
         this.ordemDeServicoMapper = ordemDeServicoMapper;
         this.maquinaRepositorio = maquinaRepositorio;
+        this.funcionarioRepositorio = funcionarioRepositorio;
     }
 
     public CadastroOsResponse salvar(NivelAcesso nivelAcesso, CadastroOsRequest request) {
@@ -68,7 +73,30 @@ public class OrdemDeServicoHandler {
 
             throw new AutorizacaoException();
         } catch (AutorizacaoException e) {
-            return ordemDeServicoMapper.paraListaOsResponseDepartamento(e.getMessage());
+            return ordemDeServicoMapper.paraListaOsResponse(e.getMessage());
+        }
+    }
+
+    public ListarOsResponse listarOsTecnico(NivelAcesso nivelAcesso, ListarOsRequest request) {
+        try {
+            if(nivelAcesso != NivelAcesso.TECNICO) {
+                throw new AutorizacaoException();
+            }
+
+            List<OrdemDeServico> listaOs = ordemRepositorio.listarOsAtivas();
+            Funcionario funcionario = funcionarioRepositorio.buscar(request.idFuncionario());
+
+            if(funcionario == null) {
+                throw new IdFuncionarioNaoEncontradoException();
+            }
+
+            if(funcionario.getNivelAcesso() != NivelAcesso.TECNICO) {
+                throw new FuncionarioNaoEhTecnicoException();
+            }
+
+            return ordemDeServicoMapper.paraListaOsResponseTecnico(request.idFuncionario(), listaOs);
+        } catch (AutorizacaoException | IdFuncionarioNaoEncontradoException | FuncionarioNaoEhTecnicoException e) {
+            return ordemDeServicoMapper.paraListaOsResponse(e.getMessage());
         }
     }
 }

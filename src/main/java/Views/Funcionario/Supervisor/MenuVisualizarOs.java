@@ -15,7 +15,7 @@ public class MenuVisualizarOs {
 
         // Pedido e resposta para buscar supervisor
         FuncionarioPorIdRequest buscarSupervisorRequest = new FuncionarioPorIdRequest(idFuncionario);
-        SupervisorPorIdResponse responseSupervisor = Main.supervisorController.buscarPorId(nivelAcesso, buscarSupervisorRequest);
+        SupervisorPorIdResponse responseSupervisor = Main.supervisorController.buscarPorId(buscarSupervisorRequest);
 
         // Pedido e resposta para listar ordens de servico
         ListarOsRequest listarOsRequest = new ListarOsRequest(idFuncionario, responseSupervisor.listaDepartamentos().getListaDepartamentos().getFirst());
@@ -39,7 +39,6 @@ public class MenuVisualizarOs {
         System.out.println(); // pula linha
 
         for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
-            // Pedido e resposta para buscar técnico
             System.out.println("ID OS: " + os.idOs());
             System.out.println("Status: " + os.statusOs());
             System.out.println("Descrição: " + os.descricao().getDescricao());

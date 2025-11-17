@@ -1,6 +1,5 @@
 package Aplicacao.Funcionario.Tecnico.Controller;
 
-import Aplicacao.Funcionario.Gerente.Exceptions.Requests.CadastroGerenteNuloException;
 import Aplicacao.Funcionario.Nucleo.Dtos.Atualizar.AtualizarFuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
 import Aplicacao.Funcionario.Nucleo.Exceptions.Requests.BuscarPorIdNuloException;
@@ -28,12 +27,12 @@ public class TecnicoController {
         return tecnicHandler.salvar(nivelAcesso, request);
     }
 
-    public TecnicoPorIdResponse buscarPorIdUpate(NivelAcesso nivelAcesso, FuncionarioPorIdRequest request) {
+    public TecnicoPorIdResponse buscarPorId(FuncionarioPorIdRequest request) {
         if(request == null) {
             throw new BuscarPorIdNuloException();
         }
 
-        return tecnicHandler.buscarPorId(nivelAcesso, request);
+        return tecnicHandler.buscarPorId(request);
     }
 
     public AtualizarFuncionarioResponse atualizar(NivelAcesso nivelAcesso, TecnicoAtualizarRequest request) {

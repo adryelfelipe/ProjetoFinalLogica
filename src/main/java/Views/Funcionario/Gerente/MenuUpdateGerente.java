@@ -72,7 +72,7 @@ public class MenuUpdateGerente {
 
         while(true) {
             FuncionarioPorIdRequest requestId = new FuncionarioPorIdRequest(idTecnico);
-            TecnicoPorIdResponse responseId = Main.tecnicoController.buscarPorIdUpate(nivelAcesso, requestId);
+            TecnicoPorIdResponse responseId = Main.tecnicoController.buscarPorId(requestId);
 
             if(responseId.status()) {
                 System.out.println("\n                                                 \n");
@@ -175,7 +175,7 @@ public class MenuUpdateGerente {
 
         while(true) {
             FuncionarioPorIdRequest requestId = new FuncionarioPorIdRequest(idSupervisor);
-            SupervisorPorIdResponse responseId = Main.supervisorController.buscarPorId(nivelAcesso, requestId);
+            SupervisorPorIdResponse responseId = Main.supervisorController.buscarPorId(requestId);
 
             if(responseId.status()) {
                 System.out.println("\n                                                       \n");
