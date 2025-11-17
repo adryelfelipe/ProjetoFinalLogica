@@ -1,5 +1,6 @@
 package Dominio.Funcionario.Nucleo;
 
+import Dominio.Funcionario.Gerente.Gerente;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Exceptions.*;

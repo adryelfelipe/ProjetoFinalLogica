@@ -38,6 +38,7 @@ import Dominio.Maquina.ObjetosDeValor.Localizacao;
 import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
 import Dominio.Maquina.Servicos.MaquinaServico;
 import Dominio.OrdemDeServico.Servicos.OsServico;
+import Infraestrutura.Persistencia.Implementacao.Funcionario.JDBC.FuncionarioRepositorioJdbc;
 import Infraestrutura.Persistencia.Implementacao.Funcionario.Mapper.FuncionarioJdbcMapper;
 import Infraestrutura.Persistencia.Testes.Funcionario.FuncionarioSimulacaoJDBC;
 import Infraestrutura.Persistencia.Testes.Maquina.MaquinaSimulacaoJDBC;
@@ -84,7 +85,7 @@ public class Main {
 
     // Aplicaçã de Ordem de Serviço
     private static OsServico osServico = new OsServico(maquinaDAO, funcionarioDAO, osDAO);
-    private static OrdemDeServicoMapper osMapper = new OrdemDeServicoMapper();
+    private static OrdemDeServicoMapper osMapper = new OrdemDeServicoMapper(funcionarioDAO, maquinaDAO);
     private static OrdemDeServicoHandler osHandler = new OrdemDeServicoHandler(osDAO, autorizacaoServico, osServico, osMapper, maquinaDAO);
 
     // Controllers públicas

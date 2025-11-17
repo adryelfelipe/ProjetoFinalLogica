@@ -30,7 +30,7 @@ public class MenuUpdateADM {
 
         while (true) {
             FuncionarioPorIdRequest requestId = new FuncionarioPorIdRequest(idGerente);
-            GerentePorIdResponse responseId = Main.gerenteController.buscarPorIdUpate(nivelAcesso, requestId);
+            GerentePorIdResponse responseId = Main.gerenteController.buscarPorId(nivelAcesso, requestId);
 
             if(responseId.status()) {
                 System.out.println("          ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓          ");

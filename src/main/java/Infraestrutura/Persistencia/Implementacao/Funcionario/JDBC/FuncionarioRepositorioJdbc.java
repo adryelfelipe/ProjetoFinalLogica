@@ -1,9 +1,6 @@
 package Infraestrutura.Persistencia.Implementacao.Funcionario.JDBC;
 
-import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
-import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
 import Infraestrutura.Configuracao.ConnectionFactory;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
@@ -363,5 +360,10 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
             System.err.println("ERRO ao visualizar a lista.");
         }
         return List.of();
+    }
+
+    @Override
+    public NomeFuncionario buscarNome(long id) {
+        return null;
     }
 }

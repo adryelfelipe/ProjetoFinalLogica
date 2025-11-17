@@ -4,6 +4,7 @@ import Aplicacao.Funcionario.Gerente.Dtos.Atualizar.AtualizarGerenteRequest;
 import Aplicacao.Funcionario.Gerente.Dtos.BuscarPorId.GerentePorIdResponse;
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteRequest;
 import Aplicacao.Funcionario.Gerente.Dtos.Cadastro.CadastroGerenteResponse;
+import Aplicacao.Funcionario.Gerente.Exceptions.Requests.AtualizarGerenteNuloException;
 import Aplicacao.Funcionario.Gerente.Exceptions.Requests.CadastroGerenteNuloException;
 import Aplicacao.Funcionario.Gerente.Handler.GerenteHandler;
 import Aplicacao.Funcionario.Nucleo.Dtos.Atualizar.AtualizarFuncionarioResponse;
@@ -28,7 +29,7 @@ public class GerenteController {
         return gerenteHandler.cadastrar(nivelAcesso, request);
     }
 
-    public GerentePorIdResponse buscarPorIdUpate(NivelAcesso nivelAcesso, FuncionarioPorIdRequest request) {
+    public GerentePorIdResponse buscarPorId(NivelAcesso nivelAcesso, FuncionarioPorIdRequest request) {
         if(request == null) {
             throw new CadastroGerenteNuloException();
         }
@@ -38,7 +39,7 @@ public class GerenteController {
 
     public AtualizarFuncionarioResponse atualizar(NivelAcesso nivelAcesso, AtualizarGerenteRequest request) {
         if(request == null) {
-            throw new CadastroGerenteNuloException();
+            throw new AtualizarGerenteNuloException();
         }
 
         return gerenteHandler.atualizar(nivelAcesso, request);

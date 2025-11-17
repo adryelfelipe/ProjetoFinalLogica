@@ -9,6 +9,7 @@ import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsResponse;
 import Aplicacao.OrdemDeServico.Mapper.OrdemDeServicoMapper;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
+import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 import Dominio.OrdemDeServico.Exceptions.OrdemDeServicoException;
 import Dominio.OrdemDeServico.OrdemDeServico;
@@ -50,19 +51,24 @@ public class OrdemDeServicoHandler {
     }
 
     public ListarOsResponse listarOsDepartamento(NivelAcesso nivelAcesso, ListarOsRequest request) {
-        // Se for Supervisor, lista somente as Ativas em seu departamento
-        if(nivelAcesso == NivelAcesso.SUPERVISOR) {
-            List<OrdemDeServico> listaOs = ordemRepositorio.listarOsAtivas();
-            return ordemDeServicoMapper.paraListaOsResponse(request.departamento(), listaOs);
+        try {
+            // Se for Supervisor, lista somente as Ativas em seu departamento
+
+            if(nivelAcesso == NivelAcesso.SUPERVISOR) {
+                List<OrdemDeServico> listaOs = ordemRepositorio.listarOsAtivas();
+                return ordemDeServicoMapper.paraListaOsResponseDepartamento(request.departamento(), listaOs);
+            }
+
+
+            // Se for Gerente, lista todas as ordens em seu departamento (Ativas e excluídas)
+            if(nivelAcesso == NivelAcesso.GERENTE) {
+                List<OrdemDeServico> listaOs = ordemRepositorio.listarOsTodas();
+                return ordemDeServicoMapper.paraListaOsResponseDepartamento(request.departamento(), listaOs);
+            }
+
+            throw new AutorizacaoException();
+        } catch (AutorizacaoException e) {
+            return ordemDeServicoMapper.paraListaOsResponseDepartamento(e.getMessage());
         }
-
-
-        // Se for Gerente, lista todas as ordens em seu departamento (Ativas e excluídas)
-        if(nivelAcesso == NivelAcesso.GERENTE) {
-            List<OrdemDeServico> listaOs = ordemRepositorio.listarOsTodas();
-            return ordemDeServicoMapper.paraListaOsResponse(request.departamento(), listaOs);
-        }
-
-        throw new AutorizacaoException();
     }
 }

@@ -7,5 +7,5 @@ import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
 
 import java.util.List;
 
-public record ListarOsResponse(List<OrdemServicoResponse> listaResponse) {
+public record ListarOsResponse(List<OrdemServicoResponse> listaResponse, boolean status, String mensagem) {
 }

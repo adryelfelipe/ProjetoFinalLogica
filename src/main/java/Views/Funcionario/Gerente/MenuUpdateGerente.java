@@ -1,5 +1,4 @@
 package Views.Funcionario.Gerente;
-import Aplicacao.Funcionario.Gerente.Dtos.Atualizar.AtualizarGerenteRequest;
 import Aplicacao.Funcionario.Nucleo.Dtos.Atualizar.AtualizarFuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
 import Aplicacao.Funcionario.Supervisor.Dtos.Atualizar.AtualizarSupervisorRequest;
@@ -176,7 +175,7 @@ public class MenuUpdateGerente {
 
         while(true) {
             FuncionarioPorIdRequest requestId = new FuncionarioPorIdRequest(idSupervisor);
-            SupervisorPorIdResponse responseId = Main.supervisorController.buscarPorIdUpate(nivelAcesso, requestId);
+            SupervisorPorIdResponse responseId = Main.supervisorController.buscarPorId(nivelAcesso, requestId);
 
             if(responseId.status()) {
                 System.out.println("\n                                                       \n");

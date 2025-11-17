@@ -1,8 +1,10 @@
 package Infraestrutura.Persistencia.Testes.Funcionario;
 
+import Dominio.Funcionario.Gerente.Gerente;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 
 import java.util.ArrayList;
@@ -103,5 +105,16 @@ public class FuncionarioSimulacaoJDBC implements FuncionarioRepositorio {
         }
 
         return false;
+    }
+
+    @Override
+    public NomeFuncionario buscarNome(long id) {
+        for(Funcionario funcionario : funcionarioArrayList) {
+            if(funcionario.getId() == id) {
+                return funcionario.getNome();
+            }
+        }
+
+        return null;
     }
 }

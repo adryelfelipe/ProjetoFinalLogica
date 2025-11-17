@@ -5,6 +5,10 @@ import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsResponse;
 import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsResponse;
 import Aplicacao.OrdemDeServico.Dtos.Listar.OrdemServicoResponse;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
+import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
+import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
+import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 import Dominio.OrdemDeServico.ObjetosDeValor.Descricao;
 import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
 import Dominio.OrdemDeServico.OrdemDeServico;
@@ -13,6 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrdemDeServicoMapper {
+    // -- Atributos -- //
+    private FuncionarioRepositorio funcionarioRepositorio;
+    private MaquinaRepositorio maquinaRepositorio;
+
+    public OrdemDeServicoMapper(FuncionarioRepositorio funcionarioRepositorio, MaquinaRepositorio maquinaRepositorio) {
+        this.funcionarioRepositorio = funcionarioRepositorio;
+        this.maquinaRepositorio = maquinaRepositorio;
+    }
+
     public OrdemDeServico paraEntidade(CadastroOsRequest request, Departamento departamento) {
         return new OrdemDeServico(request.idTecnico(),
                 request.idSupervisor(),
@@ -33,16 +46,24 @@ public class OrdemDeServicoMapper {
         return new CadastroOsResponse(null, false, mensagem);
     }
 
-    public ListarOsResponse paraListaOsResponse(Departamento departamento, List<OrdemDeServico> lista) {
+    // Listagem de ordens de serviço foi um sucesso
+    public ListarOsResponse paraListaOsResponseDepartamento(Departamento departamento, List<OrdemDeServico> lista) {
         List<OrdemServicoResponse> listaResponse = new ArrayList<>();
 
         for(OrdemDeServico os : lista) {
             if(os.getDepartamento() == departamento) {
-                OrdemServicoResponse osResponse = new OrdemServicoResponse(os.getIdOs(), os.getStatusOS(),os.getDescricao() ,os.getTipoOS(), os.getValorOS());
+                NomeFuncionario nomeTecnico = funcionarioRepositorio.buscarNome(os.getIdTecnico());
+                NomeMaquina nomeMaquina = maquinaRepositorio.buscarNome(os.getIdMaquina());
+                OrdemServicoResponse osResponse = new OrdemServicoResponse(os.getIdOs(), os.getStatusOS(),os.getDescricao() ,os.getTipoOS(), os.getValorOS(), os.getIdTecnico(), nomeTecnico, os.getIdMaquina(), nomeMaquina);
                 listaResponse.add(osResponse);
             }
         }
 
-        return new ListarOsResponse(listaResponse);
+        return new ListarOsResponse(listaResponse, true, "✅ Listagem de ordens de serviço realizada com sucesso!");
+    }
+
+    // Listagem de ordens de serviço falhou
+    public ListarOsResponse paraListaOsResponseDepartamento(String mensagem) {
+        return new ListarOsResponse(null, false, mensagem);
     }
 }

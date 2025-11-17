@@ -3,6 +3,7 @@ package Dominio.Funcionario.Nucleo.Repositorios;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
 
 import java.util.List;
 
@@ -16,4 +17,5 @@ public interface FuncionarioRepositorio {
     NivelAcesso nivelAcessoPorID(long id);
     Funcionario buscar(CPF cpf);
     List<Funcionario> listarFuncionarios();
+    NomeFuncionario buscarNome(long id);
 }

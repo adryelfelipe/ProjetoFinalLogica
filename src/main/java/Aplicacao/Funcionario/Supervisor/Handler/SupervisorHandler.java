@@ -58,12 +58,11 @@ public class SupervisorHandler {
 
     public SupervisorPorIdResponse buscarPorId(NivelAcesso nivelAcesso, FuncionarioPorIdRequest request) {
         try {
-            autorizacaoServico.validaAcessoGerente(nivelAcesso);
             Funcionario funcionario = funcionarioRepositorio.buscar(request.idFuncionario());
             Supervisor supervisor = tipoFuncionarioServico.validaFuncionarioSupervisor(funcionario);
 
             return supervisorMapper.paraResponseSupervisor(supervisor);
-        } catch (AutorizacaoException | FuncionarioNaoEhSupervisorException | IdFuncionarioNaoEncontradoException e) {
+        } catch (FuncionarioNaoEhSupervisorException | IdFuncionarioNaoEncontradoException e) {
             return supervisorMapper.paraResponseSupervisor(e.getMessage());
         }
     }

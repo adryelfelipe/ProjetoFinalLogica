@@ -2,6 +2,7 @@ package Infraestrutura.Persistencia.Testes.Maquina;
 
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Maquina.Maquina;
+import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
 import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 
 import java.util.ArrayList;
@@ -69,6 +70,17 @@ public class MaquinaSimulacaoJDBC implements MaquinaRepositorio {
         for(Maquina maquina : listaMaquinas) {
             if(maquina.getIdMaquina() == idMaquina) {
                 return maquina.getDepartamento();
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public NomeMaquina buscarNome(long idMaquina) {
+        for(Maquina maquina : listaMaquinas) {
+            if(maquina.getIdMaquina() == idMaquina) {
+                return maquina.getNome();
             }
         }
 
