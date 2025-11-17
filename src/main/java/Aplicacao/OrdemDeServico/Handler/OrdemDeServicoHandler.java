@@ -4,6 +4,8 @@ import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.AutorizacaoException;
 import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsResponse;
+import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsRequest;
+import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsResponse;
 import Aplicacao.OrdemDeServico.Mapper.OrdemDeServicoMapper;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
@@ -12,6 +14,8 @@ import Dominio.OrdemDeServico.Exceptions.OrdemDeServicoException;
 import Dominio.OrdemDeServico.OrdemDeServico;
 import Dominio.OrdemDeServico.Repositorios.OrdemDeServicoRepositorio;
 import Dominio.OrdemDeServico.Servicos.OsServico;
+
+import java.util.List;
 
 public class OrdemDeServicoHandler {
     private OrdemDeServicoRepositorio ordemRepositorio;
@@ -43,5 +47,22 @@ public class OrdemDeServicoHandler {
         } catch (OrdemDeServicoException | AutorizacaoException e) {
             return ordemDeServicoMapper.paraResponse(e.getMessage());
         }
+    }
+
+    public ListarOsResponse listarOsDepartamento(NivelAcesso nivelAcesso, ListarOsRequest request) {
+        // Se for Supervisor, lista somente as Ativas em seu departamento
+        if(nivelAcesso == NivelAcesso.SUPERVISOR) {
+            List<OrdemDeServico> listaOs = ordemRepositorio.listarOsAtivas();
+            return ordemDeServicoMapper.paraListaOsResponse(request.departamento(), listaOs);
+        }
+
+
+        // Se for Gerente, lista todas as ordens em seu departamento (Ativas e excluídas)
+        if(nivelAcesso == NivelAcesso.GERENTE) {
+            List<OrdemDeServico> listaOs = ordemRepositorio.listarOsTodas();
+            return ordemDeServicoMapper.paraListaOsResponse(request.departamento(), listaOs);
+        }
+
+        throw new AutorizacaoException();
     }
 }

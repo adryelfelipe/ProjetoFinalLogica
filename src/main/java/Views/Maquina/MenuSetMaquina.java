@@ -13,11 +13,6 @@ public class MenuSetMaquina {
         return Ferramentas.lString();
     }
 
-    public static String MenuSetLocalizacao() {
-        System.out.print("┃ ➤ Digite a Localização: ");
-        return Ferramentas.lString();
-    }
-
     public static StatusMaquina MenuSetStatusMaquina() {
         while(true) {
             System.out.println("┃  1 - FUNCIONANDO               ┃");

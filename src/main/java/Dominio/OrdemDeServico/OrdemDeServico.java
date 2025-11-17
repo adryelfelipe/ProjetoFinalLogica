@@ -72,6 +72,10 @@ public class OrdemDeServico
         return departamento;
     }
 
+    public TipoOS getTipoOS() {
+        return tipoOS;
+    }
+
     //------------- ALTERADORES  -------------//
     public void alteraDescricao(Descricao descricao) {
         if(descricao == null) {

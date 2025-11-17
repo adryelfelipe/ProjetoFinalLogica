@@ -32,7 +32,7 @@ public class FuncionarioMapper {
 
         for(Funcionario funcionario : listaFuncionarios) {
             if(funcionario.getNivelAcesso() != NivelAcesso.ADMIN) {
-                FuncionarioResponse funcionarioResponse = new FuncionarioResponse(funcionario.getId(), funcionario.getNome(), funcionario.getNivelAcesso());
+                FuncionarioResponse funcionarioResponse = new FuncionarioResponse(funcionario.getId(), funcionario.getNome(), funcionario.getNivelAcesso(), funcionario.getDepartamentos().getListaDepartamentos().getFirst());
                 listaFuncionariosResponse.add(funcionarioResponse);
             }
         }
@@ -66,7 +66,7 @@ public class FuncionarioMapper {
 
     // Resposta de funcionário foi um sucesso
     public FuncionarioResponse paraFuncionarioResponse(Funcionario funcionario) {
-        return new FuncionarioResponse(funcionario.getId(), funcionario.getNome(), funcionario.getNivelAcesso());
+        return new FuncionarioResponse(funcionario.getId(), funcionario.getNome(), funcionario.getNivelAcesso(), funcionario.getDepartamentos().getListaDepartamentos().getFirst());
     }
 
     // Atualização foi um sucesso

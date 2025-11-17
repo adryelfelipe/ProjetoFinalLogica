@@ -45,4 +45,10 @@ public class AutorizacaoServico {
             throw new AutorizacaoException();
         }
     }
+
+    public void validaAcessoListarOs(NivelAcesso nivelAcesso) {
+        if(nivelAcesso != NivelAcesso.SUPERVISOR && nivelAcesso != NivelAcesso.GERENTE) {
+            throw new AutorizacaoException();
+        }
+    }
 }
