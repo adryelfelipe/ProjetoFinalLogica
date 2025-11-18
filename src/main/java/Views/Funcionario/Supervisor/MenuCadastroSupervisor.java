@@ -1,21 +1,14 @@
 package Views.Funcionario.Supervisor;
 
-import Aplicacao.Funcionario.Tecnico.Dtos.Cadastro.CadastroTecnicoRequest;
-import Aplicacao.Funcionario.Tecnico.Dtos.Cadastro.CadastroTecnicoResponse;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsResponse;
-import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
-import Dominio.Funcionario.Supervisor.Supervisor;
 import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
 import Dominio.OrdemDeServico.Enumeracoes.TipoOS;
 import Util.Ferramentas;
-import Views.Funcionario.Gerente.MenuSetGerente;
 import Views.Maquina.MenuSetMaquina;
 import Views.OrdemDeServico.MenuSetOrdemDeServico;
 import Views.Sistema.Main;
-
-import java.util.ArrayList;
 
 public class MenuCadastroSupervisor
 {
@@ -41,7 +34,7 @@ public class MenuCadastroSupervisor
         Ferramentas.Delay(1000);
 
         // -- Gerando request para cadastro de Ordem de Serviço -- //
-        CadastroOsRequest request = new CadastroOsRequest(idTecnico, idSupervisor, idMaquina, StatusOS.EM_ANDAMENTO, descricao, valorOS, TipoOS.CORRETIVA);
+        CadastroOsRequest request = new CadastroOsRequest(idTecnico, idSupervisor, idMaquina, StatusOS.ABERTA, descricao, valorOS, TipoOS.CORRETIVA);
         CadastroOsResponse response = Main.osController.salvar(nivelAcesso, request);
 
         if(response.status()) {

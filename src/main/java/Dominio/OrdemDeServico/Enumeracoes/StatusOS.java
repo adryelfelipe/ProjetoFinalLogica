@@ -2,9 +2,9 @@ package Dominio.OrdemDeServico.Enumeracoes;
 
 public enum StatusOS {
     // ID 1
-    EM_ANDAMENTO( 1),
+    ABERTA( 1),
     // ID 2
-    ATRASADA( 2),
+    EM_ANDAMENTO( 2),
     // ID 3
     FECHADA( 3);
 

@@ -17,6 +17,7 @@ import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 import Dominio.Maquina.Repositorios.MaquinaRepositorio;
+import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
 import Dominio.OrdemDeServico.Exceptions.OrdemDeServicoException;
 import Dominio.OrdemDeServico.ObjetosDeValor.Descricao;
 import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
@@ -102,7 +103,7 @@ public class OrdemDeServicoHandler {
         }
     }
 
-    public AtualizarOsResponse atualizar(NivelAcesso nivelAcesso, AtualizarOsRequest request) {
+    public AtualizarOsResponse atualizarOsTecnico(NivelAcesso nivelAcesso, AtualizarOsRequest request) {
         try {
             autorizacaoServico.validaAcessoTecnico(nivelAcesso);
             OrdemDeServico os = ordemRepositorio.buscarPorId(request.idOs());
@@ -112,28 +113,56 @@ public class OrdemDeServicoHandler {
             }
 
             if(request.descricao() != null) {
-                Descricao descricao = new Descricao(request.descricao());
-                if(os.igualMinhaDescricao(descricao)) {
-                    throw new MesmaDescricaoOsExceptiom();
+                throw new AutorizacaoException();
+            }
+
+            if(request.valorOs() != null) {
+                throw new AutorizacaoException();
+            }
+
+            if(request.statusOS() != null) {
+                if(request.statusOS() == StatusOS.ABERTA) {
+                    throw new AtualizacaoStatusOsException("Não é possível reabrir uma Ordem de Serviço");
                 }
 
+                if(request.statusOS() == StatusOS.EM_ANDAMENTO && !os.podeIniciarOs()) {
+                    throw new AtualizacaoStatusOsException("Não foi possível iniciar a Ordem de Serviço");
+                }
+
+                if(request.statusOS() == StatusOS.FECHADA && !os.podeFinalizarOs()) {
+                    throw new AtualizacaoStatusOsException("Não foi possível finalizar a Ordem de Serviço");
+                }
+
+                os.alteraStatusOs(request.statusOS());
+            }
+
+            ordemRepositorio.atualizar(os);
+            return ordemDeServicoMapper.paraAtualizarResponse(os);
+        } catch (AutorizacaoException | IdOsNaoEncontradoException | OrdemDeServicoException | MesmoDadoOsException | AtualizacaoStatusOsException e) {
+            return ordemDeServicoMapper.paraAtualizarResponse(e.getMessage());
+        }
+    }
+
+    public AtualizarOsResponse atualizarOsSupervisor(NivelAcesso nivelAcesso, AtualizarOsRequest request) {
+        try {
+            autorizacaoServico.validaAcessoSupervisor(nivelAcesso);
+            OrdemDeServico os = ordemRepositorio.buscarPorId(request.idOs());
+
+            if(os == null) {
+                throw new IdOsNaoEncontradoException();
+            }
+
+            if(request.descricao() != null) {
+                Descricao descricao = new Descricao(request.descricao());
                 os.alteraDescricao(descricao);
             }
 
             if(request.valorOs() != null) {
                 ValorOS valorOS = new ValorOS(request.valorOs());
-                if(os.igualMeuValor(valorOS)) {
-                    throw new MesmoValorOsException();
-                }
-
                 os.alteraValorOS(valorOS);
             }
 
             if(request.statusOS() != null) {
-                if(os.igualMeuStatus(request.statusOS())) {
-                    throw new MesmoStatusOsException();
-                }
-
                 os.alteraStatusOs(request.statusOS());
             }
 

@@ -1,5 +1,8 @@
 package Dominio.OrdemDeServico;
 
+import Aplicacao.OrdemDeServico.Exceptions.Handler.MesmaDescricaoOsException;
+import Aplicacao.OrdemDeServico.Exceptions.Handler.MesmoStatusOsException;
+import Aplicacao.OrdemDeServico.Exceptions.Handler.MesmoValorOsException;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.OrdemDeServico.Enumeracoes.TipoOS;
 import Dominio.OrdemDeServico.Exceptions.IdTecnicoOsException;
@@ -82,12 +85,20 @@ public class OrdemDeServico
             throw new DescricaoOsException("Uma ordem de servico deve possuir sua descrição bem definida");
         }
 
+        if(igualMinhaDescricao(descricao)) {
+            throw new MesmaDescricaoOsException();
+        }
+
         this.descricao = descricao;
     }
 
     public void alteraValorOS(ValorOS valorOS) {
         if(valorOS == null) {
             throw new ValorOsException("Uma ordem de servico deve possuir seu valor bem definido");
+        }
+
+        if(igualMeuValor(valorOS)) {
+            throw new MesmoValorOsException();
         }
 
        this.valorOS = valorOS;
@@ -134,6 +145,10 @@ public class OrdemDeServico
             throw new StatusOsException("Uma ordem de serviço deve possuir seu status bem definido");
         }
 
+        if(igualMeuStatus(statusOS)) {
+            throw new MesmoStatusOsException();
+        }
+
         this.statusOS = statusOS;
     }
 
@@ -150,15 +165,23 @@ public class OrdemDeServico
     }
 
     // -- Métodos -- //
-    public boolean igualMeuStatus(StatusOS status) {
+    private boolean igualMeuStatus(StatusOS status) {
         return this.statusOS == status;
     }
 
-    public boolean igualMeuValor(ValorOS valor) {
+    private boolean igualMeuValor(ValorOS valor) {
         return this.valorOS.getValorOS() == valor.getValorOS();
     }
 
-    public boolean igualMinhaDescricao(Descricao descricao) {
+    private boolean igualMinhaDescricao(Descricao descricao) {
         return this.descricao.getDescricao().equals(descricao.getDescricao());
+    }
+
+    public boolean podeIniciarOs() {
+        return this.statusOS == StatusOS.ABERTA;
+    }
+
+    public boolean podeFinalizarOs() {
+        return this.statusOS == StatusOS.EM_ANDAMENTO;
     }
 }

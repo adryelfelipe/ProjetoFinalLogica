@@ -1,9 +1,12 @@
 package Aplicacao.OrdemDeServico.Controller;
 
+import Aplicacao.OrdemDeServico.Dtos.Atualizar.AtualizarOsRequest;
+import Aplicacao.OrdemDeServico.Dtos.Atualizar.AtualizarOsResponse;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsResponse;
 import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsResponse;
+import Aplicacao.OrdemDeServico.Exceptions.Requests.AtualizarOsRequestNulaException;
 import Aplicacao.OrdemDeServico.Exceptions.Requests.CadastroOsNulaException;
 import Aplicacao.OrdemDeServico.Exceptions.Requests.ListarNulaException;
 import Aplicacao.OrdemDeServico.Handler.OrdemDeServicoHandler;
@@ -41,5 +44,13 @@ public class OrdemDeServicoController {
         }
 
         return osHandler.listarOsTecnico(nivelAcesso, request);
+    }
+
+    public AtualizarOsResponse atualizarOs(NivelAcesso nivelAcesso, AtualizarOsRequest request) {
+        if(request == null) {
+            throw new AtualizarOsRequestNulaException();
+        }
+
+
     }
 }

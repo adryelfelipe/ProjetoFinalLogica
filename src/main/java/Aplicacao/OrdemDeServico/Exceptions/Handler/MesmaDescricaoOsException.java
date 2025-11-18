@@ -1,7 +1,7 @@
 package Aplicacao.OrdemDeServico.Exceptions.Handler;
 
-public class MesmaDescricaoOsExceptiom extends MesmoDadoOsException {
-    public MesmaDescricaoOsExceptiom() {
+public class MesmaDescricaoOsException extends MesmoDadoOsException {
+    public MesmaDescricaoOsException() {
         super("A descrição deve ser diferente da atual");
     }
 }
