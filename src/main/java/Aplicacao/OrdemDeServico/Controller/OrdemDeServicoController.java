@@ -46,11 +46,19 @@ public class OrdemDeServicoController {
         return osHandler.listarOsTecnico(nivelAcesso, request);
     }
 
-    public AtualizarOsResponse atualizarOs(NivelAcesso nivelAcesso, AtualizarOsRequest request) {
+    public AtualizarOsResponse atualizarOsTecnico(NivelAcesso nivelAcesso, AtualizarOsRequest request) {
         if(request == null) {
             throw new AtualizarOsRequestNulaException();
         }
 
+        return osHandler.atualizarOsTecnico(nivelAcesso, request);
+    }
 
+    public AtualizarOsResponse atualizarOsSupervisor(NivelAcesso nivelAcesso, AtualizarOsRequest request) {
+        if(request == null) {
+            throw new AtualizarOsRequestNulaException();
+        }
+
+        return osHandler.atualizarOsSupervisor(nivelAcesso, request);
     }
 }

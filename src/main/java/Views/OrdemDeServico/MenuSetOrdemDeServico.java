@@ -31,7 +31,7 @@ public class MenuSetOrdemDeServico {
                     return switch (opcao)
                     {
                         case 1 -> StatusOS.ABERTA;
-                        case 2 -> StatusOS.ATRASADA;
+                        case 2 -> StatusOS.EM_ANDAMENTO;
                         default -> StatusOS.FECHADA;
                     };
                 }

@@ -1,4 +1,4 @@
-package Aplicacao.OrdemDeServico.Exceptions.Handler;
+package Dominio.OrdemDeServico.Exceptions;
 
 public class MesmaDescricaoOsException extends MesmoDadoOsException {
     public MesmaDescricaoOsException() {

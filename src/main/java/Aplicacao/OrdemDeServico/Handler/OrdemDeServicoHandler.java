@@ -18,6 +18,8 @@ import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
+import Dominio.OrdemDeServico.Exceptions.AtualizacaoStatusOsException;
+import Dominio.OrdemDeServico.Exceptions.MesmoDadoOsException;
 import Dominio.OrdemDeServico.Exceptions.OrdemDeServicoException;
 import Dominio.OrdemDeServico.ObjetosDeValor.Descricao;
 import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
@@ -121,24 +123,12 @@ public class OrdemDeServicoHandler {
             }
 
             if(request.statusOS() != null) {
-                if(request.statusOS() == StatusOS.ABERTA) {
-                    throw new AtualizacaoStatusOsException("Não é possível reabrir uma Ordem de Serviço");
-                }
-
-                if(request.statusOS() == StatusOS.EM_ANDAMENTO && !os.podeIniciarOs()) {
-                    throw new AtualizacaoStatusOsException("Não foi possível iniciar a Ordem de Serviço");
-                }
-
-                if(request.statusOS() == StatusOS.FECHADA && !os.podeFinalizarOs()) {
-                    throw new AtualizacaoStatusOsException("Não foi possível finalizar a Ordem de Serviço");
-                }
-
-                os.alteraStatusOs(request.statusOS());
+                os.alteraStatusOs(request.statusOS(), nivelAcesso);
             }
 
             ordemRepositorio.atualizar(os);
             return ordemDeServicoMapper.paraAtualizarResponse(os);
-        } catch (AutorizacaoException | IdOsNaoEncontradoException | OrdemDeServicoException | MesmoDadoOsException | AtualizacaoStatusOsException e) {
+        } catch (AutorizacaoException | IdOsNaoEncontradoException | OrdemDeServicoException e) {
             return ordemDeServicoMapper.paraAtualizarResponse(e.getMessage());
         }
     }
@@ -163,12 +153,12 @@ public class OrdemDeServicoHandler {
             }
 
             if(request.statusOS() != null) {
-                os.alteraStatusOs(request.statusOS());
+                os.alteraStatusOs(request.statusOS(), nivelAcesso);
             }
 
             ordemRepositorio.atualizar(os);
             return ordemDeServicoMapper.paraAtualizarResponse(os);
-        } catch (AutorizacaoException | IdOsNaoEncontradoException | OrdemDeServicoException | MesmoDadoOsException e) {
+        } catch (AutorizacaoException | IdOsNaoEncontradoException | OrdemDeServicoException e) {
             return ordemDeServicoMapper.paraAtualizarResponse(e.getMessage());
         }
     }

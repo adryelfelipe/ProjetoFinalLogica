@@ -1,4 +1,4 @@
-package Aplicacao.OrdemDeServico.Exceptions.Handler;
+package Dominio.OrdemDeServico.Exceptions;
 
 public class MesmoValorOsException extends MesmoDadoOsException {
     public MesmoValorOsException() {

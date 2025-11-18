@@ -1,9 +1,10 @@
 package Dominio.OrdemDeServico;
 
-import Aplicacao.OrdemDeServico.Exceptions.Handler.MesmaDescricaoOsException;
-import Aplicacao.OrdemDeServico.Exceptions.Handler.MesmoStatusOsException;
-import Aplicacao.OrdemDeServico.Exceptions.Handler.MesmoValorOsException;
+import Dominio.OrdemDeServico.Exceptions.MesmaDescricaoOsException;
+import Dominio.OrdemDeServico.Exceptions.MesmoStatusOsException;
+import Dominio.OrdemDeServico.Exceptions.MesmoValorOsException;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
+import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.OrdemDeServico.Enumeracoes.TipoOS;
 import Dominio.OrdemDeServico.Exceptions.IdTecnicoOsException;
 import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
@@ -30,7 +31,7 @@ public class OrdemDeServico
         alteraIdTecnico(idTecnico);
         alteraIdSupervisor(idSupervisor);
         alteraIdMaquina(idMaquina);
-        alteraStatusOs(statusOS);
+        alteraStatusOs(statusOS, null);
         alteraDescricao(descricao);
         alteraValorOS(valorOS);
         alteraDepartamento(departamento);
@@ -140,13 +141,27 @@ public class OrdemDeServico
         this.idSupervisor = idSupervisor;
     }
 
-    public void alteraStatusOs(StatusOS statusOS) {
+    public void alteraStatusOs(StatusOS statusOS, NivelAcesso nivelAcesso) {
         if(statusOS == null) {
             throw new StatusOsException("Uma ordem de serviço deve possuir seu status bem definido");
         }
 
         if(igualMeuStatus(statusOS)) {
             throw new MesmoStatusOsException();
+        }
+
+        if(nivelAcesso == NivelAcesso.TECNICO) {
+            if(statusOS == StatusOS.ABERTA) {
+                throw new AtualizacaoStatusOsException("Não é possível reabrir uma Ordem de Serviço");
+            }
+
+            if(statusOS == StatusOS.EM_ANDAMENTO && !podeIniciarOs()) {
+                throw new AtualizacaoStatusOsException("Não foi possível iniciar a Ordem de Serviço");
+            }
+
+            if(statusOS == StatusOS.FECHADA && !podeFinalizarOs()) {
+                throw new AtualizacaoStatusOsException("Não foi possível finalizar a Ordem de Serviço");
+            }
         }
 
         this.statusOS = statusOS;
@@ -177,11 +192,11 @@ public class OrdemDeServico
         return this.descricao.getDescricao().equals(descricao.getDescricao());
     }
 
-    public boolean podeIniciarOs() {
+    private boolean podeIniciarOs() {
         return this.statusOS == StatusOS.ABERTA;
     }
 
-    public boolean podeFinalizarOs() {
+    private boolean podeFinalizarOs() {
         return this.statusOS == StatusOS.EM_ANDAMENTO;
     }
 }
