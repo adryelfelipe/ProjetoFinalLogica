@@ -4,10 +4,13 @@ import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.AutorizacaoException;
 import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.IdFuncionarioNaoEncontradoException;
 import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
 import Aplicacao.Funcionario.Tecnico.Exceptions.Handler.FuncionarioNaoEhTecnicoException;
+import Aplicacao.OrdemDeServico.Dtos.Atualizar.AtualizarOsRequest;
+import Aplicacao.OrdemDeServico.Dtos.Atualizar.AtualizarOsResponse;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsResponse;
 import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsResponse;
+import Aplicacao.OrdemDeServico.Exceptions.Handler.*;
 import Aplicacao.OrdemDeServico.Mapper.OrdemDeServicoMapper;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
@@ -15,6 +18,8 @@ import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 import Dominio.OrdemDeServico.Exceptions.OrdemDeServicoException;
+import Dominio.OrdemDeServico.ObjetosDeValor.Descricao;
+import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
 import Dominio.OrdemDeServico.OrdemDeServico;
 import Dominio.OrdemDeServico.Repositorios.OrdemDeServicoRepositorio;
 import Dominio.OrdemDeServico.Servicos.OsServico;
@@ -79,10 +84,7 @@ public class OrdemDeServicoHandler {
 
     public ListarOsResponse listarOsTecnico(NivelAcesso nivelAcesso, ListarOsRequest request) {
         try {
-            if(nivelAcesso != NivelAcesso.TECNICO) {
-                throw new AutorizacaoException();
-            }
-
+            autorizacaoServico.validaAcessoTecnico(nivelAcesso);
             List<OrdemDeServico> listaOs = ordemRepositorio.listarOsAtivas();
             Funcionario funcionario = funcionarioRepositorio.buscar(request.idFuncionario());
 
@@ -97,6 +99,48 @@ public class OrdemDeServicoHandler {
             return ordemDeServicoMapper.paraListaOsResponseTecnico(request.idFuncionario(), listaOs);
         } catch (AutorizacaoException | IdFuncionarioNaoEncontradoException | FuncionarioNaoEhTecnicoException e) {
             return ordemDeServicoMapper.paraListaOsResponse(e.getMessage());
+        }
+    }
+
+    public AtualizarOsResponse atualizar(NivelAcesso nivelAcesso, AtualizarOsRequest request) {
+        try {
+            autorizacaoServico.validaAcessoTecnico(nivelAcesso);
+            OrdemDeServico os = ordemRepositorio.buscarPorId(request.idOs());
+
+            if(os == null) {
+                throw new IdOsNaoEncontradoException();
+            }
+
+            if(request.descricao() != null) {
+                Descricao descricao = new Descricao(request.descricao());
+                if(os.igualMinhaDescricao(descricao)) {
+                    throw new MesmaDescricaoOsExceptiom();
+                }
+
+                os.alteraDescricao(descricao);
+            }
+
+            if(request.valorOs() != null) {
+                ValorOS valorOS = new ValorOS(request.valorOs());
+                if(os.igualMeuValor(valorOS)) {
+                    throw new MesmoValorOsException();
+                }
+
+                os.alteraValorOS(valorOS);
+            }
+
+            if(request.statusOS() != null) {
+                if(os.igualMeuStatus(request.statusOS())) {
+                    throw new MesmoStatusOsException();
+                }
+
+                os.alteraStatusOs(request.statusOS());
+            }
+
+            ordemRepositorio.atualizar(os);
+            return ordemDeServicoMapper.paraAtualizarResponse(os);
+        } catch (AutorizacaoException | IdOsNaoEncontradoException | OrdemDeServicoException | MesmoDadoOsException e) {
+            return ordemDeServicoMapper.paraAtualizarResponse(e.getMessage());
         }
     }
 }

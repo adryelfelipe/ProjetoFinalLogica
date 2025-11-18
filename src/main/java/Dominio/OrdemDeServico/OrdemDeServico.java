@@ -148,4 +148,17 @@ public class OrdemDeServico
     public void alteraTipoOs(TipoOS tipoOS) {
         this.tipoOS = tipoOS;
     }
+
+    // -- Métodos -- //
+    public boolean igualMeuStatus(StatusOS status) {
+        return this.statusOS == status;
+    }
+
+    public boolean igualMeuValor(ValorOS valor) {
+        return this.valorOS.getValorOS() == valor.getValorOS();
+    }
+
+    public boolean igualMinhaDescricao(Descricao descricao) {
+        return this.descricao.getDescricao().equals(descricao.getDescricao());
+    }
 }

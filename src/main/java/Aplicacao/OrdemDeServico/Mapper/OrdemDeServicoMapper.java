@@ -1,5 +1,7 @@
 package Aplicacao.OrdemDeServico.Mapper;
 
+import Aplicacao.Maquina.Dtos.Atualizar.AtualizarMaquinaResponse;
+import Aplicacao.OrdemDeServico.Dtos.Atualizar.AtualizarOsResponse;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsResponse;
 import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsResponse;
@@ -62,11 +64,6 @@ public class OrdemDeServicoMapper {
         return new ListarOsResponse(listaResponse, true, "✅ Listagem de ordens de serviço realizada com sucesso!");
     }
 
-    // Listagem de ordens de serviço falhou
-    public ListarOsResponse paraListaOsResponse(String mensagem) {
-        return new ListarOsResponse(null, false, mensagem);
-    }
-
     // Listagem de ordens de serviço de um determinado técnico foi um sucesso
     public ListarOsResponse paraListaOsResponseTecnico(long idTecnico, List<OrdemDeServico> lista) {
         List<OrdemServicoResponse> listaResponse = new ArrayList<>();
@@ -81,5 +78,20 @@ public class OrdemDeServicoMapper {
         }
 
         return new ListarOsResponse(listaResponse, true, "✅ Listagem de ordens de serviço realizada com sucesso!");
+    }
+
+    // Listagem de ordens de serviço falhou
+    public ListarOsResponse paraListaOsResponse(String mensagem) {
+        return new ListarOsResponse(null, false, mensagem);
+    }
+
+    // Atualização foi um sucesso
+    public AtualizarOsResponse paraAtualizarResponse(OrdemDeServico os) {
+        return new AtualizarOsResponse(os.getIdMaquina(), true, "✅ Ordem de serviço atualizada com sucesso");
+    }
+
+    // Atualização falhou
+    public AtualizarOsResponse paraAtualizarResponse(String mensagem) {
+        return new AtualizarOsResponse(null, false, mensagem);
     }
 }
