@@ -6,8 +6,12 @@ import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
+import Dominio.Funcionario.Supervisor.Supervisor;
+import Dominio.Funcionario.Tecnico.Tecnico;
+import Infraestrutura.Persistencia.Testes.OsSimulacaoJDBC.OsSimulacaoJDBC;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class FuncionarioSimulacaoJDBC implements FuncionarioRepositorio {
@@ -97,9 +101,36 @@ public class FuncionarioSimulacaoJDBC implements FuncionarioRepositorio {
 
     @Override
     public boolean excluir(long id) {
-        for(Funcionario funcionario : funcionarioArrayList) {
-            if(funcionario.getId() == id) {
-                funcionarioArrayList.remove(funcionario);
+
+        Iterator<Funcionario> it = funcionarioArrayList.iterator();
+
+        while (it.hasNext()) {
+            Funcionario funcionario = it.next();
+
+            // Verifica se é o funcionário a ser removido
+            if (funcionario instanceof Tecnico tecnico && tecnico.getId() == id) {
+
+                // Remove o técnico
+                it.remove();
+
+                // Remove as OS vinculadas ao técnico
+                OsSimulacaoJDBC.listaOsTodas.removeIf(
+                        os -> os.getIdTecnico() == id
+                );
+
+                return true;
+            }
+
+            if (funcionario instanceof Supervisor supervisor && supervisor.getId() == id) {
+
+                // Remove o supervisor
+                it.remove();
+
+                // Remove as OS vinculadas ao supervisor
+                OsSimulacaoJDBC.listaOsTodas.removeIf(
+                        os -> os.getIdSupervisor() == id
+                );
+
                 return true;
             }
         }

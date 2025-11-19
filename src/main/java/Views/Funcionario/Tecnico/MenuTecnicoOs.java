@@ -213,7 +213,7 @@ public class MenuTecnicoOs {
 
                 setId = true;
             } catch (InputMismatchException e) {
-                Ferramentas.mensagemErro(e.getMessage());
+                Ferramentas.menuDefault();
             }
         }
 

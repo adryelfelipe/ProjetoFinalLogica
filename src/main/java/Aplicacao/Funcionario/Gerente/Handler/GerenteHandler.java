@@ -59,12 +59,11 @@ public class GerenteHandler {
 
     public GerentePorIdResponse buscarPorId(NivelAcesso nivelAcesso, FuncionarioPorIdRequest request) {
         try {
-            autorizacaoServico.validaAcessoAdmin(nivelAcesso);
             Funcionario funcionario = funcionarioRepositorio.buscar(request.idFuncionario());
             Gerente gerente = tipoFuncionarioServico.validaFuncionarioGerente(funcionario);
 
             return gerenteMapper.paraResponseGerente(gerente);
-        } catch (AutorizacaoException | FuncionarioNaoEhGerenteException | IdFuncionarioNaoEncontradoException e) {
+        } catch (FuncionarioNaoEhGerenteException | IdFuncionarioNaoEncontradoException e) {
             return gerenteMapper.paraResponseGerente(e.getMessage());
         }
     }

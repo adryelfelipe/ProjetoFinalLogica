@@ -27,6 +27,12 @@ public class OsSimulacaoJDBC implements OrdemDeServicoRepositorio {
                 listaOsAtivas.set(listaOsAtivas.indexOf(os), ordemDeServico);
             }
         }
+
+        for(OrdemDeServico os : listaOsTodas) {
+            if(os.getIdOs() == ordemDeServico.getIdOs()) {
+                listaOsTodas.set(listaOsTodas.indexOf(os), ordemDeServico);
+            }
+        }
     }
 
     @Override

@@ -24,7 +24,7 @@ public class MenuUpdateADM {
         try {
             idGerente = MenuEscolhaId.escolhaIdUpdate();
         } catch (IllegalArgumentException e) {
-            Ferramentas.mensagemErro(e.getMessage());
+            Ferramentas.menuDefault();
             return;
         }
 

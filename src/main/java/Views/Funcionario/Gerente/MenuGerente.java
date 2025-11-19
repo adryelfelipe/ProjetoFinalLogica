@@ -17,8 +17,8 @@ public class MenuGerente {
             System.out.println("┃                                      ┃");
             System.out.println("┃  1 - Cadastrar                       ┃");
             System.out.println("┃  2 - Visualizar Relatórios           ┃");
-            System.out.println("┃  3 - Atualizar Técnico / Supervisor  ┃");
-            System.out.println("┃  4 - Remover Técnico / Supervisor    ┃");
+            System.out.println("┃  3 - Atualizar Funcionários          ┃");
+            System.out.println("┃  4 - Remover Funcionários            ┃");
             System.out.println("┃  5 - Retornar                        ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
@@ -29,19 +29,20 @@ public class MenuGerente {
                 Ferramentas.limpaTerminal();
                 switch (opcaoGerente) {
                     case 1 -> MenuGerenteCadastrar.criarUsuarios(nivelAcesso);
-                    case 2 -> MenuGerenteRelatorios.visualizarRelatorios();
+                    case 2 -> MenuRelatorio.menuRelatorio(idGerente, nivelAcesso);
                     case 3 -> MenuUpdateGerente.menuUpdateEscolha(nivelAcesso);
                     case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha(idGerente, nivelAcesso);
                     case 5 -> {
                         System.out.println("┃  RETORNANDO AO MENU INICIAL ...");
                         Ferramentas.Delay(500);
+                        Ferramentas.limpaTerminal();
                         return;
                     }
 
                     default -> Ferramentas.menuDefault();
                 }
             } catch (InputMismatchException e) {
-                Ferramentas.mensagemErro(e.getMessage());
+                Ferramentas.menuDefault();
             }
         }
     }

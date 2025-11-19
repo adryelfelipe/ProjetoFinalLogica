@@ -32,9 +32,9 @@ public class MenuVisualizarOs {
         }
 
         // Menu
-        System.out.println("============================");
-        System.out.println("== MENU ORDENS DE SERVIÇO ==");
-        System.out.println("============================");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃   TODAS AS ORDENS DE SERVIÇO   ┃");
+        System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
 
         System.out.println(); // pula linha
 
