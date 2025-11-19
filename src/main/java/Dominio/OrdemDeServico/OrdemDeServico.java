@@ -86,8 +86,10 @@ public class OrdemDeServico
             throw new DescricaoOsException("Uma ordem de servico deve possuir sua descrição bem definida");
         }
 
-        if(igualMinhaDescricao(descricao)) {
-            throw new MesmaDescricaoOsException();
+        if(this.descricao != null) {
+            if(igualMinhaDescricao(descricao)) {
+                throw new MesmaDescricaoOsException();
+            }
         }
 
         this.descricao = descricao;
@@ -98,8 +100,11 @@ public class OrdemDeServico
             throw new ValorOsException("Uma ordem de servico deve possuir seu valor bem definido");
         }
 
-        if(igualMeuValor(valorOS)) {
-            throw new MesmoValorOsException();
+        if(this.valorOS != null) {
+            if(igualMeuValor(valorOS)) {
+                throw new MesmoValorOsException();
+            }
+
         }
 
        this.valorOS = valorOS;
@@ -172,6 +177,12 @@ public class OrdemDeServico
             throw new DepartamentoOsException("Uma ordem de serviço deve possuir seu departamento bem definido");
         }
 
+        if(this.departamento != null) {
+            if(igualMeuDepartamento(departamento)) {
+                throw new MesmoDepartamentoOsException();
+            }
+        }
+
         this.departamento = departamento;
     }
 
@@ -190,6 +201,10 @@ public class OrdemDeServico
 
     private boolean igualMinhaDescricao(Descricao descricao) {
         return this.descricao.getDescricao().equals(descricao.getDescricao());
+    }
+
+    private boolean igualMeuDepartamento(Departamento departamento) {
+        return this.departamento == departamento;
     }
 
     private boolean podeIniciarOs() {

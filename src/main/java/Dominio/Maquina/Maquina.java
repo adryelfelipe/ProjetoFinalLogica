@@ -1,5 +1,8 @@
 package Dominio.Maquina;
 
+import Aplicacao.Maquina.Exceptions.Handler.MesmoDepartamentoMaquinaException;
+import Aplicacao.Maquina.Exceptions.Handler.MesmoNomeMaquinaException;
+import Aplicacao.Maquina.Exceptions.Handler.MesmoStatusMaquinaException;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Maquina.Enumeracoes.StatusMaquina;
 import Dominio.Maquina.Exceptions.IdMaquinaException;
@@ -65,12 +68,24 @@ public class Maquina {
             throw new NomeMaquinaException("A máquina deve possuir um nome bem definido");
         }
 
+        if(this.nome != null) {
+            if(igualMeuNome(nome)) {
+                throw new MesmoNomeMaquinaException();
+            }
+        }
+
         this.nome = nome;
     }
 
     public void alteraStatus(StatusMaquina status) {
         if(status == null) {
             throw new StatusMaquinaException("O status da máquina deve ser bem definido");
+        }
+
+        if(this.status != null) {
+            if(igualMeuStatus(status)) {
+                throw new MesmoStatusMaquinaException();
+            }
         }
 
         this.status = status;
@@ -81,18 +96,25 @@ public class Maquina {
             throw new LocalizacaoInvalidaException("A máquina deve possuir sua localização bem definida");
         }
 
+        if(this.departamento != null) {
+            if(igualMeuDepartamento(departamento)) {
+                throw new MesmoDepartamentoMaquinaException();
+            }
+
+        }
+
         this.departamento = departamento;
     }
 
-    public boolean igualMeuDepartamento(Departamento departamento) {
+    private boolean igualMeuDepartamento(Departamento departamento) {
         return this.departamento == departamento;
     }
 
-    public boolean igualMeuNome(NomeMaquina nomeMaquina) {
+    private boolean igualMeuNome(NomeMaquina nomeMaquina) {
         return this.nome.equals(nomeMaquina);
     }
 
-    public boolean igualMeuStatus(StatusMaquina status) {
+    private boolean igualMeuStatus(StatusMaquina status) {
         return this.status == status;
     }
 }

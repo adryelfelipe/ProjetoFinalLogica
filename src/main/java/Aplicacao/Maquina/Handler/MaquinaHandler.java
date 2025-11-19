@@ -84,27 +84,15 @@ public class MaquinaHandler {
             }
 
             if(request.departamento() != null) {
-                if(maquina.igualMeuDepartamento(request.departamento())) {
-                    throw new MesmoDepartamentoMaquinaException();
-                }
-
                 maquina.alteraDepartamento(request.departamento());
             }
 
             if(request.nome() != null) {
                 NomeMaquina nome = new NomeMaquina(request.nome());
-                if(maquina.igualMeuNome(nome)) {
-                    throw new MesmoNomeMaquinaException();
-                }
-
                 maquina.alteraNome(nome);
             }
 
             if(request.status() != null) {
-                if(maquina.igualMeuStatus(request.status())) {
-                    throw new MesmoStatusMaquinaException();
-                }
-
                 maquina.alteraStatus(request.status());
             }
 

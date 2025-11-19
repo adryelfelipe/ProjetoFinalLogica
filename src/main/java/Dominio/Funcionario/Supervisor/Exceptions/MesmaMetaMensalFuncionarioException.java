@@ -1,6 +1,6 @@
-package Aplicacao.Funcionario.Supervisor.Exceptions.Handler;
+package Dominio.Funcionario.Supervisor.Exceptions;
 
-import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.MesmoDadoFuncionarioException;
+import Dominio.Funcionario.Nucleo.Exceptions.MesmoDadoFuncionarioException;
 
 public class MesmaMetaMensalFuncionarioException extends MesmoDadoFuncionarioException {
     public MesmaMetaMensalFuncionarioException() {

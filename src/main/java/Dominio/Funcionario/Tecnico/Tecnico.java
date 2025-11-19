@@ -1,5 +1,6 @@
 package Dominio.Funcionario.Tecnico;
 
+import Dominio.Funcionario.Tecnico.Exceptions.MesmaEspecialidadeFuncionarioException;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
@@ -34,10 +35,16 @@ public class Tecnico extends Funcionario {
             throw new EspecialidadeException("O técnico deve possuir uma especialidade bem definida");
         }
 
+        if(this.getEspecialidade() != null) {
+            if(igualMinhaEspecialidade(especialidade)) {
+                throw new MesmaEspecialidadeFuncionarioException();
+            }
+        }
+
         this.especialidade = especialidade;
     }
 
-    public boolean igualMinhaEspecialidade(Especialidade especialidade) {
+    private boolean igualMinhaEspecialidade(Especialidade especialidade) {
         return this.especialidade == especialidade;
     }
 }

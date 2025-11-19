@@ -1,5 +1,6 @@
 package Dominio.Funcionario.Supervisor;
 
+import Dominio.Funcionario.Supervisor.Exceptions.MesmaMetaMensalFuncionarioException;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
@@ -36,10 +37,16 @@ public class Supervisor extends Funcionario {
             throw new MetaMensalExeption("O supervisor deve possuir uma meta mensal bem definida");
         }
 
+        if(this.metaMensal != null) {
+            if(igualMinhaMetaMensal(metaMensal)) {
+                throw new MesmaMetaMensalFuncionarioException();
+            }
+        }
+
         this.metaMensal = metaMensal;
     }
 
-    public boolean igualMinhaMetaMensal(MetaMensal metaMensal) {
+    private boolean igualMinhaMetaMensal(MetaMensal metaMensal) {
         return this.metaMensal.getValorMetaMensal() == metaMensal.getValorMetaMensal();
     }
 }

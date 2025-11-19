@@ -15,9 +15,8 @@ public class MenuTecnico {
             System.out.println("┃             MENU TÉCNICO             ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                      ┃");
-            System.out.println("┃  1 - Ordens de Serviço               ┃");
-            System.out.println("┃  2 - Atualizar Status de uma Ordem   ┃");
-            System.out.println("┃  3 - Retornar                        ┃");
+            System.out.println("┃  1 - Visualizar Ordens de Serviço    ┃");
+            System.out.println("┃  2 - Retornar                        ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
@@ -26,8 +25,7 @@ public class MenuTecnico {
 
                 switch(escolhaTecnica) {
                     case 1 -> MenuTecnicoOs.ordensServicos(idTecnico, nivelAcesso);
-
-                    case 3 -> {
+                    case 2 -> {
                         Ferramentas.mensagemSucesso("┃  RETORNANDO AO MENU INICIAL ...");
                         return;
                     }

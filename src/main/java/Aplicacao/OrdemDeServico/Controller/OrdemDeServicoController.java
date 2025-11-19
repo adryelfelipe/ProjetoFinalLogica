@@ -38,12 +38,28 @@ public class OrdemDeServicoController {
         return osHandler.listarOsDepartamento(nivelAcesso, request);
     }
 
-    public ListarOsResponse listarOsTecnico(NivelAcesso nivelAcesso, ListarOsRequest request) {
+    public ListarOsResponse listarOsTecnicoAtivas(NivelAcesso nivelAcesso, ListarOsRequest request) {
         if(request == null) {
             throw new ListarNulaException();
         }
 
-        return osHandler.listarOsTecnico(nivelAcesso, request);
+        return osHandler.listarOsTecnicoAtivas(nivelAcesso, request);
+    }
+
+    public ListarOsResponse listarOsTecnicoAbertas(NivelAcesso nivelAcesso, ListarOsRequest request) {
+        if(request == null) {
+            throw new ListarNulaException();
+        }
+
+        return osHandler.listarOsTecnicoAbertas(nivelAcesso, request);
+    }
+
+    public ListarOsResponse listarOsTecnicoAndamento(NivelAcesso nivelAcesso, ListarOsRequest request) {
+        if(request == null) {
+            throw new ListarNulaException();
+        }
+
+        return osHandler.listarOsTecnicoAndamento(nivelAcesso, request);
     }
 
     public AtualizarOsResponse atualizarOsTecnico(NivelAcesso nivelAcesso, AtualizarOsRequest request) {

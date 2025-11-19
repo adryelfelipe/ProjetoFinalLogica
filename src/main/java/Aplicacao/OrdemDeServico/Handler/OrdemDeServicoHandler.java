@@ -18,8 +18,6 @@ import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
-import Dominio.OrdemDeServico.Exceptions.AtualizacaoStatusOsException;
-import Dominio.OrdemDeServico.Exceptions.MesmoDadoOsException;
 import Dominio.OrdemDeServico.Exceptions.OrdemDeServicoException;
 import Dominio.OrdemDeServico.ObjetosDeValor.Descricao;
 import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
@@ -27,6 +25,7 @@ import Dominio.OrdemDeServico.OrdemDeServico;
 import Dominio.OrdemDeServico.Repositorios.OrdemDeServicoRepositorio;
 import Dominio.OrdemDeServico.Servicos.OsServico;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrdemDeServicoHandler {
@@ -85,7 +84,7 @@ public class OrdemDeServicoHandler {
         }
     }
 
-    public ListarOsResponse listarOsTecnico(NivelAcesso nivelAcesso, ListarOsRequest request) {
+    public ListarOsResponse listarOsTecnicoAtivas(NivelAcesso nivelAcesso, ListarOsRequest request) {
         try {
             autorizacaoServico.validaAcessoTecnico(nivelAcesso);
             List<OrdemDeServico> listaOs = ordemRepositorio.listarOsAtivas();
@@ -100,6 +99,60 @@ public class OrdemDeServicoHandler {
             }
 
             return ordemDeServicoMapper.paraListaOsResponseTecnico(request.idFuncionario(), listaOs);
+        } catch (AutorizacaoException | IdFuncionarioNaoEncontradoException | FuncionarioNaoEhTecnicoException e) {
+            return ordemDeServicoMapper.paraListaOsResponse(e.getMessage());
+        }
+    }
+
+    public ListarOsResponse listarOsTecnicoAbertas(NivelAcesso nivelAcesso, ListarOsRequest request) {
+        try {
+            autorizacaoServico.validaAcessoTecnico(nivelAcesso);
+            List<OrdemDeServico> listaOsAtivas = ordemRepositorio.listarOsAtivas();
+
+            List<OrdemDeServico> listaOsAbertas = new ArrayList<>();
+            for (OrdemDeServico os : listaOsAtivas) {
+                if(os.getStatusOS() == StatusOS.ABERTA) {
+                    listaOsAbertas.add(os);
+                }
+            }
+            Funcionario funcionario = funcionarioRepositorio.buscar(request.idFuncionario());
+
+            if(funcionario == null) {
+                throw new IdFuncionarioNaoEncontradoException();
+            }
+
+            if(funcionario.getNivelAcesso() != NivelAcesso.TECNICO) {
+                throw new FuncionarioNaoEhTecnicoException();
+            }
+
+            return ordemDeServicoMapper.paraListaOsResponseTecnico(request.idFuncionario(), listaOsAbertas);
+        } catch (AutorizacaoException | IdFuncionarioNaoEncontradoException | FuncionarioNaoEhTecnicoException e) {
+            return ordemDeServicoMapper.paraListaOsResponse(e.getMessage());
+        }
+    }
+
+    public ListarOsResponse listarOsTecnicoAndamento(NivelAcesso nivelAcesso, ListarOsRequest request) {
+        try {
+            autorizacaoServico.validaAcessoTecnico(nivelAcesso);
+            List<OrdemDeServico> listaOsAtivas = ordemRepositorio.listarOsAtivas();
+
+            List<OrdemDeServico> listaOsAndamento = new ArrayList<>();
+            for (OrdemDeServico os : listaOsAtivas) {
+                if(os.getStatusOS() == StatusOS.EM_ANDAMENTO) {
+                    listaOsAndamento.add(os);
+                }
+            }
+            Funcionario funcionario = funcionarioRepositorio.buscar(request.idFuncionario());
+
+            if(funcionario == null) {
+                throw new IdFuncionarioNaoEncontradoException();
+            }
+
+            if(funcionario.getNivelAcesso() != NivelAcesso.TECNICO) {
+                throw new FuncionarioNaoEhTecnicoException();
+            }
+
+            return ordemDeServicoMapper.paraListaOsResponseTecnico(request.idFuncionario(), listaOsAndamento);
         } catch (AutorizacaoException | IdFuncionarioNaoEncontradoException | FuncionarioNaoEhTecnicoException e) {
             return ordemDeServicoMapper.paraListaOsResponse(e.getMessage());
         }
@@ -124,6 +177,10 @@ public class OrdemDeServicoHandler {
 
             if(request.statusOS() != null) {
                 os.alteraStatusOs(request.statusOS(), nivelAcesso);
+
+                if(request.statusOS() == StatusOS.FECHADA) {
+                    ordemRepositorio.excluirPorId(request.idOs());
+                }
             }
 
             ordemRepositorio.atualizar(os);

@@ -11,10 +11,11 @@ import Aplicacao.Funcionario.Tecnico.Dtos.BuscarPorId.TecnicoPorIdResponse;
 import Aplicacao.Funcionario.Tecnico.Dtos.Cadastro.CadastroTecnicoRequest;
 import Aplicacao.Funcionario.Tecnico.Dtos.Cadastro.CadastroTecnicoResponse;
 import Aplicacao.Funcionario.Tecnico.Exceptions.Handler.FuncionarioNaoEhTecnicoException;
-import Aplicacao.Funcionario.Tecnico.Exceptions.Handler.MesmaEspecialidadeFuncionarioException;
 import Aplicacao.Funcionario.Tecnico.Mapper.TecnicoMapper;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Exceptions.FuncionarioException;
+import Dominio.Funcionario.Nucleo.Exceptions.MesmoCpfFuncionarioException;
+import Dominio.Funcionario.Nucleo.Exceptions.MesmoDadoFuncionarioException;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
@@ -71,40 +72,21 @@ public class TecnicoHandler {
 
             if(request.cpf() != null) {
                 CPF cpf = new CPF(request.cpf());
-
-                if(tecnico.igualMeuCpf(cpf)) {
-                    throw new MesmoCpfFuncionarioException();
-                }
-
                 funcionarioServico.cpfUtilizado(cpf);
                 tecnico.alteraCpf(cpf);
             }
 
             if(request.nome() != null) {
                 NomeFuncionario nome = new NomeFuncionario(request.nome());
-
-                if(tecnico.igualMeuNome(nome)) {
-                    throw new MesmoNomeFuncionarioException();
-                }
-
                 tecnico.alteraNome(nome);
             }
 
             if(request.departamentos() != null) {
                 ListaDepartamentos departamentos = new ListaDepartamentos(request.departamentos());
-
-                if(tecnico.igualMeuDepartamento(departamentos.getListaDepartamentos().getFirst())) {
-                    throw new MesmoDepartamentoFuncionarioException();
-                }
-
                 tecnico.alteraListaDepartamentos(departamentos);
             }
 
             if(request.especialidade() != null) {
-                if(tecnico.igualMinhaEspecialidade(request.especialidade())) {
-                    throw new MesmaEspecialidadeFuncionarioException();
-                }
-
                 tecnico.alteraEspecialidade(request.especialidade());
             }
 

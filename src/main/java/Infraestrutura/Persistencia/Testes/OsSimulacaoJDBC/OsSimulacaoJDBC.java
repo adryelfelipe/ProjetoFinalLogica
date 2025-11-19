@@ -4,6 +4,7 @@ import Dominio.OrdemDeServico.OrdemDeServico;
 import Dominio.OrdemDeServico.Repositorios.OrdemDeServicoRepositorio;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class OsSimulacaoJDBC implements OrdemDeServicoRepositorio {
@@ -30,12 +31,15 @@ public class OsSimulacaoJDBC implements OrdemDeServicoRepositorio {
 
     @Override
     public void excluirPorId(long idOs) {
-        for(OrdemDeServico os : listaOsAtivas) {
-            if(os.getIdOs() == idOs) {
-                listaOsAtivas.remove(os);
+        Iterator<OrdemDeServico> iterator = listaOsAtivas.iterator();
+        while (iterator.hasNext()) {
+            OrdemDeServico os = iterator.next();
+            if (os.getIdOs() == idOs) {
+                iterator.remove();  // Remove de forma segura
             }
         }
     }
+
 
     @Override
     public OrdemDeServico buscarPorId(long idOs) {

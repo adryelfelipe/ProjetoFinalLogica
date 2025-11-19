@@ -1,6 +1,6 @@
-package Aplicacao.Funcionario.Tecnico.Exceptions.Handler;
+package Dominio.Funcionario.Tecnico.Exceptions;
 
-import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.MesmoDadoFuncionarioException;
+import Dominio.Funcionario.Nucleo.Exceptions.MesmoDadoFuncionarioException;
 
 public class MesmaEspecialidadeFuncionarioException extends MesmoDadoFuncionarioException {
     public MesmaEspecialidadeFuncionarioException() {

@@ -1,6 +1,8 @@
 package Dominio.Funcionario.Nucleo;
 
-import Dominio.Funcionario.Gerente.Gerente;
+import Dominio.Funcionario.Nucleo.Exceptions.MesmoCpfFuncionarioException;
+import Dominio.Funcionario.Nucleo.Exceptions.MesmoDepartamentoFuncionarioException;
+import Dominio.Funcionario.Nucleo.Exceptions.MesmoNomeFuncionarioException;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Exceptions.*;
@@ -60,6 +62,12 @@ public abstract class Funcionario {
             throw new DepartamentoFuncionarioException("A lista de departamentos de um funcionário não pode ser vazia");
         }
 
+        if(this.listaDepartamentos != null) {
+            if(igualMeuDepartamento(listaDepartamentos)) {
+                throw new MesmoDepartamentoFuncionarioException();
+            }
+        }
+
         this.listaDepartamentos = listaDepartamentos;
     }
 
@@ -76,12 +84,23 @@ public abstract class Funcionario {
             throw new SenhaInvalidaException("Um funcionário deve possuir sua senha bem definida");
         }
 
+        if(this.senha != null) {
+            if(igualMinhaSenha(senha)) {
+                throw new MesmaSenhaFuncionarioException();
+            }
+        }
         this.senha = senha;
     }
 
     public void alteraCpf(CPF cpf) {
         if(cpf == null) {
             throw new CpfInvalidoException("Um funcionário deve possuir seu cpf bem definido");
+        }
+
+        if(this.cpf != null) {
+            if(igualMeuCpf(cpf)) {
+                throw new MesmoCpfFuncionarioException();
+            }
         }
 
         this.cpf = cpf;
@@ -92,20 +111,18 @@ public abstract class Funcionario {
             throw new NomeFuncionarioException("Um funcionário deve possuir seu nome bem definido");
         }
 
+        if(this.nomeFuncionario != null) {
+            if(igualMeuNome(nomeFuncionario)) {
+                throw new MesmoNomeFuncionarioException();
+            }
+        }
+
         this.nomeFuncionario = nomeFuncionario;
     }
 
     public void alteraNivelAcesso(NivelAcesso nivelAcesso) {
         if(nivelAcesso == null) {
             throw new NivelAcessoException("Um funcionário deve possuir seu nível de acesso bem definido");
-        }
-
-        if(nivelAcesso.getId() > 4) {
-            throw new NivelAcessoException("Um funcionário não pode ter seu nivel de acesso maior que 4");
-        }
-
-        if(nivelAcesso.getId() < 1) {
-            throw new NivelAcessoException("Um funcionário não pode ter seu nível de acesso menor que 1");
         }
 
         this.nivelAcesso = nivelAcesso;
@@ -133,15 +150,15 @@ public abstract class Funcionario {
         return this.getSenha().getSenha().equals(senha.getSenha());
     }
 
-    public boolean igualMeuDepartamento(Departamento departamento) {
-        return this.listaDepartamentos.getListaDepartamentos().contains(departamento);
+    public boolean igualMeuDepartamento(ListaDepartamentos departamentos) {
+        return this.listaDepartamentos.getListaDepartamentos().contains(departamentos.getListaDepartamentos().getFirst());
     }
 
-    public boolean igualMeuNome(NomeFuncionario nome) {
+    private boolean igualMeuNome(NomeFuncionario nome) {
         return this.nomeFuncionario.getNome().equalsIgnoreCase(nome.getNome());
     }
 
-    public boolean igualMeuCpf(CPF cpf) {
+    private boolean igualMeuCpf(CPF cpf) {
         return this.getCpf().getCpf().equals(cpf.getCpf());
     }
 

@@ -3,6 +3,7 @@ package Dominio.OrdemDeServico.Servicos;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Funcionario;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 import Dominio.OrdemDeServico.Exceptions.IdMaquinaOsException;
@@ -10,6 +11,8 @@ import Dominio.OrdemDeServico.Exceptions.IdOsException;
 import Dominio.OrdemDeServico.Exceptions.IdSupervisorOsException;
 import Dominio.OrdemDeServico.Exceptions.IdTecnicoOsException;
 import Dominio.OrdemDeServico.Repositorios.OrdemDeServicoRepositorio;
+
+import java.util.Arrays;
 
 public class OsServico {
     // -- Atributos -- //
@@ -31,13 +34,13 @@ public class OsServico {
     }
 
     public void tecnicoPertenceAoDepartamento(long idTenico, Departamento departamento) {
-        if(!funcionarioRepositorio.buscar(idTenico).igualMeuDepartamento(departamento)) {
+        if(!funcionarioRepositorio.buscar(idTenico).igualMeuDepartamento(new ListaDepartamentos(Arrays.asList(departamento)))) {
             throw new IdTecnicoOsException("O técnico indicado não pode operar neste departamento");
         }
     }
 
     public void supervisorPertenceAoDepartamento(long idSupervisor, Departamento departamento) {
-        if(!funcionarioRepositorio.buscar(idSupervisor).igualMeuDepartamento(departamento)) {
+        if(!funcionarioRepositorio.buscar(idSupervisor).igualMeuDepartamento(new ListaDepartamentos(Arrays.asList(departamento)))) {
             throw new IdSupervisorOsException("O supervisor criador não pode operar neste departamento");
         }
     }

@@ -11,10 +11,10 @@ import Aplicacao.Funcionario.Supervisor.Dtos.BuscarPorId.SupervisorPorIdResponse
 import Aplicacao.Funcionario.Supervisor.Dtos.Cadastro.CadastroSupervisorRequest;
 import Aplicacao.Funcionario.Supervisor.Dtos.Cadastro.CadastroSupervisorResponse;
 import Aplicacao.Funcionario.Supervisor.Exceptions.Handler.FuncionarioNaoEhSupervisorException;
-import Aplicacao.Funcionario.Supervisor.Exceptions.Handler.MesmaMetaMensalFuncionarioException;
 import Aplicacao.Funcionario.Supervisor.Mapper.SupervisorMapper;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Exceptions.FuncionarioException;
+import Dominio.Funcionario.Nucleo.Exceptions.MesmoDadoFuncionarioException;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
@@ -75,42 +75,22 @@ public class SupervisorHandler {
 
             if(request.cpf() != null) {
                 CPF cpf = new CPF(request.cpf());
-
-                if(supervisor.igualMeuCpf(cpf)) {
-                    throw new MesmoCpfFuncionarioException();
-                }
-
                 funcionarioServico.cpfUtilizado(cpf);
                 supervisor.alteraCpf(cpf);
             }
 
             if(request.nome() != null) {
                 NomeFuncionario nome = new NomeFuncionario(request.nome());
-
-                if(supervisor.igualMeuNome(nome)) {
-                    throw new MesmoNomeFuncionarioException();
-                }
-
                 supervisor.alteraNome(nome);
             }
 
             if(request.departamentos() != null) {
                 ListaDepartamentos departamentos = new ListaDepartamentos(request.departamentos());
-
-                if(supervisor.igualMeuDepartamento(departamentos.getListaDepartamentos().getFirst())) {
-                    throw new MesmoDepartamentoFuncionarioException();
-                }
-
                 supervisor.alteraListaDepartamentos(departamentos);
             }
 
             if(request.metaMensal() != null) {
                 MetaMensal metaMensal = new MetaMensal(request.metaMensal());
-
-                if(supervisor.igualMinhaMetaMensal(metaMensal)) {
-                    throw new MesmaMetaMensalFuncionarioException();
-                }
-
                 supervisor.alteraMetaMensal(metaMensal);
             }
 

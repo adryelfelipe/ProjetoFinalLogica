@@ -15,6 +15,9 @@ import Aplicacao.Funcionario.Nucleo.Servicos.TipoFuncionarioServico;
 import Dominio.Funcionario.Gerente.Gerente;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Exceptions.FuncionarioException;
+import Dominio.Funcionario.Nucleo.Exceptions.MesmoCpfFuncionarioException;
+import Dominio.Funcionario.Nucleo.Exceptions.MesmoDadoFuncionarioException;
+import Dominio.Funcionario.Nucleo.Exceptions.MesmoNomeFuncionarioException;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
@@ -74,33 +77,17 @@ public class GerenteHandler {
 
             if(request.cpf() != null) {
                 CPF cpf = new CPF(request.cpf());
-
-                if(gerente.igualMeuCpf(cpf)) {
-                    throw new MesmoCpfFuncionarioException();
-                }
-
                 funcionarioServico.cpfUtilizado(cpf);
-
                 gerente.alteraCpf(cpf);
             }
 
             if(request.nome() != null) {
                 NomeFuncionario nome = new NomeFuncionario(request.nome());
-
-                if(gerente.igualMeuNome(nome)) {
-                    throw new MesmoNomeFuncionarioException();
-                }
-
                 gerente.alteraNome(nome);
             }
 
             if(request.departamentos() != null) {
                 ListaDepartamentos departamentos = new ListaDepartamentos(request.departamentos());
-
-                if(gerente.igualMeuDepartamento(departamentos.getListaDepartamentos().getFirst())) {
-                    throw new MesmoDepartamentoFuncionarioException();
-                }
-
                 gerente.alteraListaDepartamentos(departamentos);
             }
 

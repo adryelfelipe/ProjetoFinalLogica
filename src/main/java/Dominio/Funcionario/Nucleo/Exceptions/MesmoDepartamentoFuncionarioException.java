@@ -1,4 +1,4 @@
-package Aplicacao.Funcionario.Nucleo.Exceptions.Handler;
+package Dominio.Funcionario.Nucleo.Exceptions;
 
 public class MesmoDepartamentoFuncionarioException extends MesmoDadoFuncionarioException {
     public MesmoDepartamentoFuncionarioException() {
