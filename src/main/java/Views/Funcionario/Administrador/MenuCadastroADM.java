@@ -50,5 +50,6 @@ public class MenuCadastroADM {
         }
 
         Ferramentas.Delay(800);
+        Ferramentas.limpaTerminal();
     }
 }

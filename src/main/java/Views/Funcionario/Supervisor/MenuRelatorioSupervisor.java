@@ -1,8 +1,10 @@
-package Views.Funcionario.Gerente;
+package Views.Funcionario.Supervisor;
 
 import Aplicacao.Funcionario.Gerente.Dtos.BuscarPorId.GerentePorIdResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
 import Aplicacao.Funcionario.Supervisor.Dtos.BuscarPorId.SupervisorPorIdResponse;
+import Aplicacao.Ocorrencia.Dtos.Buscar.BuscarOcPorIdRequest;
+import Aplicacao.Ocorrencia.Dtos.Buscar.BuscarOcPorIdResponse;
 import Aplicacao.Ocorrencia.Dtos.Listar.ListarOcRequest;
 import Aplicacao.Ocorrencia.Dtos.Listar.ListarOcResponse;
 import Aplicacao.Ocorrencia.Dtos.Listar.OcorrenciaResponse;
@@ -10,14 +12,13 @@ import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsResponse;
 import Aplicacao.OrdemDeServico.Dtos.Listar.OrdemServicoResponse;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
-import Dominio.Ocorrencia.Ocorrencia;
 import Util.Ferramentas;
 import Views.Sistema.Main;
 
 import java.util.InputMismatchException;
 
-public class MenuRelatorio {
-    public static void menuRelatorio(long idGerente, NivelAcesso nivelAcesso) {
+public class MenuRelatorioSupervisor {
+    public static void menuRelatorio(long idSupervisor, NivelAcesso nivelAcesso) {
 
         while(true){
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
@@ -34,8 +35,8 @@ public class MenuRelatorio {
                 int opcao = Ferramentas.lInteiro();
 
                 switch (opcao) {
-                    case 1 -> visualizarOs(idGerente, nivelAcesso);
-                    case 2 -> visualizarOc(idGerente, nivelAcesso);
+                    case 1 -> visualizarOs(idSupervisor, nivelAcesso);
+                    case 2 -> visualizarOc(idSupervisor, nivelAcesso);
                     case 3 -> {
                         return;
                     }
@@ -45,20 +46,18 @@ public class MenuRelatorio {
             } catch (InputMismatchException e) {
                 Ferramentas.menuDefault();
             }
-
-            Ferramentas.limpaTerminal();
         }
     }
 
-    public static void visualizarOs(long idGerente, NivelAcesso nivelAcesso) {
+    public static void visualizarOs(long idFuncionario, NivelAcesso nivelAcesso) {
         Ferramentas.limpaTerminal();
 
         // Pedido e resposta para buscar supervisor
-        FuncionarioPorIdRequest buscarGerenteRequest = new FuncionarioPorIdRequest(idGerente);
-        GerentePorIdResponse responseGerente = Main.gerenteController.buscarPorId(nivelAcesso, buscarGerenteRequest);
+        FuncionarioPorIdRequest buscarSupervisorRequest = new FuncionarioPorIdRequest(idFuncionario);
+        SupervisorPorIdResponse responseSupervisor = Main.supervisorController.buscarPorId(buscarSupervisorRequest);
 
         // Pedido e resposta para listar ordens de servico
-        ListarOsRequest listarOsRequest = new ListarOsRequest(idGerente, responseGerente.listaDepartamentos().getListaDepartamentos().getFirst());
+        ListarOsRequest listarOsRequest = new ListarOsRequest(idFuncionario, responseSupervisor.listaDepartamentos().getListaDepartamentos().getFirst());
         ListarOsResponse listarOsResponse = Main.osController.listarOsDepartamento(nivelAcesso, listarOsRequest);
 
         if(!listarOsResponse.status()) {
@@ -67,7 +66,7 @@ public class MenuRelatorio {
         }
 
         if(listarOsResponse.listaResponse().isEmpty()) {
-            Ferramentas.mensagemErro("Não há nenhuma ordem de serviço registrada no sistema");
+            Ferramentas.mensagemErro("Não há ordens de serviço ativas no momento");
             return;
         }
 
@@ -85,7 +84,6 @@ public class MenuRelatorio {
             System.out.println("Valor: " + os.valorOs().getValorOS());
             System.out.println("Técnico -> ID: " + os.idTecnico() + " | Nome: " + os.nomeTecnico().getNome());
             System.out.println("Máquina -> ID: " + os.idMaquina() + " | Nome: " + os.nomeMaquina().getNome());
-            System.out.println("Tipo da OS: " + os.tipoOs().name());
             System.out.println("--");
             System.out.println("--");
             System.out.println(); // pula linha
@@ -95,15 +93,14 @@ public class MenuRelatorio {
 
         System.out.print("Aperte enter para continuar: ");
         Ferramentas.lString();
-        Ferramentas.limpaTerminal();
     }
 
-    public static void visualizarOc(long idGerente, NivelAcesso nivelAcesso) {
+    public static void visualizarOc(long idSupervisor, NivelAcesso nivelAcesso) {
         Ferramentas.limpaTerminal();
 
         // Pedido e resposta para buscar supervisor
-        FuncionarioPorIdRequest buscarGerenteRequest = new FuncionarioPorIdRequest(idGerente);
-        GerentePorIdResponse responseGerente = Main.gerenteController.buscarPorId(nivelAcesso, buscarGerenteRequest);
+        FuncionarioPorIdRequest buscarGerenteRequest = new FuncionarioPorIdRequest(idSupervisor);
+        SupervisorPorIdResponse responseGerente = Main.supervisorController.buscarPorId(buscarGerenteRequest);
 
         // Pedido e resposta para listar ocorrências
         ListarOcRequest listarOcRequest = new ListarOcRequest(responseGerente.listaDepartamentos().getListaDepartamentos().getFirst());
@@ -136,8 +133,44 @@ public class MenuRelatorio {
 
         System.out.println(); // pula linha
 
-        System.out.print("Aperte enter para continuar: ");
-        Ferramentas.lString();
+        boolean verifica = false;
+        while(!verifica) {
+            try {
+                System.out.println("1 - Criar uma ordem de serviço preditiva");
+                System.out.println("2 - Retornar");
+                System.out.print("Escolha: ");
+                int op = Ferramentas.lInteiro();
+                verifica = true;
+
+                switch(op) {
+                    case 1 -> {
+                        System.out.println();
+                        System.out.print("Escolha o ID da ocorrência: ");
+                        try {
+                            long idOc = Ferramentas.lInteiro();
+                            BuscarOcPorIdRequest request = new BuscarOcPorIdRequest(idOc);
+                            BuscarOcPorIdResponse response = Main.ocController.buscarOcPorId(nivelAcesso, request);
+
+                            if(response.status()) {
+                                MenuCadastroSupervisor.menuCadastroOrdemPreditiva(idSupervisor, nivelAcesso, response);
+                            } else {
+                                Ferramentas.mensagemErro(response.mensagem());
+                                return;
+                            }
+                        } catch (InputMismatchException e) {
+                            Ferramentas.menuDefault();
+                        }
+                    }
+
+                    case 2 -> {
+                        return;
+                    }
+                }
+            } catch (InputMismatchException e) {
+                Ferramentas.menuDefault();
+            }
+        }
+
         Ferramentas.limpaTerminal();
     }
 }

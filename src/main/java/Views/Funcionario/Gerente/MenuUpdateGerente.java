@@ -158,6 +158,8 @@ public class MenuUpdateGerente {
                 Ferramentas.mensagemErro(responseId.mensagem());
                 return;
             }
+
+            Ferramentas.limpaTerminal();
         }
     }
 
@@ -247,6 +249,8 @@ public class MenuUpdateGerente {
                 Ferramentas.mensagemErro(responseId.mensagem());
                 return;
             }
+
+            Ferramentas.limpaTerminal();
         }
     }
 }

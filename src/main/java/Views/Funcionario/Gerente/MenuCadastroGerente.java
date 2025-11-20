@@ -56,6 +56,8 @@ public class MenuCadastroGerente {
         } else {
             Ferramentas.mensagemErro(response.mensagem());
         }
+
+        Ferramentas.limpaTerminal();
     }
 
     public static void menuCadastroMaquina(NivelAcesso nivelAcesso) {
@@ -86,6 +88,7 @@ public class MenuCadastroGerente {
             Ferramentas.mensagemErro(response.mensagem());
         }
         Ferramentas.Delay(800);
+        Ferramentas.limpaTerminal();
     }
 
     public static void menuCadastroTecnico(NivelAcesso nivelAcesso) {

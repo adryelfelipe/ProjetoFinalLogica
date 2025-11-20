@@ -37,7 +37,8 @@ public class MenuAdministrador {
             {
                 Ferramentas.menuDefault();
             }
-        }
 
+            Ferramentas.limpaTerminal();
+        }
     }
 }

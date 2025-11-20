@@ -15,7 +15,15 @@ public class Ocorrencia {
 
     // Construtor com ID
     public Ocorrencia(long idOcorrencia, long idMaquina, Departamento departamento, StatusOc statusOc) {
+        alteraIdOcorrencia(idOcorrencia);
+        alteraIdMaquina(idMaquina);
+        alteraDepartamento(departamento);
+        alteraStatusOc(statusOc);
+    }
 
+    // Construtor sem ID
+    public Ocorrencia(long idMaquina, Departamento departamento, StatusOc statusOc) {
+        this(0, idMaquina, departamento, statusOc);
     }
 
     // -- Getters -- //

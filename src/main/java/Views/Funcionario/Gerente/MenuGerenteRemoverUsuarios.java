@@ -30,5 +30,7 @@ public class MenuGerenteRemoverUsuarios {
                 Ferramentas.mensagemErro(responseExclusao.mensagem());
             }
         }
+
+        Ferramentas.limpaTerminal();
     }
 }

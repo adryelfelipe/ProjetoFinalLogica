@@ -2,7 +2,6 @@ package Views.Funcionario.Supervisor;
 
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Util.Ferramentas;
-import Dominio.Funcionario.Supervisor.Supervisor;
 
 import java.util.InputMismatchException;
 
@@ -24,8 +23,8 @@ public class MenuSupervisor
                 int opcao = Ferramentas.lInteiro();
 
                 switch (opcao) {
-                    case 1 -> MenuCadastroSupervisor.menuCadastroOrdem(idSupervisor, nivelAcesso);
-                    case 2 -> MenuVisualizarOs.visualizarOs(idSupervisor, nivelAcesso);
+                    case 1 -> MenuCadastroSupervisor.menuCadastroOrdemCorretiva(idSupervisor, nivelAcesso);
+                    case 2 -> MenuRelatorioSupervisor.menuRelatorio(idSupervisor, nivelAcesso);
                     case 3 -> {
                         System.out.println("RETORNANDO AO MENU INICIAL! . . .");
                         Ferramentas.Delay(500);
@@ -36,6 +35,7 @@ public class MenuSupervisor
             }
             catch (InputMismatchException e) {
                 Ferramentas.menuDefault();
+                Ferramentas.limpaTerminal();
             }
         }
     }

@@ -123,12 +123,13 @@ public class MenuTecnicoOs {
         System.out.println(); // pula linha
 
         for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
-                System.out.println("ID OS: " + os.idOs());
-                System.out.println("Descrição: " + os.descricao().getDescricao());
-                System.out.println("Máquina -> ID: " + os.idMaquina() + " | Nome: " + os.nomeMaquina().getNome());
-                System.out.println("--");
-                System.out.println("--");
-                System.out.println(); // pula linha
+            System.out.println("ID OS: " + os.idOs());
+            System.out.println("Descrição: " + os.descricao().getDescricao());
+            System.out.println("Tipo da OS: " + os.tipoOs().name());
+            System.out.println("Máquina -> ID: " + os.idMaquina() + " | Nome: " + os.nomeMaquina().getNome());
+            System.out.println("--");
+            System.out.println("--");
+            System.out.println(); // pula linha
         }
 
         System.out.println(); // pula linha
@@ -188,6 +189,7 @@ public class MenuTecnicoOs {
         for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
             System.out.println("ID OS: " + os.idOs());
             System.out.println("Descrição: " + os.descricao().getDescricao());
+            System.out.println("Tipo da OS: " + os.tipoOs().name());
             System.out.println("Máquina -> ID: " + os.idMaquina() + " | Nome: " + os.nomeMaquina().getNome());
             System.out.println("--");
             System.out.println("--");

@@ -44,6 +44,8 @@ public class MenuGerente {
             } catch (InputMismatchException e) {
                 Ferramentas.menuDefault();
             }
+
+            Ferramentas.limpaTerminal();
         }
     }
 }

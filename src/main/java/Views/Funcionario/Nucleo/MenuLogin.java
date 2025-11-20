@@ -29,18 +29,22 @@ public class MenuLogin
             Ferramentas.mensagemSucesso(response.mensagem());
             if(response.nivelAcesso().equals(NivelAcesso.ADMIN)) {
                 MenuAdministrador.menuInicial(response.id(),response.nivelAcesso());
+                Ferramentas.limpaTerminal();
             }
 
             if(response.nivelAcesso().equals(NivelAcesso.GERENTE)) {
                 MenuGerente.menuInicial(response.id(),response.nivelAcesso());
+                Ferramentas.limpaTerminal();
             }
 
             if(response.nivelAcesso().equals(NivelAcesso.SUPERVISOR)) {
                 MenuSupervisor.menuSupervisor(response.id(), response.nivelAcesso());
+                Ferramentas.limpaTerminal();
             }
 
             if(response.nivelAcesso().equals(NivelAcesso.TECNICO)) {
                 MenuTecnico.menuTecnico(response.id(), response.nivelAcesso());
+                Ferramentas.limpaTerminal();
             }
         } else {
             Ferramentas.mensagemErro(response.mensagem());

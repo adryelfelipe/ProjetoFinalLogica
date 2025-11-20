@@ -101,6 +101,8 @@ public class MenuUpdateADM {
                 Ferramentas.mensagemErro(responseId.mensagem());
                 return;
             }
+
+            Ferramentas.limpaTerminal();
         }
     }
 }

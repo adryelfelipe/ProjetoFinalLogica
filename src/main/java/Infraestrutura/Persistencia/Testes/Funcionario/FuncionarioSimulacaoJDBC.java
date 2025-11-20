@@ -1,6 +1,5 @@
 package Infraestrutura.Persistencia.Testes.Funcionario;
 
-import Dominio.Funcionario.Gerente.Gerente;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
@@ -8,7 +7,7 @@ import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 import Dominio.Funcionario.Supervisor.Supervisor;
 import Dominio.Funcionario.Tecnico.Tecnico;
-import Infraestrutura.Persistencia.Testes.OsSimulacaoJDBC.OsSimulacaoJDBC;
+import Infraestrutura.Persistencia.Testes.OrdemDeServico.OsSimulacaoJDBC;
 
 import java.util.ArrayList;
 import java.util.Iterator;

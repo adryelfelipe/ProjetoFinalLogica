@@ -17,6 +17,9 @@ import Aplicacao.Funcionario.Tecnico.Mapper.TecnicoMapper;
 import Aplicacao.Maquina.Controller.MaquinaController;
 import Aplicacao.Maquina.Handler.MaquinaHandler;
 import Aplicacao.Maquina.Mapper.MaquinaMapper;
+import Aplicacao.Ocorrencia.Controller.OcorrenciaController;
+import Aplicacao.Ocorrencia.Handler.OcorrenciaHandler;
+import Aplicacao.Ocorrencia.Mapper.OcorrenciaMapper;
 import Aplicacao.OrdemDeServico.Controller.OrdemDeServicoController;
 import Aplicacao.OrdemDeServico.Handler.OrdemDeServicoHandler;
 import Aplicacao.OrdemDeServico.Mapper.OrdemDeServicoMapper;
@@ -34,15 +37,14 @@ import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
 import Dominio.Funcionario.Tecnico.Tecnico;
 import Dominio.Maquina.Enumeracoes.StatusMaquina;
 import Dominio.Maquina.Maquina;
-import Dominio.Maquina.ObjetosDeValor.Localizacao;
 import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
 import Dominio.Maquina.Servicos.MaquinaServico;
+import Dominio.Ocorrencia.Servicos.OcorrenciaServico;
 import Dominio.OrdemDeServico.Servicos.OsServico;
-import Infraestrutura.Persistencia.Implementacao.Funcionario.JDBC.FuncionarioRepositorioJdbc;
-import Infraestrutura.Persistencia.Implementacao.Funcionario.Mapper.FuncionarioJdbcMapper;
 import Infraestrutura.Persistencia.Testes.Funcionario.FuncionarioSimulacaoJDBC;
 import Infraestrutura.Persistencia.Testes.Maquina.MaquinaSimulacaoJDBC;
-import Infraestrutura.Persistencia.Testes.OsSimulacaoJDBC.OsSimulacaoJDBC;
+import Infraestrutura.Persistencia.Testes.Ocorrencia.OcSimulacaoJDBC;
+import Infraestrutura.Persistencia.Testes.OrdemDeServico.OsSimulacaoJDBC;
 import Views.Funcionario.Nucleo.MenuInicial;
 
 import java.util.Arrays;
@@ -83,10 +85,16 @@ public class Main {
     private static MaquinaServico maquinaServico = new MaquinaServico(maquinaDAO);
     private static MaquinaHandler maquinaHandler = new MaquinaHandler(maquinaServico, maquinaMapper, autorizacaoServico, maquinaDAO);
 
-    // Aplicaçã de Ordem de Serviço
+    // Aplicação de ocorrência
+    private static OcSimulacaoJDBC ocorrenciaDao = new OcSimulacaoJDBC();
+    private static OcorrenciaServico ocorrenciaServico = new OcorrenciaServico(ocorrenciaDao);
+    private static OcorrenciaMapper ocorrenciaMapper = new OcorrenciaMapper(maquinaDAO);
+    private static OcorrenciaHandler ocorrenciaHandler = new OcorrenciaHandler(ocorrenciaDao, ocorrenciaMapper, autorizacaoServico);
+
+    // Aplicação de Ordem de Serviço
     private static OsServico osServico = new OsServico(maquinaDAO, funcionarioDAO, osDAO);
     private static OrdemDeServicoMapper osMapper = new OrdemDeServicoMapper(funcionarioDAO, maquinaDAO);
-    private static OrdemDeServicoHandler osHandler = new OrdemDeServicoHandler(osDAO, autorizacaoServico, osServico, osMapper, maquinaDAO, funcionarioDAO);
+    private static OrdemDeServicoHandler osHandler = new OrdemDeServicoHandler(osDAO, autorizacaoServico, osServico, osMapper, maquinaDAO, funcionarioDAO, ocorrenciaMapper, ocorrenciaDao);
 
     // Controllers públicas
     public static GerenteController gerenteController = new GerenteController(gerenteHandler);
@@ -95,6 +103,7 @@ public class Main {
     public static TecnicoController tecnicoController = new TecnicoController(tecnicoHandler);
     public static MaquinaController maquinaController = new MaquinaController(maquinaHandler);
     public static OrdemDeServicoController osController = new OrdemDeServicoController(osHandler);
+    public static OcorrenciaController ocController = new OcorrenciaController(ocorrenciaHandler);
 
     // Inicialização do código
     public static void main(String[] args) {

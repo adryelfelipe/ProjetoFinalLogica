@@ -45,6 +45,7 @@ public class MenuVisualizarOs {
             System.out.println("Valor: " + os.valorOs().getValorOS());
             System.out.println("Técnico -> ID: " + os.idTecnico() + " | Nome: " + os.nomeTecnico().getNome());
             System.out.println("Máquina -> ID: " + os.idMaquina() + " | Nome: " + os.nomeMaquina().getNome());
+            System.out.println("Tipo da OS: " + os.tipoOs().name());
             System.out.println("--");
             System.out.println("--");
             System.out.println(); // pula linha
@@ -54,5 +55,6 @@ public class MenuVisualizarOs {
 
         System.out.print("Aperte enter para continuar: ");
         Ferramentas.lString();
+        Ferramentas.limpaTerminal();
     }
 }

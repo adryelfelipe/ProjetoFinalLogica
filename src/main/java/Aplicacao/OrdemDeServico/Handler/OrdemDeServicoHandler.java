@@ -4,6 +4,7 @@ import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.AutorizacaoException;
 import Aplicacao.Funcionario.Nucleo.Exceptions.Handler.IdFuncionarioNaoEncontradoException;
 import Aplicacao.Funcionario.Nucleo.Servicos.AutorizacaoServico;
 import Aplicacao.Funcionario.Tecnico.Exceptions.Handler.FuncionarioNaoEhTecnicoException;
+import Aplicacao.Ocorrencia.Mapper.OcorrenciaMapper;
 import Aplicacao.OrdemDeServico.Dtos.Atualizar.AtualizarOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Atualizar.AtualizarOsResponse;
 import Aplicacao.OrdemDeServico.Dtos.Cadastro.CadastroOsRequest;
@@ -17,7 +18,12 @@ import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
 import Dominio.Maquina.Repositorios.MaquinaRepositorio;
+import Dominio.Ocorrencia.Enumeracoes.StatusOc;
+import Dominio.Ocorrencia.Ocorrencia;
+import Dominio.Ocorrencia.Repositories.OcorrenciaRepositorio;
+import Dominio.Ocorrencia.Servicos.OcorrenciaServico;
 import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
+import Dominio.OrdemDeServico.Enumeracoes.TipoOS;
 import Dominio.OrdemDeServico.Exceptions.OrdemDeServicoException;
 import Dominio.OrdemDeServico.ObjetosDeValor.Descricao;
 import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
@@ -35,14 +41,27 @@ public class OrdemDeServicoHandler {
     private OrdemDeServicoMapper ordemDeServicoMapper;
     private MaquinaRepositorio maquinaRepositorio;
     private FuncionarioRepositorio funcionarioRepositorio;
+    private OcorrenciaMapper ocorrenciaMapper;
+    private OcorrenciaRepositorio ocorrenciaRepositorio;
+    private OcorrenciaServico ocorrenciaServico;
 
-    public OrdemDeServicoHandler(OrdemDeServicoRepositorio ordemRepositorio, AutorizacaoServico autorizacaoServico, OsServico osServico, OrdemDeServicoMapper ordemDeServicoMapper, MaquinaRepositorio maquinaRepositorio, FuncionarioRepositorio funcionarioRepositorio) {
+    public OrdemDeServicoHandler(OrdemDeServicoRepositorio ordemRepositorio,
+                                 AutorizacaoServico autorizacaoServico,
+                                 OsServico osServico,
+                                 OrdemDeServicoMapper ordemDeServicoMapper,
+                                 MaquinaRepositorio maquinaRepositorio,
+                                 FuncionarioRepositorio funcionarioRepositorio,
+                                 OcorrenciaMapper ocorrenciaMapper,
+                                 OcorrenciaRepositorio ocorrenciaRepositorio) {
+
         this.ordemRepositorio = ordemRepositorio;
         this.autorizacaoServico = autorizacaoServico;
         this.osServico = osServico;
         this.ordemDeServicoMapper = ordemDeServicoMapper;
         this.maquinaRepositorio = maquinaRepositorio;
         this.funcionarioRepositorio = funcionarioRepositorio;
+        this.ocorrenciaMapper = ocorrenciaMapper;
+        this.ocorrenciaRepositorio = ocorrenciaRepositorio;
     }
 
     public CadastroOsResponse salvar(NivelAcesso nivelAcesso, CadastroOsRequest request) {
@@ -56,6 +75,18 @@ public class OrdemDeServicoHandler {
             osServico.tecnicoPertenceAoDepartamento(request.idTecnico(), os.getDepartamento());
             osServico.supervisorPertenceAoDepartamento(request.idSupervisor(), os.getDepartamento());
             ordemRepositorio.salvar(os);
+
+            if(ordemRepositorio.numeroOrdensMaquina(request.idMaquina()) % 3 == 0 && !ocorrenciaRepositorio.existeOcorrenciaMaquina(request.idMaquina())) {
+                Ocorrencia oc = ocorrenciaMapper.paraEntidade(request, departamento, StatusOc.ABERTA);
+                ocorrenciaRepositorio.salvar(oc);
+            }
+
+            if(request.tipoOS() == TipoOS.PREDITIVA) {
+                Ocorrencia oc = ocorrenciaRepositorio.buscarPorId(request.idOcorrencia());
+                oc.alteraStatusOc(StatusOc.EM_ANDAMENTO);
+                ocorrenciaRepositorio.atualizar(oc);
+            }
+
             return ordemDeServicoMapper.paraResponse(os);
         } catch (OrdemDeServicoException | AutorizacaoException e) {
             return ordemDeServicoMapper.paraResponse(e.getMessage());
@@ -65,12 +96,10 @@ public class OrdemDeServicoHandler {
     public ListarOsResponse listarOsDepartamento(NivelAcesso nivelAcesso, ListarOsRequest request) {
         try {
             // Se for Supervisor, lista somente as Ativas em seu departamento
-
             if(nivelAcesso == NivelAcesso.SUPERVISOR) {
                 List<OrdemDeServico> listaOs = ordemRepositorio.listarOsAtivas();
                 return ordemDeServicoMapper.paraListaOsResponseDepartamento(request.departamento(), listaOs);
             }
-
 
             // Se for Gerente, lista todas as ordens em seu departamento (Ativas e excluídas)
             if(nivelAcesso == NivelAcesso.GERENTE) {
@@ -180,6 +209,13 @@ public class OrdemDeServicoHandler {
 
                 if(request.statusOS() == StatusOS.FECHADA) {
                     ordemRepositorio.excluirPorId(request.idOs());
+
+                    if(os.getTipoOS() == TipoOS.PREDITIVA) {
+                        Ocorrencia ocorrencia = ocorrenciaRepositorio.ocorrenciaPorIdMaquina(os.getIdMaquina());
+                        ocorrencia.alteraStatusOc(StatusOc.FECHADA);
+                        ocorrenciaRepositorio.atualizar(ocorrencia);
+                        ocorrenciaRepositorio.excluirPorId(ocorrencia.getIdOcorrencia());
+                    }
                 }
             }
 

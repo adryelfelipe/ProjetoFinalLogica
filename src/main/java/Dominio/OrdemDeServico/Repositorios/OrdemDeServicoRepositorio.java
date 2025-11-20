@@ -13,4 +13,5 @@ public interface OrdemDeServicoRepositorio {
     boolean existeId(long idOs);
     List<OrdemDeServico> listarOsAtivas();
     List<OrdemDeServico> listarOsTodas();
+    int numeroOrdensMaquina(long idMaquina);
 }

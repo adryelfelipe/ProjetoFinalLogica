@@ -31,5 +31,7 @@ public class MenuGerenteCadastrar {
         catch(InputMismatchException e) {
             Ferramentas.menuDefault();
         }
+
+        Ferramentas.limpaTerminal();
     }
 }
