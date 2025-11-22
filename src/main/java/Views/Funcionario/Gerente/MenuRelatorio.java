@@ -2,6 +2,8 @@ package Views.Funcionario.Gerente;
 
 import Aplicacao.Funcionario.Gerente.Dtos.BuscarPorId.GerentePorIdResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
+import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioResponse;
+import Aplicacao.Funcionario.Nucleo.Dtos.ListarFuncionarios.ListaFuncionariosResponse;
 import Aplicacao.Funcionario.Supervisor.Dtos.BuscarPorId.SupervisorPorIdResponse;
 import Aplicacao.Ocorrencia.Dtos.Listar.ListarOcRequest;
 import Aplicacao.Ocorrencia.Dtos.Listar.ListarOcResponse;
@@ -9,12 +11,16 @@ import Aplicacao.Ocorrencia.Dtos.Listar.OcorrenciaResponse;
 import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsResponse;
 import Aplicacao.OrdemDeServico.Dtos.Listar.OrdemServicoResponse;
+import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
+import Dominio.Ocorrencia.Enumeracoes.StatusOc;
 import Dominio.Ocorrencia.Ocorrencia;
 import Util.Ferramentas;
 import Views.Sistema.Main;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 
 public class MenuRelatorio {
     public static void menuRelatorio(long idGerente, NivelAcesso nivelAcesso) {
@@ -136,7 +142,220 @@ public class MenuRelatorio {
 
         System.out.println(); // pula linha
 
-        System.out.print("Aperte enter para continuar: ");
+        System.out.println("1 - Filtrar por departamento");
+        System.out.println("2 - Filtrar por supervisor");
+        System.out.println("3 - Filtrar por status");
+        System.out.println("4 - Retornar");
+        try {
+            int op = Ferramentas.lInteiro();
+
+            switch(op) {
+                case 1 -> menuFiltroDep(listarOcResponse.listaResponse());
+                case 2 -> menuFiltroSup(listarOcResponse.listaResponse());
+                case 3 -> menuFiltroStatus(listarOcResponse.listaResponse());
+                case 4 -> {
+                    Ferramentas.limpaTerminal();
+                    return;
+                }
+            }
+        } catch (InputMismatchException e) {
+            Ferramentas.menuDefault();
+        }
+
+        Ferramentas.limpaTerminal();
+    }
+
+    public static void menuFiltroDep(List<OcorrenciaResponse> ocorrenciaResponse) {
+        Ferramentas.limpaTerminal();
+        boolean verifica = false;
+
+        System.out.println("1 - Mecânica");
+        System.out.println("2 - Elétrica");
+        try {
+            int op = Ferramentas.lInteiro();
+
+            switch(op) {
+                case 1 -> {
+                    for(OcorrenciaResponse oc : ocorrenciaResponse) {
+                        if(oc.departamento() == Departamento.MECANICA) {
+                            verifica = true;
+                            System.out.println("ID OC: " + oc.idOcorrencia());
+                            System.out.println("Status: " + oc.statusOc());
+                            System.out.println("Máquina -> ID: " + oc.idMaquina() + " | Nome: " + oc.nomeMaquina().getNome());
+                            System.out.println("--");
+                            System.out.println("--");
+                            System.out.println(); // pula linha
+                        }
+                    }
+
+                    if(!verifica) {
+                        Ferramentas.mensagemErro("Não há nenhuma ocorrência com esse departamento");
+                        return;
+                    }
+                }
+
+                case 2 -> {
+                    for(OcorrenciaResponse oc : ocorrenciaResponse) {
+                        if(oc.departamento() == Departamento.ELETRICA) {
+                            verifica = true;
+                            System.out.println("ID OC: " + oc.idOcorrencia());
+                            System.out.println("Status: " + oc.statusOc());
+                            System.out.println("Máquina -> ID: " + oc.idMaquina() + " | Nome: " + oc.nomeMaquina().getNome());
+                            System.out.println("--");
+                            System.out.println("--");
+                            System.out.println(); // pula linha
+                        }
+                    }
+
+                    if(!verifica) {
+                        Ferramentas.mensagemErro("Não há nenhuma ocorrência com esse departamento");
+                        return;
+                    }
+                }
+            }
+        } catch (InputMismatchException e) {
+            Ferramentas.menuDefault();
+        }
+
+        System.out.println("Aperte enter para continuar");
+        Ferramentas.lString();
+        Ferramentas.limpaTerminal();
+    }
+
+    public static void menuFiltroStatus(List<OcorrenciaResponse> ocorrenciaResponse) {
+        Ferramentas.limpaTerminal();
+        boolean verifica = false;
+        System.out.println("1 - ABERTA");
+        System.out.println("2 - EM ANDAMENTO");
+        System.out.println("3 - FECHADA");
+        try {
+            int op = Ferramentas.lInteiro();
+
+            switch(op) {
+                case 1 -> {
+                    for(OcorrenciaResponse oc : ocorrenciaResponse) {
+                        if(oc.statusOc() == StatusOc.ABERTA) {
+                            verifica = true;
+                            System.out.println("ID OC: " + oc.idOcorrencia());
+                            System.out.println("Status: " + oc.statusOc());
+                            System.out.println("Máquina -> ID: " + oc.idMaquina() + " | Nome: " + oc.nomeMaquina().getNome());
+                            System.out.println("--");
+                            System.out.println("--");
+                            System.out.println(); // pula linha
+                        }
+                    }
+
+                    if(!verifica) {
+                        Ferramentas.mensagemErro("Não há nenhuma ocorrência com esse status");
+                        return;
+                    }
+                }
+
+                case 2 -> {
+                    for(OcorrenciaResponse oc : ocorrenciaResponse) {
+                        if(oc.statusOc() == StatusOc.EM_ANDAMENTO) {
+                            verifica = true;
+                            System.out.println("ID OC: " + oc.idOcorrencia());
+                            System.out.println("Status: " + oc.statusOc());
+                            System.out.println("Máquina -> ID: " + oc.idMaquina() + " | Nome: " + oc.nomeMaquina().getNome());
+                            System.out.println("--");
+                            System.out.println("--");
+                            System.out.println(); // pula linha
+                        }
+                    }
+
+                    if(!verifica) {
+                        Ferramentas.mensagemErro("Não há nenhuma ocorrência com esse status");
+                        return;
+                    }
+                }
+
+                case 3 -> {
+                    for(OcorrenciaResponse oc : ocorrenciaResponse) {
+                        if(oc.statusOc() == StatusOc.FECHADA) {
+                            verifica = true;
+                            System.out.println("ID OC: " + oc.idOcorrencia());
+                            System.out.println("Status: " + oc.statusOc());
+                            System.out.println("Máquina -> ID: " + oc.idMaquina() + " | Nome: " + oc.nomeMaquina().getNome());
+                            System.out.println("--");
+                            System.out.println("--");
+                            System.out.println(); // pula linha
+                        }
+                    }
+
+                    if(!verifica) {
+                        Ferramentas.mensagemErro("Não há nenhuma ocorrência com esse status");
+                        return;
+                    }
+                }
+            }
+        } catch (InputMismatchException e) {
+            Ferramentas.menuDefault();
+        }
+
+        System.out.println("Aperte enter para continuar");
+        Ferramentas.lString();
+        Ferramentas.limpaTerminal();
+    }
+
+    public static void menuFiltroSup(List<OcorrenciaResponse> ocorrenciaResponse) {
+        Ferramentas.limpaTerminal();
+        ListaFuncionariosResponse listaFuncionarios = Main.funcionarioController.listaFuncionariosParaGerente(NivelAcesso.GERENTE);
+        Departamento departamento = null;
+        List<FuncionarioResponse> encontrados = new ArrayList<>();
+        System.out.print("Digite o nome do supervisor: ");
+        String nome = Ferramentas.lString();
+
+        for(FuncionarioResponse func : listaFuncionarios.listaFuncionarios()) {
+            if(func.nivelAcesso() == NivelAcesso.SUPERVISOR && func.nome().getNome().toLowerCase().contains(nome.toLowerCase())) {
+                encontrados.add(func);
+            }
+        }
+
+        if(encontrados.isEmpty()) {
+            Ferramentas.mensagemErro("O funcionário informado não foi encontrado");
+            return;
+        }
+
+        int cont = 1;
+        System.out.println("Foram encontrados " + encontrados.size() + " supervisores: ");
+        for(FuncionarioResponse response : encontrados) {
+            System.out.println(cont + " - " + response.nome().getNome());
+            cont ++;
+        }
+        System.out.println("Escolha: ");
+        try{
+            int op = Ferramentas.lInteiro();
+
+            if(op < 1 || op > encontrados.size()) {
+                Ferramentas.mensagemErro("Opção inválida");
+                return;
+            }
+
+            departamento = encontrados.get(op - 1).departamento();
+            boolean verifica = false;
+
+            for(OcorrenciaResponse oc : ocorrenciaResponse) {
+                if(oc.departamento() == departamento) {
+                    System.out.println("ID OC: " + oc.idOcorrencia());
+                    System.out.println("Status: " + oc.statusOc());
+                    System.out.println("Máquina -> ID: " + oc.idMaquina() + " | Nome: " + oc.nomeMaquina().getNome());
+                    System.out.println("--");
+                    System.out.println("--");
+                    System.out.println(); // pula linha
+                    verifica = true;
+                }
+            }
+
+            if(!verifica) {
+                Ferramentas.mensagemErro("Não foi possível encontrar nenhuma ocorrência vinculada a este supervisor");
+                return;
+            }
+        } catch (InputMismatchException e) {
+            Ferramentas.menuDefault();
+        }
+
+        System.out.println("Aperte enter para continuar");
         Ferramentas.lString();
         Ferramentas.limpaTerminal();
     }
