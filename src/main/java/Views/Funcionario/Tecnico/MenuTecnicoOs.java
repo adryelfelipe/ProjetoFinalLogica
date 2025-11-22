@@ -83,6 +83,7 @@ public class MenuTecnicoOs {
             System.out.println("Status: " + os.statusOs());
             System.out.println("Descrição: " + os.descricao().getDescricao());
             System.out.println("Máquina -> ID: " + os.idMaquina() + " | Nome: " + os.nomeMaquina().getNome());
+            System.out.println("Tipo da OS:: " + os.tipoOs());
             System.out.println("--");
             System.out.println("--");
             System.out.println(); // pula linha
@@ -127,6 +128,7 @@ public class MenuTecnicoOs {
             System.out.println("Descrição: " + os.descricao().getDescricao());
             System.out.println("Tipo da OS: " + os.tipoOs().name());
             System.out.println("Máquina -> ID: " + os.idMaquina() + " | Nome: " + os.nomeMaquina().getNome());
+            System.out.println("Tipo da OS:: " + os.tipoOs());
             System.out.println("--");
             System.out.println("--");
             System.out.println(); // pula linha
@@ -191,6 +193,7 @@ public class MenuTecnicoOs {
             System.out.println("Descrição: " + os.descricao().getDescricao());
             System.out.println("Tipo da OS: " + os.tipoOs().name());
             System.out.println("Máquina -> ID: " + os.idMaquina() + " | Nome: " + os.nomeMaquina().getNome());
+            System.out.println("Tipo da OS:: " + os.tipoOs());
             System.out.println("--");
             System.out.println("--");
             System.out.println(); // pula linha
