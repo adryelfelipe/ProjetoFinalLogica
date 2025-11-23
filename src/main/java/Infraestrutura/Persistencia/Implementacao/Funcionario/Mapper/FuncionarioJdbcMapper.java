@@ -155,7 +155,7 @@ public class FuncionarioJdbcMapper
         };
     }
 
-    private ListaDepartamentos paraDepartamentosPorId(Connection conn, long idUsuario) throws SQLException {
+    public ListaDepartamentos paraDepartamentosPorId(Connection conn, long idUsuario) throws SQLException {
         List<Departamento> departamentos = new ArrayList<>();
 
         String sql = "SELECT id_departamento FROM UsuarioDepartamento WHERE id_usuario = ?";

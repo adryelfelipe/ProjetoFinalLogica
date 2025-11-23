@@ -1,6 +1,8 @@
 package Infraestrutura.Persistencia.Implementacao.Funcionario.JDBC;
 
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
+import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
 import Infraestrutura.Configuracao.ConnectionFactory;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
@@ -11,8 +13,10 @@ import Dominio.Funcionario.Gerente.Gerente;
 import Dominio.Funcionario.Tecnico.Tecnico;
 import Infraestrutura.Persistencia.Implementacao.Funcionario.Mapper.FuncionarioJdbcMapper;
 
+import java.lang.reflect.Array;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
@@ -336,7 +340,9 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
     {
         List<Funcionario> funcionarios = new ArrayList<>();
 
-        String querySQL = "SELECT * FROM Usuarios";
+        FuncionarioJdbcMapper departamentoDAO = new FuncionarioJdbcMapper(); // Exemplo de instância
+
+        String querySQL = "SELECT id_usuario, nome, cpf, senha FROM Usuarios"; // Mantendo simples
 
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
@@ -344,22 +350,26 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
             ResultSet rs = stmt.executeQuery();
             while(rs.next())
             {
-                // Pega dados comuns.
+                // Pega dados comuns do Usuario/Funcionario.
                 long id = rs.getLong("id_usuario");
                 String nome = rs.getString("nome");
                 String cpf = rs.getString("cpf");
                 String senha = rs.getString("senha");
-                int nivelAcesso = rs.getInt("id_na");
 
+                ListaDepartamentos listaDepartamentos = departamentoDAO.paraDepartamentosPorId(conn, id);
 
-                // Cria funcionario (Comum).
-                //Funcionario funcionario = new Funcionario(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos());
+                // Cria funcionario com a lista populada.
+                Funcionario funcionario = new Funcionario(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), listaDepartamentos);
+
+                // Adiciona à lista de retorno
+                funcionarios.add(funcionario);
             }
         }catch (SQLException e)
         {
-            System.err.println("ERRO ao visualizar a lista.");
+            System.err.println("ERRO ao visualizar a lista de Funcionários: " + e.getMessage());
         }
-        return List.of();
+
+        return funcionarios;
     }
 
     @Override
