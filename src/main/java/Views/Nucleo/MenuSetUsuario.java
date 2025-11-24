@@ -8,7 +8,7 @@ public class MenuSetUsuario
 {
     private static UsuarioService usuarioService = new UsuarioService();
 
-    //SET NOME DO USUÁRIO
+    //                    ALTERA O NOME NO USUÁRIO                    //
     public static String MenuSetNome()
     {
         while(true)
@@ -27,7 +27,7 @@ public class MenuSetUsuario
         }
     }
 
-    //SET CPF DO USUÁRIO
+    //                    ALTERA O CPF DO USUÁRIO                    //
     public static String MenuSetCpf(){
         String CPF;
 
@@ -47,7 +47,7 @@ public class MenuSetUsuario
         }
     }
 
-    //SET SENHA DO USUÁRIO
+    //                    ALTERA A SENHA DO USUÁRIO                    //
     public static String MenuSetSenha(){
         String senha;
 

@@ -10,10 +10,12 @@ public class MenuSupervisor
 {
     public static void menuSupervisor(Supervisor supervisor)
     {
+        //                    GARANTIA DE INICIAÇÃO DE VARIÁVEIS                    //
         boolean continuar = false;
         int opcao = 0;
 
         while(!continuar) {
+            //                    MENU                    //
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃                   MENU SUPERVISOR                 ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");

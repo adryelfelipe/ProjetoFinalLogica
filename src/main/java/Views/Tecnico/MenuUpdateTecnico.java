@@ -13,7 +13,7 @@ import java.util.InputMismatchException;
 
 public class MenuUpdateTecnico
 {
-
+    //                    ATRIBUTOS                    //
     public static final OrdemDeServicoService ordemDeServicoService = new OrdemDeServicoService();
 
     public static void menuUpdateOS(Tecnico tecnico) {
@@ -66,7 +66,7 @@ public class MenuUpdateTecnico
                 }
             }
 
-            // Reinicia a veriável de verificação
+            //                    REINICIA A VARIÁVEL DE VERIFICAÇÃO                    //
             verifica = false;
 
             switch(UpdateOs) {
