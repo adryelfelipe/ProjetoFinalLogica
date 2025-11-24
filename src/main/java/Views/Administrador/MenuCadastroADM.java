@@ -18,7 +18,7 @@ public class MenuCadastroADM {
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         System.out.println(" ");
 
-        // ----- Atribuição de caracteríscticas de um Usuário ----- //
+        //                    ATRIBUÇÃO DE CARACTERÍSTICAS DE UM USUÁRIO                    //
         String nome = MenuSetUsuario.MenuSetNome();
         Ferramentas.limpaTerminal();
 
@@ -28,11 +28,11 @@ public class MenuCadastroADM {
         String senha = MenuSetUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
 
-        // ----- Atribuição de caracteríscticas de um Gerente ----- //
+        //                    ATRIBUIÇÃO DE CARACTERÍSTICAS DE UM GERENTE                    //
         Departamento departamento = MenuAtualizarADM.menuSetDepartamento();
         Ferramentas.limpaTerminal();
 
-        // -- Criação do objeto e inserção no banco de dados -- //
+        //                    CRIAÇÃO DO OBJETO E INSERÇÃO NO BANCO DE DADOS                 //
         Ferramentas.limpaTerminal();
 
         System.out.println("┃  PROCESSANDO DADOS...");

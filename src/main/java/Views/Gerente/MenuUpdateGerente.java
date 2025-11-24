@@ -9,16 +9,17 @@ import Views.Nucleo.MenuSetUsuario;
 import java.util.InputMismatchException;
 
 public class MenuUpdateGerente {
+    //                    ATRIBUTOS                    //
     private static final UsuarioService usuarioService = new UsuarioService();
 
     public static void menuUpdateEscolha(Gerente gerente) {
-        // Menu
+        //                    GARANTIA DE INICIAÇÃO                    //
         boolean verifica = false;
         int opUpdate = 0;
 
         while(true)
         {
-
+            //                    MENU                    //
             while(!verifica) {
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃                    ATUALIZAR OS                   ┃");
@@ -40,7 +41,7 @@ public class MenuUpdateGerente {
                 }
             }
 
-            // Reinicia a veriável de verificação
+            //                    REINICIA A VARIAVEL DE INICIAÇÃO                    //
             verifica = false;
 
             switch(opUpdate) {
@@ -54,7 +55,7 @@ public class MenuUpdateGerente {
     }
 
     public static void menuUpdateTecnico(Gerente gerente) {
-            // -- Garantia de inicialização -- //
+            //                    GARANTIA DE INICIAÇÃO                    //
         long idTecnico;
         int UpdateT = 0;
         boolean verifica = false;
@@ -75,7 +76,7 @@ public class MenuUpdateGerente {
 
             while(!verifica)
             {
-
+                //                    MENU                    //
                 System.out.println("\n                                                 \n");
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃                    ATUALIZAR OS                   ┃");
@@ -101,7 +102,7 @@ public class MenuUpdateGerente {
                 }
             }
 
-            // Reinicia a veriável de verificação
+            //                    REINICIA A VARIAVEL DE INICIAÇÃO                    //
             verifica = false;
 
             switch(UpdateT) {
@@ -133,6 +134,7 @@ public class MenuUpdateGerente {
     }
     public static void menuUpdateSupervisor(Gerente gerente)
     {
+        //                    GARANTIA DE INICIAÇÃO DE VARIÁVEIS                    //
         long idSupervisor;
         int UpdateS = 0;
         boolean verifica = false;
@@ -153,6 +155,7 @@ public class MenuUpdateGerente {
         {
             while(!verifica)
             {
+                //                    MENU                    //
                 System.out.println("\n                                                       \n");
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃                    ATUALIZAR OS                   ┃");
@@ -180,7 +183,7 @@ public class MenuUpdateGerente {
                 }
             }
 
-            // Reinicia a veriável de verificação
+            // REINICIA A VARIÁVEL DE INICIAÇÃO                    //
             verifica = false;
 
             switch(UpdateS)

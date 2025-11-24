@@ -11,12 +11,13 @@ public class MenuAtualizarGerente {
 
     private static final SupervisorValidator supervisorValidator = new SupervisorValidator();
 
-    //ATUALIZA O TÉCNICO
+    //                    ATUALIZA O TÉCNICO                    //
     public static Especialidade MenuSetEspecialidade()
     {
-        boolean verifica = false;
+        //                    GARANTIA DE INICIAÇÃO                    //
         int opcao = 0;
 
+        //                    MENUZINHO                    //
         while(true) {
             System.out.println(" ");
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
@@ -36,7 +37,8 @@ public class MenuAtualizarGerente {
                 if(opcao > 5 || opcao < 1) {
                    Ferramentas.menuDefault();
                 } else {
-                    Especialidade especialidade = switch (opcao) {
+                    Especialidade especialidade = switch (opcao)
+                    {
                         case 1 -> Especialidade.TECNICO_ELETROTECNICA;
                         case 2 -> Especialidade.ELETRICISTA_FABRIL;
                         case 3 -> Especialidade.SOLDADOR;
@@ -56,12 +58,12 @@ public class MenuAtualizarGerente {
         }
     }
 
-    //ATUALIZA O SUPERVISOR
+    //                    ATUALIZA O SUPERVISOR                    //
     public static double MenuSetMetaMensal(){
-        // Garantia de inicialização
+        //                    GARANTIA DE INICIAÇÃO                    //
         double metaMensal;
 
-        // Menuzinho
+        //                    MENUZINHO                    //
         while(true) {
             System.out.print("┃  Digite a meta mensal: R$");
 
