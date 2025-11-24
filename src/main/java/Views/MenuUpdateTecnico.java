@@ -38,20 +38,21 @@ public class MenuUpdateTecnico
             {
 
                 System.out.println("\n                                                 \n");
-                System.out.println("         |--------------------------------|          ");
-                System.out.println("         |---------  ATUALIZAR OS  -------|          ");
-                System.out.println("         |--------------------------------|          ");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃                    ATUALIZAR OS                   ┃");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("                                                     ");
-                System.out.println("|--------------------|         |--------------------|");
-                System.out.println("|   EDITAR   ORDEM   |         |        ATUAL       |");
-                System.out.println("|--------------------|         |--------------------|");
-                System.out.println("|  1 - Status        |         |Status: " + ordemDeServico.getStatusDaOrdem());
-                System.out.println("|  2 - Descrição     |         |Descrição: " + ordemDeServico.getDescricao());
-                System.out.println("|  3 - Maquina       |         |Maquina: " + ordemDeServico.getIdMaquina());
-                System.out.println("|  5 - Tecnico       |         |Técnico: " + ordemDeServico.getIdTecnico());
-                System.out.println("|  6 - Valor         |         |Valor: " + ordemDeServico.getValorDaOrdemDeServico());
-                System.out.println("|  6 - Sair do Menu  |");
-                System.out.println("|  Escolha:  ");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃   EDITAR   ORDEM   ┃         ┃        ATUAL       ┃");
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━┃");
+                System.out.println("┃  1 - Status        ┃         ┃ Status: " + ordemDeServico.getStatusDaOrdem());
+                System.out.println("┃  2 - Descrição     ┃         ┃ Descrição: " + ordemDeServico.getDescricao());
+                System.out.println("┃  3 - Maquina       ┃         ┃ Maquina: " + ordemDeServico.getIdMaquina());
+                System.out.println("┃  5 - Tecnico       ┃         ┃ Técnico: " + ordemDeServico.getIdTecnico());
+                System.out.println("┃  6 - Valor         ┃         ┃ Valor: " + ordemDeServico.getValorDaOrdemDeServico());
+                System.out.println("┃  7 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┃  Escolha:  ");
 
                 try
                 {
@@ -69,8 +70,8 @@ public class MenuUpdateTecnico
 
                 case 1 -> {
                     String nome = MenuSetUsuario.MenuSetNome();
-                    ordemDeServicoService.updateNomeUsuario(gerente, idTecnico, nome);
                     tecnico.setNome(nome);
+                    ordemDeServicoService.updateNomeUsuario(gerente, idTecnico, nome);
                 }
 
                 case 2 -> {
