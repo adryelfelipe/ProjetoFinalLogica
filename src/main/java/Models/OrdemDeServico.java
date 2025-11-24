@@ -65,6 +65,14 @@ public class OrdemDeServico
         return valorDaOrdemDeServico;
     }
 
+    public TipoOs getTipoOs() {
+        return tipoOs;
+    }
+
+    public void setTipoOs(TipoOs tipoOs) {
+        this.tipoOs = tipoOs;
+    }
+
     public void setIdOrdemDeServico(long idOrdemDeServico)
     {
         OrdemDeServicoValidator.verificaIntegridadeIdOrdem_Servico(idOrdemDeServico);
