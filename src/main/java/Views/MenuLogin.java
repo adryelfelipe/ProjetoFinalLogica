@@ -16,10 +16,10 @@ public class MenuLogin
 
         // Menu interativo
         while(!verifica) {
-            System.out.println("|================================|");
-            System.out.println("|             LOGIN              |");
-            System.out.println("|================================|");
-            System.out.print("|   Digite seu CPF: ");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                       LOGIN                       ┃");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+            System.out.print("┃  Digite seu CPF: ");
 
             try {
                 cpfLogin = Ferramentas.lString();
@@ -36,7 +36,7 @@ public class MenuLogin
 
         while (!verifica) {
             try {
-                System.out.print("|   Digite sua senha: ");
+                System.out.print("┃  Digite sua senha: ");
                 senhaLogin = Ferramentas.lString();
                 UsuarioValidator.verificaIntegridadeSenha(senhaLogin);
                 UsuarioValidator.verificarRegrasSenha(senhaLogin);
@@ -49,7 +49,7 @@ public class MenuLogin
         try {
             funcionario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
         } catch (IllegalStateException e) {
-            Ferramentas.mensagemErro("ERRO! CPF OU SENHA INVÁLIDOS");
+            Ferramentas.mensagemErro("┃  ERRO! CPF OU SENHA INVÁLIDOS");
             return;
         }
 
@@ -64,7 +64,7 @@ public class MenuLogin
             MenuTecnico.menuTecnico((Tecnico) funcionario);
         }
         else {
-            Ferramentas.mensagemErro("ERRO! CPF OU SENHA INVÁLIDOS");
+            Ferramentas.mensagemErro("┃  ERRO! CPF OU SENHA INVÁLIDOS");
         }
     }
 }

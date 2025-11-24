@@ -6,8 +6,9 @@ public class MenuTecnicoVisualizarDetalhes
 {
     public static void visualizarDetalhesDeOS()
     {
-        System.out.println("|=================================|");
-        System.out.print("");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃      VISUALIZAR DETALHES DA ORDEM DE SERVIÇO      ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         try{
 

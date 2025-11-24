@@ -13,15 +13,15 @@ public class MenuSupervisor
         int opcao = 0;
 
         while(!continuar) {
-            System.out.println("|================================|");
-            System.out.println("|=======  MENU SUPERVISOR  ======|");
-            System.out.println("|================================|");
-            System.out.println("|                                |");
-            System.out.println("| 1 - Cadastrar nova OS          |");
-            System.out.println("| 2 - Acompanhar status das OS   |");
-            System.out.println("| 3 - Retornar ao menu inicial   |");
-            System.out.println("|=================================|");
-            System.out.print("| Escolha: ");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                    ATUALIZAR OS                   ┃");
+            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+            System.out.println("┃                                                   ┃");
+            System.out.println("┃ 1 - Cadastrar nova OS                             ┃");
+            System.out.println("┃ 2 - Acompanhar status das OS                      ┃");
+            System.out.println("┃ 3 - Retornar ao menu inicial                      ┃");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+            System.out.print("┃  Escolha: ");
 
             try {
                 opcao = Ferramentas.lInteiro();
@@ -30,7 +30,7 @@ public class MenuSupervisor
                     case 1 -> MenuCadastroSupervisor.menuCadastroOrdem(supervisor);
                     case 2 -> MenuSupervisorAcompanharStatus.acompanharStatus();
                     case 3 -> {
-                        System.out.println("RETORNANDO AO MENU INICIAL! . . .");
+                        System.out.println("┃  RETORNANDO AO MENU INICIAL! . . .");
                         Ferramentas.Delay(500);
                         continuar = true;
                         MenuInicial.Menu();

@@ -29,20 +29,20 @@ public class MenuUpdateADM {
 
         while (true)
         {
-            System.out.println("          |  ----------------------------  |          ");
-            System.out.println("          |  ---  ATUALIZAR GERENTE  ----  |          ");
-            System.out.println("          |  ----------------------------  |          ");
-
-            System.out.print("\n\n"); // pula linhas
-            System.out.println("|  ----------------  |          |  ----------------  |");
-            System.out.println("|  EDITAR   GERENTE  |          |        ATUAL       |");
-            System.out.println("|  ----------------  |          |  ----------------  |");
-            System.out.println("|  1 - Nome          |          |Nome: " + gerente.getNome());
-            System.out.println("|  2 - CPF           |          |CPF: " + gerente.getCpf());
-            System.out.println("|  3 - Senha         |          |Senha: " + gerente.getSenha());
-            System.out.println("|  5 - Departamento  |          |Departamento: " + gerente.getListaDepartamentos().getFirst());
-            System.out.println("|  6 - Sair do Menu  |");
-            System.out.println("|  Escolha:  ");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                    ATUALIZAR OS                   ┃");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+            System.out.println("                                                     ");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃  EDITAR   GERENTE  ┃         ┃        ATUAL       ┃");
+            System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━┃");
+            System.out.println("┃  1 - Nome          ┃         ┃ Nome: " + gerente.getNome());
+            System.out.println("┃  2 - CPF           ┃         ┃ CPF: " + gerente.getCpf());
+            System.out.println("┃  3 - Senha         ┃         ┃ Senha: " + gerente.getSenha());
+            System.out.println("┃  5 - Departamento  ┃         ┃ Departamento: " + gerente.getListaDepartamentos().getFirst());
+            System.out.println("┃  6 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━┛");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
+            System.out.println("┃  Escolha:  ");
 
             try {
                 opcaoAdm = Ferramentas.lInteiro();

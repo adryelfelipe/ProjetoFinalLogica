@@ -71,23 +71,23 @@ public class MenuUpdateTecnico
                 case 1 -> {
                     String nome = MenuSetUsuario.MenuSetNome();
                     tecnico.setNome(nome);
-                    ordemDeServicoService.updateNomeUsuario(gerente, idTecnico, nome);
+                    ordemDeServicoService.atualizarTecnico_OS(nome);
                 }
 
                 case 2 -> {
                     String cpf = MenuSetUsuario.MenuSetCpf();
-                    ordemDeServicoService.updateCpfUsuario(gerente, idTecnico, cpf);
+                    ordemDeServicoService.updateCpfUsuario(cpf);
                     tecnico.setCpf(cpf);
                 }
 
                 case 3 -> {
                     String senha = MenuSetUsuario.MenuSetSenha();
-                    ordemDeServicoService.updateSenhaUsuario(gerente, idTecnico, senha);
+                    ordemDeServicoService.updateSenhaUsuario(senha);
                     tecnico.setSenha(senha);
                 }
                 case 4 -> {
                     Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
-                    ordemDeServicoService.updateEspecialidade(gerente, idTecnico, especialidade);
+                    ordemDeServicoService.updateEspecialidade(especialidade);
                     tecnico.setEspecialidade(especialidade);
                 }
                 case 5 ->

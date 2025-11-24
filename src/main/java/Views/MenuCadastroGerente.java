@@ -16,9 +16,9 @@ public class MenuCadastroGerente {
     private static final UsuarioService usuarioService = new UsuarioService();
 
     public static void menuCadastroSupervisor(Gerente gerente) {
-        System.out.println("|================================|");
-        System.out.println("|       CADASTRO SUPERVISOR      |");
-        System.out.println("|================================|\n");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃                 CADASTRO SUPERVISOR               ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         System.out.println();
 
@@ -41,7 +41,7 @@ public class MenuCadastroGerente {
 
         // -- Criação do objeto e inserção no banco de dados -- //
         Ferramentas.limpaTerminal();
-        System.out.println("PROCESSANDO DADOS...");
+        System.out.println("┃  PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
 
 
@@ -49,7 +49,7 @@ public class MenuCadastroGerente {
             Supervisor supervisor = new Supervisor(nome, cpf, senha, metaMensal, Arrays.asList(departamento));
             usuarioService.salvarSupervisor(gerente, supervisor);
             Ferramentas.limpaTerminal();
-            System.out.println("SUPERVISOR CADASTRADO COM SUCESSO!");
+            System.out.println("┃  SUPERVISOR CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);
             Ferramentas.limpaTerminal();
         } catch (IllegalArgumentException | IllegalStateException e) {
@@ -58,9 +58,9 @@ public class MenuCadastroGerente {
     }
 
     public static void menuCadastroMaquina(Gerente gerente) {
-        System.out.println("|================================|");
-        System.out.println("|       CADASTRO  MÁQUINA        |");
-        System.out.println("|================================|\n");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃                  CADASTRO MÁQUINA                 ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         // ----- Atribuição de caracteríscticas de uma Máquina ----- //
         String nome = MenuSetMaquina.MenuSetNomeMaquina();
@@ -74,14 +74,14 @@ public class MenuCadastroGerente {
 
         // -- Criação do objeto e inserção no banco de dados -- //
         Ferramentas.limpaTerminal();
-        System.out.println("PROCESSANDO DADOS...");
+        System.out.println("┃  PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
 
         try {
             Maquina maquina = new Maquina(nome, departamento, idStatus);
             maquinaService.inserirMaquina(gerente, maquina);
             Ferramentas.limpaTerminal();
-            System.out.println("MÁQUINA CADASTRADO COM SUCESSO!");
+            System.out.println("┃  MÁQUINA CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);
         } catch (IllegalArgumentException | IllegalStateException e) {
             Ferramentas.mensagemErro(e.getMessage());
@@ -90,9 +90,9 @@ public class MenuCadastroGerente {
 
     public static void menuCadastroTecnico(Gerente gerente) {
         System.out.println(" ");
-        System.out.println("|================================|");
-        System.out.println("|       CADASTRO  TÉCNICO        |");
-        System.out.println("|================================|");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃                  CADASTRO TÉCNICO                 ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         // ----- Atribuição de caracteríscticas de um Usuário ----- //
         String nome = MenuSetUsuario.MenuSetNome();
@@ -113,14 +113,14 @@ public class MenuCadastroGerente {
 
         // -- Criação do objeto e inserção no banco de dados -- //
         Ferramentas.limpaTerminal();
-        System.out.println("PROCESSANDO DADOS...");
+        System.out.println("┃  PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
 
         try {
             Tecnico tecnico = new Tecnico(nome, cpf, senha, especialidade, Arrays.asList(departamento));
             usuarioService.salvarTecnico(gerente, tecnico);
             Ferramentas.limpaTerminal();
-            System.out.println("TÉCNICO CADASTRADO COM SUCESSO!");
+            System.out.println("┃  TÉCNICO CADASTRADO COM SUCESSO!");
             Ferramentas.Delay(800);
         } catch (IllegalArgumentException | IllegalStateException e) {
             Ferramentas.mensagemErro(e.getMessage());
