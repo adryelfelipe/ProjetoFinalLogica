@@ -7,7 +7,7 @@ import Util.Ferramentas;
 
 import java.util.InputMismatchException;
 
-public class MenuAtualizarGerente {
+public class MenuAlteraGerente {
 
     private static final SupervisorValidator supervisorValidator = new SupervisorValidator();
 

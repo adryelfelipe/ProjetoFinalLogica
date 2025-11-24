@@ -4,7 +4,7 @@ import Util.Ferramentas;
 import Service.UsuarioService;
 import Service.Validator.UsuarioValidator;
 
-public class MenuSetUsuario
+public class MenuAlteraUsuario
 {
     private static UsuarioService usuarioService = new UsuarioService();
 

@@ -9,7 +9,7 @@ import Util.Ferramentas;
 
 import java.util.InputMismatchException;
 
-public class MenuSetOrdemDeServico {
+public class MenuAlteraOrdemDeServico {
     private static final UsuarioService usuarioService = new UsuarioService();
     private static final MaquinaService maquinaService = new MaquinaService();
 

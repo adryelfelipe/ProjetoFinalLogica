@@ -27,17 +27,17 @@ public class MenuCadastroSupervisor
 
         //ATRIBUIÇÃO DE CARACTERÍSTICAS DE UMA ORDEM DE SERVIÇO                    //
         try{
-            idTecnico = MenuSetOrdemDeServico.SetIdTecnico();
+            idTecnico = MenuAlteraOrdemDeServico.SetIdTecnico();
             Ferramentas.limpaTerminal();
-            idMaquina = MenuSetOrdemDeServico.SetIdMaquina();
+            idMaquina = MenuAlteraOrdemDeServico.SetIdMaquina();
         } catch (IllegalStateException e) {
             Ferramentas.mensagemErro(e.getMessage());
             return;
         }
         Ferramentas.limpaTerminal();
-        String descricao = MenuSetOrdemDeServico.SetDescricao();
+        String descricao = MenuAlteraOrdemDeServico.SetDescricao();
         Ferramentas.limpaTerminal();
-        double valorOrdemServico = MenuSetOrdemDeServico.SetValorOS();
+        double valorOrdemServico = MenuAlteraOrdemDeServico.SetValorOS();
         Ferramentas.limpaTerminal();
 
         //                    CRIAÇÃO DO OBJETO E INSERÇÃO NO BANCO DE DADOS                    //

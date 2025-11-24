@@ -6,7 +6,7 @@ import Models.Enumeracoes.Departamento;
 import Service.UsuarioService;
 import Util.Ferramentas;
 import Views.Nucleo.MenuEscolhaId;
-import Views.Nucleo.MenuSetUsuario;
+import Views.Nucleo.MenuAlteraUsuario;
 
 import java.util.Arrays;
 
@@ -32,7 +32,7 @@ public class MenuUpdateADM {
         while (true)
         {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃                    ATUALIZAR OS                   ┃");
+            System.out.println("┃                  ATUALIZAR GERENTE                ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println("                                                     ");
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━┓");
@@ -51,21 +51,21 @@ public class MenuUpdateADM {
 
                 switch (opcaoAdm) {
                     case 1 -> {
-                        String nome = MenuSetUsuario.MenuSetNome();
+                        String nome = MenuAlteraUsuario.MenuSetNome();
                         gerente.setNome(nome);
                     }
 
                     case 2 -> {
-                        String cpf = MenuSetUsuario.MenuSetCpf();
+                        String cpf = MenuAlteraUsuario.MenuSetCpf();
                         gerente.setCpf(cpf);
                     }
 
                     case 3 -> {
-                        String senha = MenuSetUsuario.MenuSetSenha();
+                        String senha = MenuAlteraUsuario.MenuSetSenha();
                         gerente.setSenha(senha);
                     }
                     case 4 -> {
-                        Departamento departamento = MenuAtualizarADM.menuSetDepartamento();
+                        Departamento departamento = MenuAlteraADM.menuSetDepartamento();
                         gerente.setListaDepartamentos(Arrays.asList(departamento));
                     }
                     case 5 ->

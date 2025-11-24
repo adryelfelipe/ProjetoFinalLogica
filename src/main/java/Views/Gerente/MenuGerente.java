@@ -10,9 +10,10 @@ public class MenuGerente
     {
         boolean continuar = false;
 
-        while(!continuar) {
+        while(!continuar)
+        {
             System.out.println(" ");
-            System.out.println(" ");
+
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃                    MENU GERENTE                   ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
@@ -39,6 +40,7 @@ public class MenuGerente
                     case 6 ->
                     {
                         System.out.println("┃  RETORNANDO AO MENU INICIAL ...");
+
                         MenuInicial.Menu();
                     }
                     default -> Ferramentas.menuDefault();

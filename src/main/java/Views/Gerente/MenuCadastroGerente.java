@@ -7,8 +7,8 @@ import Models.Enumeracoes.StatusMaquina;
 import Service.MaquinaService;
 import Service.UsuarioService;
 import Util.Ferramentas;
-import Views.Administrador.MenuAtualizarADM;
-import Views.Nucleo.MenuSetUsuario;
+import Views.Administrador.MenuAlteraADM;
+import Views.Nucleo.MenuAlteraUsuario;
 
 import java.util.Arrays;
 
@@ -25,20 +25,20 @@ public class MenuCadastroGerente {
         System.out.println();
 
         //                    ATRIBUIÇÃO DE CARACTERÍSTICAS DE UM USUÁRIO                    //
-        String nome = MenuSetUsuario.MenuSetNome();
+        String nome = MenuAlteraUsuario.MenuSetNome();
         Ferramentas.limpaTerminal();
 
-        String cpf = MenuSetUsuario.MenuSetCpf();
+        String cpf = MenuAlteraUsuario.MenuSetCpf();
         Ferramentas.limpaTerminal();
 
-        String senha = MenuSetUsuario.MenuSetSenha();
+        String senha = MenuAlteraUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
 
-        Departamento departamento = MenuAtualizarADM.menuSetDepartamento();
+        Departamento departamento = MenuAlteraADM.menuSetDepartamento();
         Ferramentas.limpaTerminal();
 
         //                    ATRIBUIÇÃO DE CARACTERÍSTICAS DE UM SUPERVISOR                    //
-        double metaMensal = MenuAtualizarGerente.MenuSetMetaMensal();
+        double metaMensal = MenuAlteraGerente.MenuSetMetaMensal();
         Ferramentas.limpaTerminal();
 
         //                    CRIAÇÃO DO OBJETO E INSERÇÃO NO BANCO DE DADOS                    //
@@ -68,7 +68,7 @@ public class MenuCadastroGerente {
         String nome = MenuAlteraMaquina.MenuSetNomeMaquina();
         Ferramentas.limpaTerminal();
 
-        Departamento departamento = MenuAtualizarADM.menuSetDepartamento();
+        Departamento departamento = MenuAlteraADM.menuSetDepartamento();
         Ferramentas.limpaTerminal();
 
         StatusMaquina idStatus = MenuAlteraMaquina.MenuSetStatusMaquina();
@@ -97,20 +97,20 @@ public class MenuCadastroGerente {
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         //                    ATRIBUIÇÃO DE CARACTERÍSTICAS DE UM USUÁRIO                    //
-        String nome = MenuSetUsuario.MenuSetNome();
+        String nome = MenuAlteraUsuario.MenuSetNome();
         Ferramentas.limpaTerminal();
 
-        String cpf = MenuSetUsuario.MenuSetCpf();
+        String cpf = MenuAlteraUsuario.MenuSetCpf();
         Ferramentas.limpaTerminal();
 
-        String senha = MenuSetUsuario.MenuSetSenha();
+        String senha = MenuAlteraUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
 
-        Departamento departamento = MenuAtualizarADM.menuSetDepartamento();
+        Departamento departamento = MenuAlteraADM.menuSetDepartamento();
         Ferramentas.limpaTerminal();
 
         //                    ATRIBUIÇÃO DE CARACTERÍSTICAS DE UM TÉCNICO                    //
-        Especialidade especialidade = MenuAtualizarGerente.MenuSetEspecialidade();
+        Especialidade especialidade = MenuAlteraGerente.MenuSetEspecialidade();
 
 
         //                    CRIAÇÃO DO OBJETO E INSERÇÃO NO BANCO DE DADOS                    //

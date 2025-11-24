@@ -6,7 +6,7 @@ import Service.Validator.GerenteValidator;
 
 import java.util.InputMismatchException;
 
-public class MenuAtualizarADM {
+public class MenuAlteraADM {
 
     public static Departamento menuSetDepartamento()
     {

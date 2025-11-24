@@ -5,7 +5,7 @@ import Models.Gerente;
 import Models.Enumeracoes.Departamento;
 import Service.UsuarioService;
 import Util.Ferramentas;
-import Views.Nucleo.MenuSetUsuario;
+import Views.Nucleo.MenuAlteraUsuario;
 
 import java.util.Arrays;
 
@@ -19,17 +19,17 @@ public class MenuCadastroADM {
         System.out.println(" ");
 
         //                    ATRIBUÇÃO DE CARACTERÍSTICAS DE UM USUÁRIO                    //
-        String nome = MenuSetUsuario.MenuSetNome();
+        String nome = MenuAlteraUsuario.MenuSetNome();
         Ferramentas.limpaTerminal();
 
-        String cpf = MenuSetUsuario.MenuSetCpf();
+        String cpf = MenuAlteraUsuario.MenuSetCpf();
         Ferramentas.limpaTerminal();
 
-        String senha = MenuSetUsuario.MenuSetSenha();
+        String senha = MenuAlteraUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
 
         //                    ATRIBUIÇÃO DE CARACTERÍSTICAS DE UM GERENTE                    //
-        Departamento departamento = MenuAtualizarADM.menuSetDepartamento();
+        Departamento departamento = MenuAlteraADM.menuSetDepartamento();
         Ferramentas.limpaTerminal();
 
         //                    CRIAÇÃO DO OBJETO E INSERÇÃO NO BANCO DE DADOS                 //

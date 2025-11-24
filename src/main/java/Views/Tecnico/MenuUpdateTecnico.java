@@ -1,13 +1,15 @@
 package Views.Tecnico;
 
+import Models.Enumeracoes.StatusOS;
 import Models.OrdemDeServico;
 import Models.Tecnico;
 import Models.Enumeracoes.Especialidade;
 import Service.OrdemDeServicoService;
 import Util.Ferramentas;
-import Views.Gerente.MenuAtualizarGerente;
+import Views.Gerente.MenuAlteraGerente;
 import Views.Nucleo.MenuEscolhaId;
-import Views.Nucleo.MenuSetUsuario;
+import Views.Nucleo.MenuAlteraUsuario;
+import Views.Supervisor.MenuAlteraOrdemDeServico;
 
 import java.util.InputMismatchException;
 
@@ -32,7 +34,7 @@ public class MenuUpdateTecnico
             return;
         }
 
-        OrdemDeServico ordemDeServico = ((OrdemDeServico) ordemDeServicoService.findById(idOrdem));
+        OrdemDeServico ordemDeServico = ((OrdemDeServico) ordemDeServicoService.buscarPorId(idOrdem));
 
         while(true)
         {
@@ -42,18 +44,18 @@ public class MenuUpdateTecnico
 
                 System.out.println("\n                                                 \n");
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃                    ATUALIZAR OS                   ┃");
+                System.out.println("┃             ATUALIZAR ORDEM DE SERVIÇO            ┃");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("                                                     ");
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃   EDITAR   ORDEM   ┃         ┃        ATUAL       ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.println("┃  1 - Status        ┃         ┃ Status: " + ordemDeServico.getStatusDaOrdem());
-                System.out.println("┃  2 - Descrição     ┃         ┃ Descrição: " + ordemDeServico.getDescricao());
-                System.out.println("┃  3 - Maquina       ┃         ┃ Maquina: " + ordemDeServico.getIdMaquina());
-                System.out.println("┃  5 - Tecnico       ┃         ┃ Técnico: " + ordemDeServico.getIdTecnico());
-                System.out.println("┃  6 - Valor         ┃         ┃ Valor: " + ordemDeServico.getValorDaOrdemDeServico());
-                System.out.println("┃  7 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┃  1 - Status        ┃         ┃ Status: " + ordemDeServico.getStatusDaOrdem());  // ok
+                System.out.println("┃  \uD83D\uDD12 - Descrição     ┃         ┃ Descrição: " + ordemDeServico.getDescricao()); //ok
+                System.out.println("┃  \uD83D\uDD12 - Maquina       ┃         ┃ Maquina: " + ordemDeServico.getIdMaquina());  //ok - mas só pelo ID
+                System.out.println("┃  \uD83D\uDD12 - Tecnico       ┃         ┃ Técnico: " + ordemDeServico.getIdTecnico());   //ok
+                System.out.println("┃  \uD83D\uDD12 - Valor         ┃         ┃ Valor: " + ordemDeServico.getValorDaOrdemDeServico()); //ok
+                System.out.println("┃  6 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃ ➤ Escolha:  ");
 
@@ -65,35 +67,18 @@ public class MenuUpdateTecnico
                     Ferramentas.menuDefault();
                 }
             }
-
             //                    REINICIA A VARIÁVEL DE VERIFICAÇÃO                    //
             verifica = false;
 
-            switch(UpdateOs) {
+            switch(UpdateOs)
+            {
 
                 case 1 -> {
-                    String nome = MenuSetUsuario.MenuSetNome();
-                    tecnico.setNome(nome);
-                    ordemDeServicoService.atualizarTecnico_OS(nome);
+                    StatusOS statusOs = MenuAlteraTecnico.MenuSetStatusOrdemDeServico();
+                    ordemDeServico.setStatusDaOrdem(statusOs);
+                    ordemDeServicoService.atualizar(statusOs);
                 }
-
-                case 2 -> {
-                    String cpf = MenuSetUsuario.MenuSetCpf();
-                    ordemDeServicoService.updateCpfUsuario(cpf);
-                    tecnico.setCpf(cpf);
-                }
-
-                case 3 -> {
-                    String senha = MenuSetUsuario.MenuSetSenha();
-                    ordemDeServicoService.updateSenhaUsuario(senha);
-                    tecnico.setSenha(senha);
-                }
-                case 4 -> {
-                    Especialidade especialidade = MenuAtualizarGerente.MenuSetEspecialidade();
-                    ordemDeServicoService.updateEspecialidade(especialidade);
-                    tecnico.setEspecialidade(especialidade);
-                }
-                case 5 ->
+                case 6 ->
                 {
                     return;
                 }

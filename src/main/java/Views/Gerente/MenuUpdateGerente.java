@@ -4,7 +4,7 @@ import Models.Enumeracoes.Especialidade;
 import Service.UsuarioService;
 import Util.Ferramentas;
 import Views.Nucleo.MenuEscolhaId;
-import Views.Nucleo.MenuSetUsuario;
+import Views.Nucleo.MenuAlteraUsuario;
 
 import java.util.InputMismatchException;
 
@@ -22,11 +22,11 @@ public class MenuUpdateGerente {
             //                    MENU                    //
             while(!verifica) {
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃                    ATUALIZAR OS                   ┃");
+                System.out.println("┃            ATUALIZAR TÉCNICO/SUPERVISOR           ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
                 System.out.println("┃                                                   ┃");
-                System.out.println("┃  1 - Alterar Técnico                              ┃");
-                System.out.println("┃  2 - Alterar Supervisor                           ┃");
+                System.out.println("┃  1 - Atualizar Técnico                            ┃");
+                System.out.println("┃  2 - Atualizar Supervisor                         ┃");
                 System.out.println("┃  3 - Sair do Menu                                 ┃");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃ ➤ Escolha: ");
@@ -79,7 +79,7 @@ public class MenuUpdateGerente {
                 //                    MENU                    //
                 System.out.println("\n                                                 \n");
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃                    ATUALIZAR OS                   ┃");
+                System.out.println("┃                  ATUALIZAR TÉCNICO                ┃");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("                                                     ");
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━┓");
@@ -107,22 +107,26 @@ public class MenuUpdateGerente {
 
             switch(UpdateT) {
                 case 1 -> {
-                    String nome = MenuSetUsuario.MenuSetNome();
+                    String nome = MenuAlteraUsuario.MenuSetNome();
                     tecnico.setNome(nome);
+                    usuarioService.atualizar(gerente, tecnico);
                 }
 
                 case 2 -> {
-                    String cpf = MenuSetUsuario.MenuSetCpf();
+                    String cpf = MenuAlteraUsuario.MenuSetCpf();
                     tecnico.setCpf(cpf);
+                    usuarioService.atualizar(gerente, tecnico);
                 }
 
                 case 3 -> {
-                    String senha = MenuSetUsuario.MenuSetSenha();
+                    String senha = MenuAlteraUsuario.MenuSetSenha();
                     tecnico.setSenha(senha);
+                    usuarioService.atualizar(gerente, tecnico);
                 }
                 case 4 -> {
-                    Especialidade especialidade = MenuAtualizarGerente.MenuSetEspecialidade();
+                    Especialidade especialidade = MenuAlteraGerente.MenuSetEspecialidade();
                     tecnico.setEspecialidade(especialidade);
+                    usuarioService.atualizar(gerente, tecnico);
                 }
                 case 5 ->
                 {
@@ -158,7 +162,7 @@ public class MenuUpdateGerente {
                 //                    MENU                    //
                 System.out.println("\n                                                       \n");
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃                    ATUALIZAR OS                   ┃");
+                System.out.println("┃                ATUALIZAR SUPERVISOR               ┃");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("                                                            ");
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━┓        ┏━━━━━━━━━━━━━━━━━━━━┓");
@@ -189,21 +193,21 @@ public class MenuUpdateGerente {
             switch(UpdateS)
             {
                 case 1 -> {
-                    String nome = MenuSetUsuario.MenuSetNome();
+                    String nome = MenuAlteraUsuario.MenuSetNome();
                     supervisor.setNome(nome);
                 }
 
                 case 2 -> {
-                    String cpf = MenuSetUsuario.MenuSetCpf();
+                    String cpf = MenuAlteraUsuario.MenuSetCpf();
                     supervisor.setCpf(cpf);
                 }
 
                 case 3 -> {
-                    String senha = MenuSetUsuario.MenuSetSenha();
+                    String senha = MenuAlteraUsuario.MenuSetSenha();
                     supervisor.setSenha(senha);
                 }
                 case 4 -> {
-                    double metaMensal = MenuAtualizarGerente.MenuSetMetaMensal();
+                    double metaMensal = MenuAlteraGerente.MenuSetMetaMensal();
                     supervisor.setMetaMensal(metaMensal);
                 }
                 case 5 ->
