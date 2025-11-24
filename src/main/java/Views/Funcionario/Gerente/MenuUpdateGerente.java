@@ -111,14 +111,13 @@ public class MenuUpdateGerente {
                 System.out.printf("┃  2 - CPF           ┃         ┃  %-26s┃%n", responseId.cpf().getCpf());
                 System.out.printf("┃  3 - Departamenmto ┃         ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
                 System.out.printf("┃  4 - Especialidade ┃         ┃  %-26s┃%n", responseId.especialidade());
-                System.out.println("┃  5 - Sair do Menu ┃         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┃  5 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.print("┃ ➤ Escolha:  ");
 
-                System.out.println("\n");
-
                 try {
                     opcaoGer = Ferramentas.lInteiro();
+                    System.out.println("\n");
 
                     switch(opcaoGer) {
                         case 1 -> {
@@ -172,6 +171,7 @@ public class MenuUpdateGerente {
                         }
 
                         case 5 -> {
+                            Ferramentas.limpaTerminal();
                             return;
                         }
 
@@ -222,6 +222,7 @@ public class MenuUpdateGerente {
             return;
         }
 
+        Ferramentas.limpaTerminal();
         while(true) {
             FuncionarioPorIdRequest requestId = new FuncionarioPorIdRequest(idSupervisor);
             SupervisorPorIdResponse responseId = Main.supervisorController.buscarPorId(requestId);
@@ -234,18 +235,16 @@ public class MenuUpdateGerente {
                 System.out.println("                                                            ");
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃  EDITAR   SUPERVISOR  ┃         ┃            ATUAL           ┃");
-                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.printf("┃  1 - Nome          ┃            ┃  %-26s┃%n", responseId.nome().getNome());
-                System.out.printf("┃  2 - CPF           ┃            ┃  %-26s┃%n", responseId.cpf().getCpf());
-                System.out.printf("┃  3 - Meta Mensal   ┃            ┃  %-26s┃%n", responseId.metaMensal().getValorMetaMensal());
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+                System.out.printf("┃  1 - Nome             ┃         ┃  %-26s┃%n", responseId.nome().getNome());
+                System.out.printf("┃  2 - CPF              ┃         ┃  %-26s┃%n", responseId.cpf().getCpf());
+                System.out.printf("┃  3 - Meta Mensal      ┃         ┃  %-26s┃%n", responseId.metaMensal().getValorMetaMensal());
                 System.out.println("┃  4 - Sair do Menu     ┃         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.print("┃ ➤ Escolha:  ");
-
-                System.out.println("\n");
-
                 try {
                     opcaoGer = Ferramentas.lInteiro();
+                    System.out.println("\n");
                 } catch (InputMismatchException e) {
                     Ferramentas.menuDefault();
                 }
@@ -289,6 +288,7 @@ public class MenuUpdateGerente {
                     }
 
                     case 4 -> {
+                        Ferramentas.limpaTerminal();
                         return;
                     }
 

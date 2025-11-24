@@ -94,6 +94,7 @@ public class MenuTecnicoOs {
 
         System.out.print("Aperte enter para continuar: ");
         Ferramentas.lString();
+        Ferramentas.limpaTerminal();
     }
 
     public static void iniciarOrdem(long idTecnico, NivelAcesso nivelAcesso) {
@@ -159,6 +160,8 @@ public class MenuTecnicoOs {
         }
 
         System.out.print("Aperte enter para continuar: ");
+        Ferramentas.lString();
+        Ferramentas.limpaTerminal();
     }
 
     public static void finalizarOrdem(long idTecnico, NivelAcesso nivelAcesso) {
@@ -224,5 +227,7 @@ public class MenuTecnicoOs {
         }
 
         System.out.print("Aperte enter para continuar: ");
+        Ferramentas.lString();
+        Ferramentas.limpaTerminal();
     }
 }

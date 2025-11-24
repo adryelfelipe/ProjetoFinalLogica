@@ -155,6 +155,7 @@ public class MenuRelatorioSupervisor {
                             BuscarOcPorIdResponse response = Main.ocController.buscarOcPorId(nivelAcesso, request);
 
                             if(response.status()) {
+                                Ferramentas.limpaTerminal();
                                 MenuCadastroSupervisor.menuCadastroOrdemPreditiva(idSupervisor, nivelAcesso, response);
                             } else {
                                 Ferramentas.mensagemErro(response.mensagem());
