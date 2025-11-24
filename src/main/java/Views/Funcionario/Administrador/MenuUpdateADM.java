@@ -48,6 +48,8 @@ public class MenuUpdateADM {
                 System.out.println("╚════════════════════┛");
                 System.out.println("┃ ➤ Escolha:  ");
 
+                System.out.println("\n");
+
                 try {
                     opcaoAdm = Ferramentas.lInteiro();
 

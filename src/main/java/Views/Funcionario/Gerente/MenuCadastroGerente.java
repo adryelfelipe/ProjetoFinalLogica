@@ -76,7 +76,7 @@ public class MenuCadastroGerente {
         Ferramentas.limpaTerminal();
 
         Ferramentas.limpaTerminal();
-        System.out.println("PROCESSANDO DADOS...");
+        System.out.print("PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
 
         // -- Gerando request para cadastro de Máquina -- //
@@ -108,11 +108,13 @@ public class MenuCadastroGerente {
         Ferramentas.limpaTerminal();
 
         ArrayList<Departamento> departamentos = MenuSetGerente.menuSetDepartamento();
+        Ferramentas.limpaTerminal();
 
         // ----- Atribuição de caracteríscticas de um Técnico ----- //
         Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
+        Ferramentas.limpaTerminal();
 
-        System.out.println("PROCESSANDO DADOS...");
+        System.out.print("PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
 
         // -- Gerando request para cadastro de Supervisor -- //

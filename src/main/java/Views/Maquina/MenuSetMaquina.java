@@ -40,7 +40,7 @@ public class MenuSetMaquina {
 
     public static long SetIdMaquina(){
         while(true) {
-            System.out.println("┃ ➤ Digite o ID da máquina: ");
+            System.out.print("┃ ➤ Digite o ID da máquina: ");
 
             try {
                 return Ferramentas.lInteiro();

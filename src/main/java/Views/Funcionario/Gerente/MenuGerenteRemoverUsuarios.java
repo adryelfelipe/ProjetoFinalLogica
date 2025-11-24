@@ -21,6 +21,8 @@ public class MenuGerenteRemoverUsuarios {
                 System.out.println("ID: " + funcionario.id() + " // Nome: " + funcionario.nome().getNome() + "  // Cargo: " + funcionario.nivelAcesso().name());
             }
 
+            System.out.println();
+
             long id = MenuEscolhaId.escolhaIdUpdate();
             ExcluirFuncionarioRequest request = new ExcluirFuncionarioRequest(idAdm, id);
             ExcluirFuncionarioResponse responseExclusao = Main.funcionarioController.excluir(nivelAcesso, request);

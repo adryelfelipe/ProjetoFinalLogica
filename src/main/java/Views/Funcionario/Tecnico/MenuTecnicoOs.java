@@ -39,6 +39,7 @@ public class MenuTecnicoOs {
                     case 2 -> iniciarOrdem(idTecnico, nivelAcesso);
                     case 3 -> finalizarOrdem(idTecnico, nivelAcesso);
                     case 4 -> {
+                        Ferramentas.limpaTerminal();
                         return;
                     }
 

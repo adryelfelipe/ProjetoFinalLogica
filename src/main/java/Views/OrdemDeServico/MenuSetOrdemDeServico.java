@@ -45,7 +45,7 @@ public class MenuSetOrdemDeServico {
         int idTecnico;
 
         while(true) {
-            System.out.println("┃ ➤ Digite o ID do técnico: ");
+            System.out.print("┃ ➤ Digite o ID do técnico: ");
 
             try {
                 return Ferramentas.lInteiro();
@@ -74,7 +74,7 @@ public class MenuSetOrdemDeServico {
 
     public static long SetIdSupervisor() {
         while(true) {
-            System.out.println("┃ ➤ Digite o ID do Supervisor: ");
+            System.out.print("┃ ➤ Digite o ID do Supervisor: ");
             try {
                 return Ferramentas.lInteiro();
             } catch (InputMismatchException e) {

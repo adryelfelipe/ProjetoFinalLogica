@@ -26,8 +26,10 @@ public class MenuSupervisor
                     case 1 -> MenuCadastroSupervisor.menuCadastroOrdemCorretiva(idSupervisor, nivelAcesso);
                     case 2 -> MenuRelatorioSupervisor.menuRelatorio(idSupervisor, nivelAcesso);
                     case 3 -> {
-                        System.out.println("RETORNANDO AO MENU INICIAL! . . .");
+                        Ferramentas.limpaTerminal();
+                        System.out.print("RETORNANDO AO MENU INICIAL! . . .");
                         Ferramentas.Delay(500);
+                        Ferramentas.limpaTerminal();
                         return;
                     }
                     default -> Ferramentas.menuDefault();

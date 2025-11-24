@@ -19,6 +19,7 @@ import java.util.InputMismatchException;
 
 public class MenuRelatorioSupervisor {
     public static void menuRelatorio(long idSupervisor, NivelAcesso nivelAcesso) {
+        Ferramentas.limpaTerminal();
 
         while(true){
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
@@ -38,6 +39,7 @@ public class MenuRelatorioSupervisor {
                     case 1 -> visualizarOs(idSupervisor, nivelAcesso);
                     case 2 -> visualizarOc(idSupervisor, nivelAcesso);
                     case 3 -> {
+                        Ferramentas.limpaTerminal();
                         return;
                     }
 

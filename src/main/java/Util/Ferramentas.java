@@ -185,7 +185,7 @@ public class Ferramentas {
     // ------- RECEBE MENSAGEM DE SUCESSO E EXIBE ------- //
     public static void mensagemSucesso(String mensagem) {
         Ferramentas.limpaTerminal();
-        System.out.println(BRIGHT_GREEN + mensagem + RESET);
+        System.out.println(BLUE + mensagem + RESET);
         Ferramentas.Delay(1700);
         Ferramentas.limpaTerminal();
     }

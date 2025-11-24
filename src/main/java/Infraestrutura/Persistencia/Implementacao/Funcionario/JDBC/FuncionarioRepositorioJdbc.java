@@ -359,10 +359,10 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
                 ListaDepartamentos listaDepartamentos = departamentoDAO.paraDepartamentosPorId(conn, id);
 
                 // Cria funcionario com a lista populada.
-                Funcionario funcionario = new Funcionario(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), listaDepartamentos);
+                //uncionario funcionario = new Funcionario(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), listaDepartamentos);
 
                 // Adiciona à lista de retorno
-                funcionarios.add(funcionario);
+                //funcionarios.add(funcionario);
             }
         }catch (SQLException e)
         {

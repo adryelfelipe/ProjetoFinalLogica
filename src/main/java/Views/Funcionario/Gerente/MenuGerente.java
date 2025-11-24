@@ -33,7 +33,7 @@ public class MenuGerente {
                     case 3 -> MenuUpdateGerente.menuUpdateEscolha(nivelAcesso);
                     case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha(idGerente, nivelAcesso);
                     case 5 -> {
-                        System.out.println("┃  RETORNANDO AO MENU INICIAL ...");
+                        System.out.print("┃  RETORNANDO AO MENU INICIAL ...");
                         Ferramentas.Delay(500);
                         Ferramentas.limpaTerminal();
                         return;

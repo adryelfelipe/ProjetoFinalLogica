@@ -1,6 +1,8 @@
 package Views.Funcionario.Gerente;
 import Aplicacao.Funcionario.Nucleo.Dtos.Atualizar.AtualizarFuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
+import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioResponse;
+import Aplicacao.Funcionario.Nucleo.Dtos.ListarFuncionarios.ListaFuncionariosResponse;
 import Aplicacao.Funcionario.Supervisor.Dtos.Atualizar.AtualizarSupervisorRequest;
 import Aplicacao.Funcionario.Supervisor.Dtos.BuscarPorId.SupervisorPorIdResponse;
 import Aplicacao.Funcionario.Tecnico.Dtos.Atualizar.TecnicoAtualizarRequest;
@@ -15,6 +17,7 @@ import Views.Sistema.MenuEscolhaId;
 import Views.Funcionario.Tecnico.MenuSetTecnico;
 import Views.Funcionario.Nucleo.MenuSetFuncionario;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -35,7 +38,7 @@ public class MenuUpdateGerente {
                 System.out.println("┃  2 - Alterar Supervisor        ┃");
                 System.out.println("┃  3 - Sair do Menu              ┃");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┃ ➤ Escolha: ");
+                System.out.print("┃ ➤ Escolha: ");
 
                 try {
                     opUpdate = Ferramentas.lInteiro();
@@ -59,9 +62,29 @@ public class MenuUpdateGerente {
     }
 
     public static void menuUpdateTecnico(NivelAcesso nivelAcesso) {
+        Ferramentas.limpaTerminal();
         // -- Garantia de inicialização -- //
         long idTecnico;
         int opcaoGer = 0;
+        List<FuncionarioResponse> listaTecnicos = new ArrayList<>();
+        ListaFuncionariosResponse responseLista = Main.funcionarioController.listaFuncionariosParaGerente(nivelAcesso);
+
+        for (FuncionarioResponse funcionario : responseLista.listaFuncionarios()) {
+            if(funcionario.nivelAcesso() == NivelAcesso.TECNICO) {
+                listaTecnicos.add(funcionario);
+            }
+        }
+
+        if (listaTecnicos.isEmpty()) {
+            Ferramentas.mensagemErro("Não há nenhum técnico para atualizar");
+            return;
+        }
+
+        for (FuncionarioResponse funcionario : listaTecnicos) {
+            System.out.println("ID: " + funcionario.id() + " // Nome: " + funcionario.nome().getNome() + "  // Cargo: " + funcionario.nivelAcesso().name());
+        }
+
+        System.out.println();
 
         try {
             idTecnico = MenuEscolhaId.escolhaIdUpdate();
@@ -74,6 +97,7 @@ public class MenuUpdateGerente {
             FuncionarioPorIdRequest requestId = new FuncionarioPorIdRequest(idTecnico);
             TecnicoPorIdResponse responseId = Main.tecnicoController.buscarPorId(requestId);
 
+            Ferramentas.limpaTerminal();
             if(responseId.status()) {
                 System.out.println("\n                                                 \n");
                 System.out.println("         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓          ");
@@ -83,13 +107,15 @@ public class MenuUpdateGerente {
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃  EDITAR   TÉCNICO  ┃         ┃            ATUAL           ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.printf("┃  1 - Nome           ┃         ┃  %-26s┃%n", responseId.nome().getNome());
-                System.out.printf("┃  2 - CPF            ┃         ┃  %-26s┃%n", responseId.cpf().getCpf());
-                System.out.printf("┃  3 - Departamenmto  ┃         ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
-                System.out.printf("┃  4 - Especialidade  ┃         ┃  %-26s┃%n", responseId.especialidade());
-                System.out.println("┃  5 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.printf("┃  1 - Nome          ┃         ┃  %-26s┃%n", responseId.nome().getNome());
+                System.out.printf("┃  2 - CPF           ┃         ┃  %-26s┃%n", responseId.cpf().getCpf());
+                System.out.printf("┃  3 - Departamenmto ┃         ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
+                System.out.printf("┃  4 - Especialidade ┃         ┃  %-26s┃%n", responseId.especialidade());
+                System.out.println("┃  5 - Sair do Menu ┃         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┃ ➤ Escolha:  ");
+                System.out.print("┃ ➤ Escolha:  ");
+
+                System.out.println("\n");
 
                 try {
                     opcaoGer = Ferramentas.lInteiro();
@@ -164,9 +190,30 @@ public class MenuUpdateGerente {
     }
 
     public static void menuUpdateSupervisor(NivelAcesso nivelAcesso) {
+        Ferramentas.limpaTerminal();
         // -- Garantia de inicialização -- //
         long idSupervisor;
         int opcaoGer = 0;
+        List<FuncionarioResponse> listaSupervisor = new ArrayList<>();
+
+        ListaFuncionariosResponse responseLista = Main.funcionarioController.listaFuncionariosParaGerente(nivelAcesso);
+
+        for (FuncionarioResponse funcionario : responseLista.listaFuncionarios()) {
+            if(funcionario.nivelAcesso() == NivelAcesso.SUPERVISOR) {
+                listaSupervisor.add(funcionario);
+            }
+        }
+
+        if (listaSupervisor.isEmpty()) {
+            Ferramentas.mensagemErro("Não há nenhum supervisor para atualizar");
+            return;
+        }
+
+        for (FuncionarioResponse funcionario : listaSupervisor) {
+            System.out.println("ID: " + funcionario.id() + " // Nome: " + funcionario.nome().getNome() + "  // Cargo: " + funcionario.nivelAcesso().name());
+        }
+
+        System.out.println();
 
         try {
             idSupervisor = MenuEscolhaId.escolhaIdUpdate();
@@ -188,12 +235,14 @@ public class MenuUpdateGerente {
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃  EDITAR   SUPERVISOR  ┃         ┃            ATUAL           ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.printf("┃  1 - Nome          ┃         ┃  %-26s┃%n", responseId.nome().getNome());
-                System.out.printf("┃  2 - CPF           ┃         ┃  %-26s┃%n", responseId.cpf().getCpf());
-                System.out.printf("┃  3 - Meta Mensal   ┃         ┃  %-26s┃%n", responseId.metaMensal().getValorMetaMensal());
+                System.out.printf("┃  1 - Nome          ┃            ┃  %-26s┃%n", responseId.nome().getNome());
+                System.out.printf("┃  2 - CPF           ┃            ┃  %-26s┃%n", responseId.cpf().getCpf());
+                System.out.printf("┃  3 - Meta Mensal   ┃            ┃  %-26s┃%n", responseId.metaMensal().getValorMetaMensal());
                 System.out.println("┃  4 - Sair do Menu     ┃         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┃ ➤ Escolha:  ");
+                System.out.print("┃ ➤ Escolha:  ");
+
+                System.out.println("\n");
 
                 try {
                     opcaoGer = Ferramentas.lInteiro();

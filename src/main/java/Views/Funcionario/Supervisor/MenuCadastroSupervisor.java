@@ -16,6 +16,7 @@ public class MenuCadastroSupervisor
     // -- Atributos -- //
     public static void menuCadastroOrdemCorretiva(long idSupervisor, NivelAcesso nivelAcesso) {
         // Menu de cadastro
+        Ferramentas.limpaTerminal();
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃    CADASTRO ORDEM DE SERVIÇO   ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
@@ -31,7 +32,7 @@ public class MenuCadastroSupervisor
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //
-        System.out.println("PROCESSANDO DADOS...");
+        System.out.print("PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
 
         // -- Gerando request para cadastro de Ordem de Serviço -- //
@@ -62,7 +63,7 @@ public class MenuCadastroSupervisor
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //
-        System.out.println("PROCESSANDO DADOS...");
+        System.out.print("PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
 
         // -- Gerando request para cadastro de Ordem de Serviço -- //
