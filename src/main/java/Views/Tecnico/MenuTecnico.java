@@ -10,10 +10,12 @@ public class MenuTecnico
 {
     public static void menuTecnico(Tecnico tecnico)
     {
+        //                    GARANTIA DE INICIAÇÃO DE VARIÁVEIS                    //
         boolean continuar = true;
 
         while(!continuar)
         {
+            //                    MENU                    //
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃                    MENU TÉCNICO                   ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
