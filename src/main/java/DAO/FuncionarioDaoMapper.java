@@ -146,7 +146,6 @@ public class FuncionarioDaoMapper {
                 }
             }
         }
-
         return departamentos;
     }
 }

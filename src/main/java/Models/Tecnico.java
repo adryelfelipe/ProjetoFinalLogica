@@ -21,6 +21,10 @@ public class Tecnico extends Funcionario {
         this(0, nome, cpf, senha, especialidade, listaDepartamentos);
     }
 
+    public Tecnico(long id, String nome, String cpf, String senha, NivelAcesso nivelAcessoE, List<Departamento> listaDepartamentos, Especialidade especialidade) {
+        super();
+    }
+
     public Especialidade getEspecialidade() {
         return especialidade;
     }

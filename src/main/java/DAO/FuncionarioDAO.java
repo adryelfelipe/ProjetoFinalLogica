@@ -1,13 +1,13 @@
 package DAO;
 
 import Database.ConnectionFactory;
+import Models.*;
+import Models.Enumeracoes.Departamento;
+import Models.Enumeracoes.Especialidade;
 import Models.Enumeracoes.NivelAcesso;
-import Models.Funcionario;
-import Models.Gerente;
-import Models.Supervisor;
-import Models.Tecnico;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FuncionarioDAO {
@@ -316,8 +316,93 @@ public class FuncionarioDAO {
             return funcionario;
         }
 
-        public List<Funcionario> listarFuncionarios() {
-            return List.of();
+    public List<Funcionario> listarFuncionarios() {
+        List<Funcionario> funcionarios = new ArrayList<>();
+
+        String querySQL = "SELECT " +
+                "U.ID_USUARIO, U.nome, U.cpf, U.senha, U.id_na, " +
+                "S.meta_mensal, " +
+                "T.id_especialidade " +
+                "FROM Usuario U " +
+                "LEFT JOIN Gerentes G ON U.id_usuario = G.id_gerente " +
+                "LEFT JOIN Supervisor S ON U.id_usuario = S.id_supervisor " +
+                "LEFT JOIN Tecnico T ON U.id_usuario = T.id_tecnico";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(querySQL);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                long id = rs.getLong("id_usuario");
+                String nome = rs.getString("nome");
+                String cpf = rs.getString("cpf");
+                String senha = rs.getString("senha");
+                int nivelAcessoInt = rs.getInt("id_na");
+
+
+                List<Departamento> listaDepartamentos = new ArrayList<>();
+                String sqlDepartamentos = "SELECT id_departamento FROM UsuarioDepartamento WHERE id_usuario = ?";
+
+                try (PreparedStatement stmtDepartamentos = conn.prepareStatement(sqlDepartamentos)) {
+                    stmtDepartamentos.setLong(1, id);
+                    try (ResultSet rsDepartamentos = stmtDepartamentos.executeQuery()) {
+                        while (rsDepartamentos.next()) {
+                            int idDepartamento = rsDepartamentos.getInt("id_departamento");
+                            Departamento departamento = switch (idDepartamento) {
+                                case 1 -> Departamento.ELETRICA;
+                                default -> Departamento.MECANICA;
+                            };
+                            listaDepartamentos.add(departamento);
+                        }
+                    }
+                }
+
+                // Converte Nivel de Acesso
+                NivelAcesso nivelAcessoE = switch (nivelAcessoInt) {
+                    case 1 -> NivelAcesso.TECNICO;
+                    case 2 -> NivelAcesso.SUPERVISOR;
+                    case 3 -> NivelAcesso.GERENTE;
+                    default -> NivelAcesso.ADMIN;
+                };
+
+                Funcionario funcionario = null;
+
+                switch (nivelAcessoInt) {
+                    case 1:
+                        int idEspecialidade = rs.getInt("id_especialidade");
+                        Especialidade especialidade = switch (idEspecialidade) {
+                            case 1 -> Especialidade.TECNICO_ELETROTECNICA;
+                            case 2 -> Especialidade.ELETRICISTA_FABRIL;
+                            case 3 -> Especialidade.SOLDADOR;
+                            case 4 -> Especialidade.TECNICO_ELETROMECANICA;
+                            default -> Especialidade.PINTOR_INDUSTRIAL;
+                        };
+
+                        funcionario = new Tecnico(id, nome, cpf, senha, nivelAcessoE , listaDepartamentos, especialidade);
+                        break;
+
+                    case 2:
+                        double metaMensal = rs.getDouble("meta_mensal");
+                        funcionario = new Supervisor(id, nome, cpf, senha, nivelAcessoE, listaDepartamentos, metaMensal);
+                        break;
+
+                    case 3:
+                        funcionario = new Gerente(id, nome, cpf, senha, listaDepartamentos);
+                        break;
+
+                    case 4:
+                        funcionario = new Administrador(id, nome, cpf, senha, listaDepartamentos);
+                        break;
+                }
+
+                if (funcionario != null) {
+                    funcionarios.add(funcionario);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("ERRO ao visualizar a lista: " + e.getMessage());
         }
+        return funcionarios;
+    }
 
 }
