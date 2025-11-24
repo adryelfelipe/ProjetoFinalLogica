@@ -1,22 +1,27 @@
 package Infraestrutura.Persistencia.Implementacao.Maquina.JDBC;
 
+import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
+import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
+import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 import Infraestrutura.Configuracao.ConnectionFactory;
 import Dominio.Maquina.Maquina;
 import Dominio.Maquina.Enumeracoes.StatusMaquina;
 
 import java.sql.*;
+import java.util.List;
 
-public class MaquinaJdbcRepositorio {
+public class MaquinaJdbcRepositorio implements MaquinaRepositorio {
     //Comando para inserir as informações da máquina no Banco de Dados
-    public void inserirMaquina(Maquina maquina) {
-        String querySQL = "INSERT INTO Maquinas (nome, localizacao, id_sm) VALUES (?, ?, ?)";
+    @Override
+    public void salvar(Maquina maquina) {
+        String querySQL = "INSERT INTO Maquinas (nome, id_departamento, id_sm) VALUES (?, ?, ?)";
         long idGerado = -1;
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS)) {
             //Definindo parametros (PreparedStatement).
             stmt.setString(1, maquina.getNome().getNome());
-            stmt.setString(2, maquina.getDepartamento().name());
+            stmt.setInt(2, maquina.getDepartamento().getId());
             stmt.setLong(3, maquina.getStatus().getId());
 
             int linhasAF = stmt.executeUpdate();
@@ -36,7 +41,8 @@ public class MaquinaJdbcRepositorio {
     }
 
     // Comando para excluir uma máquina existente do Banco de Dados caso necessário
-    public boolean deletarMaquina(long id) {
+    @Override
+    public boolean excluir(long id) {
         String querySQL = "DELETE FROM Maquinas WHERE id_maquina ";
 
         try (Connection conn = ConnectionFactory.getConnection();
@@ -55,53 +61,34 @@ public class MaquinaJdbcRepositorio {
             return false;
         }
     }
+    @Override
+    public void atualizar(Maquina maquina) {
 
-    // Comando para atualizar o nome de uma máquina existente dentro do Banco de Dados
-    public void updateNomeMaquina(long id, String novoNome) {
-        String querySQL = "UPDATE Maquinas" + "SET nome = ?" + "WHERE id_maquina";
-
-        try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
-            stmt.setString(1, novoNome);
-            stmt.setLong(2, id);
-
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("ERRO ao atualizar o nome da máquina");
-        }
-    }
-
-    // Comando para atualizar a localização de uma máquina existente dentro do Banco de Dados
-    public void updateLocalizacaoMaquina(long id, String novaLocalizacao) {
-        String querySQL = "UPDATE Maquinas" + "SET localizacao = ?" + "WHERE id_maquina";
+        String querySQL = "UPDATE Maquinas SET nome = ?, id_departamento = ?, id_sm = ? WHERE id_maquina = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(querySQL)) {
-            stmt.setString(1, novaLocalizacao);
-            stmt.setLong(2, id);
 
-            stmt.executeUpdate();
+            stmt.setString(1, maquina.getNome().getNome());
+            stmt.setInt(2, maquina.getDepartamento().getId());
+            stmt.setInt(3, maquina.getStatus().getId());
+
+            stmt.setLong(4, maquina.getIdMaquina());
+
+            int linhasAfetadas = stmt.executeUpdate();
+
+            if(linhasAfetadas > 0) {
+                System.out.println("Máquina atualizada com sucesso!");
+            } else {
+                System.out.println("Nenhuma máquina encontrada com o ID: ");
+            }
+
         } catch (SQLException e) {
-            System.err.println("ERRO ao atualizar a localização da máquina");
+            System.err.println("ERRO ao atualizar a máquina: ");
         }
     }
-
-    // Comando para atualizar o status de uma máquina existente dentro do Banco de Dados
-    public void updateStatusMaquina(long id, StatusMaquina novoStatus) {
-        String querySQL = "UPDATE Maquinas" + "SET id_sm = ?" + "WHERE id_maquina";
-
-        try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
-            stmt.setInt(1, novoStatus.getId());
-            stmt.setLong(2, id);
-
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("ERRO ao atualizar o status da máquina");
-        }
-    }
-
-    public boolean existeID(long id) {
+    @Override
+    public boolean existeId(long id) {
         // Consulta MYSQL.
         String querySql = "SELECT * FROM Maquinas WHERE id_maquina = ? LIMIT 1";
 
@@ -121,6 +108,27 @@ public class MaquinaJdbcRepositorio {
             System.err.println("Erro ao verificar ID da máquina: ");
         }
         return false;
+    }
+
+
+    @Override
+    public Maquina buscar(long id) {
+        return null;
+    }
+
+    @Override
+    public List<Maquina> listaMaquinas() {
+        return List.of();
+    }
+
+    @Override
+    public Departamento maquinaParaDepartamento(long idMaquina) {
+        return null;
+    }
+
+    @Override
+    public NomeMaquina buscarNome(long idMaquina) {
+        return null;
     }
 }
 

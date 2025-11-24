@@ -1,6 +1,7 @@
 package Infraestrutura.Persistencia.Implementacao.Funcionario.JDBC;
 
 import Dominio.Funcionario.Administrador.Administrador;
+import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
@@ -63,74 +64,87 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
         @Override
         public void salvar(Funcionario funcionario)
         {
-            // Comando SQL
-            String querySQL = "INSERT INTO Usuario (nome, cpf, senha, id_na) VALUES (?, ?, ?, ?)";
-            long idGerado = -1; // Armazena o id.
+            String sqlUsuario = "INSERT INTO Usuario (nome, cpf, senha, id_na) VALUES (?, ?, ?, ?)";
 
-            // Pega a conexão
-            try(Connection conn = ConnectionFactory.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS))
-            {
-                //Definindo parametros (PreparedStatement).
+            try (Connection conn = ConnectionFactory.getConnection()) {
+
+                // Prepara o comando avisando que queremos a chave gerada de volta
+                PreparedStatement stmt = conn.prepareStatement(sqlUsuario, Statement.RETURN_GENERATED_KEYS);
+
                 stmt.setString(1, funcionario.getNome().getNome());
                 stmt.setString(2, funcionario.getCpf().getCpf());
                 stmt.setString(3, funcionario.getSenha().getSenha());
-                stmt.setInt(4, funcionario.getNivelAcesso().getId());
 
-                //Executando a inserção
-                int linhasAF = stmt.executeUpdate();
+                // Define o ID do Nivel de Acesso baseado na classe
+                int idNa = 1; // Padrão Tecnico
+                if (funcionario instanceof Supervisor) idNa = 2;
+                else if (funcionario instanceof Gerente) idNa = 3;
+                else if (funcionario instanceof Administrador) idNa = 4;
 
-                // Verificando se o comando ocorreu
-                if (linhasAF > 0)
-                {
-                    // Pega as chaves geradas.
-                    try (ResultSet rs = stmt.getGeneratedKeys())
-                    {
-                        if (rs.next()) {
-                            idGerado = rs.getLong(1);// Pega a chave (geralmente pela primeira coluna)
-                            funcionario.alteraIdFuncionario(idGerado);
+                stmt.setInt(4, idNa);
+                stmt.executeUpdate(); // Executa o INSERT
 
-                            if(funcionario.getNivelAcesso().equals(NivelAcesso.GERENTE))
-                            {
-                                Gerente gerente = (Gerente) funcionario;
-                                String querySQLG = "INSERT INTO Gerentes (id_gerente, id_departamento) VALUES (?, ?)";
-
-                                try(PreparedStatement stmtGerente = conn.prepareStatement(querySQLG))
-                                {
-                                    stmtGerente.setLong(1, gerente.getId());
-                                    stmtGerente.setInt(2, gerente.getDepartamentos().getListaDepartamentos().getFirst().getId());
-                                    stmtGerente.executeUpdate();
-                                }
-                            }
-                        }
-                        if(funcionario.getNivelAcesso().equals(NivelAcesso.SUPERVISOR))
-                        {
-                            Supervisor supervisor = (Supervisor) funcionario;
-                            String querySupervisor = "INSERT INTO Supervisor (id_supervisor, meta_mensal) VALUES (?, ?)";
-
-                            try(PreparedStatement stmtSupervisor = conn.prepareStatement(querySupervisor))
-                            {
-                                stmtSupervisor.setLong(1, supervisor.getId());
-                                stmtSupervisor.setDouble(2, supervisor.getMetaMensal().getValorMetaMensal());
-                                stmtSupervisor.executeUpdate();
-                            }
-                        }
-                        if (funcionario.getNivelAcesso().equals(NivelAcesso.TECNICO)) {
-                            Tecnico tecnico = (Tecnico) funcionario;
-                            String queryTecnico = "INSERT INTO Tecnico (id_tecnico, id_especialidade) VALUES (?, ?)";
-
-                            try (PreparedStatement stmtTecnico = conn.prepareStatement(queryTecnico)) {
-                                stmtTecnico.setLong(1, tecnico.getId());
-                                stmtTecnico.setInt(2, tecnico.getEspecialidade().getId());
-                                stmtTecnico.executeUpdate();
-                            }
-                        }
-                    }
+                // --- PASSO 2: Pegar o ID que o banco criou ---
+                ResultSet rs = stmt.getGeneratedKeys();
+                long idGerado = 0;
+                if (rs.next()) {
+                    idGerado = rs.getLong(1);
                 }
-            }
-            catch (SQLException e)
-            {
-                System.err.println("Erro ao inserir o Usuario");
+
+                String sqlDept = "INSERT INTO UsuarioDepartamento (id_usuario, id_departamento) VALUES (?, ?)";
+                PreparedStatement stmtDept = conn.prepareStatement(sqlDept);
+
+                for (Departamento dept : funcionario.getDepartamentos().getListaDepartamentos()) {
+                    stmtDept.setLong(1, idGerado);
+
+                    // Se for Eletrica é 1, se não é 2 (Mecanica)
+                    int idD = (dept == Departamento.ELETRICA) ? 1 : 2;
+                    stmtDept.setInt(2, idD);
+
+                    stmtDept.executeUpdate();
+                }
+
+                // --- PASSO 4: Salvar na tabela específica (Tecnico, Supervisor, etc) ---
+                if (funcionario instanceof Tecnico) {
+                    String sql = "INSERT INTO Tecnico (id_tecnico, id_especialidade) VALUES (?, ?)";
+                    PreparedStatement stmtCargo = conn.prepareStatement(sql);
+                    stmtCargo.setLong(1, idGerado);
+
+                    // Faz o cast para poder pegar a especialidade
+                    Tecnico tec = (Tecnico) funcionario;
+
+                    // Lógica simples: Se for Eletrotécnica é 1, senão coloca 2 (exemplo basico)
+                    int idEsp = (tec.getEspecialidade() == Especialidade.TECNICO_ELETROTECNICA) ? 1 : 2;
+
+                    stmtCargo.setInt(2, idEsp);
+                    stmtCargo.executeUpdate();
+                }
+                else if (funcionario instanceof Supervisor) {
+                    String sql = "INSERT INTO Supervisor (id_supervisor, meta_mensal) VALUES (?, ?)";
+                    PreparedStatement stmtCargo = conn.prepareStatement(sql);
+                    stmtCargo.setLong(1, idGerado);
+
+                    Supervisor sup = (Supervisor) funcionario;
+                    stmtCargo.setDouble(2, sup.getMetaMensal().getValorMetaMensal());
+                    stmtCargo.executeUpdate();
+                }
+                else if (funcionario instanceof Gerente) {
+                    String sql = "INSERT INTO Gerentes (id_gerente, id_departamento) VALUES (?, ?)";
+                    PreparedStatement stmtCargo = conn.prepareStatement(sql);
+                    stmtCargo.setLong(1, idGerado);
+
+                    // Pega o primeiro departamento da lista como principal, ou 1 se não tiver
+                    int idDeptPrincipal = 1;
+                    if (!funcionario.getDepartamentos().getListaDepartamentos().isEmpty()) {
+                        idDeptPrincipal = (funcionario.getDepartamentos().getListaDepartamentos().getFirst() == Departamento.ELETRICA) ? 1 : 2;
+                    }
+
+                    stmtCargo.setInt(2, idDeptPrincipal);
+                    stmtCargo.executeUpdate();
+                }
+
+            } catch (SQLException e) {
+                System.err.println("Erro ao salvar: " + e.getMessage());
             }
         }
 
@@ -410,7 +424,8 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
     }
 
     @Override
-    public NomeFuncionario buscarNome(long id) {
+    public NomeFuncionario buscarNome(long id)
+    {
         return null;
     }
 }

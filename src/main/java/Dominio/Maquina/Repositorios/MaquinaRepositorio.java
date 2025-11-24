@@ -9,7 +9,7 @@ import java.util.List;
 public interface MaquinaRepositorio {
     boolean existeId(long idMaquina);
     void salvar(Maquina maquina);
-    void excluir(long id);
+    boolean excluir(long id);
     Maquina buscar(long id);
     void atualizar(Maquina maquina);
     List<Maquina> listaMaquinas();
