@@ -25,7 +25,7 @@ public class StatusOc {
         return nome;
     }
 
-    public int getI()
+    public int getId()
     {
         return id;
     }
