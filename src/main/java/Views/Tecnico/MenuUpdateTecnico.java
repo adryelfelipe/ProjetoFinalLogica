@@ -5,9 +5,9 @@ import Models.Tecnico;
 import Models.Enumeracoes.Especialidade;
 import Service.OrdemDeServicoService;
 import Util.Ferramentas;
-import Views.MenuSetTecnico;
+import Views.Gerente.MenuAtualizarGerente;
 import Views.Nucleo.MenuEscolhaId;
-import Views.MenuSetUsuario;
+import Views.Nucleo.MenuSetUsuario;
 
 import java.util.InputMismatchException;
 
@@ -89,7 +89,7 @@ public class MenuUpdateTecnico
                     tecnico.setSenha(senha);
                 }
                 case 4 -> {
-                    Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
+                    Especialidade especialidade = MenuAtualizarGerente.MenuSetEspecialidade();
                     ordemDeServicoService.updateEspecialidade(especialidade);
                     tecnico.setEspecialidade(especialidade);
                 }

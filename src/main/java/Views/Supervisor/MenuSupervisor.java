@@ -15,7 +15,7 @@ public class MenuSupervisor
 
         while(!continuar) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃                    ATUALIZAR OS                   ┃");
+            System.out.println("┃                   MENU SUPERVISOR                 ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                                   ┃");
             System.out.println("┃ 1 - Cadastrar nova OS                             ┃");
