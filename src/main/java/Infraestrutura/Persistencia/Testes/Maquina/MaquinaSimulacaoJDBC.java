@@ -32,12 +32,15 @@ public class MaquinaSimulacaoJDBC implements MaquinaRepositorio {
     }
 
     @Override
-    public void excluir(long id) {
+    public boolean excluir(long id) {
         for(Maquina maquina : listaMaquinas) {
             if(maquina.getIdMaquina() == id) {
                 listaMaquinas.remove(maquina);
+                return true;
             }
         }
+
+        return false;
     }
 
     @Override
