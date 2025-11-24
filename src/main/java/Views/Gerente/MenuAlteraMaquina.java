@@ -10,7 +10,7 @@ public class MenuAlteraMaquina {
     //SET NOME DO USUÁRIO
     public static String MenuSetNomeMaquina() {
         while(true) {
-            System.out.print("┃  Digite o Nome: ");
+            System.out.print("┃ ➤ Digite o Nome: ");
             String nome = Ferramentas.lString();
 
             try {
@@ -26,7 +26,7 @@ public class MenuAlteraMaquina {
 
     public static String MenuSetLocalizacao() {
         while(true) {
-            System.out.print("┃  Digite a Localização: ");
+            System.out.print("┃ ➤ Digite a Localização: ");
             String localizacao = Ferramentas.lString();
 
             try {
@@ -49,7 +49,7 @@ public class MenuAlteraMaquina {
             System.out.println("┃  2 - DEFEITO                                      ┃");
             System.out.println("┃  3 - EM_MANUTENÇÃO                                ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃  Escolha o Status: ");
+            System.out.print("┃ ➤ Escolha o Status: ");
 
             try {
                 opcao = Ferramentas.lInteiro();

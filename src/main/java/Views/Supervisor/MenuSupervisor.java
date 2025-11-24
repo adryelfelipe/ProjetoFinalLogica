@@ -24,7 +24,7 @@ public class MenuSupervisor
             System.out.println("┃ 2 - Acompanhar status das OS                      ┃");
             System.out.println("┃ 3 - Retornar ao menu inicial                      ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃  Escolha: ");
+            System.out.print("┃ ➤ Escolha: ");
 
             try {
                 opcao = Ferramentas.lInteiro();

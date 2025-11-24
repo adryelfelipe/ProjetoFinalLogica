@@ -9,7 +9,7 @@ public class MenuGerenteVisualizarRelatorios
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃               VISUALIZAR RELATÓRIOS               ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-        System.out.print("┃  Digite o ID da ordem de serviço: ");
+        System.out.print("┃ ➤ Digite o ID da ordem de serviço: ");
 
         try
         {
