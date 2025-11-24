@@ -55,7 +55,7 @@ public class MenuUpdateTecnico
                 System.out.println("┃  6 - Valor         ┃         ┃ Valor: " + ordemDeServico.getValorDaOrdemDeServico());
                 System.out.println("┃  7 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┃  Escolha:  ");
+                System.out.println("┃ ➤ Escolha:  ");
 
                 try
                 {

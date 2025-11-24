@@ -24,7 +24,7 @@ public class MenuTecnico
             System.out.println("┃  2 - Atualizar status de ordem de serviços        ┃");
             System.out.println("┃  3 - Retornar                                     ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃  Escolha: ");
+            System.out.print("┃ ➤ Escolha: ");
 
             try
             {

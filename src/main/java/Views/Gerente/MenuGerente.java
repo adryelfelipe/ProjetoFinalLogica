@@ -18,11 +18,12 @@ public class MenuGerente
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃  1 - Cadastrar                                    ┃");
             System.out.println("┃  2 - Visualizar Relatórios                        ┃");
-            System.out.println("┃  3 - Atualizar Técnico/Supervisor                 ┃");
-            System.out.println("┃  4 - Remover Técnico/Supervisor                   ┃");
-            System.out.println("┃  5 - Retornar                                     ┃");
+            System.out.println("┃  3 - Visualizar Ocorrências                       ┃");
+            System.out.println("┃  4 - Atualizar Técnico/Supervisor                 ┃");
+            System.out.println("┃  5 - Remover Técnico/Supervisor                   ┃");
+            System.out.println("┃  6 - Retornar                                     ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃  Escolha: ");
+            System.out.print("┃ ➤ Escolha: ");
 
             try
             {
@@ -32,9 +33,10 @@ public class MenuGerente
                 switch (opcaoGerente) {
                     case 1 -> MenuGerenteCadastrar.criarUsuarios(gerente);
                     case 2 -> MenuGerenteVisualizarRelatorios.visualizarRelatorios();
-                    case 3 -> MenuUpdateGerente.menuUpdateEscolha(gerente);
-                    case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha(gerente);
-                    case 5 ->
+                    case 3 -> MenuGerenteVisualizarOcorrencias.visualizarOcorrencias();
+                    case 4 -> MenuUpdateGerente.menuUpdateEscolha(gerente);
+                    case 5 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha(gerente);
+                    case 6 ->
                     {
                         System.out.println("┃  RETORNANDO AO MENU INICIAL ...");
                         MenuInicial.Menu();

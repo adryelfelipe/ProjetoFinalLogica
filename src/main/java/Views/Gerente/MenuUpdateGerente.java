@@ -29,7 +29,7 @@ public class MenuUpdateGerente {
                 System.out.println("┃  2 - Alterar Supervisor                           ┃");
                 System.out.println("┃  3 - Sair do Menu                                 ┃");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┃  Escolha: ");
+                System.out.println("┃ ➤ Escolha: ");
 
                 try
                 {
@@ -91,7 +91,7 @@ public class MenuUpdateGerente {
                 System.out.println("┃  5 - Especialidade ┃         ┃ Especialidade: " + tecnico.getEspecialidade());
                 System.out.println("┃  6 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┃  Escolha:  ");
+                System.out.println("┃ ➤ Escolha:  ");
 
                 try
                 {
@@ -170,7 +170,7 @@ public class MenuUpdateGerente {
                 System.out.println("┃  5 - Meta Mensal    ┃        ┃ Meta Mensal: " + supervisor.getMetaMensal());
                 System.out.println("┃  6 - Sair do Menu   ┃        ┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┃  Escolha:  ");
+                System.out.println("┃ ➤ Escolha:  ");
 
                 try
                 {
