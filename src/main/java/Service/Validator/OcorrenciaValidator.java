@@ -1,7 +1,7 @@
 package Service.Validator;
 
 import Models.Enumeracoes.Departamento;
-import Models.Enumeracoes.StatusOC;
+import Models.Enumeracoes.StatusOc;
 
 public class OcorrenciaValidator
 {
@@ -31,7 +31,7 @@ public class OcorrenciaValidator
         }
     }
 
-    public static void verificarStatusOc(StatusOC statusOC)
+    public static void verificarStatusOc(StatusOc statusOC)
     {
         if(statusOC == null)
         {

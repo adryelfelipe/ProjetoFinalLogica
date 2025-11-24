@@ -9,7 +9,7 @@ import java.util.List;
 import Database.ConnectionFactory;
 import Models.Ocorrencia;
 import Models.Enumeracoes.Departamento;
-import Models.Enumeracoes.StatusOC;
+import Models.Enumeracoes.StatusOc;
 public class OcorrenciaDAO
 {
     public List<Ocorrencia> listarOcGerais()
@@ -37,10 +37,10 @@ public class OcorrenciaDAO
 
                 int statusOcCodigo = resultSet.getInt("status_oc_codigo");
 
-                StatusOC statusOc = switch (statusOcCodigo) {
-                    case 1 -> StatusOC.ABERTA;
-                    case 2 -> StatusOC.EM_ANDAMENTO;
-                    case 3 -> StatusOC.FECHADA;
+                StatusOc statusOc = switch (statusOcCodigo) {
+                    case 1 -> StatusOc.ABERTA;
+                    case 2 -> StatusOc.EM_ANDAMENTO;
+                    case 3 -> StatusOc.FECHADA;
                     default -> throw new IllegalArgumentException(
                             "Status inválido para ID " + idOcorrencia + ": " + statusOcCodigo
                     );

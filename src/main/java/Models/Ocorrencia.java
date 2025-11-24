@@ -1,7 +1,7 @@
 package Models;
 
 import Models.Enumeracoes.Departamento;
-import Models.Enumeracoes.StatusOC;
+import Models.Enumeracoes.StatusOc;
 import Service.Validator.OcorrenciaValidator;
 
 public class Ocorrencia {
@@ -10,10 +10,10 @@ public class Ocorrencia {
     private long ID_OC;
     private Departamento departamento;
     private long idMaquina;
-    private StatusOC statusOC;
+    private StatusOc statusOC;
 
     // Construtor com ID
-    public Ocorrencia(long ID_OC, Departamento departamento, long idMaquina, StatusOC statusOC)
+    public Ocorrencia(long ID_OC, Departamento departamento, long idMaquina, StatusOc statusOC)
     {
         this.ID_OC = ID_OC;
         this.departamento = departamento;
@@ -22,7 +22,7 @@ public class Ocorrencia {
     }
 
     // Construtor sem ID
-    public Ocorrencia(Departamento departamento, long idMaquina, StatusOC statusOC)
+    public Ocorrencia(Departamento departamento, long idMaquina, StatusOc statusOC)
     {
         this.departamento = departamento;
         this.idMaquina = idMaquina;
@@ -45,7 +45,7 @@ public class Ocorrencia {
         return idMaquina;
     }
 
-    public StatusOC getStatusOC()
+    public StatusOc getStatusOC()
     {
         return statusOC;
     }
@@ -68,7 +68,7 @@ public class Ocorrencia {
         this.idMaquina = idMaquina;
     }
 
-    public void setStatusOC(StatusOC statusOC)
+    public void setStatusOC(StatusOc statusOC)
     {
         OcorrenciaValidator.verificarStatusOc(statusOC);
         this.statusOC = statusOC;
