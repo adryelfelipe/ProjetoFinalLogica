@@ -1,7 +1,17 @@
 package Infraestrutura.Persistencia.Implementacao.OrdemDeServico.JDBC;
 
+import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
+import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
+import Dominio.OrdemDeServico.ObjetosDeValor.Descricao;
+import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
+import Dominio.OrdemDeServico.OrdemDeServico;
+import Infraestrutura.Configuracao.ConnectionFactory;
+import java.sql.*;
+
 public class OsJdbcRepositorio
 {
+
+}
     /*
     // Comando para inserir uma ordem de serviço dentro do Banco de Dados
     public void inserirOrdemDeServico(OrdemDeServico ordemDeServico)
@@ -185,7 +195,7 @@ public class OsJdbcRepositorio
         OrdemDeServico os = null;
 
         try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
+            PreparedStatement stmt = conn.prepareStatement(querySQL)) {
 
             stmt.setLong(1, idOS);
 
@@ -200,12 +210,12 @@ public class OsJdbcRepositorio
                     long idTecnico = rs.getLong("id_tecnico");
                     long idSupervisor = (rs.getLong("id_supervisor"));
                     StatusOS statusOS = switch (StatusOrdem) {
-                        case 1 -> StatusOS.EM_ANDAMENTO;
-                        case 2 -> StatusOS.ATRASADA;
+                        case 1 -> StatusOS.ABERTA;
+                        case 2 -> StatusOS.EM_ANDAMENTO;
                         default -> StatusOS.FECHADA;
                     };
 
-                    os = new OrdemDeServico(id, idTecnico, idSupervisor, idMaquina, statusOS, new Descricao(descricao), new ValorOS(custo), Departamento.ELETRICA);
+                    os = new OrdemDeServico(id, idTecnico, idSupervisor, idMaquina, statusOS, new Descricao(descricao), new ValorOS(custo));
                 }
             }
             return os;
@@ -243,6 +253,4 @@ public class OsJdbcRepositorio
         }
         return false;
     }
-
      */
-}

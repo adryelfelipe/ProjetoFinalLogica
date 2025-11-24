@@ -15,7 +15,8 @@ public class ConnectionFactory {
 
         Connection conn = null;
 
-        try {
+        try
+        {
             return conn = DriverManager.getConnection(url, user, senha);
         }
         catch (SQLException e) {

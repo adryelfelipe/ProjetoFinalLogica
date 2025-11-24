@@ -1,8 +1,11 @@
 package Infraestrutura.Persistencia.Implementacao.Funcionario.JDBC;
 
+import Dominio.Funcionario.Administrador.Administrador;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.ListaDepartamentos;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.NomeFuncionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.Senha;
+import Dominio.Funcionario.Supervisor.ObjetosDeValor.MetaMensal;
+import Dominio.Funcionario.Tecnico.Enumeracoes.Especialidade;
 import Infraestrutura.Configuracao.ConnectionFactory;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.Funcionario.Nucleo.Repositorios.FuncionarioRepositorio;
@@ -339,36 +342,70 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
     public List<Funcionario> listarFuncionarios()
     {
         List<Funcionario> funcionarios = new ArrayList<>();
+        FuncionarioJdbcMapper departamentoDAO = new FuncionarioJdbcMapper();
 
-        FuncionarioJdbcMapper departamentoDAO = new FuncionarioJdbcMapper(); // Exemplo de instância
-
-        String querySQL = "SELECT id_usuario, nome, cpf, senha FROM Usuarios"; // Mantendo simples
+        String querySQL = "SELECT " +
+                "U.ID_USUARIO, U.nome, U.cpf, U.senha, U.id_na, " +
+                "S.meta_mensal, " +
+                "T.id_especialidade " +
+                "FROM Usuario U " +
+                "LEFT JOIN Gerentes G ON U.id_usuario = G.id_gerente " +
+                "LEFT JOIN Supervisor S ON U.id_usuario = S.id_supervisor " +
+                "LEFT JOIN Tecnico T ON U.id_usuario = T.id_tecnico";
 
         try(Connection conn = ConnectionFactory.getConnection();
-            PreparedStatement stmt = conn.prepareStatement(querySQL))
+            PreparedStatement stmt = conn.prepareStatement(querySQL);
+            ResultSet rs = stmt.executeQuery())
         {
-            ResultSet rs = stmt.executeQuery();
             while(rs.next())
             {
-                // Pega dados comuns do Usuario/Funcionario.
                 long id = rs.getLong("id_usuario");
                 String nome = rs.getString("nome");
                 String cpf = rs.getString("cpf");
                 String senha = rs.getString("senha");
+                int nivelAcesso = rs.getInt("id_na");
 
                 ListaDepartamentos listaDepartamentos = departamentoDAO.paraDepartamentosPorId(conn, id);
 
-                // Cria funcionario com a lista populada.
-                //uncionario funcionario = new Funcionario(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), listaDepartamentos);
+                Funcionario funcionario = null;
 
-                // Adiciona à lista de retorno
-                //funcionarios.add(funcionario);
+                switch(nivelAcesso)
+                {
+                    case 1:
+                        int idEspecialidade = rs.getInt("id_especialidade");
+                        Especialidade especialidade = switch(idEspecialidade) {
+                            case 1 -> Especialidade.TECNICO_ELETROTECNICA;
+                            case 2 -> Especialidade.ELETRICISTA_FABRIL;
+                            case 3 -> Especialidade.SOLDADOR;
+                            case 4 -> Especialidade.TECNICO_ELETROMECANICA;
+                            default -> Especialidade.PINTOR_INDUSTRIAL;
+                        };
+                        funcionario = new Tecnico(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), listaDepartamentos, especialidade);
+                        break;
+
+                    case 2:
+                        double metaMensal = rs.getDouble("meta_mensal");
+                        funcionario = new Supervisor(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), listaDepartamentos, new MetaMensal(metaMensal));
+                        break;
+
+                    case 3:
+                        funcionario = new Gerente(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), listaDepartamentos);
+                        break;
+
+                    case 4:
+                        funcionario = new Administrador(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), listaDepartamentos);
+                        break;
+                }
+
+                if(funcionario != null)
+                {
+                    funcionarios.add(funcionario);
+                }
             }
-        }catch (SQLException e)
+        } catch (SQLException e)
         {
-            System.err.println("ERRO ao visualizar a lista de Funcionários: " + e.getMessage());
+            System.err.println("ERRO ao visualizar a lista.");
         }
-
         return funcionarios;
     }
 
