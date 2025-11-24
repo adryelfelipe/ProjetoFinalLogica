@@ -16,6 +16,10 @@ public abstract class Funcionario {
     private long idUsuario;
     private List<Departamento> listaDepartamentos;
 
+    public Funcionario() {
+
+    }
+
     public void setListaDepartamentos(List<Departamento> listaDepartamentos) {
         this.listaDepartamentos = listaDepartamentos;
     }

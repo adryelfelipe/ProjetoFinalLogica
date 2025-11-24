@@ -22,6 +22,9 @@ public class Supervisor extends Funcionario {
         this(0,nome,cpf,senha,metaMensal, listaDepartamentos);
     }
 
+    public Supervisor(long id, String nome, String cpf, String senha, NivelAcesso nivelAcessoE, List<Departamento> listaDepartamentos, double metaMensal) {
+    }
+
     // -- Setters e Getters -- //
     public double getMetaMensal() {
         return metaMensal;
