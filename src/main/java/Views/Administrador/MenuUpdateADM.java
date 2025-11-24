@@ -6,8 +6,7 @@ import Models.Enumeracoes.Departamento;
 import Service.UsuarioService;
 import Util.Ferramentas;
 import Views.Nucleo.MenuEscolhaId;
-import Views.MenuSetGerente;
-import Views.MenuSetUsuario;
+import Views.Nucleo.MenuSetUsuario;
 
 import java.util.Arrays;
 
@@ -66,7 +65,7 @@ public class MenuUpdateADM {
                         gerente.setSenha(senha);
                     }
                     case 4 -> {
-                        Departamento departamento = MenuSetGerente.menuSetDepartamento();
+                        Departamento departamento = MenuAtualizarADM.menuSetDepartamento();
                         gerente.setListaDepartamentos(Arrays.asList(departamento));
                     }
                     case 5 ->

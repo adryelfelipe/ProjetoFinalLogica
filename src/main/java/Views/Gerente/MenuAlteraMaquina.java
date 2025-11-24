@@ -1,4 +1,4 @@
-package Views;
+package Views.Gerente;
 
 import Models.Enumeracoes.StatusMaquina;
 import Util.Ferramentas;
@@ -6,7 +6,7 @@ import Service.Validator.MaquinaValidator;
 
 import java.util.InputMismatchException;
 
-public class MenuSetMaquina {
+public class MenuAlteraMaquina {
     //SET NOME DO USUÁRIO
     public static String MenuSetNomeMaquina() {
         while(true) {

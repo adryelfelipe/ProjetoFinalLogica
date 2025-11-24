@@ -1,13 +1,17 @@
-package Views;
+package Views.Gerente;
 
 import Models.Enumeracoes.Especialidade;
+import Service.Validator.SupervisorValidator;
 import Service.Validator.TecnicoValidator;
 import Util.Ferramentas;
 
 import java.util.InputMismatchException;
 
-public class MenuSetTecnico {
+public class MenuAtualizarGerente {
 
+    private static final SupervisorValidator supervisorValidator = new SupervisorValidator();
+
+    //ATUALIZA O TÉCNICO
     public static Especialidade MenuSetEspecialidade()
     {
         boolean verifica = false;
@@ -48,6 +52,31 @@ public class MenuSetTecnico {
                 Ferramentas.mensagemErro(e.getMessage());
             } catch (InputMismatchException e) {
                 Ferramentas.menuDefault();;
+            }
+        }
+    }
+
+    //ATUALIZA O SUPERVISOR
+    public static double MenuSetMetaMensal(){
+        // Garantia de inicialização
+        double metaMensal;
+
+        // Menuzinho
+        while(true) {
+            System.out.print("┃  Digite a meta mensal: R$");
+
+            try
+            {
+                metaMensal = Ferramentas.lDouble();
+                SupervisorValidator.verificaIntegridadeMetaMensal(metaMensal);
+                SupervisorValidator.verificaRegrasMetaMensal(metaMensal);
+                return metaMensal;
+            } catch(InputMismatchException e)
+            {
+                Ferramentas.menuDefault();
+            } catch (IllegalArgumentException | IllegalStateException e)
+            {
+                Ferramentas.mensagemErro(e.getMessage());
             }
         }
     }

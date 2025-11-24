@@ -4,9 +4,7 @@ import Models.Enumeracoes.Especialidade;
 import Service.UsuarioService;
 import Util.Ferramentas;
 import Views.Nucleo.MenuEscolhaId;
-import Views.MenuSetSupervisor;
-import Views.MenuSetTecnico;
-import Views.MenuSetUsuario;
+import Views.Nucleo.MenuSetUsuario;
 
 import java.util.InputMismatchException;
 
@@ -122,7 +120,7 @@ public class MenuUpdateGerente {
                     tecnico.setSenha(senha);
                 }
                 case 4 -> {
-                    Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
+                    Especialidade especialidade = MenuAtualizarGerente.MenuSetEspecialidade();
                     tecnico.setEspecialidade(especialidade);
                 }
                 case 5 ->
@@ -202,7 +200,7 @@ public class MenuUpdateGerente {
                     supervisor.setSenha(senha);
                 }
                 case 4 -> {
-                    double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
+                    double metaMensal = MenuAtualizarGerente.MenuSetMetaMensal();
                     supervisor.setMetaMensal(metaMensal);
                 }
                 case 5 ->

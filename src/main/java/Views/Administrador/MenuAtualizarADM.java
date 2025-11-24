@@ -1,4 +1,4 @@
-package Views;
+package Views.Administrador;
 
 import Models.Enumeracoes.Departamento;
 import Util.Ferramentas;
@@ -6,7 +6,7 @@ import Service.Validator.GerenteValidator;
 
 import java.util.InputMismatchException;
 
-public class MenuSetGerente {
+public class MenuAtualizarADM {
 
     public static Departamento menuSetDepartamento()
     {

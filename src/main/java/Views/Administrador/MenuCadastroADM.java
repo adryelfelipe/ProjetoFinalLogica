@@ -5,8 +5,7 @@ import Models.Gerente;
 import Models.Enumeracoes.Departamento;
 import Service.UsuarioService;
 import Util.Ferramentas;
-import Views.MenuSetGerente;
-import Views.MenuSetUsuario;
+import Views.Nucleo.MenuSetUsuario;
 
 import java.util.Arrays;
 
@@ -30,7 +29,7 @@ public class MenuCadastroADM {
         Ferramentas.limpaTerminal();
 
         // ----- Atribuição de caracteríscticas de um Gerente ----- //
-        Departamento departamento = MenuSetGerente.menuSetDepartamento();
+        Departamento departamento = MenuAtualizarADM.menuSetDepartamento();
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //

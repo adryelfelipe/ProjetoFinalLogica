@@ -1,4 +1,4 @@
-package Views;
+package Views.Supervisor;
 
 import Service.*;
 import Service.Validator.MaquinaValidator;

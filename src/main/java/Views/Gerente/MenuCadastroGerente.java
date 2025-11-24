@@ -7,9 +7,8 @@ import Models.Enumeracoes.StatusMaquina;
 import Service.MaquinaService;
 import Service.UsuarioService;
 import Util.Ferramentas;
-import Views.*;
-import Views.MenuSetSupervisor;
-import Views.MenuSetTecnico;
+import Views.Administrador.MenuAtualizarADM;
+import Views.Nucleo.MenuSetUsuario;
 
 import java.util.Arrays;
 
@@ -35,7 +34,7 @@ public class MenuCadastroGerente {
         String senha = MenuSetUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
 
-        Departamento departamento = MenuSetGerente.menuSetDepartamento();
+        Departamento departamento = MenuAtualizarADM.menuSetDepartamento();
         Ferramentas.limpaTerminal();
 
         // ----- Atribuição de caracteríscticas de um Supervisor ----- //
@@ -66,13 +65,13 @@ public class MenuCadastroGerente {
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         // ----- Atribuição de caracteríscticas de uma Máquina ----- //
-        String nome = MenuSetMaquina.MenuSetNomeMaquina();
+        String nome = MenuAlteraMaquina.MenuSetNomeMaquina();
         Ferramentas.limpaTerminal();
 
-        Departamento departamento = MenuSetGerente.menuSetDepartamento();
+        Departamento departamento = MenuAtualizarADM.menuSetDepartamento();
         Ferramentas.limpaTerminal();
 
-        StatusMaquina idStatus = MenuSetMaquina.MenuSetStatusMaquina();
+        StatusMaquina idStatus = MenuAlteraMaquina.MenuSetStatusMaquina();
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //
@@ -107,11 +106,11 @@ public class MenuCadastroGerente {
         String senha = MenuSetUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
 
-        Departamento departamento = MenuSetGerente.menuSetDepartamento();
+        Departamento departamento = MenuAtualizarADM.menuSetDepartamento();
         Ferramentas.limpaTerminal();
 
         // ----- Atribuição de caracteríscticas de um Técnico ----- //
-        Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
+        Especialidade especialidade = MenuAtualizarGerente.MenuSetEspecialidade();
 
 
         // -- Criação do objeto e inserção no banco de dados -- //
