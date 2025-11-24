@@ -1,7 +1,8 @@
-package Views;
+package Views.Gerente;
 
 import Util.Ferramentas;
 import Models.Gerente;
+import Views.Nucleo.MenuInicial;
 
 public class MenuGerente
 {

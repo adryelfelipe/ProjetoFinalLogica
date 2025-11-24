@@ -1,5 +1,5 @@
 import Util.Ferramentas;
-import Views.MenuInicial;
+import Views.Nucleo.MenuInicial;
 
 import java.sql.SQLException;
 

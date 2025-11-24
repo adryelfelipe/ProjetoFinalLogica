@@ -1,7 +1,8 @@
-package Views;
+package Views.Tecnico;
 
 import Util.Ferramentas;
 import Models.Tecnico;
+import Views.Nucleo.MenuInicial;
 
 import java.util.InputMismatchException;
 

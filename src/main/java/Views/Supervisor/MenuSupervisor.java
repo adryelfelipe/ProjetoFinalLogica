@@ -1,7 +1,8 @@
-package Views;
+package Views.Supervisor;
 
 import Util.Ferramentas;
 import Models.Supervisor;
+import Views.Nucleo.MenuInicial;
 
 import java.util.InputMismatchException;
 

@@ -1,10 +1,13 @@
-package Views;
+package Views.Tecnico;
 
 import Models.OrdemDeServico;
 import Models.Tecnico;
 import Models.Enumeracoes.Especialidade;
 import Service.OrdemDeServicoService;
 import Util.Ferramentas;
+import Views.MenuSetTecnico;
+import Views.Nucleo.MenuEscolhaId;
+import Views.MenuSetUsuario;
 
 import java.util.InputMismatchException;
 

@@ -1,7 +1,8 @@
-package Views;
+package Views.Administrador;
 
 import Models.Administrador;
 import Util.Ferramentas;
+import Views.Nucleo.MenuInicial;
 
 public class MenuAdministrador {
     public static void menuInicial(Administrador administrador) {

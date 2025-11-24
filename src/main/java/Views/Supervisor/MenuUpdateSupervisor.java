@@ -1,4 +1,4 @@
-package Views;
+package Views.Supervisor;
 
 public class MenuUpdateSupervisor
 {

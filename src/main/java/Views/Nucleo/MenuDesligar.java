@@ -1,23 +1,17 @@
-package Views;
+package Views.Nucleo;
 
 import Util.Ferramentas;
 
-public class MenuGerenteVisualizarRelatorios
+public class MenuDesligar
 {
-    public static void visualizarRelatorios()
+    public static void desligar()
     {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃               VISUALIZAR RELATÓRIOS               ┃");
+        System.out.println("┃                   DESLIGANDO ...                  ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-        System.out.print("┃  Digite o ID da ordem de serviço: ");
 
-        try
-        {
+        Ferramentas.Delay(1500);
 
-        }
-        catch(IllegalArgumentException | IllegalStateException e)
-        {
-            Ferramentas.menuDefault();
-        }
+        System.exit(0);
     }
 }

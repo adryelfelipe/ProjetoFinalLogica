@@ -1,10 +1,12 @@
-package Views;
+package Views.Administrador;
 
 import Models.Administrador;
 import Models.Gerente;
 import Models.Enumeracoes.Departamento;
 import Service.UsuarioService;
 import Util.Ferramentas;
+import Views.MenuSetGerente;
+import Views.MenuSetUsuario;
 
 import java.util.Arrays;
 

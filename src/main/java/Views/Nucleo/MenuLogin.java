@@ -1,9 +1,13 @@
-package Views;
+package Views.Nucleo;
 
 import Models.*;
 import Util.Ferramentas;
 import Service.UsuarioService;
 import Service.Validator.UsuarioValidator;
+import Views.Administrador.MenuAdministrador;
+import Views.Gerente.MenuGerente;
+import Views.Supervisor.MenuSupervisor;
+import Views.Tecnico.MenuTecnico;
 
 public class MenuLogin
 {

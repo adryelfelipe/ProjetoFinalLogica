@@ -1,8 +1,13 @@
-package Views;
+package Views.Gerente;
 import Models.*;
 import Models.Enumeracoes.Especialidade;
 import Service.UsuarioService;
 import Util.Ferramentas;
+import Views.Nucleo.MenuEscolhaId;
+import Views.MenuSetSupervisor;
+import Views.MenuSetTecnico;
+import Views.MenuSetUsuario;
+
 import java.util.InputMismatchException;
 
 public class MenuUpdateGerente {

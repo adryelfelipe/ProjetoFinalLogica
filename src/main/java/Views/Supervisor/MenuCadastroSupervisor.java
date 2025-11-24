@@ -1,4 +1,4 @@
-package Views;
+package Views.Supervisor;
 
 import Models.Enumeracoes.Departamento;
 import Models.Enumeracoes.TipoOs;
@@ -8,6 +8,7 @@ import Models.Enumeracoes.StatusOS;
 import Service.MaquinaService;
 import Service.OrdemDeServicoService;
 import Util.Ferramentas;
+import Views.MenuSetOrdemDeServico;
 
 public class MenuCadastroSupervisor
 {

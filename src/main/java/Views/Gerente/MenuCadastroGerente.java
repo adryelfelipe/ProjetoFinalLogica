@@ -1,4 +1,4 @@
-package Views;
+package Views.Gerente;
 
 import Models.*;
 import Models.Enumeracoes.Departamento;
@@ -7,6 +7,9 @@ import Models.Enumeracoes.StatusMaquina;
 import Service.MaquinaService;
 import Service.UsuarioService;
 import Util.Ferramentas;
+import Views.*;
+import Views.MenuSetSupervisor;
+import Views.MenuSetTecnico;
 
 import java.util.Arrays;
 

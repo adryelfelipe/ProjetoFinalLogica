@@ -1,4 +1,4 @@
-package Views;
+package Views.Nucleo;
 
 import Util.Ferramentas;
 import Service.UsuarioService;
