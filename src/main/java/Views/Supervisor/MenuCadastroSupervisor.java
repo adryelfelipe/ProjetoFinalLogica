@@ -1,4 +1,4 @@
-package Views;
+package Views.Supervisor;
 
 import Models.Enumeracoes.Departamento;
 import Models.Enumeracoes.TipoOs;
@@ -11,21 +11,21 @@ import Util.Ferramentas;
 
 public class MenuCadastroSupervisor
 {
-    // -- Atributos -- //
+    //                    ATRIBUTOS                    //
     private static final OrdemDeServicoService ordemDeServicoService = new OrdemDeServicoService();
     private static final MaquinaService maquinaService = new MaquinaService();
 
     public static void menuCadastroOrdem(Supervisor supervisor) {
-        // Garantia de inicialização
+        //                    GARANTIA DE INICIAÇÃO DE VARIÁVEIS                    //
         long idTecnico = 0;
         long idMaquina = 0;
 
-        // Menu de cadastro
+        //                    MENU DE CADASTRO                    //
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃             CADASTRO ORDEM DE SERVIÇO             ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
-        // ----- Atribuição de caracteríscticas de uma Máquina ----- //
+        //ATRIBUIÇÃO DE CARACTERÍSTICAS DE UMA ORDEM DE SERVIÇO                    //
         try{
             idTecnico = MenuSetOrdemDeServico.SetIdTecnico();
             Ferramentas.limpaTerminal();
@@ -40,7 +40,7 @@ public class MenuCadastroSupervisor
         double valorOrdemServico = MenuSetOrdemDeServico.SetValorOS();
         Ferramentas.limpaTerminal();
 
-        // -- Criação do objeto e inserção no banco de dados -- //
+        //                    CRIAÇÃO DO OBJETO E INSERÇÃO NO BANCO DE DADOS                    //
         System.out.println("┃  PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
 

@@ -1,16 +1,19 @@
-package Views;
+package Views.Tecnico;
 
 import Models.OrdemDeServico;
 import Models.Tecnico;
 import Models.Enumeracoes.Especialidade;
 import Service.OrdemDeServicoService;
 import Util.Ferramentas;
+import Views.Gerente.MenuAtualizarGerente;
+import Views.Nucleo.MenuEscolhaId;
+import Views.Nucleo.MenuSetUsuario;
 
 import java.util.InputMismatchException;
 
 public class MenuUpdateTecnico
 {
-
+    //                    ATRIBUTOS                    //
     public static final OrdemDeServicoService ordemDeServicoService = new OrdemDeServicoService();
 
     public static void menuUpdateOS(Tecnico tecnico) {
@@ -52,7 +55,7 @@ public class MenuUpdateTecnico
                 System.out.println("┃  6 - Valor         ┃         ┃ Valor: " + ordemDeServico.getValorDaOrdemDeServico());
                 System.out.println("┃  7 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┃  Escolha:  ");
+                System.out.println("┃ ➤ Escolha:  ");
 
                 try
                 {
@@ -63,7 +66,7 @@ public class MenuUpdateTecnico
                 }
             }
 
-            // Reinicia a veriável de verificação
+            //                    REINICIA A VARIÁVEL DE VERIFICAÇÃO                    //
             verifica = false;
 
             switch(UpdateOs) {
@@ -86,7 +89,7 @@ public class MenuUpdateTecnico
                     tecnico.setSenha(senha);
                 }
                 case 4 -> {
-                    Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
+                    Especialidade especialidade = MenuAtualizarGerente.MenuSetEspecialidade();
                     ordemDeServicoService.updateEspecialidade(especialidade);
                     tecnico.setEspecialidade(especialidade);
                 }

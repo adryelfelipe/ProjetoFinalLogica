@@ -1,13 +1,17 @@
-package Views;
+package Views.Nucleo;
 
-public class MenuSupervisorAcompanharStatus
+import Util.Ferramentas;
+
+public class MenuDesligar
 {
-    public static void acompanharStatus()
+    public static void desligar()
     {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃       ACOMPANHAR STATUS DE ORDEM DE SERVIÇO       ┃");
+        System.out.println("┃                   DESLIGANDO ...                  ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
+        Ferramentas.Delay(1500);
 
+        System.exit(0);
     }
 }

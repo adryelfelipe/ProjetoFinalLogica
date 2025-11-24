@@ -1,4 +1,4 @@
-package Views;
+package Views.Gerente;
 
 import Models.*;
 import Models.Enumeracoes.Departamento;
@@ -7,11 +7,13 @@ import Models.Enumeracoes.StatusMaquina;
 import Service.MaquinaService;
 import Service.UsuarioService;
 import Util.Ferramentas;
+import Views.Administrador.MenuAtualizarADM;
+import Views.Nucleo.MenuSetUsuario;
 
 import java.util.Arrays;
 
 public class MenuCadastroGerente {
-    // -- Atributos -- //
+    //                    ATRIBUTOS                    //
     private static final MaquinaService maquinaService = new MaquinaService();
     private static final UsuarioService usuarioService = new UsuarioService();
 
@@ -22,7 +24,7 @@ public class MenuCadastroGerente {
 
         System.out.println();
 
-        // ----- Atribuição de caracteríscticas de um Usuário ----- //
+        //                    ATRIBUIÇÃO DE CARACTERÍSTICAS DE UM USUÁRIO                    //
         String nome = MenuSetUsuario.MenuSetNome();
         Ferramentas.limpaTerminal();
 
@@ -32,14 +34,14 @@ public class MenuCadastroGerente {
         String senha = MenuSetUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
 
-        Departamento departamento = MenuSetGerente.menuSetDepartamento();
+        Departamento departamento = MenuAtualizarADM.menuSetDepartamento();
         Ferramentas.limpaTerminal();
 
-        // ----- Atribuição de caracteríscticas de um Supervisor ----- //
-        double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
+        //                    ATRIBUIÇÃO DE CARACTERÍSTICAS DE UM SUPERVISOR                    //
+        double metaMensal = MenuAtualizarGerente.MenuSetMetaMensal();
         Ferramentas.limpaTerminal();
 
-        // -- Criação do objeto e inserção no banco de dados -- //
+        //                    CRIAÇÃO DO OBJETO E INSERÇÃO NO BANCO DE DADOS                    //
         Ferramentas.limpaTerminal();
         System.out.println("┃  PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
@@ -62,17 +64,17 @@ public class MenuCadastroGerente {
         System.out.println("┃                  CADASTRO MÁQUINA                 ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
-        // ----- Atribuição de caracteríscticas de uma Máquina ----- //
-        String nome = MenuSetMaquina.MenuSetNomeMaquina();
+        //                    ATRIBUIÇÃO DE CARACTERÍSTICAS DE UMA MÁQUINA                    //
+        String nome = MenuAlteraMaquina.MenuSetNomeMaquina();
         Ferramentas.limpaTerminal();
 
-        Departamento departamento = MenuSetGerente.menuSetDepartamento();
+        Departamento departamento = MenuAtualizarADM.menuSetDepartamento();
         Ferramentas.limpaTerminal();
 
-        StatusMaquina idStatus = MenuSetMaquina.MenuSetStatusMaquina();
+        StatusMaquina idStatus = MenuAlteraMaquina.MenuSetStatusMaquina();
         Ferramentas.limpaTerminal();
 
-        // -- Criação do objeto e inserção no banco de dados -- //
+        //                    CRIAÇÃO DO OBJETO E INSERÇÃO NO BANCO DE DADOS                    //
         Ferramentas.limpaTerminal();
         System.out.println("┃  PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
@@ -94,7 +96,7 @@ public class MenuCadastroGerente {
         System.out.println("┃                  CADASTRO TÉCNICO                 ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
-        // ----- Atribuição de caracteríscticas de um Usuário ----- //
+        //                    ATRIBUIÇÃO DE CARACTERÍSTICAS DE UM USUÁRIO                    //
         String nome = MenuSetUsuario.MenuSetNome();
         Ferramentas.limpaTerminal();
 
@@ -104,14 +106,14 @@ public class MenuCadastroGerente {
         String senha = MenuSetUsuario.MenuSetSenha();
         Ferramentas.limpaTerminal();
 
-        Departamento departamento = MenuSetGerente.menuSetDepartamento();
+        Departamento departamento = MenuAtualizarADM.menuSetDepartamento();
         Ferramentas.limpaTerminal();
 
-        // ----- Atribuição de caracteríscticas de um Técnico ----- //
-        Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
+        //                    ATRIBUIÇÃO DE CARACTERÍSTICAS DE UM TÉCNICO                    //
+        Especialidade especialidade = MenuAtualizarGerente.MenuSetEspecialidade();
 
 
-        // -- Criação do objeto e inserção no banco de dados -- //
+        //                    CRIAÇÃO DO OBJETO E INSERÇÃO NO BANCO DE DADOS                    //
         Ferramentas.limpaTerminal();
         System.out.println("┃  PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);

@@ -1,7 +1,8 @@
-package Views;
+package Views.Supervisor;
 
 import Util.Ferramentas;
 import Models.Supervisor;
+import Views.Nucleo.MenuInicial;
 
 import java.util.InputMismatchException;
 
@@ -9,19 +10,21 @@ public class MenuSupervisor
 {
     public static void menuSupervisor(Supervisor supervisor)
     {
+        //                    GARANTIA DE INICIAÇÃO DE VARIÁVEIS                    //
         boolean continuar = false;
         int opcao = 0;
 
         while(!continuar) {
+            //                    MENU                    //
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃                    ATUALIZAR OS                   ┃");
+            System.out.println("┃                   MENU SUPERVISOR                 ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                                   ┃");
             System.out.println("┃ 1 - Cadastrar nova OS                             ┃");
             System.out.println("┃ 2 - Acompanhar status das OS                      ┃");
             System.out.println("┃ 3 - Retornar ao menu inicial                      ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃  Escolha: ");
+            System.out.print("┃ ➤ Escolha: ");
 
             try {
                 opcao = Ferramentas.lInteiro();

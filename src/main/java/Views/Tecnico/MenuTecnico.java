@@ -1,7 +1,8 @@
-package Views;
+package Views.Tecnico;
 
 import Util.Ferramentas;
 import Models.Tecnico;
+import Views.Nucleo.MenuInicial;
 
 import java.util.InputMismatchException;
 
@@ -9,10 +10,12 @@ public class MenuTecnico
 {
     public static void menuTecnico(Tecnico tecnico)
     {
+        //                    GARANTIA DE INICIAÇÃO DE VARIÁVEIS                    //
         boolean continuar = true;
 
         while(!continuar)
         {
+            //                    MENU                    //
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃                    MENU TÉCNICO                   ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
@@ -21,7 +24,7 @@ public class MenuTecnico
             System.out.println("┃  2 - Atualizar status de ordem de serviços        ┃");
             System.out.println("┃  3 - Retornar                                     ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃  Escolha: ");
+            System.out.print("┃ ➤ Escolha: ");
 
             try
             {

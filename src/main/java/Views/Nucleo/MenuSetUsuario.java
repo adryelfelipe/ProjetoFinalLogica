@@ -1,4 +1,4 @@
-package Views;
+package Views.Nucleo;
 
 import Util.Ferramentas;
 import Service.UsuarioService;
@@ -8,12 +8,12 @@ public class MenuSetUsuario
 {
     private static UsuarioService usuarioService = new UsuarioService();
 
-    //SET NOME DO USUÁRIO
+    //                    ALTERA O NOME NO USUÁRIO                    //
     public static String MenuSetNome()
     {
         while(true)
         {
-            System.out.print("┃  Digite o Nome: ");
+            System.out.print("┃ ➤ Digite o Nome: ");
             String nome = Ferramentas.lString();
 
             try {
@@ -27,12 +27,12 @@ public class MenuSetUsuario
         }
     }
 
-    //SET CPF DO USUÁRIO
+    //                    ALTERA O CPF DO USUÁRIO                    //
     public static String MenuSetCpf(){
         String CPF;
 
         while(true){
-            System.out.print("┃  Digite o CPF: ");
+            System.out.print("┃ ➤ Digite o CPF: ");
             CPF = Ferramentas.lString();
 
             try {
@@ -47,12 +47,12 @@ public class MenuSetUsuario
         }
     }
 
-    //SET SENHA DO USUÁRIO
+    //                    ALTERA A SENHA DO USUÁRIO                    //
     public static String MenuSetSenha(){
         String senha;
 
         while(true){
-            System.out.print("┃  Digite a senha: ");
+            System.out.print("┃ ➤ Digite a senha: ");
             senha = Ferramentas.lString();
 
             try

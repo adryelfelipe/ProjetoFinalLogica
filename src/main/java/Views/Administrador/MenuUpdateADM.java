@@ -1,10 +1,12 @@
-package Views;
+package Views.Administrador;
 
 import Models.Administrador;
 import Models.Gerente;
 import Models.Enumeracoes.Departamento;
 import Service.UsuarioService;
 import Util.Ferramentas;
+import Views.Nucleo.MenuEscolhaId;
+import Views.Nucleo.MenuSetUsuario;
 
 import java.util.Arrays;
 
@@ -42,7 +44,7 @@ public class MenuUpdateADM {
             System.out.println("┃  5 - Departamento  ┃         ┃ Departamento: " + gerente.getListaDepartamentos().getFirst());
             System.out.println("┃  6 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.println("┃  Escolha:  ");
+            System.out.println("┃ ➤ Escolha:  ");
 
             try {
                 opcaoAdm = Ferramentas.lInteiro();
@@ -63,7 +65,7 @@ public class MenuUpdateADM {
                         gerente.setSenha(senha);
                     }
                     case 4 -> {
-                        Departamento departamento = MenuSetGerente.menuSetDepartamento();
+                        Departamento departamento = MenuAtualizarADM.menuSetDepartamento();
                         gerente.setListaDepartamentos(Arrays.asList(departamento));
                     }
                     case 5 ->

@@ -1,21 +1,25 @@
-package Views;
+package Views.Gerente;
 import Models.*;
 import Models.Enumeracoes.Especialidade;
 import Service.UsuarioService;
 import Util.Ferramentas;
+import Views.Nucleo.MenuEscolhaId;
+import Views.Nucleo.MenuSetUsuario;
+
 import java.util.InputMismatchException;
 
 public class MenuUpdateGerente {
+    //                    ATRIBUTOS                    //
     private static final UsuarioService usuarioService = new UsuarioService();
 
     public static void menuUpdateEscolha(Gerente gerente) {
-        // Menu
+        //                    GARANTIA DE INICIAÇÃO                    //
         boolean verifica = false;
         int opUpdate = 0;
 
         while(true)
         {
-
+            //                    MENU                    //
             while(!verifica) {
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃                    ATUALIZAR OS                   ┃");
@@ -25,7 +29,7 @@ public class MenuUpdateGerente {
                 System.out.println("┃  2 - Alterar Supervisor                           ┃");
                 System.out.println("┃  3 - Sair do Menu                                 ┃");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┃  Escolha: ");
+                System.out.println("┃ ➤ Escolha: ");
 
                 try
                 {
@@ -37,7 +41,7 @@ public class MenuUpdateGerente {
                 }
             }
 
-            // Reinicia a veriável de verificação
+            //                    REINICIA A VARIAVEL DE INICIAÇÃO                    //
             verifica = false;
 
             switch(opUpdate) {
@@ -51,7 +55,7 @@ public class MenuUpdateGerente {
     }
 
     public static void menuUpdateTecnico(Gerente gerente) {
-            // -- Garantia de inicialização -- //
+            //                    GARANTIA DE INICIAÇÃO                    //
         long idTecnico;
         int UpdateT = 0;
         boolean verifica = false;
@@ -72,7 +76,7 @@ public class MenuUpdateGerente {
 
             while(!verifica)
             {
-
+                //                    MENU                    //
                 System.out.println("\n                                                 \n");
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃                    ATUALIZAR OS                   ┃");
@@ -87,7 +91,7 @@ public class MenuUpdateGerente {
                 System.out.println("┃  5 - Especialidade ┃         ┃ Especialidade: " + tecnico.getEspecialidade());
                 System.out.println("┃  6 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┃  Escolha:  ");
+                System.out.println("┃ ➤ Escolha:  ");
 
                 try
                 {
@@ -98,7 +102,7 @@ public class MenuUpdateGerente {
                 }
             }
 
-            // Reinicia a veriável de verificação
+            //                    REINICIA A VARIAVEL DE INICIAÇÃO                    //
             verifica = false;
 
             switch(UpdateT) {
@@ -117,7 +121,7 @@ public class MenuUpdateGerente {
                     tecnico.setSenha(senha);
                 }
                 case 4 -> {
-                    Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
+                    Especialidade especialidade = MenuAtualizarGerente.MenuSetEspecialidade();
                     tecnico.setEspecialidade(especialidade);
                 }
                 case 5 ->
@@ -130,6 +134,7 @@ public class MenuUpdateGerente {
     }
     public static void menuUpdateSupervisor(Gerente gerente)
     {
+        //                    GARANTIA DE INICIAÇÃO DE VARIÁVEIS                    //
         long idSupervisor;
         int UpdateS = 0;
         boolean verifica = false;
@@ -150,6 +155,7 @@ public class MenuUpdateGerente {
         {
             while(!verifica)
             {
+                //                    MENU                    //
                 System.out.println("\n                                                       \n");
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃                    ATUALIZAR OS                   ┃");
@@ -164,7 +170,7 @@ public class MenuUpdateGerente {
                 System.out.println("┃  5 - Meta Mensal    ┃        ┃ Meta Mensal: " + supervisor.getMetaMensal());
                 System.out.println("┃  6 - Sair do Menu   ┃        ┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┃  Escolha:  ");
+                System.out.println("┃ ➤ Escolha:  ");
 
                 try
                 {
@@ -177,7 +183,7 @@ public class MenuUpdateGerente {
                 }
             }
 
-            // Reinicia a veriável de verificação
+            // REINICIA A VARIÁVEL DE INICIAÇÃO                    //
             verifica = false;
 
             switch(UpdateS)
@@ -197,7 +203,7 @@ public class MenuUpdateGerente {
                     supervisor.setSenha(senha);
                 }
                 case 4 -> {
-                    double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
+                    double metaMensal = MenuAtualizarGerente.MenuSetMetaMensal();
                     supervisor.setMetaMensal(metaMensal);
                 }
                 case 5 ->

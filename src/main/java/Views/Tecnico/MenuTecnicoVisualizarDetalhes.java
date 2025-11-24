@@ -1,17 +1,19 @@
-package Views;
+package Views.Tecnico;
 
 import Util.Ferramentas;
 
-public class MenuDesligar
+public class MenuTecnicoVisualizarDetalhes
 {
-    public static void desligar()
+    public static void visualizarDetalhesDeOS()
     {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃                   DESLIGANDO ...                  ┃");
+        System.out.println("┃      VISUALIZAR DETALHES DA ORDEM DE SERVIÇO      ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
-        Ferramentas.Delay(1500);
+        try{
 
-        System.exit(0);
+        }catch (IllegalArgumentException | IllegalStateException e){
+            Ferramentas.menuDefault();
+        }
     }
 }

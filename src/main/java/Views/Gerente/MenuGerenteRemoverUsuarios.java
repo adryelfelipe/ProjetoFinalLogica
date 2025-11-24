@@ -1,8 +1,9 @@
-package Views;
+package Views.Gerente;
 
 import Models.Gerente;
 import Service.UsuarioService;
 import Util.Ferramentas;
+import Views.Nucleo.MenuEscolhaId;
 
 public class MenuGerenteRemoverUsuarios {
 

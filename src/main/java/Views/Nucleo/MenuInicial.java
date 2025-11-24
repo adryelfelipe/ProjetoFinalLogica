@@ -1,4 +1,4 @@
-package Views;
+package Views.Nucleo;
 
 import Util.Ferramentas;
 import Service.UsuarioService;
@@ -22,7 +22,7 @@ public class MenuInicial
             System.out.println("┃  1 - Login                                        ┃");
             System.out.println("┃  2 - Sair                                         ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃  Escolha: ");
+            System.out.print("┃ ➤ Escolha: ");
 
             try
             {

@@ -1,4 +1,4 @@
-package Views;
+package Views.Gerente;
 
 import Util.Ferramentas;
 import Models.Gerente;
@@ -15,7 +15,7 @@ public class MenuGerenteCadastrar
         System.out.println("┃  2 - Cadastrar Supervisor                         ┃");
         System.out.println("┃  3 - Cadastrar Máquina                            ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-        System.out.print("┃  Escolha: ");
+        System.out.print("┃ ➤ Escolha: ");
 
         try
         {

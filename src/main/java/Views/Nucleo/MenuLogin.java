@@ -1,9 +1,13 @@
-package Views;
+package Views.Nucleo;
 
 import Models.*;
 import Util.Ferramentas;
 import Service.UsuarioService;
 import Service.Validator.UsuarioValidator;
+import Views.Administrador.MenuAdministrador;
+import Views.Gerente.MenuGerente;
+import Views.Supervisor.MenuSupervisor;
+import Views.Tecnico.MenuTecnico;
 
 public class MenuLogin
 {
@@ -19,7 +23,7 @@ public class MenuLogin
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃                       LOGIN                       ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃  Digite seu CPF: ");
+            System.out.print("┃ ➤ Digite seu CPF: ");
 
             try {
                 cpfLogin = Ferramentas.lString();
@@ -36,7 +40,7 @@ public class MenuLogin
 
         while (!verifica) {
             try {
-                System.out.print("┃  Digite sua senha: ");
+                System.out.print("┃ ➤ Digite sua senha: ");
                 senhaLogin = Ferramentas.lString();
                 UsuarioValidator.verificaIntegridadeSenha(senhaLogin);
                 UsuarioValidator.verificarRegrasSenha(senhaLogin);

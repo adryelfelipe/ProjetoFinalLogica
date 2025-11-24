@@ -1,19 +1,11 @@
-package Views;
+package Views.Gerente;
 
-import Util.Ferramentas;
-
-public class MenuTecnicoVisualizarDetalhes
+public class MenuGerenteVisualizarOcorrencias
 {
-    public static void visualizarDetalhesDeOS()
+    public static void visualizarOcorrencias()
     {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃      VISUALIZAR DETALHES DA ORDEM DE SERVIÇO      ┃");
+        System.out.println("┃              VISUALIZAR OCORRÊNCIAS               ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-
-        try{
-
-        }catch (IllegalArgumentException | IllegalStateException e){
-            Ferramentas.menuDefault();
-        }
     }
 }

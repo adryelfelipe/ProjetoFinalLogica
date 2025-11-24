@@ -1,4 +1,4 @@
-package Views;
+package Views.Nucleo;
 
 import Service.OrdemDeServicoService;
 import Service.UsuarioService;
@@ -13,7 +13,7 @@ public class MenuEscolhaId
         UsuarioService usuarioService = new UsuarioService();
 
         while(true) {
-            System.out.print("┃  Digite o ID: ");
+            System.out.print("┃ ➤ Digite o ID: ");
 
             try {
                 long id = Ferramentas.lInteiro();
@@ -32,7 +32,7 @@ public class MenuEscolhaId
         OrdemDeServicoService ordemDeServicoService = new OrdemDeServicoService();
 
         while(true) {
-            System.out.print("┃  Digite o ID: ");
+            System.out.print("┃ ➤ Digite o ID: ");
 
             try {
                 long id = Ferramentas.lInteiro();

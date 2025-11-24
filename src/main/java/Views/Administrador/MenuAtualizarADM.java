@@ -1,4 +1,4 @@
-package Views;
+package Views.Administrador;
 
 import Models.Enumeracoes.Departamento;
 import Util.Ferramentas;
@@ -6,7 +6,7 @@ import Service.Validator.GerenteValidator;
 
 import java.util.InputMismatchException;
 
-public class MenuSetGerente {
+public class MenuAtualizarADM {
 
     public static Departamento menuSetDepartamento()
     {
@@ -21,7 +21,7 @@ public class MenuSetGerente {
             System.out.println("┃  1 - Elétrica                                     ┃");
             System.out.println("┃  2 - Mecânica                                     ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃  Escolha: ");
+            System.out.print("┃ ➤ Escolha: ");
 
             try {
                 opcao = Ferramentas.lInteiro();

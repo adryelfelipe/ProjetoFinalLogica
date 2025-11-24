@@ -1,7 +1,8 @@
-package Views;
+package Views.Administrador;
 
 import Models.Administrador;
 import Util.Ferramentas;
+import Views.Nucleo.MenuInicial;
 
 public class MenuAdministrador {
     public static void menuInicial(Administrador administrador) {
@@ -17,7 +18,7 @@ public class MenuAdministrador {
             System.out.println("┃  3 - Remover Gerente                              ┃");
             System.out.println("┃  4 - Retornar                                     ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃  Escolha: ");
+            System.out.print("┃ ➤ Escolha: ");
 
             try
             {
