@@ -13,20 +13,17 @@ public class StatusOc {
     private final int id;
 
     // Construtor privado
-    private StatusOc(String nome, int id)
-    {
+    private StatusOc(String nome, int id) {
         this.nome = nome;
         this.id = id;
     }
 
     // Getter
-    public String getNome()
-    {
+    public String getNome() {
         return nome;
     }
 
-    public int getId()
-    {
+    public int getId() {
         return id;
     }
 }

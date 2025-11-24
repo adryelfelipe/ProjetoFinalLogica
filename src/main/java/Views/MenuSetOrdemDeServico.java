@@ -18,7 +18,7 @@ public class MenuSetOrdemDeServico {
 
         while(true)
         {
-            System.out.println("|  Digite o ID do técnico: ");
+            System.out.println("┃  Digite o ID do técnico: ");
 
             try {
                 idTecnico = Ferramentas.lInteiro();

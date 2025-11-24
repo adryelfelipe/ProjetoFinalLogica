@@ -21,9 +21,9 @@ public class MenuCadastroSupervisor
         long idMaquina = 0;
 
         // Menu de cadastro
-        System.out.println("|================================|");
-        System.out.println("|    CADASTRO ORDEM DE SERVIÇO   |");
-        System.out.println("|================================|\n");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃             CADASTRO ORDEM DE SERVIÇO             ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         // ----- Atribuição de caracteríscticas de uma Máquina ----- //
         try{
@@ -41,7 +41,7 @@ public class MenuCadastroSupervisor
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //
-        System.out.println("PROCESSANDO DADOS...");
+        System.out.println("┃  PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
 
         Departamento departamento = maquinaService.maquinaParaDepartamento(idMaquina);
@@ -50,7 +50,7 @@ public class MenuCadastroSupervisor
             OrdemDeServico ordemServico =   new OrdemDeServico(idTecnico, idMaquina,StatusOS.ABERTA, descricao, valorOrdemServico, departamento, TipoOs.CORRETIVA);
             ordemDeServicoService.inserirOrdemDeServico(supervisor, ordemServico);
             Ferramentas.limpaTerminal();
-            System.out.println("MÁQUINA CADASTRADO COM SUCESSO!");
+            System.out.println("┃  ORDEM DE SERVIÇO CADASTRADA COM SUCESSO!");
             Ferramentas.Delay(800);
         } catch (IllegalArgumentException | IllegalStateException e) {
             Ferramentas.mensagemErro(e.getMessage());
