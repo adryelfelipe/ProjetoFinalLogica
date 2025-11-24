@@ -31,7 +31,7 @@ public class MenuSupervisor
 
                 switch (opcao) {
                     case 1 -> MenuCadastroSupervisor.menuCadastroOrdem(supervisor);
-                    case 2 -> MenuSupervisorAcompanharStatus.acompanharStatus();
+                    case 2 -> MenuSupervisorAcompanharStatus.acompanharStatus(supervisor);
                     case 3 -> {
                         System.out.println("┃  RETORNANDO AO MENU INICIAL! . . .");
                         Ferramentas.Delay(500);
