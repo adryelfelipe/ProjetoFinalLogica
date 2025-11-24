@@ -17,7 +17,7 @@ import java.util.List;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class MenuSupervisor {
+public class MenuSupervisorOC_Abertas {
 
     private OcorrenciaDAO ocorrenciaDAO = new OcorrenciaDAO();
     private MaquinaDAO maquinaDAO = new MaquinaDAO();
@@ -26,10 +26,10 @@ public class MenuSupervisor {
     public void criarOsPreditiva(long idUsuarioLogado, Supervisor supervisor) {
         System.out.println("\n--- Criar OS Preditiva a partir de Ocorrência ---");
 
-        try (Connection conn = ConnectionFactory.getConnection()) {
+        try {
 
             // 1. Descobrir o departamento do supervisor
-            List<Departamento> departamentos = paraDepartamentosPorId(conn, idUsuarioLogado);
+            List<Departamento> departamentos = supervisor.getListaDepartamentos();
 
             if (departamentos.isEmpty()) {
                 System.out.println("Supervisor sem departamento vinculado.");
