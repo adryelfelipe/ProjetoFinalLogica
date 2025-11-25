@@ -43,6 +43,8 @@ import Dominio.Ocorrencia.Servicos.OcorrenciaServico;
 import Dominio.OrdemDeServico.Servicos.OsServico;
 import Infraestrutura.Persistencia.Implementacao.Funcionario.JDBC.FuncionarioRepositorioJdbc;
 import Infraestrutura.Persistencia.Implementacao.Funcionario.Mapper.FuncionarioJdbcMapper;
+import Infraestrutura.Persistencia.Implementacao.Maquina.JDBC.MaquinaJdbcRepositorio;
+import Infraestrutura.Persistencia.Implementacao.Maquina.Mapper.MaquinaJdbcMapper;
 import Infraestrutura.Persistencia.Testes.Funcionario.FuncionarioSimulacaoJDBC;
 import Infraestrutura.Persistencia.Testes.Maquina.MaquinaSimulacaoJDBC;
 import Infraestrutura.Persistencia.Testes.Ocorrencia.OcSimulacaoJDBC;
@@ -58,7 +60,9 @@ public class Main {
     private static FuncionarioRepositorioJdbc funcionarioDAO = new FuncionarioRepositorioJdbc(funcionarioJdbcMapper);
 
     // Dao para maquina
-    private static MaquinaSimulacaoJDBC maquinaDAO = new MaquinaSimulacaoJDBC();
+    //private static MaquinaSimulacaoJDBC maquinaDAO = new MaquinaSimulacaoJDBC();
+    private static MaquinaJdbcMapper maquinaJdbcMapper = new MaquinaJdbcMapper();
+    private static MaquinaJdbcRepositorio maquinaDAO = new MaquinaJdbcRepositorio(maquinaJdbcMapper);
 
     // Dao para ordem de serviço
     private static OsSimulacaoJDBC osDAO = new OsSimulacaoJDBC();
@@ -110,10 +114,10 @@ public class Main {
     // Inicialização do código
     public static void main(String[] args) {
 
-        // Testes com ArrayList
+        // Testes com ArrayList  Adryel Sapelli
         //funcionarioDAO.funcionarioArrayList.add(new Administrador(998,new NomeFuncionario("joaoAdmA"),new CPF("12345678910"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA))));
         //funcionarioDAO.funcionarioArrayList.add(new Administrador(999,new NomeFuncionario("joaoAdmB"),new CPF("12345678911"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.ELETRICA))));
-        //funcionarioDAO.salvar(new Gerente(new NomeFuncionario("joaoGerenteA"),new CPF(""), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA))));
+        //funcionarioDAO.salvar(new Gerente(new NomeFuncionario("joaoGerenteA"),new CPF("12345678912"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA))));
         //funcionarioDAO.salvar(new Gerente(new NomeFuncionario("joaoGerenteB"),new CPF("12345678913"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.ELETRICA))));
         //funcionarioDAO.salvar(new Tecnico(new NomeFuncionario("joaoTecnicoA"),new CPF("12345678914"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA)), Especialidade.SOLDADOR));
         //funcionarioDAO.salvar(new Tecnico(new NomeFuncionario("joaoTecnicoB"),new CPF("12345678915"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.ELETRICA)), Especialidade.SOLDADOR));

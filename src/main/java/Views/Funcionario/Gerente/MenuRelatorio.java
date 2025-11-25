@@ -142,18 +142,17 @@ public class MenuRelatorio {
 
         System.out.println(); // pula linha
 
-        System.out.println("1 - Filtrar por departamento");
-        System.out.println("2 - Filtrar por supervisor");
-        System.out.println("3 - Filtrar por status");
-        System.out.println("4 - Retornar");
+        System.out.println("1 - Filtrar por supervisor");
+        System.out.println("2 - Filtrar por status");
+        System.out.println("3 - Retornar");
         try {
+            System.out.print("Escolha: ");
             int op = Ferramentas.lInteiro();
 
             switch(op) {
-                case 1 -> menuFiltroDep(listarOcResponse.listaResponse());
-                case 2 -> menuFiltroSup(listarOcResponse.listaResponse());
-                case 3 -> menuFiltroStatus(listarOcResponse.listaResponse());
-                case 4 -> {
+                case 1 -> menuFiltroSup(listarOcResponse.listaResponse(), responseGerente.listaDepartamentos().getListaDepartamentos().getFirst());
+                case 2 -> menuFiltroStatus(listarOcResponse.listaResponse());
+                case 3 -> {
                     Ferramentas.limpaTerminal();
                     return;
                 }
@@ -172,6 +171,7 @@ public class MenuRelatorio {
         System.out.println("1 - Mecânica");
         System.out.println("2 - Elétrica");
         try {
+            System.out.print("Escolha: ");
             int op = Ferramentas.lInteiro();
 
             switch(op) {
@@ -228,9 +228,10 @@ public class MenuRelatorio {
         System.out.println("1 - ABERTA");
         System.out.println("2 - EM ANDAMENTO");
         System.out.println("3 - FECHADA");
+        System.out.print("Escolha: ");
         try {
             int op = Ferramentas.lInteiro();
-
+            Ferramentas.limpaTerminal();
             switch(op) {
                 case 1 -> {
                     for(OcorrenciaResponse oc : ocorrenciaResponse) {
@@ -298,7 +299,7 @@ public class MenuRelatorio {
         Ferramentas.limpaTerminal();
     }
 
-    public static void menuFiltroSup(List<OcorrenciaResponse> ocorrenciaResponse) {
+    public static void menuFiltroSup(List<OcorrenciaResponse> ocorrenciaResponse, Departamento departamentog) {
         Ferramentas.limpaTerminal();
         ListaFuncionariosResponse listaFuncionarios = Main.funcionarioController.listaFuncionariosParaGerente(NivelAcesso.GERENTE);
         Departamento departamento = null;
@@ -307,7 +308,7 @@ public class MenuRelatorio {
         String nome = Ferramentas.lString();
 
         for(FuncionarioResponse func : listaFuncionarios.listaFuncionarios()) {
-            if(func.nivelAcesso() == NivelAcesso.SUPERVISOR && func.nome().getNome().toLowerCase().contains(nome.toLowerCase())) {
+            if(func.nivelAcesso() == NivelAcesso.SUPERVISOR && func.nome().getNome().toLowerCase().contains(nome.toLowerCase()) && func.departamento() == departamentog) {
                 encontrados.add(func);
             }
         }
@@ -318,12 +319,14 @@ public class MenuRelatorio {
         }
 
         int cont = 1;
+        Ferramentas.limpaTerminal();
         System.out.println("Foram encontrados " + encontrados.size() + " supervisores: ");
         for(FuncionarioResponse response : encontrados) {
             System.out.println(cont + " - " + response.nome().getNome());
             cont ++;
         }
-        System.out.println("Escolha: ");
+        System.out.println();
+        System.out.print("Escolha: ");
         try{
             int op = Ferramentas.lInteiro();
 
@@ -335,6 +338,7 @@ public class MenuRelatorio {
             departamento = encontrados.get(op - 1).departamento();
             boolean verifica = false;
 
+            Ferramentas.limpaTerminal();
             for(OcorrenciaResponse oc : ocorrenciaResponse) {
                 if(oc.departamento() == departamento) {
                     System.out.println("ID OC: " + oc.idOcorrencia());
