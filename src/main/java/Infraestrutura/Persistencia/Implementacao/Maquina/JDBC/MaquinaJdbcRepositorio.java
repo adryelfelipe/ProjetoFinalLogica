@@ -1,16 +1,21 @@
 package Infraestrutura.Persistencia.Implementacao.Maquina.JDBC;
 
+import Aplicacao.Maquina.Mapper.MaquinaMapper;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
 import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 import Infraestrutura.Configuracao.ConnectionFactory;
 import Dominio.Maquina.Maquina;
 import Dominio.Maquina.Enumeracoes.StatusMaquina;
+import Infraestrutura.Persistencia.Implementacao.Maquina.Mapper.MaquinaJdbcMapper;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
-public class MaquinaJdbcRepositorio implements MaquinaRepositorio {
+public class MaquinaJdbcRepositorio implements MaquinaRepositorio
+{
+    private final MaquinaJdbcMapper mapper = new MaquinaJdbcMapper();
     //Comando para inserir as informações da máquina no Banco de Dados
     @Override
     public void salvar(Maquina maquina) {
@@ -43,7 +48,7 @@ public class MaquinaJdbcRepositorio implements MaquinaRepositorio {
     // Comando para excluir uma máquina existente do Banco de Dados caso necessário
     @Override
     public boolean excluir(long id) {
-        String querySQL = "DELETE FROM Maquinas WHERE id_maquina ";
+        String querySQL = "DELETE FROM Maquinas WHERE id_maquina = ? ";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(querySQL)) {
@@ -113,22 +118,112 @@ public class MaquinaJdbcRepositorio implements MaquinaRepositorio {
 
     @Override
     public Maquina buscar(long id) {
-        return null;
+        String querySQL = "SELECT id_maquina, nome, id_departamento, id_sm FROM Maquinas WHERE id_maquina = ?";
+        Maquina maquina = null;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
+
+            stmt.setLong(1, id);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    long idMaquina = rs.getLong("id_maquina");
+                    String nomeStr = rs.getString("nome");
+                    int idDepto = rs.getInt("id_departamento");
+                    int idStatus = rs.getInt("id_sm");
+
+                    NomeMaquina nome = new NomeMaquina(nomeStr);
+
+                    // USANDO O MAPPER AQUI
+                    Departamento departamento = mapper.mapearDepartamento(idDepto);
+                    StatusMaquina status = mapper.mapearStatus(idStatus);
+
+                    maquina = new Maquina(idMaquina, nome, departamento, status);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("ERRO ao buscar máquina por ID");
+        }
+
+        return maquina;
     }
 
     @Override
     public List<Maquina> listaMaquinas() {
-        return List.of();
+        String querySQL = "SELECT id_maquina, nome, id_departamento, id_sm FROM Maquinas";
+        List<Maquina> maquinas = new ArrayList<>();
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(querySQL);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                long idMaquina = rs.getLong("id_maquina");
+                String nomeStr = rs.getString("nome");
+                int idDepto = rs.getInt("id_departamento");
+                int idStatus = rs.getInt("id_sm");
+
+                NomeMaquina nome = new NomeMaquina(nomeStr);
+
+                // USANDO O MAPPER AQUI
+                Departamento departamento = mapper.mapearDepartamento(idDepto);
+                StatusMaquina status = mapper.mapearStatus(idStatus);
+
+                Maquina maquina = new Maquina(idMaquina, nome, departamento, status);
+                maquinas.add(maquina);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("ERRO ao listar máquinas");
+        }
+
+        return maquinas;
     }
 
     @Override
     public Departamento maquinaParaDepartamento(long idMaquina) {
-        return null;
+        String querySQL = "SELECT id_departamento FROM Maquinas WHERE id_maquina = ?";
+        Departamento departamento = null;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
+
+            stmt.setLong(1, idMaquina);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    int idDepto = rs.getInt("id_departamento");
+                    // USANDO O MAPPER AQUI
+                    departamento = mapper.mapearDepartamento(idDepto);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("ERRO ao buscar departamento da máquina");
+        }
+        return departamento;
     }
 
     @Override
     public NomeMaquina buscarNome(long idMaquina) {
-        return null;
+        String querySQL = "SELECT nome FROM Maquinas WHERE id_maquina = ?";
+        NomeMaquina nomeMaquina = null;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
+
+            stmt.setLong(1, idMaquina);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    String nomeStr = rs.getString("nome");
+                    nomeMaquina = new NomeMaquina(nomeStr);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("ERRO ao buscar nome da máquina");
+        }
+        return nomeMaquina;
     }
 }
 

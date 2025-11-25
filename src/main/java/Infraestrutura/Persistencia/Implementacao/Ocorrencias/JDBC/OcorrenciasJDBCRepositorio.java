@@ -1,9 +1,6 @@
 package Infraestrutura.Persistencia.Implementacao.Ocorrencias.JDBC;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,54 +8,200 @@ import Aplicacao.Ocorrencia.Mapper.OcorrenciaMapper;
 import Dominio.Ocorrencia.Ocorrencia;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Ocorrencia.Enumeracoes.StatusOc;
+import Dominio.Ocorrencia.Repositories.OcorrenciaRepositorio;
 import Infraestrutura.Configuracao.ConnectionFactory;
-import Infraestrutura.Persistencia.Implementacao.Ocorrencias.JDBC.Mapper.OcorrenciasMapper;
+import Infraestrutura.Persistencia.Implementacao.Ocorrencias.JDBC.Mapper.OcorrenciaMappers;
 
-public class OcorrenciasJDBCRepositorio {
+public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
 
-    private final OcorrenciasMapper statusMapper = new OcorrenciasMapper();
+    private final OcorrenciaMappers mapper = new OcorrenciaMappers();
 
-    public List<Ocorrencia> listarOcGerais()
-    {
-        List<Ocorrencia> ocorrencias = new ArrayList<>();
-        String query = "SELECT id_ocorrencia, id_maquina, departamento, status_oc_codigo FROM ocorrencias";
+    @Override
+    public void salvar(Ocorrencia ocorrencia) {
+        String query = "INSERT INTO OcorrenciasAtivas (id_maquina, id_departamento, status_oc_codigo) VALUES (?, ?, ?)";
 
-        // Abre e fecha conexão
         try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query);
-             ResultSet resultSet = preparedStatement.executeQuery())
-        {
-            while (resultSet.next())
-            {
-                // Pega os IDs
-                long idOcorrencia = resultSet.getLong("id_ocorrencia");
+             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+
+            stmt.setLong(1, ocorrencia.getIdMaquina());
+            stmt.setInt(2, ocorrencia.getDepartamento().getId());
+            stmt.setInt(3, ocorrencia.getStatusOc().ordinal());
+
+            int linhas = stmt.executeUpdate();
+
+            if (linhas > 0) {
+                try (ResultSet rs = stmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        ocorrencia.setI(rs.getLong(1));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("ERRO AO SALVAR OCORRENCIA ATIVA");
+        }
+    }
+
+    @Override
+    public void excluirPorId(long id) {
+        String query = "DELETE FROM OcorrenciasAtivas WHERE id_oa = ?";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("ERRO AO EXCLUIR OCORRENCIA");
+        }
+    }
+
+    @Override
+    public void atualizar(Ocorrencia ocorrencia) {
+        String query = "UPDATE OcorrenciasAtivas SET id_maquina = ?, id_departamento = ?, status_oc_codigo = ? WHERE id_oa = ?";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setLong(1, ocorrencia.getIdMaquina());
+            stmt.setInt(2, ocorrencia.getDepartamento().getId());
+            stmt.setInt(3, ocorrencia.getStatusOC().getId());
+            stmt.setLong(4, ocorrencia.getID_OC());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("ERRO AO ATUALIZAR OCORRENCIA");
+        }
+    }
+
+    @Override
+    public List<Ocorrencia> listarOcAtivas() {
+        List<Ocorrencia> ocorrencias = new ArrayList<>();
+        String query = "SELECT id_oa, id_maquina, id_departamento, status_oc_codigo FROM OcorrenciasAtivas";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query);
+             ResultSet resultSet = stmt.executeQuery()) {
+
+            while (resultSet.next()) {
+                long idOcorrencia = resultSet.getLong("id_oa");
                 long idMaquina = resultSet.getLong("id_maquina");
-
-                String departamentoStr = resultSet.getString("departamento");
-                Departamento departamento = Departamento.valueOf(departamentoStr);
-
+                int idDepto = resultSet.getInt("id_departamento");
                 int statusOcCodigo = resultSet.getInt("status_oc_codigo");
 
-                StatusOc statusOc = statusMapper.mapStatus(statusOcCodigo, idOcorrencia);
+                Departamento departamento = mapper.mapearDepartamento(idDepto);
+                StatusOc statusOc = mapper.mapearStatus(statusOcCodigo);
 
-                // Cria o objeto Ocorrencia
-                Ocorrencia ocorrencia = new Ocorrencia(
-                        idOcorrencia,
-                        idMaquina,
-                        departamento,
-                        statusOc
-                );
-
+                Ocorrencia ocorrencia = new Ocorrencia(idOcorrencia, idMaquina, departamento, statusOc);
                 ocorrencias.add(ocorrencia);
             }
-        } catch (SQLException e)
-        {
-            System.err.println("Erro no DB ao listar ocorrências.");
-        }
-        catch (IllegalArgumentException e)
-        {
-            System.err.println("Erro ao mapear dados de ocorrências.");
+        } catch (SQLException e) {
+            System.err.println("ERRO AO LISTAR OCORRENCIAS ATIVAS");
         }
         return ocorrencias;
+    }
+
+    @Override
+    public List<Ocorrencia> listarOcGerais() {
+        List<Ocorrencia> ocorrencias = new ArrayList<>();
+        String query = "SELECT id_og, id_maquina, id_departamento, status_oc_codigo FROM OcorrenciasGerais";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                long idOcorrencia = resultSet.getLong("id_og");
+                long idMaquina = resultSet.getLong("id_maquina");
+                int idDepto = resultSet.getInt("id_departamento");
+                int statusOcCodigo = resultSet.getInt("status_oc_codigo");
+
+                Departamento departamento = mapper.mapearDepartamento(idDepto);
+                StatusOc statusOc = mapper.mapearStatus(statusOcCodigo);
+
+                Ocorrencia ocorrencia = new Ocorrencia(idOcorrencia, idMaquina, departamento, statusOc);
+                ocorrencias.add(ocorrencia);
+            }
+        } catch (SQLException e) {
+            System.err.println("ERRO AO LISTAR OCORRENCIAS GERAIS");
+        }
+        return ocorrencias;
+    }
+
+    @Override
+    public Ocorrencia buscarPorId(long idOc) {
+        String query = "SELECT id_oa, id_maquina, id_departamento, status_oc_codigo FROM OcorrenciasAtivas WHERE id_oa = ?";
+        Ocorrencia ocorrencia = null;
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setLong(1, idOc);
+
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                if (resultSet.next()) {
+                    long idOcorrencia = resultSet.getLong("id_oa");
+                    long idMaquina = resultSet.getLong("id_maquina");
+                    int idDepto = resultSet.getInt("id_departamento");
+                    int statusOcCodigo = resultSet.getInt("status_oc_codigo");
+
+                    Departamento departamento = mapper.mapearDepartamento(idDepto);
+                    StatusOc statusOc = mapper.mapearStatus(statusOcCodigo);
+
+                    ocorrencia = new Ocorrencia(idOcorrencia, idMaquina, departamento, statusOc);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("ERRO AO BUSCAR OCORRENCIA POR ID");
+        }
+        return ocorrencia;
+    }
+
+    @Override
+    public boolean existeOcorrenciaMaquina(long idMaquina) {
+        String query = "SELECT count(*) FROM OcorrenciasAtivas WHERE id_maquina = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setLong(1, idMaquina);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            System.err.println("ERRO AO VERIFICAR EXISTENCIA OCORRENCIA");
+        }
+        return false;
+    }
+
+    @Override
+    public Ocorrencia ocorrenciaPorIdMaquina(long idMaquina) {
+        String query = "SELECT id_oa, id_maquina, id_departamento, status_oc_codigo FROM OcorrenciasAtivas WHERE id_maquina = ? LIMIT 1";
+        Ocorrencia ocorrencia = null;
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setLong(1, idMaquina);
+
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                if (resultSet.next()) {
+                    long idOcorrencia = resultSet.getLong("id_oa");
+                    int idDepto = resultSet.getInt("id_departamento");
+                    int statusOcCodigo = resultSet.getInt("status_oc_codigo");
+
+                    Departamento departamento = mapper.mapearDepartamento(idDepto);
+                    StatusOc statusOc = mapper.mapearStatus(statusOcCodigo);
+
+                    ocorrencia = new Ocorrencia(idOcorrencia, idMaquina, departamento, statusOc);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("ERRO AO BUSCAR OCORRENCIA POR ID MAQUINA");
+        }
+        return ocorrencia;
     }
 }

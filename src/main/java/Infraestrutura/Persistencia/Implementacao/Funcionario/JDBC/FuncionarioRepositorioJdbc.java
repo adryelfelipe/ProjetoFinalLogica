@@ -148,7 +148,7 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
             }
         }
 
-    public Funcionario loginUsuario(String cpf, String senha) {
+    public Funcionario logar(String cpf, String senha) {
 
         // Consulta MYSQL.
         String querySQL = "SELECT id_usuario, senha FROM Usuario WHERE cpf = ? LIMIT 1";
@@ -292,7 +292,6 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
         }
         return false;
     }
-
 
     @Override
     public NivelAcesso nivelAcessoPorID(long id)
