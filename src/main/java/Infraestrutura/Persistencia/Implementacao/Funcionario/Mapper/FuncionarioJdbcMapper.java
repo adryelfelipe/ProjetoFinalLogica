@@ -20,7 +20,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FuncionarioJdbcMapper
@@ -159,5 +158,39 @@ public class FuncionarioJdbcMapper
         }
 
         return new ListaDepartamentos(departamentos);
+    }
+
+
+    public String buscarNomePorId(long id, Connection conn) {
+        String sql = "SELECT nome FROM Usuario WHERE id_usuario = ?";
+        String nome = "Desconhecido"; // Valor padrão caso não ache
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setLong(1, id);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    nome = rs.getString("nome");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar nome do funcionário ID " + id);
+        }
+        return nome;
+    }
+    public long paraIdPorNome(Connection conn, String nomeFuncionario) throws SQLException {
+        String sql = "SELECT id_usuario FROM Usuario WHERE nome = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, nomeFuncionario);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getLong("id_usuario");
+                }
+            }
+        }
+        return 0L;
     }
 }
