@@ -1,5 +1,5 @@
 package Views;
-import DAO.MaquinaDAO;
+/*import DAO.MaquinaDAO;
 import DAO.OcorrenciaDAO;
 import Database.ConnectionFactory;
 import Models.Enumeracoes.Departamento;
@@ -87,4 +87,4 @@ public class MenuSupervisorOC_Abertas {
             System.err.println("Erro de conexão: " + e.getMessage());
         }
     }
-}
+}*/

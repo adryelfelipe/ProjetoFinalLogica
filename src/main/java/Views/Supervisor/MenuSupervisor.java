@@ -1,5 +1,5 @@
 package Views.Supervisor;
-
+/*
 import Util.Ferramentas;
 import Models.Supervisor;
 import Views.Nucleo.MenuInicial;
@@ -46,4 +46,4 @@ public class MenuSupervisor
             }
         }
     }
-}
+}*/

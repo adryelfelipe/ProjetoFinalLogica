@@ -6,7 +6,7 @@ import Service.UsuarioService;
 import Service.Validator.UsuarioValidator;
 import Views.Administrador.MenuAdministrador;
 import Views.Gerente.MenuGerente;
-import Views.Supervisor.MenuSupervisor;
+//import Views.Supervisor.MenuSupervisor;
 import Views.Tecnico.MenuTecnico;
 
 public class MenuLogin
@@ -63,7 +63,7 @@ public class MenuLogin
         } else if(funcionario instanceof Gerente) {
             MenuGerente.menuInicial((Gerente) funcionario);
         } else if(funcionario instanceof Supervisor) {
-            MenuSupervisor.menuSupervisor((Supervisor) funcionario);
+            //MenuSupervisor.menuSupervisor((Supervisor) funcionario);
         } else if(funcionario instanceof Tecnico) {
             MenuTecnico.menuTecnico((Tecnico) funcionario);
         }
