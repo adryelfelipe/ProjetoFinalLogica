@@ -25,14 +25,14 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
 
             stmt.setLong(1, ocorrencia.getIdMaquina());
             stmt.setInt(2, ocorrencia.getDepartamento().getId());
-            stmt.setInt(3, ocorrencia.getStatusOc().ordinal());
+            stmt.setLong(3, ocorrencia.getStatusOc().getId());
 
             int linhas = stmt.executeUpdate();
 
             if (linhas > 0) {
                 try (ResultSet rs = stmt.getGeneratedKeys()) {
                     if (rs.next()) {
-                        ocorrencia.setI(rs.getLong(1));
+                        ocorrencia.alteraIdOcorrencia(rs.getLong(1));
                     }
                 }
             }
@@ -65,8 +65,8 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
 
             stmt.setLong(1, ocorrencia.getIdMaquina());
             stmt.setInt(2, ocorrencia.getDepartamento().getId());
-            stmt.setInt(3, ocorrencia.getStatusOC().getId());
-            stmt.setLong(4, ocorrencia.getID_OC());
+            stmt.setLong(3, ocorrencia.getStatusOc().getId());
+            stmt.setLong(4, ocorrencia.getIdOcorrencia());
 
             stmt.executeUpdate();
 
@@ -204,4 +204,85 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
         }
         return ocorrencia;
     }
+    public void salvarGeral(Ocorrencia ocorrencia) {
+        String query = "INSERT INTO OcorrenciasGerais (id_maquina, id_departamento) VALUES (?, ?)";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+
+            stmt.setLong(1, ocorrencia.getIdMaquina());
+            stmt.setInt(2, ocorrencia.getDepartamento().getId());
+
+            int linhas = stmt.executeUpdate();
+
+            if (linhas > 0) {
+                try (ResultSet rs = stmt.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        ocorrencia.alteraIdOcorrencia(rs.getLong(1));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("ERRO AO SALVAR OCORRENCIA GERAL");
+        }
+    }
+
+    public void excluirGeralPorId(long id) {
+        String query = "DELETE FROM OcorrenciasGerais WHERE id_og = ?";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setLong(1, id);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("ERRO AO EXCLUIR OCORRENCIA GERAL");
+        }
+    }
+
+    public void atualizarGeral(Ocorrencia ocorrencia) {
+        String query = "UPDATE OcorrenciasGerais SET id_maquina = ?, id_departamento = ? WHERE id_og = ?";
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setLong(1, ocorrencia.getIdMaquina());
+            stmt.setInt(2, ocorrencia.getDepartamento().getId());
+            stmt.setLong(3, ocorrencia.getIdOcorrencia());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("ERRO AO ATUALIZAR OCORRENCIA GERAL");
+        }
+    }
+
+    public Ocorrencia buscarGeralPorId(long idOc) {
+        String query = "SELECT id_og, id_maquina, id_departamento FROM OcorrenciasGerais WHERE id_og = ?";
+        Ocorrencia ocorrencia = null;
+
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setLong(1, idOc);
+
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                if (resultSet.next()) {
+                    long idOcorrencia = resultSet.getLong("id_og");
+                    long idMaquina = resultSet.getLong("id_maquina");
+                    int idDepto = resultSet.getInt("id_departamento");
+
+                    Departamento departamento = mapper.mapearDepartamento(idDepto);
+                    StatusOc statusOc = mapper.getStatusParaGeral();
+
+                    ocorrencia = new Ocorrencia(idOcorrencia, idMaquina, departamento, statusOc);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("ERRO AO BUSCAR OCORRENCIA GERAL POR ID");
+        }
+        return ocorrencia;
+    }
+
 }

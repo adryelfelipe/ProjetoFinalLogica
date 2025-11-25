@@ -13,4 +13,11 @@ public enum StatusOc {
     StatusOc(long id) {
         this.id = id;
     }
+
+    // -- Construtor privado -- /
+
+    // -- Getters -- //
+    public long getId() {
+        return id;
+    }
 }

@@ -1,24 +1,33 @@
 package Infraestrutura.Persistencia.Implementacao.OrdemDeServico.JDBC;
 
+import Aplicacao.OrdemDeServico.Mapper.OrdemDeServicoMapper;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
 import Dominio.OrdemDeServico.Enumeracoes.TipoOS;
 import Dominio.OrdemDeServico.ObjetosDeValor.Descricao;
 import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
 import Dominio.OrdemDeServico.OrdemDeServico;
+import Dominio.OrdemDeServico.Repositorios.OrdemDeServicoRepositorio;
 import Infraestrutura.Configuracao.ConnectionFactory;
+import Infraestrutura.Persistencia.Implementacao.OrdemDeServico.Mapper.OsJdbcMapper;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class OsJdbcRepositorio {
+public class OsJdbcRepositorio implements OrdemDeServicoRepositorio {
 
-    // Comando para inserir uma ordem de serviço dentro do Banco de Dados
-    public void inserirOrdemDeServico(OrdemDeServico ordemDeServico) {
-        String querySQL = "INSERT INTO OrdemServicos ( descricao, status_ordem, custo, id_supervisor, id_maquina, id_tecnico) VALUES (?, ?, ?, ?, ?, ?)";
-        long idGerado = -1;
+    private final OsJdbcMapper mapper = new OsJdbcMapper();
+
+    @Override
+    public void salvar(OrdemDeServico ordemDeServico) {
+        String querySQL = "INSERT INTO OrdemServicos (descricao, status_ordem, custo, id_supervisor, id_maquina, id_tecnico) VALUES (?, ?, ?, ?, ?, ?)";
+
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS)) {
+
             stmt.setString(1, ordemDeServico.getDescricao().getDescricao());
-            stmt.setInt(2, ordemDeServico.getStatusOS().getId());
+            stmt.setInt(2, mapper.paraIdStatus(ordemDeServico.getStatusOS()));
             stmt.setDouble(3, ordemDeServico.getValorOS().getValorOS());
             stmt.setLong(4, ordemDeServico.getIdSupervisor());
             stmt.setLong(5, ordemDeServico.getIdMaquina());
@@ -29,19 +38,18 @@ public class OsJdbcRepositorio {
             if (linhasAF > 0) {
                 try (ResultSet rs = stmt.getGeneratedKeys()) {
                     if (rs.next()) {
-                        idGerado = rs.getLong(1);
-                        ordemDeServico.alteraIdOS(idGerado);
+                        ordemDeServico.alteraIdOS(rs.getLong(1));
                     }
                 }
             }
         } catch (SQLException e) {
-            System.err.println("ERRO AO INSERIR A ORDEM DE SERVIÇO" + e);
+            System.err.println("ERRO AO INSERIR A ORDEM DE SERVIÇO");
         }
     }
 
-    // Comando para excluir uma ordem de serviço existente do Banco de Dados caso necessário
-    public boolean deletarOrdemDeServico(long id) {
-        String querySQL = "DELETE FROM OrdemServicos WHERE id_os";
+    @Override
+    public boolean excluirPorId(long id) {
+        String querySQL = "DELETE FROM OrdemServicos WHERE id_os = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(querySQL)) {
@@ -49,110 +57,51 @@ public class OsJdbcRepositorio {
 
             int linhasAF = stmt.executeUpdate();
 
-            if (linhasAF > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return linhasAF > 0;
         } catch (SQLException e) {
             System.err.println("ERRO ao deletar a ordem de serviço com o ID: " + id);
             return false;
         }
     }
 
-    // Comando para atualizar a descrição de uma ordem de serviço existente do Banco de Dados
-    public void updateDescricaoOrdemDeServico(long id, Descricao novaDescricao) {
-        String querySQL = "UPDATE OrdemServicos " + "SET descricao = ? " + "WHERE id_os";
+    @Override
+    public void atualizar(OrdemDeServico ordemServico) {
+        String querySQL = "UPDATE OrdemServicos SET " +
+                "descricao = ?, " +
+                "status_ordem = ?, " +
+                "custo = ?, " +
+                "id_maquina = ?, " +
+                "id_supervisor = ?, " +
+                "id_tecnico = ? " +
+                "WHERE id_os = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(querySQL)) {
-            stmt.setString(1, novaDescricao.getDescricao());
-            stmt.setLong(2, id);
 
-            stmt.executeUpdate();
+            stmt.setString(1, ordemServico.getDescricao().getDescricao());
+            stmt.setInt(2, mapper.paraIdStatus(ordemServico.getStatusOS()));
+            stmt.setDouble(3, ordemServico.getValorOS().getValorOS());
+            stmt.setLong(4, ordemServico.getIdMaquina());
+            stmt.setLong(5, ordemServico.getIdSupervisor());
+            stmt.setLong(6, ordemServico.getIdTecnico());
+            stmt.setLong(7, ordemServico.getIdOs());
+
+            int linhasAfetadas = stmt.executeUpdate();
+
+            if (linhasAfetadas > 0) {
+                System.out.println("Ordem de Serviço atualizada com sucesso!");
+            } else {
+                System.out.println("Nenhuma OS encontrada para atualizar com ID: " + ordemServico.getIdOs());
+            }
+
         } catch (SQLException e) {
-            System.err.println("ERRO ao atualizar a descrição da ordem de serviços");
+            System.err.println("ERRO ao atualizar a Ordem de Serviços");
         }
     }
 
-    // Comando para atualizar os status de uma ordem de serviço existente do Banco de Dados
-    public void updateStatusOrdemDeServicos(long id, StatusOS novoStatus) {
-        String querySQL = "UPDATE OrdemServicos " + "SET status_ordem = ? " + "WHERE id_os = ?";
-
-        try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
-            stmt.setInt(1, novoStatus.getId());
-            stmt.setLong(2, id);
-
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("ERRO ao atualizar o status da ordem de serviços");
-        }
-    }
-
-    // Comando para atualizar o custo de uma ordem de serviço existente do Banco de Dados
-    public void updateCustoOrdemDeServicos(long id, ValorOS novoValor) {
-        String querySQL = "UPDATE OrdemServicos " + "SET custo = ? " + "WHERE id_os";
-
-        try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
-            stmt.setDouble(1, novoValor.getValorOS());
-            stmt.setLong(2, id);
-
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("ERRO ao atualizar o valor da ordem de serviços");
-        }
-    }
-
-    // Comando para atualizar o id de máquina que referencia uma ordem de serviço existente do Banco de Dados
-    public void updateIdMaquina(long id, long novoIdMaquina) {
-        String querySQL = "UPDATE OrdemServicos " + "SET id_maquina = ? " + "WHERE id_os";
-
-        try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
-            stmt.setLong(1, novoIdMaquina);
-            stmt.setLong(2, id);
-
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("ERRO ao atualizar o id da maquina da ordem de serviços");
-        }
-    }
-
-    // Comando para atualizar o id de supervisor que referencia uma ordem de serviço existente do Banco de Dados
-    public void updateIdSupervisor(long id, long novoIdSupervisor) {
-        String querySQL = "UPDATE OrdemServicos " + "SET id_maquina = ? " + "WHERE id_os";
-
-        try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
-            stmt.setLong(1, novoIdSupervisor);
-            stmt.setLong(2, id);
-
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("ERRO ao atualizar o id do supervisor da ordem de serviços");
-        }
-    }
-
-    // Comando para atualizar o id de técnico que referencia uma ordem de serviço existente do Banco de Dados
-    public void updateIdTecnico(long id, long novoIdTecnico) {
-        String querySQL = "UPDATE OrdemServicos " + "SET id_maquina = ? " + "WHERE id_os";
-
-        try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
-            stmt.setLong(1, novoIdTecnico);
-            stmt.setLong(2, id);
-
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.err.println("ERRO ao atualizar o id do tecnico da ordem de serviços");
-        }
-    }
-
-    public OrdemDeServico findByIdOS(long idOS) {
+    @Override
+    public OrdemDeServico buscarPorId(long idOS) {
         String querySQL = "SELECT * FROM OrdemServicos WHERE id_os = ?";
-
         OrdemDeServico os = null;
 
         try (Connection conn = ConnectionFactory.getConnection();
@@ -162,68 +111,118 @@ public class OsJdbcRepositorio {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    long id = rs.getLong("id_os");
-                    String descricao = rs.getString("descricao");
-                    int StatusOrdem = rs.getInt("status_ordem");
-                    double custo = rs.getDouble("custo");
-                    long idMaquina = (rs.getLong("id_maquina"));
-                    long idTecnico = rs.getLong("id_tecnico");
-                    long idSupervisor = (rs.getLong("id_supervisor"));
-                    int idTipo = (rs.getInt("id_tipoOS"));
-                    int idDepartamento = (rs.getInt("id_departamento"));
-
-                    TipoOS tipoOS = switch (idTipo)
-                    {
-                        case 1 -> TipoOS.CORRETIVA;
-                        default -> TipoOS.PREDITIVA;
-                    };
-                    Departamento departamento = switch (idDepartamento)
-                    {
-                        case 1 -> Departamento.ELETRICA;
-                        default -> Departamento.MECANICA;
-                    };
-                    StatusOS statusOS = switch (StatusOrdem) {
-                        case 1 -> StatusOS.ABERTA;
-                        case 2 -> StatusOS.EM_ANDAMENTO;
-                        default -> StatusOS.FECHADA;
-                    };
-
-                    os = new OrdemDeServico(id, idTecnico, idSupervisor, idMaquina, statusOS, new Descricao(descricao), new ValorOS(custo), departamento, tipoOS);
-
+                    os = montarOrdem(rs);
                 }
             }
-            return os;
         } catch (SQLException e) {
             System.err.println("ERRO ao buscar OS com ID: " + idOS);
         }
         return os;
     }
 
-    public boolean verificarIdOS(long id) {
-        // Consulta MYSQL.
+    @Override
+    public boolean existeId(long id) {
         String querySql = "SELECT * FROM OrdemServicos WHERE id_os = ? LIMIT 1";
 
-        // Pega a conexão
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(querySql)) {
             stmt.setLong(1, id);
 
             ResultSet rs = stmt.executeQuery();
-
-            //Se o id for lido, ou seja, existe. Retorna true.
-            if (rs.next()) {
-                return true;
-            }
-            //Caso contrario, retorna false.
-            else {
-                return false;
-            }
+            return rs.next();
         } catch (SQLException e) {
-            System.err.println("Erro ao verificar ID da ordem de servico: " + id + e);
+            System.err.println("Erro ao verificar ID da ordem de servico: " + id);
         }
         return false;
     }
 
+    @Override
+    public List<OrdemDeServico> listarOsAtivas() {
+        String querySQL = "SELECT * FROM OrdemServicos WHERE status_ordem != 3";
+        List<OrdemDeServico> lista = new ArrayList<>();
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(querySQL);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                lista.add(montarOrdem(rs));
+            }
+
+        } catch (SQLException e) {
+            System.err.println("ERRO ao listar OS ativas: " + e.getMessage());
+        }
+        return lista;
+    }
+
+    @Override
+    public List<OrdemDeServico> listarOsTodas() {
+        String querySQL = "SELECT * FROM OrdemServicos";
+        List<OrdemDeServico> lista = new ArrayList<>();
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(querySQL);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next())
+            {
+                lista.add(montarOrdem(rs));
+            }
+
+        } catch (SQLException e) {
+            System.err.println("ERRO ao listar todas as OS: " + e.getMessage());
+        }
+        return lista;
+    }
+
+    @Override
+    public int numeroOrdensMaquina(long idMaquina) {
+        String querySQL = "SELECT COUNT(*) FROM OrdemServicos WHERE id_maquina = ?";
+        int total = 0;
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
+
+            stmt.setLong(1, idMaquina);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    total = rs.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("ERRO ao contar ordens da máquina ID " + idMaquina + ": " + e.getMessage());
+        }
+        return total;
+    }
+
+    private OrdemDeServico montarOrdem(ResultSet rs) throws SQLException {
+        long id = rs.getLong("id_os");
+        String descricao = rs.getString("descricao");
+        int statusInt = rs.getInt("status_ordem");
+        double custo = rs.getDouble("custo");
+        long idMaquina = rs.getLong("id_maquina");
+        long idTecnico = rs.getLong("id_tecnico");
+        long idSupervisor = rs.getLong("id_supervisor");
+        int idTipo = rs.getInt("id_tipoOS");
+        int idDepartamento = rs.getInt("id_departamento");
+
+        StatusOS status = mapper.mapearStatus(statusInt);
+        TipoOS tipo = mapper.mapearTipo(idTipo);
+        Departamento depto = mapper.mapearDepartamento(idDepartamento);
+
+        return new OrdemDeServico(
+                id,
+                idTecnico,
+                idSupervisor,
+                idMaquina,
+                status,
+                new Descricao(descricao),
+                new ValorOS(custo),
+                depto,
+                tipo
+        );
+    }
 }
 
 

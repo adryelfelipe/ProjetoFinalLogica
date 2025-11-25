@@ -40,7 +40,7 @@ public class OsSimulacaoJDBC implements OrdemDeServicoRepositorio {
     }
 
     @Override
-    public void excluirPorId(long idOs) {
+    public boolean excluirPorId(long idOs) {
         Iterator<OrdemDeServico> iterator = listaOsAtivas.iterator();
         while (iterator.hasNext()) {
             OrdemDeServico os = iterator.next();
@@ -48,6 +48,7 @@ public class OsSimulacaoJDBC implements OrdemDeServicoRepositorio {
                 iterator.remove();  // Remove de forma segura
             }
         }
+        return false;
     }
 
 

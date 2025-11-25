@@ -21,4 +21,8 @@ public class OcorrenciaMappers {
                 default -> StatusOc.ABERTA;
             };
         }
+        public StatusOc getStatusParaGeral()
+        {
+            return StatusOc.FECHADA;
+        }
     }
