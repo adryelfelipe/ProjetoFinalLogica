@@ -15,8 +15,12 @@ import java.util.List;
 
 public class MaquinaJdbcRepositorio implements MaquinaRepositorio
 {
-    private final MaquinaJdbcMapper mapper = new MaquinaJdbcMapper();
-    //Comando para inserir as informações da máquina no Banco de Dados
+    private final MaquinaJdbcMapper mapper;
+
+    public MaquinaJdbcRepositorio(MaquinaJdbcMapper mapper) {
+        this.mapper = mapper;
+    }
+
     @Override
     public void salvar(Maquina maquina) {
         String querySQL = "INSERT INTO Maquinas (nome, id_departamento, id_sm) VALUES (?, ?, ?)";

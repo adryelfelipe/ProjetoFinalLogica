@@ -18,7 +18,7 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
 
     @Override
     public void salvar(Ocorrencia ocorrencia) {
-        String query = "INSERT INTO OcorrenciasAtivas (id_maquina, id_departamento, status_oc_codigo) VALUES (?, ?, ?)";
+        String query = "INSERT INTO OcorrenciasAtivas (id_maquina, id_departamento, id_statusOc) VALUES (?, ?, ?)";
 
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
@@ -58,7 +58,7 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
 
     @Override
     public void atualizar(Ocorrencia ocorrencia) {
-        String query = "UPDATE OcorrenciasAtivas SET id_maquina = ?, id_departamento = ?, status_oc_codigo = ? WHERE id_oa = ?";
+        String query = "UPDATE OcorrenciasAtivas SET id_maquina = ?, id_departamento = ?, id_statusOc = ? WHERE id_oa = ?";
 
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement stmt = connection.prepareStatement(query)) {
@@ -88,7 +88,7 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
                 long idOcorrencia = resultSet.getLong("id_oa");
                 long idMaquina = resultSet.getLong("id_maquina");
                 int idDepto = resultSet.getInt("id_departamento");
-                int statusOcCodigo = resultSet.getInt("status_oc_codigo");
+                int statusOcCodigo = resultSet.getInt("id_statusOc");
 
                 Departamento departamento = mapper.mapearDepartamento(idDepto);
                 StatusOc statusOc = mapper.mapearStatus(statusOcCodigo);
@@ -105,7 +105,7 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
     @Override
     public List<Ocorrencia> listarOcGerais() {
         List<Ocorrencia> ocorrencias = new ArrayList<>();
-        String query = "SELECT id_og, id_maquina, id_departamento, status_oc_codigo FROM OcorrenciasGerais";
+        String query = "SELECT id_og, id_maquina, id_departamento, id_statusOc FROM OcorrenciasGerais";
 
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -115,7 +115,7 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
                 long idOcorrencia = resultSet.getLong("id_og");
                 long idMaquina = resultSet.getLong("id_maquina");
                 int idDepto = resultSet.getInt("id_departamento");
-                int statusOcCodigo = resultSet.getInt("status_oc_codigo");
+                int statusOcCodigo = resultSet.getInt("id_statusOc");
 
                 Departamento departamento = mapper.mapearDepartamento(idDepto);
                 StatusOc statusOc = mapper.mapearStatus(statusOcCodigo);
@@ -131,7 +131,7 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
 
     @Override
     public Ocorrencia buscarPorId(long idOc) {
-        String query = "SELECT id_oa, id_maquina, id_departamento, status_oc_codigo FROM OcorrenciasAtivas WHERE id_oa = ?";
+        String query = "SELECT id_oa, id_maquina, id_departamento, id_statusOc FROM OcorrenciasAtivas WHERE id_oa = ?";
         Ocorrencia ocorrencia = null;
 
         try (Connection connection = ConnectionFactory.getConnection();
@@ -144,7 +144,7 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
                     long idOcorrencia = resultSet.getLong("id_oa");
                     long idMaquina = resultSet.getLong("id_maquina");
                     int idDepto = resultSet.getInt("id_departamento");
-                    int statusOcCodigo = resultSet.getInt("status_oc_codigo");
+                    int statusOcCodigo = resultSet.getInt("id_statusOc");
 
                     Departamento departamento = mapper.mapearDepartamento(idDepto);
                     StatusOc statusOc = mapper.mapearStatus(statusOcCodigo);
@@ -179,7 +179,7 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
 
     @Override
     public Ocorrencia ocorrenciaPorIdMaquina(long idMaquina) {
-        String query = "SELECT id_oa, id_maquina, id_departamento, status_oc_codigo FROM OcorrenciasAtivas WHERE id_maquina = ? LIMIT 1";
+        String query = "SELECT id_oa, id_maquina, id_departamento, id_statusOc FROM OcorrenciasAtivas WHERE id_maquina = ? LIMIT 1";
         Ocorrencia ocorrencia = null;
 
         try (Connection connection = ConnectionFactory.getConnection();
@@ -191,7 +191,7 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
                 if (resultSet.next()) {
                     long idOcorrencia = resultSet.getLong("id_oa");
                     int idDepto = resultSet.getInt("id_departamento");
-                    int statusOcCodigo = resultSet.getInt("status_oc_codigo");
+                    int statusOcCodigo = resultSet.getInt("id_statusOc");
 
                     Departamento departamento = mapper.mapearDepartamento(idDepto);
                     StatusOc statusOc = mapper.mapearStatus(statusOcCodigo);

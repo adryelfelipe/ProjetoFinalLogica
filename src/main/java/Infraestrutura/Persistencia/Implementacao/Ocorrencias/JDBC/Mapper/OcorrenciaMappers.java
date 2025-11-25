@@ -17,8 +17,7 @@ public class OcorrenciaMappers {
             return switch (id) {
                 case 1 -> StatusOc.ABERTA;
                 case 2 -> StatusOc.EM_ANDAMENTO;
-                case 3 -> StatusOc.FECHADA;
-                default -> StatusOc.ABERTA;
+                default -> StatusOc.FECHADA;
             };
         }
         public StatusOc getStatusParaGeral()

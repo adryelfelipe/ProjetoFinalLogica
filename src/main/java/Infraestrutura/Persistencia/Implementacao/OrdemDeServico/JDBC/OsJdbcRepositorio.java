@@ -17,33 +17,64 @@ import java.util.List;
 
 public class OsJdbcRepositorio implements OrdemDeServicoRepositorio {
 
-    private final OsJdbcMapper mapper = new OsJdbcMapper();
+    private final OsJdbcMapper mapper;
+
+    public OsJdbcRepositorio(OsJdbcMapper mapper) {
+        this.mapper = mapper;
+    }
 
     @Override
     public void salvar(OrdemDeServico ordemDeServico) {
-        String querySQL = "INSERT INTO OrdemServicos (descricao, status_ordem, custo, id_supervisor, id_maquina, id_tecnico) VALUES (?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(querySQL, Statement.RETURN_GENERATED_KEYS)) {
+        // SQL para a tabela ATIVA
+        String sqlAtiva = "INSERT INTO OrdemServicos (descricao, statusOS, valorOS, id_tipoOS, id_maquina, id_tecnico, id_supervisor, id_departamento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-            stmt.setString(1, ordemDeServico.getDescricao().getDescricao());
-            stmt.setInt(2, mapper.paraIdStatus(ordemDeServico.getStatusOS()));
-            stmt.setDouble(3, ordemDeServico.getValorOS().getValorOS());
-            stmt.setLong(4, ordemDeServico.getIdSupervisor());
-            stmt.setLong(5, ordemDeServico.getIdMaquina());
-            stmt.setLong(6, ordemDeServico.getIdTecnico());
+        // SQL para a tabela GERAL (Mesmas colunas agora)
+        String sqlGeral = "INSERT INTO OrdemDeServicosGerais (descricao, statusOS, valorOS, id_tipoOS, id_maquina, id_tecnico, id_supervisor, id_departamento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-            int linhasAF = stmt.executeUpdate();
+        try (Connection conn = ConnectionFactory.getConnection()) {
 
-            if (linhasAF > 0) {
-                try (ResultSet rs = stmt.getGeneratedKeys()) {
-                    if (rs.next()) {
-                        ordemDeServico.alteraIdOS(rs.getLong(1));
+            // --- 1. INSERINDO NA TABELA ATIVA ---
+            try (PreparedStatement stmt = conn.prepareStatement(sqlAtiva, Statement.RETURN_GENERATED_KEYS)) {
+
+                stmt.setString(1, ordemDeServico.getDescricao().getDescricao());
+                stmt.setInt(2, mapper.paraIdStatus(ordemDeServico.getStatusOS()));
+                stmt.setDouble(3, ordemDeServico.getValorOS().getValorOS());
+                stmt.setInt(4, mapper.paraIdTipo(ordemDeServico.getTipoOS()));
+                stmt.setLong(5, ordemDeServico.getIdMaquina());
+                stmt.setLong(6, ordemDeServico.getIdTecnico());
+                stmt.setLong(7, ordemDeServico.getIdSupervisor());
+                stmt.setInt(8, mapper.paraIdDepartamento(ordemDeServico.getDepartamento()));
+
+                int linhasAF = stmt.executeUpdate();
+
+                if (linhasAF > 0) {
+                    try (ResultSet rs = stmt.getGeneratedKeys()) {
+                        if (rs.next()) {
+                            ordemDeServico.alteraIdOS(rs.getLong(1));
+                        }
                     }
                 }
             }
+
+            // --- 2. INSERINDO NA TABELA GERAL ---
+            try (PreparedStatement stmt = conn.prepareStatement(sqlGeral)) {
+
+                // A configuração dos parâmetros é IDÊNTICA à de cima
+                stmt.setString(1, ordemDeServico.getDescricao().getDescricao());
+                stmt.setInt(2, mapper.paraIdStatus(ordemDeServico.getStatusOS()));
+                stmt.setDouble(3, ordemDeServico.getValorOS().getValorOS());
+                stmt.setInt(4, mapper.paraIdTipo(ordemDeServico.getTipoOS()));
+                stmt.setLong(5, ordemDeServico.getIdMaquina());
+                stmt.setLong(6, ordemDeServico.getIdTecnico());
+                stmt.setLong(7, ordemDeServico.getIdSupervisor());
+                stmt.setInt(8, mapper.paraIdDepartamento(ordemDeServico.getDepartamento()));
+
+                stmt.executeUpdate();
+            }
+
         } catch (SQLException e) {
-            System.err.println("ERRO AO INSERIR A ORDEM DE SERVIÇO");
+            System.err.println("ERRO AO SALVAR ORDEM DE SERVIÇO: " + e.getMessage());
         }
     }
 
@@ -66,36 +97,67 @@ public class OsJdbcRepositorio implements OrdemDeServicoRepositorio {
 
     @Override
     public void atualizar(OrdemDeServico ordemServico) {
-        String querySQL = "UPDATE OrdemServicos SET " +
+
+        String sqlAtiva = "UPDATE OrdemServicos SET " +
                 "descricao = ?, " +
-                "status_ordem = ?, " +
-                "custo = ?, " +
+                "statusOS = ?, " +
+                "valorOS = ?, " +
+                "id_tipoOS = ?, " +
                 "id_maquina = ?, " +
+                "id_tecnico = ?, " +
                 "id_supervisor = ?, " +
-                "id_tecnico = ? " +
+                "id_departamento = ? " +
                 "WHERE id_os = ?";
 
-        try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
+        String sqlGeral = "UPDATE OrdemDeServicosGerais SET " +
+                "descricao = ?, " +
+                "statusOS = ?, " +
+                "valorOS = ?, " +
+                "id_tipoOS = ?, " +
+                "id_maquina = ?, " +
+                "id_tecnico = ?, " +
+                "id_supervisor = ?, " +
+                "id_departamento = ? " +
+                "WHERE id_maquina = ? AND statusOS != 3";
 
-            stmt.setString(1, ordemServico.getDescricao().getDescricao());
-            stmt.setInt(2, mapper.paraIdStatus(ordemServico.getStatusOS()));
-            stmt.setDouble(3, ordemServico.getValorOS().getValorOS());
-            stmt.setLong(4, ordemServico.getIdMaquina());
-            stmt.setLong(5, ordemServico.getIdSupervisor());
-            stmt.setLong(6, ordemServico.getIdTecnico());
-            stmt.setLong(7, ordemServico.getIdOs());
+        try (Connection conn = ConnectionFactory.getConnection()) {
 
-            int linhasAfetadas = stmt.executeUpdate();
+            try (PreparedStatement stmt = conn.prepareStatement(sqlAtiva)) {
+                stmt.setString(1, ordemServico.getDescricao().getDescricao());
+                stmt.setInt(2, mapper.paraIdStatus(ordemServico.getStatusOS()));
+                stmt.setDouble(3, ordemServico.getValorOS().getValorOS());
+                stmt.setInt(4, mapper.paraIdTipo(ordemServico.getTipoOS()));
+                stmt.setLong(5, ordemServico.getIdMaquina());
+                stmt.setLong(6, ordemServico.getIdTecnico());
+                stmt.setLong(7, ordemServico.getIdSupervisor());
+                stmt.setInt(8, mapper.paraIdDepartamento(ordemServico.getDepartamento()));
+                stmt.setLong(9, ordemServico.getIdOs());
 
-            if (linhasAfetadas > 0) {
-                System.out.println("Ordem de Serviço atualizada com sucesso!");
-            } else {
-                System.out.println("Nenhuma OS encontrada para atualizar com ID: " + ordemServico.getIdOs());
+                stmt.executeUpdate();
             }
 
+            try (PreparedStatement stmt = conn.prepareStatement(sqlGeral)) {
+                stmt.setString(1, ordemServico.getDescricao().getDescricao());
+                stmt.setInt(2, mapper.paraIdStatus(ordemServico.getStatusOS()));
+                stmt.setDouble(3, ordemServico.getValorOS().getValorOS());
+                stmt.setInt(4, mapper.paraIdTipo(ordemServico.getTipoOS()));
+                stmt.setLong(5, ordemServico.getIdMaquina());
+                stmt.setLong(6, ordemServico.getIdTecnico());
+                stmt.setLong(7, ordemServico.getIdSupervisor());
+                stmt.setInt(8, mapper.paraIdDepartamento(ordemServico.getDepartamento()));
+                stmt.setLong(9, ordemServico.getIdMaquina());
+
+                int linhasGerais = stmt.executeUpdate();
+
+                if (linhasGerais > 0) {
+                    System.out.println("Histórico Geral sincronizado com sucesso!");
+                }
+            }
+
+            System.out.println("Atualização concluída nas duas tabelas.");
+
         } catch (SQLException e) {
-            System.err.println("ERRO ao atualizar a Ordem de Serviços");
+            System.err.println("ERRO ao atualizar Ordem de Serviço (Ativa e Geral): " + e.getMessage());
         }
     }
 
@@ -138,7 +200,7 @@ public class OsJdbcRepositorio implements OrdemDeServicoRepositorio {
 
     @Override
     public List<OrdemDeServico> listarOsAtivas() {
-        String querySQL = "SELECT * FROM OrdemServicos WHERE status_ordem != 3";
+        String querySQL = "SELECT * FROM OrdemServicos WHERE statusOS != 3";
         List<OrdemDeServico> lista = new ArrayList<>();
 
         try (Connection conn = ConnectionFactory.getConnection();
@@ -199,8 +261,8 @@ public class OsJdbcRepositorio implements OrdemDeServicoRepositorio {
     private OrdemDeServico montarOrdem(ResultSet rs) throws SQLException {
         long id = rs.getLong("id_os");
         String descricao = rs.getString("descricao");
-        int statusInt = rs.getInt("status_ordem");
-        double custo = rs.getDouble("custo");
+        int statusInt = rs.getInt("statusOS");
+        double custo = rs.getDouble("valorOS");
         long idMaquina = rs.getLong("id_maquina");
         long idTecnico = rs.getLong("id_tecnico");
         long idSupervisor = rs.getLong("id_supervisor");

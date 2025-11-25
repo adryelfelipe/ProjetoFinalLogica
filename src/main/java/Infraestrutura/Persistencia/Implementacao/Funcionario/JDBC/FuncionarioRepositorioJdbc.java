@@ -235,29 +235,93 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
     }
     @Override
     public void atualizar(Funcionario funcionario) {
-        // Consulta MySQL CORRIGIDA
-        String querySQL = "UPDATE Usuario " +
-                "SET nome = ?, cpf = ?, senha = ? " +
-                "WHERE id_usuario = ?";
 
-        try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
+        String sqlUsuario = "UPDATE Usuario SET nome = ?, cpf = ?, senha = ?, id_na = ? WHERE id_usuario = ?";
+        String sqlDeleteDept = "DELETE FROM UsuarioDepartamento WHERE id_usuario = ?";
+        String sqlInsertDept = "INSERT INTO UsuarioDepartamento (id_usuario, id_departamento) VALUES (?, ?)";
 
-            stmt.setString(1, funcionario.getNome().toString());
-            stmt.setString(2, funcionario.getCpf().toString());
-            stmt.setString(3, funcionario.getSenha().toString());
-            stmt.setLong(4, funcionario.getId());
+        try (Connection conn = ConnectionFactory.getConnection()) {
 
-            int linhasAfetadas = stmt.executeUpdate();
+            try (PreparedStatement stmt = conn.prepareStatement(sqlUsuario)) {
+                stmt.setString(1, funcionario.getNome().getNome());
+                stmt.setString(2, funcionario.getCpf().getCpf());
+                stmt.setString(3, funcionario.getSenha().getSenha());
 
-            if (linhasAfetadas > 0) {
-                System.out.println("Usuário atualizado com sucesso!");
-            } else {
-                System.out.println("Nenhum usuário encontrado com o ID: " + funcionario.getId());
+                int idNa = switch (funcionario.getNivelAcesso()) {
+                    case TECNICO -> 1;
+                    case SUPERVISOR -> 2;
+                    case GERENTE -> 3;
+                    default -> 4;
+                };
+                stmt.setInt(4, idNa);
+                stmt.setLong(5, funcionario.getId());
+
+                stmt.executeUpdate();
             }
 
+            if (funcionario instanceof Supervisor supervisor) {
+                String sqlSupervisor = "UPDATE Supervisor SET meta_mensal = ? WHERE id_supervisor = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sqlSupervisor)) {
+                    stmt.setDouble(1, supervisor.getMetaMensal().getValorMetaMensal());
+                    stmt.setLong(2, supervisor.getId());
+                    stmt.executeUpdate();
+                }
+            }
+            else if (funcionario instanceof Tecnico tecnico) {
+                String sqlTecnico = "UPDATE Tecnico SET id_especialidade = ? WHERE id_tecnico = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sqlTecnico)) {
+                    int idEsp = switch (tecnico.getEspecialidade()) {
+                        case TECNICO_ELETROTECNICA -> 1;
+                        case ELETRICISTA_FABRIL -> 2;
+                        case SOLDADOR -> 3;
+                        case TECNICO_ELETROMECANICA -> 4;
+                        default -> 5;
+                    };
+                    stmt.setInt(1, idEsp);
+                    stmt.setLong(2, tecnico.getId());
+                    stmt.executeUpdate();
+                }
+            }
+            else if (funcionario instanceof Gerente gerente) {
+                String sqlGerente = "UPDATE Gerentes SET id_departamento = ? WHERE id_gerente = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sqlGerente)) {
+                    int idDept = 1;
+                    if (gerente.getDepartamentos() != null &&
+                            !gerente.getDepartamentos().getListaDepartamentos().isEmpty() &&
+                            gerente.getDepartamentos().getListaDepartamentos().getFirst() != null) {
+
+                        idDept = (gerente.getDepartamentos().getListaDepartamentos().getFirst() == Departamento.ELETRICA) ? 1 : 2;
+                    }
+                    stmt.setInt(1, idDept);
+                    stmt.setLong(2, gerente.getId());
+                    stmt.executeUpdate();
+                }
+            }
+
+            try (PreparedStatement stmtDelete = conn.prepareStatement(sqlDeleteDept)) {
+                stmtDelete.setLong(1, funcionario.getId());
+                stmtDelete.executeUpdate();
+            }
+
+            if (funcionario.getDepartamentos() != null &&
+                    funcionario.getDepartamentos().getListaDepartamentos() != null) {
+
+                try (PreparedStatement stmtInsert = conn.prepareStatement(sqlInsertDept)) {
+                    for (Departamento dept : funcionario.getDepartamentos().getListaDepartamentos()) {
+                        stmtInsert.setLong(1, funcionario.getId());
+
+                        int idD = (dept == Departamento.ELETRICA) ? 1 : 2;
+                        stmtInsert.setInt(2, idD);
+
+                        stmtInsert.executeUpdate();
+                    }
+                }
+            }
+
+            System.out.println("Funcionário atualizado com sucesso!");
+
         } catch (SQLException e) {
-            System.err.println("ERRO ao atualizar usuário: " + e.getMessage());
+            System.err.println("ERRO ao atualizar funcionário: " + e.getMessage());
         }
     }
 

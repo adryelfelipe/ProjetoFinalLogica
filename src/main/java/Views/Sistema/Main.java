@@ -45,6 +45,8 @@ import Infraestrutura.Persistencia.Implementacao.Funcionario.JDBC.FuncionarioRep
 import Infraestrutura.Persistencia.Implementacao.Funcionario.Mapper.FuncionarioJdbcMapper;
 import Infraestrutura.Persistencia.Implementacao.Maquina.JDBC.MaquinaJdbcRepositorio;
 import Infraestrutura.Persistencia.Implementacao.Maquina.Mapper.MaquinaJdbcMapper;
+import Infraestrutura.Persistencia.Implementacao.OrdemDeServico.JDBC.OsJdbcRepositorio;
+import Infraestrutura.Persistencia.Implementacao.OrdemDeServico.Mapper.OsJdbcMapper;
 import Infraestrutura.Persistencia.Testes.Funcionario.FuncionarioSimulacaoJDBC;
 import Infraestrutura.Persistencia.Testes.Maquina.MaquinaSimulacaoJDBC;
 import Infraestrutura.Persistencia.Testes.Ocorrencia.OcSimulacaoJDBC;
@@ -65,7 +67,10 @@ public class Main {
     private static MaquinaJdbcRepositorio maquinaDAO = new MaquinaJdbcRepositorio(maquinaJdbcMapper);
 
     // Dao para ordem de serviço
-    private static OsSimulacaoJDBC osDAO = new OsSimulacaoJDBC();
+    //private static OsSimulacaoJDBC osDAO = new OsSimulacaoJDBC();
+    private static OsJdbcMapper osJdbcMapper = new OsJdbcMapper();
+    private static OsJdbcRepositorio osDAO = new OsJdbcRepositorio(osJdbcMapper);
+
 
     // Aplicação de funcionário
     private static TipoFuncionarioServico tipoFuncionarioServico = new TipoFuncionarioServico();
@@ -123,8 +128,8 @@ public class Main {
         //funcionarioDAO.salvar(new Tecnico(new NomeFuncionario("joaoTecnicoB"),new CPF("12345678915"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.ELETRICA)), Especialidade.SOLDADOR));
         //funcionarioDAO.salvar(new Supervisor(new NomeFuncionario("joaoSupervisorA"),new CPF("12345678916"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA)), new MetaMensal(60000)));
         //funcionarioDAO.salvar(new Supervisor(new NomeFuncionario("joaoSupervisorB"),new CPF("12345678917"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.ELETRICA)), new MetaMensal(60000)));
-        maquinaDAO.salvar(new Maquina(new NomeMaquina("MatheusSHOPPINGCNC"), Departamento.MECANICA, StatusMaquina.FUNCIONANDO));
-        maquinaDAO.salvar(new Maquina(new NomeMaquina("MiguelCNC"), Departamento.ELETRICA, StatusMaquina.FUNCIONANDO));
+        //maquinaDAO.salvar(new Maquina(new NomeMaquina("MatheusSHOPPINGCNC"), Departamento.MECANICA, StatusMaquina.FUNCIONANDO));
+        //maquinaDAO.salvar(new Maquina(new NomeMaquina("MiguelCNC"), Departamento.ELETRICA, StatusMaquina.FUNCIONANDO));
         // Inicialização com menu
         MenuInicial.Menu();
     }

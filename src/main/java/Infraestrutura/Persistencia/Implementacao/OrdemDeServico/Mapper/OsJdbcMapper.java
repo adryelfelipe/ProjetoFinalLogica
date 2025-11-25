@@ -6,6 +6,7 @@ import Dominio.OrdemDeServico.Enumeracoes.TipoOS;
 
 public class OsJdbcMapper
 {
+    // --- STATUS ---
     public StatusOS mapearStatus(int id) {
         return switch (id) {
             case 1 -> StatusOS.ABERTA;
@@ -18,6 +19,7 @@ public class OsJdbcMapper
         return status.getId();
     }
 
+    // --- TIPO ---
     public TipoOS mapearTipo(int id) {
         return switch (id) {
             case 1 -> TipoOS.CORRETIVA;
@@ -25,10 +27,22 @@ public class OsJdbcMapper
         };
     }
 
+    // ADICIONE ESTE:
+    public int paraIdTipo(TipoOS tipo) {
+        if (tipo == TipoOS.CORRETIVA) return 1;
+        return 2;
+    }
+
+    // --- DEPARTAMENTO ---
     public Departamento mapearDepartamento(int id) {
         return switch (id) {
             case 1 -> Departamento.ELETRICA;
             default -> Departamento.MECANICA;
         };
+    }
+
+    // ADICIONE ESTE:
+    public int paraIdDepartamento(Departamento departamento) {
+        return departamento.getId();
     }
 }
