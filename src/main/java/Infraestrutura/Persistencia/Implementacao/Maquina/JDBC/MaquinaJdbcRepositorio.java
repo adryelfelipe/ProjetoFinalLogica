@@ -6,11 +6,20 @@ import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 import Infraestrutura.Configuracao.ConnectionFactory;
 import Dominio.Maquina.Maquina;
 import Dominio.Maquina.Enumeracoes.StatusMaquina;
+import Infraestrutura.Persistencia.Implementacao.Maquina.Mapper.MaquinaJdbcMapper;
 
 import java.sql.*;
 import java.util.List;
 
 public class MaquinaJdbcRepositorio implements MaquinaRepositorio {
+    // ---- Atributos ---- //
+    private MaquinaJdbcMapper maquinaMapper;
+
+    // ---- Construtor ---- //
+    public MaquinaJdbcRepositorio(MaquinaJdbcMapper mapper) {
+        this.maquinaMapper = mapper;
+    }
+
     //Comando para inserir as informações da máquina no Banco de Dados
     @Override
     public void salvar(Maquina maquina) {

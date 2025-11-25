@@ -43,6 +43,8 @@ import Dominio.Ocorrencia.Servicos.OcorrenciaServico;
 import Dominio.OrdemDeServico.Servicos.OsServico;
 import Infraestrutura.Persistencia.Implementacao.Funcionario.JDBC.FuncionarioRepositorioJdbc;
 import Infraestrutura.Persistencia.Implementacao.Funcionario.Mapper.FuncionarioJdbcMapper;
+import Infraestrutura.Persistencia.Implementacao.Maquina.JDBC.MaquinaJdbcRepositorio;
+import Infraestrutura.Persistencia.Implementacao.Maquina.Mapper.MaquinaJdbcMapper;
 import Infraestrutura.Persistencia.Testes.Funcionario.FuncionarioSimulacaoJDBC;
 import Infraestrutura.Persistencia.Testes.Maquina.MaquinaSimulacaoJDBC;
 import Infraestrutura.Persistencia.Testes.Ocorrencia.OcSimulacaoJDBC;
@@ -58,7 +60,9 @@ public class Main {
     private static FuncionarioRepositorioJdbc funcionarioDAO = new FuncionarioRepositorioJdbc(funcionarioJdbcMapper);
 
     // Dao para maquina
-    private static MaquinaSimulacaoJDBC maquinaDAO = new MaquinaSimulacaoJDBC();
+    //private static MaquinaSimulacaoJDBC maquinaDAO = new MaquinaSimulacaoJDBC();
+    private static MaquinaJdbcMapper maquinaJdbcMapper = new MaquinaJdbcMapper();
+    private static MaquinaJdbcRepositorio maquinaDAO = new MaquinaJdbcRepositorio(maquinaJdbcMapper);
 
     // Dao para ordem de serviço
     private static OsSimulacaoJDBC osDAO = new OsSimulacaoJDBC();
