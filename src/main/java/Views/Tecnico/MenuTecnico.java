@@ -16,13 +16,13 @@ public class MenuTecnico
         while(!continuar)
         {
             //                    MENU                    //
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃                    MENU TÉCNICO                   ┃");
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                    "+Ferramentas.ORANGE_DARK+"MENU TÉCNICO"+Ferramentas.AQUA_BLUE+"                   ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                                   ┃");
-            System.out.println("┃  1 - Detalhes de uma ordem de seviço              ┃");
-            System.out.println("┃  2 - Atualizar status de ordem de serviços        ┃");
-            System.out.println("┃  3 - Retornar                                     ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - Detalhes de uma ordem de seviço"+Ferramentas.AQUA_BLUE+"              ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - Atualizar status de ordem de serviços"+Ferramentas.AQUA_BLUE+"        ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"3 - Retornar"+Ferramentas.AQUA_BLUE+"                                     ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
@@ -36,7 +36,7 @@ public class MenuTecnico
                     //case 2 -> MenuUpdateTecnico.menuUpdateOS(tecnico);
                     case 3 ->
                     {
-                        System.out.println("┃  RETORNANDO AO MENU INICIAL ...");
+                        System.out.println(Ferramentas.AQUA_BLUE+"┃  RETORNANDO AO MENU INICIAL ...");
                         MenuInicial.Menu();
                     }
                     default -> Ferramentas.menuDefault();

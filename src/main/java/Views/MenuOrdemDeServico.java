@@ -7,7 +7,7 @@ import Service.OrdemDeServicoService;
 import Util.Ferramentas;
 
 public class MenuOrdemDeServico
-{/*
+{
     private static OrdemDeServicoDAO osDao = new OrdemDeServicoDAO();
     private static OrdemDeServicoService osService = new OrdemDeServicoService();
 
@@ -15,14 +15,14 @@ public class MenuOrdemDeServico
     {
         if(osDao.listarOsAtivas().isEmpty())
         {
-            Ferramentas.mensagemErro("SEM ORDENS DE SERVIÇO ATIVAS");
+            Ferramentas.mensagemErro("┃  SEM ORDENS DE SERVIÇO ATIVAS");
             return;
         }
 
         for(OrdemDeServico os : osDao.listaOsAtivas())
         {
-            System.out.println("\nID: " + os.getIdOrdemDeServico());
-            System.out.println("Status: " + os.getStatusDaOrdem());
+            System.out.println(Ferramentas.AQUA_BLUE+"┃  ID: "+Ferramentas.AQUA_BLUE + os.getIdOrdemDeServico());
+            System.out.println(Ferramentas.AQUA_BLUE+"┃  Status: "+Ferramentas.AQUA_BLUE+ os.getStatusDaOrdem());
         }
     }
 
@@ -30,7 +30,7 @@ public class MenuOrdemDeServico
     {
         if(osDao.listarOsAtivas().isEmpty())
         {
-            Ferramentas.mensagemErro("SEM ORDENS DE SERVIÇO ATIVAS");
+            Ferramentas.mensagemErro("┃  SEM ORDENS DE SERVIÇO ATIVAS");
             return;
         }
 
@@ -38,12 +38,12 @@ public class MenuOrdemDeServico
         {
             if(os.getStatusDaOrdem() == StatusOS.EM_ANDAMENTO)
             {
-                System.out.println("\nID: " + os.getIdOrdemDeServico());
-                System.out.println("Descrição: " + os.getDescricao());
+                System.out.println(Ferramentas.AQUA_BLUE+"┃  ID: " + os.getIdOrdemDeServico());
+                System.out.println(Ferramentas.AQUA_BLUE+"┃  Descrição: " + os.getDescricao());
             }
         }
 
-        System.out.println("Digite o ID da Ordem de Serviço que deseja concluir: ");
+        System.out.println(Ferramentas.AQUA_BLUE+"┃  Digite o ID da Ordem de Serviço que deseja concluir: ");
         long id = Ferramentas.lInteiro();
 
         if(osDao.existeId(id))
@@ -54,8 +54,8 @@ public class MenuOrdemDeServico
         }
         else
         {
-            Ferramentas.mensagemErro("ERRO! ID NÃO EXISTE");
+            Ferramentas.mensagemErro("┃  ERRO! ID NÃO EXISTE");
             return;
         }
-    }*/
+    }
 }

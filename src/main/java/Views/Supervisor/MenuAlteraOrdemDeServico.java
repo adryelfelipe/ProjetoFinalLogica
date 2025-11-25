@@ -18,7 +18,7 @@ public class MenuAlteraOrdemDeServico {
 
         while(true)
         {
-            System.out.println("┃ ➤ Digite o ID do técnico: ");
+            System.out.println(Ferramentas.AQUA_BLUE+"┃ ➤ Digite o ID do técnico: "+Ferramentas.AQUA_BLUE);
 
             try {
                 idTecnico = Ferramentas.lInteiro();
@@ -38,7 +38,7 @@ public class MenuAlteraOrdemDeServico {
 
         while(true)
         {
-            System.out.println("┃ ➤ Digite o ID da máquina: ");
+            System.out.println(Ferramentas.AQUA_BLUE+"┃ ➤ Digite o ID da máquina: "+Ferramentas.AQUA_BLUE);
 
             try {
                 idMaquina = Ferramentas.lInteiro();
@@ -55,7 +55,7 @@ public class MenuAlteraOrdemDeServico {
 
     public static String SetDescricao() {
         while(true) {
-            System.out.print("┃ ➤ Digite a descrição da OS: ");
+            System.out.print(Ferramentas.AQUA_BLUE+"┃ ➤ Digite a descrição da OS: "+Ferramentas.AQUA_BLUE);
             String descricao = Ferramentas.lString();
 
             try {
@@ -71,7 +71,7 @@ public class MenuAlteraOrdemDeServico {
 
     public static double SetValorOS() {
         while(true) {
-            System.out.print("┃ ➤ Digite o valor da OS: R$");
+            System.out.print(Ferramentas.AQUA_BLUE+"┃ ➤ Digite o valor da OS: R$"+Ferramentas.AQUA_BLUE);
 
             try {
                 double valorOS = Ferramentas.lDouble();

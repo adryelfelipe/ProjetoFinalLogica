@@ -15,10 +15,10 @@ public class MenuAlteraTecnico
         while(true) {
             int opcao;
 
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃  1 - ABERTA                                       ┃");
-            System.out.println("┃  2 - EM ANDAMENTO                                 ┃");
-            System.out.println("┃  3 - FECHADA                                      ┃");
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - ABERTA"+Ferramentas.AQUA_BLUE+"                                       ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - EM ANDAMENTO"+Ferramentas.AQUA_BLUE+"                                 ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"3 - FECHADA"+Ferramentas.AQUA_BLUE+"                                      ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha o Status: ");
 

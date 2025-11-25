@@ -4,6 +4,8 @@ import DAO.OrdemDeServicoDAO;
 import Models.Enumeracoes.Departamento;
 import Models.OrdemDeServico;
 import Models.Supervisor;
+import Util.Ferramentas;
+
 import java.sql.SQLException;
 import java.util.List;
 
@@ -13,29 +15,29 @@ public class MenuSupervisorAcompanharStatus
 
     public static void acompanharStatus(Supervisor supervisor)
     {
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃       ACOMPANHAR STATUS DE ORDEM DE SERVIÇO       ┃");
+        System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃       "+Ferramentas.ORANGE_DARK+"ACOMPANHAR STATUS DE ORDEM DE SERVIÇO"+Ferramentas.AQUA_BLUE+"       ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         try {
 
-            // 1. Descobrir qual o departamento do Supervisor
+            //                    DESCOBRIR QUAL O DEPARTAMENTO DO SUPERVISOR                    //
             List<Departamento> departamentos = supervisor.getListaDepartamentos();
 
             if (departamentos.isEmpty()) {
-                System.out.println("Erro: Você não está vinculado a nenhum departamento.");
+                System.out.println(Ferramentas.AQUA_BLUE+"┃  ERRO: VOCÊ NÃO ESTÁ VINCULADO A NUNHUM DEPARTAMENTO!");
                 return;
             }
 
-            // Pega o primeiro departamento da lista
+            //                    PEGA O PRIMEIRO DEPARTAMENTO DA LISTA                    //
             Departamento deptEnum = departamentos.getFirst();
 
-            // Converte o Enum para o ID numérico do banco
+            //                    CONVERTE O ENUM PARA O ID NUMÉRICO DO BANCO                    //
             long idDeptBanco = (deptEnum == Departamento.ELETRICA) ? 1 : 2;
 
             System.out.println("Listando OSs do departamento: " + deptEnum);
 
-            // 2. Chamar a DAO
+            //                    CHAMAR A DAO                    //
             List<OrdemDeServico> listaOS = ordemDeServicoDAO.listarPorDepartamento(idDeptBanco);
 
             if (listaOS.isEmpty()) {
@@ -43,9 +45,9 @@ public class MenuSupervisorAcompanharStatus
                 return;
             }
 
-            // 3. Exibir Tabela Formatada
-            // %-5d = número alinhado à esquerda com 5 espaços
-            // %-15s = texto alinhado à esquerda com 15 espaços
+            //                    EXIBIR TABELA FORMATADA                    //
+            // %-5d = NÚMERO ALINHADO À ESQUEDA COM 5 ESPAÇOS
+            // %-15s = TEXTO ALINHADO À ESQUERDA COM 15 ESPAÇOS
             System.out.println("----------------------------------------------------------");
             System.out.printf("%-5s | %-10s | %-15s | %-15s%n", "ID", "Máquina", "Tipo", "Status");
             System.out.println("----------------------------------------------------------");
