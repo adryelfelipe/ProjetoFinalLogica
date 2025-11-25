@@ -122,14 +122,14 @@ public class Main {
         // Testes com ArrayList  Adryel Sapelli
         //funcionarioDAO.funcionarioArrayList.add(new Administrador(998,new NomeFuncionario("joaoAdmA"),new CPF("12345678910"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA))));
         //funcionarioDAO.funcionarioArrayList.add(new Administrador(999,new NomeFuncionario("joaoAdmB"),new CPF("12345678911"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.ELETRICA))));
-        //funcionarioDAO.salvar(new Gerente(new NomeFuncionario("joaoGerenteA"),new CPF("12345678912"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA))));
-        //funcionarioDAO.salvar(new Gerente(new NomeFuncionario("joaoGerenteB"),new CPF("12345678913"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.ELETRICA))));
-        //funcionarioDAO.salvar(new Tecnico(new NomeFuncionario("joaoTecnicoA"),new CPF("12345678914"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA)), Especialidade.SOLDADOR));
-        //funcionarioDAO.salvar(new Tecnico(new NomeFuncionario("joaoTecnicoB"),new CPF("12345678915"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.ELETRICA)), Especialidade.SOLDADOR));
-        //funcionarioDAO.salvar(new Supervisor(new NomeFuncionario("joaoSupervisorA"),new CPF("12345678916"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA)), new MetaMensal(60000)));
-        //funcionarioDAO.salvar(new Supervisor(new NomeFuncionario("joaoSupervisorB"),new CPF("12345678917"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.ELETRICA)), new MetaMensal(60000)));
-        //maquinaDAO.salvar(new Maquina(new NomeMaquina("MatheusSHOPPINGCNC"), Departamento.MECANICA, StatusMaquina.FUNCIONANDO));
-        //maquinaDAO.salvar(new Maquina(new NomeMaquina("MiguelCNC"), Departamento.ELETRICA, StatusMaquina.FUNCIONANDO));
+        // ID : 3 -> funcionarioDAO.salvar(new Gerente(new NomeFuncionario("joaoGerenteA"),new CPF(""), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA))));
+        // ID : 4 -> funcionarioDAO.salvar(new Gerente(new NomeFuncionario("joaoGerenteB"),new CPF("12345678913"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.ELETRICA))));
+        // ID : 5 -> funcionarioDAO.salvar(new Tecnico(new NomeFuncionario("joaoTecnicoA"),new CPF("12345678914"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA)), Especialidade.SOLDADOR));
+        // ID : 6 -> funcionarioDAO.salvar(new Tecnico(new NomeFuncionario("joaoTecnicoB"),new CPF("12345678915"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.ELETRICA)), Especialidade.SOLDADOR));
+        // ID : 7 -> funcionarioDAO.salvar(new Supervisor(new NomeFuncionario("joaoSupervisorA"),new CPF("12345678916"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.MECANICA)), new MetaMensal(60000)));
+        // ID : 8 -> funcionarioDAO.salvar(new Supervisor(new NomeFuncionario("joaoSupervisorB"),new CPF("12345678917"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.ELETRICA)), new MetaMensal(60000)));
+        // ID : 1 -> maquinaDAO.salvar(new Maquina(new NomeMaquina("MatheusSHOPPINGCNC"), Departamento.MECANICA, StatusMaquina.FUNCIONANDO));
+        // ID : 2 -> maquinaDAO.salvar(new Maquina(new NomeMaquina("MiguelCNC"), Departamento.ELETRICA, StatusMaquina.FUNCIONANDO));
         // Inicialização com menu
         MenuInicial.Menu();
     }
