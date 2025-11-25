@@ -20,8 +20,8 @@ public class MenuLogin
 
         // Menu interativo
         while(!verifica) {
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃                       LOGIN                       ┃");
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                       "+Ferramentas.ORANGE_DARK+"LOGIN"+Ferramentas.AQUA_BLUE+"                       ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Digite seu CPF: ");
 
@@ -40,7 +40,7 @@ public class MenuLogin
 
         while (!verifica) {
             try {
-                System.out.print("┃ ➤ Digite sua senha: ");
+                System.out.print(Ferramentas.AQUA_BLUE+"┃ ➤ Digite sua senha: "+Ferramentas.AQUA_BLUE);
                 senhaLogin = Ferramentas.lString();
                 UsuarioValidator.verificaIntegridadeSenha(senhaLogin);
                 UsuarioValidator.verificarRegrasSenha(senhaLogin);
@@ -53,7 +53,7 @@ public class MenuLogin
         try {
             funcionario = usuarioService.loginUsuario(cpfLogin, senhaLogin);
         } catch (IllegalStateException e) {
-            Ferramentas.mensagemErro("┃  ERRO! CPF OU SENHA INVÁLIDOS");
+            Ferramentas.mensagemErro("┃  ERRO! CPF OU SENHA INVÁLIDOS"+Ferramentas.AQUA_BLUE);
             return;
         }
 
@@ -68,7 +68,7 @@ public class MenuLogin
             MenuTecnico.menuTecnico((Tecnico) funcionario);
         }
         else {
-            Ferramentas.mensagemErro("┃  ERRO! CPF OU SENHA INVÁLIDOS");
+            Ferramentas.mensagemErro("┃  ERRO! CPF OU SENHA INVÁLIDOS"+Ferramentas.AQUA_BLUE);
         }
     }
 }

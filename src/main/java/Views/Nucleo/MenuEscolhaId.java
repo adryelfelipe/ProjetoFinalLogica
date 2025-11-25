@@ -13,7 +13,7 @@ public class MenuEscolhaId
         UsuarioService usuarioService = new UsuarioService();
 
         while(true) {
-            System.out.print("┃ ➤ Digite o ID: ");
+            System.out.print(Ferramentas.AQUA_BLUE+"┃ ➤ Digite o ID: "+Ferramentas.AQUA_BLUE);
 
             try {
                 long id = Ferramentas.lInteiro();
@@ -32,7 +32,7 @@ public class MenuEscolhaId
         OrdemDeServicoService ordemDeServicoService = new OrdemDeServicoService();
 
         while(true) {
-            System.out.print("┃ ➤ Digite o ID: ");
+            System.out.print(Ferramentas.AQUA_BLUE+"┃ ➤ Digite o ID: "+Ferramentas.AQUA_BLUE);
 
             try {
                 long id = Ferramentas.lInteiro();

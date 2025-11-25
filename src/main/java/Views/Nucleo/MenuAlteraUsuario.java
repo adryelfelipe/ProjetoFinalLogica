@@ -13,7 +13,7 @@ public class MenuAlteraUsuario
     {
         while(true)
         {
-            System.out.print("┃ ➤ Digite o Nome: ");
+            System.out.print(Ferramentas.AQUA_BLUE+"┃ ➤ Digite o Nome: "+Ferramentas.AQUA_BLUE);
             String nome = Ferramentas.lString();
 
             try {
@@ -32,7 +32,7 @@ public class MenuAlteraUsuario
         String CPF;
 
         while(true){
-            System.out.print("┃ ➤ Digite o CPF: ");
+            System.out.print(Ferramentas.AQUA_BLUE+"┃ ➤ Digite o CPF: "+Ferramentas.AQUA_BLUE);
             CPF = Ferramentas.lString();
 
             try {
@@ -52,7 +52,7 @@ public class MenuAlteraUsuario
         String senha;
 
         while(true){
-            System.out.print("┃ ➤ Digite a senha: ");
+            System.out.print(Ferramentas.AQUA_BLUE+"┃ ➤ Digite a senha: "+Ferramentas.AQUA_BLUE);
             senha = Ferramentas.lString();
 
             try

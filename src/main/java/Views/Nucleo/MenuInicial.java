@@ -15,12 +15,12 @@ public class MenuInicial
 
         while(true) {
             System.out.println(" ");
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃                       INICIO                      ┃");
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                       "+Ferramentas.ORANGE_DARK+"INICIO"+Ferramentas.AQUA_BLUE+"                      ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                                   ┃");
-            System.out.println("┃  1 - Login                                        ┃");
-            System.out.println("┃  2 - Sair                                         ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - Login"+Ferramentas.AQUA_BLUE+"                                        ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - Sair"+Ferramentas.AQUA_BLUE+"                                         ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
