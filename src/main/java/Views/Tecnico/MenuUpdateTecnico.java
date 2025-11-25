@@ -14,7 +14,7 @@ import Views.Supervisor.MenuAlteraOrdemDeServico;
 import java.util.InputMismatchException;
 
 public class MenuUpdateTecnico
-{
+{/*
     //                    ATRIBUTOS                    //
     public static final OrdemDeServicoService ordemDeServicoService = new OrdemDeServicoService();
 
@@ -89,5 +89,5 @@ public class MenuUpdateTecnico
         }
     }
 
-
+*/
 }

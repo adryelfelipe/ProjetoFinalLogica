@@ -13,8 +13,8 @@ public class MenuCadastroADM {
     private static final UsuarioService usuarioService = new UsuarioService();
 
     public static void menuCadastroGerente(Administrador administrador) {
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃                  CADASTRO GERENTE                 ┃");
+        System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃                  "+Ferramentas.ORANGE_DARK+"CADASTRO GERENTE"+Ferramentas.AQUA_BLUE+"                 ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         System.out.println(" ");
 
@@ -35,14 +35,14 @@ public class MenuCadastroADM {
         //                    CRIAÇÃO DO OBJETO E INSERÇÃO NO BANCO DE DADOS                 //
         Ferramentas.limpaTerminal();
 
-        System.out.println("┃  PROCESSANDO DADOS...");
+        System.out.println(Ferramentas.ITALIC+Ferramentas.DARK_CYAN+"┃  PROCESSANDO DADOS..."+Ferramentas.RESET+Ferramentas.AQUA_BLUE);
         Ferramentas.Delay(1000);
         Ferramentas.limpaTerminal();
 
         try {
             Gerente gerente = new Gerente(nome, cpf, senha, Arrays.asList(departamento));
             usuarioService.salvarGerente(administrador, gerente);
-            System.out.println("┃  GERENTE CADASTRADO COM SUCESSO!");
+            System.out.println(Ferramentas.BOLD+Ferramentas.ORANGE_DARK+"┃  GERENTE CADASTRADO COM SUCESSO!"+Ferramentas.RESET+Ferramentas.AQUA_BLUE);
             Ferramentas.Delay(800);
         } catch (IllegalArgumentException | IllegalStateException e) {
             Ferramentas.mensagemErro(e.getMessage());

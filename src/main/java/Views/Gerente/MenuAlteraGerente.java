@@ -20,15 +20,15 @@ public class MenuAlteraGerente {
         //                    MENUZINHO                    //
         while(true) {
             System.out.println(" ");
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃                    ATUALIZAR OS                   ┃");
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                    "+Ferramentas.ORANGE_DARK+"ATUALIZAR OS"+Ferramentas.AQUA_BLUE+"                   ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                                   ┃");
-            System.out.println("┃  1 - Técnico eletrotécnica                        ┃");
-            System.out.println("┃  2 - Eletricista Fabril                           ┃");
-            System.out.println("┃  3 - Soldador                                     ┃");
-            System.out.println("┃  4 - Eletromecânica                               ┃");
-            System.out.println("┃  5 - Pintor Industrial                            ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - Técnico eletrotécnica"+Ferramentas.AQUA_BLUE+"                        ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - Eletricista Fabril"+Ferramentas.AQUA_BLUE+"                           ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"3 - Soldador"+Ferramentas.AQUA_BLUE+"                                     ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"4 - Eletromecânica"+Ferramentas.AQUA_BLUE+"                               ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"5 - Pintor Industrial"+Ferramentas.AQUA_BLUE+"                            ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
@@ -65,7 +65,7 @@ public class MenuAlteraGerente {
 
         //                    MENUZINHO                    //
         while(true) {
-            System.out.print("┃ ➤ Digite a meta mensal: R$");
+            System.out.print(Ferramentas.AQUA_BLUE+"┃ ➤ Digite a meta mensal: R$");
 
             try
             {

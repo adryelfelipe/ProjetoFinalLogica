@@ -10,7 +10,7 @@ public class MenuAlteraMaquina {
     //SET NOME DO USUÁRIO
     public static String MenuSetNomeMaquina() {
         while(true) {
-            System.out.print("┃ ➤ Digite o Nome: ");
+            System.out.print(Ferramentas.AQUA_BLUE+"┃ ➤ Digite o Nome: ");
             String nome = Ferramentas.lString();
 
             try {
@@ -26,7 +26,7 @@ public class MenuAlteraMaquina {
 
     public static String MenuSetLocalizacao() {
         while(true) {
-            System.out.print("┃ ➤ Digite a Localização: ");
+            System.out.print(Ferramentas.AQUA_BLUE+"┃ ➤ Digite a Localização: ");
             String localizacao = Ferramentas.lString();
 
             try {
@@ -44,10 +44,10 @@ public class MenuAlteraMaquina {
         while(true) {
             int opcao;
 
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃  1 - FUNCIONANDO                                  ┃");
-            System.out.println("┃  2 - DEFEITO                                      ┃");
-            System.out.println("┃  3 - EM_MANUTENÇÃO                                ┃");
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - FUNCIONANDO"+Ferramentas.AQUA_BLUE+"                                  ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - DEFEITO"+Ferramentas.AQUA_BLUE+"                                      ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"3 - EM_MANUTENÇÃO"+Ferramentas.AQUA_BLUE+"                                ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha o Status: ");
 

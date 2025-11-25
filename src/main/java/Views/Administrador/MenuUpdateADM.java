@@ -31,12 +31,12 @@ public class MenuUpdateADM {
 
         while (true)
         {
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃                  ATUALIZAR GERENTE                ┃");
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                  "+Ferramentas.ORANGE_DARK+"ATUALIZAR GERENTE"+Ferramentas.AQUA_BLUE+"                ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println("                                                     ");
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃  EDITAR   GERENTE  ┃         ┃        ATUAL       ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"EDITAR   GERENTE"+Ferramentas.AQUA_BLUE+"  ┃         ┃        "+Ferramentas.ORANGE_DARK+"ATUAL"+Ferramentas.AQUA_BLUE+"       ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃  1 - Nome          ┃         ┃ Nome: " + gerente.getNome());
             System.out.println("┃  2 - CPF           ┃         ┃ CPF: " + gerente.getCpf());

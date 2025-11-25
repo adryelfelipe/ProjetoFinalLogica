@@ -7,7 +7,7 @@ import Service.OrdemDeServicoService;
 import Util.Ferramentas;
 
 public class MenuOrdemDeServico
-{
+{/*
     private static OrdemDeServicoDAO osDao = new OrdemDeServicoDAO();
     private static OrdemDeServicoService osService = new OrdemDeServicoService();
 
@@ -57,5 +57,5 @@ public class MenuOrdemDeServico
             Ferramentas.mensagemErro("ERRO! ID NÃO EXISTE");
             return;
         }
-    }
+    }*/
 }

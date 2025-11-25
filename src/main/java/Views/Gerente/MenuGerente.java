@@ -14,15 +14,15 @@ public class MenuGerente
         {
             System.out.println(" ");
 
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃                    MENU GERENTE                   ┃");
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                    "+Ferramentas.ORANGE_DARK+"MENU GERENTE"+Ferramentas.AQUA_BLUE+"                   ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-            System.out.println("┃  1 - Cadastrar                                    ┃");
-            System.out.println("┃  2 - Visualizar Relatórios                        ┃");
-            System.out.println("┃  3 - Visualizar Ocorrências                       ┃");
-            System.out.println("┃  4 - Atualizar Técnico/Supervisor                 ┃");
-            System.out.println("┃  5 - Remover Técnico/Supervisor                   ┃");
-            System.out.println("┃  6 - Retornar                                     ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - Cadastrar"+Ferramentas.AQUA_BLUE+"                                    ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - Visualizar Relatórios"+Ferramentas.AQUA_BLUE+"                        ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"3 - Visualizar Ocorrências"+Ferramentas.AQUA_BLUE+"                       ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"4 - Atualizar Técnico/Supervisor"+Ferramentas.AQUA_BLUE+"                 ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"5 - Remover Técnico/Supervisor"+Ferramentas.AQUA_BLUE+"                   ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"6 - Retornar"+Ferramentas.AQUA_BLUE+"                                     ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
@@ -39,7 +39,7 @@ public class MenuGerente
                     case 5 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha(gerente);
                     case 6 ->
                     {
-                        System.out.println("┃  RETORNANDO AO MENU INICIAL ...");
+                        System.out.println(Ferramentas.ITALIC+Ferramentas.DARK_CYAN+"┃  RETORNANDO AO MENU INICIAL ..."+Ferramentas.RESET+Ferramentas.AQUA_BLUE);
 
                         MenuInicial.Menu();
                     }

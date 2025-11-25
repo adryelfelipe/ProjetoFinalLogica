@@ -21,13 +21,13 @@ public class MenuUpdateGerente {
         {
             //                    MENU                    //
             while(!verifica) {
-                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃            ATUALIZAR TÉCNICO/SUPERVISOR           ┃");
+                System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃            "+Ferramentas.ORANGE_DARK+"ATUALIZAR TÉCNICO/SUPERVISOR"+Ferramentas.AQUA_BLUE+"           ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
                 System.out.println("┃                                                   ┃");
-                System.out.println("┃  1 - Atualizar Técnico                            ┃");
-                System.out.println("┃  2 - Atualizar Supervisor                         ┃");
-                System.out.println("┃  3 - Sair do Menu                                 ┃");
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - Atualizar Técnico"+Ferramentas.AQUA_BLUE+"                            ┃");
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - Atualizar Supervisor"+Ferramentas.AQUA_BLUE+"                         ┃");
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"3 - Sair do Menu"+Ferramentas.AQUA_BLUE+"                                 ┃");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃ ➤ Escolha: ");
 
@@ -49,7 +49,7 @@ public class MenuUpdateGerente {
                 case 2 -> menuUpdateSupervisor(gerente);
                 case 3 -> {return;}
 
-                default -> Ferramentas.mensagemErro("┃  ERRO! TENTE NOVAMENTE!");
+                default -> Ferramentas.mensagemErro(Ferramentas.ITALIC+Ferramentas.DARK_CYAN+"┃  ERRO! TENTE NOVAMENTE!"+Ferramentas.RESET+Ferramentas.AQUA_BLUE);
             }
         }
     }
@@ -78,18 +78,18 @@ public class MenuUpdateGerente {
             {
                 //                    MENU                    //
                 System.out.println("\n                                                 \n");
-                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃                  ATUALIZAR TÉCNICO                ┃");
+                System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃                  "+Ferramentas.ORANGE_DARK+"ATUALIZAR TÉCNICO"+Ferramentas.AQUA_BLUE+"                ┃");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("                                                     ");
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃  EDITAR   TÉCNICO  ┃         ┃        ATUAL       ┃");
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"EDITAR   TÉCNICO"+Ferramentas.AQUA_BLUE+"  ┃         ┃        "+Ferramentas.ORANGE_DARK+"ATUAL"+Ferramentas.AQUA_BLUE+"       ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.println("┃  1 - Nome          ┃         ┃ Nome: " + tecnico.getNome());
-                System.out.println("┃  2 - CPF           ┃         ┃ CPF: " + tecnico.getCpf());
-                System.out.println("┃  3 - Senha         ┃         ┃ Senha: " + tecnico.getSenha());
-                System.out.println("┃  5 - Especialidade ┃         ┃ Especialidade: " + tecnico.getEspecialidade());
-                System.out.println("┃  6 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - Nome"+Ferramentas.AQUA_BLUE+"          ┃         ┃ Nome: " + tecnico.getNome());
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - CPF"+Ferramentas.AQUA_BLUE+"           ┃         ┃ CPF: " + tecnico.getCpf());
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"3 - Senha"+Ferramentas.AQUA_BLUE+"         ┃         ┃ Senha: " + tecnico.getSenha());
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"5 - Especialidade"+Ferramentas.AQUA_BLUE+" ┃         ┃ Especialidade: " + tecnico.getEspecialidade());
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"6 - Sair do Menu"+Ferramentas.AQUA_BLUE+"  ┃         ┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃ ➤ Escolha:  ");
 
@@ -161,18 +161,18 @@ public class MenuUpdateGerente {
             {
                 //                    MENU                    //
                 System.out.println("\n                                                       \n");
-                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃                ATUALIZAR SUPERVISOR               ┃");
+                System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃                "+Ferramentas.ORANGE_DARK+"ATUALIZAR SUPERVISOR"+Ferramentas.AQUA_BLUE+"               ┃");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("                                                            ");
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━┓        ┏━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃ EDITAR   SUPERVISOR ┃        ┃       ATUAL        ┃");
+                System.out.println("┃ "+Ferramentas.ORANGE_DARK+"EDITAR   SUPERVISOR"+Ferramentas.AQUA_BLUE+" ┃        ┃       "+Ferramentas.ORANGE_DARK+"ATUAL"+Ferramentas.AQUA_BLUE+"        ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━━┃        ┃━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.println("┃  1 - Nome           ┃        ┃ Nome: " + supervisor.getNome());
-                System.out.println("┃  2 - CPF            ┃        ┃ CPF: " + supervisor.getCpf());
-                System.out.println("┃  3 - Senha          ┃        ┃ Senha: " + supervisor.getSenha());
-                System.out.println("┃  5 - Meta Mensal    ┃        ┃ Meta Mensal: " + supervisor.getMetaMensal());
-                System.out.println("┃  6 - Sair do Menu   ┃        ┗━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - Nome"+Ferramentas.AQUA_BLUE+"           ┃        ┃ Nome: " + supervisor.getNome());
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - CPF"+Ferramentas.AQUA_BLUE+"            ┃        ┃ CPF: " + supervisor.getCpf());
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"3 - Senha"+Ferramentas.AQUA_BLUE+"          ┃        ┃ Senha: " + supervisor.getSenha());
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"5 - Meta Mensal"+Ferramentas.AQUA_BLUE+"    ┃        ┃ Meta Mensal: " + supervisor.getMetaMensal());
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"6 - Sair do Menu"+Ferramentas.AQUA_BLUE+"   ┃        ┗━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃ ➤ Escolha:  ");
 
