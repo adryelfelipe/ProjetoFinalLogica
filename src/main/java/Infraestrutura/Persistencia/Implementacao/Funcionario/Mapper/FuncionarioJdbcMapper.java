@@ -26,20 +26,20 @@ import java.util.List;
 public class FuncionarioJdbcMapper
 {
 
-    public Funcionario paraEntidadePorId(ResultSet rs) throws SQLException {
-        // Pega dados comuns...
+    public Funcionario paraEntidadePorId(ResultSet rs, Connection conn) throws SQLException {
+
         long id = rs.getLong("id_usuario");
         String nome = rs.getString("nome");
         String cpf = rs.getString("cpf");
         String senha = rs.getString("senha");
         int nivelAcesso = rs.getInt("id_na");
 
+        ListaDepartamentos listaDepartamentos = paraDepartamentosPorId(conn, id);
+
         switch(nivelAcesso)
         {
             case 1:
-                // Criando objeto de acordo com seu nivel_acesso.
                 int idEspecialidade = rs.getInt("id_especialidade");
-
                 Especialidade especialidade = switch(idEspecialidade) {
                     case 1 -> Especialidade.TECNICO_ELETROTECNICA;
                     case 2 -> Especialidade.ELETRICISTA_FABRIL;
@@ -47,43 +47,24 @@ public class FuncionarioJdbcMapper
                     case 4 -> Especialidade.TECNICO_ELETROMECANICA;
                     default -> Especialidade.PINTOR_INDUSTRIAL;
                 };
-                int idDepartamentoTe = rs.getInt("id_departamento");
 
-                Departamento departamentoTe = switch (idDepartamentoTe) {
-                    case 1 -> Departamento.ELETRICA;
-                    default -> Departamento.MECANICA;
-                };
+                return new Tecnico(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha),
+                        listaDepartamentos, especialidade);
 
-                return new Tecnico(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha),new ListaDepartamentos(Arrays.asList(departamentoTe)), especialidade);
-
-            case 2:
-                int idDepartamentoSs = rs.getInt("id_departamento");
-
-                Departamento departamentoSs = switch (idDepartamentoSs) {
-                    case 1 -> Departamento.ELETRICA;
-                    default -> Departamento.MECANICA;
-                };
+            case 2: // SUPERVISOR
                 double metaMensal = rs.getDouble("meta_mensal");
-                return new Supervisor(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamentoSs)), new MetaMensal(metaMensal));
 
-            case 3:
-                int idDepartamento = rs.getInt("id_departamento");
+                return new Supervisor(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha),
+                        listaDepartamentos, new MetaMensal(metaMensal));
 
-                Departamento departamento = switch (idDepartamento) {
-                    case 1 -> Departamento.ELETRICA;
-                    default -> Departamento.MECANICA;
-                };
+            case 3: // GERENTE
 
-                return new Gerente(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamento)));
+                return new Gerente(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha),
+                        listaDepartamentos);
 
-            case 4:
-                int idDepartamentoAd = rs.getInt("id_departamento");
-
-                Departamento departamentoAd = switch (idDepartamentoAd) {
-                    case 1 -> Departamento.ELETRICA;
-                    default -> Departamento.MECANICA;
-                };
-                return new Administrador(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha), new ListaDepartamentos(Arrays.asList(departamentoAd)));
+            case 4: // ADMIN
+                return new Administrador(id, new NomeFuncionario(nome), new CPF(cpf), new Senha(senha),
+                        listaDepartamentos);
         }
 
         return null;

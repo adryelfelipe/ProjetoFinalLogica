@@ -179,7 +179,6 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
     @Override
     public Funcionario buscar(long idDoUsuarioLogado)
     {
-        // Consulta MYSQL.
         String querySQL = "SELECT " +
                 "U.ID_USUARIO, U.nome, U.cpf, U.senha, U.id_na, " +
                 "G.id_departamento, " +
@@ -191,7 +190,6 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
                 "LEFT JOIN Tecnico T ON U.id_usuario = T.id_tecnico " +
                 "WHERE U.id_usuario = ?";
 
-
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
         {
@@ -201,12 +199,12 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
             {
                 if(rs.next())
                 {
-                    return mapper.paraEntidadePorId(rs);
+                    return mapper.paraEntidadePorId(rs, conn);
                 }
             }
         } catch (SQLException e)
         {
-            System.err.println("ERRO ao buscar usuário por ID!"+e.getMessage());
+            System.err.println("ERRO ao buscar usuário por ID!" + e.getMessage());
         }
 
         return null;
