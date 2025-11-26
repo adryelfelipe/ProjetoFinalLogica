@@ -20,15 +20,15 @@ public class MenuTecnicoOs {
         while (true) {
             Ferramentas.limpaTerminal();
 
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃          MENU TÉCNICO - OS           ┃");
-            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-            System.out.println("┃                                      ┃");
-            System.out.println("┃  1 - Visualizar minhas Ordens        ┃");
-            System.out.println("┃  2 - Iniciar ordem de serviço        ┃");
-            System.out.println("┃  3 - Finalizar ordem de serviço      ┃");
-            System.out.println("┃  4 - Retornar                        ┃");
-            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                   MENU TÉCNICO - OS                    ┃");
+            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+            System.out.println("┃                                                        ┃");
+            System.out.println("┃  1 - Visualizar minhas Ordens                          ┃");
+            System.out.println("┃  2 - Iniciar ordem de serviço                          ┃");
+            System.out.println("┃  3 - Finalizar ordem de serviço                        ┃");
+            System.out.println("┃  4 - Retornar                                          ┃");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
             try {

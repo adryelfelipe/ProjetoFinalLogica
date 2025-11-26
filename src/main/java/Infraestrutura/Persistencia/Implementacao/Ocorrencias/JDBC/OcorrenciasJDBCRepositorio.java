@@ -70,20 +70,33 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
 
     @Override
     public void atualizar(Ocorrencia ocorrencia) {
-        String query = "UPDATE OcorrenciasAtivas SET id_maquina = ?, id_departamento = ?, id_statusOc = ? WHERE id_oa = ?";
+        String sqlAtiva = "UPDATE OcorrenciasAtivas SET id_maquina = ?, id_departamento = ?, id_statusOc = ? WHERE id_oa = ?";
+        String sqlGeral = "UPDATE OcorrenciasGerais SET nome_maquina = ?, id_departamento = ?, id_statusOc = ? WHERE id_og = ? AND id_statusOc != 3";
 
-        try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement stmt = connection.prepareStatement(query)) {
+        try (Connection connection = ConnectionFactory.getConnection()) {
 
-            stmt.setLong(1, ocorrencia.getIdMaquina());
-            stmt.setInt(2, ocorrencia.getDepartamento().getId());
-            stmt.setLong(3, ocorrencia.getStatusOc().getId());
-            stmt.setLong(4, ocorrencia.getIdOcorrencia());
+            try (PreparedStatement stmt = connection.prepareStatement(sqlAtiva)) {
+                stmt.setLong(1, ocorrencia.getIdMaquina());
+                stmt.setInt(2, ocorrencia.getDepartamento().getId());
+                stmt.setLong(3, ocorrencia.getStatusOc().getId());
+                stmt.setLong(4, ocorrencia.getIdOcorrencia());
 
-            stmt.executeUpdate();
+                stmt.executeUpdate();
+            }
+
+            try (PreparedStatement stmt = connection.prepareStatement(sqlGeral)) {
+                String nomeMaquina = maquinaMapper.paraNomePorId(connection, ocorrencia.getIdMaquina());
+
+                stmt.setString(1, nomeMaquina);
+                stmt.setInt(2, ocorrencia.getDepartamento().getId());
+                stmt.setLong(3, ocorrencia.getStatusOc().getId());
+                stmt.setLong(4,ocorrencia.getIdOcorrencia()); // Arrumar aqui
+
+                stmt.executeUpdate();
+            }
 
         } catch (SQLException e) {
-            System.err.println("ERRO AO ATUALIZAR OCORRENCIA");
+            System.err.println("ERRO AO ATUALIZAR OCORRENCIA (ATIVAS E GERAIS): " + e.getMessage());
         }
     }
 

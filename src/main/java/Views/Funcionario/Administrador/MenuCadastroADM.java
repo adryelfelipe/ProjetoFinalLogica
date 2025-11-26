@@ -13,10 +13,10 @@ import java.util.List;
 
 public class MenuCadastroADM {
     public static void menuCadastroGerente(NivelAcesso nivelAcesso) {
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃       CADASTRO GERENTE         ┃");
-        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
-        System.out.println(" ");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃                    CADASTRO GERENTE                    ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+        System.out.println("                                                          ");
 
         // ----- Atribuição de caracteríscticas de um Usuário ----- //
         String nome = MenuSetFuncionario.MenuSetNome();
@@ -35,7 +35,7 @@ public class MenuCadastroADM {
         // -- Criação do objeto e inserção no banco de dados -- //
         Ferramentas.limpaTerminal();
 
-        System.out.println("PROCESSANDO DADOS...");
+        System.out.println("┃  PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
         Ferramentas.limpaTerminal();
 
