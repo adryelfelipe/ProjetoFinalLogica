@@ -153,10 +153,6 @@ public class OsJdbcRepositorio implements OrdemDeServicoRepositorio {
                 stmt.setString(9, nomeMaquina);
 
                 int linhasGerais = stmt.executeUpdate();
-
-                if (linhasGerais > 0) {
-                    System.out.println("Histórico Geral sincronizado com sucesso!");
-                }
             }
 
         } catch (SQLException e) {

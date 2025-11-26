@@ -309,8 +309,6 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
                 }
             }
 
-            System.out.println("Funcionário atualizado com sucesso!");
-
         } catch (SQLException e) {
             System.err.println("ERRO ao atualizar funcionário: " + e.getMessage());
         }
@@ -479,8 +477,23 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
     }
 
     @Override
-    public NomeFuncionario buscarNome(long id)
-    {
+    public NomeFuncionario buscarNome(long id) {
+        String querySQL = "SELECT nome FROM Usuario WHERE id_usuario = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(querySQL)) {
+
+            stmt.setLong(1, id);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    String nomeSalvo = rs.getString("nome");
+                    return new NomeFuncionario(nomeSalvo);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("ERRO ao buscar nome do funcionário por ID: " + e.getMessage());
+        }
         return null;
     }
 }

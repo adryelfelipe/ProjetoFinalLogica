@@ -90,7 +90,7 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
                 stmt.setString(1, nomeMaquina);
                 stmt.setInt(2, ocorrencia.getDepartamento().getId());
                 stmt.setLong(3, ocorrencia.getStatusOc().getId());
-                stmt.setLong(4,ocorrencia.getIdOcorrencia()); // Arrumar aqui
+                stmt.setLong(4,ocorrencia.getIdOcorrencia());
 
                 stmt.executeUpdate();
             }
