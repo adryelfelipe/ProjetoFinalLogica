@@ -68,14 +68,12 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
 
             try (Connection conn = ConnectionFactory.getConnection()) {
 
-                // Prepara o comando avisando que queremos a chave gerada de volta
                 PreparedStatement stmt = conn.prepareStatement(sqlUsuario, Statement.RETURN_GENERATED_KEYS);
 
                 stmt.setString(1, funcionario.getNome().getNome());
                 stmt.setString(2, funcionario.getCpf().getCpf());
                 stmt.setString(3, funcionario.getSenha().getSenha());
 
-                // Define o ID do Nivel de Acesso baseado na classe
                 int idNa = 1; // Padrão Tecnico
                 if (funcionario instanceof Supervisor) idNa = 2;
                 else if (funcionario instanceof Gerente) idNa = 3;
@@ -84,7 +82,6 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
                 stmt.setInt(4, idNa);
                 stmt.executeUpdate(); // Executa o INSERT
 
-                // --- PASSO 2: Pegar o ID que o banco criou ---
                 ResultSet rs = stmt.getGeneratedKeys();
                 long idGerado = 0;
                 if (rs.next()) {
@@ -104,17 +101,14 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
                     stmtDept.executeUpdate();
                 }
 
-                // --- PASSO 4: Salvar na tabela específica (Tecnico, Supervisor, etc) ---
                 if (funcionario instanceof Tecnico) {
                     String sql = "INSERT INTO Tecnico (id_tecnico, id_especialidade) VALUES (?, ?)";
                     PreparedStatement stmtCargo = conn.prepareStatement(sql);
                     stmtCargo.setLong(1, idGerado);
 
-                    // Faz o cast para poder pegar a especialidade
                     Tecnico tec = (Tecnico) funcionario;
 
-                    // Lógica simples: Se for Eletrotécnica é 1, senão coloca 2 (exemplo basico)
-                    int idEsp = (tec.getEspecialidade() == Especialidade.TECNICO_ELETROTECNICA) ? 1 : 2;
+                    int idEsp = tec.getEspecialidade().getId();
 
                     stmtCargo.setInt(2, idEsp);
                     stmtCargo.executeUpdate();
@@ -133,7 +127,6 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
                     PreparedStatement stmtCargo = conn.prepareStatement(sql);
                     stmtCargo.setLong(1, idGerado);
 
-                    // Pega o primeiro departamento da lista como principal, ou 1 se não tiver
                     int idDeptPrincipal = 1;
                     if (!funcionario.getDepartamentos().getListaDepartamentos().isEmpty()) {
                         idDeptPrincipal = (funcionario.getDepartamentos().getListaDepartamentos().getFirst() == Departamento.ELETRICA) ? 1 : 2;
@@ -179,7 +172,6 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
     @Override
     public Funcionario buscar(long idDoUsuarioLogado)
     {
-        // Consulta MYSQL.
         String querySQL = "SELECT " +
                 "U.ID_USUARIO, U.nome, U.cpf, U.senha, U.id_na, " +
                 "G.id_departamento, " +
@@ -191,7 +183,6 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
                 "LEFT JOIN Tecnico T ON U.id_usuario = T.id_tecnico " +
                 "WHERE U.id_usuario = ?";
 
-
         try(Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(querySQL))
         {
@@ -201,12 +192,12 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
             {
                 if(rs.next())
                 {
-                    return mapper.paraEntidadePorId(rs);
+                    return mapper.paraEntidadePorId(rs, conn);
                 }
             }
         } catch (SQLException e)
         {
-            System.err.println("ERRO ao buscar usuário por ID!"+e.getMessage());
+            System.err.println("ERRO ao buscar usuário por ID!" + e.getMessage());
         }
 
         return null;
@@ -356,6 +347,7 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
         }
         return false;
     }
+
 
     @Override
     public NivelAcesso nivelAcessoPorID(long id)

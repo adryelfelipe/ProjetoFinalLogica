@@ -4,40 +4,52 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import Aplicacao.Ocorrencia.Mapper.OcorrenciaMapper;
 import Dominio.Ocorrencia.Ocorrencia;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Ocorrencia.Enumeracoes.StatusOc;
 import Dominio.Ocorrencia.Repositories.OcorrenciaRepositorio;
 import Infraestrutura.Configuracao.ConnectionFactory;
+import Infraestrutura.Persistencia.Implementacao.Maquina.Mapper.MaquinaJdbcMapper;
 import Infraestrutura.Persistencia.Implementacao.Ocorrencias.JDBC.Mapper.OcorrenciaMappers;
 
 public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
 
     private final OcorrenciaMappers mapper = new OcorrenciaMappers();
+    private final MaquinaJdbcMapper maquinaMapper = new MaquinaJdbcMapper();
 
     @Override
     public void salvar(Ocorrencia ocorrencia) {
-        String query = "INSERT INTO OcorrenciasAtivas (id_maquina, id_departamento, id_statusOc) VALUES (?, ?, ?)";
+        String sqlAtiva = "INSERT INTO OcorrenciasAtivas (id_maquina, id_departamento, id_statusOc) VALUES (?, ?, ?)";
+        String sqlGeral = "INSERT INTO OcorrenciasGerais (nome_maquina, id_departamento, id_statusOc) VALUES (?, ?, ?)";
 
-        try (Connection connection = ConnectionFactory.getConnection();
-             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection connection = ConnectionFactory.getConnection()) {
 
-            stmt.setLong(1, ocorrencia.getIdMaquina());
-            stmt.setInt(2, ocorrencia.getDepartamento().getId());
-            stmt.setLong(3, ocorrencia.getStatusOc().getId());
+            try (PreparedStatement stmt = connection.prepareStatement(sqlAtiva, Statement.RETURN_GENERATED_KEYS)) {
+                stmt.setLong(1, ocorrencia.getIdMaquina());
+                stmt.setInt(2, ocorrencia.getDepartamento().getId());
+                stmt.setLong(3, ocorrencia.getStatusOc().getId());
 
-            int linhas = stmt.executeUpdate();
+                int linhas = stmt.executeUpdate();
 
-            if (linhas > 0) {
-                try (ResultSet rs = stmt.getGeneratedKeys()) {
-                    if (rs.next()) {
-                        ocorrencia.alteraIdOcorrencia(rs.getLong(1));
+                if (linhas > 0) {
+                    try (ResultSet rs = stmt.getGeneratedKeys()) {
+                        if (rs.next()) {
+                            ocorrencia.alteraIdOcorrencia(rs.getLong(1));
+                        }
                     }
                 }
             }
+
+            try (PreparedStatement stmt = connection.prepareStatement(sqlGeral)) {
+                String nomeMaquina = maquinaMapper.paraNomePorId(connection, ocorrencia.getIdMaquina());
+                stmt.setString(1, nomeMaquina);
+                stmt.setInt(2, ocorrencia.getDepartamento().getId());
+                stmt.setLong(3, ocorrencia.getStatusOc().getId());
+                stmt.executeUpdate();
+            }
+
         } catch (SQLException e) {
-            System.err.println("ERRO AO SALVAR OCORRENCIA ATIVA");
+            System.err.println("ERRO AO SALVAR OCORRENCIA (ATIVAS E GERAIS): " + e.getMessage());
         }
     }
 
@@ -78,7 +90,7 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
     @Override
     public List<Ocorrencia> listarOcAtivas() {
         List<Ocorrencia> ocorrencias = new ArrayList<>();
-        String query = "SELECT id_oa, id_maquina, id_departamento, status_oc_codigo FROM OcorrenciasAtivas";
+        String query = "SELECT id_oa, id_maquina, id_departamento, id_statusOc FROM OcorrenciasAtivas";
 
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement stmt = connection.prepareStatement(query);
@@ -103,9 +115,10 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
     }
 
     @Override
-    public List<Ocorrencia> listarOcGerais() {
+    public List<Ocorrencia> listarOcGerais()
+    {
         List<Ocorrencia> ocorrencias = new ArrayList<>();
-        String query = "SELECT id_og, id_maquina, id_departamento, id_statusOc FROM OcorrenciasGerais";
+        String query = "SELECT id_og, nome_maquina, id_departamento, id_statusOc FROM OcorrenciasGerais";
 
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -113,14 +126,19 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
 
             while (resultSet.next()) {
                 long idOcorrencia = resultSet.getLong("id_og");
-                long idMaquina = resultSet.getLong("id_maquina");
+
+                String nomeMaquina = resultSet.getString("nome_maquina");
+
+                long idMaquinaRecuperado = maquinaMapper.paraIdPorNome(connection, nomeMaquina);
+
                 int idDepto = resultSet.getInt("id_departamento");
-                int statusOcCodigo = resultSet.getInt("id_statusOc");
+                int statusId = resultSet.getInt("id_statusOc");
 
                 Departamento departamento = mapper.mapearDepartamento(idDepto);
-                StatusOc statusOc = mapper.mapearStatus(statusOcCodigo);
+                StatusOc statusOc = mapper.mapearStatus(statusId);
 
-                Ocorrencia ocorrencia = new Ocorrencia(idOcorrencia, idMaquina, departamento, statusOc);
+                Ocorrencia ocorrencia = new Ocorrencia(idOcorrencia, idMaquinaRecuperado, departamento, statusOc);
+
                 ocorrencias.add(ocorrencia);
             }
         } catch (SQLException e) {
@@ -204,14 +222,17 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
         }
         return ocorrencia;
     }
+
     public void salvarGeral(Ocorrencia ocorrencia) {
-        String query = "INSERT INTO OcorrenciasGerais (id_maquina, id_departamento) VALUES (?, ?)";
+        String query = "INSERT INTO OcorrenciasGerais (nome_maquina, id_departamento, id_statusOc) VALUES (?, ?, ?)";
 
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmt.setLong(1, ocorrencia.getIdMaquina());
+            String nomeMaquina = maquinaMapper.paraNomePorId(connection, ocorrencia.getIdMaquina());
+            stmt.setString(1, nomeMaquina);
             stmt.setInt(2, ocorrencia.getDepartamento().getId());
+            stmt.setLong(3, ocorrencia.getStatusOc().getId());
 
             int linhas = stmt.executeUpdate();
 
@@ -242,14 +263,16 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
     }
 
     public void atualizarGeral(Ocorrencia ocorrencia) {
-        String query = "UPDATE OcorrenciasGerais SET id_maquina = ?, id_departamento = ? WHERE id_og = ?";
+        String query = "UPDATE OcorrenciasGerais SET nome_maquina = ?, id_departamento = ?, id_statusOc = ? WHERE id_og = ?";
 
         try (Connection connection = ConnectionFactory.getConnection();
              PreparedStatement stmt = connection.prepareStatement(query)) {
 
-            stmt.setLong(1, ocorrencia.getIdMaquina());
+            String nomeMaquina = maquinaMapper.paraNomePorId(connection, ocorrencia.getIdMaquina());
+            stmt.setString(1, nomeMaquina);
             stmt.setInt(2, ocorrencia.getDepartamento().getId());
-            stmt.setLong(3, ocorrencia.getIdOcorrencia());
+            stmt.setLong(3, ocorrencia.getStatusOc().getId());
+            stmt.setLong(4, ocorrencia.getIdOcorrencia());
 
             stmt.executeUpdate();
 
@@ -259,7 +282,7 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
     }
 
     public Ocorrencia buscarGeralPorId(long idOc) {
-        String query = "SELECT id_og, id_maquina, id_departamento FROM OcorrenciasGerais WHERE id_og = ?";
+        String query = "SELECT id_og, nome_maquina, id_departamento, id_statusOc FROM OcorrenciasGerais WHERE id_og = ?";
         Ocorrencia ocorrencia = null;
 
         try (Connection connection = ConnectionFactory.getConnection();
@@ -270,13 +293,19 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
             try (ResultSet resultSet = stmt.executeQuery()) {
                 if (resultSet.next()) {
                     long idOcorrencia = resultSet.getLong("id_og");
-                    long idMaquina = resultSet.getLong("id_maquina");
+
+                    // CONVERSÃO NOME -> ID
+                    String nomeMaquina = resultSet.getString("nome_maquina");
+                    long idMaquinaRecuperado = maquinaMapper.paraIdPorNome(connection, nomeMaquina);
+
                     int idDepto = resultSet.getInt("id_departamento");
+                    int statusId = resultSet.getInt("id_statusOc");
 
                     Departamento departamento = mapper.mapearDepartamento(idDepto);
-                    StatusOc statusOc = mapper.getStatusParaGeral();
+                    StatusOc statusOc = mapper.mapearStatus(statusId);
 
-                    ocorrencia = new Ocorrencia(idOcorrencia, idMaquina, departamento, statusOc);
+                    // CONSTRUTOR ORIGINAL
+                    ocorrencia = new Ocorrencia(idOcorrencia, idMaquinaRecuperado, departamento, statusOc);
                 }
             }
         } catch (SQLException e) {
@@ -284,5 +313,4 @@ public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
         }
         return ocorrencia;
     }
-
 }

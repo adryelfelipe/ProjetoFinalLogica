@@ -109,7 +109,7 @@ public class MenuUpdateGerente {
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
                 System.out.printf("┃  1 - Nome          ┃         ┃  %-26s┃%n", responseId.nome().getNome());
                 System.out.printf("┃  2 - CPF           ┃         ┃  %-26s┃%n", responseId.cpf().getCpf());
-                System.out.printf("┃  3 - Departamento ┃         ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
+                System.out.printf("┃  3 - Departamento  ┃         ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
                 System.out.printf("┃  4 - Especialidade ┃         ┃  %-26s┃%n", responseId.especialidade());
                 System.out.println("┃  5 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
@@ -195,7 +195,6 @@ public class MenuUpdateGerente {
         long idSupervisor;
         int opcaoGer = 0;
         List<FuncionarioResponse> listaSupervisor = new ArrayList<>();
-
         ListaFuncionariosResponse responseLista = Main.funcionarioController.listaFuncionariosParaGerente(nivelAcesso);
 
         for (FuncionarioResponse funcionario : responseLista.listaFuncionarios()) {

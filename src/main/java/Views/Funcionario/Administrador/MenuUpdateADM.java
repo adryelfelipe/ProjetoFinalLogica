@@ -4,6 +4,8 @@ import Aplicacao.Funcionario.Gerente.Dtos.BuscarPorId.GerentePorIdResponse;
 import Aplicacao.Funcionario.Gerente.Dtos.Atualizar.AtualizarGerenteRequest;
 import Aplicacao.Funcionario.Nucleo.Dtos.Atualizar.AtualizarFuncionarioResponse;
 import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
+import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioResponse;
+import Aplicacao.Funcionario.Nucleo.Dtos.ListarFuncionarios.ListaFuncionariosResponse;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Util.Ferramentas;
@@ -12,7 +14,7 @@ import Views.Funcionario.Nucleo.MenuSetFuncionario;
 import Views.Sistema.Main;
 import Views.Sistema.MenuEscolhaId;
 
-import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -21,6 +23,26 @@ public class MenuUpdateADM {
     public static void updateGerente(NivelAcesso nivelAcesso) {
         long idGerente;
         int opcaoAdm = 0;
+
+        List<FuncionarioResponse> listaGerente = new ArrayList<>();
+        ListaFuncionariosResponse responseLista = Main.funcionarioController.listaFuncionariosParaAdm(nivelAcesso);
+
+        for (FuncionarioResponse funcionario : responseLista.listaFuncionarios()) {
+            if(funcionario.nivelAcesso() == NivelAcesso.GERENTE) {
+                listaGerente.add(funcionario);
+            }
+        }
+
+        if (listaGerente.isEmpty()) {
+            Ferramentas.mensagemErro("Não há nenhum gerente para atualizar");
+            return;
+        }
+
+        for (FuncionarioResponse funcionario : listaGerente) {
+            System.out.println("ID: " + funcionario.id() + " // Nome: " + funcionario.nome().getNome() + "  // Cargo: " + funcionario.nivelAcesso().name());
+        }
+
+        System.out.println();
 
         try {
             idGerente = MenuEscolhaId.escolhaIdUpdate();
@@ -34,18 +56,19 @@ public class MenuUpdateADM {
             GerentePorIdResponse responseId = Main.gerenteController.buscarPorId(nivelAcesso, requestId);
 
             if(responseId.status()) {
-                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃                   MENU ADMINISTRADOR                   ┃");
-                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.println("                                                          ");
-                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃     EDITAR   GERENTE     ┃  ┃           ATUAL          ┃");
-                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━┃  ┃━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.printf("┃  1 - Nome                ┃  ┃  %-26s┃%n", responseId.nome().getNome());
-                System.out.printf("┃  2 - CPF                 ┃  ┃  %-26s┃%n", responseId.cpf().getCpf());
-                System.out.printf("┃  3 - Departamento        ┃  ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
-                System.out.println("┃  4 - Sair do Menu        ┃  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("          ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓          ");
+                System.out.println("          ┃       ATUALIZAR GERENTE        ┃          ");
+                System.out.println("          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛          ");
+
+                System.out.print("\n\n"); // pula linhas
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓          ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃  EDITAR   GERENTE  ┃          ┃            ATUAL           ┃");
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃          ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+                System.out.printf("┃  1 - Nome          ┃          ┃  %-26s┃%n", responseId.nome().getNome());
+                System.out.printf("┃  2 - CPF           ┃          ┃  %-26s┃%n", responseId.cpf().getCpf());
+                System.out.printf("┃  3 - Departamento  ┃          ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
+                System.out.println("║  4 - Sair do Menu  ┃          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("╚════════════════════┛");
                 System.out.println("┃ ➤ Escolha:  ");
 
                 try {
