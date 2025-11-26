@@ -9,6 +9,8 @@ import Util.Ferramentas;
 import Views.Sistema.Main;
 import Views.Sistema.MenuEscolhaId;
 
+import java.sql.SQLOutput;
+
 public class MenuAdminRemoverGerente {
     public static void menuRemoverEscolha(long idAdm, NivelAcesso nivelAcesso) {
         ListaFuncionariosResponse responseLista = Main.funcionarioController.listaFuncionariosParaAdm(nivelAcesso);
@@ -19,12 +21,15 @@ public class MenuAdminRemoverGerente {
         }
 
         if(responseLista.listaFuncionarios().isEmpty()) {
-            Ferramentas.mensagemErro("Não há nenhum funcionário para excluir");
+            Ferramentas.mensagemErro("┃  NÃO HÁ NENHUM FUNCIONARIO PARA EXCLUIR");
             return;
         }
 
-        for(FuncionarioResponse funcionario : responseLista.listaFuncionarios()) {
-            System.out.println("ID: " + funcionario.id() + " Nome: " + funcionario.nome().getNome() + "  // Cargo: " + funcionario.nivelAcesso().name());
+        for(FuncionarioResponse funcionario : responseLista.listaFuncionarios())
+        {
+            System.out.println("┃  ID: " + funcionario.id());
+            System.out.println("┃  Nome: " + funcionario.nome().getNome());
+            System.out.println("┃  Cargo: " + funcionario.nivelAcesso().name());
         }
 
         long id = MenuEscolhaId.escolhaIdUpdate();

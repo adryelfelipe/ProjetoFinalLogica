@@ -12,6 +12,7 @@ import Views.Funcionario.Nucleo.MenuSetFuncionario;
 import Views.Sistema.Main;
 import Views.Sistema.MenuEscolhaId;
 
+import java.sql.SQLOutput;
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -33,19 +34,18 @@ public class MenuUpdateADM {
             GerentePorIdResponse responseId = Main.gerenteController.buscarPorId(nivelAcesso, requestId);
 
             if(responseId.status()) {
-                System.out.println("          ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓          ");
-                System.out.println("          ┃       ATUALIZAR GERENTE        ┃          ");
-                System.out.println("          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛          ");
-
-                System.out.print("\n\n"); // pula linhas
-                System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓          ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃  EDITAR   GERENTE  ┃          ┃            ATUAL           ┃");
-                System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃          ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.printf("┃  1 - Nome          ┃          ┃  %-26s┃%n", responseId.nome().getNome());
-                System.out.printf("┃  2 - CPF           ┃          ┃  %-26s┃%n", responseId.cpf().getCpf());
-                System.out.printf("┃  3 - Departamento  ┃          ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
-                System.out.println("║  4 - Sair do Menu  ┃          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("╚════════════════════┛");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃                   MENU ADMINISTRADOR                   ┃");
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+                System.out.println("                                                          ");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃     EDITAR   GERENTE     ┃  ┃           ATUAL          ┃");
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━┃  ┃━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+                System.out.printf("┃  1 - Nome                ┃  ┃  %-26s┃%n", responseId.nome().getNome());
+                System.out.printf("┃  2 - CPF                 ┃  ┃  %-26s┃%n", responseId.cpf().getCpf());
+                System.out.printf("┃  3 - Departamento        ┃  ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
+                System.out.println("┃  4 - Sair do Menu        ┃  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃ ➤ Escolha:  ");
 
                 try {

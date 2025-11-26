@@ -15,10 +15,12 @@ public class MenuGerenteRemoverUsuarios {
         ListaFuncionariosResponse responseLista = Main.funcionarioController.listaFuncionariosParaGerente(nivelAcesso);
 
         if (responseLista.listaFuncionarios().isEmpty()) {
-            Ferramentas.mensagemErro("Não há nenhum funcionário para excluir");
+            Ferramentas.mensagemErro("┃  NÃO HÁ NENHUM FUNCIONÁRIO PARA EXCLUIR!");
         } else {
             for (FuncionarioResponse funcionario : responseLista.listaFuncionarios()) {
-                System.out.println("ID: " + funcionario.id() + " // Nome: " + funcionario.nome().getNome() + "  // Cargo: " + funcionario.nivelAcesso().name());
+                System.out.println("┃  ID: " + funcionario.id());
+                System.out.println("┃  Nome: " + funcionario.nome().getNome());
+                System.out.println("┃  Cargo: " + funcionario.nivelAcesso().name());
             }
 
             System.out.println();
