@@ -246,9 +246,9 @@ public class MenuUpdateGerente {
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━┓      ┏━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃   EDITAR  SUPERVISOR   ┃      ┃          ATUAL         ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━┃      ┃━━━━━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.printf("┃  1 - Nome             ┃      ┃  %-26s┃%n", responseId.nome().getNome());
-                System.out.printf("┃  2 - CPF              ┃      ┃  %-26s┃%n", responseId.cpf().getCpf());
-                System.out.printf("┃  3 - Meta Mensal      ┃      ┃  %-26s┃%n", responseId.metaMensal().getValorMetaMensal());
+                System.out.printf("┃  1 - Nome              ┃      ┃  %-25s┃%n", responseId.nome().getNome());
+                System.out.printf("┃  2 - CPF               ┃      ┃  %-25s┃%n", responseId.cpf().getCpf());
+                System.out.printf("┃  3 - Meta Mensal       ┃      ┃  %-25s┃%n", responseId.metaMensal().getValorMetaMensal());
                 System.out.println("┃  4 - Sair do Menu      ┃      ┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.print("┃ ➤ Escolha:  ");
