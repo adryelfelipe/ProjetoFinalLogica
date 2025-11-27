@@ -131,9 +131,13 @@ public class MenuRelatorioSupervisor {
         for(OcorrenciaResponse oc : listarOcResponse.listaResponse()) {
             System.out.println("┃  ID Ocorrencia: " + oc.idOcorrencia());
             System.out.println("┃  Status: " + oc.statusOc());
-            System.out.println("Máquina -> ID: " + oc.idMaquina() + " | Nome: " + oc.nomeMaquina().getNome());
-            System.out.println("--");
-            System.out.println("--");
+            System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
+            System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
+            System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
+            System.out.println("┃ ┃ ID: " + oc.idMaquina());
+            System.out.println("┃ ┃ Nome: " + oc.nomeMaquina().getNome());
+            System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println(); // pula linha
         }
 
@@ -142,16 +146,18 @@ public class MenuRelatorioSupervisor {
         boolean verifica = false;
         while(!verifica) {
             try {
-                System.out.println("1 - Criar uma ordem de serviço preditiva");
-                System.out.println("2 - Retornar");
-                System.out.print("Escolha: ");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃  1 - Criar uma ordem de serviço preditiva              ┃");
+                System.out.println("┃  2 - Retornar                                          ┃");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.print("┃ ➤ Escolha: ");
                 int op = Ferramentas.lInteiro();
                 verifica = true;
 
                 switch(op) {
                     case 1 -> {
                         System.out.println();
-                        System.out.print("Escolha o ID da ocorrência: ");
+                        System.out.print("┃  Escolha o ID da ocorrência: ");
                         try {
                             long idOc = Ferramentas.lInteiro();
                             BuscarOcPorIdRequest request = new BuscarOcPorIdRequest(idOc);
