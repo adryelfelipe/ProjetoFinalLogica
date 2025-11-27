@@ -11,13 +11,13 @@ import java.util.InputMismatchException;
 public class MenuTecnico {
     public static void menuTecnico(long idTecnico, NivelAcesso nivelAcesso) {
         while(true) {
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃             MENU TÉCNICO             ┃");
-            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-            System.out.println("┃                                      ┃");
-            System.out.println("┃  1 - Visualizar Ordens de Serviço    ┃");
-            System.out.println("┃  2 - Retornar                        ┃");
-            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                      MENU TÉCNICO                      ┃");
+            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+            System.out.println("┃                                                        ┃");
+            System.out.println("┃  1 - Visualizar Ordens de Serviço                      ┃");
+            System.out.println("┃  2 - Retornar                                          ┃");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
             try {
