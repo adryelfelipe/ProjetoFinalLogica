@@ -216,13 +216,17 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
 
             int linhasAF = stmt.executeUpdate();
 
-            return linhasAF > 0;
+            if(linhasAF > 0)
+            {
+                return true;
+            }
 
         }catch (SQLException e)
         {
-            System.err.println("ERRO ao deletar usuário com o ID: " + id);
+            System.err.println("ERRO ao deletar usuário com o ID: " + id + e);
             return false;
         }
+        return false;
     }
     @Override
     public void atualizar(Funcionario funcionario) {
