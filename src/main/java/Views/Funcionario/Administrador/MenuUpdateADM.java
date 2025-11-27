@@ -40,10 +40,11 @@ public class MenuUpdateADM {
 
         for (FuncionarioResponse funcionario : listaGerente)
         {
+
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃  ID: " + funcionario.id());
-            System.out.println("┃  Nome: " + funcionario.nome().getNome());
-            System.out.println("┃  Cargo: " + funcionario.nivelAcesso().name());
+            System.out.printf("┃  ID: %-50s┃%n", funcionario.id());
+            System.out.printf("┃  Nome: %-48s┃%n", funcionario.nome().getNome());
+            System.out.printf("┃  Cargo: %-47s┃%n", funcionario.nivelAcesso().name());
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         }
@@ -70,9 +71,9 @@ public class MenuUpdateADM {
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━┓      ┏━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃    EDITAR   GERENTE    ┃      ┃          ATUAL         ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━┃      ┃━━━━━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.printf("┃  1 - Nome              ┃      ┃  %-26s┃%n", responseId.nome().getNome());
-                System.out.printf("┃  2 - CPF               ┃      ┃  %-26s┃%n", responseId.cpf().getCpf());
-                System.out.printf("┃  3 - Departamento      ┃      ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
+                System.out.printf("┃  1 - Nome              ┃      ┃  %-22s┃%n", responseId.nome().getNome());
+                System.out.printf("┃  2 - CPF               ┃      ┃  %-22s┃%n", responseId.cpf().getCpf());
+                System.out.printf("┃  3 - Departamento      ┃      ┃  %-22s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
                 System.out.println("┃  4 - Sair do Menu      ┃      ┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃ ➤ Escolha:  ");

@@ -32,7 +32,7 @@ public class MenuCadastroSupervisor
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //
-        System.out.print("PROCESSANDO DADOS...");
+        System.out.print("┃  PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
 
         // -- Gerando request para cadastro de Ordem de Serviço -- //
@@ -50,9 +50,9 @@ public class MenuCadastroSupervisor
 
     public static void menuCadastroOrdemPreditiva(long idSupervisor, NivelAcesso nivelAcesso, BuscarOcPorIdResponse response) {
         // Menu de cadastro
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃    CADASTRO ORDEM DE SERVIÇO   ┃");
-        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃               CADASTRO ORDEM DE SERVIÇO                ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         // ----- Atribuição de caracteríscticas de uma Máquina ----- //
         long idTecnico = MenuSetOrdemDeServico.SetIdTecnico();
@@ -63,7 +63,7 @@ public class MenuCadastroSupervisor
         Ferramentas.limpaTerminal();
 
         // -- Criação do objeto e inserção no banco de dados -- //
-        System.out.print("PROCESSANDO DADOS...");
+        System.out.print("┃  PROCESSANDO DADOS...");
         Ferramentas.Delay(1000);
 
         // -- Gerando request para cadastro de Ordem de Serviço -- //

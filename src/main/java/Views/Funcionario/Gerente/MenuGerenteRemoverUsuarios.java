@@ -19,9 +19,9 @@ public class MenuGerenteRemoverUsuarios {
         } else {
             for (FuncionarioResponse funcionario : responseLista.listaFuncionarios()) {
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃  ID: " + funcionario.id());
-                System.out.println("┃  Nome: " + funcionario.nome().getNome());
-                System.out.println("┃  Cargo: " + funcionario.nivelAcesso().name());
+                System.out.printf("┃  ID: %-50s┃%n", funcionario.id());
+                System.out.printf("┃  Nome: %-48s┃%n", funcionario.nome().getNome());
+                System.out.printf("┃  Cargo: %-47s┃%n", funcionario.nivelAcesso().name());
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             }
 

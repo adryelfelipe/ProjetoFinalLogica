@@ -22,14 +22,14 @@ public class MenuRelatorioSupervisor {
         Ferramentas.limpaTerminal();
 
         while(true){
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃           RELATÓRIOS           ┃");
-            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-            System.out.println("┃                                ┃");
-            System.out.println("┃  1 - Visualizar OS's           ┃");
-            System.out.println("┃  2 - Visualizar Ocorrências    ┃");
-            System.out.println("┃  3 - Retornar                  ┃");
-            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                       RELATÓRIOS                       ┃");
+            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+            System.out.println("┃                                                        ┃");
+            System.out.println("┃  1 - Visualizar Ordem de Serviço                       ┃");
+            System.out.println("┃  2 - Visualizar Ocorrências                            ┃");
+            System.out.println("┃  3 - Retornar                                          ┃");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
             try {
@@ -68,33 +68,36 @@ public class MenuRelatorioSupervisor {
         }
 
         if(listarOsResponse.listaResponse().isEmpty()) {
-            Ferramentas.mensagemErro("Não há ordens de serviço ativas no momento");
+            Ferramentas.mensagemErro("┃  NÃO HÁ ORDENS DE SERVIÇO ATIVAS NO MOMENTO");
             return;
         }
 
         // Menu
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃   TODAS AS ORDENS DE SERVIÇO   ┃");
-        System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃               TODAS AS ORDENS DE SERVIÇO               ┃");
+        System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
 
         System.out.println(); // pula linha
 
         for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
-            System.out.println("ID OS: " + os.idOs());
-            System.out.println("Status: " + os.statusOs());
-            System.out.println("Descrição: " + os.descricao().getDescricao());
-            System.out.println("Valor: " + os.valorOs().getValorOS());
-            System.out.println("Técnico -> ID: " + os.idTecnico() + " | Nome: " + os.nomeTecnico().getNome());
-            System.out.println("Máquina -> ID: " + os.idMaquina() + " | Nome: " + os.nomeMaquina().getNome());
-            System.out.println("Tipo da OS:: " + os.tipoOs());
-            System.out.println("--");
-            System.out.println("--");
-            System.out.println(); // pula linha
+            System.out.println("┃  ID Ordem Serviço: " + os.idOs());
+            System.out.println("┃  Status: " + os.statusOs());
+            System.out.println("┃  Descrição: " + os.descricao().getDescricao());
+            System.out.println("┃  Valor: " + os.valorOs().getValorOS());
+            System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━┓    ┏━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
+            System.out.println("┃ ┃        TÉCNICO        ┃    ┃        MÁQUINA        ┃ ┃");
+            System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━┃    ┃━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
+            System.out.println("┃ ┃ ID: " + os.idTecnico() +  "┃ ID: " + os.idMaquina());
+            System.out.println("┃ ┃ Nome: " + os.nomeTecnico().getNome() + "┃ Nome: "+ os.nomeMaquina().getNome());
+            System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━┛    ┗━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
+            System.out.println("┃  Tipo da Ordem de Serviço: " + os.tipoOs());
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+            System.out.println("                                                          "); // pula linha
         }
 
         System.out.println(); // pula linha
 
-        System.out.print("Aperte enter para continuar: ");
+        System.out.print("┃  APERTE ENTER PARA CONTINUAR: ");
         Ferramentas.lString();
     }
 
@@ -115,22 +118,26 @@ public class MenuRelatorioSupervisor {
         }
 
         if(listarOcResponse.listaResponse().isEmpty()) {
-            Ferramentas.mensagemErro("Não há nenhuma ocorrência registrada no sistema");
+            Ferramentas.mensagemErro("┃  NÃO HÁ NENHUMA OCORRÊNCIA REGISTRADA NO SISTEMA");
             return;
         }
         // Menu
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃      TODAS AS OCORRÊNCIAS      ┃");
-        System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃                  TODAS AS OCORRÊNCIAS                  ┃");
+        System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
 
         System.out.println(); // pula linha
 
         for(OcorrenciaResponse oc : listarOcResponse.listaResponse()) {
-            System.out.println("ID OC: " + oc.idOcorrencia());
-            System.out.println("Status: " + oc.statusOc());
-            System.out.println("Máquina -> ID: " + oc.idMaquina() + " | Nome: " + oc.nomeMaquina().getNome());
-            System.out.println("--");
-            System.out.println("--");
+            System.out.println("┃  ID Ocorrencia: " + oc.idOcorrencia());
+            System.out.println("┃  Status: " + oc.statusOc());
+            System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
+            System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
+            System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
+            System.out.println("┃ ┃ ID: " + oc.idMaquina());
+            System.out.println("┃ ┃ Nome: " + oc.nomeMaquina().getNome());
+            System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println(); // pula linha
         }
 
@@ -139,16 +146,18 @@ public class MenuRelatorioSupervisor {
         boolean verifica = false;
         while(!verifica) {
             try {
-                System.out.println("1 - Criar uma ordem de serviço preditiva");
-                System.out.println("2 - Retornar");
-                System.out.print("Escolha: ");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃  1 - Criar uma ordem de serviço preditiva              ┃");
+                System.out.println("┃  2 - Retornar                                          ┃");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.print("┃ ➤ Escolha: ");
                 int op = Ferramentas.lInteiro();
                 verifica = true;
 
                 switch(op) {
                     case 1 -> {
                         System.out.println();
-                        System.out.print("Escolha o ID da ocorrência: ");
+                        System.out.print("┃  Escolha o ID da ocorrência: ");
                         try {
                             long idOc = Ferramentas.lInteiro();
                             BuscarOcPorIdRequest request = new BuscarOcPorIdRequest(idOc);
