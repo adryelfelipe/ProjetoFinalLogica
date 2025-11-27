@@ -10,7 +10,7 @@ import Dominio.Ocorrencia.Enumeracoes.StatusOc;
 import Dominio.Ocorrencia.Repositories.OcorrenciaRepositorio;
 import Infraestrutura.Configuracao.ConnectionFactory;
 import Infraestrutura.Persistencia.Implementacao.Maquina.Mapper.MaquinaJdbcMapper;
-import Infraestrutura.Persistencia.Implementacao.Ocorrencias.JDBC.Mapper.OcorrenciaMappers;
+import Infraestrutura.Persistencia.Implementacao.Ocorrencias.Mapper.OcorrenciaMappers;
 
 public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
 
