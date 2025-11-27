@@ -27,9 +27,11 @@ public class MenuAdminRemoverGerente {
 
         for(FuncionarioResponse funcionario : responseLista.listaFuncionarios())
         {
-            System.out.println("┃  ID: " + funcionario.id());
-            System.out.println("┃  Nome: " + funcionario.nome().getNome());
-            System.out.println("┃  Cargo: " + funcionario.nivelAcesso().name());
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃  ID: " + funcionario.id());                            //  Precisa colocar o cósigo pra fechar a tabelinha
+            System.out.println("┃  Nome: " + funcionario.nome().getNome());              //  Precisa colocar o cósigo pra fechar a tabelinha
+            System.out.println("┃  Cargo: " + funcionario.nivelAcesso().name());         //  Precisa colocar o cósigo pra fechar a tabelinha
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         }
 
         long id = MenuEscolhaId.escolhaIdUpdate();

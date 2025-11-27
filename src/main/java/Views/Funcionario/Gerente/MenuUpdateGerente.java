@@ -17,6 +17,7 @@ import Views.Sistema.MenuEscolhaId;
 import Views.Funcionario.Tecnico.MenuSetTecnico;
 import Views.Funcionario.Nucleo.MenuSetFuncionario;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -30,14 +31,14 @@ public class MenuUpdateGerente {
             loop = false;
 
             while(!loop) {
-                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃         MENU ATUALIZAR         ┃");
-                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.println("┃                                ┃");
-                System.out.println("┃  1 - Alterar Técnico           ┃");
-                System.out.println("┃  2 - Alterar Supervisor        ┃");
-                System.out.println("┃  3 - Sair do Menu              ┃");
-                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃                     MENU ATUALIZAR                     ┃");
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+                System.out.println("┃                                                        ┃");
+                System.out.println("┃  1 - Alterar Técnico                                   ┃");
+                System.out.println("┃  2 - Alterar Supervisor                                ┃");
+                System.out.println("┃  3 - Sair do Menu                                      ┃");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.print("┃ ➤ Escolha: ");
 
                 try {
@@ -51,7 +52,7 @@ public class MenuUpdateGerente {
                             return;
                         }
 
-                        default -> Ferramentas.mensagemErro("ERRO! TENTE NOVAMENTE!");
+                        default -> Ferramentas.mensagemErro("┃  ERRO! TENTE NOVAMENTE!");
                     }
                 }
                 catch (InputMismatchException e){
@@ -76,12 +77,17 @@ public class MenuUpdateGerente {
         }
 
         if (listaTecnicos.isEmpty()) {
-            Ferramentas.mensagemErro("Não há nenhum técnico para atualizar");
+            Ferramentas.mensagemErro("┃  NÃO HÁ NENHUM TÉCNICO PARA ATUALIZAR");
             return;
         }
 
-        for (FuncionarioResponse funcionario : listaTecnicos) {
-            System.out.println("ID: " + funcionario.id() + " // Nome: " + funcionario.nome().getNome() + "  // Cargo: " + funcionario.nivelAcesso().name());
+        for (FuncionarioResponse funcionario : listaTecnicos)
+        {
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃  ID: " + funcionario.id());
+            System.out.println("┃  Nome: " + funcionario.nome().getNome());
+            System.out.println("┃  Cargo: " + funcionario.nivelAcesso().name());
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         }
 
         System.out.println();
@@ -100,19 +106,19 @@ public class MenuUpdateGerente {
             Ferramentas.limpaTerminal();
             if(responseId.status()) {
                 System.out.println("\n                                                 \n");
-                System.out.println("         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓          ");
-                System.out.println("         ┃       ATUALIZAR TECNICO       ┃         ");
-                System.out.println("         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛          ");
-                System.out.println("                                                     ");
-                System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃  EDITAR   TÉCNICO  ┃         ┃            ATUAL           ┃");
-                System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.printf("┃  1 - Nome          ┃         ┃  %-26s┃%n", responseId.nome().getNome());
-                System.out.printf("┃  2 - CPF           ┃         ┃  %-26s┃%n", responseId.cpf().getCpf());
-                System.out.printf("┃  3 - Departamento  ┃         ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
-                System.out.printf("┃  4 - Especialidade ┃         ┃  %-26s┃%n", responseId.especialidade());
-                System.out.println("┃  5 - Sair do Menu  ┃         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┗━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃                    ATUALIZAR TECNICO                   ┃");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("                                                          ");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━┓      ┏━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃    EDITAR   TÉCNICO    ┃      ┃         ATUAL          ┃");
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━┃      ┃━━━━━━━━━━━━━━━━━━━━━━━━┃");
+                System.out.printf("┃  1 - Nome              ┃      ┃  %-26s┃%n", responseId.nome().getNome());
+                System.out.printf("┃  2 - CPF               ┃      ┃  %-26s┃%n", responseId.cpf().getCpf());
+                System.out.printf("┃  3 - Departamento      ┃      ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
+                System.out.printf("┃  4 - Especialidade     ┃      ┃  %-26s┃%n", responseId.especialidade());
+                System.out.println("┃  5 - Sair do Menu      ┃      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.print("┃ ➤ Escolha:  ");
 
                 try {
@@ -204,19 +210,24 @@ public class MenuUpdateGerente {
         }
 
         if (listaSupervisor.isEmpty()) {
-            Ferramentas.mensagemErro("Não há nenhum supervisor para atualizar");
+            Ferramentas.mensagemErro("┃  NÃO HÁ NENHUM SUPERVISOR PARA ATUALIZAR");
             return;
         }
 
-        for (FuncionarioResponse funcionario : listaSupervisor) {
-            System.out.println("ID: " + funcionario.id() + " // Nome: " + funcionario.nome().getNome() + "  // Cargo: " + funcionario.nivelAcesso().name());
+        for (FuncionarioResponse funcionario : listaSupervisor)
+        {
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃  ID: " + funcionario.id());
+            System.out.println("┃  Nome: " + funcionario.nome().getNome());
+            System.out.println("┃  Cargo: " + funcionario.nivelAcesso().name());
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         }
 
-        System.out.println();
-
-        try {
+        try
+        {
             idSupervisor = MenuEscolhaId.escolhaIdUpdate();
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e)
+        {
             Ferramentas.mensagemErro(e.getMessage());
             return;
         }
@@ -228,18 +239,18 @@ public class MenuUpdateGerente {
 
             if(responseId.status()) {
                 System.out.println("\n                                                       \n");
-                System.out.println("             ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓            ");
-                System.out.println("             ┃      ATUALIZAR SUPERVISOR     ┃            ");
-                System.out.println("             ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛            ");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃                  ATUALIZAR SUPERVISOR                  ┃");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("                                                            ");
-                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━┓         ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃  EDITAR   SUPERVISOR  ┃         ┃            ATUAL           ┃");
-                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━┃         ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.printf("┃  1 - Nome             ┃         ┃  %-26s┃%n", responseId.nome().getNome());
-                System.out.printf("┃  2 - CPF              ┃         ┃  %-26s┃%n", responseId.cpf().getCpf());
-                System.out.printf("┃  3 - Meta Mensal      ┃         ┃  %-26s┃%n", responseId.metaMensal().getValorMetaMensal());
-                System.out.println("┃  4 - Sair do Menu     ┃         ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━┓      ┏━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃   EDITAR  SUPERVISOR   ┃      ┃          ATUAL         ┃");
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━┃      ┃━━━━━━━━━━━━━━━━━━━━━━━━┃");
+                System.out.printf("┃  1 - Nome             ┃      ┃  %-26s┃%n", responseId.nome().getNome());
+                System.out.printf("┃  2 - CPF              ┃      ┃  %-26s┃%n", responseId.cpf().getCpf());
+                System.out.printf("┃  3 - Meta Mensal      ┃      ┃  %-26s┃%n", responseId.metaMensal().getValorMetaMensal());
+                System.out.println("┃  4 - Sair do Menu      ┃      ┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.print("┃ ➤ Escolha:  ");
                 try {
                     opcaoGer = Ferramentas.lInteiro();

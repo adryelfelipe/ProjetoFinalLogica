@@ -34,12 +34,18 @@ public class MenuUpdateADM {
         }
 
         if (listaGerente.isEmpty()) {
-            Ferramentas.mensagemErro("Não há nenhum gerente para atualizar");
+            Ferramentas.mensagemErro("┃  NÃO HÁ NENHUMA GERENTE PARA ATUALIZAR");
             return;
         }
 
-        for (FuncionarioResponse funcionario : listaGerente) {
-            System.out.println("ID: " + funcionario.id() + " // Nome: " + funcionario.nome().getNome() + "  // Cargo: " + funcionario.nivelAcesso().name());
+        for (FuncionarioResponse funcionario : listaGerente)
+        {
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃  ID: " + funcionario.id());
+            System.out.println("┃  Nome: " + funcionario.nome().getNome());
+            System.out.println("┃  Cargo: " + funcionario.nivelAcesso().name());
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+
         }
 
         System.out.println();
@@ -56,19 +62,19 @@ public class MenuUpdateADM {
             GerentePorIdResponse responseId = Main.gerenteController.buscarPorId(nivelAcesso, requestId);
 
             if(responseId.status()) {
-                System.out.println("          ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓          ");
-                System.out.println("          ┃       ATUALIZAR GERENTE        ┃          ");
-                System.out.println("          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛          ");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃                   ATUALIZAR GERENTE                    ┃");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
                 System.out.print("\n\n"); // pula linhas
-                System.out.println("┏━━━━━━━━━━━━━━━━━━━━┓          ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃  EDITAR   GERENTE  ┃          ┃            ATUAL           ┃");
-                System.out.println("┃━━━━━━━━━━━━━━━━━━━━┃          ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.printf("┃  1 - Nome          ┃          ┃  %-26s┃%n", responseId.nome().getNome());
-                System.out.printf("┃  2 - CPF           ┃          ┃  %-26s┃%n", responseId.cpf().getCpf());
-                System.out.printf("┃  3 - Departamento  ┃          ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
-                System.out.println("║  4 - Sair do Menu  ┃          ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("╚════════════════════┛");
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━┓      ┏━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃    EDITAR   GERENTE    ┃      ┃          ATUAL         ┃");
+                System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━┃      ┃━━━━━━━━━━━━━━━━━━━━━━━━┃");
+                System.out.printf("┃  1 - Nome              ┃      ┃  %-26s┃%n", responseId.nome().getNome());
+                System.out.printf("┃  2 - CPF               ┃      ┃  %-26s┃%n", responseId.cpf().getCpf());
+                System.out.printf("┃  3 - Departamento      ┃      ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
+                System.out.println("┃  4 - Sair do Menu      ┃      ┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┃ ➤ Escolha:  ");
 
                 try {

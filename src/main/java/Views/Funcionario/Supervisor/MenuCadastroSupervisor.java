@@ -17,9 +17,9 @@ public class MenuCadastroSupervisor
     public static void menuCadastroOrdemCorretiva(long idSupervisor, NivelAcesso nivelAcesso) {
         // Menu de cadastro
         Ferramentas.limpaTerminal();
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃    CADASTRO ORDEM DE SERVIÇO   ┃");
-        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃               CADASTRO ORDEM DE SERVIÇO                ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         // ----- Atribuição de caracteríscticas de uma Máquina ----- //
         long idTecnico = MenuSetOrdemDeServico.SetIdTecnico();

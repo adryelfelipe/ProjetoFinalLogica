@@ -69,6 +69,13 @@ public class Ferramentas {
     public static final String UNDERLINE = "\u001B[4m";
     public static final String REVERSED = "\u001B[7m";
 
+    // TONS UTILIZADOS NO MENU
+    public static final String OCEAN_BLUE = "\u001B[38;5;25m";          //  UTILIZADO NA LOGO WEG
+    public static final String ORANGE_DARK = "\u001B[38;2;210;110;0m";  //  UTILIZADO NOS MENUS - DETALHES
+    public static final String AQUA_BLUE = "\u001B[38;5;31m";           //  UTILIZADO NA BASE DO MENU
+    public static final String DARK_CYAN = "\u001B[38;5;30m";           //  UTILIZADO NO PROCESSAMENTO DE DADOS
+    //NAS CONFIGURAÇÕES SETTINGS -> EDITOR -> COLOR SCHEME -> CONSOLE COLORS -> USER INPUT -> FOREGROUND -> MUDA O HEX PARA: 3FA6B0
+
     private static Scanner ler = new Scanner(System.in);
 
     // -- Construtor privado -- //

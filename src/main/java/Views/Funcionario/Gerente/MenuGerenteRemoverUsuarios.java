@@ -18,9 +18,11 @@ public class MenuGerenteRemoverUsuarios {
             Ferramentas.mensagemErro("┃  NÃO HÁ NENHUM FUNCIONÁRIO PARA EXCLUIR!");
         } else {
             for (FuncionarioResponse funcionario : responseLista.listaFuncionarios()) {
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃  ID: " + funcionario.id());
                 System.out.println("┃  Nome: " + funcionario.nome().getNome());
                 System.out.println("┃  Cargo: " + funcionario.nivelAcesso().name());
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             }
 
             System.out.println();

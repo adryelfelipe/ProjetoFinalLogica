@@ -26,24 +26,13 @@ public class MenuRelatorio {
     public static void menuRelatorio(long idGerente, NivelAcesso nivelAcesso) {
 
         while(true){
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃           RELATÓRIOS           ┃");
-            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-            System.out.println("┃                                ┃");
-            System.out.println("┃  1 - Visualizar OS's           ┃");
-            System.out.println("┃  2 - Visualizar Ocorrências    ┃");
-            System.out.println("┃  3 - Retornar                  ┃");
-            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃ ➤ Escolha: ");
-
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃                       RELATÓRIOS                       ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                                        ┃");
-            System.out.println("┃  1 - Criar Gerente                                     ┃");
-            System.out.println("┃  2 - Atualizar Gerente                                 ┃");
-            System.out.println("┃  3 - Remover Funcionários                              ┃");
-            System.out.println("┃  4 - Retornar                                          ┃");
+            System.out.println("┃  1 - Visualizar Ordens de Serviço                      ┃");
+            System.out.println("┃  2 - Visualizar Ocorrências                            ┃");
+            System.out.println("┃  3 - Retornar                                          ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
@@ -84,33 +73,37 @@ public class MenuRelatorio {
         }
 
         if(listarOsResponse.listaResponse().isEmpty()) {
-            Ferramentas.mensagemErro("Não há nenhuma ordem de serviço registrada no sistema");
+            Ferramentas.mensagemErro("┃  NÃO HÁ NENHUMA ORDEM DE SERVIÇO REGISTRADO NO SISTEMA");
             return;
         }
 
         // Menu
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃   TODAS AS ORDENS DE SERVIÇO   ┃");
-        System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-
-        System.out.println(); // pula linha
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃              VISUALIZAR ORDENS DE SERVIÇO              ┃");
+        System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+        System.out.println("                                                          ");
 
         for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
-            System.out.println("ID OS: " + os.idOs());
-            System.out.println("Status: " + os.statusOs());
-            System.out.println("Descrição: " + os.descricao().getDescricao());
-            System.out.println("Valor: " + os.valorOs().getValorOS());
-            System.out.println("Técnico -> ID: " + os.idTecnico() + " | Nome: " + os.nomeTecnico().getNome());
-            System.out.println("Máquina -> ID: " + os.idMaquina() + " | Nome: " + os.nomeMaquina().getNome());
-            System.out.println("Tipo da OS: " + os.tipoOs().name());
-            System.out.println("--");
-            System.out.println("--");
-            System.out.println(); // pula linha
+            System.out.println("┃  ID Ordem de Serviço: " + os.idOs());
+            System.out.println("┃  Status: " + os.statusOs());
+            System.out.println("┃  Descrição: " + os.descricao().getDescricao());
+            System.out.println("┃  Valor: " + os.valorOs().getValorOS());
+            System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━┓    ┏━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
+            System.out.println("┃ ┃        TÉCNICO        ┃    ┃        MÁQUINA        ┃ ┃");
+            System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━┃    ┃━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
+            System.out.println("┃ ┃ ID: " + os.idTecnico() +  "┃ ID: " + os.idMaquina());                             //  Colocar o código que fecha as tabelinhas
+            System.out.println("┃ ┃ Nome: " + os.nomeTecnico().getNome() + "┃ Nome: " + os.nomeMaquina().getNome());  //  Colocar o código que fecha as tabelinhas
+            System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━┛    ┗━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
+            System.out.println("┃  Tipo da Ordem de Serviço: " + os.tipoOs().name());
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+            System.out.println("                                                          ");
+            System.out.println("                                                          ");
         }
 
-        System.out.println(); // pula linha
+        System.out.println("                                                          "); //  PULA LINHA
+        System.out.println("                                                          "); //  PULA LINHA
 
-        System.out.print("Aperte enter para continuar: ");
+        System.out.print("APERTE ENTER PARA CONTINUAR: "); //  'ENTER' EM LARANJINHA
         Ferramentas.lString();
         Ferramentas.limpaTerminal();
     }
@@ -132,32 +125,38 @@ public class MenuRelatorio {
         }
 
         if(listarOcResponse.listaResponse().isEmpty()) {
-            Ferramentas.mensagemErro("Não há nenhuma ocorrência registrada no sistema");
+            Ferramentas.mensagemErro("┃  NÃO HÁ NENHUMA OCORRÊNCIA REGISTRADA NO SISTEMA!");
             return;
         }
         // Menu
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃      TODAS AS OCORRÊNCIAS      ┃");
-        System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃                  TODAS AS OCORRÊNCIAS                  ┃");
+        System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
 
         System.out.println(); // pula linha
 
         for(OcorrenciaResponse oc : listarOcResponse.listaResponse()) {
-            System.out.println("ID OC: " + oc.idOcorrencia());
-            System.out.println("Status: " + oc.statusOc());
-            System.out.println("Máquina -> ID: " + oc.idMaquina() + " | Nome: " + oc.nomeMaquina().getNome());
-            System.out.println("--");
-            System.out.println("--");
+            System.out.println("┃  ID Ocorrência: " + oc.idOcorrencia());
+            System.out.println("┃  Status: " + oc.statusOc());
+            System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
+            System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
+            System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
+            System.out.println("┃ ┃ ID: " + oc.idMaquina() );
+            System.out.println("┃ ┃ Nome: " + oc.nomeMaquina().getNome());
+            System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println(); // pula linha
         }
 
         System.out.println(); // pula linha
 
-        System.out.println("1 - Filtrar por supervisor");
-        System.out.println("2 - Filtrar por status");
-        System.out.println("3 - Retornar");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃  1 - Filtrar por supervisor                            ┃");
+        System.out.println("┃  2 - Filtrar por status                                ┃");
+        System.out.println("┃  3 - Retornar                                          ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         try {
-            System.out.print("Escolha: ");
+            System.out.print("┃ ➤ Escolha: ");
             int op = Ferramentas.lInteiro();
 
             switch(op) {
@@ -179,10 +178,12 @@ public class MenuRelatorio {
         Ferramentas.limpaTerminal();
         boolean verifica = false;
 
-        System.out.println("1 - Mecânica");
-        System.out.println("2 - Elétrica");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃  1 - Mecânica                                          ┃");
+        System.out.println("┃  2 - Elétrica                                          ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         try {
-            System.out.print("Escolha: ");
+            System.out.print("┃ ➤ Escolha: ");
             int op = Ferramentas.lInteiro();
 
             switch(op) {
@@ -190,17 +191,22 @@ public class MenuRelatorio {
                     for(OcorrenciaResponse oc : ocorrenciaResponse) {
                         if(oc.departamento() == Departamento.MECANICA) {
                             verifica = true;
-                            System.out.println("ID OC: " + oc.idOcorrencia());
-                            System.out.println("Status: " + oc.statusOc());
-                            System.out.println("Máquina -> ID: " + oc.idMaquina() + " | Nome: " + oc.nomeMaquina().getNome());
-                            System.out.println("--");
-                            System.out.println("--");
+                            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                            System.out.println("┃  ID Ocorrência: " + oc.idOcorrencia());
+                            System.out.println("┃  Status: " + oc.statusOc());
+                            System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
+                            System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
+                            System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
+                            System.out.println("┃ ┃ ID: " + oc.idMaquina());
+                            System.out.println("┃ ┃ Nome: " + oc.nomeMaquina().getNome());
+                            System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
+                            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
                             System.out.println(); // pula linha
                         }
                     }
 
                     if(!verifica) {
-                        Ferramentas.mensagemErro("Não há nenhuma ocorrência com esse departamento");
+                        Ferramentas.mensagemErro("┃  NÃO HÁ NENHUMA OCORRÊNCIA COM ESSE DEPARTAMENTO");
                         return;
                     }
                 }
@@ -209,17 +215,22 @@ public class MenuRelatorio {
                     for(OcorrenciaResponse oc : ocorrenciaResponse) {
                         if(oc.departamento() == Departamento.ELETRICA) {
                             verifica = true;
-                            System.out.println("ID OC: " + oc.idOcorrencia());
-                            System.out.println("Status: " + oc.statusOc());
-                            System.out.println("Máquina -> ID: " + oc.idMaquina() + " | Nome: " + oc.nomeMaquina().getNome());
-                            System.out.println("--");
-                            System.out.println("--");
-                            System.out.println(); // pula linha
+                            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                            System.out.println("┃  ID Ocorrência: " + oc.idOcorrencia());
+                            System.out.println("┃  Status: " + oc.statusOc());
+                            System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
+                            System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
+                            System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
+                            System.out.println("┃ ┃ ID: " + oc.idMaquina());
+                            System.out.println("┃ ┃ Nome: " + oc.nomeMaquina().getNome());
+                            System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
+                            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                            System.out.println("                                                          "); // pula linha
                         }
                     }
 
                     if(!verifica) {
-                        Ferramentas.mensagemErro("Não há nenhuma ocorrência com esse departamento");
+                        Ferramentas.mensagemErro("┃  NÃO HÁ NENHUMA OCORRÊNCIA COM ESSE DEPARTAMENTO");
                         return;
                     }
                 }
@@ -228,7 +239,7 @@ public class MenuRelatorio {
             Ferramentas.menuDefault();
         }
 
-        System.out.println("Aperte enter para continuar");
+        System.out.println("┃  APERTE ENTER PARA CONTINUAR");
         Ferramentas.lString();
         Ferramentas.limpaTerminal();
     }
@@ -236,10 +247,12 @@ public class MenuRelatorio {
     public static void menuFiltroStatus(List<OcorrenciaResponse> ocorrenciaResponse) {
         Ferramentas.limpaTerminal();
         boolean verifica = false;
-        System.out.println("1 - ABERTA");
-        System.out.println("2 - EM ANDAMENTO");
-        System.out.println("3 - FECHADA");
-        System.out.print("Escolha: ");
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃  1 - ABERTA                                            ┃");
+        System.out.println("┃  2 - EM ANDAMENTO                                      ┃");
+        System.out.println("┃  3 - FECHADA                                           ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+        System.out.print("┃ ➤ Escolha: ");
         try {
             int op = Ferramentas.lInteiro();
             Ferramentas.limpaTerminal();
@@ -248,17 +261,23 @@ public class MenuRelatorio {
                     for(OcorrenciaResponse oc : ocorrenciaResponse) {
                         if(oc.statusOc() == StatusOc.ABERTA) {
                             verifica = true;
-                            System.out.println("ID OC: " + oc.idOcorrencia());
-                            System.out.println("Status: " + oc.statusOc());
-                            System.out.println("Máquina -> ID: " + oc.idMaquina() + " | Nome: " + oc.nomeMaquina().getNome());
-                            System.out.println("--");
-                            System.out.println("--");
+                            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                            System.out.println("┃  ID Ocorrência: " + oc.idOcorrencia());
+                            System.out.println("┃  Status: " + oc.statusOc());
+                            System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
+                            System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
+                            System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
+                            System.out.println("┃ ┃ ID: " + oc.idMaquina());
+                            System.out.println("┃ ┃ Nome: " + oc.nomeMaquina().getNome());
+                            System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
+                            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                            System.out.println("                                                          ");
                             System.out.println(); // pula linha
                         }
                     }
 
                     if(!verifica) {
-                        Ferramentas.mensagemErro("Não há nenhuma ocorrência com esse status");
+                        Ferramentas.mensagemErro("┃  NÃO HÁ NENHUMA OCORRÊNCIA COM ESSE STATUS");
                         return;
                     }
                 }
@@ -267,17 +286,23 @@ public class MenuRelatorio {
                     for(OcorrenciaResponse oc : ocorrenciaResponse) {
                         if(oc.statusOc() == StatusOc.EM_ANDAMENTO) {
                             verifica = true;
-                            System.out.println("ID OC: " + oc.idOcorrencia());
-                            System.out.println("Status: " + oc.statusOc());
-                            System.out.println("Máquina -> ID: " + oc.idMaquina() + " | Nome: " + oc.nomeMaquina().getNome());
-                            System.out.println("--");
-                            System.out.println("--");
+                            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                            System.out.println("┃  ID Ocorrência: " + oc.idOcorrencia());
+                            System.out.println("┃  Status: " + oc.statusOc());
+                            System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
+                            System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
+                            System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
+                            System.out.println("┃ ┃ ID: " + oc.idMaquina());
+                            System.out.println("┃ ┃ Nome: " + oc.nomeMaquina().getNome());
+                            System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
+                            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                            System.out.println("                                                          ");
                             System.out.println(); // pula linha
                         }
                     }
 
                     if(!verifica) {
-                        Ferramentas.mensagemErro("Não há nenhuma ocorrência com esse status");
+                        Ferramentas.mensagemErro("┃  NÃO HÁ NENHUMA OCORRÊNCIA COM ESSE STATUS");
                         return;
                     }
                 }
@@ -286,17 +311,23 @@ public class MenuRelatorio {
                     for(OcorrenciaResponse oc : ocorrenciaResponse) {
                         if(oc.statusOc() == StatusOc.FECHADA) {
                             verifica = true;
-                            System.out.println("ID OC: " + oc.idOcorrencia());
-                            System.out.println("Status: " + oc.statusOc());
-                            System.out.println("Máquina -> ID: " + oc.idMaquina() + " | Nome: " + oc.nomeMaquina().getNome());
-                            System.out.println("--");
-                            System.out.println("--");
+                            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                            System.out.println("┃  ID Ocorrência: " + oc.idOcorrencia());
+                            System.out.println("┃  Status: " + oc.statusOc());
+                            System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
+                            System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
+                            System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
+                            System.out.println("┃ ┃ ID: " + oc.idMaquina());
+                            System.out.println("┃ ┃ Nome: " + oc.nomeMaquina().getNome());
+                            System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
+                            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                            System.out.println("                                                          ");
                             System.out.println(); // pula linha
                         }
                     }
 
                     if(!verifica) {
-                        Ferramentas.mensagemErro("Não há nenhuma ocorrência com esse status");
+                        Ferramentas.mensagemErro("┃  NÃO HÁ NENHUMA OCORRÊNCIA COM ESSE STATUS");
                         return;
                     }
                 }
@@ -305,7 +336,7 @@ public class MenuRelatorio {
             Ferramentas.menuDefault();
         }
 
-        System.out.println("Aperte enter para continuar");
+        System.out.println("┃  APERTE ENTER PARA CONTINUAR");
         Ferramentas.lString();
         Ferramentas.limpaTerminal();
     }
@@ -315,7 +346,7 @@ public class MenuRelatorio {
         ListaFuncionariosResponse listaFuncionarios = Main.funcionarioController.listaFuncionariosParaGerente(NivelAcesso.GERENTE);
         Departamento departamento = null;
         List<FuncionarioResponse> encontrados = new ArrayList<>();
-        System.out.print("Digite o nome do supervisor: ");
+        System.out.print("┃  Digite o nome do supervisor: ");
         String nome = Ferramentas.lString();
 
         for(FuncionarioResponse func : listaFuncionarios.listaFuncionarios()) {
@@ -325,24 +356,25 @@ public class MenuRelatorio {
         }
 
         if(encontrados.isEmpty()) {
-            Ferramentas.mensagemErro("O funcionário informado não foi encontrado");
+            Ferramentas.mensagemErro("┃  O FUNCIONARIO INFORMADO NÃO FOI ENCONTRADO");
             return;
         }
 
         int cont = 1;
         Ferramentas.limpaTerminal();
-        System.out.println("Foram encontrados " + encontrados.size() + " supervisores: ");
-        for(FuncionarioResponse response : encontrados) {
-            System.out.println(cont + " - " + response.nome().getNome());
+        System.out.println("┃  Foram encontrados " + encontrados.size() + " supervisores: ");
+        for(FuncionarioResponse response : encontrados)
+        {
+            System.out.println("┃  " + cont + " - " + response.nome().getNome());
             cont ++;
         }
         System.out.println();
-        System.out.print("Escolha: ");
+        System.out.print("┃  Escolha: ");
         try{
             int op = Ferramentas.lInteiro();
 
             if(op < 1 || op > encontrados.size()) {
-                Ferramentas.mensagemErro("Opção inválida");
+                Ferramentas.mensagemErro("┃  OPÇÃO INVÁLIDA");
                 return;
             }
 
@@ -352,25 +384,30 @@ public class MenuRelatorio {
             Ferramentas.limpaTerminal();
             for(OcorrenciaResponse oc : ocorrenciaResponse) {
                 if(oc.departamento() == departamento) {
-                    System.out.println("ID OC: " + oc.idOcorrencia());
-                    System.out.println("Status: " + oc.statusOc());
-                    System.out.println("Máquina -> ID: " + oc.idMaquina() + " | Nome: " + oc.nomeMaquina().getNome());
-                    System.out.println("--");
-                    System.out.println("--");
-                    System.out.println(); // pula linha
+                    System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                    System.out.println("┃  ID Ocorrência: " + oc.idOcorrencia());
+                    System.out.println("┃  Status: " + oc.statusOc());
+                    System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
+                    System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
+                    System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
+                    System.out.println("┃ ┃ ID: " + oc.idMaquina());
+                    System.out.println("┃ ┃ Nome: " + oc.nomeMaquina().getNome());
+                    System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
+                    System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                    System.out.println("                                                          "); // pula linha
                     verifica = true;
                 }
             }
 
             if(!verifica) {
-                Ferramentas.mensagemErro("Não foi possível encontrar nenhuma ocorrência vinculada a este supervisor");
+                Ferramentas.mensagemErro("┃  NÃO FOI POSSÍVEL ENCONTRAR NENHUMA OCORRÊNCIA VINCULADA A ESTE SUPERVISOR");
                 return;
             }
         } catch (InputMismatchException e) {
             Ferramentas.menuDefault();
         }
 
-        System.out.println("Aperte enter para continuar");
+        System.out.println("┃  APERTE ENTER PARA CONTINUAR");
         Ferramentas.lString();
         Ferramentas.limpaTerminal();
     }
