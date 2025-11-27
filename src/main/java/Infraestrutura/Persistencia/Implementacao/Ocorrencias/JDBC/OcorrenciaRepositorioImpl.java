@@ -9,13 +9,13 @@ import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Ocorrencia.Enumeracoes.StatusOc;
 import Dominio.Ocorrencia.Repositories.OcorrenciaRepositorio;
 import Infraestrutura.Configuracao.ConnectionFactory;
-import Infraestrutura.Persistencia.Implementacao.Maquina.Mapper.MaquinaJdbcMapper;
-import Infraestrutura.Persistencia.Implementacao.Ocorrencias.Mapper.OcorrenciaMappers;
+import Infraestrutura.Persistencia.Implementacao.Maquina.Mapper.MaquinaImplMapper;
+import Infraestrutura.Persistencia.Implementacao.Ocorrencias.Mapper.OcorrenciaImplMapper;
 
-public class OcorrenciasJDBCRepositorio implements OcorrenciaRepositorio {
+public class OcorrenciaRepositorioImpl implements OcorrenciaRepositorio {
 
-    private final OcorrenciaMappers mapper = new OcorrenciaMappers();
-    private final MaquinaJdbcMapper maquinaMapper = new MaquinaJdbcMapper();
+    private final OcorrenciaImplMapper mapper = new OcorrenciaImplMapper();
+    private final MaquinaImplMapper maquinaMapper = new MaquinaImplMapper();
 
     @Override
     public void salvar(Ocorrencia ocorrencia) {

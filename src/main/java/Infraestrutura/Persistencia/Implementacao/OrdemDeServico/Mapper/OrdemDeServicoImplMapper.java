@@ -4,7 +4,7 @@ import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
 import Dominio.OrdemDeServico.Enumeracoes.TipoOS;
 
-public class OsJdbcMapper
+public class OrdemDeServicoImplMapper
 {
     // --- STATUS ---
     public StatusOS mapearStatus(int id) {

@@ -27,34 +27,33 @@ import Dominio.Funcionario.Nucleo.Servicos.FuncionarioServico;
 import Dominio.Maquina.Servicos.MaquinaServico;
 import Dominio.Ocorrencia.Servicos.OcorrenciaServico;
 import Dominio.OrdemDeServico.Servicos.OsServico;
-import Infraestrutura.Persistencia.Implementacao.Funcionario.JDBC.FuncionarioRepositorioJdbc;
-import Infraestrutura.Persistencia.Implementacao.Funcionario.Mapper.FuncionarioJdbcMapper;
-import Infraestrutura.Persistencia.Implementacao.Maquina.JDBC.MaquinaJdbcRepositorio;
-import Infraestrutura.Persistencia.Implementacao.Maquina.Mapper.MaquinaJdbcMapper;
-import Infraestrutura.Persistencia.Implementacao.Ocorrencias.JDBC.OcorrenciasJDBCRepositorio;
-import Infraestrutura.Persistencia.Implementacao.OrdemDeServico.JDBC.OsJdbcRepositorio;
-import Infraestrutura.Persistencia.Implementacao.OrdemDeServico.Mapper.OsJdbcMapper;
-import Views.Funcionario.Nucleo.MenuInicial;
+import Infraestrutura.Persistencia.Implementacao.Funcionario.JDBC.FuncionarioRepositorioImpl;
+import Infraestrutura.Persistencia.Implementacao.Funcionario.Mapper.FuncionarioImplMapper;
+import Infraestrutura.Persistencia.Implementacao.Maquina.JDBC.MaquinaRepositorioImpl;
+import Infraestrutura.Persistencia.Implementacao.Maquina.Mapper.MaquinaImplMapper;
+import Infraestrutura.Persistencia.Implementacao.Ocorrencias.JDBC.OcorrenciaRepositorioImpl;
+import Infraestrutura.Persistencia.Implementacao.OrdemDeServico.JDBC.OrdemServicoRepositorioImpl;
+import Infraestrutura.Persistencia.Implementacao.OrdemDeServico.Mapper.OrdemDeServicoImplMapper;
 
 public class Main {
     // Dao para funcionario
     //private static FuncionarioSimulacaoJDBC funcionarioDAO = new FuncionarioSimulacaoJDBC();
-    private static FuncionarioJdbcMapper funcionarioJdbcMapper = new FuncionarioJdbcMapper();
-    private static FuncionarioRepositorioJdbc funcionarioDAO = new FuncionarioRepositorioJdbc(funcionarioJdbcMapper);
+    private static FuncionarioImplMapper funcionarioImplMapper = new FuncionarioImplMapper();
+    private static FuncionarioRepositorioImpl funcionarioDAO = new FuncionarioRepositorioImpl(funcionarioImplMapper);
 
     // Dao para maquina
     //private static MaquinaSimulacaoJDBC maquinaDAO = new MaquinaSimulacaoJDBC();
-    private static MaquinaJdbcMapper maquinaJdbcMapper = new MaquinaJdbcMapper();
-    private static MaquinaJdbcRepositorio maquinaDAO = new MaquinaJdbcRepositorio(maquinaJdbcMapper);
+    private static MaquinaImplMapper maquinaImplMapper = new MaquinaImplMapper();
+    private static MaquinaRepositorioImpl maquinaDAO = new MaquinaRepositorioImpl(maquinaImplMapper);
 
     // Dao para ordem de serviço
     //private static OsSimulacaoJDBC osDAO = new OsSimulacaoJDBC();
-    private static OsJdbcMapper osJdbcMapper = new OsJdbcMapper();
-    private static OsJdbcRepositorio osDAO = new OsJdbcRepositorio(osJdbcMapper);
+    private static OrdemDeServicoImplMapper ordemDeServicoImplMapper = new OrdemDeServicoImplMapper();
+    private static OrdemServicoRepositorioImpl osDAO = new OrdemServicoRepositorioImpl(ordemDeServicoImplMapper);
 
     // Dao para ocorrência
     // private static OcSimulacaoJDBC ocorrenciaDAO = new OcSimulacaoJDBC();
-    private static OcorrenciasJDBCRepositorio ocorrenciaDAO = new OcorrenciasJDBCRepositorio();
+    private static OcorrenciaRepositorioImpl ocorrenciaDAO = new OcorrenciaRepositorioImpl();
 
     // Aplicação de funcionário
     private static TipoFuncionarioServico tipoFuncionarioServico = new TipoFuncionarioServico();

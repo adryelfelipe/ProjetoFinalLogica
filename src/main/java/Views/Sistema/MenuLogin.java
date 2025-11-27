@@ -1,4 +1,4 @@
-package Views.Funcionario.Nucleo;
+package Views.Sistema;
 
 import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioRequest;
 import Aplicacao.Funcionario.Nucleo.Dtos.Login.LoginFuncionarioResponse;
@@ -8,7 +8,6 @@ import Views.Funcionario.Administrador.MenuAdministrador;
 import Views.Funcionario.Gerente.MenuGerente;
 import Views.Funcionario.Supervisor.MenuSupervisor;
 import Views.Funcionario.Tecnico.MenuTecnico;
-import Views.Sistema.Main;
 
 public class MenuLogin
 {

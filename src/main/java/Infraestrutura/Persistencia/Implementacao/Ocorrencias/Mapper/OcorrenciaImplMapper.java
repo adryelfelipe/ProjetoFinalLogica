@@ -3,7 +3,7 @@ package Infraestrutura.Persistencia.Implementacao.Ocorrencias.Mapper;// Ou seu p
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Ocorrencia.Enumeracoes.StatusOc;
 
-public class OcorrenciaMappers {
+public class OcorrenciaImplMapper {
 
         public Departamento mapearDepartamento(int id) {
             return switch (id) {

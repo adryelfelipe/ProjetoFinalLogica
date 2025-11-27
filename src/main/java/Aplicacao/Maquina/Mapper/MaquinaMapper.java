@@ -1,11 +1,13 @@
 package Aplicacao.Maquina.Mapper;
 
 import Aplicacao.Funcionario.Nucleo.Dtos.Atualizar.AtualizarFuncionarioResponse;
+import Aplicacao.Funcionario.Nucleo.Dtos.Excluir.ExcluirFuncionarioResponse;
 import Aplicacao.Maquina.Dtos.Atualizar.AtualizarMaquinaResponse;
 import Aplicacao.Maquina.Dtos.BuscarPorId.MaquinaPorIdRequest;
 import Aplicacao.Maquina.Dtos.BuscarPorId.MaquinaPorIdResponse;
 import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaRequest;
 import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaResponse;
+import Aplicacao.Maquina.Dtos.Exclusao.ExcluirMaquinaResponse;
 import Aplicacao.Maquina.Dtos.Listar.ListaMaquinasResponse;
 import Aplicacao.Maquina.Dtos.Listar.MaquinaResponse;
 import Dominio.Funcionario.Nucleo.Funcionario;
@@ -64,5 +66,9 @@ public class MaquinaMapper {
     // Atualização falhou
     public AtualizarMaquinaResponse paraAtualizarResponse(String mensagem) {
         return new AtualizarMaquinaResponse(null,false, mensagem);
+    }
+
+    public ExcluirMaquinaResponse paraExcluirResponse(String mensagem, boolean status) {
+        return new ExcluirMaquinaResponse(mensagem, status);
     }
 }

@@ -1,10 +1,7 @@
 package Views.Funcionario.Tecnico;
 
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
-import Dominio.Funcionario.Tecnico.Tecnico;
 import Util.Ferramentas;
-import Views.Funcionario.Nucleo.MenuInicial;
-import Views.Funcionario.Supervisor.MenuVisualizarOs;
 
 import java.util.InputMismatchException;
 
