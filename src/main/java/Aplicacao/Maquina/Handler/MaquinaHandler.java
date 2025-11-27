@@ -9,6 +9,8 @@ import Aplicacao.Maquina.Dtos.BuscarPorId.MaquinaPorIdRequest;
 import Aplicacao.Maquina.Dtos.BuscarPorId.MaquinaPorIdResponse;
 import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaRequest;
 import Aplicacao.Maquina.Dtos.Cadastro.CadastroMaquinaResponse;
+import Aplicacao.Maquina.Dtos.Exclusao.ExcluirMaquinaRequest;
+import Aplicacao.Maquina.Dtos.Exclusao.ExcluirMaquinaResponse;
 import Aplicacao.Maquina.Dtos.Listar.ListaMaquinasResponse;
 import Aplicacao.Maquina.Exceptions.Handler.*;
 import Aplicacao.Maquina.Mapper.MaquinaMapper;
@@ -21,6 +23,8 @@ import Dominio.Maquina.Maquina;
 import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
 import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 import Dominio.Maquina.Servicos.MaquinaServico;
+
+import java.util.List;
 
 public class MaquinaHandler {
 
@@ -52,8 +56,9 @@ public class MaquinaHandler {
 
     public ListaMaquinasResponse listarMaquinas(NivelAcesso nivelAcesso) {
         try {
-            autorizacaoServico.validaAcessoSupervisor(nivelAcesso);
-            return maquinaMapper.paraListaResponse(maquinaRepositorio.listaMaquinas());
+            autorizacaoServico.validaAcessoGerente(nivelAcesso);
+            List<Maquina> listaMaquinas = maquinaRepositorio.listaMaquinas();
+            return maquinaMapper.paraListaResponse(listaMaquinas);
         } catch (AutorizacaoException e) {
             return maquinaMapper.paraListaResponse(e.getMessage());
         }
@@ -102,5 +107,11 @@ public class MaquinaHandler {
                  IdMaquinaNaoEncontradoException | MesmoDadoMaquinaException e) {
             return maquinaMapper.paraAtualizarResponse(e.getMessage());
         }
+    }
+
+    public ExcluirMaquinaResponse excluir(NivelAcesso nivelAcesso, ExcluirMaquinaRequest request) {
+        autorizacaoServico.validaAcessoGerente(nivelAcesso);
+        boolean sucesso = maquinaRepositorio.excluir(request.idMaquina());
+        return maquinaMapper.paraExcluirResponse(sucesso ? "Máquina excluída com sucesso" : "Falha ao excluir a máquina", sucesso);
     }
 }

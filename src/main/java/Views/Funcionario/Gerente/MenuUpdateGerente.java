@@ -84,9 +84,9 @@ public class MenuUpdateGerente {
         for (FuncionarioResponse funcionario : listaTecnicos)
         {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃  ID: " + funcionario.id());
-            System.out.println("┃  Nome: " + funcionario.nome().getNome());
-            System.out.println("┃  Cargo: " + funcionario.nivelAcesso().name());
+            System.out.printf("┃  ID: %-50s┃%n", funcionario.id());
+            System.out.printf("┃  Nome: %-48s┃%n", funcionario.nome().getNome());
+            System.out.printf("┃  Cargo: %-47s┃%n", funcionario.nivelAcesso().name());
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         }
 
@@ -113,11 +113,11 @@ public class MenuUpdateGerente {
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━┓      ┏━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃    EDITAR   TÉCNICO    ┃      ┃         ATUAL          ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━┃      ┃━━━━━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.printf("┃  1 - Nome              ┃      ┃  %-26s┃%n", responseId.nome().getNome());
-                System.out.printf("┃  2 - CPF               ┃      ┃  %-26s┃%n", responseId.cpf().getCpf());
-                System.out.printf("┃  3 - Departamento      ┃      ┃  %-26s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
-                System.out.printf("┃  4 - Especialidade     ┃      ┃  %-26s┃%n", responseId.especialidade());
-                System.out.println("┃  5 - Sair do Menu      ┃      ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.printf("┃  1 - Nome              ┃      ┃  %-22s┃%n", responseId.nome().getNome());
+                System.out.printf("┃  2 - CPF               ┃      ┃  %-22s┃%n", responseId.cpf().getCpf());
+                System.out.printf("┃  3 - Departamento      ┃      ┃  %-22s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
+                System.out.printf("┃  4 - Especialidade     ┃      ┃  %-22s┃%n", responseId.especialidade());
+                System.out.println("┃  5 - Sair do Menu      ┃      ┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.print("┃ ➤ Escolha:  ");
 
@@ -217,9 +217,9 @@ public class MenuUpdateGerente {
         for (FuncionarioResponse funcionario : listaSupervisor)
         {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃  ID: " + funcionario.id());
-            System.out.println("┃  Nome: " + funcionario.nome().getNome());
-            System.out.println("┃  Cargo: " + funcionario.nivelAcesso().name());
+            System.out.printf("┃  ID: %-50s┃%n", funcionario.id());
+            System.out.printf("┃  Nome: %-48s┃%n", funcionario.nome().getNome());
+            System.out.printf("┃  Cargo: %-47s┃%n", funcionario.nivelAcesso().name());
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         }
 
@@ -242,13 +242,13 @@ public class MenuUpdateGerente {
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃                  ATUALIZAR SUPERVISOR                  ┃");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("                                                            ");
+                System.out.println("                                                          ");
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━┓      ┏━━━━━━━━━━━━━━━━━━━━━━━━┓");
                 System.out.println("┃   EDITAR  SUPERVISOR   ┃      ┃          ATUAL         ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━┃      ┃━━━━━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.printf("┃  1 - Nome              ┃      ┃  %-25s┃%n", responseId.nome().getNome());
-                System.out.printf("┃  2 - CPF               ┃      ┃  %-25s┃%n", responseId.cpf().getCpf());
-                System.out.printf("┃  3 - Meta Mensal       ┃      ┃  %-25s┃%n", responseId.metaMensal().getValorMetaMensal());
+                System.out.printf("┃  1 - Nome              ┃      ┃  %-22s┃%n", responseId.nome().getNome());
+                System.out.printf("┃  2 - CPF               ┃      ┃  %-22s┃%n", responseId.cpf().getCpf());
+                System.out.printf("┃  3 - Meta Mensal       ┃      ┃  %-22s┃%n", responseId.metaMensal().getValorMetaMensal());
                 System.out.println("┃  4 - Sair do Menu      ┃      ┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.print("┃ ➤ Escolha:  ");

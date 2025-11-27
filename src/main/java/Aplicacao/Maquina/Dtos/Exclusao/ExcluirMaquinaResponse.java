@@ -1,4 +1,4 @@
 package Aplicacao.Maquina.Dtos.Exclusao;
 
-public class ExcluirMaquinaResponse {
+public record ExcluirMaquinaResponse(String mensagem, boolean status) {
 }

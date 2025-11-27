@@ -9,6 +9,8 @@ import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Util.Ferramentas;
 import Views.Sistema.Main;
 
+import java.sql.SQLOutput;
+
 public class MenuVisualizarOs {
     public static void visualizarOs(long idFuncionario, NivelAcesso nivelAcesso) {
         Ferramentas.limpaTerminal();
@@ -27,33 +29,33 @@ public class MenuVisualizarOs {
         }
 
         if(listarOsResponse.listaResponse().isEmpty()) {
-            Ferramentas.mensagemErro("Não há ordens de serviço ativas no momento");
+            Ferramentas.mensagemErro("┃  NÃO HÁ ORDENS DE SERVIÇO ATIVAS NO MOMENTO");
             return;
         }
 
         // Menu
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃   TODAS AS ORDENS DE SERVIÇO   ┃");
-        System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-
-        System.out.println(); // pula linha
-
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃               TODAS AS ORDENS DE SERVIÇO               ┃");
+        System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
         for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
-            System.out.println("ID OS: " + os.idOs());
-            System.out.println("Status: " + os.statusOs());
-            System.out.println("Descrição: " + os.descricao().getDescricao());
-            System.out.println("Valor: " + os.valorOs().getValorOS());
-            System.out.println("Técnico -> ID: " + os.idTecnico() + " | Nome: " + os.nomeTecnico().getNome());
-            System.out.println("Máquina -> ID: " + os.idMaquina() + " | Nome: " + os.nomeMaquina().getNome());
-            System.out.println("Tipo da OS: " + os.tipoOs().name());
-            System.out.println("--");
-            System.out.println("--");
+            System.out.println("┃  ID OS: " + os.idOs());
+            System.out.println("┃  Status: " + os.statusOs());
+            System.out.println("┃  Descrição: " + os.descricao().getDescricao());
+            System.out.println("┃  Valor: " + os.valorOs().getValorOS());
+            System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━┓    ┏━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
+            System.out.println("┃ ┃        TÉCNICO        ┃    ┃        MÁQUINA        ┃ ┃");
+            System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━┃    ┃━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
+            System.out.println("┃ ┃ ID: " + os.idTecnico() + "┃    ┃ ID" + os.idMaquina());
+            System.out.println("┃ ┃ Nome: " + os.nomeTecnico().getNome() + "┃    ┃ Nome: " + os.nomeMaquina().getNome());
+            System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
+            System.out.println("┃  Tipo da OS: " + os.tipoOs().name());
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println(); // pula linha
         }
 
         System.out.println(); // pula linha
 
-        System.out.print("Aperte enter para continuar: ");
+        System.out.print("┃  APERTE ENTER PARA CONTINUAR: ");
         Ferramentas.lString();
         Ferramentas.limpaTerminal();
     }

@@ -12,10 +12,10 @@ public class MenuSupervisor
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃                     MENU SUPERVISOR                    ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-            System.out.println("┃                                      ┃");
-            System.out.println("┃  1 - Cadastrar Nova Ordem            ┃");
-            System.out.println("┃  2 - Visualizar Relatórios           ┃");
-            System.out.println("┃  3 - Retornar                        ┃");
+            System.out.println("┃                                                        ┃");
+            System.out.println("┃  1 - Cadastrar Nova Ordem                              ┃");
+            System.out.println("┃  2 - Visualizar Relatórios                             ┃");
+            System.out.println("┃  3 - Retornar                                          ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 

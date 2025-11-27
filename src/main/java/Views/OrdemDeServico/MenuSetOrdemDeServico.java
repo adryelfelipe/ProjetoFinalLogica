@@ -10,14 +10,14 @@ public class MenuSetOrdemDeServico {
     public static StatusOS menuSetStatusOS() {
         while(true)
         {
-            System.out.println("|━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━|");
-            System.out.println("┃     ESCOLHA O STATUS DA OS     ┃");
-            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-            System.out.println("┃                                ┃");
-            System.out.println("┃  1 - Em Andamento              ┃");
-            System.out.println("┃  2 - Atrasada                  ┃");
-            System.out.println("┃  3 - Fechada                   ┃");
-            System.out.println("|━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━|");
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                 ESCOLHA O STATUS DA OS                 ┃");
+            System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+            System.out.println("┃                                                        ┃");
+            System.out.println("┃  1 - Em Andamento                                      ┃");
+            System.out.println("┃  2 - Atrasada                                          ┃");
+            System.out.println("┃  3 - Fechada                                           ┃");
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
             try

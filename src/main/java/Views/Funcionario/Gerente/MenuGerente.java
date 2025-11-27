@@ -19,7 +19,8 @@ public class MenuGerente {
             System.out.println("┃  2 - Visualizar Relatórios                             ┃");
             System.out.println("┃  3 - Atualizar Funcionários                            ┃");
             System.out.println("┃  4 - Remover Funcionários                              ┃");
-            System.out.println("┃  5 - Retornar                                          ┃");
+            System.out.println("┃  5 - Remover Máquinas                                  ┃");
+            System.out.println("┃  6 - Retornar                                          ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 
@@ -32,7 +33,8 @@ public class MenuGerente {
                     case 2 -> MenuRelatorio.menuRelatorio(idGerente, nivelAcesso);
                     case 3 -> MenuUpdateGerente.menuUpdateEscolha(nivelAcesso);
                     case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha(idGerente, nivelAcesso);
-                    case 5 -> {
+                    case 5 -> MenuExcluirMaquina.menuRemoverEscolha(idGerente, nivelAcesso);
+                    case 6 -> {
                         System.out.print("┃  RETORNANDO AO MENU INICIAL ...");
                         Ferramentas.Delay(500);
                         Ferramentas.limpaTerminal();
