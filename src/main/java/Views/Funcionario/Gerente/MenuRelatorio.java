@@ -61,11 +61,11 @@ public class MenuRelatorio {
 
         // Pedido e resposta para buscar supervisor
         FuncionarioPorIdRequest buscarGerenteRequest = new FuncionarioPorIdRequest(idGerente);
-        GerentePorIdResponse responseGerente = Main.gerenteController.buscarPorId(nivelAcesso, buscarGerenteRequest);
+        GerentePorIdResponse responseGerente = Main.gerenteController.buscarPorId(NivelAcesso.GERENTE, buscarGerenteRequest);
 
         // Pedido e resposta para listar ordens de servico
         ListarOsRequest listarOsRequest = new ListarOsRequest(idGerente, responseGerente.listaDepartamentos().getListaDepartamentos().getFirst());
-        ListarOsResponse listarOsResponse = Main.osController.listarOsDepartamento(nivelAcesso, listarOsRequest);
+        ListarOsResponse listarOsResponse = Main.osController.listarOsDepartamento(NivelAcesso.GERENTE, listarOsRequest);
 
         if(!listarOsResponse.status()) {
             Ferramentas.mensagemErro(listarOsResponse.mensagem());
