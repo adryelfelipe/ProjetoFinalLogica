@@ -74,6 +74,7 @@ public class Ferramentas {
     public static final String ORANGE_DARK = "\u001B[38;2;210;110;0m";  //  UTILIZADO NOS MENUS - DETALHES
     public static final String AQUA_BLUE = "\u001B[38;5;31m";           //  UTILIZADO NA BASE DO MENU
     public static final String DARK_CYAN = "\u001B[38;5;30m";           //  UTILIZADO NO PROCESSAMENTO DE DADOS
+    public static final String TEAL_LIGHT = "\u001B[38;2;63;166;176m";  //  UTILIZADO EM UMA PARTE MUITO ESPECÍFICA(SOMENTE PARA UM DETALHE DE VALOR DE ORDEM DE SERVIÇO)
     //NAS CONFIGURAÇÕES SETTINGS -> EDITOR -> COLOR SCHEME -> CONSOLE COLORS -> USER INPUT -> FOREGROUND -> MUDA O HEX PARA: 3FA6B0
 
     private static Scanner ler = new Scanner(System.in);
