@@ -192,7 +192,7 @@ public class OrdemServicoRepositorioImpl implements OrdemDeServicoRepositorio {
 
     @Override
     public boolean existeId(long id) {
-        String querySql = "SELECT * FROM OrdemServicos WHERE id_os = ? LIMIT 1";
+        String querySql = "SELECT * FROM OrdemServicos WHERE id_osg = ? LIMIT 1";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(querySql)) {
