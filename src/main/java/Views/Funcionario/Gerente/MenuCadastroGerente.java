@@ -22,8 +22,8 @@ import java.util.ArrayList;
 public class MenuCadastroGerente {
     // -- Atributos -- //
     public static void menuCadastroSupervisor(NivelAcesso nivelAcesso) {
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃                  CADASTRO SUPERVISOR                   ┃");
+        System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃                  "+Ferramentas.ORANGE_DARK+"CADASTRO SUPERVISOR"+Ferramentas.AQUA_BLUE+"                   ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         System.out.println();
 
@@ -43,7 +43,7 @@ public class MenuCadastroGerente {
         double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
         Ferramentas.limpaTerminal();
 
-        System.out.println("┃  PROCESSANDO DADOS...");
+        System.out.println(Ferramentas.ITALIC+Ferramentas.DARK_CYAN+"┃  PROCESSANDO DADOS..."+Ferramentas.RESET+Ferramentas.AQUA_BLUE);
         Ferramentas.Delay(1000);
 
         // -- Gerando request para cadastro de Supervisor -- //
@@ -61,7 +61,7 @@ public class MenuCadastroGerente {
 
     public static void menuCadastroMaquina(NivelAcesso nivelAcesso) {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃                   CADASTRO MÁQUINA                     ┃");
+        System.out.println("┃                   "+Ferramentas.ORANGE_DARK+"CADASTRO MÁQUINA"+Ferramentas.AQUA_BLUE+"                     ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         // ----- Atribuição de caracteríscticas de uma Máquina ----- //
@@ -75,7 +75,7 @@ public class MenuCadastroGerente {
         Ferramentas.limpaTerminal();
 
         Ferramentas.limpaTerminal();
-        System.out.print("┃  PROCESSANDO DADOS...");
+        System.out.print(Ferramentas.ITALIC+Ferramentas.DARK_CYAN+"┃  PROCESSANDO DADOS..."+Ferramentas.RESET+Ferramentas.AQUA_BLUE);
         Ferramentas.Delay(1000);
 
         // -- Gerando request para cadastro de Máquina -- //
@@ -93,7 +93,7 @@ public class MenuCadastroGerente {
     public static void menuCadastroTecnico(NivelAcesso nivelAcesso) {
         System.out.println(" ");
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃                   CADASTRO TÉCNICO                     ┃");
+        System.out.println("┃                   "+Ferramentas.ORANGE_DARK+"CADASTRO TÉCNICO"+Ferramentas.AQUA_BLUE+"                     ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         // ----- Atribuição de caracteríscticas de um Funcionário ----- //
@@ -113,7 +113,7 @@ public class MenuCadastroGerente {
         Especialidade especialidade = MenuSetTecnico.MenuSetEspecialidade();
         Ferramentas.limpaTerminal();
 
-        System.out.print("┃  PROCESSANDO DADOS...");
+        System.out.print(Ferramentas.ITALIC+Ferramentas.DARK_CYAN+"┃  PROCESSANDO DADOS..."+Ferramentas.RESET+Ferramentas.AQUA_BLUE);
         Ferramentas.Delay(1000);
 
         // -- Gerando request para cadastro de Supervisor -- //

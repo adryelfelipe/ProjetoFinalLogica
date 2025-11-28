@@ -11,17 +11,17 @@ public class MenuSetTecnico {
     {
         while(true) {
             System.out.println(" ");
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃               SELECIONE A ESPECIALIDADE                ┃");
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃               "+Ferramentas.ORANGE_DARK+"SELECIONE A ESPECIALIDADE"+Ferramentas.AQUA_BLUE+"                ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                                        ┃");
-            System.out.println("┃ 1 - Técnico eletrotécnica                              ┃");
-            System.out.println("┃ 2 - Eletricista Fabril                                 ┃");
-            System.out.println("┃ 3 - Soldador                                           ┃");
-            System.out.println("┃ 4 - Eletromecânica                                     ┃");
-            System.out.println("┃ 5 - Pintor Industrial                                  ┃");
+            System.out.println("┃ "+Ferramentas.ORANGE_DARK+"1 - Técnico eletrotécnica"+Ferramentas.AQUA_BLUE+"                              ┃");
+            System.out.println("┃ "+Ferramentas.ORANGE_DARK+"2 - Eletricista Fabril"+Ferramentas.AQUA_BLUE+"                                 ┃");
+            System.out.println("┃ "+Ferramentas.ORANGE_DARK+"3 - Soldador"+Ferramentas.AQUA_BLUE+"                                           ┃");
+            System.out.println("┃ "+Ferramentas.ORANGE_DARK+"4 - Eletromecânica"+Ferramentas.AQUA_BLUE+"                                     ┃");
+            System.out.println("┃ "+Ferramentas.ORANGE_DARK+"5 - Pintor Industrial"+Ferramentas.AQUA_BLUE+"                                  ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃ ➤ Escolha: ");
+            System.out.print("┃ "+Ferramentas.ORANGE_DARK+"➤ Escolha:"+Ferramentas.AQUA_BLUE+" ");
 
             try {
                 int opcao = Ferramentas.lInteiro();

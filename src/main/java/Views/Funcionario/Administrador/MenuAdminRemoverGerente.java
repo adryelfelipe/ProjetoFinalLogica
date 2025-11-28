@@ -27,7 +27,6 @@ public class MenuAdminRemoverGerente {
 
         for(FuncionarioResponse funcionario : responseLista.listaFuncionarios())
         {
-            Ferramentas.limpaTerminal();
             System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"ID: "+Ferramentas.AQUA_BLUE+"%-50s┃%n", funcionario.id());
             System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"Nome: "+Ferramentas.AQUA_BLUE+"%-48s┃%n", funcionario.nome().getNome());

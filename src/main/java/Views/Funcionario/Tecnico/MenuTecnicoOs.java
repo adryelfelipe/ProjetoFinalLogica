@@ -22,16 +22,16 @@ public class MenuTecnicoOs {
         while (true) {
             Ferramentas.limpaTerminal();
 
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃                   MENU TÉCNICO - OS                    ┃");
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                   "+Ferramentas.ORANGE_DARK+"MENU TÉCNICO - OS"+Ferramentas.AQUA_BLUE+"                    ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                                        ┃");
-            System.out.println("┃  1 - Visualizar minhas Ordens                          ┃");
-            System.out.println("┃  2 - Iniciar ordem de serviço                          ┃");
-            System.out.println("┃  3 - Finalizar ordem de serviço                        ┃");
-            System.out.println("┃  4 - Retornar                                          ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - Visualizar minhas Ordens"+Ferramentas.AQUA_BLUE+"                          ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - Iniciar ordem de serviço"+Ferramentas.AQUA_BLUE+"                          ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"3 - Finalizar ordem de serviço"+Ferramentas.AQUA_BLUE+"                        ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"4 - Retornar"+Ferramentas.AQUA_BLUE+"                                          ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃ ➤ Escolha: ");
+            System.out.print("┃ "+Ferramentas.ORANGE_DARK+"➤ Escolha:"+Ferramentas.AQUA_BLUE+" ");
 
             try {
                 int opcaoAdmin = Ferramentas.lInteiro();
@@ -75,8 +75,8 @@ public class MenuTecnicoOs {
         }
 
         // Menu
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃                MINHAS ORDENS DE SERVIÇO                ┃");
+        System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃                "+Ferramentas.ORANGE_DARK+"MINHAS ORDENS DE SERVIÇO"+Ferramentas.AQUA_BLUE+"                ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         System.out.println(); // pula linha
@@ -84,23 +84,23 @@ public class MenuTecnicoOs {
         for(OrdemServicoResponse os : listarOsResponse.listaResponse())
         {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.printf("┃  ID OS: %-47s┃%n", os.idOs());
-            System.out.printf("┃  Status: %-46s┃%n", os.statusOs());
-            System.out.printf("┃  Descrição: %-43s┃%n", os.descricao().getDescricao());
+            System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"ID OS:"+Ferramentas.AQUA_BLUE+" %-47s┃%n", os.idOs());
+            System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"Status:"+Ferramentas.AQUA_BLUE+" %-46s┃%n", os.statusOs());
+            System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"Descrição:"+Ferramentas.AQUA_BLUE+" %-43s┃%n", os.descricao().getDescricao());
             System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
-            System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
+            System.out.println("┃ ┃                       "+Ferramentas.ORANGE_DARK+"MÁQUINA"+Ferramentas.AQUA_BLUE+"                      ┃ ┃");
             System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
-            System.out.printf("┃ ┃ ID: %-47s┃ ┃%n", os.idMaquina());
-            System.out.printf("┃ ┃ Nome: %-45s┃ ┃%n", os.nomeMaquina().getNome());
+            System.out.printf("┃ ┃ "+Ferramentas.ORANGE_DARK+"ID:"+Ferramentas.AQUA_BLUE+" %-47s┃ ┃%n", os.idMaquina());
+            System.out.printf("┃ ┃ "+Ferramentas.ORANGE_DARK+"Nome:"+Ferramentas.AQUA_BLUE+" %-45s┃ ┃%n", os.nomeMaquina().getNome());
             System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
-            System.out.printf("┃  Tipo da OS: %-42s┃%n", os.tipoOs());
+            System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"Tipo da OS:"+Ferramentas.AQUA_BLUE+" %-42s┃%n", os.tipoOs());
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println("                                                          "); // pula linha
         }
 
         System.out.println(); // pula linha
 
-        System.out.print("┃  APERTE ENTER PARA CONTINUAR: ");
+        System.out.print("┃  APERTE "+Ferramentas.ORANGE_DARK+"ENTER"+Ferramentas.AQUA_BLUE+" PARA CONTINUAR: ");
         Ferramentas.lString();
         Ferramentas.limpaTerminal();
     }
@@ -128,23 +128,23 @@ public class MenuTecnicoOs {
 
         // Menu
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃                INICIAR ORDEM DE SERIVÇO                ┃");
+        System.out.println("┃                "+Ferramentas.ORANGE_DARK+"INICIAR ORDEM DE SERIVÇO"+Ferramentas.AQUA_BLUE+"                ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         System.out.println(); // pula linha
 
         for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.printf("┃  ID OS: %-47s┃%n", os.idOs());
-            System.out.printf("┃  Descrição: %-43s┃%n", os.descricao().getDescricao());
-            System.out.printf("┃  Tipo da OS: %-42s┃%n", os.tipoOs().name());
+            System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"ID OS:"+Ferramentas.AQUA_BLUE+" %-47s┃%n", os.idOs());
+            System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"Descrição:"+Ferramentas.AQUA_BLUE+" %-43s┃%n", os.descricao().getDescricao());
+            System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"Tipo da OS:"+Ferramentas.AQUA_BLUE+" %-42s┃%n", os.tipoOs().name());
             System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
-            System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
+            System.out.println("┃ ┃                       "+Ferramentas.ORANGE_DARK+"MÁQUINA"+Ferramentas.AQUA_BLUE+"                      ┃ ┃");
             System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
-            System.out.printf("┃ ┃ ID: %-47s┃ ┃%n", os.idMaquina());
-            System.out.printf("┃ ┃ Nome: %-45s┃ ┃%n", os.nomeMaquina().getNome());
+            System.out.printf("┃ ┃ "+Ferramentas.ORANGE_DARK+"ID:"+Ferramentas.AQUA_BLUE+" %-47s┃ ┃%n", os.idMaquina());
+            System.out.printf("┃ ┃ "+Ferramentas.ORANGE_DARK+"Nome:"+Ferramentas.AQUA_BLUE+" %-45s┃ ┃%n", os.nomeMaquina().getNome());
             System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
-            System.out.printf("┃  Tipo da OS: %-42s┃%n", os.tipoOs());
+            System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"Tipo da OS:"+Ferramentas.AQUA_BLUE+" %-42s┃%n", os.tipoOs());
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println("                                                          "); // pula linha
         }
@@ -182,7 +182,7 @@ public class MenuTecnicoOs {
             }
         }
 
-        System.out.print("┃  APERTE ENTER PARA CONTINUAR: ");
+        System.out.print("┃  APERTE "+Ferramentas.ORANGE_DARK+"ENTER"+Ferramentas.AQUA_BLUE+" PARA CONTINUAR: ");
         Ferramentas.lString();
         Ferramentas.limpaTerminal();
     }
@@ -210,23 +210,23 @@ public class MenuTecnicoOs {
 
         // Menu
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃               FINALIZAR ORDEM DE SERIVÇO               ┃");
+        System.out.println("┃               "+Ferramentas.ORANGE_DARK+"FINALIZAR ORDEM DE SERIVÇO"+Ferramentas.AQUA_BLUE+"               ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         System.out.println(); // pula linha
 
         for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.printf ("┃  ID OS: %-47s┃%n", os.idOs());
-            System.out.printf ("┃  Descrição: %-43s┃%n", os.descricao().getDescricao());
-            System.out.printf ("┃  Tipo da OS: %-42s┃%n", os.tipoOs().name());
+            System.out.printf ("┃  "+Ferramentas.ORANGE_DARK+"ID OS:"+Ferramentas.AQUA_BLUE+" %-47s┃%n", os.idOs());
+            System.out.printf ("┃  "+Ferramentas.ORANGE_DARK+"Descrição:"+Ferramentas.AQUA_BLUE+" %-43s┃%n", os.descricao().getDescricao());
+            System.out.printf ("┃  "+Ferramentas.ORANGE_DARK+"Tipo da OS:"+Ferramentas.AQUA_BLUE+" %-42s┃%n", os.tipoOs().name());
             System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
-            System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
+            System.out.println("┃ ┃                       "+Ferramentas.ORANGE_DARK+"MÁQUINA"+Ferramentas.AQUA_BLUE+"                      ┃ ┃");
             System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
-            System.out.printf ("┃ ┃ ID: %-47s┃ ┃%n", os.idMaquina());
-            System.out.printf ("┃ ┃ Nome: %-45s┃ ┃%n", os.nomeMaquina().getNome());
+            System.out.printf ("┃ ┃ "+Ferramentas.ORANGE_DARK+"ID:"+Ferramentas.AQUA_BLUE+" %-47s┃ ┃%n", os.idMaquina());
+            System.out.printf ("┃ ┃ "+Ferramentas.ORANGE_DARK+"Nome:"+Ferramentas.AQUA_BLUE+" %-45s┃ ┃%n", os.nomeMaquina().getNome());
             System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
-            System.out.printf ("┃  Tipo da OS: %-42s┃%n", os.tipoOs());
+            System.out.printf ("┃  "+Ferramentas.ORANGE_DARK+"Tipo da OS:"+Ferramentas.AQUA_BLUE+" %-42s┃%n", os.tipoOs());
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
             System.out.println(); // pula linha
@@ -267,7 +267,7 @@ public class MenuTecnicoOs {
             }
         }
 
-        System.out.print("┃  APERTE ENTER PARA CONTINUAR: ");
+        System.out.print("┃  "+Ferramentas.ORANGE_DARK+"APERTE ENTER"+Ferramentas.AQUA_BLUE+" PARA CONTINUAR: ");
         Ferramentas.lString();
         Ferramentas.limpaTerminal();
     }

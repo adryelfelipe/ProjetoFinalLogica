@@ -9,13 +9,13 @@ public class MenuSupervisor
 {
     public static void menuSupervisor(long idSupervisor, NivelAcesso nivelAcesso) {
         while(true) {
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃                     MENU SUPERVISOR                    ┃");
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                     "+Ferramentas.ORANGE_DARK+"MENU SUPERVISOR"+Ferramentas.AQUA_BLUE+"                    ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                                        ┃");
-            System.out.println("┃  1 - Cadastrar Nova Ordem                              ┃");
-            System.out.println("┃  2 - Visualizar Relatórios                             ┃");
-            System.out.println("┃  3 - Retornar                                          ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - Cadastrar Nova Ordem"+Ferramentas.AQUA_BLUE+"                              ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - Visualizar Relatórios"+Ferramentas.AQUA_BLUE+"                             ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"3 - Retornar"+Ferramentas.AQUA_BLUE+"                                          ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.print("┃ ➤ Escolha: ");
 

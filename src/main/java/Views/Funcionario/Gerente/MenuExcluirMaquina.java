@@ -13,6 +13,8 @@ import Util.Ferramentas;
 import Views.Sistema.Main;
 import Views.Sistema.MenuEscolhaId;
 
+import java.util.InputMismatchException;
+
 public class MenuExcluirMaquina {
     public static void menuRemoverEscolha(long idGer, NivelAcesso nivelAcesso) {
         ListaMaquinasResponse responseLista = Main.maquinaController.listarMaquinas(nivelAcesso);
@@ -21,21 +23,25 @@ public class MenuExcluirMaquina {
             Ferramentas.mensagemErro("┃  NÃO HÁ NENHUMA MÁQUINA PARA EXCLUIR!");
         } else {
             for (MaquinaResponse maquina : responseLista.listaMaquinas()) {
-                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.printf("┃  ID: %-50s┃%n", maquina.id());
-                System.out.printf("┃  Nome: %-48s┃%n", maquina.nomeMaquina().getNome());
+                System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.printf ("┃  "+Ferramentas.ORANGE_DARK+"ID: "+Ferramentas.AQUA_BLUE+"%-50s┃%n", maquina.id());
+                System.out.printf ("┃  "+Ferramentas.ORANGE_DARK+"Nome: "+Ferramentas.AQUA_BLUE+"%-48s┃%n", maquina.nomeMaquina().getNome());
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             }
 
             System.out.println();
 
-            long id = MenuEscolhaId.escolhaIdUpdate();
-            ExcluirMaquinaRequest request = new ExcluirMaquinaRequest(id);
-            ExcluirMaquinaResponse responseExclusao = Main.maquinaController.excluir(nivelAcesso, request);
-            if(responseExclusao.status()) {
-                Ferramentas.mensagemSucesso(responseExclusao.mensagem());
-            } else {
-                Ferramentas.mensagemErro(responseExclusao.mensagem());
+            try{
+                long id = MenuEscolhaId.escolhaIdUpdate();
+                ExcluirMaquinaRequest request = new ExcluirMaquinaRequest(id);
+                ExcluirMaquinaResponse responseExclusao = Main.maquinaController.excluir(nivelAcesso, request);
+                if(responseExclusao.status()) {
+                    Ferramentas.mensagemSucesso(responseExclusao.mensagem());
+                } else {
+                    Ferramentas.mensagemErro(responseExclusao.mensagem());
+                }
+            } catch (InputMismatchException e) {
+                Ferramentas.menuDefault();
             }
         }
 

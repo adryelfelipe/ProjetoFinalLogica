@@ -9,15 +9,15 @@ public class MenuGerenteCadastrar {
     public static void criarUsuarios(NivelAcesso nivelAcesso)
     {
 
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃                   CADASTRAR USUÁRIOS                   ┃");
+        System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃                   "+Ferramentas.ORANGE_DARK+"CADASTRAR USUÁRIOS"+Ferramentas.AQUA_BLUE+"                   ┃");
         System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
         System.out.println("┃                                                        ┃");
-        System.out.println("┃  1 - Cadastrar Técnico                                 ┃");
-        System.out.println("┃  2 - Cadastrar Supervisor                              ┃");
-        System.out.println("┃  3 - Cadastrar Máquina                                 ┃");
+        System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - Cadastrar Técnico"+Ferramentas.AQUA_BLUE+"                                 ┃");
+        System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - Cadastrar Supervisor"+Ferramentas.AQUA_BLUE+"                              ┃");
+        System.out.println("┃  "+Ferramentas.ORANGE_DARK+"3 - Cadastrar Máquina"+Ferramentas.AQUA_BLUE+"                                 ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-        System.out.print("┃ ➤ Escolha: ");
+        System.out.print("┃ "+Ferramentas.ORANGE_DARK+"➤ Escolha:"+Ferramentas.AQUA_BLUE+" ");
 
         try {
             int opcaoCriarUsuario = Ferramentas.lInteiro();
