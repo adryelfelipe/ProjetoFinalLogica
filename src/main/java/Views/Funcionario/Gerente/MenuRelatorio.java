@@ -83,7 +83,7 @@ public class MenuRelatorio {
         for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"ID Ordem de Serviço: "+Ferramentas.AQUA_BLUE+"%-33s┃%n", os.idOs());
-            System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"Status: "+Ferramentas.AQUA_BLUE+"%-46s┃%n", os.statusOs());
+            System.out.printf("┃  "+Ferramentas.AQUA_BLUE+"Status: "+Ferramentas.ORANGE_DARK+"%-46s"+Ferramentas.AQUA_BLUE+"┃%n", os.statusOs());
             System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"Descrição: "+Ferramentas.AQUA_BLUE+"%-43s┃%n", os.descricao().getDescricao());
             System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"Valor: "+Ferramentas.AQUA_BLUE+"%-47s┃%n", os.valorOs().getValorOS());
             System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━┓    ┏━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
