@@ -41,10 +41,10 @@ public class MenuUpdateADM {
         for (FuncionarioResponse funcionario : listaGerente)
         {
 
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.printf("┃  ID: %-50s┃%n", funcionario.id());
-            System.out.printf("┃  Nome: %-48s┃%n", funcionario.nome().getNome());
-            System.out.printf("┃  Cargo: %-47s┃%n", funcionario.nivelAcesso().name());
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"ID: "+Ferramentas.AQUA_BLUE+"%-50s┃%n", funcionario.id());
+            System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"Nome: "+Ferramentas.AQUA_BLUE+"%-48s┃%n", funcionario.nome().getNome());
+            System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"Cargo: "+Ferramentas.AQUA_BLUE+"%-47s┃%n", funcionario.nivelAcesso().name());
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         }
@@ -63,20 +63,20 @@ public class MenuUpdateADM {
             GerentePorIdResponse responseId = Main.gerenteController.buscarPorId(nivelAcesso, requestId);
 
             if(responseId.status()) {
-                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃                   ATUALIZAR GERENTE                    ┃");
+                System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("┃                   "+Ferramentas.ORANGE_DARK+"ATUALIZAR GERENTE"+Ferramentas.AQUA_BLUE+"                    ┃");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
                 System.out.print("\n\n"); // pula linhas
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━┓      ┏━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃    EDITAR   GERENTE    ┃      ┃          ATUAL         ┃");
+                System.out.println("┃    "+Ferramentas.ORANGE_DARK+"EDITAR   GERENTE"+Ferramentas.AQUA_BLUE+"    ┃      ┃          "+Ferramentas.ORANGE_DARK+"ATUAL"+Ferramentas.AQUA_BLUE+"         ┃");
                 System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━┃      ┃━━━━━━━━━━━━━━━━━━━━━━━━┃");
-                System.out.printf("┃  1 - Nome              ┃      ┃  %-22s┃%n", responseId.nome().getNome());
-                System.out.printf("┃  2 - CPF               ┃      ┃  %-22s┃%n", responseId.cpf().getCpf());
-                System.out.printf("┃  3 - Departamento      ┃      ┃  %-22s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
-                System.out.println("┃  4 - Sair do Menu      ┃      ┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
+                System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"1 - Nome"+Ferramentas.AQUA_BLUE+"              ┃      ┃  %-22s┃%n", responseId.nome().getNome());
+                System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"2 - CPF"+Ferramentas.AQUA_BLUE+"               ┃      ┃  %-22s┃%n", responseId.cpf().getCpf());
+                System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"3 - Departamento"+Ferramentas.AQUA_BLUE+"      ┃      ┃  %-22s┃%n", responseId.listaDepartamentos().getListaDepartamentos().getFirst());
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"4 - Sair do Menu"+Ferramentas.AQUA_BLUE+"      ┃      ┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.println("┃ ➤ Escolha:  ");
+                System.out.println("┃ "+Ferramentas.ORANGE_DARK+"➤ Escolha:"+Ferramentas.AQUA_BLUE+"  ");
 
                 try {
                     opcaoAdm = Ferramentas.lInteiro();
