@@ -100,6 +100,8 @@ public class MenuRelatorioSupervisor {
 
         System.out.print("┃  APERTE ENTER PARA CONTINUAR: ");
         Ferramentas.lString();
+
+        Ferramentas.limpaTerminal();
     }
 
     public static void visualizarOc(long idSupervisor, NivelAcesso nivelAcesso) {
@@ -179,6 +181,7 @@ public class MenuRelatorioSupervisor {
                     }
 
                     case 2 -> {
+                        Ferramentas.limpaTerminal();
                         return;
                     }
                 }
