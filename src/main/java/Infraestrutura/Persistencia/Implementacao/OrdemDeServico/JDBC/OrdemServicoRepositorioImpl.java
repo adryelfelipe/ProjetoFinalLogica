@@ -30,7 +30,7 @@ public class OrdemServicoRepositorioImpl implements OrdemDeServicoRepositorio {
     public void salvar(OrdemDeServico ordemDeServico) {
 
         String sqlAtiva = "INSERT INTO OrdemServicos (descricao, statusOS, valorOS, id_tipoOS, id_maquina, id_tecnico, id_supervisor, id_departamento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        String sqlGeral = "INSERT INTO OrdemDeServicosGerais (descricao, statusOS, valorOS, id_tipoOS, nome_maquina, nome_tecnico, nome_supervisor, id_departamento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlGeral = "INSERT INTO OrdemDeServicosGerais (descricao, statusOS, valorOS, id_tipoOS, nome_maquina, nome_tecnico, nome_supervisor, id_departamento, id_os_referencia) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = ConnectionFactory.getConnection()) {
 
@@ -68,6 +68,8 @@ public class OrdemServicoRepositorioImpl implements OrdemDeServicoRepositorio {
                 stmt.setString(6, nomeTecnico);
                 stmt.setString(7, nomeSupervisor);
                 stmt.setInt(8, mapper.paraIdDepartamento(ordemDeServico.getDepartamento()));
+
+                stmt.setLong(9, ordemDeServico.getIdOs());
 
                 stmt.executeUpdate();
             }
@@ -117,7 +119,7 @@ public class OrdemServicoRepositorioImpl implements OrdemDeServicoRepositorio {
                 "nome_tecnico = ?, " +
                 "nome_supervisor = ?, " +
                 "id_departamento = ? " +
-                "WHERE nome_maquina = ? AND statusOS != 3";
+                "WHERE id_os_referencia = ?";
 
         try (Connection conn = ConnectionFactory.getConnection()) {
 
@@ -137,8 +139,8 @@ public class OrdemServicoRepositorioImpl implements OrdemDeServicoRepositorio {
 
             try (PreparedStatement stmt = conn.prepareStatement(sqlGeral)) {
                 String nomeMaquina = maquinaMapper.paraNomePorId(conn, ordemServico.getIdMaquina());
-                String nomeTecnico = funcionarioMapper.buscarNomePorId(ordemServico.getIdTecnico(), conn );
-                String nomeSupervisor = funcionarioMapper.buscarNomePorId(ordemServico.getIdSupervisor(), conn );
+                String nomeTecnico = funcionarioMapper.buscarNomePorId(ordemServico.getIdTecnico(), conn);
+                String nomeSupervisor = funcionarioMapper.buscarNomePorId(ordemServico.getIdSupervisor(), conn);
 
                 stmt.setString(1, ordemServico.getDescricao().getDescricao());
                 stmt.setInt(2, mapper.paraIdStatus(ordemServico.getStatusOS()));
@@ -149,9 +151,9 @@ public class OrdemServicoRepositorioImpl implements OrdemDeServicoRepositorio {
                 stmt.setString(7, nomeSupervisor);
                 stmt.setInt(8, mapper.paraIdDepartamento(ordemServico.getDepartamento()));
 
-                stmt.setString(9, nomeMaquina);
+                stmt.setLong(9, ordemServico.getIdOs());
 
-                int linhasGerais = stmt.executeUpdate();
+                stmt.executeUpdate();
             }
 
         } catch (SQLException e) {
