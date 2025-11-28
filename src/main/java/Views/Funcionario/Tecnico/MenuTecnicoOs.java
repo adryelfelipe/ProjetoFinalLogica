@@ -1,12 +1,14 @@
 package Views.Funcionario.Tecnico;
 
 import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
+import Aplicacao.Funcionario.Nucleo.Exceptions.Requests.BuscarPorIdNuloException;
 import Aplicacao.Funcionario.Tecnico.Dtos.BuscarPorId.TecnicoPorIdResponse;
 import Aplicacao.OrdemDeServico.Dtos.Atualizar.AtualizarOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Atualizar.AtualizarOsResponse;
 import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsResponse;
 import Aplicacao.OrdemDeServico.Dtos.Listar.OrdemServicoResponse;
+import Aplicacao.OrdemDeServico.Exceptions.Handler.IdOsNaoEncontradoException;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
 import Util.Ferramentas;
@@ -153,6 +155,18 @@ public class MenuTecnicoOs {
             System.out.print("┃ ➤ Digite o ID: ");
             try {
                 long idOs = Ferramentas.lInteiro();
+                boolean check = false;
+
+                for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
+                    if(os.idOs() == idOs) {
+                        check = true;
+                    }
+                }
+
+                if(!check) {
+                    throw new IdOsNaoEncontradoException();
+                }
+
                 AtualizarOsRequest atualizarRequest = new AtualizarOsRequest(idOs, null, null, StatusOS.EM_ANDAMENTO);
                 AtualizarOsResponse atualizarResponse = Main.osController.atualizarOsTecnico(nivelAcesso, atualizarRequest);
 
@@ -163,7 +177,7 @@ public class MenuTecnicoOs {
                 }
 
                 setId = true;
-            } catch (InputMismatchException e) {
+            } catch (InputMismatchException | IdOsNaoEncontradoException e) {
                 Ferramentas.mensagemErro(e.getMessage());
             }
         }
@@ -226,6 +240,18 @@ public class MenuTecnicoOs {
             System.out.print("┃ ➤ Digite o ID: ");
             try {
                 long idOs = Ferramentas.lInteiro();
+                boolean check = false;
+
+                for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
+                    if(os.idOs() == idOs) {
+                        check = true;
+                    }
+                }
+
+                if(!check) {
+                    throw new IdOsNaoEncontradoException();
+                }
+
                 AtualizarOsRequest atualizarRequest = new AtualizarOsRequest(idOs, null, null, StatusOS.FECHADA);
                 AtualizarOsResponse atualizarResponse = Main.osController.atualizarOsTecnico(nivelAcesso, atualizarRequest);
 
@@ -236,7 +262,7 @@ public class MenuTecnicoOs {
                 }
 
                 setId = true;
-            } catch (InputMismatchException e) {
+            } catch (InputMismatchException | IdOsNaoEncontradoException e) {
                 Ferramentas.menuDefault();
             }
         }
