@@ -13,8 +13,8 @@ import java.util.List;
 
 public class MenuCadastroADM {
     public static void menuCadastroGerente(NivelAcesso nivelAcesso) {
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃                    CADASTRO GERENTE                    ┃");
+        System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃                    "+Ferramentas.ORANGE_DARK+"CADASTRO GERENTE"+Ferramentas.AQUA_BLUE+"                    ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         System.out.println("                                                          ");
 
@@ -35,7 +35,7 @@ public class MenuCadastroADM {
         // -- Criação do objeto e inserção no banco de dados -- //
         Ferramentas.limpaTerminal();
 
-        System.out.println("┃  PROCESSANDO DADOS...");
+        System.out.println(Ferramentas.ITALIC+Ferramentas.DARK_CYAN+"┃  PROCESSANDO DADOS..."+Ferramentas.AQUA_BLUE);
         Ferramentas.Delay(1000);
         Ferramentas.limpaTerminal();
 
