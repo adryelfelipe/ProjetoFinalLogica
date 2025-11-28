@@ -22,14 +22,14 @@ public class MenuInicial
             System.out.println("                                            ▉▉▉");
             System.out.println("          ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉"+Ferramentas.AQUA_BLUE);
 
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃                         WEG OS                         ┃");
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                         "+Ferramentas.ORANGE_DARK+"WEG OS"+Ferramentas.AQUA_BLUE+"                         ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                                        ┃");
-            System.out.println("┃  1 - Login                                             ┃");
-            System.out.println("┃  2 - Sair                                              ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - Login"+Ferramentas.AQUA_BLUE+"                                             ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - Sair"+Ferramentas.AQUA_BLUE+"                                              ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃ ➤ Escolha: ");
+            System.out.print("┃ "+Ferramentas.ORANGE_DARK+"➤ Escolha:"+Ferramentas.AQUA_BLUE+" ");
 
             try {
                 opcao = Ferramentas.lInteiro();

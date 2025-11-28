@@ -13,8 +13,8 @@ public class MenuLogin
 {
     public static void login() {
         // Menu interativo
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃                         LOGIN                          ┃");
+        System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃                         "+Ferramentas.ORANGE_DARK+"LOGIN"+Ferramentas.AQUA_BLUE+"                          ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         System.out.print("┃ ➤ Digite seu CPF: ");
         String cpf = Ferramentas.lString();

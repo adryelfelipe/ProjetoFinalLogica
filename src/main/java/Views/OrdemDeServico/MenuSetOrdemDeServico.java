@@ -10,15 +10,15 @@ public class MenuSetOrdemDeServico {
     public static StatusOS menuSetStatusOS() {
         while(true)
         {
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃                 ESCOLHA O STATUS DA OS                 ┃");
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                 "+Ferramentas.ORANGE_DARK+"ESCOLHA O STATUS DA OS"+Ferramentas.AQUA_BLUE+"                 ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                                        ┃");
-            System.out.println("┃  1 - Em Andamento                                      ┃");
-            System.out.println("┃  2 - Atrasada                                          ┃");
-            System.out.println("┃  3 - Fechada                                           ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - Em Andamento"+Ferramentas.AQUA_BLUE+"                                      ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - Atrasada"+Ferramentas.AQUA_BLUE+"                                          ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"3 - Fechada"+Ferramentas.AQUA_BLUE+"                                           ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃ ➤ Escolha: ");
+            System.out.print("┃ "+Ferramentas.ORANGE_DARK+"➤ Escolha:"+Ferramentas.AQUA_BLUE+" ");
 
             try
             {

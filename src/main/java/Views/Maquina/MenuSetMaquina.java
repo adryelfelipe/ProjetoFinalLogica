@@ -15,12 +15,12 @@ public class MenuSetMaquina {
 
     public static StatusMaquina MenuSetStatusMaquina() {
         while(true) {
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃  1 - FUNCIONANDO                                       ┃");
-            System.out.println("┃  2 - DEFEITO                                           ┃");
-            System.out.println("┃  3 - EM_MANUTENÇÃO                                     ┃");
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - FUNCIONANDO"+Ferramentas.AQUA_BLUE+"                                       ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - DEFEITO"+Ferramentas.AQUA_BLUE+"                                           ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"3 - EM_MANUTENÇÃO"+Ferramentas.AQUA_BLUE+"                                     ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃ ➤ Escolha o Status: ");
+            System.out.print("┃ "+Ferramentas.ORANGE_DARK+"➤ Escolha o Status: "+Ferramentas.AQUA_BLUE+" ");
 
             try {
                 int opcao = Ferramentas.lInteiro();
