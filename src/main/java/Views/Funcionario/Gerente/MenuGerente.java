@@ -11,18 +11,18 @@ public class MenuGerente {
         while(true) {
 
             System.out.println("                                                          ");
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃                      MENU GERENTE                      ┃");
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                      "+Ferramentas.ORANGE_DARK+"MENU GERENTE"+Ferramentas.AQUA_BLUE+"                      ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                                        ┃");
-            System.out.println("┃  1 - Cadastrar                                         ┃");
-            System.out.println("┃  2 - Visualizar Relatórios                             ┃");
-            System.out.println("┃  3 - Atualizar Funcionários                            ┃");
-            System.out.println("┃  4 - Remover Funcionários                              ┃");
-            System.out.println("┃  5 - Remover Máquinas                                  ┃");
-            System.out.println("┃  6 - Retornar                                          ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - Cadastrar"+Ferramentas.AQUA_BLUE+"                                         ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - Visualizar Relatórios"+Ferramentas.AQUA_BLUE+"                             ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"3 - Atualizar Funcionários"+Ferramentas.AQUA_BLUE+"                            ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"4 - Remover Funcionários"+Ferramentas.AQUA_BLUE+"                              ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"5 - Remover Máquinas"+Ferramentas.AQUA_BLUE+"                                  ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"6 - Retornar"+Ferramentas.AQUA_BLUE+"                                          ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃ ➤ Escolha: ");
+            System.out.print("┃ "+Ferramentas.ORANGE_DARK+"➤ Escolha:"+Ferramentas.AQUA_BLUE+" ");
 
             try {
                 int opcaoGerente = Ferramentas.lInteiro();
@@ -35,7 +35,7 @@ public class MenuGerente {
                     case 4 -> MenuGerenteRemoverUsuarios.menuRemoverEscolha(idGerente, nivelAcesso);
                     case 5 -> MenuExcluirMaquina.menuRemoverEscolha(idGerente, nivelAcesso);
                     case 6 -> {
-                        System.out.print("┃  RETORNANDO AO MENU INICIAL ...");
+                        System.out.print(Ferramentas.ITALIC+Ferramentas.DARK_CYAN+"┃  RETORNANDO AO MENU INICIAL ..."+Ferramentas.RESET+Ferramentas.AQUA_BLUE);
                         Ferramentas.Delay(500);
                         Ferramentas.limpaTerminal();
                         return;

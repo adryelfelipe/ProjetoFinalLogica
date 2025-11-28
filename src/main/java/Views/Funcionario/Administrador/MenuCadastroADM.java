@@ -35,7 +35,7 @@ public class MenuCadastroADM {
         // -- Criação do objeto e inserção no banco de dados -- //
         Ferramentas.limpaTerminal();
 
-        System.out.println(Ferramentas.ITALIC+Ferramentas.DARK_CYAN+"┃  PROCESSANDO DADOS..."+Ferramentas.AQUA_BLUE);
+        System.out.println(Ferramentas.ITALIC+Ferramentas.DARK_CYAN+"┃  PROCESSANDO DADOS..."+Ferramentas.RESET+Ferramentas.AQUA_BLUE);
         Ferramentas.Delay(1000);
         Ferramentas.limpaTerminal();
 
