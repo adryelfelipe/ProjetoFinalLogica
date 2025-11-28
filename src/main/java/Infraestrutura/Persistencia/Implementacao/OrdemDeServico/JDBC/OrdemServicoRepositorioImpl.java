@@ -227,16 +227,48 @@ public class OrdemServicoRepositorioImpl implements OrdemDeServicoRepositorio {
 
     @Override
     public List<OrdemDeServico> listarOsTodas() {
-        String querySQL = "SELECT * FROM OrdemServicos";
+        String querySQL = "SELECT * FROM OrdemDeServicosGerais";
         List<OrdemDeServico> lista = new ArrayList<>();
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(querySQL);
              ResultSet rs = stmt.executeQuery()) {
 
-            while (rs.next())
-            {
-                lista.add(montarOrdem(rs));
+            while (rs.next()) {
+
+                long id = rs.getLong("id_os_referencia");
+
+                String descricao = rs.getString("descricao");
+                int statusInt = rs.getInt("statusOS");
+                double custo = rs.getDouble("valorOS");
+                int idTipo = rs.getInt("id_tipoOS");
+                int idDepartamento = rs.getInt("id_departamento");
+
+                String nomeMaquina = rs.getString("nome_maquina");
+                String nomeTecnico = rs.getString("nome_tecnico");
+                String nomeSupervisor = rs.getString("nome_supervisor");
+
+                long idMaquina = maquinaMapper.paraIdPorNome(conn, nomeMaquina);
+                long idTecnico = funcionarioMapper.paraIdPorNome(conn, nomeTecnico);
+                long idSupervisor = funcionarioMapper.paraIdPorNome(conn, nomeSupervisor);
+
+                StatusOS status = mapper.mapearStatus(statusInt);
+                TipoOS tipo = mapper.mapearTipo(idTipo);
+                Departamento depto = mapper.mapearDepartamento(idDepartamento);
+
+                OrdemDeServico os = new OrdemDeServico(
+                        id,
+                        idTecnico,
+                        idSupervisor,
+                        idMaquina,
+                        status,
+                        new Descricao(descricao),
+                        new ValorOS(custo),
+                        depto,
+                        tipo
+                );
+
+                lista.add(os);
             }
 
         } catch (SQLException e) {
