@@ -227,7 +227,7 @@ public class OrdemServicoRepositorioImpl implements OrdemDeServicoRepositorio {
 
     @Override
     public List<OrdemDeServico> listarOsTodas() {
-        String querySQL = "SELECT * FROM OrdemServicos";
+        String querySQL = "SELECT * FROM OrdemDeServicosGerais";
         List<OrdemDeServico> lista = new ArrayList<>();
 
         try (Connection conn = ConnectionFactory.getConnection();
