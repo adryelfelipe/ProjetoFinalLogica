@@ -131,7 +131,7 @@ public class Main {
         // ID 8 -> funcionarioDAO.salvar(new Supervisor(new NomeFuncionario("SupervisorEle"),new CPF("12345678917"), new Senha("123456@Aa"), new ListaDepartamentos(Arrays.asList(Departamento.ELETRICA)), new MetaMensal(60000)));
 
         // ID 1 -> maquinaDAO.salvar(new Maquina(new NomeMaquina("MaquinaMec"), Departamento.MECANICA, StatusMaquina.FUNCIONANDO));
-        // ID 2 -> maquinaDAO.salvar(new Maquina(new NomeMaquina("MaquinaEle"), Departamento.ELETRICA, StatusMaquina.FUNCIONANDO));
+        // ID 3 -> maquinaDAO.salvar(new Maquina(new NomeMaquina("MaquinaEle"), Departamento.ELETRICA, StatusMaquina.FUNCIONANDO));
 
         // Inicialização com menu
         MenuInicial.Menu();
