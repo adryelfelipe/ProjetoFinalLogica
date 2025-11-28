@@ -22,15 +22,15 @@ public class MenuRelatorioSupervisor {
         Ferramentas.limpaTerminal();
 
         while(true){
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃                       RELATÓRIOS                       ┃");
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃                       "+Ferramentas.ORANGE_DARK+"RELATÓRIOS"+Ferramentas.AQUA_BLUE+"                       ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                                        ┃");
-            System.out.println("┃  1 - Visualizar Ordem de Serviço                       ┃");
-            System.out.println("┃  2 - Visualizar Ocorrências                            ┃");
-            System.out.println("┃  3 - Retornar                                          ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - Visualizar Ordem de Serviço"+Ferramentas.AQUA_BLUE+"                       ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - Visualizar Ocorrências"+Ferramentas.AQUA_BLUE+"                            ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"3 - Retornar"+Ferramentas.AQUA_BLUE+"                                          ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃ ➤ Escolha: ");
+            System.out.print("┃ "+Ferramentas.ORANGE_DARK+"➤ Escolha:"+Ferramentas.AQUA_BLUE+" ");
 
             try {
                 int opcao = Ferramentas.lInteiro();
@@ -73,30 +73,30 @@ public class MenuRelatorioSupervisor {
         }
 
         // Menu
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃               TODAS AS ORDENS DE SERVIÇO               ┃");
+        System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃               "+Ferramentas.ORANGE_DARK+"TODAS AS ORDENS DE SERVIÇO"+Ferramentas.AQUA_BLUE+"               ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         System.out.println(); // pula linha
 
         for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.printf ("┃  ID Ordem Serviço: %-36s┃%n", os.idOs());
-            System.out.printf ("┃  Status: %-46s┃%n", os.statusOs());
-            System.out.printf ("┃  Descrição: %-43s┃%n", os.descricao().getDescricao());
-            System.out.printf ("┃  Valor: %-47s┃%n", os.valorOs().getValorOS());
+            System.out.printf ("┃  "+Ferramentas.ORANGE_DARK+"ID Ordem Serviço:"+Ferramentas.AQUA_BLUE+" %-36s┃%n", os.idOs());
+            System.out.printf ("┃  "+Ferramentas.ORANGE_DARK+"Status:"+Ferramentas.AQUA_BLUE+" %-46s┃%n", os.statusOs());
+            System.out.printf ("┃  "+Ferramentas.ORANGE_DARK+"Descrição:"+Ferramentas.AQUA_BLUE+" %-43s┃%n", os.descricao().getDescricao());
+            System.out.printf ("┃  "+Ferramentas.ORANGE_DARK+"Valor:"+Ferramentas.AQUA_BLUE+" %-47s┃%n", os.valorOs().getValorOS());
             System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━┓    ┏━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
-            System.out.println("┃ ┃        TÉCNICO        ┃    ┃        MÁQUINA        ┃ ┃");
+            System.out.println("┃ ┃        "+Ferramentas.ORANGE_DARK+"TÉCNICO"+Ferramentas.AQUA_BLUE+"        ┃    ┃        "+Ferramentas.ORANGE_DARK+"MÁQUINA"+Ferramentas.AQUA_BLUE+"        ┃ ┃");
             System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━┃    ┃━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
-            System.out.printf ("┃ ┃ ID: %-18s┃    ┃ ID: %-18s┃ ┃%n", os.idTecnico(), os.idMaquina());
-            System.out.printf ("┃ ┃ Nome: %-16s┃    ┃ Nome: %-16s┃ ┃%n", os.nomeTecnico().getNome(), os.nomeMaquina().getNome());
+            System.out.printf ("┃ ┃ "+Ferramentas.ORANGE_DARK+"ID:"+Ferramentas.AQUA_BLUE+" %-18s┃    ┃ "+Ferramentas.ORANGE_DARK+"ID:"+Ferramentas.AQUA_BLUE+" %-18s┃ ┃%n", os.idTecnico(), os.idMaquina());
+            System.out.printf ("┃ ┃ "+Ferramentas.ORANGE_DARK+"Nome:"+Ferramentas.AQUA_BLUE+" %-16s┃    ┃ "+Ferramentas.ORANGE_DARK+"Nome:"+Ferramentas.AQUA_BLUE+" %-16s┃ ┃%n", os.nomeTecnico().getNome(), os.nomeMaquina().getNome());
             System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━┛    ┗━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
-            System.out.printf ("┃  Tipo da Ordem de Serviço: %-28s┃%n", os.tipoOs());
+            System.out.printf ("┃  "+Ferramentas.ORANGE_DARK+"Tipo da Ordem de Serviço:"+Ferramentas.AQUA_BLUE+" %-28s┃%n", os.tipoOs());
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println("                                                          ");
         }
 
-        System.out.print("┃  APERTE ENTER PARA CONTINUAR: ");
+        System.out.print("┃  APERTE "+Ferramentas.ORANGE_DARK+"ENTER"+Ferramentas.AQUA_BLUE+" PARA CONTINUAR: ");
         Ferramentas.lString();
 
         Ferramentas.limpaTerminal();
@@ -123,8 +123,8 @@ public class MenuRelatorioSupervisor {
             return;
         }
         // Menu
-        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-        System.out.println("┃                  TODAS AS OCORRÊNCIAS                  ┃");
+        System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃                  "+Ferramentas.ORANGE_DARK+"TODAS AS OCORRÊNCIAS"+Ferramentas.AQUA_BLUE+"                  ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
 
@@ -132,13 +132,13 @@ public class MenuRelatorioSupervisor {
 
         for(OcorrenciaResponse oc : listarOcResponse.listaResponse()) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.printf ("┃  ID Ocorrencia: %-39s┃%n", oc.idOcorrencia());
-            System.out.printf ("┃  Status: %-46s┃%n", oc.statusOc());
+            System.out.printf ("┃  "+Ferramentas.ORANGE_DARK+"ID Ocorrencia:"+Ferramentas.AQUA_BLUE+" %-39s┃%n", oc.idOcorrencia());
+            System.out.printf ("┃  "+Ferramentas.ORANGE_DARK+"Status:"+Ferramentas.AQUA_BLUE+" %-46s┃%n", oc.statusOc());
             System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
-            System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
+            System.out.println("┃ ┃                       "+Ferramentas.ORANGE_DARK+"MÁQUINA"+Ferramentas.AQUA_BLUE+"                      ┃ ┃");
             System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
-            System.out.printf ("┃ ┃ ID: %-47s┃ ┃%n", oc.idMaquina());
-            System.out.printf ("┃ ┃ Nome: %-45s┃ ┃%n", oc.nomeMaquina().getNome());
+            System.out.printf ("┃ ┃ "+Ferramentas.ORANGE_DARK+"ID:"+Ferramentas.AQUA_BLUE+" %-47s┃ ┃%n", oc.idMaquina());
+            System.out.printf ("┃ ┃ "+Ferramentas.ORANGE_DARK+"Nome:"+Ferramentas.AQUA_BLUE+" %-45s┃ ┃%n", oc.nomeMaquina().getNome());
             System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println(); // pula linha
@@ -150,10 +150,10 @@ public class MenuRelatorioSupervisor {
         while(!verifica) {
             try {
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃  1 - Criar uma ordem de serviço preditiva              ┃");
-                System.out.println("┃  2 - Retornar                                          ┃");
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - Criar uma ordem de serviço preditiva"+Ferramentas.AQUA_BLUE+"              ┃");
+                System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - Retornar"+Ferramentas.AQUA_BLUE+"                                          ┃");
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-                System.out.print("┃ ➤ Escolha: ");
+                System.out.print("┃ "+Ferramentas.ORANGE_DARK+"➤ Escolha:"+Ferramentas.AQUA_BLUE+" ");
                 int op = Ferramentas.lInteiro();
                 verifica = true;
 
