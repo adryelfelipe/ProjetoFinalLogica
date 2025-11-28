@@ -1,23 +1,22 @@
 package Infraestrutura.Persistencia.Implementacao.Maquina.JDBC;
 
-import Aplicacao.Maquina.Mapper.MaquinaMapper;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Maquina.ObjetosDeValor.NomeMaquina;
 import Dominio.Maquina.Repositorios.MaquinaRepositorio;
 import Infraestrutura.Configuracao.ConnectionFactory;
 import Dominio.Maquina.Maquina;
 import Dominio.Maquina.Enumeracoes.StatusMaquina;
-import Infraestrutura.Persistencia.Implementacao.Maquina.Mapper.MaquinaJdbcMapper;
+import Infraestrutura.Persistencia.Implementacao.Maquina.Mapper.MaquinaImplMapper;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MaquinaJdbcRepositorio implements MaquinaRepositorio
+public class MaquinaRepositorioImpl implements MaquinaRepositorio
 {
-    private final MaquinaJdbcMapper mapper;
+    private final MaquinaImplMapper mapper;
 
-    public MaquinaJdbcRepositorio(MaquinaJdbcMapper mapper) {
+    public MaquinaRepositorioImpl(MaquinaImplMapper mapper) {
         this.mapper = mapper;
     }
 
@@ -66,7 +65,7 @@ public class MaquinaJdbcRepositorio implements MaquinaRepositorio
                 return false;
             }
         } catch (SQLException e) {
-            System.err.println("ERRO ao deletar máquina com o ID: " + id);
+            System.err.println("ERRO ao deletar máquina com o ID: " + id + " ||| " + e.getMessage());
             return false;
         }
     }

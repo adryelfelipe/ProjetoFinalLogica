@@ -15,19 +15,17 @@ import Dominio.Funcionario.Nucleo.Funcionario;
 import Dominio.Funcionario.Nucleo.ObjetosDeValor.CPF;
 import Dominio.Funcionario.Gerente.Gerente;
 import Dominio.Funcionario.Tecnico.Tecnico;
-import Infraestrutura.Persistencia.Implementacao.Funcionario.Mapper.FuncionarioJdbcMapper;
+import Infraestrutura.Persistencia.Implementacao.Funcionario.Mapper.FuncionarioImplMapper;
 
-import java.lang.reflect.Array;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
+public class FuncionarioRepositorioImpl implements FuncionarioRepositorio
 {
-    FuncionarioJdbcMapper mapper;
+    FuncionarioImplMapper mapper;
 
-    public FuncionarioRepositorioJdbc(FuncionarioJdbcMapper mapper) {
+    public FuncionarioRepositorioImpl(FuncionarioImplMapper mapper) {
         this.mapper = mapper;
     }
 
@@ -216,13 +214,17 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
 
             int linhasAF = stmt.executeUpdate();
 
-            return linhasAF > 0;
+            if(linhasAF > 0)
+            {
+                return true;
+            }
 
         }catch (SQLException e)
         {
-            System.err.println("ERRO ao deletar usuário com o ID: " + id);
+            System.err.println("ERRO ao deletar usuário com o ID: " + id + e);
             return false;
         }
+        return false;
     }
     @Override
     public void atualizar(Funcionario funcionario) {
@@ -409,7 +411,7 @@ public class FuncionarioRepositorioJdbc implements FuncionarioRepositorio
     public List<Funcionario> listarFuncionarios()
     {
         List<Funcionario> funcionarios = new ArrayList<>();
-        FuncionarioJdbcMapper departamentoDAO = new FuncionarioJdbcMapper();
+        FuncionarioImplMapper departamentoDAO = new FuncionarioImplMapper();
 
         String querySQL = "SELECT " +
                 "U.ID_USUARIO, U.nome, U.cpf, U.senha, U.id_na, " +

@@ -1,6 +1,5 @@
 package Infraestrutura.Persistencia.Implementacao.OrdemDeServico.JDBC;
 
-import Aplicacao.OrdemDeServico.Mapper.OrdemDeServicoMapper;
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
 import Dominio.OrdemDeServico.Enumeracoes.TipoOS;
@@ -9,21 +8,21 @@ import Dominio.OrdemDeServico.ObjetosDeValor.ValorOS;
 import Dominio.OrdemDeServico.OrdemDeServico;
 import Dominio.OrdemDeServico.Repositorios.OrdemDeServicoRepositorio;
 import Infraestrutura.Configuracao.ConnectionFactory;
-import Infraestrutura.Persistencia.Implementacao.OrdemDeServico.Mapper.OsJdbcMapper;
-import Infraestrutura.Persistencia.Implementacao.Maquina.Mapper.MaquinaJdbcMapper;
-import Infraestrutura.Persistencia.Implementacao.Funcionario.Mapper.FuncionarioJdbcMapper;
+import Infraestrutura.Persistencia.Implementacao.OrdemDeServico.Mapper.OrdemDeServicoImplMapper;
+import Infraestrutura.Persistencia.Implementacao.Maquina.Mapper.MaquinaImplMapper;
+import Infraestrutura.Persistencia.Implementacao.Funcionario.Mapper.FuncionarioImplMapper;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OsJdbcRepositorio implements OrdemDeServicoRepositorio {
+public class OrdemServicoRepositorioImpl implements OrdemDeServicoRepositorio {
 
-    private final OsJdbcMapper mapper;
-    private final MaquinaJdbcMapper maquinaMapper = new MaquinaJdbcMapper();
-    private final FuncionarioJdbcMapper funcionarioMapper = new FuncionarioJdbcMapper();
+    private final OrdemDeServicoImplMapper mapper;
+    private final MaquinaImplMapper maquinaMapper = new MaquinaImplMapper();
+    private final FuncionarioImplMapper funcionarioMapper = new FuncionarioImplMapper();
 
-    public OsJdbcRepositorio(OsJdbcMapper mapper) {
+    public OrdemServicoRepositorioImpl(OrdemDeServicoImplMapper mapper) {
         this.mapper = mapper;
     }
 

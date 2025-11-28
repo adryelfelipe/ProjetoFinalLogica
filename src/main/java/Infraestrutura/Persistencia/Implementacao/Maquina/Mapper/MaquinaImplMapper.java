@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MaquinaJdbcMapper
+public class MaquinaImplMapper
 {
     public Departamento mapearDepartamento(int id) {
         return switch (id) {

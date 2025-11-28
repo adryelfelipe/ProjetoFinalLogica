@@ -1,9 +1,9 @@
-package Infraestrutura.Persistencia.Implementacao.Ocorrencias.JDBC.Mapper;// Ou seu pacote de mappers
+package Infraestrutura.Persistencia.Implementacao.Ocorrencias.Mapper;// Ou seu pacote de mappers
 
 import Dominio.Funcionario.Nucleo.Enumeracoes.Departamento;
 import Dominio.Ocorrencia.Enumeracoes.StatusOc;
 
-public class OcorrenciaMappers {
+public class OcorrenciaImplMapper {
 
         public Departamento mapearDepartamento(int id) {
             return switch (id) {
