@@ -88,15 +88,13 @@ public class MenuRelatorioSupervisor {
             System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━┓    ┏━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
             System.out.println("┃ ┃        TÉCNICO        ┃    ┃        MÁQUINA        ┃ ┃");
             System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━┃    ┃━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
-            System.out.printf ("┃ ┃ ID: %-18s┃    ┃ ID: %-18s┃ ┃", os.idTecnico(), os.idMaquina());
-            System.out.printf ("\n┃ ┃ Nome: %-16s┃    ┃ Nome: %-16s┃ ┃", os.nomeTecnico().getNome(), os.nomeMaquina().getNome());
-            System.out.println("\n┃ ┗━━━━━━━━━━━━━━━━━━━━━━━┛    ┗━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
+            System.out.printf ("┃ ┃ ID: %-18s┃    ┃ ID: %-18s┃ ┃%n", os.idTecnico(), os.idMaquina());
+            System.out.printf ("┃ ┃ Nome: %-16s┃    ┃ Nome: %-16s┃ ┃%n", os.nomeTecnico().getNome(), os.nomeMaquina().getNome());
+            System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━┛    ┗━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
             System.out.printf ("┃  Tipo da Ordem de Serviço: %-28s┃%n", os.tipoOs());
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.println("                                                          "); // pula linha
+            System.out.println("                                                          ");
         }
-
-        System.out.println(); // pula linha
 
         System.out.print("┃  APERTE ENTER PARA CONTINUAR: ");
         Ferramentas.lString();
@@ -139,9 +137,9 @@ public class MenuRelatorioSupervisor {
             System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
             System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
             System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
-            System.out.printf ("┃ ┃ ID: %-47s┃ ┃", oc.idMaquina());
-            System.out.printf ("\n┃ ┃ Nome: %-45s┃ ┃", oc.nomeMaquina().getNome());
-            System.out.println("\n┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
+            System.out.printf ("┃ ┃ ID: %-47s┃ ┃%n", oc.idMaquina());
+            System.out.printf ("┃ ┃ Nome: %-45s┃ ┃%n", oc.nomeMaquina().getNome());
+            System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println(); // pula linha
         }

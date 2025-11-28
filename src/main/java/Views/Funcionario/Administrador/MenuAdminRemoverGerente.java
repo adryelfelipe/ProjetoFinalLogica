@@ -27,10 +27,10 @@ public class MenuAdminRemoverGerente {
 
         for(FuncionarioResponse funcionario : responseLista.listaFuncionarios())
         {
-            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.printf("┃  ID: %-50s┃%n", funcionario.id());
-            System.out.printf("┃  Nome: %-48s┃%n", funcionario.nome().getNome());
-            System.out.printf("┃  Cargo: %-47s┃%n", funcionario.nivelAcesso().name());
+            System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"ID: "+Ferramentas.AQUA_BLUE+"%-50s┃%n", funcionario.id());
+            System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"Nome: "+Ferramentas.AQUA_BLUE+"%-48s┃%n", funcionario.nome().getNome());
+            System.out.printf("┃  "+Ferramentas.ORANGE_DARK+"Cargo: "+Ferramentas.AQUA_BLUE+"%-47s┃%n", funcionario.nivelAcesso().name());
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         }
 

@@ -1,12 +1,14 @@
 package Views.Funcionario.Tecnico;
 
 import Aplicacao.Funcionario.Nucleo.Dtos.BuscarPorId.FuncionarioPorIdRequest;
+import Aplicacao.Funcionario.Nucleo.Exceptions.Requests.BuscarPorIdNuloException;
 import Aplicacao.Funcionario.Tecnico.Dtos.BuscarPorId.TecnicoPorIdResponse;
 import Aplicacao.OrdemDeServico.Dtos.Atualizar.AtualizarOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Atualizar.AtualizarOsResponse;
 import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsRequest;
 import Aplicacao.OrdemDeServico.Dtos.Listar.ListarOsResponse;
 import Aplicacao.OrdemDeServico.Dtos.Listar.OrdemServicoResponse;
+import Aplicacao.OrdemDeServico.Exceptions.Handler.IdOsNaoEncontradoException;
 import Dominio.Funcionario.Nucleo.Enumeracoes.NivelAcesso;
 import Dominio.OrdemDeServico.Enumeracoes.StatusOS;
 import Util.Ferramentas;
@@ -134,8 +136,8 @@ public class MenuTecnicoOs {
         for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.printf("┃  ID OS: %-47s┃%n", os.idOs());
-            System.out.printf("┃  Descrição: %-46s┃%n", os.descricao().getDescricao());
-            System.out.printf("┃  Tipo da OS: %-43s┃%n", os.tipoOs().name());
+            System.out.printf("┃  Descrição: %-43s┃%n", os.descricao().getDescricao());
+            System.out.printf("┃  Tipo da OS: %-42s┃%n", os.tipoOs().name());
             System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
             System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
             System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
@@ -153,6 +155,18 @@ public class MenuTecnicoOs {
             System.out.print("┃ ➤ Digite o ID: ");
             try {
                 long idOs = Ferramentas.lInteiro();
+                boolean check = false;
+
+                for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
+                    if(os.idOs() == idOs) {
+                        check = true;
+                    }
+                }
+
+                if(!check) {
+                    throw new IdOsNaoEncontradoException();
+                }
+
                 AtualizarOsRequest atualizarRequest = new AtualizarOsRequest(idOs, null, null, StatusOS.EM_ANDAMENTO);
                 AtualizarOsResponse atualizarResponse = Main.osController.atualizarOsTecnico(nivelAcesso, atualizarRequest);
 
@@ -163,7 +177,7 @@ public class MenuTecnicoOs {
                 }
 
                 setId = true;
-            } catch (InputMismatchException e) {
+            } catch (InputMismatchException | IdOsNaoEncontradoException e) {
                 Ferramentas.mensagemErro(e.getMessage());
             }
         }
@@ -203,16 +217,16 @@ public class MenuTecnicoOs {
 
         for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.printf("┃  ID OS: %-47s┃%n", os.idOs());
-            System.out.printf("┃  Descrição: %-46s┃%n", os.descricao().getDescricao());
-            System.out.printf("┃  Tipo da OS: %-43s┃%n", os.tipoOs().name());
+            System.out.printf ("┃  ID OS: %-47s┃%n", os.idOs());
+            System.out.printf ("┃  Descrição: %-43s┃%n", os.descricao().getDescricao());
+            System.out.printf ("┃  Tipo da OS: %-42s┃%n", os.tipoOs().name());
             System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
             System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
             System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
-            System.out.printf("┃ ┃ ID: %-47s┃ ┃%n", os.idMaquina());
-            System.out.printf("┃ ┃ Nome: %-45s┃ ┃%n", os.nomeMaquina().getNome());
+            System.out.printf ("┃ ┃ ID: %-47s┃ ┃%n", os.idMaquina());
+            System.out.printf ("┃ ┃ Nome: %-45s┃ ┃%n", os.nomeMaquina().getNome());
             System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
-            System.out.printf("┃  Tipo da OS: %-42s┃%n", os.tipoOs());
+            System.out.printf ("┃  Tipo da OS: %-42s┃%n", os.tipoOs());
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
             System.out.println(); // pula linha
@@ -226,6 +240,18 @@ public class MenuTecnicoOs {
             System.out.print("┃ ➤ Digite o ID: ");
             try {
                 long idOs = Ferramentas.lInteiro();
+                boolean check = false;
+
+                for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
+                    if(os.idOs() == idOs) {
+                        check = true;
+                    }
+                }
+
+                if(!check) {
+                    throw new IdOsNaoEncontradoException();
+                }
+
                 AtualizarOsRequest atualizarRequest = new AtualizarOsRequest(idOs, null, null, StatusOS.FECHADA);
                 AtualizarOsResponse atualizarResponse = Main.osController.atualizarOsTecnico(nivelAcesso, atualizarRequest);
 
@@ -236,7 +262,7 @@ public class MenuTecnicoOs {
                 }
 
                 setId = true;
-            } catch (InputMismatchException e) {
+            } catch (InputMismatchException | IdOsNaoEncontradoException e) {
                 Ferramentas.menuDefault();
             }
         }
