@@ -21,9 +21,9 @@ public class MenuExcluirMaquina {
             Ferramentas.mensagemErro("┃  NÃO HÁ NENHUMA MÁQUINA PARA EXCLUIR!");
         } else {
             for (MaquinaResponse maquina : responseLista.listaMaquinas()) {
-                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.printf("┃  ID: %-50s┃%n", maquina.id());
-                System.out.printf("┃  Nome: %-48s┃%n", maquina.nomeMaquina().getNome());
+                System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.printf ("┃  "+Ferramentas.ORANGE_DARK+"ID: "+Ferramentas.AQUA_BLUE+"%-50s┃%n", maquina.id());
+                System.out.printf ("┃  "+Ferramentas.ORANGE_DARK+"Nome: "+Ferramentas.AQUA_BLUE+"%-48s┃%n", maquina.nomeMaquina().getNome());
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             }
 
