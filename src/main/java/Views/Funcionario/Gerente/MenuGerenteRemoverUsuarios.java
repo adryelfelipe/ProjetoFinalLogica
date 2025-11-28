@@ -9,6 +9,8 @@ import Util.Ferramentas;
 import Views.Sistema.Main;
 import Views.Sistema.MenuEscolhaId;
 
+import java.util.InputMismatchException;
+
 public class MenuGerenteRemoverUsuarios {
 
     public static void menuRemoverEscolha(long idAdm, NivelAcesso nivelAcesso) {
@@ -27,13 +29,17 @@ public class MenuGerenteRemoverUsuarios {
 
             System.out.println();
 
-            long id = MenuEscolhaId.escolhaIdUpdate();
-            ExcluirFuncionarioRequest request = new ExcluirFuncionarioRequest(idAdm, id);
-            ExcluirFuncionarioResponse responseExclusao = Main.funcionarioController.excluir(nivelAcesso, request);
-            if(responseExclusao.status()) {
-                Ferramentas.mensagemSucesso(responseExclusao.mensagem());
-            } else {
-                Ferramentas.mensagemErro(responseExclusao.mensagem());
+            try{
+                long id = MenuEscolhaId.escolhaIdUpdate();
+                ExcluirFuncionarioRequest request = new ExcluirFuncionarioRequest(idAdm, id);
+                ExcluirFuncionarioResponse responseExclusao = Main.funcionarioController.excluir(nivelAcesso, request);
+                if(responseExclusao.status()) {
+                    Ferramentas.mensagemSucesso(responseExclusao.mensagem());
+                } else {
+                    Ferramentas.mensagemErro(responseExclusao.mensagem());
+                }
+            } catch (InputMismatchException e) {
+                Ferramentas.menuDefault();
             }
         }
 
