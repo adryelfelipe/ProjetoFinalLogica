@@ -9,15 +9,15 @@ public class MenuAdministrador {
 
         while (true) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-            System.out.println("┃                   MENU ADMINISTRADOR                   ┃");
+            System.out.println("┃                   "+Ferramentas.ORANGE_DARK+"MENU ADMINISTRADOR"+Ferramentas.AQUA_BLUE+"                   ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
             System.out.println("┃                                                        ┃");
-            System.out.println("┃  1 - Criar Gerente                                     ┃");
-            System.out.println("┃  2 - Atualizar Gerente                                 ┃");
-            System.out.println("┃  3 - Remover Funcionários                              ┃");
-            System.out.println("┃  4 - Retornar                                          ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"1 - Criar Gerente"+Ferramentas.AQUA_BLUE+"                                     ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"2 - Atualizar Gerente"+Ferramentas.AQUA_BLUE+"                                 ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"3 - Remover Funcionários"+Ferramentas.AQUA_BLUE+"                              ┃");
+            System.out.println("┃  "+Ferramentas.ORANGE_DARK+"4 - Retornar"+Ferramentas.AQUA_BLUE+"                                          ┃");
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
-            System.out.print("┃ ➤ Escolha: ");
+            System.out.print("┃ "+Ferramentas.ORANGE_DARK+"➤ Escolha:"+Ferramentas.AQUA_BLUE+" ");
 
             try {
                 int opcaoAdmin = Ferramentas.lInteiro();

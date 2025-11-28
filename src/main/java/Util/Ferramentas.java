@@ -22,7 +22,8 @@ public class Ferramentas {
                                                                                      "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"));
 
     public static final List<String> listaNumeros = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "0"));
-    // Cores padrão
+
+    /*// Cores padrão
     public static final String AZUL_ACINZENTADO = "\u001B[38;2;10;20;80m"; // RAL 5009
     public static final String RESET = "\u001B[0m";
     public static final String BLACK = "\u001B[30m";
@@ -63,13 +64,15 @@ public class Ferramentas {
     public static final String BG_BRIGHT_PURPLE = "\u001B[105m";
     public static final String BG_BRIGHT_CYAN = "\u001B[106m";
     public static final String BG_BRIGHT_WHITE = "\u001B[107m";
-
+    */
     // Estilos
     public static final String BOLD = "\u001B[1m";
     public static final String UNDERLINE = "\u001B[4m";
     public static final String REVERSED = "\u001B[7m";
 
     // TONS UTILIZADOS NO MENU
+    public static final String BLUE = "\u001B[34m";
+    public static final String RESET = "\u001B[0m";
     public static final String OCEAN_BLUE = "\u001B[38;5;25m";          //  UTILIZADO NA LOGO WEG
     public static final String ORANGE_DARK = "\u001B[38;2;210;110;0m";  //  UTILIZADO NOS MENUS - DETALHES
     public static final String AQUA_BLUE = "\u001B[38;5;31m";           //  UTILIZADO NA BASE DO MENU
