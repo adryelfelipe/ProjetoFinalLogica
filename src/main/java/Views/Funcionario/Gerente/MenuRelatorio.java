@@ -80,28 +80,25 @@ public class MenuRelatorio {
         // Menu
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃              VISUALIZAR ORDENS DE SERVIÇO              ┃");
-        System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
-        System.out.println("                                                          ");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 
         for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
-            System.out.println("┃  ID Ordem de Serviço: " + os.idOs());
-            System.out.println("┃  Status: " + os.statusOs());
-            System.out.println("┃  Descrição: " + os.descricao().getDescricao());
-            System.out.println("┃  Valor: " + os.valorOs().getValorOS());
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("┃  ID Ordem de Serviço: %-36s┃%n" + os.idOs());
+            System.out.println("┃  Status: %-46s┃%n" + os.statusOs());
+            System.out.println("┃  Descrição: %-43s┃%n" + os.descricao().getDescricao());
+            System.out.println("┃  Valor: %-47s┃%n" + os.valorOs().getValorOS());
             System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━┓    ┏━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
             System.out.println("┃ ┃        TÉCNICO        ┃    ┃        MÁQUINA        ┃ ┃");
             System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━┃    ┃━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
-            System.out.println("┃ ┃ ID: " + os.idTecnico() +  "┃ ID: " + os.idMaquina());                             //  Colocar o código que fecha as tabelinhas
-            System.out.println("┃ ┃ Nome: " + os.nomeTecnico().getNome() + "┃ Nome: " + os.nomeMaquina().getNome());  //  Colocar o código que fecha as tabelinhas
+            System.out.printf ("┃ ┃ ID: %-18s┃    ┃ ID: %-18s┃ ┃", os.idTecnico(), os.idMaquina());
+            System.out.printf ("┃ ┃ Nome: %-16s┃    ┃ Nome: %-16s┃ ┃", os.nomeTecnico().getNome(), os.nomeMaquina().getNome());
             System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━┛    ┗━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
             System.out.println("┃  Tipo da Ordem de Serviço: " + os.tipoOs().name());
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println("                                                          ");
             System.out.println("                                                          ");
         }
-
-        System.out.println("                                                          "); //  PULA LINHA
-        System.out.println("                                                          "); //  PULA LINHA
 
         System.out.print("APERTE ENTER PARA CONTINUAR: "); //  'ENTER' EM LARANJINHA
         Ferramentas.lString();

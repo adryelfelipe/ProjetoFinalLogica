@@ -36,19 +36,19 @@ public class MenuVisualizarOs {
         // Menu
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃               TODAS AS ORDENS DE SERVIÇO               ┃");
-        System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
         for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
-            System.out.println("┃  ID OS: " + os.idOs());
-            System.out.println("┃  Status: " + os.statusOs());
-            System.out.println("┃  Descrição: " + os.descricao().getDescricao());
-            System.out.println("┃  Valor: " + os.valorOs().getValorOS());
+            System.out.printf("┃  ID OS: %-47s┃%n", os.idOs());
+            System.out.printf("┃  Status: %-46s┃%n", os.statusOs());
+            System.out.printf("┃  Descrição: %-43s┃%n", os.descricao().getDescricao());
+            System.out.printf("┃  Valor: %-47s┃%n", os.valorOs().getValorOS());
             System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━┓    ┏━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
             System.out.println("┃ ┃        TÉCNICO        ┃    ┃        MÁQUINA        ┃ ┃");
             System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━┃    ┃━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
-            System.out.println("┃ ┃ ID: " + os.idTecnico() + "┃    ┃ ID" + os.idMaquina());
-            System.out.println("┃ ┃ Nome: " + os.nomeTecnico().getNome() + "┃    ┃ Nome: " + os.nomeMaquina().getNome());
+            System.out.printf("┃ ┃ ID: %-47s┃ ┃%n", os.idTecnico() + "┃    ┃ ID" + os.idMaquina());
+            System.out.printf("┃ ┃ Nome: %-45s┃ ┃%n", os.nomeTecnico().getNome() + "┃    ┃ Nome: " + os.nomeMaquina().getNome());
             System.out.println("┃ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ ┃");
-            System.out.println("┃  Tipo da OS: " + os.tipoOs().name());
+            System.out.printf("┃  Tipo da OS: %-42s┃%n", os.tipoOs().name());
             System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             System.out.println(); // pula linha
         }
