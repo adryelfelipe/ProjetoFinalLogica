@@ -134,8 +134,8 @@ public class MenuTecnicoOs {
         for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.printf("┃  ID OS: %-47s┃%n", os.idOs());
-            System.out.printf("┃  Descrição: %-46s┃%n", os.descricao().getDescricao());
-            System.out.printf("┃  Tipo da OS: %-43s┃%n", os.tipoOs().name());
+            System.out.printf("┃  Descrição: %-43s┃%n", os.descricao().getDescricao());
+            System.out.printf("┃  Tipo da OS: %-42s┃%n", os.tipoOs().name());
             System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
             System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
             System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");
@@ -204,8 +204,8 @@ public class MenuTecnicoOs {
         for(OrdemServicoResponse os : listarOsResponse.listaResponse()) {
             System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.printf("┃  ID OS: %-47s┃%n", os.idOs());
-            System.out.printf("┃  Descrição: %-46s┃%n", os.descricao().getDescricao());
-            System.out.printf("┃  Tipo da OS: %-43s┃%n", os.tipoOs().name());
+            System.out.printf("┃  Descrição: %-43s┃%n", os.descricao().getDescricao());
+            System.out.printf("┃  Tipo da OS: %-42s┃%n", os.tipoOs().name());
             System.out.println("┃ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓ ┃");
             System.out.println("┃ ┃                       MÁQUINA                      ┃ ┃");
             System.out.println("┃ ┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃ ┃");

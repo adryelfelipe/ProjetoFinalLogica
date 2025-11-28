@@ -22,8 +22,8 @@ public class MenuExcluirMaquina {
         } else {
             for (MaquinaResponse maquina : responseLista.listaMaquinas()) {
                 System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
-                System.out.println("┃  ID: " + maquina.id());
-                System.out.println("┃  Nome: " + maquina.nomeMaquina().getNome());
+                System.out.printf("┃  ID: %-50s┃%n", maquina.id());
+                System.out.printf("┃  Nome: %-48s┃%n", maquina.nomeMaquina().getNome());
                 System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
             }
 
