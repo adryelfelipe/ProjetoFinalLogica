@@ -221,7 +221,7 @@ public class Ferramentas {
 
                 try {
                     // Simula tempo de trabalho
-                    Thread.sleep(200);
+                    Thread.sleep(25);
                 } catch (InterruptedException e) { }
             }
         }
@@ -232,22 +232,22 @@ public class Ferramentas {
             int progressoChars = (int) ((atual * 100.0f) / total * tamanhoBarra / 100);
 
             StringBuilder barra = new StringBuilder();
-            barra.append("[");
+            barra.append(DARK_CYAN+"[");
 
             for (int i = 0; i < tamanhoBarra; i++) {
                 if (i < progressoChars) {
-                    barra.append("=");
+                    barra.append(DARK_CYAN+"=");
                 } else if (i == progressoChars) {
-                    barra.append(">");
+                    barra.append(DARK_CYAN+">");
                 } else {
-                    barra.append(" ");
+                    barra.append(DARK_CYAN+" ");
                 }
             }
 
-            barra.append("] " + porcentagem + "%");
+            barra.append(DARK_CYAN+"] " + porcentagem + "%");
 
             // \r sobrescreve a linha atual
-            System.out.print("\r" + barra.toString());
+            System.out.print(DARK_CYAN+"\r" + barra.toString());
         }
     }
 }
