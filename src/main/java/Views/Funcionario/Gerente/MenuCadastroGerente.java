@@ -75,7 +75,6 @@ public class MenuCadastroGerente {
         StatusMaquina status = MenuSetMaquina.MenuSetStatusMaquina();
         Ferramentas.limpaTerminal();
 
-        Ferramentas.limpaTerminal();
         System.out.print(Ferramentas.ITALIC+Ferramentas.DARK_CYAN+"┃  PROCESSANDO DADOS..."+Ferramentas.RESET+Ferramentas.AQUA_BLUE);
         Ferramentas.Delay(1000);
 

@@ -20,6 +20,7 @@ public class MenuTecnico {
             try {
                 int escolhaTecnica = Ferramentas.lInteiro();
 
+                Ferramentas.limpaTerminal();
                 switch(escolhaTecnica) {
                     case 1 -> MenuTecnicoOs.ordensServicos(idTecnico, nivelAcesso);
                     case 2 -> {

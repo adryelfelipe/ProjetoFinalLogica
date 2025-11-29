@@ -22,6 +22,7 @@ public class MenuSupervisor
             try {
                 int opcao = Ferramentas.lInteiro();
 
+                Ferramentas.limpaTerminal();
                 switch (opcao) {
                     case 1 -> MenuCadastroSupervisor.menuCadastroOrdemCorretiva(idSupervisor, nivelAcesso);
                     case 2 -> MenuRelatorioSupervisor.menuRelatorio(idSupervisor, nivelAcesso);

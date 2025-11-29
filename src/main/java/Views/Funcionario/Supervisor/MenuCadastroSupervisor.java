@@ -16,7 +16,6 @@ public class MenuCadastroSupervisor
     // -- Atributos -- //
     public static void menuCadastroOrdemCorretiva(long idSupervisor, NivelAcesso nivelAcesso) {
         // Menu de cadastro
-        Ferramentas.limpaTerminal();
         System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
         System.out.println("┃               "+Ferramentas.ORANGE_DARK+"CADASTRO ORDEM DE SERVIÇO"+Ferramentas.AQUA_BLUE+"                ┃");
         System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
