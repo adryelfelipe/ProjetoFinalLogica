@@ -38,13 +38,14 @@ public class MenuCadastroGerente {
         Ferramentas.limpaTerminal();
 
         ArrayList<Departamento> departamentos = MenuSetGerente.menuSetDepartamento();
+        Ferramentas.limpaTerminal();
 
         // ----- Atribuição de caracteríscticas de um Supervisor ----- //
         double metaMensal = MenuSetSupervisor.MenuSetMetaMensal();
         Ferramentas.limpaTerminal();
 
-        System.out.println(Ferramentas.ITALIC+Ferramentas.DARK_CYAN+"┃  PROCESSANDO DADOS..."+Ferramentas.RESET+Ferramentas.AQUA_BLUE);
-        Ferramentas.Delay(1000);
+        Ferramentas.ProcessamentoDeDados.main();
+        Ferramentas.Delay(2000);
 
         // -- Gerando request para cadastro de Supervisor -- //
         CadastroSupervisorRequest request = new CadastroSupervisorRequest(nome, cpf, senha, departamentos, metaMensal);

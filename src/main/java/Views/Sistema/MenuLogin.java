@@ -22,6 +22,9 @@ public class MenuLogin
         System.out.print("┃ ➤ Digite sua senha: ");
         String senhaLogin = Ferramentas.lString();
 
+        Ferramentas.limpaTerminal();
+        Ferramentas.ProcessamentoDeDados.main();
+
         LoginFuncionarioRequest request = new LoginFuncionarioRequest(cpf, senhaLogin);
         LoginFuncionarioResponse response = Main.funcionarioController.login(request);
         if(response.status()) {

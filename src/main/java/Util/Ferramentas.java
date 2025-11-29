@@ -1,7 +1,5 @@
 package Util;
 
-import Aplicacao.Maquina.Mapper.MaquinaMapper;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -190,7 +188,7 @@ public class Ferramentas {
     public static void mensagemErro(String mensagem) {
         Ferramentas.limpaTerminal();
         System.err.println(mensagem);
-        Ferramentas.Delay(1700);
+        Ferramentas.Delay(2000);
         Ferramentas.limpaTerminal();
     }
 
@@ -198,17 +196,58 @@ public class Ferramentas {
     public static void mensagemSucesso(String mensagem) {
         Ferramentas.limpaTerminal();
         System.out.println(BLUE + mensagem + RESET);
-        Ferramentas.Delay(1700);
+        Ferramentas.Delay(2000);
         Ferramentas.limpaTerminal();
     }
 
     // ------- MENU UTILIZADO PARA CASES DEFAULT ------- //
     public static void menuDefault() {
         Ferramentas.limpaTerminal();
-        System.err.println("-------------------------\n");
-        System.err.println("Valor digitado incorreto!");
-        System.err.println("-------------------------\n");
-        Ferramentas.Delay(1500);
+        System.err.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.err.println("┃                Valor digitado incorreto!               ┃");
+        System.err.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+        Ferramentas.Delay(2000);
         Ferramentas.limpaTerminal();
+    }
+
+    public static class ProcessamentoDeDados {
+        public static void main() {
+            System.out.println(Ferramentas.ITALIC+Ferramentas.DARK_CYAN+"┃  PROCESSANDO DADOS..."+Ferramentas.RESET+Ferramentas.AQUA_BLUE);
+
+            int total = 100;
+
+            for (int i = 0; i <= total; i++) {
+                mostrarBarraProgresso(i, total);
+
+                try {
+                    // Simula tempo de trabalho
+                    Thread.sleep(200);
+                } catch (InterruptedException e) { }
+            }
+        }
+
+        public static void mostrarBarraProgresso(int atual, int total) {
+            int tamanhoBarra = 50; // Tamanho visual da barra em caracteres
+            int porcentagem = (int) ((atual * 100.0f) / total);
+            int progressoChars = (int) ((atual * 100.0f) / total * tamanhoBarra / 100);
+
+            StringBuilder barra = new StringBuilder();
+            barra.append("[");
+
+            for (int i = 0; i < tamanhoBarra; i++) {
+                if (i < progressoChars) {
+                    barra.append("=");
+                } else if (i == progressoChars) {
+                    barra.append(">");
+                } else {
+                    barra.append(" ");
+                }
+            }
+
+            barra.append("] " + porcentagem + "%");
+
+            // \r sobrescreve a linha atual
+            System.out.print("\r" + barra.toString());
+        }
     }
 }

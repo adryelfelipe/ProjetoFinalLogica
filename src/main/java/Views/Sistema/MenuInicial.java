@@ -22,6 +22,7 @@ public class MenuInicial
             System.out.println("                                            ▉▉▉");
             System.out.println("          ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉"+Ferramentas.AQUA_BLUE);
 
+
             System.out.println(Ferramentas.AQUA_BLUE+"┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
             System.out.println("┃                         "+Ferramentas.ORANGE_DARK+"WEG OS"+Ferramentas.AQUA_BLUE+"                         ┃");
             System.out.println("┃━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┃");
